@@ -18,8 +18,9 @@ arcs leaving $U$ and $\delta^-(U)$ for those entering.
 - A **$k$-dijoin** meets every dicut at least $k$ times.
 - $\tau$ denotes the minimum size of a dicut.
 
-Note a dijoin is exactly a set of arcs whose reversal makes $D$ strongly connected — a useful
-alternative view when writing code.
+Equivalently, a dijoin is a set of arcs whose **contraction** makes $D$ strongly connected. Arc
+sets whose reversal makes $D$ strongly connected (called *strengthenings*) are dijoins, but the
+converse need not hold.
 
 ## Statement
 
@@ -58,12 +59,15 @@ anything up — it is a cheap, decisive filter that will kill most naive approac
 - **Condensation**: the problem reduces to the condensation (contract strongly connected
   components), since arcs inside a strong component lie in no dicut. Use this — it shrinks
   instances a lot.
-- **Approximate packing**: every digraph with min dicut $\tau$ contains at least
-  $\lfloor \tau/6 \rfloor$ disjoint dijoins, improving to $\lfloor \tau/5 \rfloor$ if Tutte's
-  nowhere-zero 5-flow conjecture holds.
-
-<!-- The tau/6 bound and its attribution are from secondary sources and are not yet pinned to a
-     primary reference. Status `numerical`/unverified until someone checks the papers below. -->
+- **Approximate packing** (`cited`): Cornuéjols, Liu & Ravi prove that every digraph with
+  minimum dicut size $\tau$ contains $\lfloor \tau/6\rfloor$ pairwise arc-disjoint dijoins,
+  constructible in polynomial time. More generally, if the underlying undirected graph admits
+  a nowhere-zero circular $k$-flow for rational $k\ge 2$, their theorem gives
+  $\lfloor \tau/k\rfloor$ disjoint dijoins. For $\tau\ge2$ the underlying graph is
+  2-edge-connected, so Seymour's 6-flow theorem (with Younger's algorithmic version) yields the
+  unconditional $1/6$ bound. If Tutte's nowhere-zero 5-flow conjecture holds, the same theorem
+  gives $\lfloor \tau/5\rfloor$. They also prove that a $6p$-edge-connected underlying graph
+  guarantees $\lfloor \tau p/(2p+1)\rfloor$ disjoint dijoins for every positive integer $p$.
 
 ## Sources
 
@@ -72,8 +76,8 @@ anything up — it is a cheap, decisive filter that will kill most naive approac
 - [Feofiloff's Woodall bibliography](https://www.ime.usp.br/~pf/dijoins/bib.html) — curated reference list.
 - [Open Problem Garden entry](https://www.openproblemgarden.org/op/woodalls_conjecture).
 - [EGRES Open entry](http://lemon.cs.elte.hu/egres/open/Woodall%27s_conjecture) — the Egerváry group's problem page, usually current.
-- Abdi, Cornuéjols & Zlatin, [*On packing dijoins in digraphs and weighted digraphs*, arXiv:2202.00392](https://arxiv.org/abs/2202.00392) — the main recent contribution.
-- [*Approximately packing dijoins via nowhere-zero flows*, arXiv:2311.04337](https://arxiv.org/pdf/2311.04337) — source of the $\tau/6$ and conditional $\tau/5$ bounds.
+- Abdi, Cornuéjols & Zlatin, [*On packing dijoins in digraphs and weighted digraphs*](https://doi.org/10.1137/22M1506511), SIAM J. Discrete Math. 37 (2023), 2417–2461 — source of the dijoin plus $(\tau-1)$-dijoin decomposition.
+- Cornuéjols, Liu & Ravi, [*Approximately packing dijoins via nowhere-zero flows*](https://doi.org/10.1007/s00493-025-00159-x), Combinatorica 45 (2025), article 32; [full arXiv version](https://arxiv.org/abs/2311.04337) — Theorems 1.1–1.3 give the $\tau/6$, connectivity-dependent, and general flow bounds; the conditional $\tau/5$ bound follows by setting $k=5$ under Tutte's conjecture.
 - Schrijver, *A counterexample to a conjecture of Edmonds and Giles*, Discrete Math. 32 (1980) 213–215 — read this before proposing any weighted approach.
 - Woodall, *Menger and König systems*, in *Theory and Applications of Graphs* (1978) — the original.
 
