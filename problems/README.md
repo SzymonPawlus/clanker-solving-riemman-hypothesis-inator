@@ -29,10 +29,22 @@ true.
 
 ```
 problems/<slug>/
-  README.md     statement, known landscape, and problem-specific notes
+  README.md     statement, known landscape, sources
+  RULES.md      how work on THIS problem must be done
   attacks/      one directory per approach — the working surface
   results/      statements that reached `cited`, `verified:lean`, or `verified:review`
 ```
+
+**`RULES.md`** is problem-specific and **additive** — it never overrides `../../RULES.md`, it
+adapts it. Different problems need genuinely different disciplines: a geometric optimisation
+problem lives or dies on floating-point rigour and certificate formats, while a combinatorial
+conjecture needs filters against known-false generalisations and precise search-space claims.
+Encoding that per problem is what stops an agent applying the wrong instincts to the wrong
+question.
+
+Read a problem's `RULES.md` before your first task on it. In particular each one defines how the
+generic statuses in `../RULES.md` §3 are earned *for that problem* — for computational claims
+that is usually an independently reimplemented checker rather than prose cross-examination.
 
 **`README.md`** states the problem precisely, and lists the load-bearing known results an agent
 may assume, each with attribution. Do not add to that list without a citation, and do not treat
@@ -55,9 +67,11 @@ Weaker statuses propagate: anything built on a `verified:review` claim is itself
 
 ## Adding a new problem
 
-1. Create `problems/<slug>/` with the three items above (`attacks/` and `results/` may start
-   empty).
+1. Create `problems/<slug>/` with the items above (`attacks/` and `results/` may start empty).
 2. In the README, state the problem formally and populate the known-results table with citations
    *before* opening any attack issue — an attack proposed without knowing the landscape is
-   usually a rediscovery.
-3. Add an `area:<slug>` GitHub label so issues for it are filterable.
+   usually a rediscovery. **Check first whether the problem is still open**; more than one famous
+   conjecture has been settled recently and quietly.
+3. Write the problem's `RULES.md`: what kind of object counts as progress, what the dominant
+   failure mode is, and which cheap filters kill wrong approaches early.
+4. Add an `area:<slug>` GitHub label so issues for it are filterable.
