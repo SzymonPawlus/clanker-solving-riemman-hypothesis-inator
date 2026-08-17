@@ -1,0 +1,94 @@
+{
+  "n": 17,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point optimiser output. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.21132486540518697,
+  "D_side_of_centre_triangle": 9.46410161513776,
+  "s_side_for_unit_circles": 12.928203230275514,
+  "unit_triangle_points": [
+    [
+      0.42264973081037427,
+      0.0
+    ],
+    [
+      0.711324865405187,
+      0.288675134594813
+    ],
+    [
+      1.6575781903816973e-16,
+      0.0
+    ],
+    [
+      0.21132486540518722,
+      3.7395672746991614e-17
+    ],
+    [
+      0.7886751345948129,
+      0.0
+    ],
+    [
+      0.39433756729740643,
+      0.47168783648703233
+    ],
+    [
+      0.7113248654051871,
+      0.49999999999999994
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.5,
+      0.28867513459481314
+    ],
+    [
+      0.6056624327025935,
+      0.10566243270259366
+    ],
+    [
+      0.10566243270259364,
+      0.18301270189221944
+    ],
+    [
+      0.3943375672974065,
+      0.6830127018922193
+    ],
+    [
+      0.21132486540518722,
+      0.3660254037844387
+    ],
+    [
+      0.8943375672974063,
+      0.1830127018922195
+    ],
+    [
+      0.6056624327025937,
+      0.6830127018922193
+    ],
+    [
+      0.31698729810778087,
+      0.18301270189221944
+    ],
+    [
+      1.0,
+      0.0
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.21132486540518697,
+    "containment_slack": -1.1102230246251565e-16
+  },
+  "reference_m": 0.211324865405187,
+  "reference_source": "Graham-Lubachevsky 1995 (15 s.f.)",
+  "agreement_digits_vs_reference": 15.881600362560464,
+  "seed": 20260834,
+  "python": "3.13.13",
+  "numpy": "2.3.4",
+  "scipy": "1.16.3",
+  "stage": "final",
+  "restarts": 200,
+  "basin_hops": 743,
+  "search_seconds": 40.02749055700042
+}
