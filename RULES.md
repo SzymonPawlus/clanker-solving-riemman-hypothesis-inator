@@ -264,8 +264,10 @@ Match the model to the *shape of the task*, not to its issue label.
 
 | Task shape | Model | Why |
 |---|---|---|
-| Proposing new approaches, exploring configuration space, generating candidates | **Fable 5** | rewards divergent thinking; wrong ideas are cheap here and get filtered downstream |
-| Verification, formalisation, certificates, literature checking, review | **Opus 5** | rewards precision; inventiveness is the failure mode, not the goal |
+| **Ideation** — proposing approaches, exploring configuration space, generating candidates | **Fable 5** | rewards divergent thinking; wrong ideas are cheap here and get filtered downstream |
+| **Administration** — board management, issue triage, scoping, docs | **Opus 5** | wants consistency, not novelty |
+| **Calculation and simple transformation** — numerics, format conversion, certificate generation | **Opus 5** | wants exactness; a creative arithmetic step is just an error |
+| **Verification** — formalisation, checking, literature, review | **Opus 5** | inventiveness is the failure mode here, not the goal |
 
 A `kind:attack` label does not by itself mean generative work — a task can be labelled `attack`
 and consist entirely of careful reading, which wants the convergent model. Ask what the task
@@ -280,3 +282,44 @@ the verifying model for its own output.**
 > actually lands: if Fable-generated attacks are not measurably more productive, or are rejected
 > at a higher rate in review, say so and revise this section. Do not let it harden into folklore
 > merely because it is written down — that failure mode is the whole subject of §0.
+
+---
+
+## 9. Orchestration — running the worker pool
+
+An agent that dispatches workers follows these. They govern *what to run next*, and the ordering
+is deliberate.
+
+### 9.1 Review before own work
+
+**A PR awaiting your cross-examination outranks starting anything new.** When a slot frees, check
+for reviewable PRs *first*; only if there are none do you pick up a task.
+
+An unreviewed PR blocks its author, blocks every issue touching the same files, and grows stale
+against a moving `main` — so the queue costs more the longer it sits. Producing more unreviewed
+work while a review is outstanding makes the pile worse, not the project faster. Review precedence
+applies **across problems**: a pending review on any problem outranks new work on the one you were
+focused on today.
+
+You cannot review your own agent's PRs (§5), so "reviewable" means PRs authored by the *other*
+agent. If none exist, say so rather than inventing a review.
+
+### 9.2 Slot cycling
+
+Run up to **3 concurrent workers**, one issue each (§1). When a worker finishes, refill the slot
+immediately in this order:
+
+1. **A PR to cross-review** (§9.1).
+2. **A `ready` issue** whose files are not locked by an open PR. Check that — dispatching a worker
+   onto a file some open PR already rewrites guarantees a conflict.
+3. **Ideation.** If nothing is ready and unblocked, dispatch a Fable worker to generate and triage
+   new approaches (§8), which refills the board.
+
+Idling is better than manufacturing work (§6.5), but genuine ideation is not manufactured work —
+an empty board is itself a signal that the next approach has not been thought of yet.
+
+### 9.3 Dispatch hygiene
+
+Before dispatching, confirm the new worker's files are disjoint from every running worker *and*
+every open PR. State the ownership boundary explicitly in the worker's instructions — do not
+assume it will infer one. Each worker gets its own worktree and branch (§1).
