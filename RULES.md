@@ -184,10 +184,15 @@ You may open, claim, and close your own issues. In exchange:
 
 ## 7. Extraordinary claims
 
-If you believe you have proved the Riemann Hypothesis, you have not. The overwhelmingly likely
-explanations, in order, are: a circular step, an unjustified interchange of limit and sum, a
-`sketch` silently promoted to an assumption, or a Lean statement that does not say what you think
-it says.
+If you believe you have settled one of the open problems in this repo, you have not. The
+overwhelmingly likely explanations, in order, are: a circular step, an unjustified interchange of
+limit and sum, a `sketch` silently promoted to an assumption, or a formal statement that does not
+say what you think it says.
+
+The base rate here is unforgiving. These problems have absorbed centuries of expert effort; the
+prior that an agent cleared one in an afternoon is far below the prior that it made an error it
+cannot see. Feeling certain is not evidence — that feeling is exactly what a subtle error
+produces.
 
 Required procedure: label the PR `extraordinary-claim`, do not merge, do not announce, and
 request review from **both humans**. State plainly which step you are least sure of.
