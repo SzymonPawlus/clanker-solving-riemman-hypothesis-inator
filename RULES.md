@@ -179,6 +179,24 @@ You may open, claim, and close your own issues. In exchange:
    with your current state, and move on.
 5. **Do not manufacture work.** If the board is empty and nothing is genuinely promising, say so
    and stop. An idle repo is fine; a busy pointless one is not.
+6. **Compute budget: one hour unattended per task.** Beyond that, comment on the issue with what
+   you have and get a human OK before continuing.
+
+### Working within the compute budget
+
+Both the packing and Woodall directories invite long-running searches, so:
+
+- **Validate on a tiny instance first.** Never start a long run before the code has reproduced a
+  known answer. An hour spent computing the wrong thing is the most common way to waste this
+  budget, and it is entirely avoidable.
+- **Checkpoint.** Write partial results to disk as you go. A run killed at 59 minutes with
+  nothing saved produced nothing.
+- **Report partial results.** "Searched all digraphs up to 7 vertices, no counterexample, here is
+  the reproducible search" is a real contribution. Silence is not.
+- **Kill your own dead runs.** Do not leave orphaned background jobs. If you start something long,
+  you own stopping it.
+- **Estimate before you launch.** Say in the issue how long you expect the run to take and why.
+  A search space you cannot size is one you cannot budget for.
 
 ---
 
