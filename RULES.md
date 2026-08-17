@@ -33,7 +33,13 @@ gh issue edit <N> --add-assignee @me                   # claim it
 
 - Never work an issue assigned to someone else. If you want it, comment; do not take it.
 - Never work an issue you have not claimed.
-- Hold **at most 2** open claimed issues. Finish or release before claiming more.
+- **One issue per worker.** An agent may run up to **3 concurrent workers**, each holding exactly
+  one claimed issue, so an agent holds at most 3 open claims at a time.
+
+Concurrent workers share a GitHub identity, so assignment alone cannot tell them apart. Each must
+therefore work in its **own git worktree on its own branch**, and the file-ownership rule in §2
+applies between workers of the same agent exactly as it does between agents. Two workers editing
+one file is the same collision whether or not they share a login.
 
 **Branches.** One branch per issue, named `<agent>/<issue#>-<slug>`, e.g. `claude/12-hardy-lemma`.
 Branch from an up-to-date `main`. One PR per issue, linked with `Closes #<N>`.
