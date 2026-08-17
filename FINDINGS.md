@@ -10,6 +10,47 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-17
 
+### n = 20 was never proven — claim withdrawn from `main`
+`PR #36` · closes `issue #14`
+
+Our README asserted **n = 20 is proven optimal (Payan 1997)**. It is not. Payan's abstract,
+obtained verbatim from the publisher in both languages Elsevier prints:
+
+> "In this paper, we give a proof for k = 5 (arrangement for 14 disks). **This proof can be
+> extended for the case k = 6** (arrangement for 20 disks) and should allow an approach of the
+> general conjecture."
+
+French: *"Cette preuve s'étend de manière un peu plus laborieuse pour k = 6."* What the paper
+claims is k = 5. k = 6 is somewhere the proof *extends to*, next to a forward-looking remark about
+the general conjecture.
+
+The body could not be obtained, so the row moved to **best-known, optimality unresolved** rather
+than being deleted — we do not know that it is false, only that we cannot source it. Erdős–Oler
+correspondingly downgraded from "proven for k ≤ 6" to "k ≤ 5". **n = 14 is unaffected and is now
+better sourced**, resting on Payan's own abstract rather than a survey.
+
+**This is the third time a secondary source has misled this repo** (after the Friedman misreading
+and the reversal/contraction error). The source here, Tedeschi & Mackey (2021), **contradicts
+itself**: its introduction says "proven for n ≤ 12, n = 14, 20" citing Payan, while its own
+abstract credits Payan with fourteen points only and says those proofs "completed the optimal
+arrangements of up to and including fifteen points". Wikipedia cites Payan and still says
+Erdős–Oler is known only for n ≤ 15.
+
+Two gaps closed the same way, by going to primaries:
+
+- **Melissen split resolved.** zbMATH Zbl 0814.52006 confirms the 1993 Monthly paper covers
+  $n = 2,\dots,10,12$ plus triangular $n$, with $n = 11$ merely *announced* there and settled in
+  Acta 1994 — vindicating the earlier inference, including that Friedman has 11/12 backwards.
+- **Groemer co-credit rejected on the primary.** Math. Z. **73** (1960) 285–294 was read directly
+  (free GDZ scan). It contains exactly one theorem, a general convex-region inequality, with **no
+  triangle application and no per-$n$ result**. Oler-only credit now stands as a checked
+  conclusion rather than a flagged guess.
+
+**Actionable for a human:** Payan's article page is marked *"Open archive"*. Automated fetches are
+bot-blocked (ScienceDirect 403s, Unpaywall shows closed, scholar.archive.org blocked), but a person
+with a browser can very likely just download the PDF — and that one file closes the n = 20 question
+outright.
+
 ### ⚠️ A wrong load-bearing justification passed two reviews and is on `main`
 `PR #23` (merged) · `issue #35` · claim held at `sketch`
 
