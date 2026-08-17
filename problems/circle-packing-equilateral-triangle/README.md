@@ -1,7 +1,12 @@
 # Circle packing in an equilateral triangle
 
-**Status:** open for most $n$. Optimality is proven for **all $n \le 15$**, for every triangular
-number $n = k(k+1)/2$, and for $n = 20$; everything else is best-known-construction.
+**Status:** open for most $n$. Optimality is proven for **all $n \le 15$** and for every triangular
+number $n = k(k+1)/2$; everything else is best-known-construction.
+
+> **Correction, 2026-08.** This file previously asserted that $n = 20$ is also proven optimal
+> (Payan 1997). **That assertion has been withdrawn** — Payan's own abstract says his proof is for
+> $k = 5$ ($n = 14$) and that it *"can be extended"* to $k = 6$ ($n = 20$). See
+> [The $n = 20$ correction](#the-n--20-correction).
 
 Shared conventions: [`../README.md`](../README.md). Repo-wide protocol:
 [`../../RULES.md`](../../RULES.md). **Problem-specific rules: [`RULES.md`](./RULES.md) — read
@@ -12,8 +17,8 @@ before working on this problem.**
 Pack $n$ unit circles into the smallest possible equilateral triangle. Write $s(n)$ for the
 minimal side length.
 
-$s(n)$ is settled for $n \le 15$, for all triangular $n$, and for $n = 20$; see the table below.
-There is no known closed form for general $n$.
+$s(n)$ is settled for $n \le 15$ and for all triangular $n$; see the table below. There is no known
+closed form for general $n$.
 
 ## The reduction that makes this tractable
 
@@ -42,6 +47,12 @@ Two kinds of statement, and conflating them is the main way to overclaim here:
 Every row below is **proven optimal**. The former split of this table into "proven" and
 "best known" was wrong; see [Resolution of the source conflict](#resolution-of-the-source-conflict).
 
+Two rows carry a note. **$n = 14$** is safe: Payan's abstract says outright "in this paper, we give
+a proof for $k = 5$ (arrangement for 14 disks)", and Tedeschi & Mackey and Wikipedia agree — it is
+$n = 20$, not $n = 14$, that the abstract leaves ambiguous. **$n = 4,5,7,8,9,12$** are attributed
+to the 1993 Monthly paper on the strength of zbMATH's review of it, not of its body; see
+[The Melissen split](#the-melissen-split--resolved).
+
 | $n$ | $s(n)$ | Optimality proved by | Reference |
 |---|---|---|---|
 | 1 | $2\sqrt{3} \approx 3.464$ | trivial | — |
@@ -65,7 +76,9 @@ Also proven, outside the $n \le 15$ range:
 | $n$ | $s(n)$ | Optimality proved by | Reference |
 |---|---|---|---|
 | $\Delta(k) = \tfrac{k(k+1)}{2}$ | $2(k-1) + 2\sqrt{3}$ | Oler (1961) | Canad. Math. Bull. **4**, 153–155 |
-| 20 $= \Delta(6) - 1$ | $10 + 2\sqrt{3} \approx 13.464$ | Payan (1997) | Discrete Math. **165–166**, 555–565 |
+
+$n = 20$ **used to be listed here and is not any more** — see
+[The $n = 20$ correction](#the-n--20-correction).
 
 ### Best known only (optimality *not* established) — status `numerical`
 
@@ -73,9 +86,58 @@ Also proven, outside the $n \le 15$ range:
 |---|---|---|
 | 16, 17, 18 | various | Melissen & Schuur (1995), Discrete Math. **145**, 333–342 |
 | 19 | — | pre-1995 literature; see Graham & Lubachevsky (1995), which reproduces it |
+| **20** $= \Delta(6) - 1$ | $10 + 2\sqrt{3} \approx 13.464$ | the $\Delta(6)$ packing minus one circle; **optimality unresolved here**, see below |
 | 22–34 | various | Graham & Lubachevsky (1995), Electron. J. Combin. **2**, #A1 |
 
-($n = 20$ and $n = 21 = \Delta(6)$ are *proven*, not best-known — see the table above.)
+($n = 21 = \Delta(6)$ is *proven* by Oler — see the table above. $n = 20$ is **not** listed as
+proven; the construction is certain and only the lower bound is at issue.)
+
+### The $n = 20$ correction
+
+**What changed:** $n = 20$ moved from "proven optimal (Payan 1997)" to best-known. **Why:** the
+claim rested on a secondary source, and Payan's own abstract does not support it.
+
+Payan's abstract, from the publisher's own page for the paper (**primary source, abstract only —
+the body was not obtained**), reads in full, in both languages Elsevier prints:
+
+> Les empilements optimaux de $n$ cercles égaux dans un triangle équilatéral ne sont connus que
+> pour les première valeurs de $n$ ($n \le 12$) et pour les nombres triangulaires […] Cette
+> conjecture n'est montrée que pour $k \le 4$. **Nous donnons une preuve pour $k = 5$ (empilement
+> de 14 cercles). Cette preuve s'étend de manière un peu plus laborieuse pour $k = 6$ (empilement
+> de 20 cercles)** et devrait permettre une approche de la conjecture générale.
+
+> […] Its validity is known for $k \le 4$. **In this paper, we give a proof for $k = 5$
+> (arrangement for 14 disks). This proof can be extended for the case $k = 6$ (arrangement for 20
+> disks)** and should allow an approach of the general conjecture.
+
+Read plainly: **"in this paper, we give a proof for $k = 5$"**, and $k = 6$ is described as
+something the proof *extends to* — "de manière un peu plus laborieuse", in a somewhat more
+laborious way — alongside a forward-looking remark about the general conjecture. An author who has
+written out the $k = 6$ case does not normally describe it that way, and the paper is 11 pages.
+
+**This is a reading of the abstract, not of the paper.** We do not know whether §§ of the body
+carry out the $k = 6$ case. Two outcomes are possible and we cannot yet distinguish them:
+
+- the extension is executed in the paper, and $n = 20$ is genuinely proven; or
+- the extension is asserted and left to the reader, and $n = 20$ is **not** proven anywhere.
+
+Independent circumstantial evidence, all secondary, points the second way:
+
+- **Wikipedia**: "Optimal solutions have been proved for $n \le 15$, and for any triangular number
+  of circles", and of the Erdős–Oler conjecture, "this conjecture is now known to be true for
+  $n \le 15$" — i.e. $k \le 5$ only. It cites Payan and still does not claim $n = 20$.
+- **Tedeschi & Mackey (AJUR 2021)** is the source that *does* claim it, writing "have been proven
+  for $n \le 12$, $n = 14, 20$" with a single citation to Payan. But that same paper's own abstract
+  credits Payan with $n = 14$ alone: "In 1997, Payan proved Melissen's conjecture for the
+  arrangement of fourteen points" — and then, "these proofs completed the optimal arrangements of
+  up to and including fifteen points", with no mention of 20. It is an undergraduate-journal survey
+  contradicting itself between abstract and introduction.
+- **zbMATH's review** of Payan (Zbl 0897.52003, J. M. Wills) is uninformative: "the author
+  considers optimal packings of equal circles in equilateral triangles for some particular values."
+
+Until someone reads Discrete Math. **165–166**, 555–565 itself, the honest status of $n = 20$ is
+**unresolved**, and an unresolved lower bound does not belong in a table headed "proven optimal".
+$n = 14$ is unaffected: the abstract states that proof outright, in the paper.
 
 ### Resolution of the source conflict
 
@@ -90,8 +152,9 @@ halves of that framing were wrong, and it is worth recording why.
    $n = 13$ and $n = 14$ genuinely were open — their introduction states that the only known
    optima are the triangular numbers plus $n = 2, 4, 5, 7, 8, 9, 11, 12$. The two gaps closed
    later:
-   - $n = 14$: **C. Payan (1997)**, proving the Erdős–Oler conjecture for $k = 5$ (and $k = 6$,
-     giving $n = 20$).
+   - $n = 14$: **C. Payan (1997)**, proving the Erdős–Oler conjecture for $k = 5$. (His abstract
+     also says the proof extends to $k = 6$, i.e. $n = 20$; that is *not* the same claim — see
+     [The $n = 20$ correction](#the-n--20-correction).)
    - $n = 13$: **A. Joós**, published online 2 September 2020, Aequat. Math. **95** (2021) 35–65,
      confirming Melissen's 1993 conjecture and a Graham–Lubachevsky conjecture.
 
@@ -103,7 +166,7 @@ halves of that framing were wrong, and it is worth recording why.
    un polygone régulier*, mémoire de licence, Université Libre de Bruxelles (1987) — an
    unpublished thesis covering $n \le 6$. Melissen's 1993 Monthly paper covers those cases too, so
    the table above cites the published source. Friedman's "Groemer" co-credits for $n = 6, 10, 15$
-   are **not** verified here (see gaps below).
+   are **checked and rejected** — see [Groemer](#groemer-1960--co-credit-rejected) below.
 
 Consistency check on $n = 13$: Joós states the maximum separation of 13 points in a unit-side
 triangle as $t_{13} = 9 - 5\sqrt{3} - \tfrac{7\sqrt{6}}{2} + 6\sqrt{2} \approx 0.2518132$. Via
@@ -111,37 +174,125 @@ $s = 2\sqrt{3} + 2/t_{13}$ this gives $11.40649585375161$, against
 $4 + \tfrac{2\sqrt{6}}{3} + \tfrac{10\sqrt{3}}{3} = 11.40649585375171$ — agreement to $10^{-13}$,
 confirming Joós proved optimality of exactly the value tabulated above.
 
-### Remaining gaps in the attribution (honest accounting)
+### The Melissen split — resolved
 
-Resolved enough to mark the table `cited`, but these specific points were **not** verified
-against a full text and should not be built on:
+The per-$n$ split of $\{4,5,7,8,9,12\}$ into the 1993 Monthly paper used to be marked *inferred*.
+It is now confirmed, and it was right. zbMATH's review of that paper (Zbl 0814.52006, reviewing
+Amer. Math. Monthly **100** (1993) 916–925, doi:10.2307/2324212) says:
 
-- **Which paper contains which small case.** The per-$n$ split of $\{4,5,7,8,9,12\}$ into
-  Melissen 1993 is *inferred*, not read: Melissen & Schuur (1995) says optimal packings were
-  determined "for $n \le 6$ by Milano, and by the first author for $n \le 12$ [Monthly 1993, Acta
-  1994]", and Graham & Lubachevsky (1995) says the known non-triangular cases are
-  $n = 2,4,5,7,8,9,11,12$ citing the same two papers. Since the Acta paper's title is confined to
-  $n = 11$, the rest must be in the Monthly paper. Neither paper's body was read.
-- **Payan's $n = 20$ result** comes from the publisher's abstract (via search summary) and from
-  Tedeschi (2021), not from the paper itself. Its $n = 14$ result is corroborated by both.
-- **Groemer.** Friedman co-credits "Oler/Groemer" ($n = 6, 10$) and "Erdős/Groemer" ($n = 15$).
-  Graham & Lubachevsky credit Oler alone ("It was first shown by Oler in 1961"). Groemer,
-  *Über die Einlagerung von Kreisen in einen konvexen Bereich*, Math. Z. **73** (1960) 285–294,
-  exists and is closely related, but its exact contribution to these cases was **not** checked.
-  The tables above therefore credit Oler only.
-- **Melissen's 1997 Utrecht thesis** *Packing and covering with circles*, named in the issue as the
-  place to look, could **not** be obtained — no accessible full text was found. The resolution
-  above rests on the journal literature instead.
-- $16 \le n \le 21$ were not researched beyond confirming that the constructions are unproven;
-  the "best known" table's attributions there are coarse.
+> Given an equilateral triangle $T$ in the Euclidean plane put $n$ points in $T$ such that the
+> minimal distance between any two points of this arrangement is maximal. The author lists such
+> configurations for $n = 2,3,4,\dots,10,12$ and for $n = k(k+1)/2$, $k \ge 2$, **together with
+> proofs of the optimality and the uniqueness** (whenever the configuration is unique). **The case
+> $n = 11$ is announced.**
+
+So the 1993 Monthly paper proves $n = 2,\dots,10$ and $n = 12$, plus the triangular numbers, and
+*announces* $n = 11$ — which is then settled in the 1994 Acta Math. Hungar. paper whose title says
+so. That is exactly the split the table above uses, including the 11/12 ordering that Friedman has
+backwards.
+
+**Provenance:** this is a **review of the primary source**, written by a mathematician who read the
+paper — not the paper's own text. It is a stronger warrant than a survey's passing summary, and
+weaker than the body. Neither Melissen paper's body was obtained (JSTOR and Springer, both
+paywalled).
+
+### Groemer (1960) — co-credit rejected
+
+Friedman co-credits "Oler/Groemer" for $n = 6, 10$ and "Erdős/Groemer" for $n = 15$. This is now
+checked against the paper itself and the co-credit does **not** stand.
+
+Groemer, *Über die Einlagerung von Kreisen in einen konvexen Bereich*, Math. Z. **73** (1960)
+285–294, is freely readable as a scan via GDZ Göttingen
+([GDZPPN002389444](http://gdz.sub.uni-goettingen.de/dms/resolveppn/?PPN=GDZPPN002389444)).
+**Pages 285 and 294 — the statement page and the final page — were read directly from that scan.**
+The paper contains exactly one theorem, a sharpening of Fejes Tóth's $n\sqrt{12} \le F$:
+
+> **Satz.** Sind in einem konvexen Bereich vom Flächeninhalt $F$ und Umfang $U$ $n$ Einheitskreise
+> eingelagert, so ist
+> $$n \cdot \sqrt{12} \le F - \varkappa U + \lambda$$
+> mit $\varkappa = \tfrac{2-\sqrt3}{2} = 0{,}1339\ldots$, $\lambda = \sqrt{12} - \pi(\sqrt3 - 1) =
+> 1{,}1642\ldots$
+>
+> — Groemer, Math. Z. 73 (1960), p. 285.
+
+with equality iff the region is the convex hull of the circles *and* the hull $H$ of the centres
+decomposes into equilateral triangles of side 2 whose vertices are all centres (or degenerates to a
+segment or a point). Page 294 ends "Dies ergibt Teil a) des Satzes", followed immediately by a
+two-item bibliography: **the whole body is the proof of that one inequality. There is no
+application to the equilateral triangle and no statement about any particular $n$.**
+
+Two consequences, and the second is the decisive one:
+
+1. Groemer's equality case *characterises* the triangular-lattice configurations, which is why the
+   paper looks relevant. But characterising the extremal configuration of a general inequality is
+   not the same as proving $s(\Delta(k))$.
+2. Applied to our problem in the only direct way — take the convex region to be the containing
+   equilateral triangle of side $s$, so $F = \sqrt3 s^2/4$ and $U = 3s$ — the inequality is
+   **slack at every triangular $n$**, so it cannot settle those cases:
+
+   | $n$ | Groemer's bound on $s$ | true $s(n)$ | slack |
+   |---|---|---|---|
+   | 3 | $\ge 5.1038$ | $5.4641$ | $0.360$ |
+   | 6 | $\ge 7.2114$ | $7.4641$ | $0.253$ |
+   | 10 | $\ge 9.2690$ | $9.4641$ | $0.195$ |
+   | 15 | $\ge 11.3051$ | $11.4641$ | $0.159$ |
+   | 21 | $\ge 13.3298$ | $13.4641$ | $0.134$ |
+
+   (Equality in Groemer's Satz requires the region to *be* the convex hull of the circles, which a
+   containing triangle never is, so strictness here is expected rather than surprising.)
+
+   **Status of this table: `sketch`** — it is arithmetic done here, from Groemer's inequality as
+   printed on p. 285, not something Groemer or anyone else states. It is offered as a consistency
+   check on the rejection, not as its foundation. The foundation is simply that the paper contains
+   no result about triangles.
+
+The tables above therefore continue to credit **Oler alone**, now as a checked conclusion rather
+than a flagged guess. Graham & Lubachevsky ("it was first shown by Oler in 1961") agree; Friedman's
+co-credit appears to be an attribution of the *underlying tool* rather than of the result.
+
+### Provenance of every source used (per PR #21's convention)
+
+| Source | How it was used |
+|---|---|
+| **Groemer, Math. Z. 73 (1960) 285–294.** | **Primary, partially read.** Pp. 285 (statement) and 294 (end of proof + bibliography) read directly from the GDZ scan. Pp. 286–293 not read — they are the proof of the Satz on p. 285, which the last page confirms. |
+| **Payan, Discrete Math. 165–166 (1997) 555–565.** | **Primary abstract only.** French *Résumé* and English *Abstract* transcribed verbatim from the publisher's own article page. **Body NOT obtained.** |
+| **Melissen, Amer. Math. Monthly 100 (1993) 916–925.** | **NOT read** (JSTOR, paywalled). Contents established from the zbMATH review Zbl 0814.52006, quoted above — a review *of* the primary, i.e. still secondary. |
+| **Melissen, Acta Math. Hungar. 65 (1994) 389–393.** | **NOT read** (Springer, paywalled). Its scope is taken from its title plus the 1993 review's "the case $n = 11$ is announced". |
+| **Oler, Canad. Math. Bull. 4 (1961) 153–155.** | **Read in full** (open PDF at Cambridge Core); also read in full by the worker on issue #17, see `attacks/oler-lower-bound/`. |
+| **Joós, Aequat. Math. 95 (2021) 35–65.** | **NOT read** (Springer, paywalled). Its $t_{13}$ value comes via Tedeschi & Mackey and is independently corroborated by the $t_{13}$ arithmetic check in §"Resolution of the source conflict". |
+| Tedeschi & Mackey, AJUR 18(2) (2021) 3–12. | **Read in full**, open access. **Secondary, and internally inconsistent on $n = 20$** — see the correction section. |
+| Melissen & Schuur, Discrete Math. 145 (1995) 333–342. | **Read** (open copy at ris.utwente.nl). Secondary for the attribution sentence. |
+| zbMATH Open (Zbl 0814.52006, Zbl 0897.52003, Zbl 0100.36601). | **Reviews and metadata**, read via the zbMATH Open API. Secondary. Also the route by which the Groemer scan was found. |
+| Wikipedia; Friedman's Packing Center. | **Cross-checks only.** Neither is relied on for any status in the tables. |
+
+### Remaining gaps (honest accounting)
+
+- **Payan's body was not obtained**, so the $k = 6$ / $n = 20$ question is open. What was tried:
+  ScienceDirect (HTTP 403 / bot challenge, direct and via a reader proxy — the article is marked
+  "Open archive", so a human with a browser can very likely just download it), Unpaywall
+  (`oa_status: closed`, no repository copy), Crossref (no abstract), CORE (0 hits),
+  scholar.archive.org (bot-blocked), Semantic Scholar (abstract elided by publisher), HAL and a
+  search for an IMAG/LSD2 technical-report preprint (nothing), Google Scholar caches, ResearchGate.
+  **A single library PDF closes this gap; nothing clever is needed.**
+- **Neither Melissen paper's body was obtained.** The per-$n$ split now rests on a zbMATH review
+  rather than on inference from two surveys — better, still not the paper.
+- **Melissen's 1997 Utrecht thesis** *Packing and covering with circles* could **not** be obtained;
+  no accessible full text was found (searched again 2026-08).
+- **Joós (2021) was not read.** The $n = 13$ row rests on the $t_{13}$ arithmetic cross-check in
+  "Resolution of the source conflict" above, plus Tedeschi & Mackey.
+- $16 \le n \le 19$ and $22 \le n \le 34$ attributions are coarse; only the proven/best-known
+  boundary was checked, not the per-$n$ credit.
 
 ### The Erdős–Oler conjecture
 
 For a triangular number $\Delta(k) = k(k+1)/2$, removing one circle from an optimal
 $\Delta(k)$-packing still gives an optimal packing: $s(\Delta(k) - 1) = s(\Delta(k))$.
 
-Status: **proven for $k \le 6$**, i.e. for $n = 2, 5, 9, 14, 20$. Cases $k \le 4$ are in Melissen
-(1993); $k = 5$ and $k = 6$ are Payan (1997). Open for $k \ge 7$. Rows $n = 15/14$ and $n = 10/9$
+Status: **proven for $k \le 5$**, i.e. for $n = 2, 5, 9, 14$. Cases $k \le 4$ are in Melissen
+(1993); $k = 5$ is Payan (1997). **$k = 6$ ($n = 20$) is claimed by Payan's abstract to follow from
+the same proof "de manière un peu plus laborieuse", but we could not confirm that the paper carries
+it out** — see [The $n = 20$ correction](#the-n--20-correction). Open for $k \ge 7$, and open here
+for $k = 6$ pending a read of Payan. Rows $n = 15/14$ and $n = 10/9$
 above exhibit exactly this. Graham & Lubachevsky (1995) attribute the conjecture to
 D. J. Newman (private communication) "among others"; Melissen & Schuur (1995) attribute it to
 Oler, Fejes Tóth and Newman.
@@ -158,20 +309,29 @@ cases including $n = 37, 40, 42, 43, 46, 49$.
   the main lower-bound tool; settles all triangular $n = \Delta(k)$.
 - J. B. M. Melissen, *Densest packings of congruent circles in an equilateral triangle*,
   Amer. Math. Monthly **100** (1993) 916–925.
-  [doi:10.2307/2324212](https://doi.org/10.2307/2324212) — the non-triangular cases
-  $n \le 12$ except $n = 11$; also states the $n = 13, 14, 17, 19$ conjectures.
+  [doi:10.2307/2324212](https://doi.org/10.2307/2324212) — per zbMATH Zbl 0814.52006, proves
+  optimality *and uniqueness* for $n = 2,\dots,10$ and $n = 12$, plus $n = \Delta(k)$, and
+  *announces* $n = 11$; also states the $n = 13, 14, 17, 19$ conjectures.
 - J. B. M. Melissen, *Optimal packings of eleven equal circles in an equilateral triangle*,
   Acta Math. Hungar. **65** (1994) 389–393.
   [doi:10.1007/BF01876040](https://doi.org/10.1007/BF01876040) — $n = 11$.
 - C. Payan, *Empilement de cercles égaux dans un triangle équilatéral. À propos d'une conjecture
   d'Erdős–Oler*, Discrete Math. **165–166** (1997) 555–565.
   [doi:10.1016/S0012-365X(96)00201-4](https://doi.org/10.1016/S0012-365X\(96\)00201-4) —
-  $n = 14$ and $n = 20$.
+  **$n = 14$** ($k = 5$). Its abstract adds that the proof "can be extended" to $k = 6$
+  ($n = 20$); **do not cite this paper for $n = 20$ without reading the body.** Marked
+  "Open archive" on ScienceDirect, so it should be freely downloadable in a browser.
 - A. Joós, *Packing 13 circles in an equilateral triangle*, Aequat. Math. **95** (2021) 35–65
   (online 2 Sept 2020). [doi:10.1007/s00010-020-00753-y](https://doi.org/10.1007/s00010-020-00753-y)
   — $n = 13$, the last open case below 16.
 - R. Milano, *Configurations optimales de disques dans un polygone régulier*, mémoire de licence,
   Université Libre de Bruxelles (1987) — $n \le 6$; unpublished, not consulted.
+- H. Groemer, *Über die Einlagerung von Kreisen in einen konvexen Bereich*, Math. Z. **73** (1960)
+  285–294. [doi:10.1007/BF01159721](https://doi.org/10.1007/BF01159721);
+  [**free scan at GDZ**](http://gdz.sub.uni-goettingen.de/dms/resolveppn/?PPN=GDZPPN002389444).
+  A single general inequality $n\sqrt{12} \le F - \varkappa U + \lambda$ for unit circles in a
+  convex region. **Does not treat the triangle and settles no particular $n$** — it is not a
+  citation for any row above; see [Groemer](#groemer-1960--co-credit-rejected).
 
 ### Constructions and surveys
 
@@ -188,13 +348,22 @@ cases including $n = 37, 40, 42, 43, 46, 49$.
   **18**(2) (2021) 3–12 —
   [PDF](https://www.ajuronline.org/uploads/Volume_18_2/AJUR_Vol_18_Issue_2_Sept_2021p3.pdf).
   Useful for its history paragraph; works towards a discrete reproof of Joós's theorem.
+  **Handle its history with care:** its introduction claims $n = 20$ proven while its own abstract
+  credits Payan with $n = 14$ only. It was the source of the withdrawn $n = 20$ claim.
+- zbMATH Open — [Zbl 0814.52006](https://zbmath.org/?q=an:0814.52006) (review of Melissen 1993),
+  [Zbl 0897.52003](https://zbmath.org/?q=an:0897.52003) (review of Payan 1997),
+  [Zbl 0100.36601](https://zbmath.org/?q=an:0100.36601) (Groemer 1960, no review text). Free, and
+  its API returns review text and links to open scans. It is where the Melissen split was settled
+  and where the GDZ scan of Groemer was found. Reviews are **secondary**.
 - Melissen, *Packing and covering with circles*, PhD thesis, Utrecht University (1997) — the most
   complete account of the small-$n$ proofs. **No accessible full text was found** as of 2026-08.
 
 ### Tables (secondary — verify before relying on them)
 
 - [Circle packing in an equilateral triangle — Wikipedia](https://en.wikipedia.org/wiki/Circle_packing_in_an_equilateral_triangle)
-  — its "proved for $n \le 15$" claim is correct.
+  — its "proved for $n \le 15$" claim is correct. Note it also says the Erdős–Oler conjecture is
+  "known to be true for $n \le 15$", i.e. $k \le 5$ — it cites Payan and still does not claim
+  $n = 20$.
 - [Erich Friedman, Packing Center — circles in triangles](https://erich-friedman.github.io/packing/cirintri/)
   — per-$n$ diagrams and exact side lengths, all of which check out; but the *status* markers are
   **stale**: $n = 13$ and $n = 14$ are still shown as "Found by", and the 1993/1994 credits for
