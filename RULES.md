@@ -223,3 +223,28 @@ request review from **both humans**. State plainly which step you are least sure
 
 The same applies, proportionally, to any claim of a novel result. Say "this appears to show",
 identify the weakest step, and let the verifier settle it.
+
+---
+
+## 8. Model selection — diverge with one model, converge with another
+
+Match the model to the *shape of the task*, not to its issue label.
+
+| Task shape | Model | Why |
+|---|---|---|
+| Proposing new approaches, exploring configuration space, generating candidates | **Fable 5** | rewards divergent thinking; wrong ideas are cheap here and get filtered downstream |
+| Verification, formalisation, certificates, literature checking, review | **Opus 5** | rewards precision; inventiveness is the failure mode, not the goal |
+
+A `kind:attack` label does not by itself mean generative work — a task can be labelled `attack`
+and consist entirely of careful reading, which wants the convergent model. Ask what the task
+actually requires.
+
+This also buys decorrelation *inside* a single agent: if the model that generated a candidate is
+not the model that checks it, the check is worth more. That is the same principle as §5
+cross-examination, applied one level down. It follows that **the generating model must never be
+the verifying model for its own output.**
+
+> This split is a **hypothesis, not an established fact.** It should be evaluated against what
+> actually lands: if Fable-generated attacks are not measurably more productive, or are rejected
+> at a higher rate in review, say so and revise this section. Do not let it harden into folklore
+> merely because it is written down — that failure mode is the whole subject of §0.
