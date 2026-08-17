@@ -42,6 +42,29 @@ argument exists.
 Work in the **point formulation** (`README.md`): $n$ points, pairwise distance $\ge 2$, inside an
 equilateral triangle of side $d = s - 2\sqrt{3}$.
 
+### Fixed conventions — do not reinterpret these
+
+Two independently written checkers must agree, so every degree of freedom is pinned here. If you
+think one of these is wrong, change it in this file by PR; do not resolve it locally in code.
+
+- **Triangle placement.** $A = (0, 0)$, $B = (d, 0)$, $C = (d/2,\ d\sqrt{3}/2)$. Checkers do
+  **not** search over rigid motions — a packing given in some other position is invalid, not
+  merely inconvenient. This is the assumption most likely to make two checkers disagree.
+- **`side_length` means $s$**, the side of the triangle holding the unit circles — never $d$.
+  Both appear in this document; the certificate always reports $s$.
+- **All inequalities are non-strict.** Distances $\ge 2$, points in the *closed* triangle. Optimal
+  packings have exact contacts and points exactly on edges, so strict inequalities would reject
+  every optimum.
+- **Consistency of `side_length`.** Containment alone only certifies $s(n) \le s$, so an inflated
+  $s$ would pass. Checkers must also compute the exact minimal enclosing value and report whether
+  the certificate is **tight**. Tightness is *required* for any record claim (§4) and optional
+  otherwise — an untight certificate is an honest upper bound, so say which you are claiming.
+- **Interval encoding**, when `coordinate_type` is `interval`: `[[x_lo, x_hi], [y_lo, y_hi]]` with
+  exact rational endpoints. Reject any other shape rather than guessing at it.
+- **Decimal strings are banned** in exact fields. `"10.928"` is exactly rational and therefore
+  parses, but it is almost always truncated optimiser output masquerading as an exact value.
+  Write the exact expression.
+
 Every claimed packing lives in `results/n<NNN>-<slug>.json`:
 
 ```json
