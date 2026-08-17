@@ -87,6 +87,13 @@ Does **not** establish:
   points after an exact barycentric projection into the triangle. SLSQP will happily return a
   point a few $10^{-12}$ outside the feasible set with a correspondingly inflated $m$, and that
   is exactly the mechanism that manufactures a fake record.
+- **The float feasibility numbers are round-off, and that is the point.** Every checkpoint
+  records a `containment_slack`, and across the whole run it sits at $\pm 10^{-16}$ — sometimes
+  *negative*, i.e. nominally outside the triangle by half an ulp. That is the barycentric
+  round-trip's rounding, not a real violation, but there is no way to tell those two apart from
+  inside double precision. It is a concrete demonstration of why problem `RULES.md` §0 refuses
+  float output as a result: at this precision "feasible" and "infeasible by $10^{-16}$" are the
+  same bit pattern.
 - **Polish separately from search.** A single SLSQP solve lands around $10^{-9}$; warm-restarting
   it from its own output three or four times reaches $10^{-15}$. Without the polish stage the
   validation table above would read "8 digits", which is enough to pass the gate but not enough

@@ -244,6 +244,12 @@ def search(
 
     def offer(p: np.ndarray, m: float) -> bool:
         nonlocal best_p, best_m
+        # SLSQP can fail outright and hand back coincident points (m == 0) or NaN. Such a
+        # "solution" must never become the incumbent: m == 0 divides by zero downstream, and
+        # NaN silently poisons every later comparison (NaN > x is False, so it would instead
+        # freeze the search on whatever came before it).
+        if not math.isfinite(m) or m <= 0.0:
+            return False
         if m > best_m:
             best_m, best_p = m, p.copy()
             history.append((time.perf_counter() - t0, m))
@@ -261,9 +267,10 @@ def search(
         p, m = local_solve(p0, maxiter=maxiter)
         offer(p, m)
 
-    if best_p is None:  # pathological: no restart completed
+    while best_p is None:  # pathological: every restart degenerate or the budget was zero
         p0 = sample_uniform(n, rng)
-        best_p, best_m = local_solve(p0, maxiter=maxiter)
+        p, m = local_solve(p0, maxiter=maxiter)
+        offer(p, m)
 
     # ---- stage 2: basin hopping on the incumbent ---------------------------------------
     while time.perf_counter() - t0 < time_budget:
