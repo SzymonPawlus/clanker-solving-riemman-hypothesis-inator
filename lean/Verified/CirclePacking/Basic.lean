@@ -68,6 +68,93 @@ base, right of the left edge, left of the right edge. -/
 def InTriangle (d : ℝ) (p : Plane) : Prop :=
   0 ≤ p 1 ∧ p 1 ≤ √3 * p 0 ∧ √3 * p 0 + p 1 ≤ √3 * d
 
+/-!
+### Sanity: `InTriangle` really is the triangle
+
+`InTriangle` is our own definition, so on its own it could silently describe a region larger or
+smaller than intended — the classic way to "prove" a weaker statement. The following identifies it
+with the convex hull of the three vertices, which is the definition nobody can argue with.
+-/
+
+/-- The three vertices of the triangle of admissible centres. -/
+noncomputable def vertices (d : ℝ) : Set Plane := {pt 0 0, pt d 0, pt (d / 2) (√3 * d / 2)}
+
+/-- Two points of the plane agree as soon as both coordinates do. -/
+lemma plane_ext {u v : Plane} (h0 : u 0 = v 0) (h1 : u 1 = v 1) : u = v := by
+  rw [WithLp.ext_iff]
+  funext i
+  fin_cases i <;> assumption
+
+/-- A convex combination of three points lies in their convex hull. -/
+lemma mem_convexHull_triple {A B C p : Plane} {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c)
+    (habc : a + b + c = 1) (hp : p = a • A + b • B + c • C) :
+    p ∈ convexHull ℝ ({A, B, C} : Set Plane) := by
+  have hA : A ∈ convexHull ℝ ({A, B, C} : Set Plane) := subset_convexHull ℝ _ (by simp)
+  have hB : B ∈ convexHull ℝ ({A, B, C} : Set Plane) := subset_convexHull ℝ _ (by simp)
+  have hC : C ∈ convexHull ℝ ({A, B, C} : Set Plane) := subset_convexHull ℝ _ (by simp)
+  have hconv := convex_convexHull ℝ ({A, B, C} : Set Plane)
+  rcases eq_or_lt_of_le (by linarith : (0 : ℝ) ≤ a + b) with hab | hab
+  · have ha0 : a = 0 := by linarith
+    have hb0 : b = 0 := by linarith
+    have hc1 : c = 1 := by linarith
+    simpa [hp, ha0, hb0, hc1] using hC
+  · have hq : (a / (a + b)) • A + (b / (a + b)) • B ∈ convexHull ℝ ({A, B, C} : Set Plane) :=
+      hconv hA hB (by positivity) (by positivity) (by field_simp)
+    have hmix := hconv hq hC (le_of_lt hab) hc (by linarith)
+    have hrw : (a + b) • ((a / (a + b)) • A + (b / (a + b)) • B) + c • C
+        = a • A + b • B + c • C := by
+      rw [smul_add, smul_smul, smul_smul]
+      field_simp
+    rw [hp, ← hrw]
+    exact hmix
+
+/-- The triangle is convex, being an intersection of three closed half-planes. -/
+lemma convex_inTriangle (d : ℝ) : Convex ℝ {q : Plane | InTriangle d q} := by
+  rintro u ⟨u1, u2, u3⟩ v ⟨v1, v2, v3⟩ a b ha hb hab
+  refine ⟨?_, ?_, ?_⟩ <;>
+    simp only [PiLp.add_apply, PiLp.smul_apply, smul_eq_mul] <;>
+    nlinarith [u1, u2, u3, v1, v2, v3, ha, hb]
+
+/-- `InTriangle d` is exactly the closed triangle spanned by the three vertices. This is the
+statement that pins the definition down: the half-plane description is neither larger nor smaller
+than the convex hull of `(0, 0)`, `(d, 0)`, `(d / 2, √3 * d / 2)`. -/
+theorem inTriangle_iff_mem_convexHull {d : ℝ} (hd : 0 < d) (p : Plane) :
+    InTriangle d p ↔ p ∈ convexHull ℝ (vertices d) := by
+  have h3 : (0 : ℝ) < √3 := Real.sqrt_pos.mpr (by norm_num)
+  have hne : √3 * d ≠ 0 := by positivity
+  constructor
+  · rintro ⟨h1, h2, h4⟩
+    refine mem_convexHull_triple (A := pt 0 0) (B := pt d 0) (C := pt (d / 2) (√3 * d / 2))
+      (a := (√3 * d - √3 * p 0 - p 1) / (√3 * d)) (b := (√3 * p 0 - p 1) / (√3 * d))
+      (c := 2 * p 1 / (√3 * d))
+      (div_nonneg (by linarith) (by positivity)) (div_nonneg (by linarith) (by positivity))
+      (div_nonneg (by linarith) (by positivity)) (by field_simp; ring) ?_
+    refine plane_ext ?_ ?_ <;>
+      simp only [PiLp.add_apply, PiLp.smul_apply, smul_eq_mul, pt_zero, pt_one] <;>
+      field_simp <;> ring
+  · intro hp
+    refine convexHull_min (t := {q : Plane | InTriangle d q}) ?_ (convex_inTriangle d) hp
+    rintro q hq
+    simp only [vertices, Set.mem_insert_iff, Set.mem_singleton_iff] at hq
+    rcases hq with rfl | rfl | rfl <;>
+      refine ⟨?_, ?_, ?_⟩ <;>
+      simp only [pt_zero, pt_one] <;>
+      nlinarith [h3, hd]
+
+/-- Non-vacuity guard: `InTriangle` really excludes points, so a containment proof is not
+trivially true. `(5, 0)` is outside the side-`4` triangle. -/
+example : ¬ InTriangle 4 (pt 5 0) := by
+  rintro ⟨-, -, h⟩
+  simp only [pt_zero, pt_one] at h
+  nlinarith [Real.sqrt_pos.mpr (show (0 : ℝ) < 3 by norm_num)]
+
+/-- Non-vacuity guard: the separation condition really excludes point pairs. -/
+example : ¬ (2 : ℝ) ≤ dist (pt 0 0) (pt 1 0) := by
+  rw [dist_pt]
+  have : √((0 - 1 : ℝ) ^ 2 + (0 - 0 : ℝ) ^ 2) = 1 := by norm_num
+  rw [this]
+  norm_num
+
 /-- `p : Fin n → Plane` is a feasible packing of `n` points in the triangle of side `d`: every
 point lies in the triangle and every two distinct points are at distance at least `2`. By the
 reduction in the problem README this is exactly a packing of `n` unit circles in an equilateral
