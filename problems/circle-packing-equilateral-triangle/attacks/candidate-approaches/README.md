@@ -344,12 +344,12 @@ literature (unverified) — novelty claim weak. Value is practical.
 
 1. **B — partition certificates.** Cheapest credible path to the repo's first rigorous lower
    bound for an open $n$, and the only approach whose output is plausibly `verified:lean`.
-   Its calibration step is fast and decisive in either direction. → **filed as an issue.**
+   Its calibration step is fast and decisive in either direction. → **filed as issue #27.**
 2. **A — interval branch-and-bound for $n = 16$.** The only approach with a literature-proven
    record of actually *closing* container cases of this difficulty (the square programme). Heavy,
-   but incremental, checkpointable, and parallelisable. → **filed as an issue.**
+   but incremental, checkpointable, and parallelisable. → **filed as issue #28.**
 3. **D — Erdős–Oler $k = 7$.** Sharpest target in the open band; gated cleanly on a cheap
-   literature step that is valuable on its own. → **filed as an issue.**
+   literature step that is valuable on its own. → **filed as issue #29.**
 4. **F** — nearly free to test, likely to die, and a documented refutation is a first-class
    outcome here. Do the slack computation opportunistically after #17 lands.
 5. **E** — pursue as generator (ii) inside #11's orbit; promote only if an exhaustiveness lemma
