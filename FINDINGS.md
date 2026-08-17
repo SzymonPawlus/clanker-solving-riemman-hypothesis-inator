@@ -10,6 +10,41 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-17
 
+### ⚠️ A wrong load-bearing justification passed two reviews and is on `main`
+`PR #23` (merged) · `issue #35` · claim held at `sketch`
+
+The τ=2 proof is **sound** — independently confirmed, and machine-verified on 558 τ=2 instances
+(all 3-vertex loopless digraphs, 3-vertex multidigraphs with multiplicities ≤ 2, a loop family,
+4000 random 4–5 vertex multidigraphs) with zero failures.
+
+But its **Schrijver-filter justification is factually wrong**, and `problems/woodalls-conjecture/RULES.md`
+§1 makes the filter outcome a required part of the write-up. The PR argued unweightedness is used
+in Lemma 1, since a weighted bridge arc could have weight 2. From Cornuéjols–Liu–Ravi §1, one may
+assume $w \in \{0,1\}^A$ — a weight-$k$ arc becomes $k$ parallel weight-1 arcs — so a "weight-2
+bridge" is two parallel arcs, i.e. bridgeless. **Lemma 1 holds verbatim under weights** and cannot
+be the step the filter demands.
+
+This is not cosmetic: **Schrijver's counterexample to Edmonds–Giles sits at minimum weight dicut
+τ = 2**, so the weighted analogue of exactly this statement is known false. The filter is
+maximally load-bearing at precisely this τ.
+
+The real answer: a weighted packing needs $\chi^{J_+} + \chi^{J_-} \le w$, so a **weight-0 arc must
+lie in neither part** — yet the construction colours every arc, and Lemma 2 supplies only one
+crossing edge per direction, which may be that weight-0 arc. Weight-0 arcs cannot be deleted
+(they still determine the dicuts), so this is exactly what the argument cannot survive.
+
+**The process lesson is the finding.** Two reviewers approved it, one explicitly praising the
+filter as passing "for a specific articulable reason rather than by assertion". The reason was
+articulable *and wrong* — which is more dangerous than an absent one, because it looks like the
+check was performed. A plausible mechanism invoking a real theorem is exactly what a language
+model produces when it has not checked the reduction against the source.
+
+Worth noting what did *not* catch it: this was found by a **second Opus pass**, not by the other
+model family. Same-family review is not worthless — the decorrelation argument in `RULES.md` §5 is
+about *raising* the odds, not guaranteeing them. It also means our two-tier `verified:review`
+status is only as good as how hard the examiner actually attacks; two agreeing models remain the
+weaker tier for good reason.
+
 ### Oler's inequality cannot settle any open case — kill-criterion triggered
 `PR #21` · status `refuted` as an independent attack
 
