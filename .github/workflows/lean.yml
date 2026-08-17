@@ -1,0 +1,37 @@
+name: Lean
+
+on:
+  pull_request:
+    paths: ["lean/**", ".github/workflows/lean.yml"]
+  push:
+    branches: [main]
+    paths: ["lean/**", ".github/workflows/lean.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: lake build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # `sorry` only warns in Lean, so a file full of them builds green. These must be
+      # rejected explicitly, along with the other two ways to make the checker accept
+      # something it has not checked.
+      - name: Reject sorry / axiom / native_decide
+        working-directory: lean
+        run: |
+          if grep -rnE '\b(sorry|native_decide)\b|^[[:space:]]*axiom\b' Verified/ Verified.lean; then
+            echo "::error::Found sorry, axiom, or native_decide. These are not permitted on main."
+            exit 1
+          fi
+          echo "Clean."
+
+      - name: Build
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: "lean"
+          build-args: "--wfail"

@@ -1,0 +1,11 @@
+# Lean build artifacts (~8 GB)
+.lake/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
