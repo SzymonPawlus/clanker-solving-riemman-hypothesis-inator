@@ -105,5 +105,12 @@ the problem README — that is issue #1's job. These are numerical targets only.
 ## Result
 
 `validate` reproduces every published $s(n)$ for $3 \le n \le 15$ to **15–16 significant
-digits** — the closed-form value to within double-precision round-off. The sweep results and
-their comparison against Graham–Lubachevsky are written up in the attack directory.
+digits** — the closed-form value to within double-precision round-off.
+
+`sweep` over $16 \le n \le 34$ matches Graham–Lubachevsky's best packing at 14 of the 19 values
+of $n$ (to 14–16 digits), and at four of the remaining five converges instead onto a packing GL
+themselves report and rank *second* best (`t26b`, `t29b63.2`, `t32b`, `t34c`), to 15 digits.
+Nothing beat a published record anywhere; every deviation is in the safe direction. The full
+table and the diagnosis are in the attack writeup.
+
+`uv run table.py --min 16 --max 34` regenerates that table from whatever is in `out/`.

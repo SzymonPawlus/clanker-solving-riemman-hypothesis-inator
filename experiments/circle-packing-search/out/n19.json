@@ -1,0 +1,102 @@
+{
+  "n": 19,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point optimiser output. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.20032145898343878,
+  "D_side_of_centre_triangle": 9.983952843341394,
+  "s_side_for_unit_circles": 13.448054458479149,
+  "unit_triangle_points": [
+    [
+      0.6001607294917195,
+      0.6925419313816179
+    ],
+    [
+      0.11528299543600865,
+      0.16382465593601855
+    ],
+    [
+      0.3998392705082805,
+      0.3455749865759768
+    ],
+    [
+      0.29967854101656116,
+      0.5190584589787974
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      5.0405264380031174e-17,
+      8.730447887515576e-17
+    ],
+    [
+      0.5000000000000012,
+      0.0
+    ],
+    [
+      0.6001607294917193,
+      0.34557498657597674
+    ],
+    [
+      0.8004821884751585,
+      0.34557498657597685
+    ],
+    [
+      0.5,
+      0.5190584589787974
+    ],
+    [
+      0.3998392705082805,
+      0.692541931381618
+    ],
+    [
+      0.700321458983439,
+      0.5190584589787973
+    ],
+    [
+      0.19951781152484158,
+      0.34557498657597685
+    ],
+    [
+      0.7694340091279847,
+      0.0
+    ],
+    [
+      0.8847170045639924,
+      0.16382465593601914
+    ],
+    [
+      0.23056599087201718,
+      2.3162188223532342e-18
+    ],
+    [
+      0.36528299543600934,
+      0.14825658707308403
+    ],
+    [
+      1.0,
+      3.703970165774895e-17
+    ],
+    [
+      0.6347170045639929,
+      0.14825658707308434
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.20032145898343878,
+    "containment_slack": -5.551115123125783e-17
+  },
+  "reference_m": 0.200321458983439,
+  "reference_source": "Graham-Lubachevsky 1995 (15 s.f.)",
+  "agreement_digits_vs_reference": 14.955287249127192,
+  "seed": 20260836,
+  "python": "3.13.13",
+  "numpy": "2.3.4",
+  "scipy": "1.16.3",
+  "stage": "final",
+  "restarts": 200,
+  "basin_hops": 774,
+  "search_seconds": 40.00499856800161
+}
