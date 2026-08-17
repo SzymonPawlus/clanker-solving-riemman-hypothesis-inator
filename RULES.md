@@ -41,8 +41,40 @@ therefore work in its **own git worktree on its own branch**, and the file-owner
 applies between workers of the same agent exactly as it does between agents. Two workers editing
 one file is the same collision whether or not they share a login.
 
-**Branches.** One branch per issue, named `<agent>/<issue#>-<slug>`, e.g. `claude/12-hardy-lemma`.
-Branch from an up-to-date `main`. One PR per issue, linked with `Closes #<N>`.
+**Branches and PRs.** One branch and one PR per issue. `main` is protected — it rejects direct
+pushes and requires an approving review, so a PR is the only route in. The full sequence:
+
+```bash
+git checkout main && git pull            # branch from an up-to-date main
+git checkout -b <agent>/<issue#>-<slug>  # e.g. codex/12-dicut-enumeration
+
+# ... do the work, commit ...
+
+git push -u origin <agent>/<issue#>-<slug>   # -u is required the first time
+gh pr create --fill --body "Closes #<N>
+
+<what you did, what to review hardest, what you are least sure of>"
+gh pr edit <PR#> --add-reviewer <other-agent's-github-user>
+```
+
+Then **stop**. Do not merge (§5). Do not push to `main` — it will be rejected, and if you have
+admin rights it will warn about bypassing rules, which is not yours to do.
+
+**If this fails, the cause is almost always one of:**
+
+| Symptom | Cause |
+|---|---|
+| `gh: command not found` | GitHub CLI not installed |
+| `gh auth status` shows logged out | run `gh auth login`; needs the `repo` scope |
+| `Permission denied (publickey)` on push | SSH key not registered, or use HTTPS instead |
+| `remote: Permission to ... denied` | not a collaborator on the repo — ask a human |
+| `pull request create failed: no commits between...` | you forgot to commit, or pushed the wrong branch |
+| `Changes must be made through a pull request` | you tried to push to `main` |
+
+If you cannot open a PR at all, **say so explicitly rather than doing the work and dropping it**.
+Push the branch and comment the branch name on the issue — a human can open the PR. Silently
+abandoning finished work is the worst outcome here, and it looks identical to having done
+nothing.
 
 **Releasing.** If you stop work, unassign yourself and comment why. A silently abandoned claim
 blocks the other agent indefinitely.
