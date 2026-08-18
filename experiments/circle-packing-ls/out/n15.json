@@ -1,0 +1,96 @@
+{
+  "n": 15,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point output of a Lubachevsky-Stillinger billiard run followed by an SLSQP polish. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.2499999999999997,
+  "D_side_of_centre_triangle": 8.00000000000001,
+  "s_side_for_unit_circles": 11.464101615137764,
+  "unit_triangle_points": [
+    [
+      0.4999999999999997,
+      0.4330127018922194
+    ],
+    [
+      8.070477098011588e-18,
+      1.39784763750771e-17
+    ],
+    [
+      0.5000000000000001,
+      1.3123403680292015e-16
+    ],
+    [
+      0.125,
+      0.21650635094610934
+    ],
+    [
+      1.0,
+      4.508231795565509e-18
+    ],
+    [
+      0.625,
+      0.6495190528383291
+    ],
+    [
+      0.375,
+      0.6495190528383289
+    ],
+    [
+      0.875,
+      0.21650635094610962
+    ],
+    [
+      0.24999999999999992,
+      0.43301270189221913
+    ],
+    [
+      0.25000000000000006,
+      3.136489812168831e-17
+    ],
+    [
+      0.75,
+      0.4330127018922193
+    ],
+    [
+      0.625,
+      0.2165063509461096
+    ],
+    [
+      0.3749999999999999,
+      0.21650635094610957
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.7500000000000001,
+      2.9247701108731074e-17
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.2499999999999997,
+    "containment_slack": 0.0,
+    "_warning": "float diagnostics, not a feasibility check; see candidates/ for exact"
+  },
+  "reference": {
+    "m": 0.25000000000000006,
+    "s": 11.464101615137753,
+    "source": "Friedman (exact closed form)",
+    "agreement_digits_m": 14.840646417884166
+  },
+  "meta": {
+    "seed": 20260818,
+    "python": "3.13.13",
+    "numpy": "2.3.4",
+    "scipy": "1.16.3",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "git_commit": "9f2d894a9cc75c84ce88ced0aea12ae8226b1726",
+    "growth_schedule": [
+      0.05,
+      0.005
+    ],
+    "mode": "validate",
+    "ls_runs": 9
+  }
+}

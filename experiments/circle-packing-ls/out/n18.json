@@ -1,0 +1,109 @@
+{
+  "n": 18,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point output of a Lubachevsky-Stillinger billiard run followed by an SLSQP polish. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.20346524053912338,
+  "D_side_of_centre_triangle": 9.829688819085682,
+  "s_side_for_unit_circles": 13.293790434223435,
+  "unit_triangle_points": [
+    [
+      0.10173262026956177,
+      0.17620606709399228
+    ],
+    [
+      0.7965347594608764,
+      0.0
+    ],
+    [
+      9.993396648463358e-17,
+      0.0
+    ],
+    [
+      0.7499971347375092,
+      0.4330176646724305
+    ],
+    [
+      0.5024513109509785,
+      0.2664328912960945
+    ],
+    [
+      0.8982673797304382,
+      0.17620606709399245
+    ],
+    [
+      0.20346524053912368,
+      1.4702608608756556e-16
+    ],
+    [
+      0.20432265108518957,
+      0.35191431870697726
+    ],
+    [
+      0.6017326202695618,
+      0.05873866421813829
+    ],
+    [
+      0.6482645144679473,
+      0.609223731766423
+    ],
+    [
+      0.31708117334463964,
+      0.1825519268795453
+    ],
+    [
+      0.4069304810782475,
+      0.0
+    ],
+    [
+      0.5,
+      0.46988336483269033
+    ],
+    [
+      0.7034652405391237,
+      0.23494473131213084
+    ],
+    [
+      0.3051954452287687,
+      0.5286140173748318
+    ],
+    [
+      0.4534599596967159,
+      0.6679543843085645
+    ],
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.20346524053912338,
+    "containment_slack": 0.0,
+    "_warning": "float diagnostics, not a feasibility check; see candidates/ for exact"
+  },
+  "reference": {
+    "m": 0.203465240539124,
+    "s": 13.293790434223407,
+    "source": "Graham-Lubachevsky 1995 (15 s.f.)",
+    "agreement_digits_m": 14.522717306879887
+  },
+  "meta": {
+    "seed": 20260818,
+    "python": "3.13.13",
+    "numpy": "2.3.4",
+    "scipy": "1.16.3",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "git_commit": "9f2d894a9cc75c84ce88ced0aea12ae8226b1726",
+    "growth_schedule": [
+      0.05,
+      0.005
+    ],
+    "mode": "sweep",
+    "ls_runs": 3,
+    "elapsed": 8.315689580999788
+  }
+}

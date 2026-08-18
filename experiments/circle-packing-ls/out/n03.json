@@ -1,0 +1,48 @@
+{
+  "n": 3,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point output of a Lubachevsky-Stillinger billiard run followed by an SLSQP polish. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.9999999999999999,
+  "D_side_of_centre_triangle": 2.0000000000000004,
+  "s_side_for_unit_circles": 5.464101615137755,
+  "unit_triangle_points": [
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      1.0,
+      0.0
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.9999999999999999,
+    "containment_slack": 0.0,
+    "_warning": "float diagnostics, not a feasibility check; see candidates/ for exact"
+  },
+  "reference": {
+    "m": 1.0,
+    "s": 5.464101615137754,
+    "source": "Friedman (exact closed form)",
+    "agreement_digits_m": 15.954589770191003
+  },
+  "meta": {
+    "seed": 20260818,
+    "python": "3.13.13",
+    "numpy": "2.3.4",
+    "scipy": "1.16.3",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "git_commit": "9f2d894a9cc75c84ce88ced0aea12ae8226b1726",
+    "growth_schedule": [
+      0.05,
+      0.005
+    ],
+    "mode": "validate",
+    "ls_runs": 18
+  }
+}

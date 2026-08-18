@@ -1,0 +1,76 @@
+{
+  "n": 10,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point output of a Lubachevsky-Stillinger billiard run followed by an SLSQP polish. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.33333333333333315,
+  "D_side_of_centre_triangle": 6.0000000000000036,
+  "s_side_for_unit_circles": 9.464101615137757,
+  "unit_triangle_points": [
+    [
+      0.8333333333333334,
+      0.28867513459481287
+    ],
+    [
+      0.3333333333333333,
+      1.865082084890658e-16
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.4999999999999999,
+      0.2886751345948131
+    ],
+    [
+      0.33333333333333337,
+      0.5773502691896258
+    ],
+    [
+      0.9999999999999999,
+      6.375025293596384e-17
+    ],
+    [
+      0.6666666666666667,
+      0.5773502691896258
+    ],
+    [
+      0.16666666666666669,
+      0.2886751345948129
+    ],
+    [
+      0.6666666666666667,
+      6.668048790444745e-17
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.33333333333333315,
+    "containment_slack": -2.220446049250313e-16,
+    "_warning": "float diagnostics, not a feasibility check; see candidates/ for exact"
+  },
+  "reference": {
+    "m": 0.33333333333333337,
+    "s": 9.464101615137753,
+    "source": "Friedman (exact closed form)",
+    "agreement_digits_m": 15.176438519807359
+  },
+  "meta": {
+    "seed": 20260818,
+    "python": "3.13.13",
+    "numpy": "2.3.4",
+    "scipy": "1.16.3",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "git_commit": "9f2d894a9cc75c84ce88ced0aea12ae8226b1726",
+    "growth_schedule": [
+      0.05,
+      0.005
+    ],
+    "mode": "validate",
+    "ls_runs": 10
+  }
+}
