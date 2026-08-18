@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -23,7 +25,14 @@ import sympy
 
 from packcheck import CertificateError, check_certificate
 from packcheck.checker import load_certificate, parse_exact, validate_schema
-from packcheck.safeparse import UnsafeExpression, parse_scalar
+from packcheck.safeparse import (
+    MAX_EXPONENT,
+    MAX_RESULT_NODES,
+    MAX_ROOT_INDEX,
+    MAX_VALUE_BITS,
+    UnsafeExpression,
+    parse_scalar,
+)
 
 CERT_DIR = Path(__file__).parent.parent / "certificates"
 
@@ -183,6 +192,153 @@ def test_hostile_interval_endpoint_is_rejected():
 def test_expensive_expressions_are_refused(text):
     with pytest.raises(UnsafeExpression):
         parse_scalar(text)
+
+
+# --------------------------------------------------------------------------- #
+# 2a. Composition must not escape the bounds.
+#
+# From the PR #16 re-review. The bounds used to be checked against the exponent
+# *syntax being evaluated*, so each step of a composition looked legal while the
+# simplified value sympy actually returned was far outside the cap:
+#
+#     (2**(1/10000))**(1/10000)      ->  2**(1/100000000)
+#     sqrt('*20 + 2 + ')'*20         ->  2**(1/1048576)     (121 characters)
+#
+# A root index that large is not academic: `exact.enclose` bounds a q-th root by
+# computing `scale**q`, so the second payload -- dropped into one coordinate of the
+# valid n=3 fixture -- made the CLI run out of memory or fail to terminate. The
+# bound is now an invariant of the returned expression, so these are rejected at the
+# first step that breaks it.
+# --------------------------------------------------------------------------- #
+
+COMPOSITION_ATTACKS = {
+    "power_of_a_power": "(2**(1/10000))**(1/10000)",
+    "nested_sqrt_20": "sqrt(" * 20 + "2" + ")" * 20,
+    "nested_sqrt_30": "sqrt(" * 30 + "2" + ")" * 30,
+    "product_of_roots": "(2**(1/255))*(2**(1/254))",
+    "root_of_a_root": "sqrt(2**(1/200))",
+    "power_of_a_radical": "(1+sqrt(2))**1000",
+    "three_thousand_digits": "9" * 3000,
+    "digits_via_multiplication": "(" + "9" * 2000 + ")*(" + "9" * 2000 + ")",
+}
+
+
+@pytest.mark.parametrize("text", COMPOSITION_ATTACKS.values(), ids=list(COMPOSITION_ATTACKS))
+def test_composition_cannot_escape_the_resource_bounds(text):
+    with pytest.raises(UnsafeExpression):
+        parse_scalar(text)
+
+
+@pytest.mark.parametrize("text", COMPOSITION_ATTACKS.values(), ids=list(COMPOSITION_ATTACKS))
+def test_composition_attack_is_a_certificate_error(text):
+    with pytest.raises(CertificateError):
+        parse_exact(text)
+
+
+def test_a_three_thousand_digit_integer_is_over_the_bit_cap():
+    """The literal path used to skip the size check entirely."""
+    text = "9" * 3000
+    assert int(text).bit_length() > MAX_VALUE_BITS  # the payload is genuinely too big
+    with pytest.raises(UnsafeExpression, match="bit"):
+        parse_scalar(text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "2",
+        "7/3",
+        "2 + 2*sqrt(3)",
+        "sqrt(sqrt(sqrt(2)))",
+        "5**(1/3)",
+        "1/10**60",
+        "(1+sqrt(2))**8",
+        "sqrt(2)*sqrt(3) + sqrt(5)/7",
+        "sqrt(3) - 17320508075688772935/10**19",
+    ],
+)
+def test_the_returned_expression_satisfies_the_bounds(text):
+    """The bounds are a postcondition of `parse_scalar`, so assert them as one.
+
+    This is the property the review asked for: not "each operation was checked" but
+    "whatever comes back obeys the caps". Anything that fails it must have raised.
+    """
+    expr = parse_scalar(text)
+    nodes = 0
+    for sub in sympy.preorder_traversal(expr):
+        nodes += 1
+        assert not sub.is_Float
+        if sub.is_Rational:
+            assert max(abs(int(sub.p)), int(sub.q)).bit_length() <= MAX_VALUE_BITS
+        elif sub.is_Pow:
+            assert sub.exp.is_Rational
+            assert abs(int(sub.exp.p)) <= MAX_EXPONENT
+            assert int(sub.exp.q) <= MAX_ROOT_INDEX
+    assert nodes <= MAX_RESULT_NODES
+
+
+# --------------------------------------------------------------------------- #
+# 2b. The same payloads through the CLI, which is where the failure was visible.
+#
+# The parser-level assertions above would all have passed even while `python -m
+# packcheck` hung on the very same string, because the hang happened downstream in
+# `exact.enclose`. So these drive the real entry point in a subprocess and assert
+# that it *terminates*, rejects, and reports a certificate error rather than a
+# traceback.
+# --------------------------------------------------------------------------- #
+
+CLI_TIMEOUT_SECONDS = 60
+
+
+def _run_cli(cert: dict, tmp_path: Path) -> subprocess.CompletedProcess:
+    path = tmp_path / "hostile.json"
+    path.write_text(json.dumps(cert))
+    return subprocess.run(
+        [sys.executable, "-m", "packcheck", str(path)],
+        cwd=Path(__file__).parent.parent,
+        capture_output=True,
+        text=True,
+        timeout=CLI_TIMEOUT_SECONDS,
+    )
+
+
+CLI_ATTACKS = {
+    "nested_sqrt_20": "sqrt(" * 20 + "2" + ")" * 20,
+    "nested_sqrt_30": "sqrt(" * 30 + "2" + ")" * 30,
+    "power_of_a_power": "(2**(1/10000))**(1/10000)",
+    "three_thousand_digits": "9" * 3000,
+}
+
+
+@pytest.mark.parametrize("payload", CLI_ATTACKS.values(), ids=list(CLI_ATTACKS))
+def test_cli_fails_fast_on_a_resource_attack(payload, tmp_path):
+    cert = load_reference(3)
+    cert["coordinates"][2][1] = payload
+    # `subprocess.run` raises TimeoutExpired if this does not terminate, which is
+    # exactly the regression: before the fix, the 20-deep nest did not finish.
+    result = _run_cli(cert, tmp_path)
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "RESULT: REJECT" in result.stdout, result.stdout
+    assert "MALFORMED:" in result.stdout, result.stdout
+    assert "MemoryError" not in result.stderr, result.stderr
+    assert "Traceback" not in result.stderr, result.stderr
+
+
+@pytest.mark.parametrize("payload", CLI_ATTACKS.values(), ids=list(CLI_ATTACKS))
+def test_cli_rejects_a_resource_attack_in_side_length(payload, tmp_path):
+    cert = load_reference(3)
+    cert["side_length"] = payload
+    result = _run_cli(cert, tmp_path)
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "RESULT: REJECT" in result.stdout, result.stdout
+    assert "Traceback" not in result.stderr, result.stderr
+
+
+def test_cli_still_accepts_the_reference_certificate(tmp_path):
+    """Positive control: the CLI test above is not passing because everything fails."""
+    result = _run_cli(load_reference(3), tmp_path)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "RESULT: ACCEPT" in result.stdout, result.stdout
 
 
 @pytest.mark.parametrize("text", ["1/0", "1/(2-2)", "0**(-1)"])

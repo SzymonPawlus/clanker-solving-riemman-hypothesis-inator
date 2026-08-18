@@ -128,11 +128,38 @@ prerequisite the script does not install for you).
   traversal, imports, calls, comprehensions and lambdas are unreachable rather than
   filtered. `tests/test_input_safety.py` fires 40-odd payloads at it and asserts both
   the rejection and the absence of any side effect.
+* **Fails fast on an expensive certificate**, rather than hanging or dying of
+  `MemoryError`. The resource bounds are **invariants of the parsed value**, checked
+  against the expression sympy actually returns after simplification — not against
+  the syntax of the operation being evaluated. That distinction is the guard: each
+  step of `sqrt(sqrt(...sqrt(2)...))` looks like a legal square root, but 20 of them
+  are `2**(1/1048576)`, and bounding a root of that index exactly is what made a
+  121-character certificate non-terminating in the PR #16 re-review. Enforced on
+  every subexpression, so the first step that breaks a bound is the one rejected:
+
+  | Bound | Value | What it limits |
+  |---|---|---|
+  | `MAX_SOURCE_LENGTH` | 4096 | characters of certificate text per scalar |
+  | `MAX_NODES` | 512 | syntax-tree nodes |
+  | `MAX_RESULT_NODES` | 512 | nodes of the *simplified* expression |
+  | `MAX_VALUE_BITS` | 8192 | bit size of any rational, literal or derived |
+  | `MAX_EXPONENT` | 128 | numerator of any surviving rational power |
+  | `MAX_ROOT_INDEX` | 256 | denominator of one — i.e. the algebraic degree |
+
+  `MAX_ROOT_INDEX` is the load-bearing one, because `exact.enclose` bounds a `q`-th
+  root by computing `scale**q`. Measured end-to-end through the CLI on the `n = 3`
+  fixture with one coordinate replaced by a nest of square roots: `q = 256` costs
+  0.8 s, `q = 1024` costs 6 s, `q = 2048` costs 28 s, and `q = 4096` did not finish
+  in 100 s. A maximally hostile 235-character payload that stays *inside* every
+  bound (twenty distinct 256th roots summed) is rejected in 7 s. Every one of these
+  paths ends in `CertificateError` and `RESULT: REJECT`, never a traceback;
+  `tests/test_input_safety.py` drives the CLI in a subprocess to assert termination,
+  since the parser-level assertions pass either way.
 * A source audit (`tests/test_no_floats.py`) parses every module of `packcheck` and
   fails on any float literal, `float()` call, `.evalf()`, or import of `numpy` /
   `decimal`. `math` is admitted only for `math.isqrt`.
 
-330 tests, ~1 s.
+365 tests, ~6 s (the CLI resource-attack regressions spawn subprocesses).
 
 ## Spec ambiguities found — now resolved upstream
 
