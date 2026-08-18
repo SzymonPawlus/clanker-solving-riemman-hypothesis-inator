@@ -41,7 +41,7 @@ Per the honesty requirement in issue #17:
 | Source | How I used it |
 |---|---|
 | **Oler, *A finite packing problem*, Canad. Math. Bull. **4** (1961) 153–155.** [doi:10.4153/CMB-1961-018-7](https://doi.org/10.4153/CMB-1961-018-7) | **Read in full, primary source.** All 3 pages, from the Cambridge Core scan. Every quotation in §1 is transcribed from that scan. |
-| Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961) 19–48. | **NOT read.** This is where the theorem is actually *proved*; the CMB note only derives a corollary from it and cites it as "[a paper] which is shortly to appear". Everything I say about *why* Oler's inequality is true is therefore reconstruction, marked `sketch`, not a report of Oler's proof. |
+| **Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961) 19–48.** [doi:10.1007/BF02559533](https://doi.org/10.1007/BF02559533) | **Read in full, primary source** (30-page scan from the [Acta Mathematica archive](https://archive.ymsc.tsinghua.edu.cn/pacm_download/117/5914-11511_2007_Article_BF02559533.pdf)). This is where the inequality is proved. It does **not** state the equality characterisation sought in issue #44; the page-by-page result and exact locators are in §5.2. The informal intuition in §1.4 remains my reconstruction, not a report of Oler's proof. |
 | Melissen & Schuur, *Packing 16, 17 or 18 circles in an equilateral triangle*, Discrete Math. **145**(1–3) (1995) 333–342, [doi:10.1016/0012-365X(95)90139-C](https://doi.org/10.1016/0012-365X(95)90139-C). | **Read in full** (open-access copy at [ris.utwente.nl](https://ris.utwente.nl/ws/files/6509759/Melissen95packing.pdf)). Source of the attribution sentence in §3 and the $t_{16},t_{17},t_{18}$ values in §2. |
 | Tedeschi & Mackey, *On Packing Thirteen Points in an Equilateral Triangle*, AJUR **18**(2) (2021) 3–12. | **Read in full** ([open access](https://www.ajuronline.org/uploads/Volume_18_2/AJUR_Vol_18_Issue_2_Sept_2021p3.pdf)). **Secondary source.** It is an undergraduate-journal paper, and my account of *Melissen's, Payan's and Joós's methods* in §3 rests almost entirely on it. Treat those method descriptions as second-hand. |
 | Melissen (1993 AMM), Melissen (1994 Acta Math. Hungar.), Payan (1997 Discrete Math.), Joós (2021 Aequat. Math.) | **NOT read — all paywalled.** I have their abstracts/bibliographic data only. Anything attributed to them below comes from a secondary source and is flagged. For **Payan** specifically, the publisher's abstract is now transcribed verbatim (French and English) in [`../../README.md`](../../README.md) under "The $n = 20$ attribution", merged via PR #36; §3.1 below uses that settled wording rather than restating the question. |
@@ -114,7 +114,8 @@ every application below takes $\pi = H$ and therefore satisfies (i) outright.
 **Note on what Oler actually proved here.** The CMB note does *not* contain a proof. It states this
 as "the following corollary to our theorem on the packing of convex disks", citing Oler, *An
 inequality in the geometry of numbers*, Acta Math. — a paper that had not yet appeared. **The proof
-lives in the Acta paper, which I have not read.**
+lives in the Acta paper, now read in full for issue #44.** Its proof does not supply the equality
+characterisation needed below; see §5.2.
 
 ### 1.3 Independent restatement (consistency check)
 
@@ -144,9 +145,9 @@ a boundary term.
 The self-consistency check that this is the *right* split, and not merely a plausible one, is that
 the three terms sum to the triangular-lattice count **exactly**, with no slack — see §2.1.
 
-**What this intuition does not explain**, and what the Acta paper presumably supplies, is why an
-*arbitrary* (non-lattice) point set cannot beat the lattice locally. That is the entire difficulty,
-and nothing above touches it.
+**What this intuition does not explain**, and what the Acta paper's deformation-and-induction proof
+supplies, is why an *arbitrary* (non-lattice) point set cannot beat the bound. That is the entire
+difficulty, and nothing above touches it. The paper does not classify the equality cases (§5.2).
 
 ---
 
@@ -490,7 +491,7 @@ and that is the entire reason for this revision. The separation is now explicit:
 
 | Claim | Status |
 |---|---|
-| Oler's inequality as stated in §1 | `cited` (Oler 1961, CMB; proof in Oler 1961, Acta, not read) |
+| Oler's inequality as stated in §1 | `cited` (Oler 1961, CMB; proof in Oler 1961, Acta, both read in full) |
 | $s(n) \ge s_{\mathrm{Oler}}(n) = 2\sqrt3 + \sqrt{8n+1} - 3$ (§2.2) | `sketch` — my derivation from a `cited` input; see the block below |
 | $s_{\mathrm{Oler}}(n)$ coincides with a lattice side length iff $n$ triangular (§2.2) | `sketch`, same derivation |
 | The gap table (§2.3) | `numerical` |
@@ -511,8 +512,9 @@ derivation: the rescaling distance-2 -> distance-1 (a = d/2); the specialisation
          solve a >= (sqrt(8n+1)-3)/2 for a >= 0; and s = d + 2 sqrt 3 (§2.2).
          Elementary algebra and one case split, but it is mine and I am not
          permitted to examine it, so it is `sketch` per `RULES.md` §3.
-taken-on-trust: Oler's inequality itself (`cited`; the proof is in the Acta paper,
-         which neither agent has read).  Also the literature values of s(n) in the
+taken-on-trust: Oler's inequality itself (`cited`; its proof in the Acta paper has
+         now been read for issue #44, but is not reproduced or cross-examined here).
+         Also the literature values of s(n) in the
          KNOWN table of oler_bound.py -- running the script confirms its arithmetic,
          not that those values are correctly transcribed from the sources.
 ```
@@ -593,14 +595,48 @@ Two things follow procedurally. The criterion is **not** re-scoped to fit the ev
 
 ### 5.2 What would discharge the criterion
 
-One clean sufficient condition, and it is a *literature* question rather than a research problem:
+One clean sufficient condition is:
 
 > **An equality-case theorem for Oler's inequality.** The CMB note says only that equality "is
 > realized for example" by the triangular-lattice subset; it gives **no characterisation** of when
-> equality holds. Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961)
-> 19–48 — which I could **not** obtain — is where such a characterisation would live.
+> equality holds.
 >
-> **Tracked as issue #44.** Unassigned; pure literature work; touches only this directory.
+> **Issue #44 result: the Acta paper does not contain that theorem.** It has now been obtained and
+> read in full. The negative source audit below meets issue #44's kill-criterion: stop rather than
+> reconstructing the missing characterisation and laundering it into a citation.
+
+#### Issue #44 source audit — `cited` negative result
+
+**Source:** N. Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961), 19–48,
+[doi:10.1007/BF02559533](https://doi.org/10.1007/BF02559533), complete 30-page
+[Acta archive scan](https://archive.ymsc.tsinghua.edu.cn/pacm_download/117/5914-11511_2007_Article_BF02559533.pdf).
+The whole paper was read, not merely its abstract, search snippets, or citations.
+
+**Finding:** the paper proves the inequality but gives **no necessary-and-sufficient equality
+condition**, no statement that equality forces the centres into a critical lattice, and in
+particular no instance of (R2) below. Precise landmarks:
+
+- **Theorem 1, pp. 20–21**, is the general inequality for a weakly admissible pair $(\Pi,E)$ in a
+  Minkowski metric. Its conclusion is only the inequality; it has no equality clause.
+- **Theorem 2, p. 21**, is the polygon-with-no-interior-points case. The proof is by deformation,
+  compactness and induction through unit diagonals or degenerate vertices (**pp. 21–45**). The
+  induction proves the numerical lower bound but does not retain or classify all configurations
+  for which every intermediate inequality is an equality.
+- The paper's one explicit equality observation is in the **three-vertex base case, p. 33**:
+  when one Minkowski side has length $2$, the triangle functional equals $3$. In the other terminal
+  case, where all three sides have Minkowski length $1$, Oler cites Mahler only to say that the
+  lattice generated by two sides is admissible and hence obtains the same lower bound. This is a
+  local triangle argument, not a classification of equality in Theorem 1 for an arbitrary finite
+  set.
+- **The proof of Theorem 1, pp. 45–46**, moves interior points until induction applies. It again
+  establishes the inequality only; it states no rigidity conclusion for equality. **Theorem 6,
+  pp. 46–48**, is a further packing inequality and likewise has no equality classification.
+
+Accordingly, the Acta paper cannot be cited for (R2). This is an **absence claim about this specific
+paper**, established by reading its complete theorem/lemma/corollary sequence and proofs. It is not
+a claim that no later equality theorem exists anywhere in the literature. Issue #44 stops here by
+its stated kill-criterion. The conditional argument below remains `sketch`, and the issue-#17
+criterion remains **undischarged**.
 
 **Exactly what is needed, and why it suffices — `sketch`.** "Equality forces a triangular-lattice
 subset" does **not** self-evidently give "$n$ is triangular", so state the rigidity precisely and
@@ -620,8 +656,8 @@ forces equality at every step. The two ingredients are:
   $H$ being closed, a ball around $x$ inside $T$ misses $H$ and $A(H) < A(T)$; otherwise $H$ misses
   only boundary points, so $H \supseteq \operatorname{int} T$ and closedness gives $H = T$.
 - **(R2)** equality in Oler's inequality for $(H, E)$ forces $E \subseteq \Lambda$ for some
-  triangular lattice $\Lambda$ of minimal distance exactly $1$. **This is the part only the Acta
-  paper (or a modern reference) can supply** — it is the whole content of issue #44.
+  triangular lattice $\Lambda$ of minimal distance exactly $1$. **This remains an unsupported
+  assumption.** The Acta paper does not supply it; a later source would have to do so.
 
 **Given (R1) and (R2), $n$ is triangular.** By (R1), $H = T$; by hypothesis (i) of §1.1 the vertices
 of $H$ lie in $E \subseteq \Lambda$, so $T$ is a **lattice polygon** for $\Lambda$. Pick's theorem is
@@ -649,9 +685,10 @@ $s(n) > s_{\mathrm{Oler}}(n)$**; and $n = 2$, the only non-triangular $n < 3$, i
 §2.2 Case B. That is precisely the kill-criterion, discharged for every open $n$ at once.
 
 **Status of the above: `sketch`, and conditional.** The counting step is mine and uncross-examined;
-(R1) is elementary; **(R2) is assumed, not known**, and is exactly what issue #44 must find in the
-literature. Nothing here may be built on until (R2) is `cited` and the counting is examined — under
-`RULES.md` §3 the whole thing is capped at the weakest of its inputs, which is currently `sketch`.
+(R1) is elementary; **(R2) is assumed, not known**, and the primary source checked by issue #44
+does not contain it. Nothing here may be built on until some source makes (R2) `cited` and the
+counting is examined — under `RULES.md` §3 the whole thing is capped at the weakest of its inputs,
+which is currently `sketch`.
 
 Two weaker routes, recorded for completeness:
 
@@ -732,9 +769,7 @@ prove $s(n) \ge c$ for an open $n$" is a bad bet on the `numerical` evidence in 
    to any future attempt at $n = 16$.
 3. Correct the "best known only" table in `../../README.md` for $n = 7, 8, 11, 13, 14$ once PR #10
    lands.
-4. **The one that actually matters, and the cheapest of the four — now tracked as issue #44:** get
-   Oler, *An inequality in the
-   geometry of numbers*, Acta Math. **105** (1961) 19–48, and check whether it characterises the
-   **equality case**. If it does, §5.1's undischarged criterion becomes discharged outright and the
-   negative result becomes unconditional for every open $n$ at once (§5.2). If it does not, that is
-   also worth knowing — it makes the quantitative route the only one.
+4. **Completed by issue #44:** Oler, *An inequality in the geometry of numbers*, Acta Math.
+   **105** (1961) 19–48, was obtained and read in full. It does **not** characterise equality and
+   cannot support (R2); see §5.2. The conditional route therefore remains blocked unless a later
+   source supplies the missing rigidity theorem.
