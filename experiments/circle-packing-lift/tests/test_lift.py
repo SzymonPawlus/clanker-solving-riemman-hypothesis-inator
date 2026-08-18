@@ -50,6 +50,7 @@ class CheckedInCandidateTests(unittest.TestCase):
         8: (9, 9, (), 17, 17),
         11: (11, 11, (6,), 21, 21),
         13: (18, 12, (), 27, 27),
+        16: (21, 13, (4,), 31, 31),
     }
 
     def test_contact_signatures_and_core_rank_are_stable(self):

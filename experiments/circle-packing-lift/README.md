@@ -44,10 +44,12 @@ equation, including redundant rows.
 
 “Fewer than three contacts” is not a sound rattler criterion by itself. Two
 independent contacts can isolate a point locally, while three collinear constraint
-normals need not. This code therefore reports only **zero-contact points** as
-`obvious_rattlers`; they have two completely absent Jacobian columns. It also
-reports the full rank deficiency. A later stage must certify the actual jammed core
-using an infinitesimal-motion/inequality test, not a degree threshold.
+normals need not. This code reports only points of degree **zero or one** as
+`obvious_rattlers`: with all other points fixed, they have an immediate feasible
+motion away from their sole contact or into the triangle. Degree two is left to a
+real rigidity test. The code also reports the full rank deficiency; a later stage
+must certify any less obvious jammed core using an infinitesimal-motion/inequality
+test, not a degree-three threshold.
 
 ## Reproduce the current gate
 
@@ -64,6 +66,7 @@ The known nontrivial candidates currently give stable signatures:
 | 8  | 9  | 9  | none | 17 / 17 |
 | 11 | 11 | 11 | point 6 | 21 / 21 |
 | 13 | 18 | 12 | none | 27 / 27 |
+| 16 | 21 | 13 | point 4 | 31 / 31 |
 
 These are numerical diagnostics of the checked-in float files, not statements about
 all optimal packings for those `n`.

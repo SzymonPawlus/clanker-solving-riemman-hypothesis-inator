@@ -155,12 +155,14 @@ def constraint_degrees(candidate: Candidate, graph: ContactGraph) -> tuple[int, 
 
 
 def obvious_rattlers(candidate: Candidate, graph: ContactGraph) -> tuple[int, ...]:
-    """Points with no active constraint at all.
+    """Points with fewer than two active scalar constraints.
 
-    This intentionally does not call every degree-1/2 point a rattler; degree is not
-    a sound rigidity criterion.  Zero-contact points are the narrow safe diagnostic.
+    With every other point fixed, zero contacts leave the whole neighbourhood free;
+    one pair contact admits motion away from its neighbour, and one wall contact
+    admits motion into the triangle.  Degree two is deliberately not classified:
+    two independent contacts can isolate a point locally.
     """
-    return tuple(i for i, degree in enumerate(constraint_degrees(candidate, graph)) if degree == 0)
+    return tuple(i for i, degree in enumerate(constraint_degrees(candidate, graph)) if degree < 2)
 
 
 def jacobian(
