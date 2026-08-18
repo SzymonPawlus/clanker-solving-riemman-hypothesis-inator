@@ -1,10 +1,11 @@
 # Scaling closure: go/no-go on proposal J, with the n = 7 pilot
 
 ```
-claim type: lower bound on d(7) and on the n = 16 pigeonhole ceiling
+claim type: lower bounds — on d(7), on d(16), and on the n = 16 pigeonhole ceiling
+            (existence of covers; NOT an optimality or upper-bound result, see §6.1)
 status:     sketch (the argument) / numerical (every computed value)
 issue:      #62
-verdict:    mechanism SOUND, novelty OVERSTATED, ambition DEAD at n = 16
+verdict:    mechanism SOUND, novelty OVERSTATED, n = 16 no-go CONDITIONAL (§6.2)
 ```
 
 **Nothing here is assumable.** Proposal J
@@ -108,7 +109,9 @@ The issue #62 kill-criterion had four clauses. Against the pilot:
 4. *Cannot reproduce the known n = 7 optimum* — **did not fire.** It is reproduced exactly.
 
 So J is **not refuted** as a mechanism. The two findings below are about what the mechanism is
-worth, and they are the reason the recommendation is still negative.
+worth. Finding 1 stands unconditionally; finding 2, which is the reason the recommendation is
+negative at `n = 16`, rests on two dependencies this repo has not established (§6.2), so the
+recommendation is negative only *conditionally*.
 
 ---
 
@@ -139,15 +142,19 @@ The consequence for reach is exact and unflattering: J's mechanism delivers
 d(n) >= 2 / g(n-1)
 ```
 
-and never more. That quantity is the **pigeonhole ceiling** — precisely what proposal L sets out
-to measure. J's mechanism yields the equality `d(n) = d*` **iff pigeonhole is tight at `n`**.
+and never more. Write `C(n) := 2/g(n-1)` for that quantity, the **pigeonhole ceiling** — precisely
+what proposal L sets out to measure. J's mechanism yields the equality `d(n) = d*` **iff pigeonhole
+is tight at `n`**, i.e. iff `C(n) = d(n)`. Note which direction each kind of evidence moves `C(n)`:
+exhibiting an `(n-1)`-cell cover bounds `C(n)` from **below**, and only a theorem about *every*
+`(n-1)`-cell cover bounds it from **above**. §6 turns on that distinction.
 
 ---
 
-## 6. Finding 2 — pigeonhole is not tight at n = 16, so J cannot close it
+## 6. Finding 2 — what `n = 16` shows, and what it does not
 
-J calls `n = 16` "the gamble" and treats tightness there as an open empirical question. It is
-already answered by the constant the repo has itself reconstructed.
+J calls `n = 16` "the gamble" and treats tightness there as an open empirical question. This PR
+narrows the question but does **not** settle it. The direction of the inequality is the entire
+point, and an earlier revision of this file had it backwards (caught in Codex's review of PR #64).
 
 `generate_graham15_exact.py` puts Graham's Figure-21 fifteen-cell complex (topology as
 reconstructed in PR #53) at its exact critical side, with
@@ -164,28 +171,76 @@ triangle_side          2 + 4*sqrt(3)   ~ 8.928203230275509
 max_squared_diameter   4               exactly
 ```
 
-So the fifteen-cell complex is exactly critical too, and J's mechanism gives
-`d(16) >= 2 + 4 sqrt(3) ~ 8.9282`. But the best known packing has `d(16) ~ 9.2495`
-(`numerical`, quoted from PR #56). Hence
+### 6.1 What the certificate establishes — a lower bound, in J's favour
 
-> **the n = 16 pigeonhole ceiling is at most `2 + 4 sqrt(3) ~ 8.9282 < 9.2495`,** and if Graham's
-> `d_15 = 1/(1 + 2 sqrt 3)` is optimal — his 1967 claim, which this repo has reconstructed but not
-> independently verified — the ceiling is *exactly* that, and **no 15-cell cover argument can ever
-> close n = 16.** J's gamble is lost by roughly `0.32` in `d`.
+A certificate is an **existence** statement: *some* 15-cell cover of `T_{2 + 4 sqrt 3}` has every
+cell of diameter `<= 2`. In the notation of §5 that says `g(15) <= 1/(1 + 2 sqrt 3)`, hence,
+writing `C(n) := 2/g(n-1)` for the pigeonhole ceiling,
 
-Note also that `2 + 4 sqrt(3)` is already the `cited` Graham bound recorded in
+> **`C(16) >= 2 + 4*sqrt(3) ~ 8.9282`** — a **lower** bound on the ceiling — and therefore, via
+> the scaling step, **`d(16) >= 2 + 4*sqrt(3)`** (status `sketch`).
+
+That is the whole of what is computed here, and it is the same shape of statement as the `n = 7`
+result in §3: a cover exists, so the ceiling and `d(n)` are at least this large. It points in the
+direction that *helps* J, not the direction that kills it. Verifying one exactly critical topology
+says nothing about the minimum over all topologies.
+
+### 6.2 What a no-go at `n = 16` would additionally require
+
+To conclude that no 15-cell cover argument can close `n = 16` one needs `C(16) < d(16)`. Each side
+of that inequality needs an input this PR does not supply:
+
+| Needed | Status here |
+|---|---|
+| `C(16) <= 2 + 4 sqrt(3)`, i.e. `g(15) >= 1/(1 + 2 sqrt 3)` — no 15-cell cover of the triangle beats Graham's | **Not established.** This is a minimum over *all* 15-cell covers: a global optimality theorem, not a certificate. Graham, *On partitions of an equilateral triangle*, Canad. J. Math. **19** (1967) 394–409, DOI [`10.4153/CJM-1967-031-x`](https://doi.org/10.4153/CJM-1967-031-x), is the natural source, and this repo has reconstructed the *value* `d_15 = 1/(1 + 2 sqrt 3)` (PR #53, recorded there as `sketch`). Nobody here has read the paper's lower-bound proof or located it by page, so there is no `cited` dependency to lean on. |
+| `d(16) > 2 + 4 sqrt(3)` | **`numerical` only.** The best-known packing gives `d(16) <= 9.2495` (PR #56). Used as a *lower* bound it is the separate conjecture that this packing is optimal — precisely the construction/optimality conflation that the problem `RULES.md` §1 forbids, and a status §3 forbids building on. |
+
+**So the honest statement is conditional.** *If* Graham's `d_15` is optimal among all 15-cell
+covers, *and* the best-known `n = 16` packing is optimal, then `C(16) = 2 + 4 sqrt(3) < 9.2495`
+and no 15-cell cover argument can ever close `n = 16` — J's gamble lost by about `0.32` in `d`.
+Neither antecedent is assumable under §3, so neither is the conclusion.
+
+### 6.3 Why no unconditional no-go is cheaply available
+
+The obvious unconditional route is the isodiametric inequality (classical, `cited`): a planar set
+of diameter `delta` has area at most `pi delta^2 / 4`. Fifteen such cells covering the unit
+triangle force `15 pi delta^2 / 4 >= sqrt(3)/4`, so
+
+```
+g(15) >= sqrt( sqrt(3) / (15 pi) ) ~ 0.191717,    C(16) <= 2 sqrt( 15 pi / sqrt 3 ) ~ 10.4321
+```
+
+That ceiling bound is **above** `9.2495`, so it does not exclude pigeonhole closing `n = 16`. All
+that is known unconditionally is `8.9282 <= C(16) <= 10.4321`, and `d(16)` sits inside that
+window. *(This application of the isodiametric inequality is mine and is `sketch`; nothing
+computed in this directory depends on it, and the decimals here are illustrative only — no
+verification path in this directory touches a float.)*
+
+Closing the window needs a genuine **lower** bound on `g(15)`. This repo has no lower-bound
+artifact of any kind, for any quantity in this problem, which is exactly why the no-go cannot be
+made unconditional here.
+
+Note finally that `2 + 4 sqrt(3)` is already the `cited` Graham bound recorded in
 `problems/circle-packing-equilateral-triangle/README.md`. J's mechanism at `n = 16` therefore
-converts PR #53's `d(16) > 8.928 - 1e-4` into `d(16) >= 8.928` exactly: a real but sub-`1e-4`
-improvement over a bound that is itself already known and already `~0.32` short.
+converts PR #53's `d(16) > 8.928 - 1e-4` into the exact `d(16) >= 2 + 4 sqrt(3)`: a real but
+sub-`1e-4` improvement on a bound already known, and one still short of `9.2495`.
 
 ---
 
 ## 7. Recommendation
 
-**No-go on J as a route to closing an open case.** Its mechanism is sound and its `n = 7`
-instance is exact and verified, but its reach is capped at the pigeonhole ceiling, which is
-already known to fall short at `n = 16` — the case J targets. Recommend against spending the
-Lean-formalisation effort on the equality ambition.
+**Conditional no-go on J as a route to closing `n = 16`; unconditional keep on J as an exactness
+instrument.**
+
+* The mechanism is sound, and the `n = 7` instance is exact and checked end to end.
+* Its reach is capped at the pigeonhole ceiling `C(n) = 2/g(n-1)`. Whether `C(16)` clears `d(16)`
+  is **open in this repo**: §6.1 bounds it only from below, and both ingredients of the negative
+  answer (§6.2) are non-assumable. Do not read this directory as having killed `n = 16`.
+* Practical consequence: do **not** commit Lean-formalisation effort to the `n = 16` equality
+  ambition yet. The blocking artifact is a lower bound on `g(15)` — a verified citation for
+  Graham's 15-cell optimality, or an independent argument — not more certificates. If that lower
+  bound lands and matches Graham's value, the no-go becomes unconditional immediately; if it does
+  not, J is back in play at `n = 16`.
 
 **Keep two things.** (i) The exact `Q(sqrt 3)` cover verifier and the two critical certificates:
 they make the pigeonhole ceiling *measurable exactly* rather than to `1e-4`, which is exactly the
@@ -195,7 +250,7 @@ would be the repo's first optimality object of any kind — but for a case that 
 so its value is pipeline validation, not new mathematics.
 
 `RULES.md` §7 applies in the other direction here: nothing in this directory settles anything
-open, and the one open-case number it produces is *worse* than the best known.
+open, and the one open-case number it produces is *weaker* than the best known.
 
 ---
 
@@ -206,7 +261,7 @@ open, and the one open-case number it produces is *worse* than the best known.
 | `qsqrt3.py` | exact arithmetic in `Q(sqrt 3)`; sign decided by comparing `a^2` with `3b^2`. `Q3.approx()` is for printing and is never on a decision path. |
 | `covercheck.py` | exact **cover** verifier over `Q(sqrt 3)`, with `--mode nonstrict|strict` and `--scale <lambda>` |
 | `generate_graham6_exact.py` | Graham Figure 7 at exactly `d* = 2 + 2 sqrt 3` (`n = 7`) |
-| `generate_graham15_exact.py` | Graham Figure 21 at exactly `2 + 4 sqrt 3` (`n = 16` ceiling) |
+| `generate_graham15_exact.py` | Graham Figure 21 at exactly `2 + 4 sqrt 3`, giving `C(16) >= 2 + 4 sqrt 3` |
 | `certificates/*.json` | the two committed certificates |
 | `tests/test_covercheck.py` | 20 tests, including negative controls |
 

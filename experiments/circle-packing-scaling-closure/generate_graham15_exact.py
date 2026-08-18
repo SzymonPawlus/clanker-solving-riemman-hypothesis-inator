@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Graham's 15-cell complex (Figure 21) at its exact critical side, over Q(sqrt 3).
 
-This measures the *pigeonhole ceiling* for n = 16: the best lower bound that any
-cover argument with n - 1 = 15 cells can ever give. In the unit triangle Graham's
-optimal 15-cell value is `D = 1/(1 + 2*sqrt 3)`, so the critical side is
-`2/D = 2 + 4*sqrt(3) ~ 8.9282`.
+This *exhibits* a 15-cell cover of the triangle of side `2 + 4*sqrt(3)` with every
+cell of diameter at most 2. It therefore bounds the n = 16 pigeonhole ceiling
+`C(16) = 2/g(15)` from **below**: `C(16) >= 2 + 4*sqrt(3) ~ 8.9282`, where `g(15)`
+is the minimum over *all* 15-cell covers of the unit triangle of the largest cell
+diameter. It does **not** bound `C(16)` from above -- that would need Graham's
+`d_15 = 1/(1 + 2*sqrt 3)` to be optimal among all 15-cell covers, which this repo
+has reconstructed as a value but not verified as a theorem. See README §6.
 
 Topology and parameterisation are Graham's Figure 21 as reconstructed in the
 merged `experiments/circle-packing-partitions/generate_graham15.py` (recorded

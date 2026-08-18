@@ -150,7 +150,9 @@ class TestGrahamSixCellAtCriticalSide(unittest.TestCase):
 
 
 class TestGrahamFifteenCellAtCriticalSide(unittest.TestCase):
-    def test_pigeonhole_ceiling_for_n16_is_exactly_2_plus_4_sqrt3(self):
+    def test_fifteen_cell_cover_exists_at_2_plus_4_sqrt3(self):
+        # Existence of this cover gives C(16) >= 2 + 4*sqrt(3) only; it is not an
+        # upper bound on the ceiling. See README section 6.1.
         cert = graham_fifteen_cell()
         report = verify(cert, "nonstrict")
         self.assertEqual(report.cells, 15)
