@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "seed": 20260818,
+    "python": "3.13.13",
+    "numpy": "2.3.4",
+    "scipy": "1.16.3",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "git_commit": "9f2d894a9cc75c84ce88ced0aea12ae8226b1726",
+    "growth_schedule": [
+      0.05,
+      0.005
+    ]
+  },
+  "budget_s_per_arm": 8.0,
+  "rows": [
+    {
+      "n": 22,
+      "m_ls": 0.1793969086118656,
+      "m_base": 0.17913245321355933,
+      "ref": [
+        0.179396908611866,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 6,
+      "base_runs": 44
+    },
+    {
+      "n": 23,
+      "m_ls": 0.1744576301870091,
+      "m_base": 0.17515330917052452,
+      "ref": [
+        0.175153309170525,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "multi-start",
+      "ls_runs": 3,
+      "base_runs": 56
+    },
+    {
+      "n": 24,
+      "m_ls": 0.1744576301870091,
+      "m_base": 0.17445763018700908,
+      "ref": [
+        0.17445763018701,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "tie",
+      "ls_runs": 6,
+      "base_runs": 51
+    },
+    {
+      "n": 25,
+      "m_ls": 0.16906587441789006,
+      "m_base": 0.16728337630744594,
+      "ref": [
+        0.169065874417891,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 5,
+      "base_runs": 47
+    },
+    {
+      "n": 26,
+      "m_ls": 0.1667383993952704,
+      "m_base": 0.16670591091622533,
+      "ref": [
+        0.166738399395271,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 3,
+      "base_runs": 62
+    },
+    {
+      "n": 27,
+      "m_ls": 0.1666666666666661,
+      "m_base": 0.16666666666666624,
+      "ref": [
+        0.166666666666667,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "tie",
+      "ls_runs": 3,
+      "base_runs": 51
+    },
+    {
+      "n": 28,
+      "m_ls": 0.1666666666666662,
+      "m_base": 0.16666666666666624,
+      "ref": [
+        0.166666666666667,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "tie",
+      "ls_runs": 3,
+      "base_runs": 35
+    },
+    {
+      "n": 29,
+      "m_ls": 0.15210902055272726,
+      "m_base": 0.15190227241104595,
+      "ref": [
+        0.152189614060732,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 5,
+      "base_runs": 25
+    },
+    {
+      "n": 30,
+      "m_ls": 0.14854314511050498,
+      "m_base": 0.15076150021542664,
+      "ref": [
+        0.150761500215428,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "multi-start",
+      "ls_runs": 2,
+      "base_runs": 23
+    },
+    {
+      "n": 31,
+      "m_ls": 0.14854314511050504,
+      "m_base": 0.147258912852996,
+      "ref": [
+        0.148543145110506,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 4,
+      "base_runs": 15
+    },
+    {
+      "n": 32,
+      "m_ls": 0.14510216918384797,
+      "m_base": 0.14510216918384805,
+      "ref": [
+        0.145102169183849,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "tie",
+      "ls_runs": 4,
+      "base_runs": 19
+    },
+    {
+      "n": 33,
+      "m_ls": 0.14330999627239227,
+      "m_base": 0.14290838560719102,
+      "ref": [
+        0.143447408371201,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 4,
+      "base_runs": 33
+    },
+    {
+      "n": 34,
+      "m_ls": 0.14286210687328316,
+      "m_base": 0.1428571428571426,
+      "ref": [
+        0.142869646754496,
+        "Graham-Lubachevsky 1995 (15 s.f.)"
+      ],
+      "winner": "LS",
+      "ls_runs": 4,
+      "base_runs": 30
+    }
+  ],
+  "summary": {
+    "wins": 7,
+    "ties": 4,
+    "losses": 2,
+    "kill_criterion": "NOT MET (LS is worth keeping)"
+  }
+}

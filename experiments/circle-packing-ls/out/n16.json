@@ -1,0 +1,101 @@
+{
+  "n": 16,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point output of a Lubachevsky-Stillinger billiard run followed by an SLSQP polish. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.21622726930978164,
+  "D_side_of_centre_triangle": 9.2495271590128,
+  "s_side_for_unit_circles": 12.713628774150553,
+  "unit_triangle_points": [
+    [
+      0.37268381555756064,
+      0.21516910123477465
+    ],
+    [
+      0.6102767083542487,
+      0.0
+    ],
+    [
+      0.4807974502124518,
+      0.40242740944798466
+    ],
+    [
+      0.1970247195222335,
+      0.08908137791003282
+    ],
+    [
+      0.8214065118090519,
+      0.30933299544767434
+    ],
+    [
+      0.8051383541771243,
+      0.0937185732945455
+    ],
+    [
+      0.6840145790686194,
+      0.47629912617787185
+    ],
+    [
+      0.6081136346548908,
+      0.6787670955712283
+    ],
+    [
+      0.3918863653451091,
+      0.6787670955712283
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.17565909603532714,
+      0.30425047914480735
+    ],
+    [
+      0.39404943904446704,
+      0.0
+    ],
+    [
+      0.6113526716797356,
+      0.2219689207785239
+    ],
+    [
+      0.283772730690218,
+      0.4915087873580176
+    ],
+    [
+      1.0,
+      0.0
+    ],
+    [
+      5.095730182592872e-17,
+      0.0
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.21622726930978164,
+    "containment_slack": 0.0,
+    "_warning": "float diagnostics, not a feasibility check; see candidates/ for exact"
+  },
+  "reference": {
+    "m": 0.216227269309782,
+    "s": 12.71362877415054,
+    "source": "Graham-Lubachevsky 1995 (15 s.f.)",
+    "agreement_digits_m": 14.777616872945762
+  },
+  "meta": {
+    "seed": 20260818,
+    "python": "3.13.13",
+    "numpy": "2.3.4",
+    "scipy": "1.16.3",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "git_commit": "9f2d894a9cc75c84ce88ced0aea12ae8226b1726",
+    "growth_schedule": [
+      0.05,
+      0.005
+    ],
+    "mode": "sweep",
+    "ls_runs": 6,
+    "elapsed": 8.736043789000178
+  }
+}

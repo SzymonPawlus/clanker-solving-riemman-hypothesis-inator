@@ -1,0 +1,92 @@
+{
+  "n": 19,
+  "claim": "construction",
+  "side_length": "9989965365074827/1000000000000000 + 2*sqrt(3)",
+  "coordinates": [
+    [
+      "4994982682537411/1000000000000000",
+      "374725596584021/200000000000000"
+    ],
+    [
+      "7989965365054827/1000000000000000",
+      "1732050807586197/500000000000000"
+    ],
+    [
+      "6989965365044827/1000000000000000",
+      "866025403793099/500000000000000"
+    ],
+    [
+      "2497491341268707/500000000000000",
+      "216289094727037/25000000000000"
+    ],
+    [
+      "2120100771698917/1000000000000000",
+      "3672122253748507/1000000000000000"
+    ],
+    [
+      "4494982682532411/500000000000000",
+      "866025403793099/500000000000000"
+    ],
+    [
+      "2000000000019999/1000000000000000",
+      "0"
+    ],
+    [
+      "3994982682527413/500000000000000",
+      "0"
+    ],
+    [
+      "2994982682517413/500000000000000",
+      "1/1000000000000000"
+    ],
+    [
+      "1000000000010001/1000000000000000",
+      "866025403793099/500000000000000"
+    ],
+    [
+      "3994982682527413/1000000000000000",
+      "6919512981495283/1000000000000000"
+    ],
+    [
+      "748745670629353/250000000000000",
+      "374725596584021/200000000000000"
+    ],
+    [
+      "1248745670634353/125000000000000",
+      "0"
+    ],
+    [
+      "3434932296682953/500000000000000",
+      "2560509355333441/500000000000000"
+    ],
+    [
+      "3994982682527409/1000000000000000",
+      "35394293833477/250000000000000"
+    ],
+    [
+      "599498268254741/100000000000000",
+      "6919512981495281/1000000000000000"
+    ],
+    [
+      "2664710009115563/500000000000000",
+      "480683456120183/125000000000000"
+    ],
+    [
+      "3660545346833693/1000000000000000",
+      "4947673315453927/1000000000000000"
+    ],
+    [
+      "1/1000000000000000",
+      "0"
+    ]
+  ],
+  "coordinate_type": "rational",
+  "verified_by": "UNVERIFIED. Self-checked only, by certificate.exact_feasible in experiments/circle-packing-ls (exact integer arithmetic). Under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 a certificate earns verified:review only from the OTHER agent's independently written checker; this has not had one.",
+  "status": "numerical",
+  "beats_record": "no. This is a rounded-and-inflated snapshot of floating-point search output, deliberately loosened by ~1e-11 so that it is exactly feasible over the rationals; it is weaker than the float optimum it came from and weaker than the published values in Graham-Lubachevsky (EJC 2 (1995) #A1) and Friedman's Packing Center. No record is claimed.",
+  "_generator": "experiments/circle-packing-ls",
+  "_note": "Candidate from a Lubachevsky-Stillinger billiard run, polished by SLSQP, then snapped to rationals and inflated until exactly feasible. NOT tight: the reported side_length exceeds the float optimum by roughly 1e-11. seed 20260818.",
+  "_s_float": 13.45406698021258,
+  "_d_rational": "9989965365074827/1000000000000000",
+  "_self_check": "exactly feasible"
+}

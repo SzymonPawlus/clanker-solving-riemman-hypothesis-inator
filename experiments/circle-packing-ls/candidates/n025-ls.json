@@ -1,0 +1,116 @@
+{
+  "n": 25,
+  "claim": "construction",
+  "side_length": "1182970843114373/100000000000000 + 2*sqrt(3)",
+  "coordinates": [
+    [
+      "1000000000010009/500000000000000",
+      "0"
+    ],
+    [
+      "800000000008007/200000000000000",
+      "54126587737069/15625000000000"
+    ],
+    [
+      "200000000002001/40000000000000",
+      "1732050807586201/1000000000000000"
+    ],
+    [
+      "9372281323362799/1000000000000000",
+      "4256388606573609/1000000000000000"
+    ],
+    [
+      "2457427107780929/500000000000000",
+      "1702555442629443/200000000000000"
+    ],
+    [
+      "3686140661671393/500000000000000",
+      "1064097151643399/250000000000000"
+    ],
+    [
+      "10829708431133723/1000000000000000",
+      "1732050807586209/1000000000000000"
+    ],
+    [
+      "6914854215581871/1000000000000000",
+      "8512777213147217/1000000000000000"
+    ],
+    [
+      "6914854215581859/1000000000000000",
+      "1154700538390803/500000000000000"
+    ],
+    [
+      "11829708431143729/1000000000000000",
+      "1/1000000000000000"
+    ],
+    [
+      "1614356776955239/250000000000000",
+      "3282894841677611/500000000000000"
+    ],
+    [
+      "1500000000015007/500000000000000",
+      "173205080758621/100000000000000"
+    ],
+    [
+      "9829708431123717/1000000000000000",
+      "0"
+    ],
+    [
+      "1182970843114373/200000000000000",
+      "640301751295839/62500000000000"
+    ],
+    [
+      "4000000000040029/1000000000000000",
+      "0"
+    ],
+    [
+      "3000000000030021/500000000000000",
+      "0"
+    ],
+    [
+      "3/1000000000000000",
+      "0"
+    ],
+    [
+      "2228713553900471/500000000000000",
+      "6565789683355221/1000000000000000"
+    ],
+    [
+      "1046535165419099/125000000000000",
+      "2994219707079909/500000000000000"
+    ],
+    [
+      "3000000000030021/1000000000000000",
+      "5196152422758629/1000000000000000"
+    ],
+    [
+      "125000000001251/125000000000000",
+      "173205080758621/100000000000000"
+    ],
+    [
+      "2728713553905477/500000000000000",
+      "483373887576901/100000000000000"
+    ],
+    [
+      "7914854215591879/1000000000000000",
+      "115470053839081/200000000000000"
+    ],
+    [
+      "400000000004003/200000000000000",
+      "173205080758621/50000000000000"
+    ],
+    [
+      "1782970843120377/200000000000000",
+      "1154700538390807/500000000000000"
+    ]
+  ],
+  "coordinate_type": "rational",
+  "verified_by": "UNVERIFIED. Self-checked only, by certificate.exact_feasible in experiments/circle-packing-ls (exact integer arithmetic). Under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 a certificate earns verified:review only from the OTHER agent's independently written checker; this has not had one.",
+  "status": "numerical",
+  "beats_record": "no. This is a rounded-and-inflated snapshot of floating-point search output, deliberately loosened by ~1e-11 so that it is exactly feasible over the rationals; it is weaker than the float optimum it came from and weaker than the published values in Graham-Lubachevsky (EJC 2 (1995) #A1) and Friedman's Packing Center. No record is claimed.",
+  "_generator": "experiments/circle-packing-ls",
+  "_note": "Candidate from a Lubachevsky-Stillinger billiard run, polished by SLSQP, then snapped to rationals and inflated until exactly feasible. NOT tight: the reported side_length exceeds the float optimum by roughly 1e-11. seed 20260818.",
+  "_s_float": 15.293810046281486,
+  "_d_rational": "1182970843114373/100000000000000",
+  "_self_check": "exactly feasible"
+}

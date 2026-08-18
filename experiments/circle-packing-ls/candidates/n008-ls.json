@@ -1,0 +1,48 @@
+{
+  "n": 8,
+  "claim": "construction",
+  "side_length": "5829708431083661/1000000000000000 + 2*sqrt(3)",
+  "coordinates": [
+    [
+      "1914854215531829/1000000000000000",
+      "2886751345977/5000000000000"
+    ],
+    [
+      "1/1000000000000000",
+      "0"
+    ],
+    [
+      "2914854215541831/1000000000000000",
+      "1262168899493693/250000000000000"
+    ],
+    [
+      "364356776942729/250000000000000",
+      "2524337798987387/1000000000000000"
+    ],
+    [
+      "1914854215531829/500000000000000",
+      "0"
+    ],
+    [
+      "291485421554183/50000000000000",
+      "0"
+    ],
+    [
+      "421535165412843/125000000000000",
+      "3101688068182787/1000000000000000"
+    ],
+    [
+      "4829708431073659/1000000000000000",
+      "8660254037931/5000000000000"
+    ]
+  ],
+  "coordinate_type": "rational",
+  "verified_by": "UNVERIFIED. Self-checked only, by certificate.exact_feasible in experiments/circle-packing-ls (exact integer arithmetic). Under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 a certificate earns verified:review only from the OTHER agent's independently written checker; this has not had one.",
+  "status": "numerical",
+  "beats_record": "no. This is a rounded-and-inflated snapshot of floating-point search output, deliberately loosened by ~1e-11 so that it is exactly feasible over the rationals; it is weaker than the float optimum it came from and weaker than the published values in Graham-Lubachevsky (EJC 2 (1995) #A1) and Friedman's Packing Center. No record is claimed.",
+  "_generator": "experiments/circle-packing-ls",
+  "_note": "Candidate from a Lubachevsky-Stillinger billiard run, polished by SLSQP, then snapped to rationals and inflated until exactly feasible. NOT tight: the reported side_length exceeds the float optimum by roughly 1e-11. seed 20260818.",
+  "_s_float": 9.293810046221417,
+  "_d_rational": "5829708431083661/1000000000000000",
+  "_self_check": "exactly feasible"
+}
