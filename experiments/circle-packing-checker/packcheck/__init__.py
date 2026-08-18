@@ -5,6 +5,18 @@ what a valid packing is. This package only *implements* that check; it is not th
 definition.
 """
 
-from .checker import CertificateError, CheckResult, check_certificate, check_file
+from .checker import (
+    CertificateError,
+    CheckResult,
+    check_certificate,
+    check_file,
+    validate_schema,
+)
 
-__all__ = ["CertificateError", "CheckResult", "check_certificate", "check_file"]
+__all__ = [
+    "CertificateError",
+    "CheckResult",
+    "check_certificate",
+    "check_file",
+    "validate_schema",
+]

@@ -10,34 +10,38 @@ inside an equilateral triangle of side
     d = s - 2*sqrt(3).
 
 This module verifies exactly that, for a certificate in the JSON format of the
-problem's `RULES.md` §2:
+problem's `RULES.md` §2, in two clearly separated stages:
 
-  (1) all C(n,2) pairwise distances are >= 2,
-  (2) all n points lie in the (closed) equilateral triangle of side d,
-  (3) the reported `side_length` is consistent with the coordinates.
+  stage 1, `validate_schema` -- the object has the required fields, of the right
+      types, with values in the sets the spec pins (in particular `claim` must be
+      `construction`; nothing is defaulted);
+  stage 2, `check_certificate` -- the geometry:
+      (1) all C(n,2) pairwise distances are >= 2,
+      (2) all n points lie in the (closed) equilateral triangle of side d,
+      (3) the reported `side_length` is consistent with the coordinates.
+
+A certificate arrives from outside, so its scalar strings are untrusted input; they
+are read by the allowlisted grammar in `safeparse.py`, which never evaluates Python.
 
 Everything is decided in exact arithmetic -- see `exact.py` for the representation
 choice and the sign-decision procedure. No float is constructed anywhere on this
 path, and "very nearly feasible" is reported as infeasible.
 
-CONVENTIONS THIS CHECKER HAD TO CHOOSE (the spec does not fix them)
-------------------------------------------------------------------
-These are recorded here and in the experiment README as spec ambiguities, not as
-definitions. An independent reimplementation may legitimately differ, and any
-disagreement is a finding to investigate rather than to average away.
+CONVENTIONS, NOW PINNED BY THE SPEC
+-----------------------------------
+These were reported as ambiguities when this checker was written; `RULES.md` §2 of
+the problem has since fixed all of them ("Fixed conventions -- do not reinterpret
+these"), and what follows is what this checker implements, matching that text. Two
+independently written checkers are supposed to agree here, so a disagreement is a
+finding to investigate rather than to average away.
 
-  A. *Placement of the triangle.* The certificate lists coordinates but the problem
-     statement never says where the triangle sits. This checker fixes the canonical
-     placement
+  A. *Placement of the triangle.* This checker fixes the canonical placement
 
          A = (0, 0),   B = (d, 0),   C = (d/2, d*sqrt(3)/2)
 
      and requires the points to lie in it as given. It does NOT search over
      rotations or translations, so a certificate written against a different
-     placement will be rejected even though it describes a valid packing. Two
-     independent checkers that pick different placements will disagree on such a
-     certificate -- which is exactly why this is flagged as an ambiguity in the
-     spec rather than settled here.
+     placement is invalid, not merely inconvenient.
   B. *Closed vs open triangle.* "Inside" is read as the CLOSED triangle. It has to
      be: in every optimal packing some circles touch the sides, so points sit
      exactly on the boundary.
@@ -52,7 +56,10 @@ disagreement is a finding to investigate rather than to average away.
      side `d_min` for which the given points fit the canonical placement, and
      reports whether `s == d_min + 2*sqrt(3)`. By default a non-tight `s` is a
      WARNING (an inflated `s` is a weak but true claim); `--require-tight` makes it
-     an error.
+     an error, which §4 requires for any record claim.
+  F. *Decimal strings are banned in exact fields.* `"10.928"` is exactly 1366/125,
+     but is almost always truncated optimiser output, so it is rejected rather than
+     parsed with a warning.
 """
 
 from __future__ import annotations
@@ -63,7 +70,6 @@ from fractions import Fraction
 from pathlib import Path
 
 import sympy
-from sympy.parsing.sympy_parser import parse_expr, standard_transformations
 
 from .exact import (
     SQRT3,
@@ -74,8 +80,15 @@ from .exact import (
     is_nonneg,
     sign_of,
 )
+from .safeparse import UnsafeExpression, parse_scalar
 
-__all__ = ["CheckResult", "Certificate", "check_certificate", "check_file"]
+__all__ = [
+    "CheckResult",
+    "Certificate",
+    "validate_schema",
+    "check_certificate",
+    "check_file",
+]
 
 # Enclosure precision used for `coordinate_type: interval` certificates.
 INTERVAL_BITS = 256
@@ -86,19 +99,20 @@ class CertificateError(Exception):
 
 
 # --------------------------------------------------------------------------- #
-# Parsing: strings -> exact algebraic numbers. Floats are refused.
+# Parsing: strings -> exact algebraic numbers. Floats are refused, and so is
+# anything outside the allowlisted grammar in `safeparse` -- see that module for
+# why sympy's `parse_expr` is not used here.
 # --------------------------------------------------------------------------- #
 
-_TRANSFORMS = standard_transformations
-
-
-def parse_exact(text, warnings: list[str] | None = None) -> sympy.Expr:
+def parse_exact(text) -> sympy.Expr:
     """Parse a certificate scalar into an exact sympy number.
 
     Accepts integers, rationals like `7/3`, and radical expressions like
-    `4 + 4*sqrt(3)`. A decimal literal such as `10.928` is *exactly* the rational
-    1366/125 and is parsed as such (never as a float), but it is almost always a
-    pasted optimiser output, so it raises a warning.
+    `4 + 4*sqrt(3)`. Certificate text is untrusted, so it goes through
+    `safeparse.parse_scalar`, which interprets an allowlisted syntax tree and never
+    evaluates Python -- no builtin, attribute or import is reachable from it.
+    Decimal literals such as `10.928` are rejected outright, per the ban on decimal
+    strings in exact fields in the problem's `RULES.md` §2.
     """
     if isinstance(text, bool):
         raise CertificateError(f"boolean where a number was expected: {text!r}")
@@ -111,26 +125,15 @@ def parse_exact(text, warnings: list[str] | None = None) -> sympy.Expr:
         return sympy.Integer(text)
     if not isinstance(text, str):
         raise CertificateError(f"cannot parse {text!r} as an exact number")
-    if "." in text and warnings is not None:
-        warnings.append(
-            f"decimal literal {text!r} parsed as the exact rational "
-            f"{sympy.Rational(text)}; this is probably truncated optimiser output"
-        )
     try:
-        expr = parse_expr(
-            text,
-            local_dict={},
-            transformations=_TRANSFORMS,
-            evaluate=True,
-        )
-        expr = sympy.nsimplify(expr, rational=True) if expr.has(sympy.Float) else expr
-    except CertificateError:
-        raise
-    except Exception as exc:  # noqa: BLE001 - surface any parse failure as a cert error
+        expr = parse_scalar(text)
+    except UnsafeExpression as exc:
         raise CertificateError(f"could not parse {text!r} exactly: {exc}") from exc
     if not expr.is_real:
         raise CertificateError(f"{text!r} is not a real number")
     if expr.free_symbols:
+        # Unreachable through `parse_scalar` (it admits no names), kept as a second
+        # gate so a future grammar change cannot silently let a symbol through.
         raise CertificateError(f"{text!r} contains free symbols {expr.free_symbols}")
     return expr
 
@@ -154,40 +157,108 @@ class Certificate:
         return self.coordinate_type == "interval"
 
 
-def load_certificate(data: dict) -> Certificate:
-    warnings: list[str] = []
-    for key in ("n", "side_length", "coordinates", "coordinate_type"):
-        if key not in data:
-            raise CertificateError(f"certificate is missing required field {key!r}")
+# Checking a certificate happens in two clearly separated stages:
+#
+#   1. `validate_schema` -- is this object the right SHAPE? Required fields present,
+#      of the right type, with values in the sets the problem's `RULES.md` §2 pins.
+#      Nothing geometric happens here and no scalar is parsed.
+#   2. `check_certificate` -- given a well-formed certificate, is the packing it
+#      describes actually FEASIBLE?
+#
+# The split matters because a schema failure and a geometry failure mean different
+# things: the first says the file is not a certificate, the second says it is a
+# certificate of something false. Stage 1 also fails closed on anything it does not
+# recognise, so a missing or unexpected field is never defaulted into a pass.
+
+REQUIRED_FIELDS = (
+    "n",
+    "claim",
+    "side_length",
+    "coordinates",
+    "coordinate_type",
+    "verified_by",
+    "status",
+    "beats_record",
+)
+
+# This checker certifies CONSTRUCTIONS -- upper bounds `s(n) <= c` -- and nothing
+# else. `RULES.md` §1 of the problem separates that from an optimality claim, which
+# needs an exhaustive lower-bound argument no feasibility check can supply.
+SUPPORTED_CLAIM = "construction"
+
+COORDINATE_TYPES = ("rational", "algebraic", "interval")
+STATUSES = ("numerical", "verified:review", "verified:lean")
+
+
+def validate_schema(data) -> None:
+    """Raise `CertificateError` unless `data` matches the pinned certificate schema.
+
+    Shape only -- see `problems/circle-packing-equilateral-triangle/RULES.md` §2.
+    Extra fields are permitted (the reference fixtures carry a `_note`); missing or
+    ill-typed required fields are not, and no field is given a default.
+    """
+    if not isinstance(data, dict):
+        raise CertificateError(f"certificate must be a JSON object, got {type(data).__name__}")
+
+    missing = [key for key in REQUIRED_FIELDS if key not in data]
+    if missing:
+        raise CertificateError(
+            f"certificate is missing required field(s) {', '.join(repr(k) for k in missing)}; "
+            f"the schema requires {', '.join(REQUIRED_FIELDS)} (problem RULES.md §2)"
+        )
+
+    claim = data["claim"]
+    if claim != SUPPORTED_CLAIM:
+        raise CertificateError(
+            f"claim must be {SUPPORTED_CLAIM!r}, got {claim!r}. This checker verifies "
+            "feasibility, which certifies an upper bound s(n) <= side_length and nothing "
+            "more; an optimality or counterexample claim needs an argument it cannot supply."
+        )
 
     n = data["n"]
     if not isinstance(n, int) or isinstance(n, bool) or n < 1:
         raise CertificateError(f"n must be a positive integer, got {n!r}")
 
     ctype = data["coordinate_type"]
-    if ctype not in ("rational", "algebraic", "interval"):
+    if ctype not in COORDINATE_TYPES:
         raise CertificateError(
-            f"coordinate_type must be rational|algebraic|interval, got {ctype!r}"
+            f"coordinate_type must be {'|'.join(COORDINATE_TYPES)}, got {ctype!r}"
         )
 
-    side = parse_exact(data["side_length"], warnings)
+    status = data["status"]
+    if status not in STATUSES:
+        raise CertificateError(f"status must be {'|'.join(STATUSES)}, got {status!r}")
 
-    raw_coords = data["coordinates"]
-    if not isinstance(raw_coords, list):
+    for key in ("verified_by", "beats_record"):
+        value = data[key]
+        if not isinstance(value, str) or not value.strip():
+            raise CertificateError(f"{key} must be a non-empty string, got {value!r}")
+
+    coords = data["coordinates"]
+    if not isinstance(coords, list):
         raise CertificateError("coordinates must be a list")
-    if len(raw_coords) != n:
+    if len(coords) != n:
         raise CertificateError(
-            f"certificate declares n = {n} but lists {len(raw_coords)} coordinates"
+            f"certificate declares n = {n} but lists {len(coords)} coordinates"
         )
+
+
+def load_certificate(data: dict) -> Certificate:
+    """Validate the schema, then parse every scalar into an exact number."""
+    validate_schema(data)
+
+    n = data["n"]
+    ctype = data["coordinate_type"]
+    side = parse_exact(data["side_length"])
 
     coords = []
-    for index, point in enumerate(raw_coords):
+    for index, point in enumerate(data["coordinates"]):
         if not isinstance(point, list) or len(point) != 2:
             raise CertificateError(f"coordinate {index} is not a [x, y] pair: {point!r}")
         if ctype == "interval":
-            coords.append(tuple(_parse_interval(c, index, warnings) for c in point))
+            coords.append(tuple(_parse_interval(c, index) for c in point))
         else:
-            parsed = tuple(parse_exact(c, warnings) for c in point)
+            parsed = tuple(parse_exact(c) for c in point)
             if ctype == "rational" and not all(c.is_Rational for c in parsed):
                 raise CertificateError(
                     f"coordinate {index} is not rational but coordinate_type is 'rational'"
@@ -196,16 +267,15 @@ def load_certificate(data: dict) -> Certificate:
 
     return Certificate(
         n=n,
-        claim=data.get("claim", "construction"),
+        claim=data["claim"],
         side_length=side,
         coordinates=coords,
         coordinate_type=ctype,
         raw=data,
-        warnings=warnings,
     )
 
 
-def _parse_interval(component, index: int, warnings: list[str]) -> RatInterval:
+def _parse_interval(component, index: int) -> RatInterval:
     """An interval coordinate component, encoded as a two-element [lo, hi] list.
 
     SPEC AMBIGUITY: RULES.md §2 permits `coordinate_type: "interval"` but never says
@@ -219,7 +289,7 @@ def _parse_interval(component, index: int, warnings: list[str]) -> RatInterval:
             f"{component!r}. (RULES.md §2 does not specify this encoding -- see "
             "the experiment README.)"
         )
-    lo_expr, hi_expr = (parse_exact(c, warnings) for c in component)
+    lo_expr, hi_expr = (parse_exact(c) for c in component)
     if not (lo_expr.is_Rational and hi_expr.is_Rational):
         raise CertificateError(
             f"coordinate {index}: interval endpoints must be rational, got "

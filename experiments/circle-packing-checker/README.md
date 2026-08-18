@@ -107,7 +107,8 @@ at all.
 
 ## The result
 
-`./run.sh` — one command, from scratch.
+`./run.sh` — one command, given `uv` (see Reproducibility; it is the only
+prerequisite the script does not install for you).
 
 * **Accepts** the classical triangular-lattice optima for the triangular numbers
   `n = 3, 6, 10` (`certificates/n{003,006,010}-triangular.json`), including under
@@ -120,50 +121,53 @@ at all.
   irrational), while **accepting** a separation by the same amount — so the rejections
   are discrimination, not blanket pessimism.
 * **Rejects** malformed certificates as malformed: JSON floats, `n` mismatches, unknown
-  `coordinate_type`, irrational coordinates declared `rational`.
+  `coordinate_type`, irrational coordinates declared `rational`, decimal strings in
+  exact fields, and any `claim` other than `construction`.
+* **Executes nothing** from a certificate. Scalars are read by an allowlisted grammar
+  (`packcheck/safeparse.py`), never evaluated as Python, so attribute access, dunder
+  traversal, imports, calls, comprehensions and lambdas are unreachable rather than
+  filtered. `tests/test_input_safety.py` fires 40-odd payloads at it and asserts both
+  the rejection and the absence of any side effect.
 * A source audit (`tests/test_no_floats.py`) parses every module of `packcheck` and
   fails on any float literal, `float()` call, `.evalf()`, or import of `numpy` /
   `decimal`. `math` is admitted only for `math.isqrt`.
 
-131 tests, ~2 s.
+330 tests, ~1 s.
 
-## Spec ambiguities found
+## Spec ambiguities found — now resolved upstream
 
-These are **findings**, reported rather than silently resolved. An independent
-reimplementation may reasonably choose differently, and the disagreement would be
-informative rather than a bug.
+These were reported as **findings** rather than silently resolved in code. All six
+have since been pinned in `problems/circle-packing-equilateral-triangle/RULES.md` §2
+("Fixed conventions — do not reinterpret these", commit `d4f84d9`), and this checker
+conforms to every one of them. They are kept here as the record of what was
+ambiguous and how it was settled.
 
-1. **Where is the triangle?** `README.md` and `RULES.md` §2 give coordinates but never
-   fix the triangle's position or orientation. This checker assumes the canonical
-   placement `A=(0,0)`, `B=(d,0)`, `C=(d/2, d*sqrt(3)/2)` and does not search over
-   rigid motions, so a valid packing written against a different placement is
-   rejected. **The certificate format should state the placement, or carry the three
-   vertices explicitly.**
-2. **Is `side_length` `s` or `d`?** The format says "value of `s(n)`" and the tables
-   quote `s`, so it is read as `s`. Worth stating outright, since the whole document
-   otherwise works in the point formulation where `d` is natural.
-3. **What does "the reported side length is consistent with the coordinates" mean?**
-   Containment alone only certifies `s(n) <= s`, so an inflated `s` passes. This
-   checker additionally computes the exact minimal side `d_min = max_i (x_i + y_i/sqrt(3))`
-   for the canonical placement and reports non-tightness as a warning
-   (`--require-tight` promotes it to a failure). Whether tightness is *required* is
-   not stated in the spec.
-4. **How is an `interval` coordinate written?** `RULES.md` §2 permits
-   `coordinate_type: "interval"` but gives no encoding. This checker requires
-   `[[xlo, xhi], [ylo, yhi]]` and rejects anything else rather than guessing.
-5. **Open or closed triangle; strict or non-strict distance?** Both must be
-   non-strict — every optimum has circles touching the sides and each other — but the
-   spec says "inside" and "distance >= 2" without comment. Forced, but worth writing down.
-6. **May `side_length` be a decimal string?** `"10.928"` is exactly `1366/125`, which
-   is a legitimate rational, but it is almost certainly truncated optimiser output.
-   This checker parses it exactly and emits a warning. Arguably the format should ban
-   decimal literals outright.
+1. **Where is the triangle?** The format gave coordinates but never fixed the
+   triangle's position or orientation. *Pinned:* `A=(0,0)`, `B=(d,0)`,
+   `C=(d/2, d*sqrt(3)/2)`, and checkers do **not** search over rigid motions — so a
+   packing written against a different placement is invalid, not merely inconvenient.
+2. **Is `side_length` `s` or `d`?** *Pinned:* always `s`, the side of the triangle
+   holding the unit circles.
+3. **What does "consistent with the coordinates" mean?** Containment alone only
+   certifies `s(n) <= s`, so an inflated `s` would pass. *Pinned:* a checker must also
+   compute the exact minimal enclosing value and report tightness. This checker
+   computes `d_min = max_i (x_i + y_i/sqrt(3))` and warns when `s` is not tight;
+   `--require-tight` promotes that to a failure, which §4 requires for a record claim.
+4. **How is an `interval` coordinate written?** *Pinned:* `[[x_lo, x_hi], [y_lo, y_hi]]`
+   with exact rational endpoints, and reject any other shape rather than guessing.
+5. **Open or closed triangle; strict or non-strict distance?** *Pinned:* all
+   inequalities non-strict, the triangle closed — every optimum has contacts.
+6. **May `side_length` be a decimal string?** *Pinned:* no. Decimal strings are banned
+   in exact fields, because `"10.928"` parses as the exact rational `1366/125` while
+   almost always being truncated optimiser output. This checker used to accept it with
+   a warning; it now rejects it.
 
 ## Layout
 
 ```
 packcheck/exact.py     exact reals: integer roots, rational intervals, sign decision
-packcheck/checker.py   certificate parsing + the three geometric checks
+packcheck/safeparse.py allowlisted grammar for untrusted certificate scalars
+packcheck/checker.py   schema validation + certificate parsing + the geometric checks
 packcheck/__main__.py  CLI
 make_certificates.py   generates the n = 3, 6, 10 reference certificates
 certificates/          those certificates (regenerated by run.sh)
@@ -182,6 +186,11 @@ Exit status is 0 iff every certificate was accepted.
 
 ## Reproducibility
 
-`uv`, Python 3.12 (`.python-version`), `sympy==1.13.3`, `mpmath==1.3.0`,
-`pytest==8.3.4`, locked in `uv.lock`. There is no randomness anywhere in this
-experiment, so there is no seed to pin.
+Python 3.12 (`.python-version`), `sympy==1.13.3`, `mpmath==1.3.0`, `pytest==8.3.4`,
+locked in `uv.lock`. There is no randomness anywhere in this experiment, so there is
+no seed to pin.
+
+`uv` itself must already be on `PATH`; `run.sh` checks for it and exits with an
+install pointer if it is missing. Bootstrapping it would mean piping a remote
+installer into a shell, which a verification tool should not do on your behalf —
+so "one command" means one command *after* `uv` is installed, not zero prerequisites.

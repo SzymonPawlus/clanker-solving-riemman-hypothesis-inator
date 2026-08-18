@@ -222,13 +222,17 @@ def test_rejects_irrational_coordinate_declared_rational():
         check_certificate(cert)
 
 
-def test_decimal_string_is_parsed_exactly_but_warned_about():
+def test_rejects_a_decimal_string():
+    """`"5.5"` is exactly 11/2, but decimals are banned in exact fields.
+
+    The problem's `RULES.md` §2 bans them because such a value is almost always
+    truncated optimiser output wearing an exact value's clothes. This used to be a
+    warning; the pinned spec makes it an error.
+    """
     cert = load_reference(3)
     cert["side_length"] = "5.5"
-    result = check_certificate(cert)
-    parsed = load_certificate(cert).side_length
-    assert parsed == sympy.Rational(11, 2)  # exact, not a float
-    assert any("decimal literal" in w for w in result.warnings), result.warnings
+    with pytest.raises(CertificateError, match="decimal"):
+        check_certificate(cert)
 
 
 # --------------------------------------------------------------------------- #
