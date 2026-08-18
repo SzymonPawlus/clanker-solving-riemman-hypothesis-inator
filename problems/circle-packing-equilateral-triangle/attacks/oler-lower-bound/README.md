@@ -12,16 +12,18 @@ claimed. The over-claim was caught in cross-review (Codex/Flow-25 on PR #21) and
 > **The kill-criterion has NOT been discharged.** Per
 > [`../../../../RULES.md`](../../../../RULES.md) §6.3 it is recorded here exactly as written, and is
 > *not* being restated to make it come out met. It quantifies over every $n$ whose optimum is
-> unknown — an infinite set, all of it $\ge 16$ and non-triangular. What this file establishes is:
+> unknown — an infinite set, all of it $\ge 16$, non-triangular, and (taking the qualified $n = 20$
+> attribution of §3.1 at face value) $\ne 20$. What this file establishes is:
 >
 > - For non-triangular $n \le 15$, where $s(n)$ is **known**, Oler is strictly slack, by $0.37$ to
 >   $0.92$ in $s$. That whole range is already solved, so it contains no $n$ the criterion is about.
+>   The same holds at $n = 20$ (slack by $0.311$), which is also not open — see §2.3, §3.1.
 > - For $n = 16, 17, 18$ the file shows $s_{\mathrm{Oler}}(n) < U(n)$, where $U(n)$ is the side
 >   length of a **published construction** — i.e. an *upper* bound on the unknown $s(n)$. That is
 >   `numerical` evidence that Oler is unlikely to be tight there. It is **not** a proof that
 >   $s_{\mathrm{Oler}}(n) < s(n)$: it remains logically possible that $s(n) = s_{\mathrm{Oler}}(n)$
 >   and every published packing for that $n$ is simply not optimal.
-> - For non-triangular $n > 18$, nothing at all is checked.
+> - For non-triangular $n > 18$ other than $n = 20$, nothing at all is checked.
 >
 > **What would discharge it:** an **equality-case theorem** for Oler's inequality — one saying that
 > equality forces the point set to be a triangular-lattice subset, and hence excludes equality for
@@ -40,9 +42,9 @@ Per the honesty requirement in issue #17:
 |---|---|
 | **Oler, *A finite packing problem*, Canad. Math. Bull. **4** (1961) 153–155.** [doi:10.4153/CMB-1961-018-7](https://doi.org/10.4153/CMB-1961-018-7) | **Read in full, primary source.** All 3 pages, from the Cambridge Core scan. Every quotation in §1 is transcribed from that scan. |
 | Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961) 19–48. | **NOT read.** This is where the theorem is actually *proved*; the CMB note only derives a corollary from it and cites it as "[a paper] which is shortly to appear". Everything I say about *why* Oler's inequality is true is therefore reconstruction, marked `sketch`, not a report of Oler's proof. |
-| Melissen & Schuur, *Packing 16, 17 or 18 circles in an equilateral triangle*, Discrete Math. **145** (1995) 333–342. | **Read in full** (open-access copy at [ris.utwente.nl](https://ris.utwente.nl/ws/files/6509759/Melissen95packing.pdf)). Source of the attribution sentence in §3 and the $t_{16},t_{17},t_{18}$ values in §2. |
+| Melissen & Schuur, *Packing 16, 17 or 18 circles in an equilateral triangle*, Discrete Math. **142**(1–3) (1995) 333–342, [doi:10.1016/0012-365X(95)90139-C](https://doi.org/10.1016/0012-365X(95)90139-C). | **Read in full** (open-access copy at [ris.utwente.nl](https://ris.utwente.nl/ws/files/6509759/Melissen95packing.pdf)). Source of the attribution sentence in §3 and the $t_{16},t_{17},t_{18}$ values in §2. |
 | Tedeschi & Mackey, *On Packing Thirteen Points in an Equilateral Triangle*, AJUR **18**(2) (2021) 3–12. | **Read in full** ([open access](https://www.ajuronline.org/uploads/Volume_18_2/AJUR_Vol_18_Issue_2_Sept_2021p3.pdf)). **Secondary source.** It is an undergraduate-journal paper, and my account of *Melissen's, Payan's and Joós's methods* in §3 rests almost entirely on it. Treat those method descriptions as second-hand. |
-| Melissen (1993 AMM), Melissen (1994 Acta Math. Hungar.), Payan (1997 Discrete Math.), Joós (2021 Aequat. Math.) | **NOT read — all paywalled.** I have their abstracts/bibliographic data only. Anything attributed to them below comes from a secondary source and is flagged. |
+| Melissen (1993 AMM), Melissen (1994 Acta Math. Hungar.), Payan (1997 Discrete Math.), Joós (2021 Aequat. Math.) | **NOT read — all paywalled.** I have their abstracts/bibliographic data only. Anything attributed to them below comes from a secondary source and is flagged. For **Payan** specifically, the publisher's abstract is now transcribed verbatim (French and English) in [`../../README.md`](../../README.md) under "The $n = 20$ attribution", merged via PR #36; §3.1 below uses that settled wording rather than restating the question. |
 | Amore, *Circle packing in regular polygons*, arXiv:[2212.12287](https://arxiv.org/abs/2212.12287) (Phys. Fluids **35** 027130, 2023). | **Read the relevant sections.** Used only as an independent modern restatement of Oler's inequality, to check I had transcribed it correctly. |
 | Wikipedia, [Circle packing in an equilateral triangle](https://en.wikipedia.org/wiki/Circle_packing_in_an_equilateral_triangle). | Used **only** for the sentence "Optimal solutions have been proved for $n \le 15$, and for any triangular number of circles", which I then corroborated independently against Melissen–Schuur, Payan's abstract and Tedeschi–Mackey. |
 
@@ -87,14 +89,26 @@ cite it.** Flagged here so the next agent does not have to rediscover this.
 | $M(\pi)$ | The **length of the curve** $\pi$, i.e. the perimeter — $\sum_i \lvert v_{i+1} - v_i\rvert$ over the edges. |
 | $1$ | The **minimum separation**, normalised. Condition (iii) fixes the scale; everything else is homogeneous in it. |
 
-**Hypothesis (i) is load-bearing and easy to miss.** The inequality is *not* "any $N$ points in any
-region $\pi$". Every vertex of the polygon must itself be one of the points. Oler's own application
-satisfies it by taking $\pi = H$, the convex hull of $E$ — whose vertices are automatically points
-of $E$.
+**Hypothesis (i) is easy to miss; hypothesis (ii) is what makes the statement non-vacuous.** The
+inequality is *not* "any $N$ points in any region $\pi$" — every vertex of the polygon must itself
+be one of the points. Oler's own application satisfies (i) for free by taking $\pi = H$, the convex
+hull of $E$, whose vertices are automatically points of $E$.
 
-Without (i) the inequality is false as stated: shrink $\pi$ to a tiny polygon far from a large point
-set and $A, M \to 0$ while $N$ stays large. (ii) is what rules this out, and (i) is what makes the
-boundary term $\tfrac12 M(\pi)$ the *right* correction rather than an arbitrary one.
+The obvious degeneracy — shrink $\pi$ to a tiny polygon far from a large point set, so
+$A, M \to 0$ while $N$ stays large — is excluded by **(ii)**, since such a $\pi$ does not contain
+$E$. It says nothing about (i). **Nothing in this file depends on whether (i) can be weakened**:
+every application below takes $\pi = H$ and therefore satisfies (i) outright.
+
+> *Aside, `sketch`, load-bearing for nothing.* An earlier version of this file claimed (i) was
+> load-bearing and offered exactly that tiny-far-away polygon as a counterexample to dropping it.
+> That was wrong — the example violates (ii) — and the error was caught in cross-review
+> (Codex/Flow-25 on PR #21). Recorded rather than deleted, per §5. If anything, (i) looks
+> *droppable* in the presence of (ii): for any Jordan polygon $\pi$ containing $E$, the hull
+> $H = \mathrm{conv}(E)$ lies in the closed region bounded by $\pi$, so $A(H) \le A(\pi)$; and
+> $M(H) \le M(\pi)$ would follow from the classical fact that a convex body's perimeter never
+> exceeds the length of a closed curve enclosing it, which I have **not** checked against a
+> reference. Applying the theorem to $(H, E)$ would then yield it for $(\pi, E)$. Stated as an
+> observation about the hypotheses, not used anywhere.
 
 **Note on what Oler actually proved here.** The CMB note does *not* contain a proof. It states this
 as "the following corollary to our theorem on the packing of convex disks", citing Oler, *An
@@ -154,6 +168,14 @@ $M(H) \le M(T) = 3n$:
 
 and Oler notes equality is attained by the triangular-lattice subset.
 
+**A gap in "it is clear that it is a polygon".** That sentence tacitly assumes $E$ is not contained
+in a line. If it is — which happens for every $E$ with $\lvert E\rvert \le 2$, and for collinear
+configurations of any size — the hull is a point or a segment, **not** a Jordan polygon, and the
+quoted theorem simply does not apply. Oler's own use of the corollary is asymptotic in $n$, so the
+degenerate cases never arise for him; a bound advertised "for all $n \ge 1$" has to handle them.
+§2.2 does, separately and elementarily. (This gap was found in cross-review of PR #21 — the first
+version of §2.2 asserted the hull was a Jordan polygon for every $n$.)
+
 Two structural points worth extracting, because they matter for any future attempt:
 
 1. The step is a **two-stage monotonicity**: Oler applies the inequality to the *hull* $H$, then
@@ -176,11 +198,34 @@ assumable until someone else checks them.
 
 The repo's point formulation (`../../README.md`): $n$ points at pairwise distance $\ge 2$ in an
 equilateral triangle of side $d$, with $s = d + 2\sqrt3$. Oler is normalised to distance $\ge 1$, so
-rescale by $\tfrac12$: put $a = d/2$. Then §2.1 with side $a$ gives
+rescale by $\tfrac12$: put $a = d/2$. Everything reduces to the point-count bound
+
+$$n \ \le\ \frac{(a+1)(a+2)}{2} \tag{$\star$}$$
+
+for a set $E$ of $n$ points at mutual distance $\ge 1$ in a **closed** equilateral triangle $T$ of
+side $a \ge 0$. **Two cases, because Oler's theorem does not cover both** (§2.1):
+
+**Case A — $E$ is not contained in a line.** Then $\lvert E\rvert \ge 3$ and $H = \mathrm{conv}(E)$
+has non-empty interior, so it is a convex Jordan polygon; its vertices lie in $E$ (hypothesis (i)),
+$E$ lies in the closed region it bounds (hypothesis (ii)), and (iii) is the separation assumption.
+So §2.1 applies verbatim with $A(H) \le A(T) = \tfrac{\sqrt3}{4}a^2$ and $M(H) \le M(T) = 3a$:
 
 $$n \ \le\ \frac{2}{\sqrt3}\cdot\frac{\sqrt3}{4}a^2 \ +\ \frac12\cdot 3a\ +\ 1 \ =\ \frac{a^2+3a+2}{2} \ =\ \frac{(a+1)(a+2)}{2}.$$
 
-Solving $a^2 + 3a + 2 - 2n \ge 0$ for $a > 0$:
+**Case B — $E$ is contained in a line.** This is every $n \le 2$, and collinear configurations for
+larger $n$. Oler's theorem is unavailable here: the hull is a point or a segment, not a Jordan
+polygon. Argue directly instead. Order the points along the line; consecutive gaps are $\ge 1$, so
+the two extreme points are at distance $\ge n-1$. Both lie in $T$, whose diameter is its side $a$,
+hence
+
+$$a \ \ge\ n-1 .$$
+
+Since $t \mapsto (t+1)(t+2)/2$ is increasing on $t \ge 0$, this gives
+$(a+1)(a+2)/2 \ge n(n+1)/2 \ge n$ for $n \ge 1$, i.e. $(\star)$ — and for $n \ge 2$ it is *strictly
+stronger* than $(\star)$.
+
+So $(\star)$ holds for every $n \ge 1$. Solving $a^2 + 3a + 2 - 2n \ge 0$ for $a \ge 0$ (the
+relevant root of the quadratic; $a = 0$ is admissible and is exactly the $n = 1$ case):
 
 $$a \ \ge\ \frac{\sqrt{8n+1}-3}{2}, \qquad d \ \ge\ \sqrt{8n+1}-3,$$
 
@@ -188,7 +233,17 @@ and therefore
 
 $$\boxed{\ s(n)\ \ge\ s_{\mathrm{Oler}}(n) \ :=\ 2\sqrt3 \;+\; \sqrt{8n+1} \;-\; 3\ }$$
 
-**This is the form to use.** It is a clean closed form in $n$, valid for all $n \ge 1$.
+**This is the form to use.** It is a clean closed form in $n$, valid for all $n \ge 1$ — including
+$n = 1, 2$, where the displayed bound is true but Oler's theorem itself does not apply and Case B
+carries it. Two sanity checks on the small cases, both consistent with §2.3:
+
+- $n = 1$: Case B gives $a \ge 0$, i.e. $s(1) \ge 2\sqrt3 = 3.4641\ldots$, and the incircle of a
+  triangle of side $2\sqrt3$ has radius $1$, so this is exact. $s_{\mathrm{Oler}}(1) = 2\sqrt3$ too
+  ($\sqrt9 - 3 = 0$), so the bound is tight at $n = 1$ for the trivial reason, not via Oler.
+- $n = 2$: Case B gives $a \ge 1$, i.e. $d \ge 2$ and $s(2) \ge 2 + 2\sqrt3 = 5.4641\ldots$, which
+  is the exact optimum — and it beats $s_{\mathrm{Oler}}(2) = 4.5872\ldots$ by the $0.877$ recorded
+  in §2.3. So at $n = 2$ the elementary argument is strictly better than the Oler route, which is
+  why nothing is lost by Oler's theorem not applying there.
 
 **The arithmetic identity at triangular numbers.** If $n = T_k = k(k+1)/2$ then $8n+1 = (2k+1)^2$,
 so $\sqrt{8n+1} = 2k+1$ and
@@ -206,8 +261,8 @@ $s_{\mathrm{Oler}}(n)$ against the lattice side lengths $2\sqrt3 + 2(k-1)$. It i
 statement "$s(n) = s_{\mathrm{Oler}}(n)$ iff $n$ is triangular", which is about the unknown function
 $s$. One direction of that does follow: for triangular $n$ the lattice packing realises the bound,
 so $s(T_k) = s_{\mathrm{Oler}}(T_k)$ (`cited`). The converse — $s(n) > s_{\mathrm{Oler}}(n)$ for
-*every* non-triangular $n$ — is **open**. It is verified for non-triangular $n \le 15$ (§2.3) and
-unproven beyond. Conflating the two is precisely the defect §5.1 records.
+*every* non-triangular $n$ — is **open**. It is verified for non-triangular $n \le 15$, and for
+$n = 20$ on a qualified attribution (§2.3, §3.1), and is unproven beyond. Conflating the two is precisely the defect §5.1 records.
 
 ### 2.3 The numbers — `numerical`
 
@@ -245,6 +300,13 @@ known construction), so the row records the width of the interval in which $s(n)
 
 ($t_{16}=0.216227269\ldots$, $t_{17}=(3-\sqrt3)/6$, $t_{18}=0.203465240\ldots$ from Melissen &
 Schuur 1995, converted by $s = 2\sqrt3 + 2/t_n$.)
+
+**$n = 20$ is deliberately absent from this table**, because it is not open: `../../README.md`
+records $s(20) = 10 + 2\sqrt3 = 13.464102\ldots$ as `cited`, qualified by abstract-only provenance
+(§3.1). Against it, $s_{\mathrm{Oler}}(20) = 2\sqrt3 + \sqrt{161} - 3 = 13.152679\ldots$ (printed by
+`oler_bound.py`), a gap of $0.311422$ — so on the qualified attribution, $n = 20$ is one more
+non-triangular value where Oler is slack, and it is the only such value $\ge 16$ for which that can
+be said at all.
 
 **Reading of the first table** — and note it covers **only $n \le 15$**, all of it already solved.
 The tight rows are exactly the triangular rows — 1, 3, 6, 10, 15 — and by §2.2 the bound is attained
@@ -297,21 +359,41 @@ Combining with Payan and Joós, the state of the art is:
 | $4 \le n \le 12$ | Melissen | AMM 100 (1993); $n=11$ in Acta Math. Hungar. 65 (1994) |
 | $n = 13$ | Joós | Aequat. Math. 95 (2021) 35–65 |
 | $n = 14$ ($=T_5-1$) | Payan | Discrete Math. 165–166 (1997) 555–565 |
-| $n = 20$ ($=T_6-1$) | Payan — **see caveat below** | same |
-| $n \ge 16$, $n$ not triangular | **open** | — |
+| $n = 20$ ($=T_6-1$) | Payan — `cited`, **abstract-only provenance**, see below | same |
+| $n \ge 16$, $n$ not triangular, $n \ne 20$ | **open** | — |
 
-**Correction to the repo README (which I must not edit — it is locked by PR #10).**
-`../../README.md` currently lists $n = 7, 8, 11, 13, 14$ under "best known only (optimality *not*
-established)" and flags a Wikipedia/Friedman disagreement. **The disagreement resolves in
-Wikipedia's favour**: all of $7, 8, 11, 13, 14$ are proven. $7, 8, 11$ are inside Melissen's $n\le12$
-range (with $n=11$ the subject of its own 1994 paper); $n=13$ is Joós 2021; $n=14$ is Payan 1997.
-Friedman's pages simply predate Payan and Joós. That is issue-#17-adjacent housekeeping and belongs
-in whatever issue owns the README — it is noted here so the information is not lost.
+**Housekeeping note, now closed out.** When this file was first drafted, `../../README.md` listed
+$n = 7, 8, 11, 13, 14$ under "best known only (optimality *not* established)" and flagged a
+Wikipedia/Friedman disagreement; this file recorded that the disagreement resolves in Wikipedia's
+favour, all five being proven ($7, 8, 11$ inside Melissen's $n \le 12$ range with $n = 11$ the
+subject of its own 1994 paper; $n = 13$ Joós; $n = 14$ Payan — Friedman's pages predate Payan and
+Joós). **That has since landed independently**: current `main` lists all five in the *proven*
+table with per-row references. The paragraph is kept only so the reasoning is not lost; there is
+nothing left to correct there.
 
-**Caveat on $n = 20$.** Payan's own abstract (which I read; the full paper is paywalled) says the
-$k=5$ proof *"can be extended for the case $k=6$"* — a statement of extensibility, not necessarily a
-carried-out proof. Tedeschi & Mackey list $n = 20$ flatly as proven, citing Payan. I cannot tell
-from outside which is right. **Treat $n=20$ as unresolved-in-this-repo** until someone reads Payan.
+**One thing that is still wrong on `main`, and is not mine to fix.** `../../README.md` cites
+Melissen & Schuur as *Discrete Math.* **145**, 333–342. The volume is **142**(1–3) — see the
+provenance table at the top of this file, and DOI `10.1016/0012-365X(95)90139-C`. This file carried
+the same error until cross-review of PR #21 caught it. `../../README.md` is outside this attack's
+file ownership (`RULES.md` §2), so it is recorded here for whoever next holds that file.
+
+**Provenance of $n = 20$ — settled on `main`, do not relitigate here.** An earlier draft of this
+file (and of the problem README) treated $n = 20$ as unresolved-in-this-repo, on the grounds that
+Payan's abstract says the $k = 5$ proof *"can be extended for the case $k = 6$"* rather than saying
+it is carried out. **That draft was wrong and has been superseded**: issue #14 / PR #36 transcribed
+Payan's abstract verbatim from the publisher's page in both languages Elsevier prints, and the
+French is a present indicative — *"cette preuve s'étend […] pour $k = 6$"*. The settled repo
+position, in [`../../README.md`](../../README.md) § "The $n = 20$ attribution — qualified", is:
+
+> | Claim | Status |
+> |---|---|
+> | Payan's published abstract asserts that his $k = 5$ proof extends to $k = 6$ ($n = 20$) | `cited` — quoted verbatim from the publisher's page |
+> | $s(20) = 10 + 2\sqrt{3}$ is optimal | `cited`, **qualified**: it rests on that assertion and on no inspection of the argument itself |
+
+So $n = 20$ is **`cited` (qualified: abstract only, body not obtained)** — *not* open, and not
+unresolved. This file adopts that wording wherever $n = 20$ appears. What remains outstanding is
+one PDF: reading Payan's body would say whether the $k = 6$ case is written out or left as an
+exercise, which is a provenance question, not an optimality question.
 
 ### 3.2 What each proof adds on top of Oler
 
@@ -418,6 +500,7 @@ and that is the entire reason for this revision. The separation is now explicit:
 | $s_{\mathrm{Oler}}(n)$ coincides with a lattice side length iff $n$ triangular (§2.2) | `sketch`, same derivation |
 | The gap table (§2.3) | `numerical` |
 | $s_{\mathrm{Oler}}(n) < s(n)$ for non-triangular $n \le 15$ | `cited` (the $s(n)$ values) + `numerical` (the comparison) |
+| $s_{\mathrm{Oler}}(20) < s(20)$ | `cited`, **qualified** (abstract-only provenance for $s(20)$, §3.1) + `numerical` |
 | $s_{\mathrm{Oler}}(n) < s(n)$ for $n = 16, 17, 18$ | **not established** (§5.1) |
 | "Oler is tight *exactly* at the triangular numbers" (as a claim about $s$) | **withdrawn** (§5.1) |
 | "Oler alone cannot settle any open case" | `sketch` — **not established** (§5.1) |
@@ -426,10 +509,13 @@ and that is the entire reason for this revision. The separation is now explicit:
 status: sketch
 claim: for all n >= 1, s(n) >= 2*sqrt(3) + sqrt(8n+1) - 3
 derived-from: [Oler 1961 CMB inequality — cited]
-derivation: the rescaling distance-2 -> distance-1 (a = d/2), the specialisation
-         n <= (a+1)(a+2)/2, the solve a >= (sqrt(8n+1)-3)/2, and s = d + 2 sqrt 3
-         (§2.2).  Elementary algebra, but it is mine and I am not permitted to
-         examine it, so it is `sketch` per `RULES.md` §3.
+derivation: the rescaling distance-2 -> distance-1 (a = d/2); the specialisation
+         n <= (a+1)(a+2)/2 in TWO cases -- Oler applied to the convex hull when E is
+         not collinear, and an elementary diameter argument (a >= n-1) when it is,
+         which is what covers n = 1, 2 where the hull is not a Jordan polygon; the
+         solve a >= (sqrt(8n+1)-3)/2 for a >= 0; and s = d + 2 sqrt 3 (§2.2).
+         Elementary algebra and one case split, but it is mine and I am not
+         permitted to examine it, so it is `sketch` per `RULES.md` §3.
 taken-on-trust: Oler's inequality itself (`cited`; the proof is in the Acta paper,
          which neither agent has read).  Also the literature values of s(n) in the
          KNOWN table of oler_bound.py -- running the script confirms its arithmetic,
@@ -467,15 +553,19 @@ range where $s(n)$ is known:
 3. `cited` + `numerical` (§2.3): for every non-triangular $n \le 15$, where $s(n)$ is known exactly,
    $s_{\mathrm{Oler}}(n) < s(n)$, with a gap between $0.37$ and $0.92$. A circle has diameter $2$, so
    Oler is out by a fifth to a half of a diameter on every one of those ten values.
+4. `cited` (qualified) + `numerical` (§2.3): the same at $n = 20$, gap $0.311422$ — inheriting the
+   abstract-only qualification of the $n = 20$ attribution (§3.1), so it is the weakest row here.
 
-**On the range where the answer is known, Oler is tight exactly on the already-solved triangular
+**On every $n$ where the answer is known, Oler is tight exactly on the already-solved triangular
 numbers and slack everywhere else.** That is a real finding and it survives review. Note carefully
-what it is quantified over: $n \le 15$.
+what it is quantified over: the non-triangular $n \le 15$, plus $n = 20$ on a qualified
+attribution — and *nothing that is open*.
 
 ### 5.1 What is NOT established — the kill-criterion is not discharged
 
-The kill-criterion quantifies over **every $n$ whose optimum is unknown**. Every such $n$ is $\ge 16$
-and non-triangular. On exactly that set, §5.0(3) is silent — it is a statement about $n \le 15$,
+The kill-criterion quantifies over **every $n$ whose optimum is unknown**. Every such $n$ is
+$\ge 16$, non-triangular, and $\ne 20$ (§3.1: $n = 20$ is `cited`, qualified). On exactly that set,
+§5.0(3) is silent — it is a statement about $n \le 15$,
 where nothing is open. So the criterion is not touched by the part of the argument that is proved.
 
 What this file offers for $n = 16, 17, 18$ is
@@ -488,7 +578,7 @@ quantity. It is entirely compatible with $s(n) = s_{\mathrm{Oler}}(n)$ — that 
 every published packing for that $n$ is non-optimal by $\approx 0.8$. Nothing in this file excludes
 it. Under `RULES.md` §3 that is `numerical` evidence: evidence, never a proof step.
 
-For non-triangular $n > 18$, not even that much is checked.
+For non-triangular $n > 18$ other than the settled $n = 20$, not even that much is checked.
 
 Four claims made by the first version of this file are therefore **withdrawn**:
 
@@ -512,14 +602,61 @@ One clean sufficient condition, and it is a *literature* question rather than a 
 
 > **An equality-case theorem for Oler's inequality.** The CMB note says only that equality "is
 > realized for example" by the triangular-lattice subset; it gives **no characterisation** of when
-> equality holds. If Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961)
-> 19–48 — which I could **not** obtain — proves that equality forces $E$ to be a subset of a
-> triangular lattice (with the hull filling the containing triangle), then for non-triangular $n$
-> equality is impossible at the side length $s_{\mathrm{Oler}}(n)$, hence
-> $s(n) > s_{\mathrm{Oler}}(n)$ for **all** non-triangular $n$, and the criterion is discharged
-> unconditionally for every open case at once.
+> equality holds. Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961)
+> 19–48 — which I could **not** obtain — is where such a characterisation would live.
 >
 > **Tracked as issue #44.** Unassigned; pure literature work; touches only this directory.
+
+**Exactly what is needed, and why it suffices — `sketch`.** "Equality forces a triangular-lattice
+subset" does **not** self-evidently give "$n$ is triangular", so state the rigidity precisely and
+then do the counting. Suppose $n \ge 3$ points at mutual distance $\ge 1$ lie in a closed
+equilateral triangle $T$ of side $a$ with
+
+$$n \ =\ \frac{(a+1)(a+2)}{2},$$
+
+i.e. the whole chain of §2.1–§2.2 is an equality. (This is exactly the situation
+$s(n) = s_{\mathrm{Oler}}(n)$, since $s(n)$ is attained — the feasible set is compact.) Write
+$H = \mathrm{conv}(E)$. First, $E$ cannot be collinear: Case B of §2.2 would give $a \ge n-1$ and
+hence $(a+1)(a+2)/2 \ge n(n+1)/2 > n$ for $n \ge 2$. So Oler applies, and equality in the chain
+forces equality at every step. The two ingredients are:
+
+- **(R1)** $A(H) = A(T)$ with $H \subseteq T$ closed and convex forces $H = T$. *Elementary, needs
+  nothing from Oler:* if $H \ne T$ it misses some $x \in T$; if $x \in \operatorname{int} T$ then,
+  $H$ being closed, a ball around $x$ inside $T$ misses $H$ and $A(H) < A(T)$; otherwise $H$ misses
+  only boundary points, so $H \supseteq \operatorname{int} T$ and closedness gives $H = T$.
+- **(R2)** equality in Oler's inequality for $(H, E)$ forces $E \subseteq \Lambda$ for some
+  triangular lattice $\Lambda$ of minimal distance exactly $1$. **This is the part only the Acta
+  paper (or a modern reference) can supply** — it is the whole content of issue #44.
+
+**Given (R1) and (R2), $n$ is triangular.** By (R1), $H = T$; by hypothesis (i) of §1.1 the vertices
+of $H$ lie in $E \subseteq \Lambda$, so $T$ is a **lattice polygon** for $\Lambda$. Pick's theorem is
+affine-invariant, so it holds for $\Lambda$ with its covolume $\tfrac{\sqrt3}{2}$: for a lattice
+polygon $P$ with $B$ lattice points on its boundary,
+
+$$\lvert \Lambda \cap P\rvert \ =\ \frac{A(P)}{\sqrt3/2} \ +\ \frac{B}{2} \ +\ 1 .$$
+
+With $P = T$ this is $\lvert\Lambda \cap T\rvert = \tfrac{a^2}{2} + \tfrac{B}{2} + 1$. Each side of
+$T$ is a segment of length $a$ whose lattice points are $\ge 1$ apart, so it carries at most
+$\lfloor a\rfloor + 1$ of them; the three vertices are each shared by two sides, so
+$B \le 3(\lfloor a\rfloor + 1) - 3 = 3\lfloor a\rfloor \le 3a$. Therefore
+
+$$n \ =\ \lvert E\rvert \ \le\ \lvert\Lambda \cap T\rvert \ =\ \frac{a^2}{2} + \frac{B}{2} + 1 \ \le\ \frac{a^2 + 3a + 2}{2} \ =\ n,$$
+
+so **every** inequality is an equality. In particular $3\lfloor a\rfloor = 3a$, i.e. $a$ is a
+non-negative **integer**, and then
+
+$$n \ =\ \frac{(a+1)(a+2)}{2} \ =\ T_{a+1}$$
+
+is a triangular number. (It also follows that $E = \Lambda \cap T$ exactly, and that each side
+carries $a+1$ points at consecutive spacing exactly $1$ — i.e. equality really is the $k$-row
+lattice arrangement, $k = a+1$.) Contrapositively: **for non-triangular $n \ge 3$,
+$s(n) > s_{\mathrm{Oler}}(n)$**; and $n = 2$, the only non-triangular $n < 3$, is already strict by
+§2.2 Case B. That is precisely the kill-criterion, discharged for every open $n$ at once.
+
+**Status of the above: `sketch`, and conditional.** The counting step is mine and uncross-examined;
+(R1) is elementary; **(R2) is assumed, not known**, and is exactly what issue #44 must find in the
+literature. Nothing here may be built on until (R2) is `cited` and the counting is examined — under
+`RULES.md` §3 the whole thing is capped at the weakest of its inputs, which is currently `sketch`.
 
 Two weaker routes, recorded for completeness:
 
@@ -593,7 +730,9 @@ prove $s(n) \ge c$ for an open $n$" is a bad bet on the `numerical` evidence in 
 
 ### Open follow-ups this work surfaced (not claimed here)
 
-1. Read Payan 1997 and settle whether $n = 20$ is actually proven or only sketched as extensible.
+1. Obtain the **body** of Payan 1997. Not to settle whether $n = 20$ is proven — issue #14 / PR #36
+   settled the repo position on that, `cited` and qualified (§3.1) — but to see whether the $k = 6$
+   case is written out or left to the reader, which is the one thing the abstract cannot say.
 2. Read Joós 2021 and record what an optimality proof for a single $n$ costs in structure, as input
    to any future attempt at $n = 16$.
 3. Correct the "best known only" table in `../../README.md` for $n = 7, 8, 11, 13, 14$ once PR #10
