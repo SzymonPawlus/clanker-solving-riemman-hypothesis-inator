@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 import unittest
+import json
 from decimal import Decimal, localcontext
 from pathlib import Path
 
@@ -20,6 +21,7 @@ from lift import (  # noqa: E402
     wall_slacks,
 )
 from solve import solve_candidate  # noqa: E402
+from exact_n8 import verify_n8  # noqa: E402
 
 SEARCH_OUT = ROOT.parent / "circle-packing-search" / "out"
 
@@ -80,6 +82,19 @@ class CheckedInCandidateTests(unittest.TestCase):
             self.assertLess(abs(solved.m - exact_m), Decimal("1e-90"))
         self.assertLess(solved.selected_residual, Decimal("1e-80"))
         self.assertLess(solved.all_active_residual, Decimal("1e-80"))
+
+    def test_n8_exact_formula_self_check(self):
+        counts = verify_n8()
+        self.assertEqual(counts["points"], 8)
+        self.assertEqual(counts["pair_constraints"], 28)
+        self.assertEqual(counts["pair_equalities"], 9)
+        self.assertEqual(counts["wall_equalities"], 9)
+
+    def test_n8_candidate_remains_explicitly_unverified(self):
+        candidate = json.loads((ROOT / "candidates" / "n008-lifted.json").read_text())
+        self.assertEqual(candidate["claim"], "construction")
+        self.assertEqual(candidate["coordinate_type"], "algebraic")
+        self.assertEqual(candidate["status"], "numerical")
 
 
 if __name__ == "__main__":

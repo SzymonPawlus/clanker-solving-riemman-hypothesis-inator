@@ -78,9 +78,19 @@ to more than 90 decimal places, with every extracted active equation below a
 `1e-80` residual. This validates the candidate-system construction numerically;
 recognizing the published expression is not an exact certificate.
 
+`exact_n8.py` then reconstructs the corresponding coordinates in the field
+`Q(sqrt(3),sqrt(11))` and self-checks all 28 distance and 24 containment
+inequalities without floats. The resulting candidate is
+`candidates/n008-lifted.json`. It deliberately remains `status: numerical`:
+the check was written by the same author, so the problem's independent-checker
+gate has not been met.
+
 ## Next stage
 
-Validate a small interval box with interval Newton or a Krawczyk operator. Start
-with the lifted `n=8` system above, whose published algebraic value is known. Any
-minimal-polynomial recovery is conjectural until substitution and an exact/rigorous
-interval feasibility check certify the resulting coordinates.
+An interval-Newton box can certify existence and uniqueness of the contact-system
+root, but a nondegenerate coordinate box cannot directly certify a **tight** packing
+under the current certificate semantics: interval evaluation around an exact contact
+necessarily includes overlapping points. The useful next step is therefore exact
+algebraic recovery (as calibrated for `n=8`) or a richer root-existence proof artifact,
+followed by an independent exact checker. Do not label a tight interval box as a
+feasible packing merely because it contains one feasible root.
