@@ -22,6 +22,7 @@ from lift import (  # noqa: E402
 )
 from solve import solve_candidate  # noqa: E402
 from exact_n8 import verify_n8  # noqa: E402
+from exact_poly_n16 import verify_exact_properties  # noqa: E402
 
 SEARCH_OUT = ROOT.parent / "circle-packing-search" / "out"
 
@@ -112,6 +113,14 @@ class CheckedInCandidateTests(unittest.TestCase):
             )
         self.assertLess(abs(residual), Decimal("1e-110"))
         self.assertEqual(finding["status"], "numerical")
+
+    def test_n16_polynomial_has_exactly_checked_intrinsic_properties(self):
+        properties = verify_exact_properties()
+        self.assertTrue(properties["primitive"])
+        self.assertTrue(properties["irreducible_mod_43"])
+        self.assertTrue(properties["irreducible_over_q"])
+        self.assertEqual(properties["roots_in_matching_interval"], 1)
+        self.assertEqual(properties["total_real_roots"], 2)
 
 
 if __name__ == "__main__":

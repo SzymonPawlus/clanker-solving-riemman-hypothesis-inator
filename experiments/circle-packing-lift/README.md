@@ -102,6 +102,16 @@ This is recorded in `findings/n016-minpoly-candidate.json` as `numerical`. PSLQ
 does not prove exact vanishing or minimality; the polynomial is a concrete target
 for elimination/substitution, not yet an algebraic certificate.
 
+`exact_poly_n16.py` advances only the intrinsic algebra of that target, using exact
+integer/rational arithmetic with no CAS dependency.  A Rabin test proves that its
+reduction modulo 43 is irreducible; since the polynomial is primitive, Gauss's
+lemma proves irreducibility over `Q`.  A Sturm sequence proves that it has exactly
+two real roots and exactly one root in
+`[216227269309781821/10^18, 216227269309781822/10^18]`, the interval containing the
+Newton lift.  These are exact facts about the proposed polynomial, **not** proof
+that the contact system's separation is its root.  The missing elimination link
+keeps the finding and the whole directory at `numerical`.
+
 ## Next stage
 
 An interval-Newton box can certify existence and uniqueness of the contact-system

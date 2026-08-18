@@ -20,5 +20,17 @@
   "polynomial": "331654*m^10 - 1211242*m^9 + 1925755*m^8 - 1772356*m^7 + 1055998*m^6 - 429448*m^5 + 121624*m^4 - 23836*m^3 + 3112*m^2 - 246*m + 9",
   "reproduce": "./recover_n16.sh",
   "method": "PSLQ at 250 decimal digits; degrees 1 through 9 rejected, degree 10 found with max coefficient 1e8 and tolerance 1e-220",
-  "warning": "This is an integer-relation conjecture, not proof of exact vanishing, irreducibility, feasibility, or optimality."
+  "exact_polynomial_checks": {
+    "reproduce": "python exact_poly_n16.py",
+    "primitive": true,
+    "irreducible_over_q": "proved by irreducible reduction modulo 43 and Gauss's lemma",
+    "real_roots": 2,
+    "matching_root_interval": [
+      "216227269309781821/1000000000000000000",
+      "108113634654890911/500000000000000000"
+    ],
+    "roots_in_matching_interval": 1,
+    "scope_warning": "exact properties of the candidate polynomial only; no exact elimination from the contact system"
+  },
+  "warning": "This is an integer-relation conjecture: irreducibility and root isolation of the proposed polynomial are exact, but its vanishing on the contact-system lift, feasibility, and optimality are not proved."
 }
