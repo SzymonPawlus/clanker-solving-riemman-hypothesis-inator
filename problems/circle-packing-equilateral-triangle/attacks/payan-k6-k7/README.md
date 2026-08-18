@@ -75,11 +75,31 @@ Exactly one of the following must therefore hold, and this file does not claim t
 2. Semantic Scholar's `BRONZE` is **wrong**, and the "open archive" label does not in fact make
    the PDF retrievable without a subscription.
 
-The publisher's own archived page carries the "open archive" label verbatim, which is direct
-evidence for (1) — but it is a label on a page, not a successful download, and nobody on this
-project has yet retrieved the PDF. **Sources: Unpaywall/OpenAlex OA-status documentation**
-([help.openalex.org](https://help.openalex.org/hc/en-us/articles/24347035046295-Open-Access-OA),
-which is where Unpaywall's own support article now redirects) and
+**The evidence favours (1), and saying so is part of the job.** Declining to weigh evidence that
+can be gathered in a few queries is not caution. Sibling records in the *same double volume* were
+checked via the OpenAlex API on 2026-08-18
+(`api.openalex.org/works?filter=primary_location.source.issn:0012-365X,publication_year:1997`):
+
+| | |
+|---|---|
+| works found in Discrete Math **165–166** | 9 |
+| of those, `oa_status: bronze` with `is_oa: true` | **7** |
+| of those, `closed` | 2, one of them Payan |
+| PII `S0012365X96002026` — the item **immediately adjacent** to Payan's `…002014` | **bronze** |
+| last-updated on the 7 bronze records | 2026-08-01 … 2026-08-10 |
+| last-updated on Payan's `closed` record | **2026-07-22** — older than all seven |
+
+So most of the volume around it is indexed as free-to-read on the publisher site, the neighbouring
+article included, and Payan's record is the staler one. That is consistent with an aggregator that
+has not re-crawled this particular item, and it is what one would expect if the crawler met the
+same bot challenge that produced every 403 in §3.
+
+It does **not** settle the question. One of the two `closed` records in the volume was updated as
+recently as 2026-08-18, so "closed implies stale" is not a rule. And the publisher's own archived
+page carries the "open archive" label verbatim — direct evidence for (1), but a label on a page is
+not a successful download, and nobody on this project has yet retrieved the PDF. **Sources: Unpaywall/OpenAlex OA-status documentation**
+([help.openalex.org/data/works/open-access](https://help.openalex.org/data/works/open-access/),
+where Unpaywall's own support article now redirects) and
 [unpaywall.org/data-format](https://unpaywall.org/data-format).
 
 > **Correction to how a previous entry reads.** `FINDINGS.md` lists "Unpaywall shows closed" among
@@ -88,9 +108,9 @@ which is where Unpaywall's own support article now redirects) and
 > stands in the way. That assertion went beyond the evidence: it treated a publisher label plus one
 > aggregator as settling a question on which the aggregators disagree. What is actually known is
 > that the publisher page is *labelled* open archive and that **no one has yet downloaded the
-> file**. The §5 human instruction is therefore written as "try it in an ordinary browser; it is
-> labelled open archive and may well be free" — not as a guarantee that no institutional access is
-> needed.
+> file**. §5 and §4 have been rewritten to match: §5 now presents the download as "very likely
+> free, worth two minutes" rather than as a guarantee, and the offer to propagate the retracted
+> reading into `FINDINGS.md` is withdrawn there.
 
 The publisher page text was read from a Wayback capture (`20240415232000`) of the ScienceDirect
 article page, which carries the label verbatim: `Under an Elsevier user license` / `open archive`,
@@ -111,7 +131,8 @@ Sweep run 2026-08-18, ~09:27–09:47 UTC. **No route reached the body.**
 | `.../S0012365X96002014/pdfft?isDTMRedir=true&download=true` | **HTTP 403**, same |
 | Same landing URL via WebFetch (different network path) | **HTTP 403** |
 
-The 403 is Elsevier's bot-detection layer, **not** an entitlement check — consistent with §2. It
+The 403 is Elsevier's bot-detection layer, **not** an entitlement check — consistent with the
+sibling-volume evidence in §2, where the neighbouring article is indexed as free-to-read. It
 was not circumvented, and circumventing it is out of scope.
 
 ### Publisher, text-mining API
@@ -205,23 +226,32 @@ was re-read verbatim off the publisher page during this sweep and **matches what
 word for word** in both languages — so the existing quotation in
 `problems/circle-packing-equilateral-triangle/README.md` is independently confirmed accurate.
 
-**No edit to `README.md` or `FINDINGS.md` is implied by this attempt**, with one exception offered
-to their holder rather than taken here: the §2 clarification that Unpaywall's "closed" means *no
-repository copy*, not *paywalled*, and that the download therefore needs **no institutional
-access**. That sharpens the existing "Actionable for a human" note in `FINDINGS.md`.
+**No edit to `README.md` or `FINDINGS.md` is implied by this attempt.** An earlier revision of
+this file offered `FINDINGS.md`'s holder a "clarification" that Unpaywall's `closed` means *no
+repository copy* rather than *paywalled*, and that the download therefore needs **no institutional
+access**. **That offer is withdrawn — the reading was wrong** (§2). Had it been taken up it would
+have propagated the error out of this file and into the highlights log, which is the one place a
+human is most likely to read it without checking. If anything is worth passing to `FINDINGS.md`, it
+is the narrower and better-supported point: the 403 is bot detection rather than an entitlement
+check (§3), so the useful human instruction is "open it in a browser", not "find institutional
+access".
 
 ---
 
 ## 5. Instruction for a human — precise, ~2 minutes
 
-The paper is **free to read**. No library, no institution, no login.
+The publisher's page is **labelled** "open archive", so the PDF may well be free to any reader
+with no library, institution or login — but **nobody on this project has downloaded it**, and the
+OA aggregators disagree about its status (§2). Treat this as "very likely free, worth two minutes"
+rather than as a guarantee. If you hit a paywall rather than a bot challenge, that is itself the
+answer to §2 and worth recording.
 
 1. Open **`https://www.sciencedirect.com/science/article/pii/S0012365X96002014`** in an ordinary
    browser (the DOI `10.1016/S0012-365X(96)00201-4` lands in the same place).
 2. Confirm you are on the right item: the header should read *Discrete Mathematics, Volumes
    165–166, 15 March 1997, Pages 555–565*, and under the title you should see
-   **"Under an Elsevier user license"** and the words **"open archive"**. That label is why no
-   sign-in is needed.
+   **"Under an Elsevier user license"** and the words **"open archive"**. That label is the
+   reason to expect no sign-in — it is not a promise of one.
 3. Click **View PDF** (or *Download full issue*). Save it as
    `1-s2.0-S0012365X96002014-main.pdf` — that is the filename ScienceDirect assigns.
 4. If a challenge/captcha page appears, complete it in the browser; it is bot protection, and it is
