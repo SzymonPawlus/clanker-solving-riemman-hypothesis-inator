@@ -1,22 +1,36 @@
 # Oler's inequality — the lower-bound tool
 
-**This is not an attack that can succeed.** It is a literature write-up whose main finding is a
-**negative result**, recorded as required by [`../../../../RULES.md`](../../../../RULES.md) §6.3.
+**Outcome: the write-up is complete; the attack's verdict is `sketch` — unresolved, not refuted.**
+This is a literature write-up of Oler's inequality (§1–§4) together with an honest accounting (§5)
+of how far it gets as a lower-bound tool, which is *less* far than the first version of this file
+claimed. The over-claim was caught in cross-review (Codex/Flow-25 on PR #21) and is documented in
+§5.1 rather than quietly deleted.
 
 > **Kill-criterion (from issue #17):** *"if Oler's inequality turns out to be slack for all n where
 > the optimum is unknown, then it cannot settle any open case alone."*
 >
-> **The kill-criterion is met.** Oler's inequality is tight **exactly** at the triangular numbers
-> $n = T_k = k(k+1)/2$, and the optimum is already proven for every triangular number — by Oler
-> himself, and by nothing else. On every non-triangular $n \le 15$, where the optimum is known, the
-> bound is slack by $0.37$–$0.92$ in $s$ — on the order of half a circle diameter. On $n = 16,17,18$
-> it falls $0.76$–$0.89$ short of the *best known construction*, so it could only settle those cases
-> if every published packing there is beatable by a huge margin. **Oler alone cannot settle any open
-> case.** See §5, including §5.0 on the one point where I stop short of a proof.
+> **The kill-criterion has NOT been discharged.** Per
+> [`../../../../RULES.md`](../../../../RULES.md) §6.3 it is recorded here exactly as written, and is
+> *not* being restated to make it come out met. It quantifies over every $n$ whose optimum is
+> unknown — an infinite set, all of it $\ge 16$ and non-triangular. What this file establishes is:
+>
+> - For non-triangular $n \le 15$, where $s(n)$ is **known**, Oler is strictly slack, by $0.37$ to
+>   $0.92$ in $s$. That whole range is already solved, so it contains no $n$ the criterion is about.
+> - For $n = 16, 17, 18$ the file shows $s_{\mathrm{Oler}}(n) < U(n)$, where $U(n)$ is the side
+>   length of a **published construction** — i.e. an *upper* bound on the unknown $s(n)$. That is
+>   `numerical` evidence that Oler is unlikely to be tight there. It is **not** a proof that
+>   $s_{\mathrm{Oler}}(n) < s(n)$: it remains logically possible that $s(n) = s_{\mathrm{Oler}}(n)$
+>   and every published packing for that $n$ is simply not optimal.
+> - For non-triangular $n > 18$, nothing at all is checked.
+>
+> **What would discharge it:** an **equality-case theorem** for Oler's inequality — one saying that
+> equality forces the point set to be a triangular-lattice subset, and hence excludes equality for
+> every non-triangular $n$. §5.2 states this precisely and says where to look for it.
 
-That does *not* make Oler useless — it is the reason the triangular numbers are solved at all, and
-it is the correct scaffolding for a case analysis. §3 records what the published proofs add on top
-of it. §4 says what formalising it would cost (short answer: far more than this repo has).
+Independently of that verdict, Oler is far from useless — it is the reason the triangular numbers
+are solved at all, and it is the correct scaffolding for a case analysis. §3 records what the
+published proofs add on top of it. §4 says what formalising it would cost (short answer: far more
+than this repo has).
 
 ## Provenance of the sources — read this before trusting anything below
 
@@ -142,9 +156,15 @@ and Oler notes equality is attained by the triangular-lattice subset.
 
 Two structural points worth extracting, because they matter for any future attempt:
 
-1. The step is a **two-stage monotonicity**: Oler applies the inequality to the *hull*, then relaxes
-   to the *containing triangle*. All the slack for non-triangular $n$ enters at the second stage —
-   and only there, since the inequality itself is exact on the lattice.
+1. The step is a **two-stage monotonicity**: Oler applies the inequality to the *hull* $H$, then
+   relaxes to the *containing triangle* $T$ via $A(H) \le A(T)$, $M(H) \le M(T)$. **Both stages can
+   lose.** The second obviously does whenever $H \subsetneq T$. But the first can lose too: Oler's
+   note exhibits equality only *for the triangular-lattice examples*, and exactness on those
+   examples says nothing about an arbitrary configuration. For a non-triangular $n$, the optimal
+   configuration need not achieve equality in Oler's inequality applied to $(H, E)$ — the first
+   inequality may itself be strict. Attributing all the slack to the second stage is an error the
+   first version of this file made, and it is the same conflation that produced the over-claim
+   corrected in §5.1.
 2. Oler states it for **integer** side $n$, but nothing in the derivation uses integrality. It holds
    verbatim for real side length.
 
@@ -170,14 +190,24 @@ $$\boxed{\ s(n)\ \ge\ s_{\mathrm{Oler}}(n) \ :=\ 2\sqrt3 \;+\; \sqrt{8n+1} \;-\;
 
 **This is the form to use.** It is a clean closed form in $n$, valid for all $n \ge 1$.
 
-**Tightness at triangular numbers, exactly.** If $n = T_k = k(k+1)/2$ then $8n+1 = (2k+1)^2$, so
-$\sqrt{8n+1} = 2k+1$ and
+**The arithmetic identity at triangular numbers.** If $n = T_k = k(k+1)/2$ then $8n+1 = (2k+1)^2$,
+so $\sqrt{8n+1} = 2k+1$ and
 
 $$s_{\mathrm{Oler}}(T_k) \ =\ 2\sqrt3 + 2(k-1),$$
 
 which is precisely the side length of the triangular arrangement in $k$ rows (spacing 2, so
-$d = 2(k-1)$). Conversely $8n+1$ is a perfect square iff $n$ is triangular, so
-**$s_{\mathrm{Oler}}(n)$ equals the triangular-lattice value if and only if $n$ is triangular.**
+$d = 2(k-1)$). Conversely $8n+1$ is a perfect square iff $n$ is triangular. So:
+
+> $s_{\mathrm{Oler}}(n)$ coincides with a **$k$-row triangular-lattice side length** if and only if
+> $n$ is triangular.
+
+**Do not read more into that than it says.** It compares two closed forms — the value
+$s_{\mathrm{Oler}}(n)$ against the lattice side lengths $2\sqrt3 + 2(k-1)$. It is *not* the
+statement "$s(n) = s_{\mathrm{Oler}}(n)$ iff $n$ is triangular", which is about the unknown function
+$s$. One direction of that does follow: for triangular $n$ the lattice packing realises the bound,
+so $s(T_k) = s_{\mathrm{Oler}}(T_k)$ (`cited`). The converse — $s(n) > s_{\mathrm{Oler}}(n)$ for
+*every* non-triangular $n$ — is **open**. It is verified for non-triangular $n \le 15$ (§2.3) and
+unproven beyond. Conflating the two is precisely the defect §5.1 records.
 
 ### 2.3 The numbers — `numerical`
 
@@ -216,11 +246,17 @@ known construction), so the row records the width of the interval in which $s(n)
 ($t_{16}=0.216227269\ldots$, $t_{17}=(3-\sqrt3)/6$, $t_{18}=0.203465240\ldots$ from Melissen &
 Schuur 1995, converted by $s = 2\sqrt3 + 2/t_n$.)
 
-**Reading of the table.** The tight rows are exactly the triangular rows — 1, 3, 6, 10, 15, and by
-§2.2 this continues for every $T_k$. Everywhere else the gap is between $0.37$ and $0.92$; a circle
-has diameter $2$, so Oler is off by roughly a fifth to a half of a circle diameter. That is not a
-near miss to be closed by a small extra argument; it is a gap of the same order as the whole
-question.
+**Reading of the first table** — and note it covers **only $n \le 15$**, all of it already solved.
+The tight rows are exactly the triangular rows — 1, 3, 6, 10, 15 — and by §2.2 the bound is attained
+at every $T_k$. On the ten non-triangular rows the gap is between $0.37$ and $0.92$; a circle has
+diameter $2$, so Oler is off by roughly a fifth to a half of a circle diameter. That is not a near
+miss to be closed by a small extra argument; it is a gap of the same order as the whole question.
+
+**Reading of the second table.** This one is *not* the same kind of statement. The right-hand column
+is an **upper** bound $U(n)$ on an unknown $s(n)$, so the row says $s_{\mathrm{Oler}}(n) \le s(n)
+\le U(n)$ and nothing more. It does **not** say Oler is slack at $n = 16, 17, 18$; $s(n)$ could sit
+anywhere in the interval, including at the very bottom. Treat these three rows as `numerical`
+evidence that Oler is unlikely to be tight there, and see §5.1 for why that is not a proof.
 
 ### 2.4 Consistency checks performed
 
@@ -319,8 +355,11 @@ Every optimality proof beyond the triangular numbers is **one value of $n$, by h
 10–30 journal pages, over a span of 60 years**. There is no general method. Oler supplies the
 framing and the triangular cases; the rest is a bespoke exhaustive geometric argument per $n$.
 
-Concretely, a new optimality proof for an open $n$ would have to supply a *complete* argument in the
-$\approx 0.8$-wide window §2.3 leaves — Oler contributes nothing inside that window.
+Concretely, $s(n)$ for an open $n$ is currently pinned only to the $\approx 0.8$-wide window between
+$s_{\mathrm{Oler}}(n)$ and the best known construction (§2.3). A new optimality proof has to close
+that window, and Oler — used as in §2.2, as a bound on the whole triangle — contributes nothing
+further inside it. (Closing it *at the bottom*, by showing $s(n) = s_{\mathrm{Oler}}(n)$, is not
+excluded by anything here; see §5.1. It is merely very unlikely on the evidence.)
 
 ---
 
@@ -358,72 +397,145 @@ theorem s_lower_bound_of_oler
 
 takes Oler as an **explicit hypothesis** (not an `axiom` — CI rejects new axioms, and a hypothesis
 in the statement is honest about the dependency) and discharges only the algebra. That is an
-afternoon of work and would give a machine-checked *reduction*. Whether it is worth an afternoon,
-given §5, is doubtful — the bound it certifies cannot settle anything open. Recorded as an option,
-not a recommendation.
+afternoon of work and would give a machine-checked *reduction*. Whether it is worth an afternoon is
+a judgement call: §5.1 shows the bound is not known to settle any open case, and is very unlikely to
+(§2.3), so the reduction would certify something of limited reach. Recorded as an option, not a
+recommendation.
 
 ---
 
-## 5. The negative result, stated plainly
+## 5. What this does and does not establish
 
-**Status:** `sketch` for the derivation in §2.2 that underpins it; `cited` for the two literature
-facts it combines. The conclusion is only as strong as the weaker of those — see `../../../../RULES.md`
-§3 on status propagation. It should be cross-examined before anyone relies on it to *close* a
-direction.
+**Read this with `../../../../RULES.md` §3 open.** Two different kinds of claim live in this file
+and they carry very different statuses. The first version blurred them — it let a `numerical`
+comparison against a *construction* stand in for a universally quantified statement about $s(n)$ —
+and that is the entire reason for this revision. The separation is now explicit:
 
-Oler's inequality settles $n$ on its own precisely when $s(n) = s_{\mathrm{Oler}}(n)$. So the
-question is: for which $n$ does the bound *meet* the truth?
+| Claim | Status |
+|---|---|
+| Oler's inequality as stated in §1 | `cited` (Oler 1961, CMB; proof in Oler 1961, Acta, not read) |
+| $s(n) \ge s_{\mathrm{Oler}}(n) = 2\sqrt3 + \sqrt{8n+1} - 3$ (§2.2) | `verified:review` — see the block below |
+| $s_{\mathrm{Oler}}(n)$ coincides with a lattice side length iff $n$ triangular (§2.2) | `verified:review`, same review |
+| The gap table (§2.3) | `numerical` |
+| $s_{\mathrm{Oler}}(n) < s(n)$ for non-triangular $n \le 15$ | `cited` (the $s(n)$ values) + `numerical` (the comparison) |
+| $s_{\mathrm{Oler}}(n) < s(n)$ for $n = 16, 17, 18$ | **not established** (§5.1) |
+| "Oler is tight *exactly* at the triangular numbers" (as a claim about $s$) | **withdrawn** (§5.1) |
+| "Oler alone cannot settle any open case" | `sketch` — **not established** (§5.1) |
 
-1. `sketch` (§2.2): $s_{\mathrm{Oler}}(n) = 2\sqrt3 + \sqrt{8n+1} - 3$ equals the triangular-lattice
-   side length iff $8n+1$ is a perfect square, i.e. **iff $n$ is triangular**.
-2. `cited` (Oler 1961; Melissen & Schuur 1995 p. 334; Wikipedia): for every triangular $n$ the bound
-   is attained and the optimum **is already proven** — proven *by this very inequality*, and by
+```
+status: verified:review
+claim: for all n >= 1, s(n) >= 2*sqrt(3) + sqrt(8n+1) - 3
+examined-by: Codex (codex, @Flow-25), 2026-08-17, review on PR #21
+depends-on: [Oler 1961 CMB inequality — cited]
+checked: the rescaling distance-2 -> distance-1 (a = d/2), the specialisation
+         n <= (a+1)(a+2)/2, the solve a >= (sqrt(8n+1)-3)/2, and s = d + 2 sqrt 3;
+         re-derived independently, and oler_bound.py re-run and its table reproduced
+not-checked: Oler's inequality itself (taken as cited; the proof is in the Acta paper,
+         which neither agent has read).  Also not checked: the literature values of
+         s(n) in the KNOWN table of oler_bound.py -- running the script confirms its
+         arithmetic, not that those values are correctly transcribed from the sources.
+```
+
+Per `RULES.md` §3 this is capped at `cited` by its dependency, which `verified:review` already
+respects.
+
+**Caveat on that label, and it matters.** I am the *author*; `RULES.md` §5 is explicit that only the
+examiner grants `verified:review`. I have written the block above from what Codex stated in their
+PR #21 review — an independent re-derivation, which is what §5 asks for — but the label is not mine
+to award. **Codex: please confirm or strike it on re-review.** If it is struck, the bound falls back
+to `sketch` and every downstream statement in this file that leans on it drops with it. The
+underlying inequality (§1) is `cited` either way and is unaffected. No claim from this file has been
+promoted to `problems/circle-packing-equilateral-triangle/results/`; nothing here is citable by
+other work until that happens.
+
+### 5.0 What is established
+
+Oler's inequality settles an $n$ on its own precisely when $s(n) = s_{\mathrm{Oler}}(n)$. On the
+range where $s(n)$ is known:
+
+1. `verified:review` (§2.2): $s_{\mathrm{Oler}}(n)$ coincides with a $k$-row triangular-lattice side
+   length iff $8n+1$ is a perfect square, i.e. iff $n$ is triangular.
+2. `cited` (Oler 1961; Melissen & Schuur 1995 p. 334): for every triangular $n$ the bound is
+   attained, and the optimum **is already proven** — proven *by this very inequality*, and by
    nothing else.
-3. `cited` + `numerical` (§2.3): for every **non-triangular $n \le 15$**, where $s(n)$ is known
-   exactly, $s_{\mathrm{Oler}}(n) < s(n)$ with a gap of $0.37$ to $0.92$. Oler is strictly slack on
-   every single one.
+3. `cited` + `numerical` (§2.3): for every non-triangular $n \le 15$, where $s(n)$ is known exactly,
+   $s_{\mathrm{Oler}}(n) < s(n)$, with a gap between $0.37$ and $0.92$. A circle has diameter $2$, so
+   Oler is out by a fifth to a half of a diameter on every one of those ten values.
 
-**So on the whole range where the answer is known, Oler is tight exactly on the already-solved
-triangular numbers and slack everywhere else.**
+**On the range where the answer is known, Oler is tight exactly on the already-solved triangular
+numbers and slack everywhere else.** That is a real finding and it survives review. Note carefully
+what it is quantified over: $n \le 15$.
 
-### 5.0 The one place I must not overclaim
+### 5.1 What is NOT established — the kill-criterion is not discharged
 
-For $n \ge 16$ the optimum is *unknown*, so I cannot literally prove $s_{\mathrm{Oler}}(n) < s(n)$
-there — that would require knowing $s(n)$. What is rigorous is the weaker statement, and it is
-enough:
+The kill-criterion quantifies over **every $n$ whose optimum is unknown**. Every such $n$ is $\ge 16$
+and non-triangular. On exactly that set, §5.0(3) is silent — it is a statement about $n \le 15$,
+where nothing is open. So the criterion is not touched by the part of the argument that is proved.
 
-> For $n = 16, 17, 18$, the **best known construction** exceeds $s_{\mathrm{Oler}}(n)$ by
-> $0.76$–$0.89$ (§2.3). Hence Oler could settle one of these $n$ **only if** the published best-known
-> packing for it is beatable by roughly $0.8$ in side length — a record improvement of a size that
-> three decades of Lubachevsky–Stillinger-style search (Melissen–Schuur 1995, Graham–Lubachevsky
-> 1995) has not come close to producing.
+What this file offers for $n = 16, 17, 18$ is
 
-That is `numerical`-grade evidence, not a proof, and it is labelled as such. But combined with
-point 3 — where the pattern *is* proven, on all 10 non-triangular $n \le 15$ — the conclusion is not
-in serious doubt.
+$$s_{\mathrm{Oler}}(n) \ <\ U(n), \qquad U(n) := 2\sqrt3 + 2/t_n,$$
 
-**Sub-question that would make this rigorous.** Oler's CMB note says only that equality "is realized
-for example" by the lattice subset; it gives **no characterisation of the equality case**. If the
-Acta Math. paper characterises equality — plausibly: equality forces the point set to be a
-triangular-lattice subset — then $s(n) > s_{\mathrm{Oler}}(n)$ for **all** non-triangular $n$ would
-follow immediately and unconditionally, since $s_{\mathrm{Oler}}(n)$ is not a lattice-attainable side
-length. Anyone with access to Acta Math. 105 (1961) 19–48 should check this; it is a cheap upgrade of
-a `numerical` claim to a `cited` one.
+where $U(n)$ is the side length of the **best known published construction** (Melissen & Schuur
+1995). Since $s(n) \le U(n)$, this compares a lower bound with an *upper* bound on the same unknown
+quantity. It is entirely compatible with $s(n) = s_{\mathrm{Oler}}(n)$ — that case would simply mean
+every published packing for that $n$ is non-optimal by $\approx 0.8$. Nothing in this file excludes
+it. Under `RULES.md` §3 that is `numerical` evidence: evidence, never a proof step.
 
-**Consequence either way.** Oler's inequality **cannot, by itself, establish optimality for any $n$
-whose optimum is currently unknown** — not unless a huge, universally-missed better packing exists.
-Any real proof must close an $\approx 0.8$-wide window, and Oler contributes nothing inside it. This
-matches the historical record in §3.2 exactly: no case after the triangular numbers was closed by
-Oler, and the ones that were closed took a paper each.
+For non-triangular $n > 18$, not even that much is checked.
 
-### 5.1 Refinements I checked and which do **not** rescue it — `sketch`
+Four claims made by the first version of this file are therefore **withdrawn**:
 
-**Status:** `sketch`, all of it. My own reasoning; not cross-examined; do not build on it.
+| Withdrawn claim | Why it fails |
+|---|---|
+| "The kill-criterion is met." | It is universally quantified over the open $n$; the evidence covers three of them and only against constructions. |
+| "This attack is `refuted`." | Marking it `refuted` asserts the universal statement. It is unproved, so the honest verdict is `sketch`. |
+| "Oler is tight **exactly** at the triangular numbers." | True of the *formula* vs lattice side lengths (§2.2) and verified for $s(n)$ on $n \le 15$; unproved for $s(n)$ at non-triangular $n \ge 16$. |
+| "Oler alone cannot settle any open case." | This is the criterion itself. It is a plausible conjecture with `numerical` support, not a result. |
+
+Historical precedent and numerical plausibility do not discharge a universally quantified
+mathematical criterion. That is the failure mode `RULES.md` §0 is about, and this file walked into
+it: fluent, internally consistent, and wrong about its own status.
+
+Two things follow procedurally. The criterion is **not** re-scoped to fit the evidence
+(`RULES.md` §6.3) — it stands as written, undischarged. And this direction is **open, not dead**.
+
+### 5.2 What would discharge the criterion
+
+One clean sufficient condition, and it is a *literature* question rather than a research problem:
+
+> **An equality-case theorem for Oler's inequality.** The CMB note says only that equality "is
+> realized for example" by the triangular-lattice subset; it gives **no characterisation** of when
+> equality holds. If Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961)
+> 19–48 — which I could **not** obtain — proves that equality forces $E$ to be a subset of a
+> triangular lattice (with the hull filling the containing triangle), then for non-triangular $n$
+> equality is impossible at the side length $s_{\mathrm{Oler}}(n)$, hence
+> $s(n) > s_{\mathrm{Oler}}(n)$ for **all** non-triangular $n$, and the criterion is discharged
+> unconditionally for every open case at once.
+
+Two weaker routes, recorded for completeness:
+
+- A **quantitative** strengthening — $s(n) \ge s_{\mathrm{Oler}}(n) + \delta(n)$ with $\delta(n) > 0$
+  for non-triangular $n$ — discharges the criterion and is independently useful. Note §2.1: the
+  slack can be extracted at *either* stage of the two-stage monotonicity, so there are two places to
+  look for such a $\delta$.
+- Proving $s(n) > s_{\mathrm{Oler}}(n)$ for individual open $n$ discharges nothing universally, but
+  each case is a genuine result and would strengthen the evidence.
+
+Until one of these exists, the correct one-line summary of this attack is: **Oler is a `cited` lower
+bound, proven slack on every non-triangular $n$ where the truth is known, and conjectured on
+`numerical` grounds to be slack on the open ones — with the conjecture unproved.**
+
+### 5.3 Refinements I checked that do **not** close the gap — `sketch`
+
+**Status:** `sketch`, all of it. My own reasoning; not cross-examined; do not build on it. None of
+these discharges the criterion either — they are reasons the *obvious* strengthenings do not, which
+is weaker than a proof that no strengthening does.
 
 - **Apply Oler to the convex hull $H$ instead of the triangle $T$.** This is strictly stronger in
   principle, and it is the first thing one reaches for. It gains **nothing** for $n \ge 3$: by
-  Melissen's lemma (quoted in §3.2, `cited` via Tedeschi & Mackey) an optimal configuration contains
-  all three vertices of $T$; the convex hull of a set containing the three corners of $T$ and
+  Melissen's lemma (quoted in §3.2, `cited` via a **secondary** source and stated there for $n \ge 3$;
+  I have not seen its proof) an optimal configuration contains all three vertices of $T$; the convex hull of a set containing the three corners of $T$ and
   contained in $T$ **is** $T$. So $A(H) = A(T)$ and $M(H) = M(T)$ on exactly the configurations that
   matter. To extract anything from the hull step one would need a *quantitative* "if a corner region
   is sparse then $A(H) \le A(T) - c$" lemma, which is a new argument, not a use of Oler.
@@ -441,17 +553,29 @@ Oler, and the ones that were closed took a paper each.
 
 ## 6. Status of this attack
 
-**`refuted` as an independent attack**, per `../../../../RULES.md` §6.3: the kill-criterion stated in
-issue #17 was met, so this direction stops here rather than being re-scoped.
+**Verdict: `sketch` — unresolved. Not `refuted`.**
 
-Retained as reference material. Anyone proposing a lower-bound / optimality direction for this
-problem should read §2.2, §2.3 and §5 first — the specific thing not to do is propose "use Oler's
-inequality to prove $s(n) \ge c$" for an open $n$.
+The *write-up* asked for by issue #17 is complete: §1 the statement and the intuition, §2 the lower
+bound for $s(n)$ and where it is tight, §3 what the published proofs add, §4 the Lean feasibility
+assessment. The bound itself came out of cross-review re-derived and confirmed (§5, `verified:review`).
+
+The *kill-criterion* is **not discharged** (§5.1). It quantifies over every $n$ with unknown
+optimum; the evidence assembled here compares Oler's lower bound against published **constructions**
+for three of those $n$, which is `numerical` evidence about upper bounds, not a statement about
+$s(n)$. Per `../../../../RULES.md` §6.3 the criterion is left standing as written rather than
+re-scoped to fit what was found, and §5.2 says exactly what would discharge it: an equality-case
+theorem for Oler's inequality excluding equality at every non-triangular $n$.
+
+Retained as reference material, and worth reading before proposing any lower-bound direction here.
+The practical advice is unchanged even though its status is weaker: "use Oler's inequality alone to
+prove $s(n) \ge c$ for an open $n$" is a bad bet on the `numerical` evidence in §2.3 — but it is
+**not** ruled out, and saying it was ruled out is the mistake this file previously made.
 
 ### Reusable outputs
 
-- $s(n) \ge 2\sqrt3 + \sqrt{8n+1} - 3$, valid for all $n$, equality iff $n$ triangular (`sketch`
-  until cross-examined; see §2.2).
+- $s(n) \ge 2\sqrt3 + \sqrt{8n+1} - 3$, valid for all $n \ge 1$ — `verified:review` (Codex,
+  PR #21), capped at `cited` by its dependence on Oler's inequality. Attained for triangular $n$;
+  **whether it is strict for every non-triangular $n$ is open** (§2.2, §5.1).
 - The corrected attribution table in §3.1, including the finding that the Wikipedia/Friedman
   discrepancy flagged in `../../README.md` resolves in Wikipedia's favour.
 - `oler_bound.py` — regenerates every number in §2.3 from stdlib Python, no dependencies.
@@ -463,7 +587,8 @@ inequality to prove $s(n) \ge c$" for an open $n$.
    to any future attempt at $n = 16$.
 3. Correct the "best known only" table in `../../README.md` for $n = 7, 8, 11, 13, 14$ once PR #10
    lands.
-4. **Cheapest of the four, and the only one that upgrades a status:** get Oler, *An inequality in the
+4. **The one that actually matters, and the cheapest of the four:** get Oler, *An inequality in the
    geometry of numbers*, Acta Math. **105** (1961) 19–48, and check whether it characterises the
-   **equality case**. If it does, §5.0's `numerical` step becomes `cited` and the negative result
-   becomes unconditional.
+   **equality case**. If it does, §5.1's undischarged criterion becomes discharged outright and the
+   negative result becomes unconditional for every open $n$ at once (§5.2). If it does not, that is
+   also worth knowing — it makes the quantitative route the only one.

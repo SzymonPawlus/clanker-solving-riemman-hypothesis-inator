@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 """Oler lower bound for s(n): circle packing in an equilateral triangle.
 
-Status of the output: `numerical` (RULES.md §3) -- it is arithmetic evaluating a
-formula that is itself derived in ../README.md and marked `sketch` there.
+Status of the output: `numerical` (RULES.md section 3) -- it is arithmetic
+evaluating the closed-form bound derived in README.md section 2.2 (that
+derivation is `verified:review`, independently re-derived by Codex on PR #21,
+and capped at `cited` by its dependence on Oler's inequality).
+
+What the numbers do NOT show.  For n <= 15 the "known s(n)" column is the true
+optimum, so "gap > 0" really does mean Oler is slack there.  For n = 16, 17, 18
+the comparison column is the best known *construction*, i.e. an UPPER bound on an
+unknown s(n).  s_Oler(n) < U(n) does not imply s_Oler(n) < s(n); s(n) could equal
+s_Oler(n) with every published packing non-optimal.  Nothing printed below
+discharges the issue-#17 kill-criterion -- see README.md section 5.1.
 
 Derivation being evaluated (see README §2):
 
@@ -100,6 +109,7 @@ def main() -> None:
 
     print()
     print("Open cases: Oler lower bound vs BEST-KNOWN construction (an upper bound).")
+    print("These rows bracket s(n); they do NOT show Oler is slack here (README 5.1).")
     print("Separation distances t_n in a UNIT triangle from Melissen & Schuur,")
     print("Discrete Math. 145 (1995) 333-342 (open access).  s = 2 sqrt3 + 2/t_n.")
     print("  n   s_Oler(n)   best known   width of the interval that is still open")
