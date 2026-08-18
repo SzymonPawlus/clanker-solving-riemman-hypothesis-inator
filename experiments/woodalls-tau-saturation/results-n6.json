@@ -1,0 +1,88 @@
+{
+  "by_n": [
+    {
+      "counts_by_tau": {
+        "0": 1
+      },
+      "instances": 1,
+      "n": 1,
+      "saturated_tau_at_least_3_by_tau": {}
+    },
+    {
+      "counts_by_tau": {
+        "0": 1,
+        "1": 1
+      },
+      "instances": 2,
+      "n": 2,
+      "saturated_tau_at_least_3_by_tau": {}
+    },
+    {
+      "counts_by_tau": {
+        "0": 1,
+        "1": 6,
+        "2": 1
+      },
+      "instances": 8,
+      "n": 3,
+      "saturated_tau_at_least_3_by_tau": {}
+    },
+    {
+      "counts_by_tau": {
+        "0": 1,
+        "1": 49,
+        "2": 12,
+        "3": 2
+      },
+      "instances": 64,
+      "n": 4,
+      "saturated_tau_at_least_3_by_tau": {
+        "3": 1
+      }
+    },
+    {
+      "counts_by_tau": {
+        "0": 1,
+        "1": 710,
+        "2": 245,
+        "3": 60,
+        "4": 8
+      },
+      "instances": 1024,
+      "n": 5,
+      "saturated_tau_at_least_3_by_tau": {
+        "3": 7,
+        "4": 1
+      }
+    },
+    {
+      "counts_by_tau": {
+        "0": 1,
+        "1": 19101,
+        "2": 9844,
+        "3": 3036,
+        "4": 722,
+        "5": 64
+      },
+      "instances": 32768,
+      "n": 6,
+      "saturated_tau_at_least_3_by_tau": {
+        "3": 36,
+        "4": 9,
+        "5": 1
+      }
+    }
+  ],
+  "elapsed_seconds": 1.823481,
+  "first_saturated_not_source_sink_connected": null,
+  "instances_total": 33867,
+  "scope": {
+    "cross_check_through": 5,
+    "dicut_requires_nonempty_outgoing_boundary": true,
+    "fixed_topological_order": true,
+    "isomorphism_free": false,
+    "max_n": 6,
+    "saturation_definition": "every missing forward arc strictly raises tau"
+  },
+  "status": "numerical"
+}
