@@ -10,31 +10,38 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-17
 
-### n = 20 was never proven — claim withdrawn from `main`
+### n = 20 is unverified, not unproven — and our first correction overshot
 `PR #36` · closes `issue #14`
 
-Our README asserted **n = 20 is proven optimal (Payan 1997)**. It is not. Payan's abstract,
-obtained verbatim from the publisher in both languages Elsevier prints:
+Our README asserted **n = 20 is proven optimal (Payan 1997)** flatly, on a survey, with no record of
+what had actually been read. Payan's abstract, obtained verbatim from the publisher in both
+languages Elsevier prints:
 
 > "In this paper, we give a proof for k = 5 (arrangement for 14 disks). **This proof can be
 > extended for the case k = 6** (arrangement for 20 disks) and should allow an approach of the
 > general conjecture."
 
-French: *"Cette preuve s'étend de manière un peu plus laborieuse pour k = 6."* What the paper
-claims is k = 5. k = 6 is somewhere the proof *extends to*, next to a forward-looking remark about
-the general conjecture.
+French: *"Cette preuve s'étend de manière un peu plus laborieuse pour k = 6."* That is a present
+indicative — the author asserting, in his own paper's abstract, that his proof **applies** to
+k = 6. The body was not obtained, so we cannot tell an extension written out in full from one left
+to the reader; but that is a gap in *our* reading, not evidence the result is absent. The honest
+position is **unverified — neither proven by us nor disproven**, and the row now carries its
+provenance ("abstract only — body not read") instead of a bare citation. **n = 14 is unaffected and
+is now better sourced**, resting on Payan's own abstract rather than a survey.
 
-The body could not be obtained, so the row moved to **best-known, optimality unresolved** rather
-than being deleted — we do not know that it is false, only that we cannot source it. Erdős–Oler
-correspondingly downgraded from "proven for k ≤ 6" to "k ≤ 5". **n = 14 is unaffected and is now
-better sourced**, resting on Payan's own abstract rather than a survey.
+**The finding worth keeping is what the first revision of this PR did.** It concluded n = 20 was
+never proven, moved the row to best-known and downgraded Erdős–Oler from k ≤ 6 to k ≤ 5 — on the
+strength of three sources' **silence**: Tedeschi & Mackey's abstract omitting n = 20, Wikipedia
+summarising only n ≤ 15, zbMATH's uninformative review. None of those denies anything. T&M's
+introduction states n = 20 as proven and cites Payan for it; its abstract simply does not mention
+the separate result, and omission is not denial. Reading those silences as refutation is the same
+error as reading a survey's summary as a primary source — inverted. Cross-family review caught it
+and the PR was reworked to the qualified attribution above.
 
-**This is the third time a secondary source has misled this repo** (after the Friedman misreading
-and the reversal/contraction error). The source here, Tedeschi & Mackey (2021), **contradicts
-itself**: its introduction says "proven for n ≤ 12, n = 14, 20" citing Payan, while its own
-abstract credits Payan with fourteen points only and says those proofs "completed the optimal
-arrangements of up to and including fifteen points". Wikipedia cites Payan and still says
-Erdős–Oler is known only for n ≤ 15.
+So this does not file cleanly as one more secondary-source miss (after the Friedman misreading and
+the reversal/contraction error). It is the **first time our own correction overshot**, which is the
+more instructive case: withdrawing a claim feels like rigour from the inside, and that feeling is
+not evidence either.
 
 Two gaps closed the same way, by going to primaries:
 
