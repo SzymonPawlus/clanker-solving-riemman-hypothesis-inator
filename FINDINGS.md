@@ -202,6 +202,14 @@ it flatly as proven. **Our README currently asserts the stronger claim**, on a s
 If Payan's result is conditional, `main` is wrong. This would be the third time a secondary source
 misled this repo.
 
+**Follow-up, 2026-08-17 — settled in `PR #36`; see the entry at the top of this log.** Neither of
+this entry's two guesses survived. The README no longer asserts the stronger claim flatly on a
+secondary source: the $n = 20$ row is kept but qualified, carrying its provenance ("abstract only —
+body not read"). And it did not turn out to be a secondary source misleading us a further time —
+the newer entry declines that tally, because what actually happened is that our own *correction*
+overshot, reading three sources' silences as denials. The standing position is **unverified —
+neither proven by us nor disproven**.
+
 ---
 
 ## Standing gaps
