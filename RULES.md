@@ -33,16 +33,41 @@ gh issue edit <N> --add-assignee @me                   # claim it
 
 - Never work an issue assigned to someone else. If you want it, comment; do not take it.
 - Never work an issue you have not claimed.
-- **One issue per worker.** An agent may run up to **3 concurrent workers**, each holding exactly
-  one claimed issue, so an agent holds at most 3 open claims at a time.
+- **One issue per worker.** An agent may run up to **3 active workers**, each holding exactly one
+  claimed issue. A claim is *active* while implementation, computation, or revision is underway.
+  A completed PR waiting only for the other model's review is an *awaiting-review claim* and does
+  not consume an active-worker slot. An agent may have at most **6 open awaiting-review PRs**;
+  when that queue is full, review backlog must shrink before the agent starts more work. Every PR
+  must link its claimed issue; an unlinked PR still counts toward the cap and is a protocol error.
+
+**Claim state transitions.** Use the issue labels `active-work` and `awaiting-review` so the board
+records the distinction rather than keeping it in an agent's memory:
+
+1. On claim, add `active-work` and remove `awaiting-review`.
+2. After pushing a complete PR and requesting the required review, remove `active-work`, add
+   `awaiting-review`, and keep the issue assigned. The open PR continues to lock every file it
+   changes.
+3. **Any push** to an awaiting-review PR requires first removing `awaiting-review` and reactivating
+   the claim. The same transition is required when review requests changes. If all 3 active slots
+   are occupied, finish or release one first; review feedback has priority over new work.
+4. On merge/closure, remove both lifecycle labels. If a PR is abandoned, unassign the issue and
+   explain why.
+
+Labels are bookkeeping, not authority: a PR with unfinished work cannot be moved to
+`awaiting-review` merely to evade the active limit. Conversely, an unavailable reviewer must not
+freeze all research once complete review-ready PRs are honestly queued.
 
 Concurrent workers share a GitHub identity, so assignment alone cannot tell them apart. Each must
 therefore work in its **own git worktree on its own branch**, and the file-ownership rule in §2
 applies between workers of the same agent exactly as it does between agents. Two workers editing
 one file is the same collision whether or not they share a login.
 
-**Branches and PRs.** One branch and one PR per issue. `main` is protected — it rejects direct
-pushes and requires an approving review, so a PR is the only route in. The full sequence:
+**Branches and PRs.** One branch and one PR per issue. `main` rejects ordinary direct pushes, so a
+PR is the normal route in. The review gates in §5 are primarily **social policy**, not complete
+mechanical enforcement: current branch protection does not require an approving review and does
+not enforce rules for administrators. It does block force-push/deletion, dismisses stale formal
+reviews, and requires conversation resolution. Never infer that an action is permitted merely
+because GitHub's merge button allows it. The full sequence:
 
 ```bash
 git checkout main && git pull            # branch from an up-to-date main
@@ -57,8 +82,11 @@ gh pr create --fill --body "Closes #<N>
 gh pr edit <PR#> --add-reviewer <other-agent's-github-user>
 ```
 
-Then **stop**. Do not merge (§5). Do not push to `main` — it will be rejected, and if you have
-admin rights it will warn about bypassing rules, which is not yours to do.
+Then move the issue to `awaiting-review` and refill the active slot if both queue caps permit.
+**Do not merge your own PR.** Record its tier in the PR body and with exactly one of the labels
+`tier:verification-critical` or `tier:non-claim`; merge authority is determined by §5.
+Do not push to `main` — it will be rejected, and if you have admin rights it will warn about
+bypassing rules, which is not yours to do. Merge authority is determined by §5.
 
 **If this fails, the cause is almost always one of:**
 
@@ -69,7 +97,7 @@ admin rights it will warn about bypassing rules, which is not yours to do.
 | `Permission denied (publickey)` on push | SSH key not registered, or use HTTPS instead |
 | `remote: Permission to ... denied` | not a collaborator on the repo — ask a human |
 | `pull request create failed: no commits between...` | you forgot to commit, or pushed the wrong branch |
-| `Changes must be made through a pull request` | you tried to push to `main` |
+| `Changes must be made through a pull request` | you tried to push to `main` as a non-admin; an admin may not receive this protection and must still not bypass policy |
 
 If you cannot open a PR at all, **say so explicitly rather than doing the work and dropping it**.
 Push the branch and comment the branch name on the issue — a human can open the PR. Silently
@@ -154,9 +182,48 @@ Lean-preferred, cross-examination as the fallback:
 
 ## 5. Review — the other model reviews you
 
-**Never self-merge.** Every PR is reviewed by the *other* agent. This is the point: Claude and
-Codex have different blind spots, and cross-family review catches errors that self-review
-cannot. It is not a formality to be routed around when a change "looks obvious".
+Cross-family review remains mandatory whenever a PR creates or changes an assumable mathematical
+claim (`cited`, `verified:review`, or `verified:lean`), touches `problems/**/results/`, changes
+verification policy, or makes a novel/extraordinary claim. Claude and Codex have different blind
+spots; this gate is not a formality to route around when a change "looks obvious".
+
+To keep infrastructure moving when the other family is unavailable, PRs are divided into two
+integration tiers:
+
+| Tier | Scope | Merge gate |
+|---|---|---|
+| **verification-critical** | literature/citation work; assumable claims or status promotion; any change under `problems/**/results/` (including `numerical` files); proof dependencies; policy/CI; extraordinary claims; security- or soundness-sensitive tooling (parsers, verifiers, certificate acceptance) | formal approval by the other model family or a human; `verified:lean` also requires clean Lean CI with no `sorry`/new `axiom` |
+| **non-claim** | `sketch` attacks, explicitly `numerical` experiments outside `results/`, ordinary tooling, generated data, and editorial changes, **provided the PR does not establish, alter, or rely upon an assumable claim** (`cited`, `verified:review`, `verified:lean`) | the exceptional same-agent audit procedure below, or a human review |
+
+Same-family audit may integrate a **non-claim** PR but can never grant `verified:review`, promote a
+claim into `results/`, or turn `numerical`/`sketch` evidence into an assumable dependency. If scope
+is mixed or uncertain, use the verification-critical tier. Splitting a PR to evade the stronger
+gate is forbidden.
+
+Approval is tied to the reviewed commit. **Any push** after approval or audit invalidates it and
+requires a fresh review at the new head. Before merging, recheck `human-hold`, head
+SHA, changed-file scope, mergeability, and required tests; a stale approval is no approval.
+
+**Exceptional same-agent audit for non-claim PRs.** This path is available only after cross-family
+review was formally requested and either (a) 24 hours elapsed without a review, or (b) that
+author's six-PR awaiting-review queue is full. The PR body and `tier:non-claim` label must make the
+classification visible. The auditor must be a separate worker and worktree, must not be the
+dispatcher or authoring worker, and must use a different model from the one that produced the
+change, following §8. Before merge it records a PR comment containing:
+
+- the condition, (a) or (b), that enabled the exceptional path;
+- the exact audited head SHA, auditor model, worktree/branch, and changed-file scope;
+- what was independently reconstructed or reimplemented, not merely rerun;
+- tests and limitations, plus confirmation of no `human-hold`.
+
+Because workers of one agent share a GitHub account, this comment is the audit artifact; GitHub
+will not accept it as a formal approval. The auditing worker may merge only the exact commented
+SHA. For computational content, the relevant problem `RULES.md` sets the audit standard and
+normally requires an independent checker; rerunning the author's script is insufficient.
+
+A later verification-critical review examines the complete claim and every dependency as they
+exist on `main`, not merely the new PR diff. Content previously merged through the non-claim tier
+carries no verification credit and must be independently reconstructed.
 
 Reviewing a proof means checking whether each step follows — not whether it reads well. Fluency
 is not evidence. If you cannot follow a step, say so and request it be formalised; "seems
@@ -164,10 +231,9 @@ plausible" is not a review.
 
 Humans may merge anything at any time without review.
 
-### Recording a review — a comment is not an approval
+### Recording cross-family review versus exceptional audit
 
-`main` requires **one approving review** to merge. GitHub counts only a formal review, so a
-comment — however thorough — leaves the PR exactly as blocked as no review at all. Finish the job:
+For verification-critical work, a comment is not an approval. Record a formal review:
 
 ```bash
 gh pr review <N> --approve         --body "..."   # or
@@ -181,12 +247,17 @@ gh api -X POST repos/<owner>/<repo>/pulls/<N>/reviews \
   -f event=APPROVE -f body="..."
 ```
 
+For the exceptional same-agent non-claim path, GitHub refuses formal approval from the shared
+author account, so the structured exact-SHA comment specified above is intentionally the record.
+This exception does not satisfy a cross-family review requirement.
+
 **What is forbidden is reviewing or merging your *own* work — not approving the other agent's.**
 Approving their PR is the entire point of cross-review; withholding the formal approval does not
 make you careful, it just blocks the queue while looking like diligence.
 
-**Who merges.** Once approved: the reviewer or a human. **Never the author**, approval
-notwithstanding. If you approved it, you may merge it; if you wrote it, you may not.
+**Who merges.** Verification-critical PRs are merged by the cross-family reviewer or a human,
+never the author. Non-claim PRs may be merged by the independent auditing worker or a human; the
+author still does not audit its own output. A human may explicitly override either rule.
 
 ### Cross-examination — how a claim earns `verified:review`
 
@@ -325,19 +396,26 @@ work while a review is outstanding makes the pile worse, not the project faster.
 applies **across problems**: a pending review on any problem outranks new work on the one you were
 focused on today.
 
-You cannot review your own agent's PRs (§5), so "reviewable" means PRs authored by the *other*
-agent. If none exist, say so rather than inventing a review.
+For cross-family review, "reviewable" means PRs authored by the *other* agent. Same-agent
+non-claim audit is the narrow exception in §5 and follows its delay/queue precondition. If neither
+kind is eligible, say so rather than inventing a review.
 
 ### 9.2 Slot cycling
 
-Run up to **3 concurrent workers**, one issue each (§1). When a worker finishes, refill the slot
-immediately in this order:
+Run up to **3 active workers**, one issue each (§1), independently of the bounded awaiting-review
+queue. When a worker produces a complete review-ready PR, move that claim to `awaiting-review`
+and refill the active slot immediately in this order:
 
 1. **A PR to cross-review** (§9.1).
-2. **A `ready` issue** whose files are not locked by an open PR. Check that — dispatching a worker
+2. **An eligible non-claim PR for exceptional audit** (§5), after cross-review work.
+3. **Requested changes** on an awaiting-review PR; reactivate its issue first.
+4. **A `ready` issue** whose files are not locked by an open PR. Check that — dispatching a worker
    onto a file some open PR already rewrites guarantees a conflict.
-3. **Ideation.** If nothing is ready and unblocked, dispatch a Fable worker to generate and triage
+5. **Ideation.** If nothing is ready and unblocked, dispatch a Fable worker to generate and triage
    new approaches (§8), which refills the board.
+
+Do not open a seventh awaiting-review PR. At that point all active capacity goes to reviews,
+review feedback, conflict repair, or tasks that can land without adding to that queue.
 
 Idling is better than manufacturing work (§6.5), but genuine ideation is not manufactured work —
 an empty board is itself a signal that the next approach has not been thought of yet.
