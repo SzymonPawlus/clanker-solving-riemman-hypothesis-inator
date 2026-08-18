@@ -59,17 +59,38 @@ The three access oracles **disagree**, and the disagreement is the point.
 | **Semantic Scholar** | **`"isOpenAccess": true`**, `openAccessPdf.status: "BRONZE"`, `license: "publisher-specific-oa"` |
 | **Publisher's own page** | **"Under an Elsevier user license — open archive"**, with a *View PDF* button |
 
-Semantic Scholar and the publisher agree, and they are right; Unpaywall and OpenAlex are not wrong
-so much as **answering a different question**. "Bronze OA" means *free to read on the publisher's
-site under no open licence*. Unpaywall's `closed` is reporting that there is **no repository copy
-and no open licence** — which is true — and it is **not** evidence that the PDF is paywalled.
+**These records genuinely conflict; they are not answering different questions.** An earlier
+revision of this file claimed the latter, and that was wrong. Unpaywall's own documented semantics
+are explicit: **bronze** means *"free to read on the publisher landing page, but without an
+identifiable open license"*, and bronze **counts as open access** — `is_oa` is `true`, because
+"a work is OA if there's a URL where you can read its full text without paying money or logging
+in". `closed` is defined as *"everything else"*. So if this article really is bronze, Unpaywall
+should be reporting `oa_status: "bronze"` with `is_oa: true`, not `closed`. It reports `closed`.
+
+Exactly one of the following must therefore hold, and this file does not claim to know which:
+
+1. Unpaywall's record for this DOI is **stale or misclassified** — plausible, since the publisher
+   page and Semantic Scholar both say free-to-read, and Unpaywall's crawler would have met the
+   same bot challenge that blocked every automated attempt in §3; or
+2. Semantic Scholar's `BRONZE` is **wrong**, and the "open archive" label does not in fact make
+   the PDF retrievable without a subscription.
+
+The publisher's own archived page carries the "open archive" label verbatim, which is direct
+evidence for (1) — but it is a label on a page, not a successful download, and nobody on this
+project has yet retrieved the PDF. **Sources: Unpaywall/OpenAlex OA-status documentation**
+([help.openalex.org](https://help.openalex.org/hc/en-us/articles/24347035046295-Open-Access-OA),
+which is where Unpaywall's own support article now redirects) and
+[unpaywall.org/data-format](https://unpaywall.org/data-format).
 
 > **Correction to how a previous entry reads.** `FINDINGS.md` lists "Unpaywall shows closed" among
-> the signals that acquisition failed. That is a correct quotation but an easy thing to misread as
-> "the paper is behind a paywall". It is not. The PDF is **free to any reader**; what blocks this
-> project is bot protection, not a subscription wall. That distinction changes the human
-> instruction in §5 from "someone with institutional access should try" to "**any** person with an
-> ordinary browser can download it, no institution required".
+> the signals that acquisition failed. That is a correct quotation, and this file previously went
+> on to assert that the PDF is nonetheless "**free to any reader**" and that only bot protection
+> stands in the way. That assertion went beyond the evidence: it treated a publisher label plus one
+> aggregator as settling a question on which the aggregators disagree. What is actually known is
+> that the publisher page is *labelled* open archive and that **no one has yet downloaded the
+> file**. The §5 human instruction is therefore written as "try it in an ordinary browser; it is
+> labelled open archive and may well be free" — not as a guarantee that no institutional access is
+> needed.
 
 The publisher page text was read from a Wayback capture (`20240415232000`) of the ScienceDirect
 article page, which carries the label verbatim: `Under an Elsevier user license` / `open archive`,
@@ -113,20 +134,33 @@ different capture timestamps will fix it.
 | Route | Result |
 |---|---|
 | **HAL** (French national repo — Payan's own institution's) full-text query | 0 hits for the paper. Author query `authFullName_s:"Charles Payan"` returns 5 records, **none is this paper** (a 1997 tree-products paper, a 1977 thesis, a 1966 thesis, a 2007 pentomino paper, plus an unrelated Payan) |
-| CORE v3 API | empty response |
-| BASE | `"Access denied for IP address ... and user agent curl"` — never reached the index |
-| OpenAIRE | no full-text web-resource returned |
-| Zenodo | no relevant hits |
-| CiteSeerX API | empty response |
+| CORE v3 API | **uninformative, not a negative.** Re-run 2026-08-18: `GET https://api.core.ac.uk/v3/search/works?q=Payan%20triangle` returns **HTTP 301** with no API key. The original "empty response" cannot be distinguished from an unauthenticated redirect, so this row establishes nothing either way |
+| BASE | `"Access denied for IP address ... and user agent curl"` — never reached the index; also uninformative |
+| OpenAIRE | **genuine negative.** Re-run 2026-08-18: `GET https://api.openaire.eu/search/publications?doi=10.1016/S0012-365X(96)00201-4` returns `<total>1</total>` — the record **is** indexed — and contains **no `fulltext` element**. So OpenAIRE knows the paper and has no full text for it |
+| Zenodo | **no DOI-scoped query was run.** Re-run 2026-08-18: `GET https://zenodo.org/api/records?q=Payan+equilateral+triangle+packing` returns **26,615 hits**, none of them this paper. The earlier "no relevant hits" is accurate as to relevance but was never a zero-result query |
+| CiteSeerX API | **not re-run**; the original query was not recorded, so like CORE this row cannot be distinguished from a malformed request |
 | archive.org fulltext (`"Erdős-Oler"`) | 0 hits |
 | OpenAlex `locations` | exactly one, the DOI landing page — no repository copy |
 | scholar.archive.org | blocked (recorded by a previous attempt; not re-run) |
 
 **HAL returning nothing is the most informative negative here.** Payan worked at LSD2-IMAG,
 Grenoble; HAL is where a French preprint or `rapport de recherche` version would live, and it does
-not have one. Combined with OpenAlex and Unpaywall both reporting no repository copy anywhere,
-the conclusion is that **no free mirror of this paper exists** — the publisher's own open archive
-is the only copy, and it is exactly the one behind the bot wall.
+not have one.
+
+**Two of these rows were never evidence.** Recording the exact endpoints (above) showed that the
+CORE and CiteSeerX "empty response" entries are indistinguishable from unauthenticated or
+malformed requests — CORE demonstrably returns a 301 without an API key. They are retained for
+honesty about what was attempted, but they carry no weight, and an earlier revision of this file
+counted them as if they did. Only the HAL, OpenAIRE and OpenAlex negatives are load-bearing.
+
+**What this sweep does and does not establish.** It establishes that **no mirror was found along
+the named routes above**, and that OpenAlex and Unpaywall report no repository copy. It does
+**not** establish that no free mirror exists. A copy that is unindexed, sitting on a personal or
+departmental page, or held in an aggregator not queried here would produce exactly these same
+negatives. Absence from an index is not absence from the world — and reading a set of silences as
+a denial is precisely the error recorded against this project in `FINDINGS.md`, where three
+sources' silence was read as refutation. The bounded finding is the claim; the universal one is
+not available from this evidence.
 
 ### Citing literature, as an indirect route
 OpenAlex reports only **4** citing works. Two are open (Brass et al., *Packing, covering and tiling
@@ -191,7 +225,9 @@ The paper is **free to read**. No library, no institution, no login.
 3. Click **View PDF** (or *Download full issue*). Save it as
    `1-s2.0-S0012365X96002014-main.pdf` — that is the filename ScienceDirect assigns.
 4. If a challenge/captcha page appears, complete it in the browser; it is bot protection, and it is
-   what blocked every automated attempt above. It does not appear for a normal human session.
+   what blocked every automated attempt above. Whether it also appears in an ordinary browser
+   session has not been observed by anyone on this project, so treat it as a step that may or may
+   not be needed rather than as one you can expect to skip.
 
 **What to look for once you have it** (the paper is 11 pages, in French):
 
