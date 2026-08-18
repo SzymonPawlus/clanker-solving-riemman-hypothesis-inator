@@ -88,6 +88,20 @@ inequalities without floats. The resulting candidate is
 the check was written by the same author, so the problem's independent-checker
 gate has not been met.
 
+For the open `n=16` candidate, the core lift also converges at 100 digits. A
+250-digit PSLQ run (`./recover_n16.sh`, using the neighbouring search experiment's
+pinned `mpmath==1.3.0`) finds no relation through degree 9 and proposes at degree 10
+
+```text
+331654 m^10 - 1211242 m^9 + 1925755 m^8 - 1772356 m^7
+ + 1055998 m^6 - 429448 m^5 + 121624 m^4 - 23836 m^3
+ + 3112 m^2 - 246 m + 9 = 0.
+```
+
+This is recorded in `findings/n016-minpoly-candidate.json` as `numerical`. PSLQ
+does not prove exact vanishing or minimality; the polynomial is a concrete target
+for elimination/substitution, not yet an algebraic certificate.
+
 ## Next stage
 
 An interval-Newton box can certify existence and uniqueness of the contact-system

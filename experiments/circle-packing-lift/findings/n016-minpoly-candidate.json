@@ -1,0 +1,24 @@
+{
+  "status": "numerical",
+  "n": 16,
+  "quantity": "m, minimum separation in the unit centre triangle for the checked-in candidate",
+  "m_100_digits": "0.2162272693097818217346349753963489711415716766112552499253903336280374766788632362289924759701385363",
+  "coefficient_order": "constant term first",
+  "polynomial_coefficients": [
+    9,
+    -246,
+    3112,
+    -23836,
+    121624,
+    -429448,
+    1055998,
+    -1772356,
+    1925755,
+    -1211242,
+    331654
+  ],
+  "polynomial": "331654*m^10 - 1211242*m^9 + 1925755*m^8 - 1772356*m^7 + 1055998*m^6 - 429448*m^5 + 121624*m^4 - 23836*m^3 + 3112*m^2 - 246*m + 9",
+  "reproduce": "./recover_n16.sh",
+  "method": "PSLQ at 250 decimal digits; degrees 1 through 9 rejected, degree 10 found with max coefficient 1e8 and tolerance 1e-220",
+  "warning": "This is an integer-relation conjecture, not proof of exact vanishing, irreducibility, feasibility, or optimality."
+}

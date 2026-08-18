@@ -97,6 +97,22 @@ class CheckedInCandidateTests(unittest.TestCase):
         self.assertEqual(candidate["coordinate_type"], "algebraic")
         self.assertEqual(candidate["status"], "numerical")
 
+    def test_n16_polynomial_candidate_matches_the_high_precision_lift(self):
+        finding = json.loads((ROOT / "findings" / "n016-minpoly-candidate.json").read_text())
+        candidate = load_candidate(SEARCH_OUT / "n16.json")
+        graph = extract_contacts(candidate, 1e-10)
+        rattlers = obvious_rattlers(candidate, graph)
+        core = tuple(i for i in range(16) if i not in rattlers)
+        solved = solve_candidate(candidate, graph, core, digits=120)
+        with localcontext() as context:
+            context.prec = 120
+            residual = sum(
+                Decimal(coefficient) * solved.m**power
+                for power, coefficient in enumerate(finding["polynomial_coefficients"])
+            )
+        self.assertLess(abs(residual), Decimal("1e-110"))
+        self.assertEqual(finding["status"], "numerical")
+
 
 if __name__ == "__main__":
     unittest.main()
