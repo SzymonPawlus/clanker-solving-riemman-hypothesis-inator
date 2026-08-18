@@ -73,7 +73,7 @@ def is_triangular(n: int) -> bool:
 #      AJUR 18(2) (2021) 3-12];
 #   - "proven" column: Wikipedia states optimality is proven for all n <= 15 and
 #     for every triangular number; attribution per Melissen & Schuur, Discrete
-#     Math. 142(1-3) (1995) 333-342 [doi:10.1016/0012-365X(95)90139-C], plus Payan
+#     Math. 145(1-3) (1995) 333-342 [doi:10.1016/0012-365X(95)90139-C], plus Payan
 #     (1997) for n = 14 and Joos (2021) for n = 13.  See README section 3.
 d13_unit = 9 - 5 * sqrt(3) - 3.5 * sqrt(6) + 6 * sqrt(2)
 
@@ -124,7 +124,7 @@ def main() -> None:
     print("Open cases: Oler lower bound vs BEST-KNOWN construction (an upper bound).")
     print("These rows bracket s(n); they do NOT show Oler is slack here (README 5.1).")
     print("Separation distances t_n in a UNIT triangle from Melissen & Schuur,")
-    print("Discrete Math. 142(1-3) (1995) 333-342 (open access), doi 10.1016/")
+    print("Discrete Math. 145(1-3) (1995) 333-342 (open access), doi 10.1016/")
     print("0012-365X(95)90139-C.  s = 2 sqrt3 + 2/t_n.")
     print("  n   s_Oler(n)   best known   width of the interval that is still open")
     for n, t in ((16, 0.216227269), (17, (3 - SQRT3) / 6), (18, 0.203465240)):

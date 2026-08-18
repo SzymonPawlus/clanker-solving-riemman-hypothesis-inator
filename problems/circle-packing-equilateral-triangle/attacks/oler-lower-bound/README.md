@@ -42,7 +42,7 @@ Per the honesty requirement in issue #17:
 |---|---|
 | **Oler, *A finite packing problem*, Canad. Math. Bull. **4** (1961) 153–155.** [doi:10.4153/CMB-1961-018-7](https://doi.org/10.4153/CMB-1961-018-7) | **Read in full, primary source.** All 3 pages, from the Cambridge Core scan. Every quotation in §1 is transcribed from that scan. |
 | Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961) 19–48. | **NOT read.** This is where the theorem is actually *proved*; the CMB note only derives a corollary from it and cites it as "[a paper] which is shortly to appear". Everything I say about *why* Oler's inequality is true is therefore reconstruction, marked `sketch`, not a report of Oler's proof. |
-| Melissen & Schuur, *Packing 16, 17 or 18 circles in an equilateral triangle*, Discrete Math. **142**(1–3) (1995) 333–342, [doi:10.1016/0012-365X(95)90139-C](https://doi.org/10.1016/0012-365X(95)90139-C). | **Read in full** (open-access copy at [ris.utwente.nl](https://ris.utwente.nl/ws/files/6509759/Melissen95packing.pdf)). Source of the attribution sentence in §3 and the $t_{16},t_{17},t_{18}$ values in §2. |
+| Melissen & Schuur, *Packing 16, 17 or 18 circles in an equilateral triangle*, Discrete Math. **145**(1–3) (1995) 333–342, [doi:10.1016/0012-365X(95)90139-C](https://doi.org/10.1016/0012-365X(95)90139-C). | **Read in full** (open-access copy at [ris.utwente.nl](https://ris.utwente.nl/ws/files/6509759/Melissen95packing.pdf)). Source of the attribution sentence in §3 and the $t_{16},t_{17},t_{18}$ values in §2. |
 | Tedeschi & Mackey, *On Packing Thirteen Points in an Equilateral Triangle*, AJUR **18**(2) (2021) 3–12. | **Read in full** ([open access](https://www.ajuronline.org/uploads/Volume_18_2/AJUR_Vol_18_Issue_2_Sept_2021p3.pdf)). **Secondary source.** It is an undergraduate-journal paper, and my account of *Melissen's, Payan's and Joós's methods* in §3 rests almost entirely on it. Treat those method descriptions as second-hand. |
 | Melissen (1993 AMM), Melissen (1994 Acta Math. Hungar.), Payan (1997 Discrete Math.), Joós (2021 Aequat. Math.) | **NOT read — all paywalled.** I have their abstracts/bibliographic data only. Anything attributed to them below comes from a secondary source and is flagged. For **Payan** specifically, the publisher's abstract is now transcribed verbatim (French and English) in [`../../README.md`](../../README.md) under "The $n = 20$ attribution", merged via PR #36; §3.1 below uses that settled wording rather than restating the question. |
 | Amore, *Circle packing in regular polygons*, arXiv:[2212.12287](https://arxiv.org/abs/2212.12287) (Phys. Fluids **35** 027130, 2023). | **Read the relevant sections.** Used only as an independent modern restatement of Oler's inequality, to check I had transcribed it correctly. |
@@ -102,13 +102,14 @@ every application below takes $\pi = H$ and therefore satisfies (i) outright.
 > *Aside, `sketch`, load-bearing for nothing.* An earlier version of this file claimed (i) was
 > load-bearing and offered exactly that tiny-far-away polygon as a counterexample to dropping it.
 > That was wrong — the example violates (ii) — and the error was caught in cross-review
-> (Codex/Flow-25 on PR #21). Recorded rather than deleted, per §5. If anything, (i) looks
-> *droppable* in the presence of (ii): for any Jordan polygon $\pi$ containing $E$, the hull
-> $H = \mathrm{conv}(E)$ lies in the closed region bounded by $\pi$, so $A(H) \le A(\pi)$; and
-> $M(H) \le M(\pi)$ would follow from the classical fact that a convex body's perimeter never
-> exceeds the length of a closed curve enclosing it, which I have **not** checked against a
-> reference. Applying the theorem to $(H, E)$ would then yield it for $(\pi, E)$. Stated as an
-> observation about the hypotheses, not used anywhere.
+> (Codex/Flow-25 on PR #21). Recorded rather than deleted, per §5.
+>
+> A replacement aside — that (i) looks *droppable*, because $\mathrm{conv}(E)$ always lies inside
+> any Jordan polygon containing $E$ — was **also wrong**, and was caught in the same way (third
+> review, PR #21). That inclusion is false for a *non-convex* Jordan polygon: two points of $E$ can
+> sit either side of an indentation, so the segment joining them, and hence the hull, leaves the
+> closed region. **No route to weakening (i) is offered here**, and none is needed — every
+> application below takes $\pi = H$.
 
 **Note on what Oler actually proved here.** The CMB note does *not* contain a proof. It states this
 as "the following corollary to our theorem on the packing of convex disks", citing Oler, *An
@@ -370,12 +371,6 @@ subject of its own 1994 paper; $n = 13$ Joós; $n = 14$ Payan — Friedman's pag
 Joós). **That has since landed independently**: current `main` lists all five in the *proven*
 table with per-row references. The paragraph is kept only so the reasoning is not lost; there is
 nothing left to correct there.
-
-**One thing that is still wrong on `main`, and is not mine to fix.** `../../README.md` cites
-Melissen & Schuur as *Discrete Math.* **145**, 333–342. The volume is **142**(1–3) — see the
-provenance table at the top of this file, and DOI `10.1016/0012-365X(95)90139-C`. This file carried
-the same error until cross-review of PR #21 caught it. `../../README.md` is outside this attack's
-file ownership (`RULES.md` §2), so it is recorded here for whoever next holds that file.
 
 **Provenance of $n = 20$ — settled on `main`, do not relitigate here.** An earlier draft of this
 file (and of the problem README) treated $n = 20$ as unresolved-in-this-repo, on the grounds that
