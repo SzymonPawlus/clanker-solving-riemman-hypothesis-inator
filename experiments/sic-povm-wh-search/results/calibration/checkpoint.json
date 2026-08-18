@@ -1,0 +1,62 @@
+{
+  "phase": "calibrate",
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Linux-6.12.96-1-MANJARO-x86_64-with-glibc2.43",
+    "numpy": "2.5.2",
+    "scipy": "1.17.0"
+  },
+  "elapsed_seconds": 0.03181120002409443,
+  "records": [
+    {
+      "d": 4,
+      "seed": 4005,
+      "seconds": 0.00999618400237523,
+      "iterations": 18,
+      "function_evaluations": 20,
+      "optimizer_success": true,
+      "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "max_abs_residual": 2.3037127760972e-15,
+      "rms_residual": 1.4938586094943451e-15,
+      "fast_literal_max_abs_difference": 5.551115123125783e-17,
+      "vector_real": [
+        -0.37754493131904227,
+        -0.00621203747862492,
+        0.1265733765070428,
+        0.510330345304711
+      ],
+      "vector_imag": [
+        0.3055751621986627,
+        0.40080025376448486,
+        0.15638423095756593,
+        -0.549991185005579
+      ]
+    },
+    {
+      "d": 5,
+      "seed": 5005,
+      "seconds": 0.01804873999208212,
+      "iterations": 25,
+      "function_evaluations": 27,
+      "optimizer_success": true,
+      "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "max_abs_residual": 5.3013149425851225e-15,
+      "rms_residual": 2.5556176413097457e-15,
+      "fast_literal_max_abs_difference": 1.942890293094024e-16,
+      "vector_real": [
+        0.355443471870085,
+        -0.16245292881377488,
+        -0.05133888488288902,
+        -0.3968871413149308,
+        0.050263549649645724
+      ],
+      "vector_imag": [
+        0.21633382843479718,
+        0.11654868007891059,
+        -0.7000493251330541,
+        0.27973588640998076,
+        -0.23639444122274325
+      ]
+    }
+  ]
+}
