@@ -87,6 +87,33 @@ respectively, at `d=3999/1000`. They certify strict lower bounds within `1/1000`
 known point-triangle optimum `d(5)=d(6)=4`. Together the four fixtures reproduce Graham's simplest
 box-principle calibration range using only rational coordinates.
 
+`generate_graham6.py` reconstructs the symmetric topology in Graham's Figure 7. In a unit outer
+triangle its ideal parameters are
+
+\[
+  \delta=\frac{1}{1+\sqrt3},\qquad r=\frac{\delta}{\sqrt3}.
+\]
+
+The source gives the diagram and `delta`; the two-parameter coordinate reconstruction is ours and
+therefore remains `sketch`. The committed artifact uses rational approximations to both parameters
+and the rational target `d=683/125=5.464`. The exact checker obtains maximum squared cell diameter
+
+\[
+  \frac{6249769587629311467}{1562500000000000000}
+  = 4-\frac{230412370688533}{1562500000000000000}<4,
+\]
+
+so the artifact supports `s(7)>683/125+2*sqrt(3)`, within about `0.000102` of the known exact
+point-triangle optimum `2+2*sqrt(3)`. This is the first calibration here whose topology is not a
+simple regular grid.
+
+`search_graham6.py` is the first bounded fixed-topology search. It knows only the six-cell planar
+complex and minimizes its maximum squared diameter over the two free rationalization parameters;
+it does not hard-code the algebraic optimum. From the generic start `(delta,r)=(0.35,0.20)`, the
+deterministic pattern search rediscovers Graham's values to six decimal places. This is a pipeline
+calibration, not a new result, and its floating-point output is never accepted directly: only the
+rationalized JSON above is checked.
+
 Run:
 
 ```bash
@@ -94,6 +121,9 @@ python3 partitioncheck.py certificates/n003-d1999-over-1000.json
 python3 partitioncheck.py certificates/n004-d433-over-125.json
 python3 partitioncheck.py certificates/n005-d3999-over-1000.json
 python3 partitioncheck.py certificates/n006-d3999-over-1000.json
+python3 partitioncheck.py certificates/n007-graham6-rationalized.json
+python3 search_graham6.py
+python3 generate_open_baselines.py 17
 python3 -m unittest discover -s tests -v
 ```
 
@@ -103,6 +133,22 @@ checker. The tests independently feed frequencies `m=1,...,6` through the verifi
 recovers the exact limiting lower bounds for `n=2,5,10,...`; at the first open member `n=17`, its
 limit `d>=8` is weaker than Oler's published bound, so the regular grid is a calibration topology,
 not a competitive open-case result.
+
+`generate_open_baselines.py` forces the regular-grid topology through the requested first open
+cases. For `n=16` it merges two triangles into a rhombus; for `n=17,18,19` it uses the 4-by-4 grid
+and zero, one, or two median refinements. All four outputs pass the exact verifier, but they are
+decisively noncompetitive:
+
+| `n` | exact target `d` certified by this topology | comparison |
+|---:|---:|---|
+| 16 | `2309/500 = 4.618` | Graham 1967 already gives the cited limiting bound `d >= 2+4*sqrt(3) ~ 8.928` |
+| 17 | `7999/1000 = 7.999` | Oler gives `sqrt(137)-3 ~ 8.705` |
+| 18 | `7999/1000 = 7.999` | Oler gives `sqrt(145)-3 ~ 9.042` |
+| 19 | `7999/1000 = 7.999` | Oler gives `sqrt(153)-3 ~ 9.369` |
+
+Thus the regular-grid topology meets its local kill criterion and is abandoned for the open
+cases. This is a useful negative calibration: exact checking is not the bottleneck; choosing a
+hexagon-like planar complex is.
 
 ## Stage-zero literature check
 
@@ -124,6 +170,6 @@ on it.
 
 ## Next bounded step
 
-Encode Graham's small exact partitions as rationally inward-perturbed certificates, starting with
-his six-cell partition, and then search fixed planar-complex topologies. Search output remains
+Reconstruct Graham's 15-cell Figure 21 topology, which already supplies the strongest partition
+baseline for `n=16`, and then perturb that planar complex for `n=17,18,19`. Search output remains
 `numerical`; only the exact verifier's accepted rational artifact is retained.
