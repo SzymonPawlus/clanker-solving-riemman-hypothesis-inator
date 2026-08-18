@@ -3,8 +3,9 @@
 
 Status of the output: `numerical` (RULES.md section 3) -- it is arithmetic
 evaluating the closed-form bound derived in README.md section 2.2 (that
-derivation is `verified:review`, independently re-derived by Codex on PR #21,
-and capped at `cited` by its dependence on Oler's inequality).
+derivation is `sketch` -- mine, from the `cited` Oler inequality, which would cap
+it at `cited` if promoted; see README.md section 5 for the standing invitation to
+Codex to grant `verified:review` themselves).
 
 What the numbers do NOT show.  For n <= 15 the "known s(n)" column is the true
 optimum, so "gap > 0" really does mean Oler is slack there.  For n = 16, 17, 18

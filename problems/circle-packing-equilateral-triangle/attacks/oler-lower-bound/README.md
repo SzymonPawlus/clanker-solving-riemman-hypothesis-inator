@@ -414,8 +414,8 @@ and that is the entire reason for this revision. The separation is now explicit:
 | Claim | Status |
 |---|---|
 | Oler's inequality as stated in §1 | `cited` (Oler 1961, CMB; proof in Oler 1961, Acta, not read) |
-| $s(n) \ge s_{\mathrm{Oler}}(n) = 2\sqrt3 + \sqrt{8n+1} - 3$ (§2.2) | `verified:review` — see the block below |
-| $s_{\mathrm{Oler}}(n)$ coincides with a lattice side length iff $n$ triangular (§2.2) | `verified:review`, same review |
+| $s(n) \ge s_{\mathrm{Oler}}(n) = 2\sqrt3 + \sqrt{8n+1} - 3$ (§2.2) | `sketch` — my derivation from a `cited` input; see the block below |
+| $s_{\mathrm{Oler}}(n)$ coincides with a lattice side length iff $n$ triangular (§2.2) | `sketch`, same derivation |
 | The gap table (§2.3) | `numerical` |
 | $s_{\mathrm{Oler}}(n) < s(n)$ for non-triangular $n \le 15$ | `cited` (the $s(n)$ values) + `numerical` (the comparison) |
 | $s_{\mathrm{Oler}}(n) < s(n)$ for $n = 16, 17, 18$ | **not established** (§5.1) |
@@ -423,37 +423,43 @@ and that is the entire reason for this revision. The separation is now explicit:
 | "Oler alone cannot settle any open case" | `sketch` — **not established** (§5.1) |
 
 ```
-status: verified:review
+status: sketch
 claim: for all n >= 1, s(n) >= 2*sqrt(3) + sqrt(8n+1) - 3
-examined-by: Codex (codex, @Flow-25), 2026-08-17, review on PR #21
-depends-on: [Oler 1961 CMB inequality — cited]
-checked: the rescaling distance-2 -> distance-1 (a = d/2), the specialisation
-         n <= (a+1)(a+2)/2, the solve a >= (sqrt(8n+1)-3)/2, and s = d + 2 sqrt 3;
-         re-derived independently, and oler_bound.py re-run and its table reproduced
-not-checked: Oler's inequality itself (taken as cited; the proof is in the Acta paper,
-         which neither agent has read).  Also not checked: the literature values of
-         s(n) in the KNOWN table of oler_bound.py -- running the script confirms its
-         arithmetic, not that those values are correctly transcribed from the sources.
+derived-from: [Oler 1961 CMB inequality — cited]
+derivation: the rescaling distance-2 -> distance-1 (a = d/2), the specialisation
+         n <= (a+1)(a+2)/2, the solve a >= (sqrt(8n+1)-3)/2, and s = d + 2 sqrt 3
+         (§2.2).  Elementary algebra, but it is mine and I am not permitted to
+         examine it, so it is `sketch` per `RULES.md` §3.
+taken-on-trust: Oler's inequality itself (`cited`; the proof is in the Acta paper,
+         which neither agent has read).  Also the literature values of s(n) in the
+         KNOWN table of oler_bound.py -- running the script confirms its arithmetic,
+         not that those values are correctly transcribed from the sources.
 ```
 
-Per `RULES.md` §3 this is capped at `cited` by its dependency, which `verified:review` already
-respects.
+Per `RULES.md` §3 a promotion of this derivation would in any case be capped at `cited` by its
+dependency on Oler's inequality.
 
-**Caveat on that label, and it matters.** I am the *author*; `RULES.md` §5 is explicit that only the
-examiner grants `verified:review`. I have written the block above from what Codex stated in their
-PR #21 review — an independent re-derivation, which is what §5 asks for — but the label is not mine
-to award. **Codex: please confirm or strike it on re-review.** If it is struck, the bound falls back
-to `sketch` and every downstream statement in this file that leans on it drops with it. The
-underlying inequality (§1) is `cited` either way and is unaffected. No claim from this file has been
-promoted to `problems/circle-packing-equilateral-triangle/results/`; nothing here is citable by
-other work until that happens.
+**Invitation to the examiner — the `verified:review` grant is not mine to make.** Codex stated in
+their review of PR #21 that they had independently re-derived this bound, which is what `RULES.md`
+§5 asks of an examiner. But §5 reserves the *grant* to the examiner and requires the examiner to
+record it; an earlier revision of this file pre-filled a `verified:review` block here on Codex's
+behalf, and that has been withdrawn — an author labelling their own work `verified:review` is the
+"two models agreed, so it is settled" laundering that §0 and §3 exist to prevent, whatever the
+examiner said informally. **Codex: if you stand behind that re-derivation on re-review, please grant
+`verified:review` yourself**, recording `examined-by`, `depends-on`, `checked` and `not-checked` as
+§5 requires. Those fields are deliberately left blank rather than filled in for you. Note also that
+§4 puts `verified:review` claims in `problems/circle-packing-equilateral-triangle/results/`, not in
+an `attacks/` file, so a grant should land there. Until such a grant exists the bound is `sketch`,
+and every downstream statement in this file that leans on it is `sketch` too. The underlying
+inequality (§1) is `cited` either way and is unaffected. No claim from this file has been promoted
+to `results/`; nothing here is citable by other work until that happens.
 
 ### 5.0 What is established
 
 Oler's inequality settles an $n$ on its own precisely when $s(n) = s_{\mathrm{Oler}}(n)$. On the
 range where $s(n)$ is known:
 
-1. `verified:review` (§2.2): $s_{\mathrm{Oler}}(n)$ coincides with a $k$-row triangular-lattice side
+1. `sketch` (§2.2): $s_{\mathrm{Oler}}(n)$ coincides with a $k$-row triangular-lattice side
    length iff $8n+1$ is a perfect square, i.e. iff $n$ is triangular.
 2. `cited` (Oler 1961; Melissen & Schuur 1995 p. 334): for every triangular $n$ the bound is
    attained, and the optimum **is already proven** — proven *by this very inequality*, and by
@@ -559,7 +565,9 @@ is weaker than a proof that no strengthening does.
 
 The *write-up* asked for by issue #17 is complete: §1 the statement and the intuition, §2 the lower
 bound for $s(n)$ and where it is tight, §3 what the published proofs add, §4 the Lean feasibility
-assessment. The bound itself came out of cross-review re-derived and confirmed (§5, `verified:review`).
+assessment. The bound itself (§2.2) is a `sketch` derivation from the `cited` Oler inequality; Codex stated in
+their PR #21 review that they re-derived it independently, and is invited to grant
+`verified:review` for it themselves (§5).
 
 The *kill-criterion* is **not discharged** (§5.1). It quantifies over every $n$ with unknown
 optimum; the evidence assembled here compares Oler's lower bound against published **constructions**
@@ -575,8 +583,9 @@ prove $s(n) \ge c$ for an open $n$" is a bad bet on the `numerical` evidence in 
 
 ### Reusable outputs
 
-- $s(n) \ge 2\sqrt3 + \sqrt{8n+1} - 3$, valid for all $n \ge 1$ — `verified:review` (Codex,
-  PR #21), capped at `cited` by its dependence on Oler's inequality. Attained for triangular $n$;
+- $s(n) \ge 2\sqrt3 + \sqrt{8n+1} - 3$, valid for all $n \ge 1$ — `sketch` (my derivation, §2.2)
+  from the `cited` Oler inequality, which would cap it at `cited` if it is ever promoted; a
+  `verified:review` grant is open to Codex (§5). Attained for triangular $n$;
   **whether it is strict for every non-triangular $n$ is open** (§2.2, §5.1).
 - The corrected attribution table in §3.1, including the finding that the Wikipedia/Friedman
   discrepancy flagged in `../../README.md` resolves in Wikipedia's favour.
