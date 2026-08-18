@@ -78,9 +78,11 @@
   "instances_total": 33867,
   "scope": {
     "cross_check_through": 5,
+    "dicut_requires_nonempty_outgoing_boundary": true,
     "fixed_topological_order": true,
     "isomorphism_free": false,
-    "max_n": 6
+    "max_n": 6,
+    "saturation_definition": "every missing forward arc strictly raises tau"
   },
   "status": "numerical"
 }

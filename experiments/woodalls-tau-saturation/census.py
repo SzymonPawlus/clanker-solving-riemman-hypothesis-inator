@@ -28,6 +28,8 @@ def run(max_n: int, cross_check_through: int):
             "fixed_topological_order": True,
             "isomorphism_free": False,
             "cross_check_through": cross_check_through,
+            "dicut_requires_nonempty_outgoing_boundary": True,
+            "saturation_definition": "every missing forward arc strictly raises tau",
         },
         "by_n": [],
         "first_saturated_not_source_sink_connected": None,

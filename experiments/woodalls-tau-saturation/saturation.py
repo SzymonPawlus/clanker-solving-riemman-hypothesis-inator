@@ -1,4 +1,4 @@
-"""Exact helpers for tau-preserving forward-arc saturation of small DAGs."""
+"""Exact helpers for strict forward-arc saturation of small DAGs."""
 
 from __future__ import annotations
 
@@ -129,8 +129,24 @@ def is_tau_saturated(n: int, arcs: Sequence[Arc], minimum_tau: int = 2) -> bool:
     return all(after > current_tau for _, after in saturation_certificate(n, arcs))
 
 
-def greedy_saturate(n: int, arcs: Sequence[Arc]) -> tuple[Arc, ...]:
-    """Deterministically add lexicographically first tau-preserving arcs."""
+def has_no_tau_preserving_forward_arc(n: int, arcs: Sequence[Arc]) -> bool:
+    """Whether no missing forward arc preserves the current tau.
+
+    This is weaker than ``is_tau_saturated``: a missing arc may lower tau.
+    """
+
+    arcs = _validate(n, arcs, require_forward=True)
+    current_tau = tau(n, arcs)
+    return all(after != current_tau for _, after in saturation_certificate(n, arcs))
+
+
+def greedy_tau_preserving_extension(n: int, arcs: Sequence[Arc]) -> tuple[Arc, ...]:
+    """Add lexicographically first tau-preserving arcs until none remain.
+
+    The endpoint need not be strictly tau-saturated because an unadded arc may
+    lower tau. This routine is diagnostic only; it gives no counterexample
+    reduction.
+    """
 
     current = set(_validate(n, arcs, require_forward=True))
     current_tau = tau(n, tuple(current))
@@ -179,12 +195,13 @@ def disjoint_dijoin_packing_is_preserved(
     """Definition-level finite checker for fixtures of the lifting lemma.
 
     This is not used to prove the prose lemma. It verifies that each supplied
-    member is a dijoin before and after adding a tau-preserving arc.
+    member is a dijoin before and after adding an arc for which the enlarged
+    graph has tau at least two.
     """
 
     arcs = _validate(n, arcs)
     enlarged = _validate(n, (*arcs, new_arc))
-    if tau(n, arcs) < 2 or tau(n, arcs) != tau(n, enlarged):
+    if tau(n, enlarged) < 2:
         return False
     packed_sets = [set(member) for member in packing]
     if any(packed_sets[i] & packed_sets[j] for i, j in combinations(range(len(packing)), 2)):

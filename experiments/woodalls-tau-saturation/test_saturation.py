@@ -70,12 +70,28 @@ class SaturationTests(unittest.TestCase):
         self.assertEqual(3, saturation.tau(4, arcs))
         self.assertTrue(saturation.is_tau_saturated(4, arcs))
 
-    def test_greedy_saturation_preserves_tau(self):
+    def test_greedy_tau_preserving_extension(self):
         arcs = ((0, 2), (0, 3), (1, 2), (1, 3))
         self.assertEqual(2, saturation.tau(4, arcs))
-        enlarged = saturation.greedy_saturate(4, arcs)
+        enlarged = saturation.greedy_tau_preserving_extension(4, arcs)
         self.assertEqual(2, saturation.tau(4, enlarged))
+        self.assertTrue(saturation.has_no_tau_preserving_forward_arc(4, enlarged))
         self.assertTrue(saturation.is_tau_saturated(4, enlarged))
+
+    def test_no_preserving_arc_is_weaker_than_strict_saturation(self):
+        # A transitive triangle plus isolated vertex 3 has tau=2 under the
+        # nonempty-dicut convention. Every missing forward arc enters the
+        # isolated vertex and lowers tau to 1: none preserves tau, but the
+        # graph is not strictly saturated.
+        arcs = ((0, 1), (0, 2), (1, 2))
+        self.assertEqual(2, saturation.tau(4, arcs))
+        certificate = saturation.saturation_certificate(4, arcs)
+        self.assertEqual({1}, {after for _, after in certificate})
+        self.assertTrue(saturation.has_no_tau_preserving_forward_arc(4, arcs))
+        self.assertFalse(saturation.is_tau_saturated(4, arcs))
+        self.assertEqual(
+            arcs, saturation.greedy_tau_preserving_extension(4, arcs)
+        )
 
     def test_lifting_fixture(self):
         # In K_2,2 oriented from sources to sinks, the two perfect matchings

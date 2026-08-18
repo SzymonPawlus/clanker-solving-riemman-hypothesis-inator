@@ -6,7 +6,14 @@ a `sketch`; the census does not prove a structural theorem.
 For a fixed vertex order, a DAG is called **tau-saturated** here when adding
 any missing forward arc strictly increases its minimum dicut cardinality.
 The experiment enumerates every subset of the forward arcs and tests that
-definition exactly.
+definition exactly. A dicut must have a nonempty outgoing boundary; a
+no-entering shore with empty boundary is not retained as a dicut.
+
+Strict saturation is deliberately stronger than merely having no missing arc
+that preserves `tau`: adding a forward arc can lower `tau`, for example when
+it enters a previously isolated component and creates a singleton dicut. The
+diagnostic `greedy_tau_preserving_extension` stops at the weaker condition and
+is not used by the census or as a counterexample reduction.
 
 Run tests:
 
