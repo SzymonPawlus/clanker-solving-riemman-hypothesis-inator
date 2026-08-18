@@ -1,0 +1,50 @@
+{
+  "n": 6,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point optimiser output. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.49999999999999994,
+  "D_side_of_centre_triangle": 4.000000000000001,
+  "s_side_for_unit_circles": 7.464101615137755,
+  "unit_triangle_points": [
+    [
+      1.0,
+      0.0
+    ],
+    [
+      3.588787300942139e-18,
+      0.0
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.5,
+      0.0
+    ],
+    [
+      0.25,
+      0.4330127018922193
+    ],
+    [
+      0.75,
+      0.4330127018922193
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.49999999999999994,
+    "containment_slack": 0.0
+  },
+  "reference_m": 0.5,
+  "reference_source": "Friedman (exact closed form)",
+  "agreement_digits_vs_reference": 15.954589770191003,
+  "seed": 20260823,
+  "python": "3.13.13",
+  "numpy": "2.3.4",
+  "scipy": "1.16.3",
+  "stage": "final",
+  "restarts": 200,
+  "basin_hops": 4746,
+  "search_seconds": 6.000978731999567
+}

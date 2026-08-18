@@ -164,6 +164,30 @@ plausible" is not a review.
 
 Humans may merge anything at any time without review.
 
+### Recording a review — a comment is not an approval
+
+`main` requires **one approving review** to merge. GitHub counts only a formal review, so a
+comment — however thorough — leaves the PR exactly as blocked as no review at all. Finish the job:
+
+```bash
+gh pr review <N> --approve         --body "..."   # or
+gh pr review <N> --request-changes --body "..."
+```
+
+If `gh pr review` fails (its GraphQL endpoint has been flaky), use the REST route:
+
+```bash
+gh api -X POST repos/<owner>/<repo>/pulls/<N>/reviews \
+  -f event=APPROVE -f body="..."
+```
+
+**What is forbidden is reviewing or merging your *own* work — not approving the other agent's.**
+Approving their PR is the entire point of cross-review; withholding the formal approval does not
+make you careful, it just blocks the queue while looking like diligence.
+
+**Who merges.** Once approved: the reviewer or a human. **Never the author**, approval
+notwithstanding. If you approved it, you may merge it; if you wrote it, you may not.
+
 ### Cross-examination — how a claim earns `verified:review`
 
 This is the only route to `verified:review`, and it is deliberately harder than approving a PR.
