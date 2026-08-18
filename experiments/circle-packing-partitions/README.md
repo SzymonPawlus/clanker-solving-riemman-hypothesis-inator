@@ -124,6 +124,8 @@ python3 partitioncheck.py certificates/n006-d3999-over-1000.json
 python3 partitioncheck.py certificates/n007-graham6-rationalized.json
 python3 search_graham6.py
 python3 generate_open_baselines.py 17
+python3 generate_graham15.py 17 > /tmp/graham15-n17.json
+python3 partitioncheck.py /tmp/graham15-n17.json
 python3 -m unittest discover -s tests -v
 ```
 
@@ -150,6 +152,35 @@ Thus the regular-grid topology meets its local kill criterion and is abandoned f
 cases. This is a useful negative calibration: exact checking is not the bottleneck; choosing a
 hexagon-like planar complex is.
 
+## Graham's 15-cell topology
+
+`generate_graham15.py` reconstructs the D3-symmetric planar complex drawn in Graham's Figure 21.
+The reconstruction was obtained by identifying the symmetry orbits in the drawing and then
+solving the active diameter constraints. In a unit triangle, put
+
+\[
+  D=\frac1{1+2\sqrt3},\quad H=\sqrt3D,\quad X=\frac D{\sqrt3},
+  \quad P=1-\frac{3H+X}{2}.
+\]
+
+The four boundary cuts on every side are at `D,H,1-H,1-D`; the three altitude orbits use
+parameters `X,D,H`; and the remaining six vertices are the permutations of barycentric
+coordinates `(P,X,1-P-X)`. Direct substitution makes every cell diameter at most `D`, recovering
+Graham's `d_15=D`. The generator uses ten-decimal rational approximations and scales to the
+rational side `1116/125=8.928`. The exact checker obtains
+
+\[
+  \max \operatorname{diam}^2
+  =\frac{390607217061347349968679}{97656250000000000000000}
+  =4-\frac{17782938652650031321}{97656250000000000000000}<4.
+\]
+
+For `n=17,18,19`, the generator bisects one, two, or three corner quadrilaterals. Subdivision
+preserves the parent diameter and raises the cell count from 15 to 18. Consequently the same exact
+side certifies all four `n=16,...,19` cases. For `n=17`, `8.928` exceeds the standalone Oler target
+`sqrt(137)-3 ~ 8.705`, but this is simply the monotonic consequence of Graham's published `n=16`
+construction, not a new mathematical bound. For `n=18,19`, Oler remains stronger.
+
 ## Stage-zero literature check
 
 R. L. Graham, *On partitions of an equilateral triangle*, Canadian Journal of Mathematics 19
@@ -170,6 +201,6 @@ on it.
 
 ## Next bounded step
 
-Reconstruct Graham's 15-cell Figure 21 topology, which already supplies the strongest partition
-baseline for `n=16`, and then perturb that planar complex for `n=17,18,19`. Search output remains
-`numerical`; only the exact verifier's accepted rational artifact is retained.
+Search genuine refinements or perturbations of the Figure-21 complex for `n=18,19`, where the
+inherited `8.928` target is below Oler. Search output remains `numerical`; only exact-verifier
+accepted rational coordinates may support a claim.

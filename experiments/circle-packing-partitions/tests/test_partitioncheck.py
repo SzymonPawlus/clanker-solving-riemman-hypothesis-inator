@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT))
 
 from generate_grid import grid_certificate  # noqa: E402
 from generate_graham6 import graham_six_cell_certificate  # noqa: E402
+from generate_graham15 import graham_fifteen_cell_certificate  # noqa: E402
 from generate_open_baselines import open_baseline  # noqa: E402
 from partitioncheck import CertificateError, verify_certificate  # noqa: E402
 from search_graham6 import pattern_search  # noqa: E402
@@ -93,6 +94,18 @@ class PartitionCertificateTests(unittest.TestCase):
                 self.assertEqual(report.n, n)
                 self.assertEqual(report.cells, n - 1)
                 self.assertLess(report.maximum_squared_diameter, 4)
+
+    def test_rationalized_graham_fifteen_cell_family(self) -> None:
+        expected_maximum = (
+            "390607217061347349968679/97656250000000000000000"
+        )
+        for n in range(16, 20):
+            with self.subTest(n=n):
+                report = verify_certificate(graham_fifteen_cell_certificate(n))
+                self.assertEqual(report.n, n)
+                self.assertEqual(report.cells, n - 1)
+                self.assertEqual(report.triangle_side, Fraction(1116, 125))
+                self.assertEqual(str(report.maximum_squared_diameter), expected_maximum)
 
     def test_overlap_compensating_for_a_hole_is_rejected(self) -> None:
         data = fixture()
