@@ -1,7 +1,9 @@
 import importlib.util
+from itertools import combinations_with_replacement
 from pathlib import Path
 import sys
 import unittest
+from unittest import mock
 
 
 MODULE_PATH = Path(__file__).with_name("woodall.py")
@@ -13,9 +15,38 @@ SPEC.loader.exec_module(woodall)
 
 
 class WoodallPrimitiveTests(unittest.TestCase):
+    @staticmethod
+    def literal_dicuts(graph):
+        """Independent bit-mask implementation of the dicut definition."""
+
+        found = set()
+        vertex_count = len(graph.vertices)
+        for mask in range(1, (1 << vertex_count) - 1):
+            inside = {
+                graph.vertices[position]
+                for position in range(vertex_count)
+                if mask & (1 << position)
+            }
+            incoming = frozenset(
+                index
+                for index, (tail, head) in enumerate(graph.arcs)
+                if tail not in inside and head in inside
+            )
+            if not incoming:
+                found.add(frozenset(
+                    index
+                    for index, (tail, head) in enumerate(graph.arcs)
+                    if tail in inside and head not in inside
+                ))
+        return found
+
     def assert_dijoin_tests_agree(self, graph):
+        literal_cuts = self.literal_dicuts(graph)
+        self.assertEqual(set(woodall.dicuts(graph)), literal_cuts, graph)
         for mask in range(1 << len(graph.arcs)):
             selected = {i for i in range(len(graph.arcs)) if mask & (1 << i)}
+            expected = all(selected & cut for cut in literal_cuts)
+            self.assertEqual(woodall.is_dijoin(graph, selected), expected, (graph, selected))
             self.assertEqual(
                 woodall.is_dijoin(graph, selected),
                 woodall.is_dijoin_by_reverse_augmentation(graph, selected),
@@ -27,6 +58,7 @@ class WoodallPrimitiveTests(unittest.TestCase):
         self.assertEqual(woodall.dicuts(cycle), ())
         self.assertIsNone(woodall.tau(cycle))
         self.assertTrue(woodall.is_dijoin(cycle, set()))
+        self.assertEqual(woodall.find_disjoint_dijoins(cycle, woodall.tau(cycle)), ())
         self.assert_dijoin_tests_agree(cycle)
 
     def test_directed_path_by_hand(self):
@@ -48,19 +80,59 @@ class WoodallPrimitiveTests(unittest.TestCase):
 
     def test_source_sink_connected_dags(self):
         fixtures = [
-            woodall.Digraph(("s", "a", "b", "t"), [("s", "a"), ("s", "b"), ("a", "t"), ("b", "t")]),
-            woodall.Digraph(
+            (woodall.Digraph(
+                ("s", "a", "b", "t"),
+                [("s", "a"), ("s", "b"), ("a", "t"), ("b", "t")],
+            ), 2),
+            (woodall.Digraph(
                 ("s", "a", "b", "x", "y", "t"),
                 [("s", "a"), ("s", "b"), ("a", "x"), ("a", "y"),
                  ("b", "x"), ("b", "y"), ("x", "t"), ("y", "t")],
-            ),
+            ), 2),
+            (woodall.Digraph(
+                ("s", "a", "b", "c", "t"),
+                [("s", "a"), ("s", "b"), ("s", "c"),
+                 ("a", "t"), ("b", "t"), ("c", "t")],
+            ), 3),
         ]
-        for graph in fixtures:
+        for graph, expected_minimum in fixtures:
             minimum = woodall.tau(graph)
-            self.assertIsNotNone(minimum)
+            self.assertEqual(minimum, expected_minimum)
             packing = woodall.find_disjoint_dijoins(graph, minimum)
             self.assertIsNotNone(packing)
+            self.assertEqual(len(packing), expected_minimum)
             self.assertEqual(len(set().union(*packing)), sum(map(len, packing)))
+            self.assert_dijoin_tests_agree(graph)
+
+    def test_parallel_arcs_and_loops_in_dijoin_enumeration(self):
+        graph = woodall.Digraph(
+            ("s", "a", "t"),
+            [("s", "a"), ("s", "a"), ("a", "t"), ("a", "t"),
+             ("s", "s"), ("a", "a"), ("t", "t")],
+        )
+        self.assertEqual(
+            set(woodall.dicuts(graph)),
+            {frozenset({0, 1}), frozenset({2, 3})},
+        )
+        self.assertEqual(woodall.tau(graph), 2)
+        self.assertEqual(len(tuple(woodall.dijoins(graph))), 72)
+        packing = woodall.find_disjoint_dijoins(graph, 2)
+        self.assertIsNotNone(packing)
+        self.assertTrue(all(woodall.is_dijoin(graph, part) for part in packing))
+        self.assertFalse(packing[0] & packing[1])
+        self.assert_dijoin_tests_agree(graph)
+
+    def test_dijoin_enumeration_computes_dicuts_once(self):
+        path = woodall.Digraph(range(3), [(0, 1), (1, 2)])
+        with mock.patch.object(woodall, "dicuts", wraps=woodall.dicuts) as wrapped:
+            enumerated = tuple(woodall.dijoins(path))
+        self.assertEqual(enumerated, (frozenset({0, 1}),))
+        self.assertEqual(wrapped.call_count, 1)
+
+    def test_three_arc_multigraphs_with_loops_against_literal_oracle(self):
+        arc_types = [(tail, head) for tail in range(3) for head in range(3)]
+        for arcs in combinations_with_replacement(arc_types, 3):
+            graph = woodall.Digraph(range(3), arcs)
             self.assert_dijoin_tests_agree(graph)
 
     def test_condensation_contracts_sccs_and_preserves_parallel_arcs(self):

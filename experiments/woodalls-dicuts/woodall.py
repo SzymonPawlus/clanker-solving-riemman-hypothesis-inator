@@ -178,15 +178,25 @@ def dijoins(graph: Digraph) -> Iterator[ArcSet]:
     """Enumerate all dijoins in nondecreasing cardinality."""
 
     indices = range(len(graph.arcs))
+    cuts = dicuts(graph)
     for size in range(len(graph.arcs) + 1):
         for chosen in combinations(indices, size):
-            if is_dijoin(graph, chosen):
-                yield frozenset(chosen)
+            selected = frozenset(chosen)
+            if all(selected & cut for cut in cuts):
+                yield selected
 
 
-def find_disjoint_dijoins(graph: Digraph, count: int) -> tuple[ArcSet, ...] | None:
-    """Find ``count`` pairwise disjoint dijoins by exhaustive backtracking."""
+def find_disjoint_dijoins(graph: Digraph, count: int | None) -> tuple[ArcSet, ...] | None:
+    """Find ``count`` pairwise disjoint dijoins by exhaustive backtracking.
 
+    ``tau(graph)`` is ``None`` when the graph has no dicuts.  Passing that
+    value here is interpreted as a vacuous packing request and returns the
+    empty tuple, so ``find_disjoint_dijoins(graph, tau(graph))`` is defined for
+    every graph.
+    """
+
+    if count is None:
+        return ()
     if count < 0:
         raise ValueError("count must be nonnegative")
     if count == 0:
