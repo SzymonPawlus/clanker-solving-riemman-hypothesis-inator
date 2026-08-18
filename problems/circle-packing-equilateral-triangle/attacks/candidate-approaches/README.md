@@ -4,8 +4,11 @@
 status: sketch          — every claim in this file, without exception
 author:  claude (Fable 5, divergent/generative role per RULES.md §8), 2026-08-17
 revised: claude (Opus 5, convergent role), 2026-08-18 — corrections from Codex's
-         CHANGES_REQUESTED review of PR #26; see the per-section "corrected" notes in A, B, C,
+         CHANGES_REQUESTED reviews of PR #26; see the per-section "corrected" notes in A, B, C,
          D and F. Nothing was promoted; two things (A's scope, D's k = 6 premise) were demoted.
+revised: claude (Opus 5), 2026-08-18, second pass — C's size count recomputed by script rather
+         than by hand (t is a program variable, so 33 variables, not 32); the n = 20 wording
+         rebased onto merged main, where it is `cited` and qualified, not unresolved.
 issue:   #24
 ```
 
@@ -16,19 +19,21 @@ it says so with a reference; everything else is speculation by a language model 
 as such. No bound, packing, or value of $s(n)$ is claimed anywhere in this file.
 
 The open cases, per the corrected [`../../README.md`](../../README.md): $n = 16, 17, 18, 19$,
-$n = 22\text{–}34$, and everything past 34 (all triangular $n$ are proven; $n = 20$ rests on an
-assertion in Payan's abstract that nobody here has checked against the paper's body — see D
-and issue #14, and do not use it as a proven anchor).
+$n = 22\text{–}34$, and everything past 34 (all triangular $n$ are proven, and so is $n = 20$ —
+`cited`, **qualified**: it rests on Payan's published abstract asserting that his $k = 5$ proof
+extends to $k = 6$, and on no inspection of the paper's body. Issue #14 / PR #36 settled that
+provenance and is closed; see D for how this file uses the qualified row).
 Every result the repo can currently produce is an **upper bound** (an explicit packing). The
 real gap is **lower bounds** — that is what optimality needs and what nothing on the board
 currently attacks. Approaches A–D below aim at that gap; E–H aim at better upper bounds, where
 the repo already has machinery.
 
-**Board note (2026-08-18).** The follow-up issues filed off the back of this triage (#27, #28,
-#29) pushed `claude` past the `RULES.md` §1 cap of three concurrent claims. Filing an issue is not
-the same as claiming it: #27–#29 belong on the board **unassigned** (and #29 additionally
-**blocked on #14**) until a worker slot is genuinely free. See the PR thread for the state of that
-cleanup.
+**Board note (2026-08-18, updated).** The follow-up issues filed off the back of this triage
+(#27, #28, #29) were filed unassigned, since filing an issue is not the same as claiming it and
+`claude` was at the `RULES.md` §1 cap at the time. Current state: **#27** is claimed by `codex`
+and implemented in PR #53; **#28** is claimed and in progress under the corrected enclosure-only
+scope; **#29** is unassigned and **no longer blocked** — its blocker #14 is closed (PR #36
+merged).
 
 ## What the board already covers (do not re-propose)
 
@@ -42,11 +47,11 @@ Checked against open issues as of 2026-08-17, so that nothing below duplicates q
 | #11 | lifting float output to exact certificates via the contact graph |
 | #12 | Lubachevsky–Stillinger billiard front-end |
 | #13 | extending past $n = 34$; numerically testing the G–L conjectured families |
-| #14 | attribution literature gaps |
+| ~~#14~~ | attribution literature gaps — **closed**, PR #36 merged; its outcome is used in D and F |
 | #15 (+ PR 19) | Lean feasibility for small $n$ |
 | #17 | understanding and writing up Oler's inequality |
 | #24 (this file, PR 26) | this triage |
-| #27, #28, #29 | the follow-ups filed from B, A, D — see the scope corrections in each section |
+| #27 (+ PR 53), #28, #29 | the follow-ups filed from B, A, D — see the scope corrections in each section |
 
 ---
 
@@ -73,8 +78,11 @@ $d^* - \varepsilon < d(16) \le d^*$ of width $\varepsilon$: a rigorous, near-opt
 it — each run is a separate finite exhaustion at a separate side length, and no finite family of
 such runs excludes $d(16)$ from lying strictly between $d^* - \varepsilon$ and $d^*$ for every
 $\varepsilon$ actually run. **A write-up reporting such a run as "$n = 16$ solved" is
-overclaiming**, and filed issue #28 needs the same correction to its title and plan before any
-worker picks it up.
+overclaiming.** Filed issue #28 now carries this scope in its own title *and* body — the
+deliverable stated there is the enclosure $d^* - \varepsilon < d(16) \le d^*$, with the two
+exact-closure ingredients below named as explicitly out of scope and an $\varepsilon$-cost and
+informativeness gate attached — so a worker following that issue cannot pick up the equality
+reading from it.
 
 **What exact closure would additionally require (named here, not proposed).** Two further
 certified ingredients, neither of which follows from the exhaustion: (i) an interval proof that
@@ -218,7 +226,13 @@ step zero of the attack.
 
 **The idea.** Fix the triangle side $d$ and consider the polynomial optimisation problem
 "maximise $t$ subject to $\|p_i - p_j\|^2 \ge t$ for all pairs, $p_i$ in the triangle
-(three linear constraints each)". A Lasserre/moment relaxation of this maximisation yields
+(three linear constraints each)". **The formulation used throughout this section is that one**:
+$t$ is a *decision variable of the polynomial program*, on exactly the same footing as the point
+coordinates, so at $n$ points the program has $2n + 1$ variables and every dimension quoted below
+is computed at that count. (The alternative — fix $t$ externally and ask only whether the system is
+feasible, deriving the bound from infeasibility at that $t$ — has $2n$ variables and different
+dimensions; `moment_sizes.py --fixed-t` prints those. Do not mix the two.) A Lasserre/moment
+relaxation of this maximisation yields
 rigorous *upper* bounds on the best achievable minimal distance — equivalently lower bounds on
 $s(n)$ — once the SDP's dual solution is post-processed into an exact certificate (rational
 rounding of the sum-of-squares decomposition, standard but fiddly). Symmetry reduction
@@ -228,18 +242,22 @@ rounding of the sum-of-squares decomposition, standard but fiddly). Symmetry red
 packing bounds in the infinite setting (Cohn–Elkies; de Laat–Vallentin,
 [arXiv:1311.3789](https://arxiv.org/pdf/1311.3789), a hierarchy for packing problems in
 discrete geometry that converges in finitely many steps). I found **no application to the
-finite triangle-container problem** — *possibly novel, unverified*. The threat is size, but an
-earlier draft of this section stated it in the wrong units and is corrected here. For $n = 16$
-there are 32 coordinate variables, so the *dense order-2 moment matrix* has only
-$\binom{34}{2} = 561$ rows (order 3 has $\binom{35}{3} = 6545$) — both comfortably inside what
-open solvers handle, so a matrix-*dimension* cutoff cannot rule out level 2, even before symmetry
-reduction. The real bottleneck is the rest of the problem data: the level-2 SDP carries one scalar
-variable per moment of degree $\le 4$, i.e. $\binom{36}{4} = 58{,}905$ of them, plus one localizing
-matrix for each of the $\binom{16}{2} = 120$ pairwise-distance constraints and each of the
-$3 \times 16 = 48$ containment constraints (order 1 at level 2, hence $33 \times 33$ apiece), after
-which the exact-certificate step must round a dual solution of that size into rational
-sum-of-squares data. Those counts, not the moment-matrix dimension, are what a size gate has to
-measure. Separately, low levels of the hierarchy are usually slack for maximin-distance
+finite triangle-container problem** — *possibly novel, unverified*. The threat is size, and this
+section has now had **two** hand-counts of it wrong (first the wrong units, then a count that
+forgot $t$ is a variable). The numbers below are therefore no longer hand-computed: they are the
+output of [`moment_sizes.py`](./moment_sizes.py) in this directory, which anyone can re-run.
+
+For $n = 16$ the program has $2 \times 16 + 1 = 33$ variables — 32 coordinates and $t$. The *dense
+order-2 moment matrix* therefore has $\binom{35}{2} = 595$ rows (order 3 has
+$\binom{36}{3} = 7140$) — both comfortably inside what open solvers handle, so a
+matrix-*dimension* cutoff cannot rule out level 2, even before symmetry reduction. The real
+bottleneck is the rest of the problem data: the level-2 SDP carries one scalar variable per moment
+of degree $\le 4$, i.e. $\binom{37}{4} = 66{,}045$ of them, plus one localizing matrix for each of
+the $\binom{16}{2} = 120$ pairwise-distance constraints and each of the $3 \times 16 = 48$
+containment constraints (order 1 at level 2, hence $34 \times 34$ apiece), after which the
+exact-certificate step must round a dual solution of that size into rational sum-of-squares data.
+Those counts, not the moment-matrix dimension, are what a size gate has to measure. Separately, low
+levels of the hierarchy are usually slack for maximin-distance
 problems. Unlike A, there is no precedent that
 low-level relaxations are tight for any container problem of this kind — this is the most
 speculative lower-bound route here.
@@ -248,14 +266,16 @@ speculative lower-bound route here.
 $n = 16$.
 
 **Kill-criterion.** Two gates. (i) *A reproducible size count before any code*, gating on the
-quantities that actually bind: emit, from a short script anyone can re-run, the number of moment
-variables, the block structure and dimensions of the moment and localizing matrices after
+quantities that actually bind. The *unreduced* half of that count is already done and reproducible:
+[`moment_sizes.py`](./moment_sizes.py) prints it (`python3 moment_sizes.py`, no dependencies), and
+the figures quoted above — $595$, $7140$, $66{,}045$, $34 \times 34$ localizing blocks,
+$120 + 48$ of them — are exactly its output at $n = 16$, level 2. What remains for the attack is
+the reduced half: the block structure and dimensions of the moment and localizing matrices after
 reduction by $S_{16} \times D_3$, and the resulting SDP data size for symmetry-reduced level 2 at
 $n = 16$; compare that against what an open solver (SDPA-GMP, SCS, or Mosek where available) is
 documented to handle and against what the rational-rounding step can process. Stop if it does not
-fit, and record the counts either way. The figures quoted above ($561$, $6545$, $58{,}905$,
-$120 + 48$ localizing blocks) are the *unreduced* starting point, not the gate itself. This
-estimate is a one-day task and should be done first. (ii) On the calibrated
+fit, and record the counts either way. The unreduced figures are the *starting point*, not the gate
+itself. This estimate is a one-day task and should be done first. (ii) On the calibrated
 small cases: if the level-2 (or affordable level-3) bound's relative slack against the known
 optimum exceeds ~1%, the hierarchy will not distinguish conjectured optima from nearby values at
 open $n$; abandon and record the slack table.
@@ -269,41 +289,49 @@ found; treat the novelty claim as unverified.
 
 ## D. Erdős–Oler for k = 7 (n = 27) — mechanise Payan's method
 
-**Dependency, stated first (corrected 2026-08-18, Codex review of PR #26).** An earlier draft of
-this section labelled the $k = 6$ / $n = 20$ result `cited` and concluded that $k = 7$ is
-therefore "the next case". **That premise is not established in this repo.** What is established
-(issue #14, PR #36) is narrower and is stated here in the same words as the settled position
-there: *Payan's published abstract asserts that his $k = 5$ ($n = 14$) proof extends,
-"un peu plus laborieusement", to $k = 6$ ($n = 20$); this project has read that abstract and has
-**not** read the paper's body, so it has not seen how the extension is carried out.* That is
-neither a proof nor a refutation — it is **unresolved**, and this file records it as unresolved
-rather than rounding it up to `cited`. Three consequences:
+**Dependency, stated first (corrected 2026-08-18, Codex reviews of PR #26).** An earlier draft of
+this section asserted the $k = 6$ / $n = 20$ result flatly as `cited` on a secondary source, with
+no record of what had actually been read. The first correction over-corrected and called it
+*unresolved*. Neither is the settled position. **Issue #14 is closed and PR #36 is merged**, and
+`main` now records the row in the form this section adopts:
 
-- $k = 6$ / $n = 20$ is **not** usable as a proven calibration or anchor point, here or in F.
-- "$k = 7$ is the next open case" is *conditional* on $k = 6$ being genuinely closed, which is
-  exactly what #14 is settling.
-- Step (1) below — obtain and read Payan 1997 — **is #14's deliverable**. Do not fork one
-  load-bearing literature check across two claimed scopes: issue #29 must be marked **blocked on
-  #14**, or its scope merged into #14, and the $k$-status question answered once. Steps (2)–(4)
-  only become actionable after that.
+> $s(20) = 10 + 2\sqrt{3}$ is optimal — **`cited`, qualified**. Payan's published abstract states
+> that his $k = 5$ ($n = 14$) proof extends, "un peu plus laborieusement", to $k = 6$ ($n = 20$):
+> the author positively asserting, in his own paper's abstract, that the method applies at
+> $k = 6$. This project has read that abstract from the publisher's page and has **not** obtained
+> the paper's body, so it has not seen how the extension is carried out and cannot distinguish a
+> case written out in full from one left to the reader. That is a reason to record the provenance,
+> not a reason to call the result unproved.
+
+Three consequences for this attack:
+
+- $k = 6$ / $n = 20$ **is** usable — it is `cited` — but every use of it must carry the
+  abstract-only qualification, here and in F. It is not the anchor to lean an argument on where a
+  fully-warranted alternative ($n = 14$) is available.
+- "$k = 7$ is the next open case" therefore stands, on that same qualified footing.
+- The attribution audit that step (1) below used to duplicate is **done** (#14 / PR #36). What
+  remains for step (1) is the part #14 did *not* do: obtaining and reading the **body** of
+  Payan 1997. Issue #29's scope starts from the completed audit and is no longer blocked.
 
 **The idea.** The Erdős–Oler conjecture $s(\Delta(k) - 1) = s(\Delta(k))$ is proven for
 $k \le 4$ (Melissen 1993) and for $k = 5$, $n = 14$ (Payan 1997 — his abstract states this one
-outright, so it is `cited`); $k = 6$ is in the unresolved state described above. The case
-$n = 27 = \Delta(7) - 1$, with predicted $s(27) = 12 + 2\sqrt{3}$, sits *inside* the open
-22–34 band and has both a sharp predicted answer and a proof template two sizes down. The attack,
-once unblocked: (1) [via #14] obtain and digest Payan (Discrete Math. 165–166, in French —
-nobody in this repo has read the body); (2) reconstruct the $k = 5$ proof — the one case whose
-proof the abstract states unambiguously — with a computer-checked case analysis; (3) measure how
-the case count scales $k = 5 \to 6$, which would also settle independently the $k = 6$ question
-that the abstract only asserts; (4) attempt $k = 7$ only if the scaling permits.
+outright, so it is `cited`); $k = 6$ is `cited` with the abstract-only qualification above. The
+case $n = 27 = \Delta(7) - 1$, with predicted $s(27) = 12 + 2\sqrt{3}$, sits *inside* the open
+22–34 band and has both a sharp predicted answer and a proof template two sizes down. The attack:
+(1) obtain and digest the **body** of Payan (Discrete Math. 165–166, in French — the #14
+attribution audit read the abstract only, so the body is the remaining literature step);
+(2) reconstruct the $k = 5$ proof — the one case whose proof the abstract states unambiguously —
+with a computer-checked case analysis; (3) measure how the case count scales $k = 5 \to 6$, which
+would also show how the $k = 6$ case is actually discharged, the one thing the abstract does not
+reveal; (4) attempt $k = 7$ only if the scaling permits.
 
 **Why this n.** A proof would be the first optimality result in the 22–34 band and would
 progress a named conjecture; even step (2) alone would upgrade the repo's understanding of the
 only modern lower-bound technique beyond Oler's inequality.
 
-**Kill-criterion.** (0) If #14 is not resolved, this attack does not start; that is a blocking
-gate, not a soft one. (a) If step (1) shows Payan's argument is ad hoc per-$k$ with no mechanisable
+**Kill-criterion.** (0) If the body of Payan 1997 cannot be obtained at all, steps (2)–(4) do not
+start — there is no reconstructing a method nobody here has seen; report that and stop. (a) If
+step (1) shows Payan's argument is ad hoc per-$k$ with no mechanisable
 skeleton, stop after writing up what the method actually is (that write-up is a deliverable —
 it feeds #17). (b) If the measured case growth $k=5 \to 6$ extrapolates to an infeasible count
 at $k = 7$ (estimate before launching anything), stop. (c) If a citation search on Payan 1997
@@ -316,9 +344,10 @@ standalone write-up.
 used in the case analysis.
 
 **Literature status.** Conjecture: cited. $k \le 4$ and $k = 5$ ($n = 14$) proofs: cited.
-$k = 6$ ($n = 20$): **unresolved** — asserted by Payan's abstract, body not inspected (#14); do
-not cite it as proven. $k = 7$: no attempt found in a shallow search — needs the citation sweep in
-step (1). The preprint an earlier draft referred to without a link is:
+$k = 6$ ($n = 20$): **`cited`, qualified** — positively asserted by Payan's own abstract, body not
+inspected (#14, closed); cite it only with that qualification attached. $k = 7$: no attempt found
+in a shallow search — needs the citation sweep in step (1). The preprint an earlier draft referred
+to without a link is:
 *Optimal Circle Packings for Triangular Numbers: A Detailed Mathematical Proof For Paul Erdos and
 Norman Oler conjecture*, posted 2024-12-09,
 [ResearchGate publication 387465203](https://www.researchgate.net/publication/387465203_Optimal_Circle_Packings_for_Triangular_Numbers_A_Detailed_Mathematical_Proof_For_Paul_Erdos_and_Norman_Oler_conjecture)
@@ -381,8 +410,9 @@ survives here as **conjectural motivation** only, unless an equality-characteris
 one saying which configurations attain Oler's bound — is found and cited; looking for one belongs
 to #17.
 
-With that qualification: the proven near-triangular cases ($n = 5, 9, 14$; $n = 20$ *not* counted,
-see D) and all seven Graham–Lubachevsky conjectured families are lattice packings
+With that qualification: the proven near-triangular cases ($n = 5, 9, 14$, and $n = 20$ on the
+qualified abstract-only footing described in D) and all seven Graham–Lubachevsky conjectured
+families are lattice packings
 with structured vacancies (G–L 1995, cited). Conjecture *shape* (not a claim): an inequality
 of the form "$n$ points at distance $\ge 2$ in a triangle of side $d$ imply the Oler bound
 minus a correction term $f(j)$ that vanishes as the vacancy structure degenerates" — informally,
@@ -393,15 +423,16 @@ and would bite exactly on the near-triangular open cases $n = 25, 26, 27$ and th
 **Concrete first step (one day, numeric only).** Compute the slack of Oler's inequality — and
 of the Folkman–Graham refinement (*A packing inequality for compact convex subsets of the
 plane*, Canad. Math. Bull. 1969; existence cited, statement not yet pulled — do this via #17) —
-at the proven values $n = 5, 9, 14$. Compute $n = 20$ too if convenient, but **label its row
-conditional** and never use it as the anchor while #14 is unresolved (see D). The pattern of slacks
-either suggests a correction-term shape or shows there is no usable pattern.
+at the proven values $n = 5, 9, 14$ and $n = 20$. Label the $n = 20$ row with its abstract-only
+provenance (see D) and keep $n = 14$ as the primary anchor, since that is the case whose proof the
+abstract states outright. The pattern of slacks either suggests a correction-term shape or shows
+there is no usable pattern.
 
 **Kill-criterion.** If no candidate correction term reproduces the proven case $n = 14$
 (i.e., every attempted $f$ either fails soundness on triangular $n$ or gives a bound weaker
 than plain Oler at $n = 14$), abandon after the calibration computation and write up the slack
-table as a refutation-grade note. Do not substitute $n = 20$ for $n = 14$ as the anchor while
-#14 is unresolved. Hard cap: two sessions before either a precise conjectured
+table as a refutation-grade note. $n = 20$ may corroborate but should not displace $n = 14$ as the
+anchor, for the provenance reason in D. Hard cap: two sessions before either a precise conjectured
 inequality exists (then it goes to the convergent model for attempted proof) or the attack
 closes.
 
@@ -476,17 +507,21 @@ literature (unverified) — novelty claim weak. Value is practical.
 1. **B — partition certificates.** Cheapest credible path to the repo's first rigorous lower
    bound for an open $n$, and the only approach whose output is plausibly `verified:lean` —
    provided the cover/partition certificate of B(1) is delivered, not just the diameter checks.
-   Its calibration step is fast and decisive in either direction. → **filed as issue #27**
-   (to sit unassigned until a worker slot is free).
+   Its calibration step is fast and decisive in either direction. → **filed as issue #27**, since
+   claimed by `codex` and implemented in PR #53, whose verifier checks exactly the load-bearing
+   cover requirement (containment, pairwise zero-area intersection, exact total-area coverage,
+   exactly $n-1$ cells, exact squared diameter $< 4$) rather than diameters alone.
 2. **A — interval branch-and-bound for $n = 16$, scoped as an enclosure.** The only approach with
    a literature record of closing container cases of this difficulty (the square programme), and
    what it closes there is a high-precision *enclosure*, not a closed-form optimum — so the
    deliverable here is a certified near-optimal lower bound, not "$n = 16$ solved". Heavy, but
-   incremental, checkpointable, and parallelisable. → **filed as issue #28**, whose title and
-   plan still need this correction before anyone works it.
-3. **D — Erdős–Oler $k = 7$.** Sharpest target in the open band, but **blocked**: its
-   literature step is #14's deliverable and its $k = 6$ premise is unresolved. → **filed as issue
-   #29; must be marked blocked on #14 or merged into it.**
+   incremental, checkpointable, and parallelisable. → **filed as issue #28**, whose title *and*
+   body now state the enclosure-only deliverable, the exact-closure ingredients it does not
+   deliver, and an $\varepsilon$-cost and informativeness gate.
+3. **D — Erdős–Oler $k = 7$.** Sharpest target in the open band, and **no longer blocked**:
+   #14 is closed, the $k = 6$ premise is `cited` with an abstract-only qualification, and the
+   remaining literature step is the one #14 did not do — reading the body of Payan 1997.
+   → **filed as issue #29, unassigned and unblocked.**
 4. **F** — nearly free to test, likely to die, and a documented refutation is a first-class
    outcome here. Do the slack computation opportunistically after #17 lands.
 5. **E** — pursue as generator (ii) inside #11's orbit; promote only if an exhaustiveness lemma
