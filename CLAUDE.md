@@ -11,8 +11,13 @@ Quick orientation:
 - Claim work with `gh issue edit <N> --add-assignee @me`. One issue per active worker, up to 3
   active workers, plus at most 6 completed claims labelled `awaiting-review`; each active worker
   uses its own git worktree and branch. A fourth **review lane** (`RULES.md` §9.4) sits outside
-  that count and runs only reviews, small review-driven fixes, and merges of PRs you reviewed —
-  never new research, and a large rework still takes a normal slot.
+  that count and runs only reviews (any size), small review-driven fixes, and merges of PRs you
+  reviewed — never new research, and a large rework still takes a normal slot. A lane fix is
+  visible on the board: its issue carries `active-work` **and** `review-lane` (at most one open
+  issue may, removed when the claim returns to `awaiting-review`), and that label — not intent —
+  is what excludes it from the 3-slot count. It reuses the existing claim's branch, PR, and dormant
+  worktree; never a second branch or a shared checkout. Reviews and merges hold no claim and need
+  no label.
 - Branch as `claude/<issue#>-<slug>`.
 - Never merge your own PR. Verification-critical work, including literature and verifier/parser
   tooling, requires Codex or human approval. After the §5 wait/queue condition, non-claim

@@ -40,7 +40,12 @@ gh issue edit <N> --add-assignee @me                   # claim it
   when that queue is full, review backlog must shrink before the agent starts more work. Every PR
   must link its claimed issue; an unlinked PR still counts toward the cap and is a protocol error.
   The **review lane** of §9.4 is a fourth worker that sits *outside* this count; it runs review and
-  review-driven work only, never new research.
+  review-driven work only, never new research. Its exclusion is defined by a **board marker, not by
+  intent**: a claim is excluded from the 3-slot count exactly when its issue carries the
+  `review-lane` label, and at most one open issue may carry that label at a time. So a legal
+  allocation always reads off the board as *at most three `active-work` issues without
+  `review-lane`, plus at most one with it*; four `active-work` issues none of which carries
+  `review-lane` is a cap violation that anyone can see without asking what the dispatcher meant.
 
 **Claim state transitions.** Use the issue labels `active-work` and `awaiting-review` so the board
 records the distinction rather than keeping it in an agent's memory:
@@ -50,14 +55,38 @@ records the distinction rather than keeping it in an agent's memory:
    `awaiting-review`, and keep the issue assigned. The open PR continues to lock every file it
    changes.
 3. **Any push** to an awaiting-review PR requires first removing `awaiting-review` and reactivating
-   the claim. The same transition is required when review requests changes. If all 3 active slots
-   are occupied, finish or release one first; review feedback has priority over new work.
-4. On merge/closure, remove both lifecycle labels. If a PR is abandoned, unassign the issue and
-   explain why.
+   the claim by adding `active-work`. The same transition is required when review requests changes.
+   Which slot the reactivated claim occupies is then decided by exactly one of these two cases, and
+   the labels say which:
+
+   - **Normal slot — the default, and the only case unless the labels say otherwise.** Add
+     `active-work` alone. **If all 3 active slots are occupied, finish or release one first**;
+     review feedback has priority over new work.
+   - **Review lane (§9.4) — the sole exception.** Available only when the push applies *requested
+     changes* that qualify as **small** under §9.4 *and* no open issue currently carries
+     `review-lane`. Add `active-work` **and** `review-lane`. This claim is then outside the 3-slot
+     count, so the push proceeds **with all three normal slots still occupied** and nothing need be
+     finished or released.
+
+   The `review-lane` label is what makes the exception legal: a reactivated claim that does not
+   carry it is governed by the normal-slot case whatever the dispatcher intended, and a lane fix
+   that turns out not to be small must remove `review-lane` and take a normal slot under the first
+   case (finishing or releasing one if all three are occupied). Remove `review-lane` whenever the
+   claim leaves the lane — on return to `awaiting-review` (transition 2), on merge or closure
+   (transition 4), or on the reclassification just described. The lane is free again only once no
+   open issue carries the label.
+
+   **Reviewing** another agent's PR and **merging** one create no author claim of ours, so they
+   require no issue transition and no label at all; they are lane-eligible without touching the
+   board.
+4. On merge/closure, remove all three lifecycle labels (`active-work`, `awaiting-review`,
+   `review-lane`). If a PR is abandoned, unassign the issue and explain why.
 
 Labels are bookkeeping, not authority: a PR with unfinished work cannot be moved to
-`awaiting-review` merely to evade the active limit. Conversely, an unavailable reviewer must not
-freeze all research once complete review-ready PRs are honestly queued.
+`awaiting-review` merely to evade the active limit, and `review-lane` on work that is not a small
+requested-change fix is a cap violation dressed as a label, not a fourth slot. Conversely, an
+unavailable reviewer must not freeze all research once complete review-ready PRs are honestly
+queued.
 
 Concurrent workers share a GitHub identity, so assignment alone cannot tell them apart. Each must
 therefore work in its **own git worktree on its own branch**, and the file-ownership rule in §2
@@ -410,7 +439,8 @@ and refill the active slot immediately in this order:
 
 1. **A PR to cross-review** (§9.1).
 2. **An eligible non-claim PR for exceptional audit** (§5), after cross-review work.
-3. **Requested changes** on an awaiting-review PR; reactivate its issue first.
+3. **Requested changes** on an awaiting-review PR; reactivate its issue first (§1 transition 3 —
+   a *small* fix may instead go to the review lane, §9.4).
 4. **A `ready` issue** whose files are not locked by an open PR. Check that — dispatching a worker
    onto a file some open PR already rewrites guarantees a conflict.
 5. **Ideation.** If nothing is ready and unblocked, dispatch a Fable worker to generate and triage
@@ -426,7 +456,8 @@ an empty board is itself a signal that the next approach has not been thought of
 
 Before dispatching, confirm the new worker's files are disjoint from every running worker *and*
 every open PR. State the ownership boundary explicitly in the worker's instructions — do not
-assume it will infer one. Each worker gets its own worktree and branch (§1).
+assume it will infer one. Each worker gets its own worktree and branch (§1); §9.4 states how a
+review-lane worker satisfies that when it must update an existing branch.
 
 ### 9.4 The review lane — a dedicated fourth slot
 
@@ -439,6 +470,10 @@ Eligible work, and nothing else:
 2. **Applying requested changes** to one of our own PRs, when the change is *small* — see below.
 3. **Merging a PR we reviewed and approved**, plus the board bookkeeping §1 requires.
 
+Reviews are lane-eligible **regardless of size**. A long review occupying the lane is still the
+lane doing its job; bouncing it to a normal slot would recreate the bottleneck the lane exists to
+remove. The *small* test below therefore gates only case 2, applying requested changes.
+
 **Small** means: confined to files the PR already touches, introducing no new argument or
 computation, and finishable well inside the §6.6 budget — a citation locator, a wrong volume
 number, a status or label correction, wording a review named explicitly, metadata a review asked to
@@ -448,12 +483,53 @@ uncertain, use a normal §9.2 slot** — the same default-to-strict rule as §5'
 
 The lane runs one worker at a time, like any other slot.
 
+**Board bookkeeping — the lane must be visible, not remembered.** The board is the single source of
+truth (§1), so an allocation of 3+1 has to be distinguishable from a cap violation by looking at it:
+
+- A lane fix (case 2) reactivates an existing claim under §1 transition 3 and its issue carries
+  **`active-work` *and* `review-lane`** for exactly as long as the fix is in progress. `review-lane`
+  goes on when the fix starts and comes off the moment the claim returns to `awaiting-review`, is
+  merged, closed, or is reclassified as not-small.
+- **At most one open issue may carry `review-lane`.** That label is therefore both the lane's
+  occupancy signal and the thing that excludes the claim from the 3-slot count — the exclusion is
+  defined by the marker, never by the dispatcher's intent. Before dispatching a lane fix, check
+  `gh issue list --label review-lane --state open` and require it to be empty.
+- Cases 1 and 3 — reviewing another agent's PR, and merging one we reviewed — create **no author
+  claim**, so they need **no issue transition and no label**. Nothing on the board changes. The
+  one-worker-at-a-time rule still binds the dispatcher, but a slip there cannot corrupt the active
+  count, because claimless work is never counted in the first place.
+- A dispatcher auditing the board asks only: are there at most three `active-work` issues without
+  `review-lane`, and at most one with it? If not, the cap is breached and the excess must be
+  released before anything new starts.
+
+**Worktree and branch for a lane fix.** A small fix updates the **existing** PR, so it inherits that
+claim's one branch and one PR (§1). It must **not** open a second branch, a second PR, or a
+same-branch duplicate checkout:
+
+- The lane worker takes **exclusive** use of the dormant worktree that already holds that branch, or
+  a replacement worktree explicitly handed over to it. Dormant is guaranteed, not hoped for: a claim
+  sitting at `awaiting-review` has no running worker by definition, and the label transitions above
+  make that checkable.
+- **Expect `git worktree add` to refuse a second checkout of a branch already checked out
+  elsewhere.** Reusing the existing worktree is the intended path, not a workaround; that refusal is
+  the rule working. Do not defeat it with `--force`, a detached checkout, or a `-2` branch name.
+- **Never share a worktree concurrently** with another worker. Exclusive means the lane worker is
+  the only one in it for the duration; if the original worker is somehow still live there, the fix
+  waits or takes a normal slot.
+- Cases 1 and 3 do not touch a branch of ours: a review may check out the *other* agent's branch in
+  a fresh worktree of its own, and a merge is performed through `gh` against the remote.
+
 **Anti-evasion.** A spare slot is exactly the kind of thing that gets borrowed, so:
 
 - It may never be used to start a `ready` issue, ideation, or anything that would otherwise queue
-  for §9.2. Work does not become eligible because the lane happens to be idle.
+  for §9.2. Work does not become eligible because the lane happens to be idle. `review-lane` on an
+  issue whose PR is not already awaiting review is a protocol error on its face — the label is only
+  ever added to a claim being reactivated from `awaiting-review` under §1 transition 3.
 - Splitting a large rework into "small" pieces to fit the lane is forbidden, exactly as §5 forbids
-  splitting a mixed PR to evade the stronger tier.
+  splitting a mixed PR to evade the stronger tier. Smallness is judged against the **whole** set of
+  changes the review asked for, not against the slice a worker chooses to push first; and since the
+  lane holds one claim at a time and the fix reuses the claim's single branch and PR, serialising a
+  large rework through it is neither faster nor permitted.
 - The lane changes *scheduling only*. Everything in §2 (file ownership), §3 (status), §5 (who may
   review, grant, and merge) and §9.3 (dispatch hygiene) applies unchanged. Speed is the point;
   a lower bar is not. In particular the lane never grants `verified:review`.
