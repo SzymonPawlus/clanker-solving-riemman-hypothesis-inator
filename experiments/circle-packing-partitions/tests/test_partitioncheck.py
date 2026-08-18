@@ -4,6 +4,7 @@ import copy
 import json
 import sys
 import unittest
+from fractions import Fraction
 from pathlib import Path
 
 
@@ -11,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from partitioncheck import CertificateError, verify_certificate  # noqa: E402
+from generate_grid import grid_certificate  # noqa: E402
 
 
 FIXTURE = ROOT / "certificates" / "n003-d1999-over-1000.json"
@@ -51,6 +53,15 @@ class PartitionCertificateTests(unittest.TestCase):
                 self.assertEqual(report.n, expected_n)
                 self.assertEqual(report.cells, expected_n - 1)
                 self.assertEqual(str(report.maximum_squared_diameter), "15992001/4000000")
+
+    def test_regular_grid_generator_frequencies_one_through_six(self) -> None:
+        for m in range(1, 7):
+            with self.subTest(m=m):
+                data = grid_certificate(m, Fraction(2 * m) - Fraction(1, 1000))
+                report = verify_certificate(data)
+                self.assertEqual(report.n, m * m + 1)
+                self.assertEqual(report.cells, m * m)
+                self.assertLess(report.maximum_squared_diameter, 4)
 
     def test_overlap_compensating_for_a_hole_is_rejected(self) -> None:
         data = fixture()

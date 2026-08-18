@@ -97,6 +97,13 @@ python3 partitioncheck.py certificates/n006-d3999-over-1000.json
 python3 -m unittest discover -s tests -v
 ```
 
+`generate_grid.py m --epsilon 1/1000` emits the regular `m^2`-triangle partition for
+`n=m^2+1` at target side `2m-epsilon`. Its output can be saved as JSON and passed directly to the
+checker. The tests independently feed frequencies `m=1,...,6` through the verifier. This family
+recovers the exact limiting lower bounds for `n=2,5,10,...`; at the first open member `n=17`, its
+limit `d>=8` is weaker than Oler's published bound, so the regular grid is a calibration topology,
+not a competitive open-case result.
+
 ## Stage-zero literature check
 
 R. L. Graham, *On partitions of an equilateral triangle*, Canadian Journal of Mathematics 19
@@ -118,5 +125,5 @@ on it.
 ## Next bounded step
 
 Encode Graham's small exact partitions as rationally inward-perturbed certificates, starting with
-the three-cell `n=4` calibration, and then search fixed planar-complex topologies. Search output
-remains `numerical`; only the exact verifier's accepted rational artifact is retained.
+his six-cell partition, and then search fixed planar-complex topologies. Search output remains
+`numerical`; only the exact verifier's accepted rational artifact is retained.
