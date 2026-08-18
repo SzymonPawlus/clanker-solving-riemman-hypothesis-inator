@@ -12,8 +12,10 @@ Quick orientation:
   active workers, plus at most 6 completed claims labelled `awaiting-review`; each active worker
   uses its own git worktree and branch.
 - Branch as `codex/<issue#>-<slug>`.
-- Verification-critical work requires Claude or human approval. Non-claim sketches, numerics, and
-  tooling may land after an independent non-author audit, but can never earn `verified:review`.
+- Never merge your own PR. Verification-critical work, including literature and verifier/parser
+  tooling, requires Claude or human approval. After the §5 wait/queue condition, non-claim
+  sketches, numerics outside `results/`, and ordinary tooling may land only after the structured
+  independent audit; they can never earn `verified:review`.
 - Only `cited`, `verified:lean`, and `verified:review` claims may be built on. Your own `sketch`
   is not assumable, and a claim is capped at the weakest status it depends on.
 
