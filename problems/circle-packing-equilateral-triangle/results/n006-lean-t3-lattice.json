@@ -1,0 +1,18 @@
+{
+  "n": 6,
+  "claim": "construction",
+  "side_length": "4 + 2*sqrt(3)",
+  "point_triangle_side": "4",
+  "coordinates": [
+    ["0", "0"],
+    ["2", "0"],
+    ["4", "0"],
+    ["1", "sqrt(3)"],
+    ["3", "sqrt(3)"],
+    ["2", "2*sqrt(3)"]
+  ],
+  "coordinate_type": "algebraic",
+  "verified_by": "lean/Verified/CirclePacking/Basic.lean — Verified.CirclePacking.isFeasible_config6, Verified.CirclePacking.minCircleSide_six_le",
+  "status": "verified:lean",
+  "beats_record": "no — matches the value 4 + 2*sqrt(3) credited to Oler/Groemer (1961) in this problem's README; upper bound only, the matching lower bound is NOT formalised here"
+}

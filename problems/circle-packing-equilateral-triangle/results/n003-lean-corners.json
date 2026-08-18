@@ -1,0 +1,11 @@
+{
+  "n": 3,
+  "claim": "construction",
+  "side_length": "2 + 2*sqrt(3)",
+  "point_triangle_side": "2",
+  "coordinates": [["0", "0"], ["2", "0"], ["1", "sqrt(3)"]],
+  "coordinate_type": "algebraic",
+  "verified_by": "lean/Verified/CirclePacking/Basic.lean — Verified.CirclePacking.isFeasible_config3, Verified.CirclePacking.minCircleSide_three_le",
+  "status": "verified:lean",
+  "beats_record": "no — reproduces the trivial n=3 value (2 + 2*sqrt(3)) listed in this problem's README; upper bound only, no optimality claim"
+}

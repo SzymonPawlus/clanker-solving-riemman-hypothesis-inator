@@ -1,0 +1,90 @@
+{
+  "n": 16,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point optimiser output. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.2162272693097817,
+  "D_side_of_centre_triangle": 9.249527159012796,
+  "s_side_for_unit_circles": 12.71362877415055,
+  "unit_triangle_points": [
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.3705207418582028,
+      0.4635979943364536
+    ],
+    [
+      0.5867480111679845,
+      0.4635979943364536
+    ],
+    [
+      0.7837727306902182,
+      0.37451661642642087
+    ],
+    [
+      0.3797393761921047,
+      0.21504795109472058
+    ],
+    [
+      0.19486164582287543,
+      0.33751027101171194
+    ],
+    [
+      1.0193245080623514e-17,
+      1.7655218373641443e-17
+    ],
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.891886365345109,
+      0.18725830821321035
+    ],
+    [
+      0.5704798535360575,
+      0.035501838663158716
+    ],
+    [
+      0.6081136346548909,
+      0.6787670955712283
+    ],
+    [
+      0.35718697638189656,
+      0.0
+    ],
+    [
+      0.39188636534510907,
+      0.6787670955712282
+    ],
+    [
+      0.7837727306902182,
+      0.0
+    ],
+    [
+      0.17859348819094825,
+      0.12189584885858311
+    ],
+    [
+      0.6081136346548912,
+      0.24842889310167912
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.2162272693097817,
+    "containment_slack": -1.3877787807814457e-16
+  },
+  "reference_m": 0.216227269309782,
+  "reference_source": "Graham-Lubachevsky 1995 (15 s.f.)",
+  "agreement_digits_vs_reference": 14.850167540094374,
+  "seed": 20260833,
+  "python": "3.13.13",
+  "numpy": "2.3.4",
+  "scipy": "1.16.3",
+  "stage": "final",
+  "restarts": 200,
+  "basin_hops": 1329,
+  "search_seconds": 40.038428593999924
+}

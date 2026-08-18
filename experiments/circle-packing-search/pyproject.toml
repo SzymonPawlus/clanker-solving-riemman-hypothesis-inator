@@ -1,0 +1,13 @@
+[project]
+name = "circle-packing-search"
+version = "0.1.0"
+description = "Multi-start NLP search for dense packings of equal circles in an equilateral triangle"
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy==2.3.4",
+    "scipy==1.16.3",
+    "mpmath==1.3.0",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,98 @@
+{
+  "n": 18,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point optimiser output. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.20346524053912346,
+  "D_side_of_centre_triangle": 9.829688819085678,
+  "s_side_for_unit_circles": 13.293790434223432,
+  "unit_triangle_points": [
+    [
+      0.8982673797304382,
+      0.17620606709399256
+    ],
+    [
+      0.3982673797304382,
+      0.6898193366904461
+    ],
+    [
+      0.6482645144679474,
+      0.1393342691421617
+    ],
+    [
+      0.29652902893589506,
+      0.0
+    ],
+    [
+      0.34306906923917885,
+      0.19807101947587408
+    ],
+    [
+      0.297394585586859,
+      0.5131196380225919
+    ],
+    [
+      0.14826451446794747,
+      0.13934036693373267
+    ],
+    [
+      0.5204880032093336,
+      0.2976733586880501
+    ],
+    [
+      0.4999942694750188,
+      0.0
+    ],
+    [
+      0.7499971347375095,
+      0.3155403362361541
+    ],
+    [
+      0.19480455477123143,
+      0.33741138640960694
+    ],
+    [
+      4.159650435487701e-17,
+      2.8734213297766757e-18
+    ],
+    [
+      0.7034652405391236,
+      0.5136132695964536
+    ],
+    [
+      0.6017326202695619,
+      0.689819336690446
+    ],
+    [
+      0.7965347594608764,
+      0.0
+    ],
+    [
+      0.9999999999999999,
+      0.0
+    ],
+    [
+      0.5000000000000001,
+      0.8660254037844386
+    ],
+    [
+      0.5004459804848341,
+      0.5001490891664314
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.20346524053912346,
+    "containment_slack": -1.1102230246251565e-16
+  },
+  "reference_m": 0.203465240539124,
+  "reference_source": "Graham-Lubachevsky 1995 (15 s.f.)",
+  "agreement_digits_vs_reference": 14.586386386749265,
+  "seed": 20260835,
+  "python": "3.13.13",
+  "numpy": "2.3.4",
+  "scipy": "1.16.3",
+  "stage": "final",
+  "restarts": 200,
+  "basin_hops": 699,
+  "search_seconds": 40.01406012699954
+}

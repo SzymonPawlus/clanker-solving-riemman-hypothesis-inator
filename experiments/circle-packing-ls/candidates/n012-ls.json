@@ -1,0 +1,64 @@
+{
+  "n": 12,
+  "claim": "construction",
+  "side_length": "58313293868847/7812500000000 + 2*sqrt(3)",
+  "coordinates": [
+    [
+      "546410161519241/200000000000000",
+      "4732050807616209/1000000000000000"
+    ],
+    [
+      "1492820323042483/200000000000000",
+      "0"
+    ],
+    [
+      "5464101615192411/1000000000000000",
+      "0"
+    ],
+    [
+      "4732050807616211/1000000000000000",
+      "546410161519241/200000000000000"
+    ],
+    [
+      "58313293868847/15625000000000",
+      "1000000000010001/1000000000000000"
+    ],
+    [
+      "546410161519241/200000000000000",
+      "683012701899051/250000000000000"
+    ],
+    [
+      "1000000000010003/1000000000000000",
+      "866025403793101/500000000000000"
+    ],
+    [
+      "500000000005001/250000000000000",
+      "0"
+    ],
+    [
+      "1616025403800603/250000000000000",
+      "433012701896551/250000000000000"
+    ],
+    [
+      "58313293868847/15625000000000",
+      "1616025403800603/250000000000000"
+    ],
+    [
+      "473205080761621/100000000000000",
+      "4732050807616211/1000000000000000"
+    ],
+    [
+      "0",
+      "0"
+    ]
+  ],
+  "coordinate_type": "rational",
+  "verified_by": "UNVERIFIED. Self-checked only, by certificate.exact_feasible in experiments/circle-packing-ls (exact integer arithmetic). Under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 a certificate earns verified:review only from the OTHER agent's independently written checker; this has not had one.",
+  "status": "numerical",
+  "beats_record": "no. This is a rounded-and-inflated snapshot of floating-point search output, deliberately loosened by ~1e-11 so that it is exactly feasible over the rationals; it is weaker than the float optimum it came from and weaker than the published values in Graham-Lubachevsky (EJC 2 (1995) #A1) and Friedman's Packing Center. No record is claimed.",
+  "_generator": "experiments/circle-packing-ls",
+  "_note": "Candidate from a Lubachevsky-Stillinger billiard run, polished by SLSQP, then snapped to rationals and inflated until exactly feasible. NOT tight: the reported side_length exceeds the float optimum by roughly 1e-11. seed 20260818.",
+  "_s_float": 10.92820323035017,
+  "_d_rational": "58313293868847/7812500000000",
+  "_self_check": "exactly feasible"
+}

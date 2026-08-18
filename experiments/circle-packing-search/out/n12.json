@@ -1,0 +1,74 @@
+{
+  "n": 12,
+  "claim": "construction (hypothesis)",
+  "status": "numerical",
+  "note": "Floating-point optimiser output. NOT a certificate and NOT an optimality claim. Coordinates are in the unit equilateral triangle with vertices (0,0), (1,0), (1/2, sqrt(3)/2). Multiply by 2/m to reach the point formulation of problems/circle-packing-equilateral-triangle/README.md.",
+  "m_min_pairwise_distance_unit_triangle": 0.26794919243112253,
+  "D_side_of_centre_triangle": 7.46410161513776,
+  "s_side_for_unit_circles": 10.928203230275514,
+  "unit_triangle_points": [
+    [
+      0.36602540378443854,
+      0.36602540378443876
+    ],
+    [
+      0.4999999999999999,
+      0.13397459621556157
+    ],
+    [
+      0.2679491924311228,
+      0.0
+    ],
+    [
+      0.5,
+      0.8660254037844386
+    ],
+    [
+      0.13397459621556138,
+      0.23205080756887733
+    ],
+    [
+      3.0346234086499977e-16,
+      7.889148575924375e-17
+    ],
+    [
+      1.0,
+      0.0
+    ],
+    [
+      0.8660254037844387,
+      0.23205080756887717
+    ],
+    [
+      0.3660254037844387,
+      0.6339745962155613
+    ],
+    [
+      0.6339745962155614,
+      0.3660254037844387
+    ],
+    [
+      0.6339745962155614,
+      0.6339745962155613
+    ],
+    [
+      0.7320508075688772,
+      0.0
+    ]
+  ],
+  "feasibility_floats": {
+    "min_pairwise_distance": 0.26794919243112253,
+    "containment_slack": -5.551115123125783e-17
+  },
+  "reference_m": 0.2679491924311227,
+  "reference_source": "Friedman (exact closed form)",
+  "agreement_digits_vs_reference": 15.206550963601963,
+  "seed": 20260829,
+  "python": "3.13.13",
+  "numpy": "2.3.4",
+  "scipy": "1.16.3",
+  "stage": "final",
+  "restarts": 153,
+  "basin_hops": 134,
+  "search_seconds": 6.005411140000433
+}

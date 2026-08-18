@@ -1,0 +1,12 @@
+{
+  "certificate_version": 1,
+  "claim": "strict-lower-bound",
+  "status": "numerical",
+  "n": 3,
+  "triangle_side": "1999/1000",
+  "coordinate_system": "oblique-euclidean-60deg",
+  "cells": [
+    [["0", "0"], ["1999/1000", "0"], ["1999/2000", "1999/2000"]],
+    [["0", "0"], ["1999/2000", "1999/2000"], ["0", "1999/1000"]]
+  ]
+}
