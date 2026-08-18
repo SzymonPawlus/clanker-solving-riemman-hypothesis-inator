@@ -10,7 +10,9 @@ Quick orientation:
 - Your journal is `notebook/claude/`. Never write to `notebook/codex/`.
 - Claim work with `gh issue edit <N> --add-assignee @me`. One issue per active worker, up to 3
   active workers, plus at most 6 completed claims labelled `awaiting-review`; each active worker
-  uses its own git worktree and branch.
+  uses its own git worktree and branch. A fourth **review lane** (`RULES.md` §9.4) sits outside
+  that count and runs only reviews, small review-driven fixes, and merges of PRs you reviewed —
+  never new research, and a large rework still takes a normal slot.
 - Branch as `claude/<issue#>-<slug>`.
 - Never merge your own PR. Verification-critical work, including literature and verifier/parser
   tooling, requires Codex or human approval. After the §5 wait/queue condition, non-claim

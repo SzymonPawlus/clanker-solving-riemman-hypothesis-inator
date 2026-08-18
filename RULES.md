@@ -39,6 +39,8 @@ gh issue edit <N> --add-assignee @me                   # claim it
   not consume an active-worker slot. An agent may have at most **6 open awaiting-review PRs**;
   when that queue is full, review backlog must shrink before the agent starts more work. Every PR
   must link its claimed issue; an unlinked PR still counts toward the cap and is a protocol error.
+  The **review lane** of §9.4 is a fourth worker that sits *outside* this count; it runs review and
+  review-driven work only, never new research.
 
 **Claim state transitions.** Use the issue labels `active-work` and `awaiting-review` so the board
 records the distinction rather than keeping it in an agent's memory:
@@ -403,7 +405,7 @@ kind is eligible, say so rather than inventing a review.
 ### 9.2 Slot cycling
 
 Run up to **3 active workers**, one issue each (§1), independently of the bounded awaiting-review
-queue. When a worker produces a complete review-ready PR, move that claim to `awaiting-review`
+queue and of the review lane (§9.4). When a worker produces a complete review-ready PR, move that claim to `awaiting-review`
 and refill the active slot immediately in this order:
 
 1. **A PR to cross-review** (§9.1).
@@ -425,3 +427,40 @@ an empty board is itself a signal that the next approach has not been thought of
 Before dispatching, confirm the new worker's files are disjoint from every running worker *and*
 every open PR. State the ownership boundary explicitly in the worker's instructions — do not
 assume it will infer one. Each worker gets its own worktree and branch (§1).
+
+### 9.4 The review lane — a dedicated fourth slot
+
+A fourth worker slot exists **in addition to** the three active slots of §9.2, reserved for keeping
+the review queue moving. It never runs new research.
+
+Eligible work, and nothing else:
+
+1. **Cross-family review** of a PR by the other agent (§5).
+2. **Applying requested changes** to one of our own PRs, when the change is *small* — see below.
+3. **Merging a PR we reviewed and approved**, plus the board bookkeeping §1 requires.
+
+**Small** means: confined to files the PR already touches, introducing no new argument or
+computation, and finishable well inside the §6.6 budget — a citation locator, a wrong volume
+number, a status or label correction, wording a review named explicitly, metadata a review asked to
+reconcile. A rework is **not** small if it needs a new derivation, a new experiment, a re-run, a
+rebase onto a moved `main`, or a judgement call about what the claim should now say. **When
+uncertain, use a normal §9.2 slot** — the same default-to-strict rule as §5's tiers.
+
+The lane runs one worker at a time, like any other slot.
+
+**Anti-evasion.** A spare slot is exactly the kind of thing that gets borrowed, so:
+
+- It may never be used to start a `ready` issue, ideation, or anything that would otherwise queue
+  for §9.2. Work does not become eligible because the lane happens to be idle.
+- Splitting a large rework into "small" pieces to fit the lane is forbidden, exactly as §5 forbids
+  splitting a mixed PR to evade the stronger tier.
+- The lane changes *scheduling only*. Everything in §2 (file ownership), §3 (status), §5 (who may
+  review, grant, and merge) and §9.3 (dispatch hygiene) applies unchanged. Speed is the point;
+  a lower bar is not. In particular the lane never grants `verified:review`.
+- An idle lane is fine — it is a dedicated lane, not a quota to fill (§6.5).
+
+**Why this exists.** Review throughput, not research capacity, is the binding constraint. Under
+§9.2 alone a review competes with multi-hour experiments for the same three slots, and since a
+running worker is not preempted, §9.1's review precedence silently degrades into "review next time
+a slot happens to free". An approved PR then sits unmerged, which blocks its author, blocks every
+issue touching the same files, and pushes the other agent into work it would not otherwise take.
