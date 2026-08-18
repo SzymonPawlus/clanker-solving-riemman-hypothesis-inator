@@ -1,12 +1,13 @@
 # Circle packing in an equilateral triangle
 
-**Status:** open for most $n$. Optimality is proven for **all $n \le 15$** and for every triangular
-number $n = k(k+1)/2$; everything else is best-known-construction.
+**Status:** open for most $n$. Optimality is proven for **all $n \le 15$**, for every triangular
+number $n = k(k+1)/2$, and — with the qualification below — for $n = 20$; everything else is
+best-known-construction.
 
-> **Correction, 2026-08.** This file previously asserted that $n = 20$ is also proven optimal
-> (Payan 1997). **That assertion has been withdrawn** — Payan's own abstract says his proof is for
-> $k = 5$ ($n = 14$) and that it *"can be extended"* to $k = 6$ ($n = 20$). See
-> [The $n = 20$ correction](#the-n--20-correction).
+> **Qualification, 2026-08.** The $n = 20$ row is kept, but its provenance is now on the record.
+> Payan's abstract states that his $k = 5$ ($n = 14$) proof *extends* to $k = 6$ ($n = 20$); this
+> project has read that abstract and **not** the paper's body, so it has not seen how the extension
+> is carried out. See [The $n = 20$ attribution](#the-n--20-attribution--qualified).
 
 Shared conventions: [`../README.md`](../README.md). Repo-wide protocol:
 [`../../RULES.md`](../../RULES.md). **Problem-specific rules: [`RULES.md`](./RULES.md) — read
@@ -17,8 +18,8 @@ before working on this problem.**
 Pack $n$ unit circles into the smallest possible equilateral triangle. Write $s(n)$ for the
 minimal side length.
 
-$s(n)$ is settled for $n \le 15$ and for all triangular $n$; see the table below. There is no known
-closed form for general $n$.
+$s(n)$ is settled for $n \le 15$, for all triangular $n$, and — on Payan's abstract, see below —
+for $n = 20$; see the table below. There is no known closed form for general $n$.
 
 ## The reduction that makes this tractable
 
@@ -47,10 +48,10 @@ Two kinds of statement, and conflating them is the main way to overclaim here:
 Every row below is **proven optimal**. The former split of this table into "proven" and
 "best known" was wrong; see [Resolution of the source conflict](#resolution-of-the-source-conflict).
 
-Two rows carry a note. **$n = 14$** is safe: Payan's abstract says outright "in this paper, we give
-a proof for $k = 5$ (arrangement for 14 disks)", and Tedeschi & Mackey and Wikipedia agree — it is
-$n = 20$, not $n = 14$, that the abstract leaves ambiguous. **$n = 4,5,7,8,9,12$** are attributed
-to the 1993 Monthly paper on the strength of zbMATH's review of it, not of its body; see
+Two rows carry a note. **$n = 14$** is the strongest of the Payan attributions: his abstract says
+outright "in this paper, we give a proof for $k = 5$ (arrangement for 14 disks)", and Tedeschi &
+Mackey and Wikipedia agree. **$n = 4,5,7,8,9,12$** are attributed to the 1993 Monthly paper on the
+strength of zbMATH's review of it, not of its body; see
 [The Melissen split](#the-melissen-split--resolved).
 
 | $n$ | $s(n)$ | Optimality proved by | Reference |
@@ -73,12 +74,10 @@ to the 1993 Monthly paper on the strength of zbMATH's review of it, not of its b
 
 Also proven, outside the $n \le 15$ range:
 
-| $n$ | $s(n)$ | Optimality proved by | Reference |
-|---|---|---|---|
-| $\Delta(k) = \tfrac{k(k+1)}{2}$ | $2(k-1) + 2\sqrt{3}$ | Oler (1961) | Canad. Math. Bull. **4**, 153–155 |
-
-$n = 20$ **used to be listed here and is not any more** — see
-[The $n = 20$ correction](#the-n--20-correction).
+| $n$ | $s(n)$ | Optimality proved by | Reference | Provenance |
+|---|---|---|---|---|
+| $\Delta(k) = \tfrac{k(k+1)}{2}$ | $2(k-1) + 2\sqrt{3}$ | Oler (1961) | Canad. Math. Bull. **4**, 153–155 | primary read in full |
+| 20 $= \Delta(6) - 1$ | $10 + 2\sqrt{3} \approx 13.464$ | Payan (1997) | Discrete Math. **165–166**, 555–565 | **abstract only — body not read**, see [below](#the-n--20-attribution--qualified) |
 
 ### Best known only (optimality *not* established) — status `numerical`
 
@@ -86,16 +85,17 @@ $n = 20$ **used to be listed here and is not any more** — see
 |---|---|---|
 | 16, 17, 18 | various | Melissen & Schuur (1995), Discrete Math. **145**, 333–342 |
 | 19 | — | pre-1995 literature; see Graham & Lubachevsky (1995), which reproduces it |
-| **20** $= \Delta(6) - 1$ | $10 + 2\sqrt{3} \approx 13.464$ | the $\Delta(6)$ packing minus one circle; **optimality unresolved here**, see below |
 | 22–34 | various | Graham & Lubachevsky (1995), Electron. J. Combin. **2**, #A1 |
 
-($n = 21 = \Delta(6)$ is *proven* by Oler — see the table above. $n = 20$ is **not** listed as
-proven; the construction is certain and only the lower bound is at issue.)
+($n = 20$ and $n = 21 = \Delta(6)$ are *proven in the literature*, not best-known — see the table
+above; $n = 20$ carries the qualification recorded in the next section.)
 
-### The $n = 20$ correction
+### The $n = 20$ attribution — qualified
 
-**What changed:** $n = 20$ moved from "proven optimal (Payan 1997)" to best-known. **Why:** the
-claim rested on a secondary source, and Payan's own abstract does not support it.
+**What changed:** nothing about *who* proved $n = 20$. What changed is that the provenance is now
+written down. `main` asserted "$n = 20$ is proven optimal (Payan 1997)" flatly, on the strength of
+Tedeschi & Mackey (AJUR 2021) — a secondary source — with no record of what had actually been read.
+The attribution stands; the unstated warrant does not.
 
 Payan's abstract, from the publisher's own page for the paper (**primary source, abstract only —
 the body was not obtained**), reads in full, in both languages Elsevier prints:
@@ -110,34 +110,49 @@ the body was not obtained**), reads in full, in both languages Elsevier prints:
 > (arrangement for 14 disks). This proof can be extended for the case $k = 6$ (arrangement for 20
 > disks)** and should allow an approach of the general conjecture.
 
-Read plainly: **"in this paper, we give a proof for $k = 5$"**, and $k = 6$ is described as
-something the proof *extends to* — "de manière un peu plus laborieuse", in a somewhat more
-laborious way — alongside a forward-looking remark about the general conjecture. An author who has
-written out the $k = 6$ case does not normally describe it that way, and the paper is 11 pages.
+**What the abstract establishes.** The French is a present indicative — *"cette preuve s'étend
+[…] pour $k = 6$"*, this proof extends to $k = 6$ — and the English that Elsevier prints alongside
+it says the proof "can be extended" to that case. Both are the author asserting, in his own paper's
+abstract, that the method **applies** to $k = 6$ ($n = 20$). That is a positive attribution, and it
+is the direct evidence this project holds for the $n = 20$ row.
 
-**This is a reading of the abstract, not of the paper.** We do not know whether §§ of the body
-carry out the $k = 6$ case. Two outcomes are possible and we cannot yet distinguish them:
+**What the abstract does not establish.** Whether the $k = 6$ case is written out in the body, or
+its details are left to the reader. The body was not obtained, so we cannot tell those two apart —
+and the distinction is worth naming, because a case carried out in full has been through refereeing
+and reading in a way an exercise left to the reader has not. But **it is not a reason to call the
+result unproved.** A published proof that discharges its last case briskly is still a published
+proof; only the paper can settle which of the two this is.
 
-- the extension is executed in the paper, and $n = 20$ is genuinely proven; or
-- the extension is asserted and left to the reader, and $n = 20$ is **not** proven anywhere.
+**Status, stated precisely** (`RULES.md` §3), because the difference between these two rows is the
+whole point of this section:
 
-Independent circumstantial evidence, all secondary, points the second way:
+| Claim | Status |
+|---|---|
+| Payan's published abstract asserts that his $k = 5$ proof extends to $k = 6$ ($n = 20$) | `cited` — quoted verbatim from the publisher's page, above |
+| $s(20) = 10 + 2\sqrt{3}$ is optimal | `cited`, **qualified**: it rests on that assertion and on no inspection of the argument itself |
 
-- **Wikipedia**: "Optimal solutions have been proved for $n \le 15$, and for any triangular number
-  of circles", and of the Erdős–Oler conjecture, "this conjecture is now known to be true for
-  $n \le 15$" — i.e. $k \le 5$ only. It cites Payan and still does not claim $n = 20$.
-- **Tedeschi & Mackey (AJUR 2021)** is the source that *does* claim it, writing "have been proven
-  for $n \le 12$, $n = 14, 20$" with a single citation to Payan. But that same paper's own abstract
-  credits Payan with $n = 14$ alone: "In 1997, Payan proved Melissen's conjecture for the
-  arrangement of fourteen points" — and then, "these proofs completed the optimal arrangements of
-  up to and including fifteen points", with no mention of 20. It is an undergraduate-journal survey
-  contradicting itself between abstract and introduction.
-- **zbMATH's review** of Payan (Zbl 0897.52003, J. M. Wills) is uninformative: "the author
-  considers optimal packings of equal circles in equilateral triangles for some particular values."
+The second is not stronger than the first, and nothing in this repo should treat it as if it were.
+What would settle it is one PDF; see [Remaining gaps](#remaining-gaps-honest-accounting).
 
-Until someone reads Discrete Math. **165–166**, 555–565 itself, the honest status of $n = 20$ is
-**unresolved**, and an unresolved lower bound does not belong in a table headed "proven optimal".
-$n = 14$ is unaffected: the abstract states that proof outright, in the paper.
+**What is *not* evidence — recorded because an earlier draft of this section offered it as such.**
+That draft concluded $n = 20$ is unproven and moved it to the best-known table. It should not have:
+
+- **Tedeschi & Mackey does not contradict itself.** Its introduction states $n = 20$ as proven and
+  cites Payan for it. Its abstract, describing how Payan ($n = 14$) and Joós ($n = 13$) completed
+  the cases through $n = 15$, simply does not mention the separate $n = 20$ result. Omission is not
+  denial.
+- **Wikipedia's "$n \le 15$" is the same omission.** It cites Payan, summarises the contiguous
+  range, and says nothing either way about $n = 20$.
+- **zbMATH's review** of Payan (Zbl 0897.52003, J. M. Wills) says only that the author "considers
+  optimal packings of equal circles in equilateral triangles for some particular values" —
+  uninformative in both directions.
+
+A source that does not repeat a claim has not denied it. Reading those silences as refutation was
+the same error, inverted, as reading a survey's summary as a primary source — which is what put the
+unqualified claim on `main` to begin with. Both come from not saying exactly what a source says.
+
+$n = 14$ is unaffected throughout, and is better sourced than before: the abstract states that
+proof outright, in the paper.
 
 ### Resolution of the source conflict
 
@@ -153,8 +168,8 @@ halves of that framing were wrong, and it is worth recording why.
    optima are the triangular numbers plus $n = 2, 4, 5, 7, 8, 9, 11, 12$. The two gaps closed
    later:
    - $n = 14$: **C. Payan (1997)**, proving the Erdős–Oler conjecture for $k = 5$. (His abstract
-     also says the proof extends to $k = 6$, i.e. $n = 20$; that is *not* the same claim — see
-     [The $n = 20$ correction](#the-n--20-correction).)
+     also states that the proof extends to $k = 6$, i.e. $n = 20$; for what we have and have not
+     checked there, see [The $n = 20$ attribution](#the-n--20-attribution--qualified).)
    - $n = 13$: **A. Joós**, published online 2 September 2020, Aequat. Math. **95** (2021) 35–65,
      confirming Melissen's 1993 conjecture and a Graham–Lubachevsky conjecture.
 
@@ -260,14 +275,15 @@ co-credit appears to be an attribution of the *underlying tool* rather than of t
 | **Melissen, Acta Math. Hungar. 65 (1994) 389–393.** | **NOT read** (Springer, paywalled). Its scope is taken from its title plus the 1993 review's "the case $n = 11$ is announced". |
 | **Oler, Canad. Math. Bull. 4 (1961) 153–155.** | **Read in full** (open PDF at Cambridge Core); also read in full by the worker on issue #17, see `attacks/oler-lower-bound/`. |
 | **Joós, Aequat. Math. 95 (2021) 35–65.** | **NOT read** (Springer, paywalled). Its $t_{13}$ value comes via Tedeschi & Mackey and is independently corroborated by the $t_{13}$ arithmetic check in §"Resolution of the source conflict". |
-| Tedeschi & Mackey, AJUR 18(2) (2021) 3–12. | **Read in full**, open access. **Secondary, and internally inconsistent on $n = 20$** — see the correction section. |
+| Tedeschi & Mackey, AJUR 18(2) (2021) 3–12. | **Read in full**, open access. **Secondary.** Its introduction is where this file's $n = 20$ claim originally came from; its abstract omits $n = 20$ without denying it. See the $n = 20$ section. |
 | Melissen & Schuur, Discrete Math. 145 (1995) 333–342. | **Read** (open copy at ris.utwente.nl). Secondary for the attribution sentence. |
 | zbMATH Open (Zbl 0814.52006, Zbl 0897.52003, Zbl 0100.36601). | **Reviews and metadata**, read via the zbMATH Open API. Secondary. Also the route by which the Groemer scan was found. |
 | Wikipedia; Friedman's Packing Center. | **Cross-checks only.** Neither is relied on for any status in the tables. |
 
 ### Remaining gaps (honest accounting)
 
-- **Payan's body was not obtained**, so the $k = 6$ / $n = 20$ question is open. What was tried:
+- **Payan's body was not obtained**, so the $k = 6$ / $n = 20$ attribution has been checked only
+  as far as the abstract, and the argument itself not at all. What was tried:
   ScienceDirect (HTTP 403 / bot challenge, direct and via a reader proxy — the article is marked
   "Open archive", so a human with a browser can very likely just download it), Unpaywall
   (`oa_status: closed`, no repository copy), Crossref (no abstract), CORE (0 hits),
@@ -288,12 +304,12 @@ co-credit appears to be an attribution of the *underlying tool* rather than of t
 For a triangular number $\Delta(k) = k(k+1)/2$, removing one circle from an optimal
 $\Delta(k)$-packing still gives an optimal packing: $s(\Delta(k) - 1) = s(\Delta(k))$.
 
-Status: **proven for $k \le 5$**, i.e. for $n = 2, 5, 9, 14$. Cases $k \le 4$ are in Melissen
-(1993); $k = 5$ is Payan (1997). **$k = 6$ ($n = 20$) is claimed by Payan's abstract to follow from
-the same proof "de manière un peu plus laborieuse", but we could not confirm that the paper carries
-it out** — see [The $n = 20$ correction](#the-n--20-correction). Open for $k \ge 7$, and open here
-for $k = 6$ pending a read of Payan. Rows $n = 15/14$ and $n = 10/9$
-above exhibit exactly this. Graham & Lubachevsky (1995) attribute the conjecture to
+Status: **proven for $k \le 6$**, i.e. for $n = 2, 5, 9, 14, 20$. Cases $k \le 4$ are in Melissen
+(1993); $k = 5$ is Payan (1997); **$k = 6$ ($n = 20$) is Payan's too, his abstract stating that the
+same proof extends to it "de manière un peu plus laborieuse" — an attribution checked here as far
+as the abstract and no further**, see
+[The $n = 20$ attribution](#the-n--20-attribution--qualified). Open for $k \ge 7$. Rows $n = 15/14$
+and $n = 10/9$ above exhibit exactly this. Graham & Lubachevsky (1995) attribute the conjecture to
 D. J. Newman (private communication) "among others"; Melissen & Schuur (1995) attribute it to
 Oler, Fejes Tóth and Newman.
 
@@ -318,9 +334,10 @@ cases including $n = 37, 40, 42, 43, 46, 49$.
 - C. Payan, *Empilement de cercles égaux dans un triangle équilatéral. À propos d'une conjecture
   d'Erdős–Oler*, Discrete Math. **165–166** (1997) 555–565.
   [doi:10.1016/S0012-365X(96)00201-4](https://doi.org/10.1016/S0012-365X\(96\)00201-4) —
-  **$n = 14$** ($k = 5$). Its abstract adds that the proof "can be extended" to $k = 6$
-  ($n = 20$); **do not cite this paper for $n = 20$ without reading the body.** Marked
-  "Open archive" on ScienceDirect, so it should be freely downloadable in a browser.
+  **$n = 14$** ($k = 5$); its abstract also states that the proof extends to $k = 6$ ($n = 20$).
+  **Cite it for $n = 20$ only with that qualification attached** — the body has not been read here,
+  so how the $k = 6$ case is discharged is unknown. Marked "Open archive" on ScienceDirect, so it
+  should be freely downloadable in a browser.
 - A. Joós, *Packing 13 circles in an equilateral triangle*, Aequat. Math. **95** (2021) 35–65
   (online 2 Sept 2020). [doi:10.1007/s00010-020-00753-y](https://doi.org/10.1007/s00010-020-00753-y)
   — $n = 13$, the last open case below 16.
@@ -348,8 +365,9 @@ cases including $n = 37, 40, 42, 43, 46, 49$.
   **18**(2) (2021) 3–12 —
   [PDF](https://www.ajuronline.org/uploads/Volume_18_2/AJUR_Vol_18_Issue_2_Sept_2021p3.pdf).
   Useful for its history paragraph; works towards a discrete reproof of Joós's theorem.
-  **Handle its history with care:** its introduction claims $n = 20$ proven while its own abstract
-  credits Payan with $n = 14$ only. It was the source of the withdrawn $n = 20$ claim.
+  **Handle its history with care** — not because it is inconsistent (it is not; its abstract omits
+  $n = 20$ rather than denying it), but because it is a survey, and a survey's summary is not a
+  warrant. It was this file's original, unqualified source for $n = 20$.
 - zbMATH Open — [Zbl 0814.52006](https://zbmath.org/?q=an:0814.52006) (review of Melissen 1993),
   [Zbl 0897.52003](https://zbmath.org/?q=an:0897.52003) (review of Payan 1997),
   [Zbl 0100.36601](https://zbmath.org/?q=an:0100.36601) (Groemer 1960, no review text). Free, and
@@ -361,9 +379,8 @@ cases including $n = 37, 40, 42, 43, 46, 49$.
 ### Tables (secondary — verify before relying on them)
 
 - [Circle packing in an equilateral triangle — Wikipedia](https://en.wikipedia.org/wiki/Circle_packing_in_an_equilateral_triangle)
-  — its "proved for $n \le 15$" claim is correct. Note it also says the Erdős–Oler conjecture is
-  "known to be true for $n \le 15$", i.e. $k \le 5$ — it cites Payan and still does not claim
-  $n = 20$.
+  — its "proved for $n \le 15$" claim is correct. It cites Payan, and summarises only the
+  contiguous range: it neither claims nor denies $n = 20$.
 - [Erich Friedman, Packing Center — circles in triangles](https://erich-friedman.github.io/packing/cirintri/)
   — per-$n$ diagrams and exact side lengths, all of which check out; but the *status* markers are
   **stale**: $n = 13$ and $n = 14$ are still shown as "Found by", and the 1993/1994 credits for
