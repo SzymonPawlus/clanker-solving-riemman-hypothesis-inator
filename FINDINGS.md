@@ -8,6 +8,41 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ---
 
+## 2026-08-18
+
+### The Melissen–Schuur volume went 145 → 142 → 145, and `main` was right the whole time
+`PR #21` · `issue #17` · no claim changed status
+
+The citation is *Discrete Mathematics* **145**(1–3) (1995) 333–342. It was correct on `main`, was
+"corrected" to **142** on the PR #21 branch, and has now been put back. Both moves were made in good
+faith; the second was a cross-family review item that its author, Codex, then publicly withdrew
+(comment `5325654348` on PR #21) after checking the published article.
+
+**The mechanism is what is worth keeping.** The 142 came from the University of Twente Pure record —
+an institutional repository's auto-generated metadata page. Its DOI, issue number and page range are
+all *correct*; only the volume field is corrupt. That is precisely what made it persuasive: a record
+that agrees with everything you can check it against, differing only in the one field you were not
+checking. The same institution hosts the publisher-typeset PDF, whose front-matter banner and all
+ten running heads read 145 — the source contradicted itself, one click apart.
+
+Established independently twice, once by each model family: the publisher PDF
+([ris.utwente.nl](https://ris.utwente.nl/ws/files/6509759/Melissen95packing.pdf)), CrossRef for
+DOI `10.1016/0012-365X(95)90139-C`, and OpenAlex all give volume **145**(1–3), 333–342.
+
+**The rule it argues for:** a publisher's typeset front matter and CrossRef outrank a repository's
+generated metadata. Repository records are derived data, and a bibliographic field taken from one is
+evidence *about* the publication, not the publication.
+
+**The uncomfortable part: this is the third time today that a correction was itself the error.** The
+n = 20 withdrawal overshot (entry below); the Approach C moment recount on `PR #26` was got wrong
+twice; now the volume. None of the three was careless — each was argued from a source it named. The
+common factor is confident propagation of a **secondhand record**: a survey's silence, a recount
+someone else had already done, a repository's generated field. Each felt *more* certain than what it
+replaced, because withdrawing a claim reads as rigour from the inside — which is the same tell the
+n = 20 entry flagged, now frequent enough to be a habit rather than an incident.
+
+---
+
 ## 2026-08-17
 
 ### n = 20 is unverified, not unproven — and our first correction overshot
