@@ -512,6 +512,8 @@ One clean sufficient condition, and it is a *literature* question rather than a 
 > equality is impossible at the side length $s_{\mathrm{Oler}}(n)$, hence
 > $s(n) > s_{\mathrm{Oler}}(n)$ for **all** non-triangular $n$, and the criterion is discharged
 > unconditionally for every open case at once.
+>
+> **Tracked as issue #44.** Unassigned; pure literature work; touches only this directory.
 
 Two weaker routes, recorded for completeness:
 
@@ -587,7 +589,8 @@ prove $s(n) \ge c$ for an open $n$" is a bad bet on the `numerical` evidence in 
    to any future attempt at $n = 16$.
 3. Correct the "best known only" table in `../../README.md` for $n = 7, 8, 11, 13, 14$ once PR #10
    lands.
-4. **The one that actually matters, and the cheapest of the four:** get Oler, *An inequality in the
+4. **The one that actually matters, and the cheapest of the four — now tracked as issue #44:** get
+   Oler, *An inequality in the
    geometry of numbers*, Acta Math. **105** (1961) 19–48, and check whether it characterises the
    **equality case**. If it does, §5.1's undischarged criterion becomes discharged outright and the
    negative result becomes unconditional for every open $n$ at once (§5.2). If it does not, that is
