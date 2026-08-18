@@ -2,6 +2,8 @@
 
 **Online status check:** 18 August 2026. Each entry was rechecked against the linked source; inaccessible publisher pages were cross-checked through their indexed abstract or an open manuscript copy.
 
+**Claim status:** Every assertion here that a problem remains open has status `cited`; none is `verified:lean` or `verified:review`. A `cited` open-status assertion is only as fresh as the 2026-08-18 check above and must be reverified before anyone builds an attack on it.
+
 **Purpose:** a starting list for serious research triage, not a claim that any item is easy. The list avoids the usual headline problems (RH, P vs NP, Navier--Stokes, Goldbach, Collatz, twin primes, etc.) and favors problems with a crisp statement, active partial progress, and an attack that can be scoped into a finite project.
 
 ## How this list was selected
@@ -18,7 +20,7 @@ The sources are deliberately placed with each entry so that status can be rechec
 - **Statement:** Every loopless simple digraph on $n$ vertices with minimum out-degree at least $r$ contains a directed cycle of length at most $\lceil n/r\rceil$.
 - **Why it matters:** It is the cleanest general proposed relation between local outward expansion and directed girth. The triangle case already captures a major obstruction in oriented graph theory.
 - **What is known / first attack:** The conjecture is known for small fixed $r$, vertex-transitive/Cayley cases, and various forbidden-subgraph or density regimes, but even the sharp minimum-outdegree-$n/3$ triangle case is open. A useful entry project is an exact census of minimal triangle-free oriented graphs near the $n/3$ threshold, with independently checkable certificates, followed by extraction of unavoidable local configurations rather than merely extending a brute-force bound.
-- **Open-status check (2026-08-18):** Chen, Guo and Huang, *Short rainbow cycles in edge-colored graphs*, Discrete Mathematics 349 (2026), which explicitly says the conjecture remains open: [open-access paper](https://www.diva-portal.org/smash/get/diva2%3A2016769/FULLTEXT01.pdf). See also Nathanson’s additive-number-theory formulation: [arXiv:math/0603469](https://arxiv.org/abs/math/0603469).
+- **Open-status check (2026-08-18):** He Guo, *Short rainbow cycles for families of small edge sets*, Discrete Mathematics 349 (2026), article 114868, which explicitly says the conjecture remains open: [author manuscript, arXiv:2507.04581](https://arxiv.org/abs/2507.04581). See also Nathanson’s additive-number-theory formulation: [arXiv:math/0603469](https://arxiv.org/abs/math/0603469).
 
 ## 2. Graceful Tree Conjecture
 
@@ -49,7 +51,7 @@ The sources are deliberately placed with each entry so that status can be rechec
 - **Area:** Diophantine approximation / discrete geometry.
 - **Statement:** For $n\ge2$ runners moving at distinct constant speeds around a unit circle, each runner is, at some time, at circular distance at least $1/n$ from every other runner. Equivalently, after making one runner stationary, suitable integer multiples are simultaneously far from integers.
 - **Why it matters:** It joins a child-friendly dynamical picture to simultaneous Diophantine approximation, zonotopes, view-obstruction, and finite computation.
-- **What is known / first attack:** The conjecture was proved for nine runners in a December 2025 preprint, using a bounded minimal-counterexample search. The next concrete target is ten runners: independently formalize the reduction to a finite search, improve the size bound, and emit exact rational certificates rather than relying on floating point.
+- **What is known / first attack:** A December 2025 preprint claims a proof for nine runners using a bounded minimal-counterexample search; it was still unrefereed at this catalog’s status check. A ten-runner project should therefore begin by independently validating and formalizing that finite reduction before improving its size bound, with exact rational certificates rather than floating point.
 - **Open-status check (2026-08-18):** Rosenfeld, *The lonely runner conjecture holds for nine runners* (2025 preprint): [arXiv:2512.01912](https://arxiv.org/abs/2512.01912). Perarnau and Serra’s recent survey gives the broader map: [arXiv:2409.20160](https://arxiv.org/abs/2409.20160).
 
 ## 6. Komlós discrepancy conjecture
@@ -60,7 +62,7 @@ The sources are deliberately placed with each entry so that status can be rechec
   \left\|\sum_i \varepsilon_i v_i\right\|_\infty\le C.
   \]
 - **Why it matters:** It is a canonical vector-balancing problem with consequences for randomized rounding, numerical integration, and combinatorial discrepancy.
-- **What is known / first attack:** General bounds remain dimension-dependent, while random and smoothed models often achieve constant or smaller discrepancy. A tractable project is to isolate the weakest pseudorandomness condition on a matrix under which a constructive constant bound follows, or to test whether partial-coloring algorithms certify new structured matrix classes.
+- **What is known / first attack:** Known general bounds still grow with problem size (classically as $O(\sqrt{\log n})$ in the number $n$ of vectors), while random and smoothed models often achieve constant or smaller discrepancy. A tractable project is to isolate the weakest pseudorandomness condition on a matrix under which a constructive constant bound follows, or to test whether partial-coloring algorithms certify new structured matrix classes.
 - **Open-status check (2026-08-18):** Aigner-Horev, Hefetz and Trushkin, *Smoothed Analysis of the Komlós Conjecture: Rademacher Noise*: [arXiv:2307.06285](https://arxiv.org/abs/2307.06285).
 
 ## 7. Log-rank conjecture
@@ -76,8 +78,8 @@ The sources are deliberately placed with each entry so that status can be rechec
 - **Area:** combinatorial group theory / low-dimensional topology.
 - **Statement:** Every balanced presentation of the trivial group can be transformed to the standard trivial presentation using Nielsen moves on relators, conjugating relators, and inversion.
 - **Why it matters:** It connects elementary-looking transformations of words in free groups to handle decompositions of 4-manifolds. Candidate counterexamples can be explored computationally, but proving non-equivalence requires genuine invariants.
-- **What is known / first attack:** A July 2026 preprint reports machine-checkable verification for rank-two presentations through total relator length 12 and reduces length 13 to the still-open Akbulut--Kirby presentation $AK(3)$. The natural next project is independent certificate checking, better canonicalization of the move graph, or an invariant that separates a bounded candidate from the trivial orbit.
-- **Open-status check (2026-08-18):** *Machine-checkable equivalence certificates at the length-14 Andrews--Curtis frontier* (2026 preprint): [arXiv:2607.23611](https://arxiv.org/abs/2607.23611). For the algebraic action formulation, see *Andrews--Curtis groups*: [journal version](https://gcc.episciences.org/15972).
+- **What is known / first attack:** Before July 2026, unconditional rank-two verification stopped at total relator length 12, while length 13 reduced to the still-open Akbulut--Kirby presentation $AK(3)$. Carreras’s July 2026 preprint contributes four explicit machine-checkable equivalence certificates among six hard length-14 Miller--Schupp presentations: two place both $MS(3)$ cases in the $AK(3)$ class, making that branch unconditional, and two pair the four $MS(2)$ presentations into two blocks. Those two $MS(2)$ blocks still lack certified connections to $AK(3)$, and the full length-14 stratum has not been exhaustively classified. The concrete next project is to independently replay the four certificates, then seek a certificate from either remaining $MS(2)$ block to $AK(3)$.
+- **Open-status check (2026-08-18):** Carreras, *Machine-checkable equivalence certificates at the length-14 Andrews--Curtis frontier* (2026 preprint): [arXiv:2607.23611](https://arxiv.org/abs/2607.23611). For the algebraic action formulation, see *Andrews--Curtis groups*: [journal version](https://gcc.episciences.org/15972).
 
 ## 9. Toeplitz’s square-peg problem for arbitrary Jordan curves
 
@@ -144,8 +146,8 @@ The sources are deliberately placed with each entry so that status can be rechec
 - **Area:** elementary and computational number theory.
 - **Statement:** Is there a composite integer $n$ such that $\varphi(n)\mid n-1$? Lehmer conjectured that no such composite exists.
 - **Why it matters:** Any solution would be an exceptionally constrained square-free odd Carmichael number with many prime factors. The problem combines elementary congruences with global multiplicative structure.
-- **What is known / first attack:** Strong lower bounds on the number of prime factors and on the size of a hypothetical solution are known. A credible project is not a blind integer search: improve a conditional lower bound for a fixed smallest prime factor, encode the prime-factor constraints as an exact covering/constraint problem, or independently certify a substantially enlarged search region.
-- **Open-status check (2026-08-18):** MathWorld’s maintained entry (updated in 2026) summarizes the problem and constraints: [Lehmer’s Totient Problem](https://mathworld.wolfram.com/LehmersTotientProblem.html). A 2025 journal paper still treats the conjecture as open: [article PDF](https://reference-global.com/download/article/10.2478/awutm-2025-0005.pdf).
+- **What is known / first attack:** Cohen and Hagis proved the classical unconditional bounds that any hypothetical solution has at least 14 distinct prime factors and exceeds $10^{20}$. Burcsi, Czirbusz and Farkas record later general bounds of at least 15 prime factors and $n>10^{30}$, and prove the much larger *conditional* bounds $\omega(n)\ge40{,}000{,}000$ and $n>10^{360{,}000{,}000}$ when $3\mid n$; these conditional figures must not be transferred to unrestricted Lehmer numbers. A credible project is not a blind integer search: improve a conditional lower bound for a fixed smallest prime factor, encode the prime-factor constraints as an exact covering/constraint problem, or independently certify a substantially enlarged search region.
+- **Open-status check (2026-08-18):** Cohen and Hagis, *On the number of prime factors of $n$ if $\varphi(n)\mid n-1$*, Nieuw Archief voor Wiskunde (3) 28 (1980), 177--185: [digitized journal volume](https://books.google.com/books?id=RFNAAQAAIAAJ). Burcsi, Czirbusz and Farkas, *Computational investigation of Lehmer’s Totient Problem*, Annales Univ. Sci. Budapest., Sect. Comp. 35 (2011), 43--49, explicitly calls the question unanswered and proves the stated $3\mid n$ bounds: [primary paper](https://ac.inf.elte.hu/Vol_035_2011/doi/043_35.pdf). MathWorld’s maintained 2026 entry provides a current cross-check: [Lehmer’s Totient Problem](https://mathworld.wolfram.com/LehmersTotientProblem.html).
 
 ## 16. Rokhlin’s multiple-mixing problem
 
@@ -153,7 +155,7 @@ The sources are deliberately placed with each entry so that status can be rechec
 - **Statement:** If an invertible measure-preserving transformation is strongly mixing (two-fold mixing), must it be mixing of order three—and hence of all orders?
 - **Why it matters:** For $\mathbb Z^d$-actions with $d\ge2$, mixing need not imply higher-order mixing, but no analogous counterexample is known for a single $\mathbb Z$-action. The problem probes what pairwise asymptotic independence really controls.
 - **What is known / first attack:** Positive answers are known for important classes including Gaussian, Poisson, algebraic, and several rank-one or shearing systems under extra hypotheses. A useful first attack is to prove 3-mixing for a sharply delimited construction class, or to translate a proposed counterexample into explicit joining constraints and rule it out.
-- **Open-status check (2026-08-18):** Ryzhikov, *Multiple mixing, 75 years of Rokhlin’s problem* (2024 survey/preprint): [arXiv:2411.07234](https://arxiv.org/abs/2411.07234). A 2026 dynamics paper still describes Rokhlin’s question in this form: [Cambridge journal page](https://www.cambridge.org/core/journals/ergodic-theory-and-dynamical-systems/article/on-mixing-flows-on-finitearea-translation-surfaces/E5C54801CDE68E0F0D25777398AAD1C1).
+- **Open-status check (2026-08-18):** Ryzhikov, *Multiple mixing, 75 years of Rokhlin’s problem* (2024 survey/preprint), states directly that the problem remains open: [arXiv:2411.07234](https://arxiv.org/abs/2411.07234).
 
 ## 17. Planar self-avoiding walk scaling limit
 
@@ -161,7 +163,7 @@ The sources are deliberately placed with each entry so that status can be rechec
 - **Statement:** After the correct spatial rescaling, does the uniform self-avoiding walk on a two-dimensional lattice converge to Schramm--Loewner evolution \(\mathrm{SLE}_{8/3}\)? Even existence and conformal invariance of the Euclidean-lattice scaling limit are open.
 - **Why it matters:** This would rigorously connect a basic polymer model to conformal random geometry and prove predicted critical exponents such as the $4/3$ fractal dimension.
 - **What is known / first attack:** High-dimensional behavior is accessible via lace expansion, and the corresponding statement has been proved on certain random planar maps, but \(\mathbb Z^2\) remains resistant. A realistic project is a rigorous finite-domain observable estimate, a special strip/half-plane limit, or certified Monte Carlo tests designed to distinguish correction-to-scaling hypotheses rather than merely reproduce the expected exponent.
-- **Open-status check (2026-08-18):** Slade’s expert survey explicitly says existence and conformal invariance of the two-dimensional scaling limit remain open: [survey PDF](https://personal.math.ubc.ca/~slade/spa_proceedings.pdf). The original Lawler--Schramm--Werner scaling-limit conjectures are in [arXiv:math/0204277](https://arxiv.org/abs/math/0204277); the random-quadrangulation analogue is recorded in the peer-reviewed Cambridge repository: [Gwynne--Miller](https://www.repository.cam.ac.uk/items/4f501335-0a82-4f37-bce6-2eaa44f32666).
+- **Open-status check (2026-08-18):** Slade’s expert survey, *The Self-Avoiding Walk: A Brief Survey* (revised May 2010), explicitly says existence and conformal invariance of the two-dimensional scaling limit remain open: [survey PDF](https://personal.math.ubc.ca/~slade/spa_proceedings.pdf). The original Lawler--Schramm--Werner scaling-limit conjectures are in [arXiv:math/0204277](https://arxiv.org/abs/math/0204277); the random-quadrangulation analogue is recorded in the peer-reviewed Cambridge repository: [Gwynne--Miller](https://www.repository.cam.ac.uk/items/4f501335-0a82-4f37-bce6-2eaa44f32666).
 
 ## 18. Existence of SIC-POVMs in every dimension
 
