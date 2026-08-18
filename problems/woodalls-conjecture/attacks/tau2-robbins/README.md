@@ -7,6 +7,10 @@ target-status: verified:review
 depends-on:
 
 - `cited`: Robbins's strong-orientation theorem [1].
+- `cited`: the weighted-packing formulation and its reduction to
+  \(\{0,1\}\)-valued weights [2].
+- `cited`: Schrijver's \(\tau=2\) counterexample to the weighted
+  Edmonds--Giles conjecture [3].
 - Elementary finite-graph facts proved below (so they are not external
   dependencies).
 
@@ -108,13 +112,26 @@ and lies in \(C\cap J_-\).  Consequently every dicut meets both \(J_+\) and
 
 ## Mandatory filters
 
-1. **Schrijver filter: passes.**  The proof uses unweightedness in Lemma 1:
-   \(\tau=2\) by *arc cardinality* excludes a one-edge underlying cut.  In a
-   weighted instance, one bridge arc can have weight \(2\), so the underlying
-   graph need not be 2-edge-connected and Robbins's theorem cannot be applied.
-   The construction also assigns each individual unit arc to exactly one part;
-   it does not split a weighted arc into units.  Thus it does not imply the
-   false weighted Edmonds--Giles statement.
+1. **Schrijver filter: passes, at the colouring-to-packing step (not in
+   Lemma 1).**  For the weighted Edmonds--Giles problem, integer weights may be
+   reduced to \(w\in\{0,1\}^A\): replace an arc of weight \(k>1\) by \(k\)
+   parallel weight-one copies, while retaining weight-zero arcs because they
+   still determine which cuts are dicuts [2].  After this reduction Lemma 1
+   remains valid.  Indeed, a bridge would itself form a dicut in one of its two
+   directions, of weight at most one, contradicting minimum weighted dicut
+   value two.  In particular, the former explanation involving a single
+   weight-two bridge was wrong: that arc becomes two parallel edges.
+
+   Unweightedness is instead used when the agreement/disagreement colouring is
+   declared to be a packing.  A weighted packing \(J_+,J_-\) must satisfy
+   \(\chi^{J_+}+\chi^{J_-}\leq w\), so neither dijoin may contain a weight-zero
+   arc.  The construction colours every arc, and Lemma 2 only guarantees one
+   crossing arc of each colour in a dicut; either witness may have weight zero.
+   Deleting those arcs is not legitimate, because their directions can prevent
+   other cuts from being dicuts.  Thus the argument gives no packing respecting
+   \(w\).  This is the necessary failure: Schrijver's counterexample has
+   \(w\in\{0,1\}^A\), minimum weighted dicut value two, and no packing of two
+   dijoins [3].
 2. **Lucchesi--Younger filter: passes.**  The proof never invokes the
    Lucchesi--Younger min-dijoin/max-disjoint-dicuts theorem, nor interchanges
    dicuts and dijoins.  Its only non-elementary input is Robbins's theorem on
@@ -152,7 +169,16 @@ confusing an arbitrary directed cut with a dicut would break the proof.
    <https://doi.org/10.1007/s00493-025-00159-x>.  Corollary 2 records the same
    \(\tau=2\) conclusion via Robbins's theorem; Proposition 1 contains the
    agreement/disagreement construction in the more general language of
-   cut-balanced orientations.
+   cut-balanced orientations.  The proof of Theorem 9 works with
+   \(w\in\{0,1\}^A\), explicitly treats weight-zero arcs as structurally
+   relevant, and requires packed dijoins never to use them.
+3. A. Schrijver, “A counterexample to a conjecture of Edmonds and Giles,”
+   *Discrete Mathematics* **32** (1980), 213--214,
+   <https://ir.cwi.nl/pub/9906/9906D.pdf>.  The example is for \(k=2\): its
+   distinguished arc set meets every dicut at least twice but cannot be split
+   into two dijoins (called coverings there).  Equivalently, giving those arcs
+   weight one and all other arcs weight zero yields minimum weighted dicut two
+   with no packing of two dijoins.
 
 ## Cross-examination record
 
