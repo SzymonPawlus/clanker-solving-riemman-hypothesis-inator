@@ -13,6 +13,14 @@ output is pasted there; nothing is hand-counted. No bound, packing, or value of 
 claimed anywhere in this file. Where a statement would, if true, close an open case, it is
 flagged as conditional and the condition is stated.
 
+Two status conventions that this file's first version got wrong and now states explicitly
+(§3, and problem `RULES.md` §1): the appendix computations are **`numerical` evidence at
+best**, and a search that *fails to find* an object is evidence of nothing more than that
+this search did not find it — never a proof that the object is absent. Where such a search
+drives a decision below (N, and the negative branch of L), the decision is recorded as a
+discretionary **kill decision on negative numerical evidence**, not as a `refuted` claim, and
+nothing else in this file is allowed to depend on it.
+
 Proposal letters continue the first triage's A–H
 ([`../candidate-approaches/README.md`](../candidate-approaches/README.md), PR #26): the
 proposals here are **I–O**.
@@ -184,8 +192,10 @@ step I judge *least* likely to be wrong; say so and let the reviewer attack it.)
 diameter $> 2$ at $d^*$, and one session of searching (L's machinery) finds no alternative
 6-cell critical cover, the mechanism has no known instance: record that as a finding and
 drop the equality ambition, keeping only the BSP-coverage simplification as a contribution to
-the partition engine. For open $n$: killed for that $n$ the moment L certifies its ceiling
-$m(n) < d(n)$'s conjectured value (see L).
+the partition engine. For open $n$: dropped for that $n$ once L's search
+stalls well below the conjectured $d(n)$ — noting the asymmetry, since L can *certify* only
+lower estimates of $m(n)$, so an upper impression of $m(n)$ is `numerical` evidence for a
+decision and never a proof that no $(n-1)$-cell cover exists (see L).
 
 **Effort.** Step 1 is under an hour (a dozen exact quadratic-field distance evaluations).
 The Lean formalisation is multi-session but bounded and parallelises with everything else.
@@ -280,8 +290,10 @@ lower bound for $d(16)$ if it exceeds 8.
 engine (ceiling `verified:review` via the existing two-checker route; `verified:lean`
 inherits B's story); (ii) the decision quantity for J at $n = 16$–19: measured
 $m(n)$ vs. conjectured $d(n)$; (iii) if the search tops out well below 8 — pigeonhole cannot
-even beat the free bound — that is a clean refutation-grade finding redirecting all
-partition effort toward M. Any of the three outcomes is worth having.
+even beat the free bound — that is a decisive *negative* result redirecting partition effort
+toward M. Note its status: a search that fails to find an $(n-1)$-cell cover does not prove
+that none exists, so that branch is `numerical` evidence for a redirection decision, never a
+refutation of pigeonhole at 16. Any of the three outcomes is worth having.
 
 **Why not B.** B proposed automating partition search and is merged as a *fixed-topology,
 two-parameter* calibration. The new content: topology as a search variable, packing-derived
@@ -340,8 +352,8 @@ capacities $> 1$ with weighted covering aggregation.
 
 **Most likely to be wrong.** Usefulness, not soundness: capacities of large regions may be
 exactly as hard to certify as the original problem (the recursion may not bottom out cheaply
-enough), leaving only weak analytic capacities — and N's computation below already shows naive
-strip capacities are far too weak alone.
+enough), leaving only weak analytic capacities — and every cut set N's search below tried
+gives strip capacities far too weak to carry the count alone.
 
 **Kill-criterion.** One session must produce a *single* example beating plain pigeonhole:
 some $d$, some region set, with $\sum y_j c_j < n$ where no $(n-1)$-cell diameter cover is
@@ -353,11 +365,13 @@ exists after two sessions, the aggregation buys nothing over its ingredients; re
 Runs after L (which tells us *whether* it is needed at 16) but is independent of it.
 
 **Dependencies.** Sharp capacities for medium regions depend on I or K machinery; the analytic
-and $c=1$ layers depend on nothing unresolved.
+and $c=1$ layers depend on nothing unresolved. From N, M takes only the *per-cut-set* strip
+capacity bound — an elementary standalone fact — and explicitly **not** N's `numerical` kill
+decision, which is not assumable (§3) and is not used as a premise anywhere.
 
 ---
 
-## N. Strip counting — proposed, executed, and killed in the same hour
+## N. Strip counting — proposed, tried, and dropped in the same hour
 
 **The idea (the designated cheap-to-kill probe).** Slice $T_d$ into horizontal strips of
 height $h < 2$. Two points in one strip have $|\Delta y| \le h$, so pairwise distance $\ge 2$
@@ -366,28 +380,47 @@ most $1 + \lfloor W / \sqrt{4 - h^2} \rfloor$ points. If some choice of strip cu
 capacity $\le 15$ at some $d > 8$, that is a one-page lower bound $d(16) > d$ beating the
 state of the art, essentially for free.
 
-**Result: killed.** The appendix script optimises strip cuts (uniform grids plus 20 000
-random cut sets per $d$). Best totals: **19 at $d = 8.0$**, 20 at 8.2, 21 at 8.5, 24 at 9.24 —
-never near the required 15, and $d(16) \ge 8$ is already free. The 1-D projection discards too
-much: it cannot see that three mutually-far points in a wide strip also constrain each other
-in $y$. Recorded per §6.2/§0 as a successful refutation of the naive version. **Do not
-pursue standalone strip counting.** Salvage: strip capacities remain valid (if weak) entries
-in M's region library, and the computation above is the honest baseline any M capacity must
-beat.
+**Result: dropped, on negative numerical evidence.** The appendix script searches strip cuts
+(uniform grids plus 20 000 random cut sets per $d$) and reports the smallest total it *found*:
+**19 at $d = 8.0$**, 20 at 8.2, 21 at 8.5, 24 at 9.24 — nowhere near the required 15, while
+$d(16) \ge 8$ is already free.
 
-**Status ceiling (had it lived).** `verified:review`, plausibly `verified:lean` — the
-argument is elementary. Moot now.
+**Read those numbers correctly.** Each is a best-*found* value, hence an **upper estimate of
+the minimum capacity sum over cut sets** — not the best achievable one. A randomised search
+that failed to find a cut set with total $\le 15$ does **not** establish that no strip
+partition achieves it, and this file does not assert that. The possibility that some cut set
+outside the searched family — a finer or unevenly spaced set of horizontal cuts, or a
+non-horizontal or non-parallel slicing — reaches 15 is left explicitly open.
 
-**Why not A–H.** Not previously proposed; dies here so the question does not recur (§6.1).
+What I have instead is a mechanism and a margin, and together they are a **kill decision**,
+not a refutation: the 1-D projection discards too much (it cannot see that three mutually-far
+points in a wide strip also constrain each other in $y$), and the shortfall at $d = 8$ is four
+points, far outside what a luckier cut set plausibly recovers. So: **do not pursue standalone
+strip counting** — unless someone exhibits a cut set with capacity sum $\le 15$, which would
+overturn this decision immediately and is a welcome contribution. Salvage: the per-cut-set
+strip capacity bound remains valid (if weak) as an entry in M's region library, and the
+numbers above are the honest baseline any M capacity must beat.
 
-**Kill-criterion.** Met at proposal time — see above. Effort spent: well under one hour.
+**Status.** `numerical`, and it stays there: the evidence is a randomised search, so nothing
+in N is `refuted` and nothing in N is assumable (§3). Separately verifiable *would* be the
+per-strip capacity bound $1 + \lfloor W/\sqrt{4-h^2}\rfloor$ for a **fixed** cut set — that
+argument is elementary, ceiling `verified:review` or plausibly `verified:lean` — but it is a
+statement about one cut set, not about the minimum over all of them, and it is what M may
+reuse. The minimum over cut sets is not claimed at any status.
 
-**Dependencies.** None. The script and full output are in the appendix.
+**Why not A–H.** Not previously proposed; tried and set aside here, with the measurement
+recorded, so the question does not recur uninformed (§6.1).
+
+**Kill-criterion.** Stated and met at proposal time: "no cut set found within the search
+budget comes near 15." That is exactly what fired — a decision criterion about the search,
+not a mathematical impossibility statement. Effort spent: well under one hour.
+
+**Dependencies.** None, and nothing else in this file depends on N's kill decision; M's use of
+strip capacities is per-cut-set and independent of it.
 
 ---
 
-## O. Quantitative Oler stability at $n = \Delta(k) + 1$ — a theory probe with a computed
-negative prior
+## O. Quantitative Oler stability at $n = \Delta(k) + 1$ — a theory probe
 
 **The idea.** $16 = \Delta(5) + 1$. Any 16-point configuration in $T_d$ contains 15 points in
 $T_d$, and for $d$ near 8, $d(15) = 8$ says the 15-subset is *extremal or near-extremal* for
@@ -404,13 +437,31 @@ claimed here); whether one exists or is provable for Oler's inequality is open t
 knowledge, and issue #44 (Oler equality characterisation) is its natural companion: a
 stability theorem is precisely a robust equality characterisation.
 
-**The honest computed prior (appendix).** This cannot reach the conjectured optimum: scaling
-the lattice-with-hole picture, the hole reaches fit radius 2 only at
-$d = 8\sqrt{3} \approx 13.86 \gg 9.2495$. So the perturbative regime ends far below the truth,
-and O can never close $n = 16$ alone. But the rigorous state of the art is exactly
-$d(16) \ge 8$, so *any* $\varepsilon_0 > 0$ — even 0.05 — would be the best lower bound the
-repo has, by a theory route independent of all search machinery, and would compose with I/K
-(which need a foothold above the $d = 8$ cliff, exactly where their search is hardest).
+**The computed scaling check (appendix), and which way it points.** Dilate the exact
+$\Delta(5)$ lattice-with-hole picture from $d = 8$ upward. Hole fit radius is homogeneous of
+degree 1, so it grows as $(d/8) \cdot 2/\sqrt{3}$ and first reaches 2 — the value at which a
+16th point would fit into the *scaled* hole — at $d = 8\sqrt{3} \approx 13.856$. Since
+$13.856 > 9.2495$, the simple hole obstruction **persists throughout the conjectured range**:
+at $d = 9.2495$ the scaled hole radius is still only $\approx 1.335$, well short of 2. The
+check therefore says the obstruction does not self-destruct before the conjectured optimum —
+it is neutral-to-favourable for O, not a negative prior. (The first version of this file read
+this backwards, concluding that "the perturbative regime ends far below the truth"; that was a
+direction error and it is retracted here.)
+
+Equally, it licenses nothing: pure dilation is a one-parameter family, and at $d > 8$ the 15
+points have slack and may *rearrange* rather than dilate. The scaling figure bounds nothing
+about that.
+
+**The real limitation** is the one this proposal's failure analysis already identifies below:
+the unknown *quantitative* stability control — how large $\varepsilon$ may be before
+"$\Delta(5)$ points fit in side $8 + \varepsilon$" stops forcing near-lattice structure, and
+how weak $\delta(\varepsilon)$ is when it does. That constant, not the $8\sqrt{3}$ figure, is
+what decides whether any usable $\varepsilon_0$ survives; it is unknown to me, plausibly very
+weak, and possibly nonexistent without extra hypotheses. Against that, the rigorous state of
+the art is exactly $d(16) \ge 8$, so *any* $\varepsilon_0 > 0$ — even 0.05 — would be the best
+lower bound the repo has, by a theory route independent of all search machinery, and would
+compose with I/K (which need a foothold above the $d = 8$ cliff, exactly where their search is
+hardest).
 
 **Delivers.** A conjectured stability lemma with an attempted proof for $k = 5$ (ceiling:
 `sketch` until cross-examined; `verified:review` realistic for a careful finite-case argument;
@@ -468,12 +519,19 @@ must be resolved from literature before any proof attempt (flagged, not assumed)
    one-session existence gate (beat pigeonhole once, anywhere) keeps it honest. Do after L
    reports.
 6. **O — Oler stability.** Keep alive to its two-session kill decision because it is the only
-   *theory* route to a foothold above $d = 8$ and it feeds #44. Expected outcome: killed by
-   the constants — and that write-up still teaches us what the equality case needs.
-7. **N — strip counting.** Already executed and killed above. Zero further effort;
-   its residue lives inside M.
+   *theory* route to a foothold above $d = 8$ and it feeds #44. Its computed scaling check is
+   neutral-to-favourable rather than the negative prior the first version of this file called
+   it, so O is no longer ranked down *for that reason*; it stays sixth because its deciding
+   unknown — the quantitative stability constant — is not measurable in a session, whereas
+   I/K/L/M all have gates that resolve in one or two. Expected outcome: still killed by the
+   constants, and that write-up teaches us what the equality case needs.
+7. **N — strip counting.** Tried above and dropped on negative numerical evidence — a kill
+   *decision*, not a refutation, and not assumable. Zero further effort planned; its residue
+   lives inside M, and the door stays open to anyone who exhibits a cut set with capacity sum
+   $\le 15$.
 
-**Would not pursue:** N (dead, above); O beyond its stated two-session gate; and the two ideas
+**Would not pursue:** N (dropped above on `numerical` evidence — a decision, not a proof of
+impossibility); O beyond its stated two-session gate; and the two ideas
 generated and rejected during this round — *reflection unfolding* (lift $T_d$ to the plane via
 the reflection group and apply plane-packing density bounds: the mirror copies near walls
 violate the packing constraint, and repairing that boundary effect *is* Oler's proof — it
@@ -568,4 +626,5 @@ scaling reaches radius 2 at d = 8*sqrt(3) = 13.856406460551018
 (An earlier exploratory variant of this script — different RNG stream order, same seed —
 found 24 rather than 21 at $d = 9.0$; the strip search is randomised and these are best-found
 values, i.e. *upper* estimates of the true minimum capacity sum. Either number is far above
-the 15 the attack needed, so the kill verdict does not depend on the run.)
+the 15 the attack needed, so N's kill *decision* does not depend on the run — but no run here
+is evidence that no cut set reaches 15, only that this search did not find one.)
