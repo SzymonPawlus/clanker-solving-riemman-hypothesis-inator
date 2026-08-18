@@ -1,0 +1,32 @@
+{
+  "status": "timeout",
+  "n": 16,
+  "d": "8",
+  "d_float": 8.0,
+  "max_level": 6,
+  "max_cited": 2,
+  "symmetry": true,
+  "nodes": 51900000,
+  "pruned_pair": 95134562,
+  "pruned_cap": 1763592645,
+  "max_split_level": 4,
+  "stack_remaining": 332,
+  "elapsed_seconds": 900.004697024,
+  "capacity_by_level": [
+    null,
+    null,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "witness": null,
+  "meta": {
+    "python": "3.14.5 (main, May 10 2026, 18:26:20) [GCC 16.1.1 20260430]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "note": "search is exact integer arithmetic; no seeds, fully deterministic"
+  }
+}

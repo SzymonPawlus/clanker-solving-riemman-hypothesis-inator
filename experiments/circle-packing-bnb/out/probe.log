@@ -1,0 +1,5 @@
+{'n': 12, 'd': '6.99', 'max_level': 6, 'max_cited': 2, 'status': 'timeout', 'nodes': 22520000, 'seconds': 90.04}
+{'n': 16, 'd': '8.001', 'max_level': 6, 'max_cited': 2, 'status': 'timeout', 'nodes': 2400000, 'seconds': 90.5}
+{'n': 16, 'd': '8.001', 'max_level': 6, 'max_cited': 15, 'status': 'timeout', 'nodes': 21720000, 'seconds': 90.07}
+{'n': 16, 'd': '8.01', 'max_level': 6, 'max_cited': 15, 'status': 'timeout', 'nodes': 21700000, 'seconds': 90.08}
+{'n': 16, 'd': '8.05', 'max_level': 7, 'max_cited': 15, 'status': 'timeout', 'nodes': 21700000, 'seconds': 90.0}
