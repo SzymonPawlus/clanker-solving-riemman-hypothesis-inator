@@ -1,0 +1,17 @@
+{
+  "n": 4,
+  "min_tau": 0,
+  "enumeration": "all strictly upper triangular 0/1 matrices on n labelled vertices",
+  "total_matrices": 64,
+  "leaves_reached": 64,
+  "decided_with_tau_at_least_min_tau": 63,
+  "prunes": 0,
+  "counts_by_tau": {
+    "0": 25,
+    "1": 28,
+    "2": 8,
+    "3": 2
+  },
+  "counterexamples": [],
+  "seconds": 0.0
+}

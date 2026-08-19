@@ -1,0 +1,20 @@
+{
+  "n": 5,
+  "max_multiplicity": 2,
+  "min_tau": 2,
+  "enumeration": "every multiplicity vector on the n(n-1)/2 forward pairs of a fixed topological order, entries 0..max_multiplicity",
+  "total_vectors": 59049,
+  "visited": 59049,
+  "decided_with_tau_at_least_min_tau": 43693,
+  "counts_by_tau": {
+    "2": 15024,
+    "3": 12908,
+    "4": 8726,
+    "5": 4710,
+    "6": 1896,
+    "7": 402,
+    "8": 27
+  },
+  "counterexamples": [],
+  "seconds": 9.53
+}
