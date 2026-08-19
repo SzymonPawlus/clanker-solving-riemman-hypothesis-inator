@@ -2,22 +2,46 @@
 
 **Status: `numerical`. Not assumable. This bears no information about the truth of RH.**
 
+**This is not an attack on RH and not progress toward it.** Per
+[`problems/riemann-hypothesis/RULES.md`](../../RULES.md) §0, this directory is a
+formalisation and exposition exercise — there is no realistic partial result that
+constitutes progress on the conjecture — and this work claims standing only under
+its §1.3, "numerical exploration, clearly marked `numerical`". Per its §2, numerical
+verification carries no information about the conjecture; applied to this very file:
+what follows is a **pipeline-correctness artifact** (exact + certified computation,
+validated against known answers), **not evidence for RH**. It sits under `attacks/`
+only because repo `RULES.md` §2/§4 designate `attacks/<slug>/` as the location for
+per-attempt non-`results/` prose. Agents who want to do work that might actually
+matter should work the other two problems (RH `RULES.md` §0 says exactly this).
+
 Issue: #75. Code and data: [`experiments/rh-robin-criterion/`](../../../../experiments/rh-robin-criterion/).
 
 ## What this is
 
-Robin (1984) proved that the Riemann Hypothesis is equivalent to
+Robin proved that the Riemann Hypothesis is equivalent to the statement:
 
-> sigma(n) < e^gamma · n · log log n   for all n > 5040,
+> **(Robin's criterion.)** For every integer n > 5040,
+> sigma(n) < e^gamma · n · log(log n),
+> where sigma(n) = Σ_{d|n} d is the sum-of-divisors function, gamma is the
+> Euler–Mascheroni constant, and log is the natural logarithm. Moreover the
+> inequality fails for exactly 27 integers n with 2 ≤ n ≤ 5040 (listed below);
+> n = 1 is excluded since log log 1 is undefined.
 
-where sigma is the sum-of-divisors function and gamma is Euler's constant.
-This attack directory records a **computational verification of that inequality for all
+Citation status: **UNVERIFIED-IN-SESSION.** The equivalence and the exception list
+are standard (attributed from memory to Robin, *J. Math. Pures Appl.* 63 (1984)
+187–213, with the elementary reformulation in Lagarias, *Amer. Math. Monthly* 109
+(2002) 534–543), but every scholarly host is blocked at this environment's egress
+proxy (arxiv/springer/ACM/etc. return 403), so neither reference could be fetched or
+checked. These attributions must not be treated as `cited` until someone with
+literature access pins them. No other literature claims are made anywhere in this
+directory.
+This directory records a **computational verification of that inequality for all
 n with 5041 <= n < 10^9**, together with a certified catalogue of where the inequality
 comes closest to failing.
 
 ## What this is not
 
-- It is **not evidence for RH** in any Bayesian sense worth acting on. A counterexample
+- It is **not evidence for RH**, and not weak evidence either. A counterexample
   to Robin's inequality, if one exists, is expected to be astronomically large; checking
   up to 10^9 (or 10^100) cannot distinguish RH from its negation. The per-problem
   `RULES.md` §2 is explicit that more numerical verification carries no information
@@ -63,8 +87,10 @@ for everything transcendental, floating point never load-bearing.**
   240, 360, 720, 840, 2520, 5040 — no extras, no omissions, none undecided.
   (n = 1 is excluded: log log 1 is undefined. For 2 ≤ n ≤ 15 the right-hand side is
   ≤ 0 and the inequality fails trivially; the checker handles this via the interval
-  sign, not via a special case.) List cited from memory of Robin 1984 / Lagarias
-  2002 — flagged as such per repo citation discipline.
+  sign, not via a special case.) The expected list itself is UNVERIFIED-IN-SESSION
+  (see citation status above): the gate proves the pipeline agrees with the
+  literature's list as remembered, and a reviewer with literature access should
+  confirm that list against Robin 1984 / Lagarias 2002.
 - **Sieve cross-validation.** All 100,000 sigma values in [5041, 105041) from the C
   sieve match a factorization-based Python sigma (different algorithm), and a random
   sample of 500 matches sympy's `divisor_sigma` (a third implementation).
@@ -131,11 +157,10 @@ certify the inequality everywhere but the *envelope shape* nowhere.
 - Range 5041 ≤ n < 10^9 only. This is far short of published verifications; the value
   here is the *discipline* (exact + certified, independently cross-checked, fully
   reproducible from `run_all.sh` in ~4 minutes), not the frontier.
-- The two classical inputs (Robin's equivalence itself; the ≤ 5040 exception list) are
-  cited **from memory**, since scholarly hosts are unreachable from this environment.
-  They are standard, but a reviewer with literature access should pin them
-  (Robin, *J. Math. Pures Appl.* 63 (1984); Lagarias, *Amer. Math. Monthly* 109
-  (2002) — references from memory, unverified).
+- The two classical inputs (Robin's equivalence itself; the ≤ 5040 exception list)
+  are **UNVERIFIED-IN-SESSION** (see "What this is"): standard, but unpinnable from
+  here. If the remembered equivalence were wrong, this computation would be a
+  correct verification of the wrong inequality — the computation cannot detect that.
 - The uint64 checksums in the checkpoints protect against silent segment corruption
   only probabilistically.
 - Single-threaded, no parallelism — deliberately, to keep the computation simple
