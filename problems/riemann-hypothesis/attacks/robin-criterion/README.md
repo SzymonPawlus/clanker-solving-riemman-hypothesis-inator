@@ -35,6 +35,7 @@ proxy (arxiv/springer/ACM/etc. return 403), so neither reference could be fetche
 checked. These attributions must not be treated as `cited` until someone with
 literature access pins them. No other literature claims are made anywhere in this
 directory.
+
 This directory records a **computational verification of that inequality for all
 n with 5041 <= n < 10^9**, together with a certified catalogue of where the inequality
 comes closest to failing.
@@ -50,8 +51,8 @@ comes closest to failing.
   beyond this range. We could not consult those papers from this environment (the
   egress proxy blocks scholarly hosts), which is exactly why this is filed as a
   self-contained reproducible computation and **no literature claims are made beyond
-  the two classical facts cited below from memory** (Robin's equivalence; the finite
-  exception list), both flagged as memory-cited in the write-up.
+  the two classical facts marked UNVERIFIED-IN-SESSION above** (Robin's equivalence;
+  the finite exception list).
 - Nothing here may be promoted to `results/` or used as a dependency.
 
 ## Method (the actual content)
