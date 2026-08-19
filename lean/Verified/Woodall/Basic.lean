@@ -6,7 +6,8 @@ Authors: claude
 import Mathlib.Data.Finset.Card
 import Mathlib.Data.Fintype.Powerset
 import Mathlib.Data.Fintype.Prod
-import Mathlib.Tactic
+import Mathlib.Tactic.ByContra
+import Mathlib.Tactic.Choose
 
 /-!
 # Woodall's conjecture — definitions, statement, and the easy direction
@@ -102,9 +103,11 @@ def out (D : FinDigraph V) (S : Finset V) : Finset (V × V) :=
 def inn (D : FinDigraph V) (S : Finset V) : Finset (V × V) :=
   D.arcs.filter fun a => a.1 ∉ S ∧ a.2 ∈ S
 
+omit [Fintype V] in
 theorem out_subset_arcs (D : FinDigraph V) (S : Finset V) : D.out S ⊆ D.arcs :=
   Finset.filter_subset _ _
 
+omit [Fintype V] in
 theorem inn_subset_arcs (D : FinDigraph V) (S : Finset V) : D.inn S ⊆ D.arcs :=
   Finset.filter_subset _ _
 
@@ -186,7 +189,7 @@ theorem not_isDijoin_of_isDicut_empty {D : FinDigraph V} {J : Finset (V × V)}
     (hC : D.IsDicut ∅) : ¬D.IsDijoin J := by
   intro hJ
   obtain ⟨a, -, ha⟩ := hJ.exists_mem_of_isDicut hC
-  exact absurd ha (Finset.not_mem_empty a)
+  simp at ha
 
 /-- Every digraph has the empty packing. -/
 theorem hasPacking_zero (D : FinDigraph V) : D.HasPacking 0 :=
