@@ -21,7 +21,7 @@ import time
 from fractions import Fraction
 
 from .caps import D_ENCLOSURE
-from .search import Prover, load_frontier
+from .search import CheckpointError, Prover, load_frontier
 
 HERE = pathlib.Path(__file__).resolve().parent.parent
 
@@ -37,14 +37,44 @@ def _meta() -> dict:
 
 def cmd_prove(args: argparse.Namespace) -> int:
     d = Fraction(args.d)
-    prover = Prover(args.n, d, args.max_level, args.max_cited, symmetry=not args.no_symmetry)
-    frontier = load_frontier(args.resume) if args.resume else None
+    symmetry = not args.no_symmetry
+    prover = Prover(args.n, d, args.max_level, args.max_cited, symmetry=symmetry)
+
+    frontier = None
+    if args.resume:
+        # Fail closed.  A checkpoint is untrusted input to a program whose entire output is
+        # a claim that something was exhaustively ruled out, so a rejected checkpoint must
+        # end the run -- never fall back to a fresh search, which would silently answer a
+        # different question than the one the user asked.
+        try:
+            frontier = load_frontier(
+                args.resume,
+                n=args.n,
+                d=d,
+                max_level=args.max_level,
+                max_cited=args.max_cited,
+                symmetry=symmetry,
+            )
+        except (CheckpointError, OSError) as exc:
+            print(f"error: refusing to resume: {exc}", file=sys.stderr)
+            return 2
+
     result = prover.run(
         time_limit=args.time_limit,
         node_limit=args.node_limit,
         checkpoint_path=args.checkpoint,
         initial_stack=frontier,
     )
+    if frontier is not None:
+        # Provenance: a resumed result rests on the checkpoint file as well as on this
+        # run's arithmetic.  Record that in the output rather than letting a resumed
+        # "proved" read identically to one produced from scratch.
+        result["resumed_from"] = {
+            "path": args.resume,
+            "frontier_nodes": len(frontier),
+            "note": "validated against this run's (n, d, max_level, max_cited, symmetry); "
+                    "coverage of the frontier is inherited from the run that wrote it",
+        }
     result["meta"] = _meta()
     if args.out:
         pathlib.Path(args.out).write_text(json.dumps(result, indent=2))
@@ -56,6 +86,11 @@ def cmd_prove(args: argparse.Namespace) -> int:
             f"\n  => d({args.n}) > {d},  s({args.n}) > {d} + 2*sqrt(3) "
             f"= {float(d) + 3.4641016151377544:.9f}"
         )
+        if frontier is not None:
+            print(
+                f"  (resumed from {args.resume}: this conclusion also rests on that file "
+                f"covering the branches the interrupted run had not yet refuted)"
+            )
     return 0
 
 

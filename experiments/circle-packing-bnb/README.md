@@ -429,15 +429,59 @@ recorded in every output JSON under `meta`. The results above were produced on C
 3.14.5, x86-64 Linux; the tests are the part that must reproduce, and they use no
 platform-dependent arithmetic beyond IEEE-754 binary64.
 
-**Checkpointing.** `--checkpoint` writes `{status, nodes, elapsed, frontier}` every 200 000
-nodes and on exit, via an atomic rename. On `timeout` the frontier is the complete
-remaining DFS stack, so `--resume` continues an interrupted exhaustion with no loss and no
-double counting. A killed run therefore still leaves a resumable state on disk (repo
-`RULES.md` §6).
+**Checkpointing.** `--checkpoint` writes `{schema, status, parameters, nodes, elapsed,
+frontier, frontier_count, frontier_digest}` every 200 000 nodes and on exit, via an atomic
+rename. On `timeout` the frontier is the complete remaining DFS stack, so `--resume`
+continues an interrupted exhaustion with no loss and no double counting. A killed run
+therefore still leaves a resumable state on disk (repo `RULES.md` §6).
+
+**Resume is a soundness boundary, and is validated as one.** A resume replaces the root
+node — "the `n` points are somewhere in the container" — with a frontier *asserted* to
+cover every branch the interrupted run had not yet refuted. If that assertion is false the
+exhaustion closes over a strict subset of the configuration space and reports `proved` for
+a theorem it never proved. Codex found exactly this in review of this PR: `load_frontier`
+discarded the checkpoint's parameters, so resuming the n = 12 frontier under `--n 2 --d 2`
+printed `d(2) > 2`, which the two vertices of a side-2 triangle refute. `--resume` now
+fails closed, exiting non-zero without running, unless:
+
+- the checkpoint's `n`, `d`, `max_level`, `max_cited` and `symmetry` all equal the ones the
+  run was invoked with (`d` compared as an exact rational, so `5.3` and `53/10` match).
+  `max_cited` matters for provenance as much as for arithmetic: resuming a
+  literature-pruned frontier under `--max-cited 2` would report a run that "depends on no
+  literature" while standing on cited values;
+- its `status` is one that carries a frontier. A finished (`proved`/`unresolved`)
+  checkpoint stores none, and used to load as an empty frontier and silently start a
+  *fresh* search — answering a question the user had not asked;
+- the frontier is non-empty. An empty search stack is reported as `proved` without
+  examining a single configuration, which is the classic vacuous proof;
+- `frontier_count` and the SHA-256 `frontier_digest` match the frontier, catching
+  truncation and hand-editing;
+- every node is structurally a node of *this* search: at least one cell, each a genuine
+  cell of the subdivision at level ≤ `max_level` (so a subset of the container, not an
+  arbitrary lattice triangle elsewhere), cells distinct, multiplicities positive and
+  **summing to exactly `n`**, and a minimal-level leading cell. A node summing to fewer
+  than `n` points describes a smaller configuration that the search may legitimately
+  refute while saying nothing about `n`.
+
+`Prover.run` re-applies the structural checks to any `initial_stack` it is handed, so a
+caller reaching past `load_frontier` cannot inject a node the loader would have rejected.
+
+**What resume validation does not buy.** It cannot establish the property a resume really
+needs — that the frontier *covers* what the interrupted run had not refuted. A checkpoint
+with half its nodes deleted is internally consistent, and with its digest recomputed would
+still yield a false `proved`. The digest reduces this to deliberate forgery rather than
+accident, truncation or misuse, which is as far as a file-based checkpoint can go. So a
+resumed `proved` is only as trustworthy as the file it resumed from; `prove` records
+`resumed_from` in its output and says so under the PROVED banner, and a result that must
+stand on its own should come from an uninterrupted run. Checkpoints in `out/` predate these
+fields (schema 0) and are deliberately **not** resumable: their frontiers can be truncated
+undetectably. They remain valid records of the runs that produced them.
 
 **Files.** `cpbnb/interval.py` (outward-rounded intervals), `cpbnb/lattice.py` (exact
 integer subdivision geometry), `cpbnb/caps.py` (cited `d(k)` and the capacity rule),
-`cpbnb/search.py` (the branch and bound), `cpbnb/__main__.py` (CLI), `tests/` (31 tests),
+`cpbnb/search.py` (the branch and bound, including checkpoint validation),
+`cpbnb/__main__.py` (CLI), `tests/` (70 tests, of which `tests/test_checkpoint.py` is the
+regression net for the false-proof-by-resume class),
 `out/` (run logs, results and checkpoints). Nothing in this PR touches
 `problems/**/results/`.
 

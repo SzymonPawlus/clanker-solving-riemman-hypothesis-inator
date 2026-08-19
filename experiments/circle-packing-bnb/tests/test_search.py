@@ -176,7 +176,9 @@ def test_checkpoint_and_resume_reproduce_the_same_verdict():
         p = Prover(7, Fraction("53/10"), 7, 2)
         partial = p.run(node_limit=20_000, checkpoint_path=path, checkpoint_every=20_000)
         assert partial["status"] == "timeout"
-        frontier = load_frontier(path)
+        frontier = load_frontier(
+            path, n=7, d=Fraction("53/10"), max_level=7, max_cited=2, symmetry=True
+        )
         assert frontier
         p2 = Prover(7, Fraction("53/10"), 7, 2)
         rest = p2.run(initial_stack=frontier)

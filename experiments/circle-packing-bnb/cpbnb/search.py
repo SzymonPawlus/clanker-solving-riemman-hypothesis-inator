@@ -57,16 +57,35 @@ is not the weak link -- the enumeration logic is.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import time
 from fractions import Fraction
 from itertools import combinations_with_replacement
 
 from .caps import capacity_by_level
-from .lattice import ROOT, Cell, max_sq_form, subdivide
+from .lattice import ROOT, Cell, is_valid_cell, max_sq_form, subdivide
 
 # A node is a tuple of (cell, multiplicity) pairs, sorted.
 Node = tuple[tuple[Cell, int], ...]
+
+#: Checkpoint format version.  Bump on any change to the frontier encoding.
+CHECKPOINT_SCHEMA = 1
+
+#: Checkpoint statuses that carry a resumable frontier.  ``proved``/``unresolved`` runs are
+#: finished: they store no frontier, and resuming from one is always a user error.
+RESUMABLE_STATUSES = ("running", "timeout")
+
+
+class CheckpointError(Exception):
+    """A checkpoint was rejected.  Never downgrade this to a warning.
+
+    A resume replaces the root node -- i.e. the statement "all ``n`` points lie somewhere in
+    the container" -- with a frontier that is *asserted* to cover everything the interrupted
+    run had not yet refuted.  If that assertion is false, the search closes over a strict
+    subset of the configuration space and reports ``proved`` for a theorem it never proved.
+    Rejection is therefore the only safe response to any doubt about the file.
+    """
 
 
 def compositions(k: int, parts: int = 4) -> list[tuple[int, ...]]:
@@ -164,7 +183,22 @@ class Prover:
         initial_stack: list[Node] | None = None,
     ) -> dict:
         start = time.monotonic()
-        stack: list[Node] = list(initial_stack) if initial_stack else [((ROOT, self.n),)]
+        if initial_stack is None:
+            stack: list[Node] = [((ROOT, self.n),)]
+        else:
+            # Defence in depth: a caller reaching past ``load_frontier`` (tests, notebooks,
+            # a future driver) must not be able to inject a node the checkpoint loader
+            # would have rejected.  An *empty* resume stack is never legitimate -- a
+            # checkpoint is only written with a frontier while the stack is non-empty -- and
+            # accepting one would report ``proved`` without examining a single node.
+            stack = list(initial_stack)
+            if not stack:
+                raise CheckpointError(
+                    "refusing to resume from an empty frontier: an empty search stack "
+                    "would be reported as 'proved' without examining any configuration"
+                )
+            for node in stack:
+                validate_node(node, n=self.n, max_level=self.max_level)
         # The initial node is the only one never produced by the branching step, so it is
         # the only one that would otherwise skip the capacity test.
         stack = [node for node in stack if all(self.cap_ok(c, m) for c, m in node)]
@@ -283,6 +317,7 @@ class Prover:
         self, path: str, status: str, stack: list[Node], start: float, result: dict | None
     ) -> None:
         payload = {
+            "schema": CHECKPOINT_SCHEMA,
             "status": status,
             "n": self.n,
             "d": str(self.d),
@@ -296,8 +331,11 @@ class Prover:
             "stack_remaining": len(stack),
             "result": result,
         }
-        if status in ("timeout", "running"):
-            payload["frontier"] = [_jsonable(node) for node in stack]
+        if status in RESUMABLE_STATUSES:
+            frontier = [_jsonable(node) for node in stack]
+            payload["frontier"] = frontier
+            payload["frontier_count"] = len(frontier)
+            payload["frontier_digest"] = frontier_digest(frontier)
         tmp = path + ".tmp"
         with open(tmp, "w") as fh:
             json.dump(payload, fh)
@@ -314,7 +352,180 @@ def _from_jsonable(raw: list) -> Node:
     return tuple((tuple(cell), mult) for cell, mult in raw)
 
 
-def load_frontier(path: str) -> list[Node]:
-    with open(path) as fh:
-        payload = json.load(fh)
-    return [_from_jsonable(node) for node in payload.get("frontier", [])]
+def frontier_digest(frontier: list) -> str:
+    """SHA-256 over the canonical JSON encoding of a frontier.
+
+    Detects truncation and hand-editing of a checkpoint written by this code.  It is an
+    integrity check, not a signature: anyone who edits the frontier can recompute it.  See
+    the trust note on :func:`load_frontier`.
+    """
+    blob = json.dumps(frontier, sort_keys=True, separators=(",", ":")).encode()
+    return hashlib.sha256(blob).hexdigest()
+
+
+def validate_node(node: object, n: int, max_level: int) -> Node:
+    """Check that ``node`` is a well-formed search node for this theorem, or raise.
+
+    A node claims "the ``n`` points are distributed over these cells with these
+    multiplicities".  Every clause below is required for that reading to be true:
+
+    * at least one cell -- an empty node describes nothing (and crashes the hot loop);
+    * every cell is a genuine cell of the subdivision (``lattice.is_valid_cell``), so it is
+      a subset of the container rather than an arbitrary lattice triangle somewhere else;
+    * every cell is at level ``<= max_level``, since the branching cannot create a deeper
+      one and a deeper cell would evade the ``max_level`` termination test;
+    * cells are distinct, and multiplicities are ``>= 1``;
+    * **multiplicities sum to exactly ``n``** -- a node summing to fewer points describes a
+      configuration of ``< n`` points, which the search may legitimately refute while
+      saying nothing whatever about ``n``;
+    * the first cell has minimal level, the FIFO invariant the branching step relies on to
+      pick "a largest cell" as ``node[0]`` without searching.
+    """
+    if not isinstance(node, (list, tuple)) or not node:
+        raise CheckpointError(f"frontier node is empty or not a list: {node!r}")
+    pairs: list[tuple[Cell, int]] = []
+    total = 0
+    for entry in node:
+        if not isinstance(entry, (list, tuple)) or len(entry) != 2:
+            raise CheckpointError(f"frontier entry is not a [cell, multiplicity] pair: {entry!r}")
+        raw_cell, mult = entry
+        cell = tuple(raw_cell) if isinstance(raw_cell, (list, tuple)) else raw_cell
+        if not is_valid_cell(cell):
+            raise CheckpointError(
+                f"frontier entry names {raw_cell!r}, which is not a cell of the "
+                f"subdivision of the container"
+            )
+        if cell[0] > max_level:
+            raise CheckpointError(
+                f"frontier cell {cell!r} is at level {cell[0]} > max_level {max_level}; "
+                f"the branching cannot produce it"
+            )
+        if not isinstance(mult, int) or isinstance(mult, bool) or mult < 1:
+            raise CheckpointError(f"frontier multiplicity {mult!r} is not a positive integer")
+        pairs.append((cell, mult))
+        total += mult
+    cells = [cell for cell, _ in pairs]
+    if len(set(cells)) != len(cells):
+        raise CheckpointError(f"frontier node repeats a cell: {node!r}")
+    if total != n:
+        raise CheckpointError(
+            f"frontier node distributes {total} points, but the requested theorem is about "
+            f"n = {n}; this node says nothing about n = {n}"
+        )
+    if cells[0][0] != min(c[0] for c in cells):
+        raise CheckpointError(
+            f"frontier node does not lead with a minimal-level cell, breaking the "
+            f"branching invariant: {node!r}"
+        )
+    return tuple(pairs)
+
+
+def load_frontier(
+    path: str,
+    *,
+    n: int,
+    d: Fraction,
+    max_level: int,
+    max_cited: int,
+    symmetry: bool,
+) -> list[Node]:
+    """Load a checkpoint frontier, rejecting anything that is not this exact theorem.
+
+    The parameters are the ones the *caller* is about to prove something about.  Every one
+    of them must match what the checkpoint was produced under, because each changes what
+    the discarded branches meant:
+
+    ``n``          the frontier's nodes distribute ``n`` points and the pruned branches were
+                   pruned for ``n``;
+    ``d``          the pair and capacity tests are thresholds in ``d``; a frontier carved at
+                   a smaller ``d`` omits branches that are live at a larger one;
+    ``max_level``  bounds the resolution the frontier was developed to;
+    ``max_cited``  fixes which literature values were allowed to prune, so resuming a
+                   literature-pruned frontier under ``--max-cited 2`` would report a run
+                   that "depends on no literature" while standing on cited values;
+    ``symmetry``   the root-level D3 corner ordering was applied, or was not.
+
+    **What this does not do.** Validation cannot establish the one property a resume really
+    needs -- that the frontier *covers* everything the interrupted run had not refuted.
+    A checkpoint with half its nodes deleted is still internally consistent, and -- once
+    its digest is *recomputed* -- would still yield a false ``proved``.  The mandatory
+    digest reduces that to deliberate forgery rather than accident or truncation, which is
+    as far as a file-based checkpoint can go; it catches damage, not a determined editor.  So a resumed ``proved`` is only as trustworthy as the file it resumed
+    from; a result that must stand on its own should be produced by an uninterrupted run,
+    and ``prove`` records ``resumed_from`` in its output so a reader can tell the
+    difference.
+    """
+    try:
+        with open(path) as fh:
+            payload = json.load(fh)
+    except json.JSONDecodeError as exc:
+        raise CheckpointError(f"{path}: not valid JSON ({exc})") from exc
+    if not isinstance(payload, dict):
+        raise CheckpointError(f"{path}: checkpoint is not a JSON object")
+
+    schema = payload.get("schema")
+    if schema != CHECKPOINT_SCHEMA:
+        raise CheckpointError(
+            f"{path}: checkpoint schema {schema!r}, expected {CHECKPOINT_SCHEMA}.  "
+            f"Checkpoints written before frontier integrity fields existed (schema 0, no "
+            f"'schema' key) are not resumable: their frontier can be truncated or edited "
+            f"undetectably, and a short frontier closes early as a false 'proved'.  Re-run "
+            f"to produce a current checkpoint."
+        )
+
+    status = payload.get("status")
+    if status not in RESUMABLE_STATUSES:
+        raise CheckpointError(
+            f"{path}: checkpoint status {status!r} carries no frontier "
+            f"(resumable statuses: {', '.join(RESUMABLE_STATUSES)})"
+        )
+
+    expected = {
+        "n": n,
+        "d": str(d),
+        "max_level": max_level,
+        "max_cited": max_cited,
+        "symmetry": symmetry,
+    }
+    for key, want in expected.items():
+        if key not in payload:
+            raise CheckpointError(
+                f"{path}: checkpoint does not record {key!r}, so it cannot be shown to be "
+                f"a checkpoint of the requested theorem"
+            )
+        got = payload[key]
+        if key == "d":
+            try:
+                same = Fraction(str(got)) == d
+            except (TypeError, ValueError, ZeroDivisionError) as exc:
+                raise CheckpointError(f"{path}: checkpoint d={got!r} is not a rational") from exc
+        else:
+            same = type(got) is type(want) and got == want
+        if not same:
+            raise CheckpointError(
+                f"{path}: checkpoint was produced with {key}={got!r}, but this run requests "
+                f"{key}={want!r}.  Resuming would report a result for the wrong theorem."
+            )
+
+    raw = payload.get("frontier")
+    if not isinstance(raw, list):
+        raise CheckpointError(f"{path}: checkpoint has no frontier list")
+    if not raw:
+        raise CheckpointError(
+            f"{path}: frontier is empty.  A {status!r} checkpoint is only written while "
+            f"nodes remain, and an empty stack would be reported as 'proved' without "
+            f"examining any configuration."
+        )
+    count = payload.get("frontier_count")
+    if count != len(raw):
+        raise CheckpointError(
+            f"{path}: frontier holds {len(raw)} nodes but the checkpoint records "
+            f"{count!r}; the file has been truncated or edited"
+        )
+    digest = payload.get("frontier_digest")
+    if digest != frontier_digest(raw):
+        raise CheckpointError(
+            f"{path}: frontier digest mismatch; the file has been edited since it was "
+            f"written"
+        )
+    return [validate_node(node, n=n, max_level=max_level) for node in raw]

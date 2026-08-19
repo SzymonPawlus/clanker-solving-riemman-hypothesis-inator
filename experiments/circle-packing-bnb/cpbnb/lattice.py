@@ -51,6 +51,32 @@ def vertices(cell: Cell) -> tuple[tuple[int, int], tuple[int, int], tuple[int, i
     return ((i + 1, j), (i, j + 1), (i + 1, j + 1))
 
 
+def is_valid_cell(cell: object) -> bool:
+    """Is ``cell`` a genuine cell of the dyadic subdivision of the root triangle?
+
+    Used to validate untrusted checkpoint input (``search.load_frontier``).  A level-``L``
+    cell tiles the root triangle iff, with ``N = 2**L``,
+
+        ``up(i, j)``   : ``i >= 0``, ``j >= 0``, ``i + j <= N - 1``
+        ``down(i, j)`` : ``i >= 0``, ``j >= 0``, ``i + j <= N - 2``
+
+    which is exactly the image of ``subdivide`` iterated ``L`` times from :data:`ROOT`
+    (checked exhaustively, in both directions, for ``L <= 5`` in
+    ``tests/test_checkpoint.py::test_is_valid_cell_matches_the_subdivision_exactly``).  Cells outside this
+    set are *not* subsets of the container, so a node containing one describes a region the
+    exhaustion was never entitled to reason about.
+    """
+    if not isinstance(cell, tuple) or len(cell) != 4:
+        return False
+    level, orient, i, j = cell
+    if any(not isinstance(v, int) or isinstance(v, bool) for v in (level, orient, i, j)):
+        return False
+    if level < 0 or orient not in (UP, DOWN) or i < 0 or j < 0:
+        return False
+    n = 1 << level
+    return i + j <= (n - 1 if orient == UP else n - 2)
+
+
 def subdivide(cell: Cell) -> tuple[Cell, Cell, Cell, Cell]:
     """The four congruent children covering ``cell``."""
     level, orient, i, j = cell
