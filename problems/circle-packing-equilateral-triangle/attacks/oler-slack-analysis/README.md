@@ -96,7 +96,7 @@ $$\tfrac{2}{\sqrt3}A(P) - \tfrac{F}{2} + \tfrac12 M(P) - \tfrac{b}{2}
   it starts.
 
 **Verification** (`experiments/packing-oler-slack`, exact): both halves — $F = 2n-b-2$ and
-$\sum_f A_f = A(P)$ — are checked on all 15 non-degenerate configurations available, and
+$\sum_f A_f = A(P)$ — are checked on all 14 non-degenerate configurations available (16 atlas rows, of which n = 1, 2 are degenerate; count corrected per Codex's review of PR #90), and
 separately the two sides of the identity are computed by independent routes (left from
 $A, M, n$; right from the triangulation) and their enclosures checked to intersect. The
 triangular controls $n = 3, 6, 10$ give exactly zero on both sides, every face and every edge.
