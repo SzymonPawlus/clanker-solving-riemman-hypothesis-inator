@@ -1,0 +1,3 @@
+refined near theta=pi/6: 28 (0.5235987755982988, 0.3786, 0.2474)
+refined near theta=0   : 31 (0.0, 0.0, 0.0)
+centres: 28 min clipped area 0.3895

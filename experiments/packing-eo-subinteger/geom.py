@@ -289,7 +289,15 @@ def capacity(total, lo, hi, mu, extra_etas=(), max_cells=400):
     if not pts:
         return 0, "empty"
     if len(pts) < 3:
-        return 1, "degenerate"
+        # degenerate region: a point, or a segment of length L, which holds
+        # 1 + floor(L/mu) mu-separated points -- NOT 1.  (Caught by control K3.)
+        if len(pts) < 2:
+            return 1, "point"
+        L2 = d2(pts[0], pts[1])
+        m = 1
+        while (m * mu) ** 2 <= L2:
+            m += 1
+        return m, "segment"
     if diam2(pts) < mu * mu:
         return 1, "diameter"
     best = oler_cap(pts, mu)

@@ -55,3 +55,6 @@ k=4  n=9  a=299/100 (2.990000)  thresholds=sub9 (10 values)
   cells=81  binding boxes=607  distinct shapes=1050  build 102.5s
   k=4 sub9 delta=1/100: FAILED RuntimeError: simplex iteration limit
 
+k=4  n=9  a=2999/1000 (2.999000)  thresholds=sub9 (10 values)
+  floor(Oler(a)) = 9   [target: LP <= 8 decides Erdos-Oler at k=4]
+  cells=81  binding boxes=607  distinct shapes=1050  build 110.4s

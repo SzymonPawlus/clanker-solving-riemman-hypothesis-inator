@@ -8,7 +8,7 @@ from search import triangle, clip, diam2, power_cells, diams
 SQ3 = math.sqrt(3.0)
 
 class Diagram:
-    def __init__(self, a, sites, weights, knn=14):
+    def __init__(self, a, sites, weights, knn=10):
         self.a = a
         self.tri = triangle(a)
         self.s = [list(p) for p in sites]
@@ -38,15 +38,21 @@ class Diagram:
 
     def rebuild(self):
         self.nb = [self.neigh(i) for i in range(self.n)]
+        self.rev = [[] for _ in range(self.n)]
+        for i in range(self.n):
+            for j in self.nb[i]:
+                self.rev[j].append(i)
+        for k in range(self.n):
+            if k not in self.rev[k]:
+                self.rev[k].append(k)
         for i in range(self.n):
             self.d[i] = math.sqrt(diam2(self.cell(i)))
 
     def affected(self, k):
-        # cells that can change when site k moves: k and everyone having k as neighbour
-        return [k] + [i for i in range(self.n) if i != k and k in self.nb[i]]
+        return self.rev[k]
 
     def update(self, k):
-        for i in self.affected(k):
+        for i in self.rev[k]:
             self.d[i] = math.sqrt(diam2(self.cell(i)))
 
     def obj(self, p):
@@ -59,7 +65,7 @@ class Diagram:
         # honest recomputation with all sites (no knn pruning)
         return max(diams(self.s, self.w, self.tri))
 
-def descend(dg, ps=(12.,25.,50.,100.,200.,400.,900.), step0=0.05, tol=1e-11):
+def descend(dg, ps=(12.,50.,300.), step0=0.06, tol=1e-5):
     n = dg.n
     scale = dg.a / math.sqrt(n)
     for p in ps:

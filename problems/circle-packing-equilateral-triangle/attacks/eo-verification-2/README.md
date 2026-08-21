@@ -335,3 +335,303 @@ All in `check_part1_arith.py`, all exact (irrationals via certified rational bra
   flags it as checked only by sampling; I did not examine their branching either. My own cell
   machinery builds the level-$L$ subdivision directly rather than by recursive splitting.
 - **Novelty** of anything here.
+
+---
+
+# Part 2 — the round-2 lanes
+
+Each lane wrote its kill-criteria before computing, which made this half of the job much easier:
+in every case I could check the reported outcome against a criterion fixed in advance.
+
+## 8. `../eo-epsilon/` — explicit $\varepsilon = 0$, and it says so in its first line
+
+**No overclaim.** K3 fired as its author predicted, the headline is *"Explicit $\varepsilon$
+proved: $0$"*, and the non-explicit result is labelled non-explicit throughout. That is the
+posture `RULES.md` §7 asks for. Four substantive claims, all checked from the statements
+(`check_epsilon.py`; the lane's `verify.py` was not read, imported or rerun):
+
+### 8.1 "Groemer 1960 $\equiv$ Oler 1961" — **CONFIRMED**, and it is the most consequential thing in the round
+
+Groemer's Satz is $n\sqrt{12} \le F - \varkappa U + \lambda$ with $\varkappa = \frac{2-\sqrt3}{2}$,
+$\lambda = \sqrt{12}-\pi(\sqrt3-1)$, for $n$ unit circles in a convex region of area $F$,
+perimeter $U$. Apply it to $K = H \oplus B_1$, the hull of the circles, where Steiner gives
+$F = A(H)+M(H)+\pi$ and $U = M(H)+2\pi$. I re-did the substitution in my own symbolic ring
+$\mathbb{Q}[\sqrt3,\pi]/(\sqrt3^2-3)$ with $A(H), M(H)$ as formal symbols:
+
+$$F - \varkappa U + \lambda \;=\; A(H) + \tfrac{\sqrt3}{2}M(H) + \sqrt{12}$$
+
+**exactly** — the $\pi$ terms cancel identically, because $1-2\varkappa = \sqrt3-1$ is precisely
+what $\lambda$'s $-\pi(\sqrt3-1)$ is built to kill. Dividing by $\sqrt{12} = 2\sqrt3$ and
+rescaling to separation 1 gives $n \le \frac2{\sqrt3}A + \frac M2 + 1$: **Oler's inequality,
+verbatim.** Also checked tight on every $T(k)$ lattice, $k = 2..7$.
+
+Three consequences the repo should absorb, in increasing order of importance:
+
+1. **`eo-literature` §3's open question is answered, and its guess was right.** The problem
+   `README.md`'s `sketch` table showing Groemer "slack at every triangular $n$" applies Groemer to
+   the **containing triangle**; applied to the **hull of the circles** it is Oler and is exactly
+   tight there. Two different applications of one inequality, exactly as §3 conjectured.
+2. **The Groemer co-credit question is not as settled as `README.md` says.** That section rejects
+   the co-credit because "the paper contains no result about triangles" — still true — but its
+   supporting slack table does not support it, and "Zassenhaus–Groemer–Oler" now has an
+   explanation. *I did not read Groemer.* This is a literature matter, verification-critical, for
+   someone with egress; what I confirm is only the algebra above, from the transcription already
+   on `README.md`.
+3. **The equality case of Oler may already be `cited`.** Groemer's Satz as transcribed comes
+   *with* its equality clause. If that transcription is right, then
+   [`../eo-oler-equality/`](../eo-oler-equality/)'s targets (A) and (C) — the equality
+   characterisation it could only prove in the no-interior-points case (T4) — are literature, not
+   open. That reframes a whole attack. **Conditional on a transcription this repo has from one
+   page of one scan**, which is exactly the sort of dependency that should be re-read before
+   anything is built on it.
+
+### 8.2 Theorem E — **CONFIRMED**, and it does give $d(27) > a^\*$ strictly
+
+> $\mathrm{def}(a,n) = 0 \Rightarrow a \in \mathbb{Z}_{\ge0}$, $E = \Lambda \cap T(a)$, $n$
+> triangular. Hence $d(n) > a^\*_n$ strictly for every non-triangular $n$.
+
+Re-derived. $\mathrm{def} = G + \mathrm{slack}$ with $G = \Phi(T)-\Phi(P) \ge 0$ by monotonicity of
+area and perimeter under inclusion; $\mathrm{def}=0$ kills both. $G = 0$ forces $A(P) = A(T)$,
+and a closed convex $P \subsetneq T$ leaves a relatively open non-empty subset of $T$, which has
+positive area — so $P = T(a)$, in particular non-degenerate, which disposes of Groemer's
+degenerate alternative. $\mathrm{slack}=0$ is then Groemer's equality clause (§8.1), so $T(a)$ is
+tiled by unit equilateral triangles with all vertices in $E$; each side of $T$ is a union of tile
+edges, so $a \in \mathbb{Z}$; and no extra point can exist, since every point of a unit
+equilateral tile is within its circumradius $1/\sqrt3 < 1$ of a vertex. Attainment of $d(n)$ is
+compactness. **Correct.**
+
+> **Consistency test, and it is a strong one.** Theorem E predicts $a_n = a^\*_n$ **iff** $n$ is
+> triangular. Against all 16 of the repo's `cited` values ($n \le 15$, $n = 20, 21$): equality at
+> exactly $n = 3, 6, 10, 15, 21$ and strict inequality at every other row, with **zero**
+> exceptions. That is 16 independent chances to fail and it takes none of them.
+
+Its number-theoretic lemma ($4k^2+4k-7$ is never a perfect square for $k \ge 2$; from
+$(2a+3)^2 = (2k+1)^2-8 \Rightarrow (k-a-1)(k+a+2) = 2$) is correct, and I found no $k < 300\,000$
+against it.
+
+**Two caveats, neither the author's fault.** (i) Theorem E rests entirely on Groemer's equality
+clause, i.e. on one transcribed page — see §8.1(3). (ii) "$a$ is a **positive** integer" should be
+"non-negative": $n = 1$ gives $a = 0$, the degenerate $k=1$ case. Trivial.
+
+**What it is worth.** The repo previously had $d(27) \ge a^\*$; it now has $d(27) > a^\*$ with no
+modulus. That is a real strict improvement and it is also, on the $\varepsilon$-scale, exactly
+nothing — $\varepsilon$ stays $0$. The lane says both. Agreed on both.
+
+### 8.3 Theorem Q (quantitative Lemma T) — **CONFIRMED**
+
+$\tau \ge \frac{SQ-3(4-S)^2}{12}$ on $3\le S\le4$. The proof rationalises $\tau = N/D$ with
+$N = \frac{SQ}{12}-\frac{(4-S)^2}{4}$, $D = \frac{2}{\sqrt3}A + \frac{4-S}{2}$, then needs
+$D \le 1$: $\frac2{\sqrt3}A \le \frac{S^2}{18}$ (equilateral maximises area at fixed perimeter),
+and $\frac{S^2}{18}+\frac{4-S}{2}$ is decreasing on $[3,4]$ (derivative $\frac S9-\frac12<0$) with
+value exactly $1$ at $S=3$. Every step re-derived and checked exactly. Scanned on **93 366**
+exactly-decided triangles of my own choosing — full grid, 60 000 random rationals, both
+equality-case neighbourhoods, exactly-degenerate families, thin slivers with long side up to 12,
+integer sides to 29. **Zero violations.** The bound vanishes at exactly $(1,1,1)$ and $(2,1,1)$
+and nowhere between, as claimed.
+
+### 8.4 Proposition V — **CONFIRMED**, with one phrasing caveat
+
+T2 is an *identity*, so any $0 \le \Psi \le \tau$ gives
+$\sum_f\Psi - \sum_{\rm int}(\ell-1) \le \mathrm{slack}$, with equality at $\Psi=\tau$. A lower
+bound on the slack obtained this way is therefore never stronger than the identity itself. **The
+logic is right and the no-go is real.** (V3) is correct too: for a face with all three edges
+interior, $\sigma(f) = \frac2{\sqrt3}A_f - \frac12$, negative whenever $A_f < \frac{\sqrt3}4$ —
+i.e. the already-refuted face-excess hypothesis. Checked exactly.
+
+**Caveat on (V1)'s phrasing.** *"No quantitative Lemma T is a strengthening of anything"* reads
+more broadly than what is proved. $\Psi$ **combined with an independent upper bound on**
+$\sum_{\rm int}(\ell_e-1)$ is not excluded — that is step (3) of the same programme, and (V2)
+says so. Read (V1) as *"the inequality (\*) produces is never stronger than the target"*, which is
+what the argument gives.
+
+## 9. `../eo-subinteger-relaxation/` — no infeasibility claimed, and the control fired correctly
+
+Only `KILL-CRITERION.md` plus a partial transcript exist at the time of writing. **No
+infeasibility at $k = 7$ is claimed**, so the `extraordinary-claim` path in the brief is not
+triggered. What the transcript shows so far is exactly what K1 and K3(b) were written to detect:
+
+- **K3(b) control passes**: at $k = 3$ ($n = 5$, $a = 1.99$ and $1.999$) the LP optimum is $4 < 5$,
+  so the pipeline *does* prove the one case it must be able to prove. Its binding certificate is a
+  single box with $\mathrm{cap} = 4$ sourced `via grid(eta=...)` — a geometric capacity, **not** a
+  $d(n)$ lookup, so K2's circularity guard holds on that certificate.
+- **K1 fires at $k = 4$**: LP optimum $= 9 \not< 9$, i.e. the refinement does not decide
+  Erdős–Oler even where it is `cited`-true. Both the integer and the sub-integer threshold
+  families give 9. By the lane's own K1 that means stop and report the refinement does not bite.
+
+I have **not** verified the LP optimum, the capacity function, or the cell construction — that
+needs the lane's finished write-up and its exact certificate, and none exists yet. What I can say
+now is that the reported outcome is a **negative** one, that its own control passes, and that the
+one certificate printed so far does not encode the conclusion.
+
+## 10. The two covering lanes — no certificate yet, one checkable defect, and a verifier ready
+
+Neither lane has a write-up or a certificate. Both have written kill-criteria and are searching, so
+what follows is about their search state and their plans, not about any claim.
+
+**The construct lane's verification plan is sound** and I want to record that, because it is the
+right plan: exact squared diameters in the lattice basis, pairwise disjoint interiors, and
+$\sum_i \mathrm{area}(P_i) = \mathrm{area}(T_6)$ exactly, with the observation that finitely many
+**closed** sets of full measure in $T_6$ leave a relatively open null set, i.e. nothing. That
+argument is correct and it is the right way to rule out a missed sliver.
+
+**I have built an independent verifier** for whatever it produces —
+[`covercheck.py`](../../../../experiments/packing-eo-verify-2/covercheck.py) — which checks, all
+exactly and all in my own code: (C1) every piece's squared diameter, (C2) containment in $T_a$,
+(C3) pairwise interior-disjointness by exact convex-polygon intersection area, (C4) the area sum,
+and (C5) an independent coverage probe over a rational grid plus every piece vertex and edge
+midpoint. It reproduces the 36-piece baseline exactly, and both negative controls fire (delete one
+piece: C4 and C5 both catch it; inflate one piece: C1 catches it).
+
+> **One structural observation the construct lane should have, and it is not encouraging.**
+> A partition of $T_6$ into $26$ sets of diameter $\le 1$ would prove Erdős–Oler at $k = 7$ — that
+> direction is right and is the point of the lane. But the same scaling bounds the target from the
+> other side. The number of diameter-$\le1$ pieces needed is at least the largest number of points
+> of $T_6$ at pairwise distance **strictly** $>1$; scaling a separation-$1$ configuration in $T_a$
+> up by $6/a > 1$ shows that number is
+> $$N^\ast \;\ge\; \sup_{a<6}\ \max\{\,n : n \text{ points at separation} \ge 1 \text{ fit in } T_a\,\}.$$
+> Erdős–Oler at $k = 7$ says that supremum is $\le 26$; **if the conjecture is false the floor is
+> $\ge 27$ and no 26-partition exists.** So the search is bounded below by the very statement it
+> is trying to prove, and $26$ is the smallest value not immediately excluded.
+>
+> Whether the floor is *exactly* 26 turns on whether $a_{26} < 6$, which I did **not** settle — it
+> is expected (the Erdős–Oler pattern is $a_{T(k)-1} = a_{T(k)}$, with $n = T(k)-2$ strictly
+> below), but expected is not proved and I exhibit no 26-point configuration. Either way the
+> reading is the same: **there is little or no slack in the target.** The lane is looking for a
+> tight extremal object rather than for something with room in it — a reason to expect the search
+> to stop at 27 or 28, and a reason to check any claimed 26 extremely hard. It does **not** make
+> the route dead.
+
+### 10.1 A checkable defect in `../eo-covering-bound/`'s search output (mid-flight)
+
+The lane's separated-point search (`out/shrink_n*.json`) looks for $n$ points at min distance
+$\ge 1.002$ in the smallest $T_a$ it can find. Normalising each row to separation $1$ (divide $a$
+by the achieved min distance):
+
+| $n$ | 21 | 22 | 23 | **24** | **25** | 26 | 27 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| separation-1 side found | 5.000003 | 5.605549 | 5.732062 | **6.001131** | **5.971422** | 6.000019 | 6.000019 |
+
+**Row 24 is impossible.** $a_n$ is non-decreasing in $n$ — delete a point from an $n$-point
+configuration and you have an $(n-1)$-point one in the same triangle — so $a_{24} \le a_{25}$, and
+the table has $a_{24} > a_{25}$. Independently, $a_{24} \le 6$ outright, since deleting four points
+from the $28$-point $T(7)$ lattice leaves $24$ points at separation $1$ in $T_6$. The $n = 24$ run
+is stuck in a local optimum, as are $n = 26$ and $n = 27$, which return the *identical* value —
+the signature of the optimiser finding one configuration and not exploiting the extra freedom at
+the smaller $n$.
+
+Two consequences, both useful to that lane:
+
+- **The floor it can currently prove is 25, not 26.** The largest row strictly below $6$ is
+  $n = 25$ at $5.971422$; scaling that configuration up into $T_6$ gives 25 points at pairwise
+  distance $\approx 1.00478 > 1$, so $N^\ast(T_6) \ge 25$. Rows 26 and 27 sit at $6.000019 > 6$
+  and give nothing. So on its own data the lane is one short of the 26 it needs, and the shortfall
+  is an optimiser artefact rather than a fact about the problem.
+- **Nothing here refutes Erdős–Oler**, and I checked that specifically, because it is what a
+  row like $n=27$ at "$a = 6.012$" looks like before you normalise. Normalised it is
+  $6.000019 > 6$ — *above* the conjectured value, not below. No row is a counterexample.
+
+A monotonicity assertion across $n$ is a cheap and complete guard against exactly this failure,
+and it belongs in that lane's harness.
+
+**Update — exact certificates have since landed, and I verified them.** `out/certificates.json`
+now carries exact *rational* coordinates (no floats), and I re-checked each one in my own code:
+every pairwise squared distance in the lattice basis $u^2+uv+v^2$, containment
+($u,v \ge 0$, $u+v \le a$), the point count, and that no two points coincide.
+
+| $n$ | $a$ (exact) | claimed $\min d^2$ | my $\min d^2$ | inside $T_a$ | separation-1 side | verdict |
+|---:|---|---|---|:--|---:|---|
+| 22 | $2808381/500000$ | $1.004002982$ | matches exactly | yes | $5.605554$ | **CONFIRMED** |
+| 23 | $717941/125000$ | $1.004004000$ | matches exactly | yes | $5.732064$ | **CONFIRMED** |
+| 25 | $5983367/1000000$ | $1.004002073$ | matches exactly | yes | $5.971430$ | **CONFIRMED** |
+| 24, 26, 27 | — | — | — | — | — | not certified by the lane |
+
+> **Independently verified: $N^\ast(T_6,\ \mathrm{diam}\le1)\ \ge\ 25$.** Scale the 25-point
+> certificate up by $6/5.971430 > 1$: it lands in $T_6$ with every pairwise distance $>1$, so no
+> two of its points can share a set of diameter $\le 1$. This is **non-circular** — the
+> configuration is exhibited and checked, and no literature $a_n$, $s(n)$ or $d(n)$ enters it, as
+> that lane's K2 requires. It is a real result and my check agrees with it.
+>
+> It is also **one short**: 26 is what would kill the construct lane, and 25 does not.
+
+**One convention mismatch to fix.** The lane's `KILL-CRITERION.md` states cartesian corners
+$(0,0)$, $(a,0)$, $(a/2, a\sqrt3/2)$; the certificates are in the **lattice basis** $(u,v)$.
+Under the stated cartesian reading the points are *outside* the triangle — e.g. $(0, 4.6148)$ with
+$a = 5.6168$. The code is self-consistent and the certificates are correct; it is the prose that
+is wrong. This is precisely the divergence problem `RULES.md` §2 fixes conventions to prevent, and
+a second checker following the written convention would reject a valid certificate.
+
+### 10.2 `../eo-covering-construct/`'s state (mid-flight, not a finding)
+
+**Best count so far: 28**, from a hexagon tiling of $T_6$ at $\theta = \pi/6$
+(`hex_a6.json`, `hexinit6.txt`). That is a genuine improvement on the 34 recorded in
+[`../eo-oler-equality/`](../eo-oler-equality/) §8 and on the 36 of the uniform subdivision, and it
+is still **2 above the 26 the lane needs**. Consistent with the structural note above: the
+remaining two pieces are exactly the part with no slack in it.
+
+**Its controls have not converged**, and this is worth flagging to the lane rather than holding
+against it. For $T_2$ into 4 pieces the medial subdivision is an exact solution with diameter
+exactly 1; the optimiser reports `max_diam` $= 1.0004$. For $T_3$ into 9 pieces the uniform
+subdivision is exact at diameter 1; it reports $1.00013$. **An optimiser that cannot reach a known
+optimum of its own control by $10^{-4}$ will not distinguish 26 from 27 at the boundary**, which
+is the only place the answer lives. Both are float search output and the lane's `§7 guard`
+already says floats decide nothing — but a certificate must eventually arrive in **exact
+rationals** (problem `RULES.md` §2 bans decimal strings in exact fields), and every JSON the lane
+has written so far is float throughout.
+
+**If a $\le 26$ certificate does land**, run it through
+[`covercheck.py`](../../../../experiments/packing-eo-verify-2/covercheck.py) as well as the lane's
+own checker. Two independent checkers agreeing is what problem `RULES.md` §3 asks for, and given
+that a 26-piece partition would settle an open case, it is the minimum.
+
+---
+
+## 11. What is safe to build on, and what is not
+
+**First, the flat answer `RULES.md` §3 requires: nothing here is assumable.** Everything is
+`sketch`, before and after this pass, because a same-family review grants no status. The column
+below answers the weaker question the brief actually asked — *has an independent reader
+re-derived it from the statement and tried to break it?*
+
+| Claim | Re-derived? | Safe to build on? |
+|---|---|---|
+| **P1**, $\lvert E\cap\partial T\rvert \le 3\lfloor a\rfloor$ (`eo-boundary-counting` §3.1) | yes, incl. the charging step and the empty-side cases | **Yes**, and it is sharp for every $a\ge1$. The corner-charging bookkeeping is load-bearing — copy it, not just the statement |
+| **W1**, $b$ collapses to 3 at the perturbed lattice (`eo-boundary-counting` §4) | yes, exactly | **Yes.** Every printed row is exactly right |
+| **T1**, *no $\Phi(b)$ exists* — as a **theorem** | yes, with a repaired family | **Yes, but re-derive it.** Use $\lambda_k = 1+1/k^3$, $\varepsilon_k = \lambda$'s $\delta/2$; the fixed-parameter family in §5 gives only $\Phi(3)\ge56.1$ |
+| **T1 as proved in §5**, and the same sentence in `oler-slack-analysis` §4 | no | **NO — the proof does not go through** (D2). The conclusion survives; the argument as written does not |
+| **Resolution theorem** (`eo-exhaustion` §5), as a **theorem** | yes, exactly, on 8568 cell pairs | **Yes** — but as a *termination guarantee*: fine cells **suffice** |
+| **"a cell exhaustion can only close once $h<\sqrt3(1-\rho)$"**, §5's contrapositive; §6.2's "needs level $\ge9$"; §5's "there is no budget at which this terminates" | no | **NO — this is the most damaging item in this report** (D1). It is the converse, and the file's own $k=3$ case refutes it at level 1 |
+| **`eo-exhaustion` §1.1**, monotonicity + finiteness | (first pass) | **Yes** — and it, not §5, is the real obstruction. §5 is not needed for it |
+| **`eo-exhaustion` §2** table, residual gap, $\rho_{\rm Oler}$ | yes, exactly | **Yes**, with $\ge$ not $>$ (D3) |
+| **`eo-exhaustion` §4** `numerical` rows | no — see §7 and Q1 | **Not examined.** The derived quantities are right; the measurements are not re-derivable and Q1 names a circularity vector in that pipeline |
+| **`oler-slack-analysis` §1** identity, $F=2n-b-2$, BE $\ge0$ | yes; **agrees with Codex on PR #90 at every point** | **Yes** — and this one has a genuine cross-family review behind it, which nothing else here does |
+| **Lemma T** with its equality classification, incl. Step 3 (`eo-oler-equality` §1) | yes, proof and scans | **Yes.** Step 3 is correct; the vertex enumeration is complete |
+| **T2** the $\tau$-identity; **S2** deficit $\ge1$ *is* Erdős–Oler | yes | **Yes.** S2 in particular: $\varepsilon = 1$ is not a milestone, it is the conjecture |
+| **Groemer $\equiv$ Oler** (`eo-epsilon` §1) | yes, own symbolic ring | **Yes as algebra.** Conditional on the README's transcription of Groemer p. 285, which nobody has re-read |
+| **Theorem E**, $d(n) > a^\*_n$ strictly for non-triangular $n$ (`eo-epsilon` §2) | yes; 16/16 consistent with the `cited` table | **Yes**, with its dependency on Groemer's equality clause stated at every use. Explicit $\varepsilon$ is still $0$ |
+| **Theorem Q**, quantitative Lemma T (`eo-epsilon` §3) | yes; 93 366 exact triangles | **Yes** |
+| **Proposition V**, step (1) is vacuous (`eo-epsilon` §4) | yes | **Yes**, reading (V1) as *"the inequality (\*) produces is never stronger than the target"*. $\Psi$ plus an interior-edge bound is untouched |
+| **`eo-covering-bound`** exact certificates $n = 22, 23, 25$ | yes, exactly | **Yes.** Verified in my own code; they give $N^\ast(T_6) \ge 25$, non-circularly (§10.1) |
+| **`eo-covering-bound`** raw `shrink_n*.json` search rows | yes | **NO.** Row $n=24$ violates monotonicity in $n$ and is impossible; rows 26/27 are stuck at one configuration (§10.1). The lane did not certify these, correctly |
+| **`eo-covering-construct`** | nothing produced yet | — |
+| **`eo-subinteger-relaxation`** | partial transcript only | Reports **no** infeasibility. Control passes, K1 fires at $k=4$ (§9) |
+| **`eo-literature`** null result and its blocked-egress finding | yes, probed myself | **Yes.** No source is promoted; the operational advice is right |
+
+### Claimed proofs of open cases — my independent verdict
+
+**There are none.** I checked specifically, because that is what this pass exists for:
+
+- `eo-covering-construct` has produced no covering and claims nothing. Its target of $\le26$
+  would be a proof of Erdős–Oler at $k=7$; **if it lands, it is unverified until my
+  `covercheck.py` and the lane's own checker agree, and my structural note in §10 says to expect
+  the search to stop short.**
+- `eo-subinteger-relaxation` reports **feasible**, not infeasible, at every $k$ it has run, and
+  its $k=4$ control says the family does not decide even a `cited`-true case. No proof is claimed.
+- `eo-epsilon` explicitly reports **$\varepsilon = 0$** in its first line. Theorem E is a strict
+  improvement ($d(27) > a^\*$) and is *not* a proof of any open case; the lane says so.
+- `eo-covering-bound` has an exactly verified floor of **25** — which I confirmed independently and which is genuinely non-circular — and that is one short of the 26 that would close the construct lane. It claims nothing beyond it.
+- **No row anywhere in the round-2 output refutes Erdős–Oler.** The one that superficially looks
+  like it might — `shrink_n27.json` at "$a = 6.012$" — normalises to $6.000019 > 6$, i.e. *above*
+  the conjectured value. I checked this explicitly (§10.1).
+
+So: the campaign's round-2 output is four honest negative or partial results, and the two
+disagreements in §0 are both in **round-1** material that is still being quoted.

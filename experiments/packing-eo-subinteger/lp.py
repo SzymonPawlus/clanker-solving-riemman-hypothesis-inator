@@ -31,7 +31,11 @@ def solve_cover(cols, caps, ncells, verbose=False):
     for i in range(m):
         T[i][n + i] = -1.0
         T[i][n + m + i] = 1.0
-        T[i][N] = 1.0
+        # RHS perturbed upward to break the (severe) primal degeneracy of a
+        # covering LP with all-ones right-hand side.  Perturbing UP only makes the
+        # cover harder, so any cover found is still exactly feasible for b = 1 and
+        # its cost is at worst O(1e-7) above the true optimum.
+        T[i][N] = 1.0 + (i + 1) * 1e-9
     basis = [n + m + i for i in range(m)]
 
     def run(cost):

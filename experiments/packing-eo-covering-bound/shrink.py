@@ -56,13 +56,13 @@ def relax(pts, a, target, sweeps, rng, alpha=0.5):
             return True
     return min_dist(pts) >= target - 1e-13
 
-def run(n, a0, a_floor, rng, margin=1.002, sweeps=500, kicks=25):
-    pts = [sample(a0, rng) for _ in range(n)]
-    if not relax(pts, a0, margin, 4000, rng):
+def run(n, a0, a_floor, rng, margin=1.002, sweeps=500, kicks=25, start=None):
+    pts = list(start) if start is not None else [sample(a0, rng) for _ in range(n)]
+    if not relax(pts, a0, margin, 6000, rng):
         return None, a0
     a = a0
     step = 0.004
-    while step > 2e-6 and a > a_floor:
+    while step > 2e-8 and a > a_floor:
         na = max(a * (1.0 - step), a_floor)
         r = na / a
         trial = [(x * r, y * r) for (x, y) in pts]
@@ -86,17 +86,34 @@ def run(n, a0, a_floor, rng, margin=1.002, sweeps=500, kicks=25):
             step *= 0.5
     return pts, a
 
+def lattice28(a):
+    """The side-a triangular lattice with 7 rows: 28 points, min pairwise distance a/6."""
+    s = a / 6.0
+    pts = []
+    for row in range(7):
+        for i in range(7 - row):
+            pts.append((row * s / 2.0 + i * s, row * s * SQ3 / 2.0))
+    return pts
+
 if __name__ == '__main__':
-    n = int(sys.argv[1]); a_target = float(sys.argv[2]); trials = int(sys.argv[3])
+    n = int(sys.argv[1]); a_floor = float(sys.argv[2]); trials = int(sys.argv[3])
     seed = int(sys.argv[4]) if len(sys.argv) > 4 else 5
+    margin = float(sys.argv[5]) if len(sys.argv) > 5 else 1.002
+    tag = sys.argv[6] if len(sys.argv) > 6 else ''
     here = os.path.dirname(os.path.abspath(__file__))
     rng = random.Random(seed)
     besta = 1e9; bestp = None
     for t in range(trials):
-        p, a = run(n, 7.2, a_target, rng)
+        start = None
+        if n <= 28 and t % 2 == 0:
+            base = lattice28(6.35)
+            idx = list(range(28)); rng.shuffle(idx)
+            start = [base[i] for i in sorted(idx[:n])]
+        p, a = run(n, 6.35, a_floor, rng, margin=margin, start=start)
         if p is not None and a < besta:
             besta, bestp = a, p
-            print(f"  n={n} trial {t}: a={a:.6f} mind={min_dist(p):.9f}", flush=True)
-    print(f"n={n}: best a = {besta:.6f}   (min pairwise distance {min_dist(bestp):.9f})", flush=True)
-    with open(os.path.join(here, 'out', f'shrink_n{n}.json'), 'w') as f:
-        json.dump({"n": n, "a": besta, "pts": bestp, "min_dist": min_dist(bestp)}, f)
+            print(f"  n={n} trial {t}: a={a:.8f} mind={min_dist(p):.9f} margin={margin}", flush=True)
+            with open(os.path.join(here, 'out', f'shrink_n{n}{tag}.json'), 'w') as f:
+                json.dump({"n": n, "a": besta, "pts": bestp, "min_dist": min_dist(bestp),
+                           "margin": margin}, f)
+    print(f"n={n}: best a = {besta:.8f}   (min pairwise distance {min_dist(bestp):.9f})", flush=True)

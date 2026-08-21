@@ -33,6 +33,11 @@ def thresholds(a, kind, k):
 
 
 def build(a, Theta, mu=F(1), verbose=True):
+    """Cells = boxes cut by consecutive thresholds; constraints = every corner box
+    with endpoints in Theta whose capacity is below the summed capacity of the
+    cells it contains.  Capacities are cached by congruence class: the box
+    {lo <= u <= hi} is congruent to {v >= 0, sum v = S, v_V <= g_V} with
+    S = 2a - sum(lo) and g_V = min(hi_V - lo_V, S), up to the 6 symmetries of T."""
     L = len(Theta) - 1
     tot = 2 * a
     cells = []
@@ -43,41 +48,73 @@ def build(a, Theta, mu=F(1), verbose=True):
                 hi = (Theta[iA + 1], Theta[iB + 1], Theta[iC + 1])
                 if sum(lo) < tot < sum(hi):
                     cells.append((iA, iB, iC))
-    cidx = {c: i for i, c in enumerate(cells)}
+    NC = len(cells)
     cache = {}
 
     def cap_of(lo, hi):
         S = tot - sum(lo)
+        if S < 0:
+            return 0, "empty"
         g = tuple(sorted(min(hi[V] - lo[V], S) for V in range(3)))
         key = (S, g)
         if key not in cache:
             cache[key] = geom.capacity(S, [F(0)] * 3, list(g), mu)
         return cache[key]
 
+    cellcap = []
+    for c in cells:
+        lo = (Theta[c[0]], Theta[c[1]], Theta[c[2]])
+        hi = (Theta[c[0] + 1], Theta[c[1] + 1], Theta[c[2] + 1])
+        cellcap.append(cap_of(lo, hi)[0])
+
+    # bitmask of cells with p <= i_V <= q, per coordinate
+    masks = [[[0] * L for _ in range(L)] for _ in range(3)]
+    for V in range(3):
+        for p in range(L):
+            for q in range(p, L):
+                m = 0
+                for idx, c in enumerate(cells):
+                    if p <= c[V] <= q:
+                        m |= 1 << idx
+                masks[V][p][q] = m
+
     cols, caps, meta = [], [], []
     seen = {}
     for pA in range(L):
         for qA in range(pA, L):
+            mA = masks[0][pA][qA]
+            if mA == 0:
+                continue
             for pB in range(L):
                 for qB in range(pB, L):
+                    mAB = mA & masks[1][pB][qB]
+                    if mAB == 0:
+                        continue
                     for pC in range(L):
                         for qC in range(pC, L):
+                            mm = mAB & masks[2][pC][qC]
+                            if mm == 0:
+                                continue
                             lo = (Theta[pA], Theta[pB], Theta[pC])
                             hi = (Theta[qA + 1], Theta[qB + 1], Theta[qC + 1])
-                            inside = [cidx[c] for c in cells
-                                      if pA <= c[0] <= qA and pB <= c[1] <= qB and pC <= c[2] <= qC]
-                            if len(inside) < 1:
-                                continue
                             cp, why = cap_of(lo, hi)
-                            if cp >= len(inside):
-                                continue          # constraint is vacuous
-                            key = frozenset(inside)
-                            if key in seen:
-                                if cp < caps[seen[key]]:
-                                    caps[seen[key]] = cp
-                                    meta[seen[key]] = (lo, hi, why)
+                            inside = []
+                            t = mm
+                            tot_cc = 0
+                            while t:
+                                b = (t & -t).bit_length() - 1
+                                inside.append(b)
+                                tot_cc += cellcap[b]
+                                t &= t - 1
+                            if len(inside) > 1 and cp >= tot_cc:
                                 continue
-                            seen[key] = len(cols)
+                            if mm in seen:
+                                j = seen[mm]
+                                if cp < caps[j]:
+                                    caps[j] = cp
+                                    meta[j] = (lo, hi, why)
+                                continue
+                            seen[mm] = len(cols)
                             cols.append(inside)
                             caps.append(cp)
                             meta.append((lo, hi, why))

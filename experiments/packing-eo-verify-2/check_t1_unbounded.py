@@ -50,7 +50,7 @@ print(f"  MAXIMUM over k <= 200:  {best_v.float():.6f}  attained at k = {best_k}
 print(f"  and it is strictly decreasing thereafter (coefficient of k^2 is "
       f"(1 - lambda^2)/2 = {float((1 - (101/100)**2)/2):.6f} < 0)")
 print()
-print("  => with lambda fixed at 101/100 the family gives Phi(3) >= 55.97 and NOTHING MORE.")
+print("  => with lambda fixed at 101/100 the family gives Phi(3) >= 56.0999... and NOTHING MORE.")
 print("     It is a FINITE lower bound.  T1's stated proof does not go through as written.")
 
 print()
