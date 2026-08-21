@@ -156,7 +156,10 @@ def separated(A, B):
                 return True
     return False
 
-def verify(cells, a, verbose=True, check_disjoint=True):
+def _rep(report, msg):
+    if report: print(msg)
+
+def verify(cells, a, verbose=True, check_disjoint=True, report=True):
     """Full exact check that `cells` is a partition of T_a into diameter<=1 sets."""
     a = q3(a)
     ok = True
@@ -164,21 +167,21 @@ def verify(cells, a, verbose=True, check_disjoint=True):
     # 1. containment + convexity + orientation
     for k, P in enumerate(cells):
         if len(P) < 3:
-            print("FAIL cell %d degenerate" % k); ok = False; continue
+            _rep(report, "FAIL cell %d degenerate" % k); ok = False; continue
         for (u, v) in P:
             if u.sign() < 0 or v.sign() < 0 or (u+v) > a:
-                print("FAIL cell %d vertex outside T_a" % k); ok = False
+                _rep(report, "FAIL cell %d vertex outside T_a" % k); ok = False
         m = len(P)
         for i in range(m):
             if cross(P[i], P[(i+1) % m], P[(i+2) % m]).sign() < 0:
-                print("FAIL cell %d not convex/ccw at %d" % (k, i)); ok = False
+                _rep(report, "FAIL cell %d not convex/ccw at %d" % (k, i)); ok = False
     # 2. diameters
     worst = q3(0); wk = -1
     for k, P in enumerate(cells):
         d = diam2(P)
         if d > worst: worst, wk = d, k
         if d > q3(1):
-            print("FAIL cell %d has diam^2 = %s > 1" % (k, d)); ok = False
+            _rep(report, "FAIL cell %d has diam^2 = %s > 1" % (k, d)); ok = False
     # 3. areas
     tot = q3(0)
     for P in cells:
@@ -187,13 +190,13 @@ def verify(cells, a, verbose=True, check_disjoint=True):
         tot = tot + s
     target = shoelace2(tri)
     if not (tot == target):
-        print("FAIL area sum %s != %s" % (tot, target)); ok = False
+        _rep(report, "FAIL area sum %s != %s" % (tot, target)); ok = False
     # 4. pairwise disjoint interiors
     if check_disjoint:
         for i in range(len(cells)):
             for j in range(i+1, len(cells)):
                 if not separated(cells[i], cells[j]):
-                    print("FAIL cells %d,%d overlap" % (i, j)); ok = False
+                    _rep(report, "FAIL cells %d,%d overlap" % (i, j)); ok = False
     if verbose:
         print("cells                : %d" % len(cells))
         print("max squared diameter : %s  (~%.12f)  cell %d" % (worst, worst.approx(), wk))

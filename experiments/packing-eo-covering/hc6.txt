@@ -1,1 +1,0 @@
-a=6  min hexagons meeting T_a = 28  at theta=0.52360 off=(0.4286,0.2474) covered-area=15.5885

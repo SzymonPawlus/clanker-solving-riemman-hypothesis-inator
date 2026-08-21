@@ -1,7 +1,4 @@
 base certificate: n=25  a=5.9833670  grid 1/16
-{'label': 'full', 'm': 25, '|Z_grid|': 0, 'chi_lb': 0, 'floor': 25}
-Traceback (most recent call last):
-  File "/home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-eo-covering-bound/gap.py", line 136, in <module>
-    if r['chi_lb'] > r['alpha_lb']:
-                     ~^^^^^^^^^^^^
-KeyError: 'alpha_lb'
+{'label': 'full', 'm': 25, '|Z_grid|': 0, 'chi_lb': 0, 'alpha_lb': 0, 'floor': 25, 'separated_total': 25}
+delete-2 patterns tried: 175
+best floor from (*): {'label': 'full', 'm': 25, '|Z_grid|': 0, 'chi_lb': 0, 'alpha_lb': 0, 'floor': 25, 'separated_total': 25}

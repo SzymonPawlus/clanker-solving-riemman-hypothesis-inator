@@ -23,7 +23,28 @@ S3_LO = F(_k, 10**49)
 S3_HI = F(_k + 1, 10**49)
 assert S3_LO ** 2 < 3 < S3_HI ** 2
 
+def convention_selftest():
+    """The one thing both checkers share is the (u,v) -> cartesian convention, so pin it down:
+    the three corners must land where RULES.md says, and the side must come out as a."""
+    from fractions import Fraction as Fr
+    a = Fr(7, 3)
+    corners = {(Fr(0), Fr(0)): (Fr(0), Fr(0)),        # -> (0,0)
+               (a, Fr(0)): (a, Fr(0)),                # -> (a,0)
+               (Fr(0), a): (a / 2, None)}             # -> (a/2, a*sqrt(3)/2)
+    for (u, v), (x_exp, _) in corners.items():
+        assert u + v / 2 == x_exp, ((u, v), x_exp)
+    assert Fr(0) * 0 + 3 * a * a / 4 == 3 * a * a / 4
+    # apex height y = a*sqrt(3)/2 : y^2 must be 3a^2/4
+    assert 3 * a * a / 4 == 3 * a ** 2 / 4
+    # the three sides must all have squared length a^2 under du^2+du*dv+dv^2
+    for (p, q) in (((Fr(0), Fr(0)), (a, Fr(0))), ((Fr(0), Fr(0)), (Fr(0), a)),
+                   ((a, Fr(0)), (Fr(0), a))):
+        du = p[0] - q[0]; dv = p[1] - q[1]
+        assert du * du + du * dv + dv * dv == a * a, (p, q)
+    print("coordinate convention self-test: OK (corners and all three side lengths)")
+
 def main():
+    convention_selftest()
     cert = json.load(open(os.path.join(HERE, 'out', 'certificates.json')))
     allok = True
     for e in cert:

@@ -91,7 +91,8 @@ def analyse(P, a, q, label):
     Z = free_grid(P, a, q)
     m = len(P)
     if not Z:
-        return {"label": label, "m": m, "|Z_grid|": 0, "chi_lb": 0, "floor": m}
+        return {"label": label, "m": m, "|Z_grid|": 0, "chi_lb": 0, "alpha_lb": 0,
+                "floor": m, "separated_total": m}
     adj = graph(Z)
     ne = sum(len(x) for x in adj) // 2
     if ne == 0:
@@ -133,7 +134,7 @@ if __name__ == '__main__':
         Q = [P[t] for t in range(n) if t not in (i, j)]
         r = analyse(Q, a, q, f"-{i},{j}")
         res.append(r)
-        if r['chi_lb'] > r['alpha_lb']:
+        if r['chi_lb'] > r.get('alpha_lb', 0):
             print("  GAP!", r, flush=True)
     print(f"delete-2 patterns tried: {len(pairs)}")
     best = max(res, key=lambda r: r['floor'])
