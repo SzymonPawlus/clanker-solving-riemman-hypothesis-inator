@@ -14,8 +14,18 @@ any packing being optimal, and nothing here enters `results/`.
 
 ## The result
 
-> **$a_{16} \ge \dfrac{89267}{20000} = 4.46335$ exactly**, hence
-> $$s(16) \;\ge\; 2\cdot\tfrac{89267}{20000} + 2\sqrt3 \;=\; 12.390801615\ldots$$
+> **$a_{16} \ge \dfrac{446335}{99998} = 4.4634392688\ldots$ exactly**, hence
+> $$s(16) \;\ge\; 2\cdot\tfrac{446335}{99998} + 2\sqrt3 \;=\; 12.3909801527\ldots$$
+
+**Sharpened after an independent pass** — the certificate was built at $a = 89267/20000$ but proves
+more than that. Its maximum squared diameter is $\tfrac{2499900001}{2500000000}$, and
+$2499900001 = 49999^2$, so the maximum diameter is exactly $\tfrac{49999}{50000} < 1$ with room to
+spare. Dilating the whole certificate about the chart origin by $\mu$ scales every squared distance
+and area by $\mu^2$ while preserving convexity, containment and disjointness, so the covering
+remains valid for every $a' < a/\mathrm{diam}_{\max}$. **A certificate built at side $a$ with
+maximum diameter $D < 1$ proves $a_{16} \ge a/D$, not $a_{16} \ge a$** — leaving slack in the
+diameter throws away free bound. The original write-up reported the side it happened to be built
+at; the kill-criterion file had already defined the deliverable the right way.
 
 against the repo's previous best and the standard bound:
 
@@ -23,11 +33,11 @@ against the repo's previous best and the standard bound:
 |---|---|---|
 | Oler (1961) | $\ge 11.821918$ | `cited` |
 | Lemma L (this repo, 2026-08-21) | $\ge 12.124356$ | `sketch` |
-| **this attack** | $\ge \mathbf{12.390802}$ | `sketch` |
+| **this attack** | $\ge \mathbf{12.390980}$ | `sketch` |
 | best known packing (Melissen–Schuur 1995) | $\le 12.713629$ | `numerical` |
 
 The open interval for $s(16)$ narrows from $[12.124356,\ 12.713629]$ to
-$[12.390802,\ 12.713629]$ — **45.2% of the remaining gap**.
+$[12.390980,\ 12.713629]$ — **45.2% of the remaining gap**.
 
 **Status: `sketch`.** Same-family verification only; see "What this is worth" below.
 
@@ -116,7 +126,19 @@ See [`KILL-CRITERION.md`](./KILL-CRITERION.md).
   certificate, not a converged optimum.
 - **The method has a ceiling**, and it is worth knowing before anyone invests more: no covering
   argument of this shape can ever prove more than $a_{16} \le 4.6247636$, since a 16-point packing
-  exists there. The remaining headroom is at most $0.161$ in $a$.
+  exists there. The remaining headroom is at most $0.1614136$ in $a$. **That ceiling is itself
+  `numerical` and is not certified in this repo** — `attacks/n16-exact/certificates/` is empty and
+  the only local object is a float, so it rests on the published construction, not on anything
+  checked here. It is also the sole tripwire that would catch a wrong certificate near the top,
+  which is a reason to certify it rather than a reason to distrust it.
+- **There is no proved area wall below the ceiling.** An earlier version of this attack's
+  kill-criterion capped a convex piece of diameter $<1$ at $3\sqrt3/8 = 0.649519$ (the regular
+  hexagon) and derived a stopping point near $a \approx 4.5603$. That cap is **false**: the disk of
+  diameter 1 is convex with area $\pi/4 = 0.785398$, and Graham's largest small hexagon (1975)
+  reaches $0.674981$. With the true isodiametric cap the same argument gives $a \le 5.0392$, above
+  the packing ceiling and hence vacuous. $3\sqrt3/8$ is what a hexagonal *partition achieves* — an
+  achievability heuristic, not an obstruction. **A certificate landing above $4.5603$ contradicts
+  nothing that has been proved** and must not be discarded as obviously buggy.
 
 ## Reproduce
 
