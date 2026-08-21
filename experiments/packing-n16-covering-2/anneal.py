@@ -35,7 +35,7 @@ while time.time() - t0 < budget:
         print("[%6.0fs] n=%d  a_max %.9f  *  degs %s" %
               (time.time() - t0, n, am, sorted(len(f) for f in T.faces)), flush=True)
     # simulated-annealing style acceptance on the current point
-    if v < curv + 2e-4 * rng.random():
+    if v < curv + 3e-5 * rng.random():
         cur, curv = T, v
     if n % 200 == 0:
         print("[%6.0fs] n=%d ok=%d  best %.9f  cur %.9f" %

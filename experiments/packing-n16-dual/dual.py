@@ -366,3 +366,108 @@ def certify(faces_q, a_q, verbose=True):
     if verbose:
         for line in R: print("   " + line)
     return ok, md, R
+
+
+# ---------------------------------------------------------------- refiner
+# Target-shrinking minimax: instead of descending a smoothed max, repeatedly ask
+# "is there a valid subdivision with every squared diameter <= tau2?" and shrink
+# tau2 whenever the answer is yes.  Each feasibility subproblem is a smooth
+# least-squares in the violated constraints only, solved by projected gradient
+# with a backtracking line search.  FLOATS ONLY.
+
+def _reduced(cls):
+    idx = []
+    for k, c in enumerate(cls):
+        if c == 0: idx.append((k, 'uv'))
+        elif c == 1: idx.append((k, 'u'))
+        elif c == 2: idx.append((k, 'v'))
+        elif c == 3: idx.append((k, 'w'))    # u free, v = a-u
+    return idx
+
+def _penalty(V, pairs, triples, tau2, cmin, lam):
+    F = 0.0
+    for (_, p, q) in pairs:
+        e = d2(V[p], V[q]) - tau2
+        if e > 0: F += e*e
+    for (i, j, k) in triples:
+        c = cross(V[i], V[j], V[k])
+        if c < cmin:
+            e = cmin - c; F += lam*e*e
+    return F
+
+def _grad(V, pairs, triples, tau2, cmin, lam, n):
+    g = [[0.0, 0.0] for _ in range(n)]
+    for (_, p, q) in pairs:
+        e = d2(V[p], V[q]) - tau2
+        if e <= 0: continue
+        du = V[p][0]-V[q][0]; dv = V[p][1]-V[q][1]
+        f = 2.0*e
+        gu = f*(2*du+dv); gv = f*(du+2*dv)
+        g[p][0] += gu; g[p][1] += gv
+        g[q][0] -= gu; g[q][1] -= gv
+    for (i, j, k) in triples:
+        c = cross(V[i], V[j], V[k])
+        if c >= cmin: continue
+        r = -2.0*lam*(cmin-c)
+        g[i][0] += r*(V[j][1]-V[k][1]); g[i][1] += r*(V[k][0]-V[j][0])
+        g[j][0] += r*(V[k][1]-V[i][1]); g[j][1] += r*(V[i][0]-V[k][0])
+        g[k][0] += r*(V[i][1]-V[j][1]); g[k][1] += r*(V[j][0]-V[i][0])
+    return g
+
+def refine(V, faces, cls, a, shrink=0.9985, inner=60, rounds=400, cmin_rel=1e-7):
+    pairs = face_pairs(faces)
+    triples = []
+    for f in faces:
+        m = len(f)
+        for i in range(m):
+            triples.append((f[i], f[(i+1) % m], f[(i+2) % m]))
+    n = len(V); red = _reduced(cls)
+    cmin = cmin_rel*a*a
+    lam = 1.0
+    best = [row[:] for row in V]; bestval = max_diam2(V, faces)
+    tau2 = bestval*shrink
+    step = 0.02*a
+    for _ in range(rounds):
+        Fv = _penalty(V, pairs, triples, tau2, cmin, lam)
+        for _ in range(inner):
+            if Fv <= 0.0: break
+            g = _grad(V, pairs, triples, tau2, cmin, lam, n)
+            gn = 0.0
+            for (k, kind) in red:
+                if kind == 'uv': gn += g[k][0]**2 + g[k][1]**2
+                elif kind == 'u': gn += g[k][0]**2
+                elif kind == 'v': gn += g[k][1]**2
+                else: gn += (g[k][0]-g[k][1])**2
+            gn = math.sqrt(gn)
+            if gn < 1e-18: break
+            ok = False
+            for _try in range(24):
+                W = [row[:] for row in V]
+                s = step/gn
+                for (k, kind) in red:
+                    if kind == 'uv':
+                        W[k][0] -= s*g[k][0]; W[k][1] -= s*g[k][1]
+                    elif kind == 'u':
+                        W[k][0] -= s*g[k][0]
+                    elif kind == 'v':
+                        W[k][1] -= s*g[k][1]
+                    else:
+                        t = -s*(g[k][0]-g[k][1]); W[k][0] += t; W[k][1] -= t
+                project(W, cls, a)
+                Fn = _penalty(W, pairs, triples, tau2, cmin, lam)
+                if Fn < Fv:
+                    V[:] = W; Fv = Fn; step *= 1.25; ok = True; break
+                step *= 0.4
+            if not ok: break
+        cur = max_diam2(V, faces)
+        okc = all(cross(V[i], V[j], V[k]) > 0 for (i, j, k) in triples)
+        if okc and cur < bestval - 1e-16:
+            bestval = cur; best = [row[:] for row in V]
+            tau2 = bestval*shrink
+            step = max(step, 1e-4*a)
+        else:
+            tau2 = bestval*(1.0 - (1.0-shrink)*0.5)
+            step = max(step, 1e-5*a)
+            if 1.0 - tau2/bestval < 1e-13: break
+    for k in range(n): V[k][0], V[k][1] = best[k][0], best[k][1]
+    return bestval

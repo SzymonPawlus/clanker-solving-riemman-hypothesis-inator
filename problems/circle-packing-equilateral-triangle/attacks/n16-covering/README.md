@@ -1,5 +1,13 @@
 # Attack: a 15-piece covering lower bound for $n = 16$
 
+> **SUPERSEDED, 2026-08-22.** [`../n16-shapes/`](../n16-shapes/) improves this to
+> $a_{16} \ge 446335/99989 = 4.4638410225$, i.e. $s(16) \ge 12.391783660$, by an overlapping
+> 15-piece cover — independently verified by the manager via inclusion–exclusion, a different
+> coverage argument from either author's. That file also proves **Theorem SI**: covering by sets of
+> diameter $<1$ is equivalent to covering by convex *polygons*, so the convex restriction assumed
+> throughout this attack was never a restriction at all. This file is kept for the mechanism, the
+> loss audit and the corrections recorded in it.
+
 **Claim type: OPTIMALITY / LOWER BOUND** (problem [`../../RULES.md`](../../RULES.md) §1). This
 file asserts $s(16) \ge c$ for an explicit $c$ — the hard direction. It makes **no** claim about
 any packing being optimal, and nothing here enters `results/`.

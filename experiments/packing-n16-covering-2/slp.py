@@ -150,11 +150,24 @@ class Struct:
         q = np.array([t[2] for t in self.tris])
         return ((U[p] - U[o]) * (V[q] - V[o]) - (V[p] - V[o]) * (U[q] - U[o])), o, p, q
 
+    def areas(self, x):
+        U, V = self.coords(x)
+        out = []
+        for f in self.faces:
+            s = 0.0
+            for i in range(len(f)):
+                a, b = f[i], f[(i + 1) % len(f)]
+                s += U[a] * V[b] - U[b] * V[a]
+            out.append(s / 2)
+        return out
+
     def feasible(self, x, delta):
         c, _, _, _ = self.cvals(x)
         if c.min() < delta:
             return False
         if len(self.r) and (self.L @ x - self.r).max() > 1e-12:
+            return False
+        if min(self.areas(x)) < 1e-7:
             return False
         return True
 
@@ -163,11 +176,15 @@ class Struct:
         return self.qvals(x)[0].max()
 
     # ---------------- the SLP ----------------
-    def run(self, iters=400, rho0=0.02, delta=1e-6, verbose=False):
+    def run(self, iters=400, rho0=0.02, delta=0.0, verbose=False,
+            abort_below=None, abort_at=70, stall_max=30):
         nd = self.nd
         rho = rho0
         best = self.maxq(self.x)
+        stall = 0
         for it in range(iters):
+            if abort_below is not None and it == abort_at and best > abort_below:
+                break
             x = self.x
             qv, du, dv, ii, jj = self.qvals(x)
             # gradient rows for the diameter constraints
@@ -205,7 +222,7 @@ class Struct:
             t = 1.0
             for _ in range(40):
                 xt = x + t * step
-                if self.feasible(xt, delta * 0.5):
+                if self.feasible(xt, delta):
                     v = self.maxq(xt)
                     if v < bv_ - 1e-16:
                         bt, bv_ = t, v
@@ -213,10 +230,14 @@ class Struct:
                 t *= 0.6
             if bt == 0.0:
                 rho *= 0.5
-                if rho < 1e-13: break
+                stall += 1
+                if rho < 1e-13 or stall > stall_max: break
                 continue
             self.x = x + bt * step
+            stall = 0 if bv_ < best * (1 - 1e-11) else stall + 1
             best = bv_
+            if stall > stall_max:
+                break
             if bt > 0.5:
                 rho = min(rho * 1.6, 0.05)
             else:

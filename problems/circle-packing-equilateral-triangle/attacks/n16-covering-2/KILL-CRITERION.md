@@ -49,3 +49,28 @@ every improvement**, never only at the end. All background jobs are killed by th
 Failing to reach $4.6247636$ is expected: a 15-piece covering cannot be tight, because the pieces
 must be truncated at the boundary of $T_a$ and truncation wastes area. Any exactly certified
 $a^\star > 4.46335$ is the intended deliverable.
+
+---
+
+## Amendment, 2026-08-22 (during the run, from the manager/verifier — recorded, not retro-fitted)
+
+Two corrections arrived after the criteria above were fixed. They are appended rather than
+edited in, so the record shows what was decided when.
+
+1. **K4 is downgraded from a wall to a heuristic.** The per-piece figure $3\sqrt3/8=0.649519$ is
+   what a *hexagonal partition achieves*; it is **not** a proved cap on the area a diameter-1
+   piece may contribute. The isodiametric cap is the disk, $\pi/4=0.785398$. So the implied
+   "ceiling" near $4.5603$ **is not a theorem**, and K4 must not fire as if it were: a certificate
+   above $4.5603$ contradicts nothing proved and must not be discarded as obviously buggy. The
+   only hard wall stays K3 at $4.6247636$ (a published packing). K4 survives only as a
+   diagnostic — "the search has stopped moving near the hexagonal heuristic" — never as a reason
+   to reject a verified certificate.
+
+2. **Target raised, and every certificate must be dilated.** A certificate at side $a$ whose exact
+   max squared diameter is $\Delta<1$ dilates about the chart origin by any rational
+   $\mu<1/\sqrt\Delta$: squared distances and areas scale by $\mu^2$, convexity, containment and
+   disjointness are preserved. So the covering exists for **every** rational $a'<a/\sqrt\Delta$,
+   hence $a_{16}\ge a/\sqrt{\Delta}$. Slack left in the diameter is free bound thrown away.
+   Applying this to the standing certificate ($\Delta=(49999/50000)^2$) gives
+   $a_{16}\ge 446335/99998=4.46343926878\ldots$, so **K1's threshold is raised to
+   $446335/99998$**: the session produces nothing unless it certifies strictly more than that.

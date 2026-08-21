@@ -169,3 +169,61 @@ def mutate(S, rng):
             continue
         return T
     return None
+
+
+def tutte(S, spread=True):
+    """Tutte barycentric embedding: interior vertices at the barycentre of their
+    neighbours, boundary vertices pinned to the boundary of T_1.  For a 3-connected
+    planar graph with a convex outer face this yields a straight-line embedding in
+    which EVERY face is convex (Tutte 1963), so it gives a valid starting embedding
+    for any combinatorial structure the flip moves produce -- no repair needed."""
+    nv = len(S.uv)
+    nbr = [set() for _ in range(nv)]
+    for f in S.faces:
+        m = len(f)
+        for i in range(m):
+            a, b = f[i], f[(i + 1) % m]
+            nbr[a].add(b); nbr[b].add(a)
+    fixed = [k for k in range(nv) if S.cls[k] != 'F']
+    free = [k for k in range(nv) if S.cls[k] == 'F']
+    if not free:
+        return False
+    pos = [list(p) for p in S.uv]
+    if spread:
+        # respread the boundary vertices evenly along their sides, keeping their order
+        for side in ('AB', 'CA', 'BC'):
+            idx = [k for k in range(nv) if S.cls[k] == side]
+            if side == 'AB':
+                idx.sort(key=lambda k: S.uv[k][0])
+                for r, k in enumerate(idx):
+                    pos[k] = [(r + 1.0) / (len(idx) + 1), 0.0]
+            elif side == 'CA':
+                idx.sort(key=lambda k: S.uv[k][1])
+                for r, k in enumerate(idx):
+                    pos[k] = [0.0, (r + 1.0) / (len(idx) + 1)]
+            else:
+                idx.sort(key=lambda k: S.uv[k][0])
+                for r, k in enumerate(idx):
+                    t = (r + 1.0) / (len(idx) + 1)
+                    pos[k] = [t, 1.0 - t]
+    ix = {k: i for i, k in enumerate(free)}
+    n = len(free)
+    A = np.zeros((n, n)); rhs = np.zeros((n, 2))
+    for k in free:
+        i = ix[k]
+        A[i, i] = len(nbr[k])
+        for j in nbr[k]:
+            if S.cls[j] == 'F':
+                A[i, ix[j]] -= 1.0
+            else:
+                rhs[i, 0] += pos[j][0]; rhs[i, 1] += pos[j][1]
+    try:
+        sol = np.linalg.solve(A, rhs)
+    except Exception:
+        return False
+    for k in free:
+        pos[k] = [sol[ix[k], 0], sol[ix[k], 1]]
+    S.uv = pos
+    S.build_dofs()
+    c, _, _, _ = S.cvals(S.x)
+    return c.min() > 1e-12
