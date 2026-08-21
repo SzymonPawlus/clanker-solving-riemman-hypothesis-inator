@@ -1,0 +1,28 @@
+Grid search: max |Lambda ∩ T(a)| over lattice orientation and translation.
+margin = outward tolerance, so the reported count is an UPPER bound on
+the true count for the exact triangle (conservative).
+
+         a  theta steps  transl grid    margin  max count
+       6.0           60           30     1e-09         28
+     5.999           60           30     1e-09         22
+     5.999          120           60     1e-09         22
+      5.99          120           60     1e-09         22
+       5.9          120           60     1e-09         22
+      5.87          120           60     1e-09         22
+
+Robustness: margin >= half the translation-grid spacing, so the count at a
+grid point dominates the count at EVERY nearby translation.  Grid spacing
+1/60 in each lattice direction -> max distance to a grid point < 0.012.
+       a  theta steps  transl grid   margin  max count
+   5.999          120           60    0.020         28
+   5.999          240           60    0.020         28
+     5.9          120           60    0.020         22
+
+Translation-robust sweep across the k=7 open window a in [5.8655, 6).
+A half-plane margin mu enlarges the triangle to side a + 2*sqrt3*mu, so mu
+is chosen with a + 2*sqrt3*mu < 6 AND mu > half the translation-grid
+spacing; then the tabulated maximum dominates EVERY translation.
+       a   margin  eff. side  theta steps   grid  max count
+  5.8655    0.020     5.9348          120     60         22
+     5.9    0.020     5.9693          120     60         22
+    5.93    0.020     5.9993          120     60         22

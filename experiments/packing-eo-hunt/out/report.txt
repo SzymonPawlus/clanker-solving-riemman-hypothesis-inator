@@ -1,0 +1,137 @@
+Erdos-Oler counterexample hunt -- collated report
+================================================================================================
+STATUS: every number below is `numerical` (problem RULES.md SS1). No packing here is a
+certificate except where an exact q_min is printed, and no optimality is claimed anywhere.
+Normalisation: n points at pairwise distance >= 1 in an equilateral triangle of side a;
+search reports m = max-min distance in the UNIT triangle, so a = 1/m. Delta(k)=k(k+1)/2.
+EO(k) is false iff m(Delta(k)-1) > 1/(k-1).   (Repo certificates use separation 2, d = 2a.)
+
+0. COST MODEL (out/bench.json) -- the budget in KILL-CRITERION.md was set from this
+   env: python 3.11.15, numpy 2.4.6, scipy 1.17.1
+   k= 5 n= 14        15.9 ms per SLSQP solve
+   k= 6 n= 20        67.7 ms per SLSQP solve
+   k= 7 n= 27       125.3 ms per SLSQP solve
+   k= 8 n= 35       352.6 ms per SLSQP solve
+   k= 9 n= 44       512.2 ms per SLSQP solve
+   k=10 n= 54      1396.0 ms per SLSQP solve
+
+1. VALIDATION on the PROVEN cases k=2..6 (Melissen 1993; Payan 1997) -- gate before any
+   target run. An optimiser that beats a proven case is broken, not brilliant.
+     k    n               best m       target 1/(k-1)      exact a_min   digits
+     2    2    1.000000000000000    1.000000000000000   1.000000000000     16.0
+     3    5    0.500000000000000    0.500000000000000   2.000000000000     16.3
+     4    9    0.333333333333333    0.333333333333333   3.000000000000     16.3
+     5   14    0.250000000000000    0.250000000000000   4.000000000000     15.9
+     6   20    0.200000000000000    0.200000000000000   5.000000000000     15.7
+   ALL OK: True  -- exact gate returned a_min = k-1 exactly in every case,
+   i.e. it never reported a sub-(k-1) packing where the literature says none exists.
+
+2. POSITIVE CONTROL n = 26 (out/control-n26.json) -- the only test of the exact gate's
+   'yes' branch. 26 points DO fit below side 6, so the gate must say so.
+   search: 2658 solves, best m = 0.166738399395271
+   published d(26)     = 0.166738399395271   (Graham-Lubachevsky 1995)
+   agreement           = 14.70 significant digits
+   side a = 1/m        = 5.997418732738319   (< 6 required)
+   exact @   1e6: a_min = 5.997418733122105  contained=True  fits below side 6: True
+       Q(sqrt3) cross-check at exact side 299871/50000 = 5.997420000:
+       contained=True  separation>=1: True  side<6: True  checkers agree: True
+
+3. THE HUNT at n = Delta(k)-1  (out/hunt-k*-*.json)
+
+     k    n   solves              best m             1/(k-1)     best-thr    hits  basins
+     7   27     6981   0.166666666666666   0.166666666666667    -1.94e-16    6771     125
+     7   27     6855   0.166666666666667   0.166666666666667    -1.39e-16    6642     125
+     8   35     2600   0.142857142857143   0.142857142857143    -1.67e-16    2470      98
+     9   44      902   0.125000000000000   0.125000000000000    -2.08e-16     825      73
+    10   54       97   0.111111111111111   0.111111111111111    -2.50e-16      84      14
+
+   'hits' = solves landing on 1/(k-1) to 1e-9; 'basins' = distinct local-optimum values.
+   NO run at any k produced a local optimum above 1/(k-1). The abort-and-exactify trigger
+   (m > 1/(k-1) + 1e-9) never fired.
+
+   3a. HOW FAR BELOW THE LATTICE VALUE THE NEXT BASIN LIES.
+   The naive 'best local optimum strictly below 1/(k-1)' is useless: it is dominated by
+   incompletely converged copies of the lattice itself, sitting 1e-8 below it. So the table
+   reports, for a ladder of exclusion radii eps, the best local optimum found below
+   1/(k-1) - eps. The eps at which the value stops tracking 1/(k-1) is where the genuinely
+   distinct structures start.
+     k               eps=1e-9               eps=1e-6               eps=1e-4               eps=1e-3
+     7      0.166666665000000      0.166665578000000      0.166238865000000      0.165614855000000
+     8      0.142857141000000      0.142855785000000      0.142301027000000      0.140964689000000
+     9      0.124999994000000      0.124998969000000      0.123541185000000      0.123541185000000
+    10      0.108890477000000      0.108890477000000      0.108890477000000      0.108890477000000
+   (Only the top 40 distinct values per run are retained in the checkpoints, so an entry of
+   'none found' at large eps means the top-40 tail did not reach that far down, not that no
+   such local optimum exists.)
+
+   3b. SEED FAMILY BREAKDOWN (solves / how many reached 1/(k-1) / best m found)
+   k = 7:
+      corner_dense     solves=   2009  reached 1/(k-1):    1979 ( 98.5%)  best=0.166666666666666
+      hop              solves=   3785  reached 1/(k-1):    3681 ( 97.3%)  best=0.166666666666666
+      lattice_defect   solves=   2023  reached 1/(k-1):    2022 (100.0%)  best=0.166666666666666
+      rotated_lattice  solves=   2036  reached 1/(k-1):    1981 ( 97.3%)  best=0.166666666666667
+      rows             solves=   1967  reached 1/(k-1):    1817 ( 92.4%)  best=0.166666666666666
+      uniform          solves=   2016  reached 1/(k-1):    1933 ( 95.9%)  best=0.166666666666666
+   k = 8:
+      corner_dense     solves=    388  reached 1/(k-1):     378 ( 97.4%)  best=0.142857142857143
+      hop              solves=    673  reached 1/(k-1):     645 ( 95.8%)  best=0.142857142857143
+      lattice_defect   solves=    383  reached 1/(k-1):     382 ( 99.7%)  best=0.142857142857143
+      rotated_lattice  solves=    390  reached 1/(k-1):     364 ( 93.3%)  best=0.142857142857143
+      rows             solves=    383  reached 1/(k-1):     345 ( 90.1%)  best=0.142857142857143
+      uniform          solves=    383  reached 1/(k-1):     356 ( 93.0%)  best=0.142857142857142
+   k = 9:
+      corner_dense     solves=    110  reached 1/(k-1):     100 ( 90.9%)  best=0.125000000000000
+      hop              solves=    338  reached 1/(k-1):     320 ( 94.7%)  best=0.125000000000000
+      lattice_defect   solves=    119  reached 1/(k-1):     117 ( 98.3%)  best=0.125000000000000
+      rotated_lattice  solves=    116  reached 1/(k-1):     100 ( 86.2%)  best=0.125000000000000
+      rows             solves=    112  reached 1/(k-1):      98 ( 87.5%)  best=0.125000000000000
+      uniform          solves=    107  reached 1/(k-1):      90 ( 84.1%)  best=0.125000000000000
+   k = 10:
+      corner_dense     solves=     19  reached 1/(k-1):      16 ( 84.2%)  best=0.111111111111111
+      lattice_defect   solves=     20  reached 1/(k-1):      20 (100.0%)  best=0.111111111111111
+      rotated_lattice  solves=     20  reached 1/(k-1):      18 ( 90.0%)  best=0.111111111111110
+      rows             solves=     19  reached 1/(k-1):      18 ( 94.7%)  best=0.111111111111111
+      uniform          solves=     19  reached 1/(k-1):      12 ( 63.2%)  best=0.111111111111111
+
+   3c. CORNER OCCUPANCY of the best configuration, at integer scales j=1..5.
+       A k=7 counterexample must have >= T(j) points in the OPEN corner triangle of side j
+       at every corner (attacks/eo-hull-deficit SS9, status `sketch` there -- used here as a
+       reporting statistic and a seeding heuristic ONLY, never as an assumption).
+       required T(j) for j=1..5: 1, 3, 6, 10, 15
+   k=7 best      : A [1, 3, 6, 10, 15]  B [1, 3, 6, 10, 15]  C [0, 2, 5, 9, 14]
+   k=7 runner-up : A [1, 3, 6, 10, 14]  B [1, 3, 6, 9, 14]  C [1, 3, 6, 10, 15]
+   k=8 best      : A [1, 3, 6, 10, 15]  B [1, 2, 5, 9, 14]  C [1, 3, 6, 10, 15]
+   k=8 runner-up : A [1, 3, 6, 10, 15]  B [1, 3, 6, 9, 14]  C [1, 3, 6, 10, 15]
+   k=9 best      : A [1, 3, 6, 10, 15]  B [1, 3, 6, 10, 15]  C [1, 3, 6, 10, 15]
+   k=9 runner-up : A [1, 3, 6, 10, 15]  B [1, 3, 6, 10, 15]  C [1, 3, 6, 10, 15]
+   k=10 best      : A [1, 2, 5, 9, 14]  B [1, 3, 6, 10, 15]  C [1, 3, 6, 10, 15]
+   k=10 runner-up : A [1, 3, 6, 11, 15]  B [1, 3, 6, 10, 15]  C [1, 3, 6, 10, 14]
+
+4. TARGETED INSERTION ATTACK (out/insert-*.json): start from a Delta(k)-2 packing that
+   genuinely beats side k-1, insert one more point at every deep hole, re-optimise.
+   (not run)
+
+5. THE MARGIN CURVE AND THE COUNTEREXAMPLE WINDOW
+
+   Elementary: deleting a point gives m(n) <= m(n-1). Hence any counterexample to EO(k)
+   has  1/(k-1) < m(Delta(k)-1) <= m(Delta(k)-2), so its triangle side lies in
+
+        a  in  [ 1/m(Delta(k)-2),  k-1 ).
+
+   delta(k) := m(Delta(k)-2) - 1/(k-1) is therefore an upper bound on how badly EO(k) can
+   fail. m(Delta(k)-2) is not known exactly for any k >= 3, so the table substitutes the
+   published best-known d(Delta(k)-2); the window is CONDITIONAL on that record being
+   optimal, and is `numerical`. For k >= 9 no published value exists (GL stops at n=36) and
+   the entry is this project's own best-found value -- a LOWER bound on m(Delta(k)-2), so
+   the window shown there is a lower bound on the true window's width, not the window.
+
+     k   n-2         m(n-2) used     source    delta(k)   ratio                  window a in      width
+     3     4   0.577350269189626  GL/Friedm  7.7350e-02     nan             [1.732050808, 2)  2.679e-01
+     4     8   0.343070330817254  GL/Friedm  9.7370e-03    7.94             [2.914854216, 3)  8.515e-02
+     5    13   0.251813236653061  GL/Friedm  1.8132e-03    5.37             [3.971197119, 4)  2.880e-02
+     6    19   0.200321458983439  GL/Friedm  3.2146e-04    5.64             [4.991976422, 5)  8.024e-03
+     7    26   0.166738399395271  GL/Friedm  7.1733e-05    4.48             [5.997418733, 6)  2.581e-03
+     8    34   0.142869646754496  GL/Friedm  1.2504e-05    5.74             [6.999387363, 7)  6.126e-04
+
+   'ratio' = delta(k-1)/delta(k): how fast the margin collapses as k grows.
+

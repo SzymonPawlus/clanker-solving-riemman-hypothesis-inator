@@ -1,0 +1,4 @@
+n=26 solves=2658 best_m=0.166738399395271 ref=0.166738399395271 digits=14.70
+      best a = 1/m = 5.997418732738319   (must be < 6 to be a sub-6 packing of 26)
+  max_den=1e6: exact q_min=0.027801693829339 a_min=5.997418733122105 contained=True beats a=6: True
+      Q(sqrt3) checker at exact side 299871/50000 = 5.997420000: contained=True sep>=1: True side<6: True

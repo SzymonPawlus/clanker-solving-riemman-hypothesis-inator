@@ -311,7 +311,7 @@ def seed_corner_dense(n: int, k: int, rng) -> np.ndarray:
     triangle of side j. Whatever the status of that derivation, it is a legitimate place to *look*:
     this seed pins the three corner clusters of the lattice at scale ``jc`` and scatters the rest.
     """
-    jc = int(rng.integers(2, min(4, k - 2) + 1))
+    jc = int(rng.integers(1, max(2, min(4, k - 2) + 1)))
     lat = _full_lattice(k)
     x, y = lat[:, 0], lat[:, 1]
     l2 = y / HALF_SQRT3

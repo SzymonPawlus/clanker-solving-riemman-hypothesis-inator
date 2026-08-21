@@ -1,0 +1,70 @@
+{
+  "env": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "rows": [
+    {
+      "k": 2,
+      "n": 2,
+      "threshold_m": 1.0,
+      "best_m": 1.0,
+      "agreement_digits": 16.0,
+      "float_exceeds_threshold": false,
+      "exact_gate_refutes": false,
+      "exact_q_min": "1",
+      "exact_a_min": 1.0,
+      "solves": 2332
+    },
+    {
+      "k": 3,
+      "n": 5,
+      "threshold_m": 0.5,
+      "best_m": 0.49999999999999994,
+      "agreement_digits": 16.255619765854984,
+      "float_exceeds_threshold": false,
+      "exact_gate_refutes": false,
+      "exact_q_min": "1/4",
+      "exact_a_min": 2.0,
+      "solves": 1751
+    },
+    {
+      "k": 4,
+      "n": 9,
+      "threshold_m": 0.3333333333333333,
+      "best_m": 0.33333333333333326,
+      "agreement_digits": 16.255619765854984,
+      "float_exceeds_threshold": false,
+      "exact_gate_refutes": false,
+      "exact_q_min": "1/9",
+      "exact_a_min": 3.0,
+      "solves": 803
+    },
+    {
+      "k": 5,
+      "n": 14,
+      "threshold_m": 0.25,
+      "best_m": 0.24999999999999986,
+      "agreement_digits": 15.857679757182947,
+      "float_exceeds_threshold": false,
+      "exact_gate_refutes": false,
+      "exact_q_min": "1/16",
+      "exact_a_min": 4.0,
+      "solves": 734
+    },
+    {
+      "k": 6,
+      "n": 20,
+      "threshold_m": 0.2,
+      "best_m": 0.1999999999999998,
+      "agreement_digits": 15.653559774527022,
+      "float_exceeds_threshold": false,
+      "exact_gate_refutes": false,
+      "exact_q_min": "1/25",
+      "exact_a_min": 5.0,
+      "solves": 684
+    }
+  ],
+  "all_ok": true
+}
