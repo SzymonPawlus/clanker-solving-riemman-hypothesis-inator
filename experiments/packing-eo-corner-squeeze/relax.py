@@ -118,65 +118,63 @@ def build(k, a, use_lower_eo=True):
 # ---------------------------------------------------------------- ILP search
 
 
-def feasible(cells, cellcap, cons_list, n, node_limit=4_000_000):
-    """DFS for an integer point of the system.  Returns (z, nodes) or (None, nodes)."""
+def _dedupe(cons_list):
+    """Merge constraints that share a member set; drop nothing else."""
+    best = {}
+    for (nm, mem, lo, hi) in cons_list:
+        key = frozenset(mem)
+        if key in best:
+            onm, olo, ohi = best[key]
+            best[key] = (onm, max(olo, lo), min(ohi, hi))
+        else:
+            best[key] = (nm, lo, hi)
+    return [(nm, sorted(k), lo, hi) for k, (nm, lo, hi) in best.items()]
+
+
+def _prepare(cells, cellcap, cons_list):
     m = len(cells)
+    cl = _dedupe(cons_list)
     ub = list(cellcap)
-    # tighten single-cell upper bounds from the constraints
-    for (_, mem, lo, hi) in cons_list:
+    for (_, mem, lo, hi) in cl:
         if len(mem) == 1:
             ub[mem[0]] = min(ub[mem[0]], hi)
+    C = len(cl)
+    lo_c = [c[2] for c in cl]
+    hi_c = [c[3] for c in cl]
+    mem_c = [c[1] for c in cl]
+    cons_of = [[] for _ in range(m)]
+    for ci in range(C):
+        for i in mem_c[ci]:
+            cons_of[i].append(ci)
+    return ub, C, lo_c, hi_c, mem_c, cons_of
 
-    # constraints touching each cell, for incremental checking
-    cons = [(mem_set, lo, hi, sorted(mem)) for (_, mem, lo, hi) in
-            [(nm, mem, lo, hi) for (nm, mem, lo, hi) in cons_list]
-            for mem_set in [set(mem)]]
 
-    # order cells so that heavily-constrained ones come first
-    order = sorted(range(m), key=lambda i: -ub[i])
-    pos = {c: p for p, c in enumerate(order)}
-    # for each constraint precompute, in the DFS order, the last position it touches
-    prepared = []
-    for (mem_set, lo, hi, mem) in cons:
-        last = max(pos[i] for i in mem)
-        prepared.append((mem_set, lo, hi, last, sum(ub[i] for i in mem)))
+def feasible(cells, cellcap, cons_list, n, node_limit=20_000_000):
+    """Exhaustive DFS with incremental constraint state.
 
-    by_last = [[] for _ in range(m)]
-    for c in prepared:
-        by_last[c[3]].append(c)
+    Returns (z, nodes) with z a feasible integer point, None if the system is
+    infeasible, or the string 'timeout' if the node limit was hit first.
+    """
+    m = len(cells)
+    ub, C, lo_c, hi_c, mem_c, cons_of = _prepare(cells, cellcap, cons_list)
 
-    cur = [0] * m
-    nodes = [0]
+    # branch on the most constrained cells first
+    tight = [10 ** 9] * m
+    for ci in range(C):
+        cap_sum = sum(ub[i] for i in mem_c[ci])
+        slack = hi_c[ci] - cap_sum
+        for i in mem_c[ci]:
+            tight[i] = min(tight[i], slack)
+    order = sorted(range(m), key=lambda i: (tight[i], -ub[i]))
 
-    # suffix capacity for the total constraint
     suffix = [0] * (m + 1)
     for p in range(m - 1, -1, -1):
         suffix[p] = suffix[p + 1] + ub[order[p]]
 
-    def partial_ok(p):
-        """check constraints fully determined at position p, and prune on the rest"""
-        for (mem_set, lo, hi, last, capsum) in by_last[p]:
-            s = sum(cur[i] for i in mem_set)
-            if s < lo or s > hi:
-                return False
-        # prune: any constraint whose remaining cells cannot bring it up to lo
-        for (mem_set, lo, hi, last, capsum) in prepared:
-            if lo == 0:
-                continue
-            s = 0
-            rem = 0
-            for i in mem_set:
-                if pos[i] <= p:
-                    s += cur[i]
-                else:
-                    rem += ub[i]
-            if s + rem < lo:
-                return False
-            if s > hi:
-                return False
-        return True
-
-    total_lo = n
+    cur = [0] * m
+    cur_sum = [0] * C
+    rem_cap = [sum(ub[i] for i in mem_c[ci]) for ci in range(C)]
+    nodes = [0]
 
     def rec(p, placed):
         nodes[0] += 1
@@ -185,20 +183,103 @@ def feasible(cells, cellcap, cons_list, n, node_limit=4_000_000):
         if p == m:
             return placed == n
         i = order[p]
-        hi = min(ub[i], n - placed)
-        for v in range(hi, -1, -1):
-            cur[i] = v
-            if placed + v + suffix[p + 1] < n:
-                cur[i] = 0
-                return False        # v only decreases from here
-            if partial_ok(p):
-                if rec(p + 1, placed + v):
-                    return True
-        cur[i] = 0
-        return False
+        cs = cons_of[i]
+        top = min(ub[i], n - placed)
+        for ci in cs:
+            t = hi_c[ci] - cur_sum[ci]
+            if t < top:
+                top = t
+        if top < 0:
+            return False
+        for ci in cs:
+            rem_cap[ci] -= ub[i]
+        try:
+            for v in range(top, -1, -1):
+                if placed + v + suffix[p + 1] < n:
+                    return False            # smaller v is only worse
+                ok = True
+                for ci in cs:
+                    cur_sum[ci] += v
+                for ci in cs:
+                    if cur_sum[ci] + rem_cap[ci] < lo_c[ci]:
+                        ok = False
+                        break
+                if ok:
+                    cur[i] = v
+                    if rec(p + 1, placed + v):
+                        return True
+                    cur[i] = 0
+                for ci in cs:
+                    cur_sum[ci] -= v
+            return False
+        finally:
+            for ci in cs:
+                rem_cap[ci] += ub[i]
 
     try:
         ok = rec(0, 0)
     except TimeoutError:
         return "timeout", nodes[0]
     return (list(cur) if ok else None), nodes[0]
+
+
+def find_feasible_random(cells, cellcap, cons_list, n, tries=4000, seed=20260821):
+    """Randomised-restart DFS.  Finds a feasible integer point fast when one exists;
+    proves nothing when it fails."""
+    import random
+    rnd = random.Random(seed)
+    m = len(cells)
+    cl = _dedupe(cons_list)
+    ub = list(cellcap)
+    for (_, mem, lo, hi) in cl:
+        if len(mem) == 1:
+            ub[mem[0]] = min(ub[mem[0]], hi)
+    C = len(cl)
+    lo_c = [c[2] for c in cl]
+    hi_c = [c[3] for c in cl]
+    mem_c = [c[1] for c in cl]
+    cons_of = [[] for _ in range(m)]
+    for ci in range(C):
+        for i in mem_c[ci]:
+            cons_of[i].append(ci)
+
+    for t in range(tries):
+        order = list(range(m))
+        rnd.shuffle(order)
+        cur = [0] * m
+        cur_sum = [0] * C
+        rem_cap = [sum(ub[i] for i in mem_c[ci]) for ci in range(C)]
+        placed = 0
+        ok = True
+        for p, i in enumerate(order):
+            top = min(ub[i], n - placed)
+            for ci in cons_of[i]:
+                top = min(top, hi_c[ci] - cur_sum[ci])
+            if top < 0:
+                ok = False
+                break
+            # bias towards filling: pick a value near the top, sometimes lower
+            v = top if rnd.random() < 0.7 else rnd.randint(0, max(top, 0))
+            cur[i] = v
+            placed += v
+            for ci in cons_of[i]:
+                cur_sum[ci] += v
+                rem_cap[ci] -= ub[i]
+                if cur_sum[ci] + rem_cap[ci] < lo_c[ci]:
+                    ok = False
+            if not ok:
+                break
+        if ok and placed == n:
+            if not check_solution(cells, cons_list, cur):
+                return cur, t
+    return None, tries
+
+
+def check_solution(cells, cons_list, z):
+    """Independently re-verify a claimed feasible point against every constraint."""
+    bad = []
+    for (nm, mem, lo, hi) in cons_list:
+        s = sum(z[i] for i in mem)
+        if not (lo <= s <= hi):
+            bad.append((nm, s, lo, hi))
+    return bad

@@ -1,0 +1,21 @@
+{
+  "status": "numerical",
+  "k": 8,
+  "n": 35,
+  "aligned_spacing": 0.14285714285714285,
+  "aligned_bisected": 0.14285714285722406,
+  "best_rotated_spacing": 0.14285714285730505,
+  "best_at": [
+    0.0,
+    0.5,
+    0.8660254037844386,
+    "grid"
+  ],
+  "excess": 1.6220358389773537e-13,
+  "beats_aligned": false,
+  "samples": {
+    "grid_thetas": 61,
+    "grid_offsets": 81,
+    "random": 800
+  }
+}

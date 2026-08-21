@@ -206,8 +206,12 @@ def d_lower(n):
     return oler_root(n)
 
 
-def N_upper_sq(sq_side, nmax=40):
+def N_upper_sq(sq_side, nmax=None):
     """Upper bound on N(t) for a CLOSED equilateral triangle whose side squares to sq_side."""
+    if nmax is None:
+        import math
+        t = math.isqrt(int(sq_side)) + 2
+        nmax = (t + 3) * (t + 4) // 2 + 10
     best = 0
     for n in range(1, nmax + 1):
         dl = d_lower(n)
@@ -219,8 +223,11 @@ def N_upper_sq(sq_side, nmax=40):
     return best
 
 
-def N_upper_open(j, nmax=40):
+def N_upper_open(j, nmax=None):
     """Upper bound on the number of unit-separated points with u_V < j (side < j)."""
+    if nmax is None:
+        # Oler already caps this by T(j+1)-1; take a safe margin above that
+        nmax = (j + 2) * (j + 3) // 2 + 10
     best = 0
     for n in range(1, nmax + 1):
         dl = d_lower(n)
@@ -230,7 +237,7 @@ def N_upper_open(j, nmax=40):
     return best
 
 
-def capacity(a, cons, nmax=40):
+def capacity(a, cons, nmax=None):
     """Rigorous upper bound on the number of unit-separated points in a closed region."""
     nv, oler_area, per, sqdiam, sides = measures(a, cons)
     if nv == 0:
@@ -248,5 +255,5 @@ def capacity(a, cons, nmax=40):
     cap = b.floor_upper()
     # equilateral triangle?  then the cited table is sharper
     if nv == 3 and sides[0] == sides[1] == sides[2]:
-        cap = min(cap, N_upper_sq(sides[0], nmax))
+        cap = min(cap, N_upper_sq(sides[0]))
     return cap

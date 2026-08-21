@@ -32,6 +32,8 @@ place to fool yourself; every number here is in the separation-1 $(a, m)$ normal
 | `run.py` | driver: `bench`, `validate`, `hunt` |
 | `control_n26.py` | the positive control — $n = 26$ genuinely fits below side 6, so the gate must say yes |
 | `insert.py` | the targeted attack: take a $\Delta(k)-2$ packing below side $k-1$, insert one more point |
+| `lattice_scan.py` | the largest hexagonal lattice spacing, over all rotations and offsets, that still holds $\Delta(k)-1$ points in the triangle |
+| `negative_control.py` | the gate must reject a $10^{-12}$ near-miss |
 | `analyze.py` | collates `out/*.json` into `out/report.txt` |
 | `tables.py` | emits the writeup's markdown tables from `out/*.json` — no number is hand-transcribed |
 
@@ -52,6 +54,7 @@ uv run insert.py 7  150 320 424242
 uv run insert.py 8  180 360 515151
 uv run insert.py 9  220 400 616161
 uv run insert.py 10 240 420 717171
+uv run lattice_scan.py 7 1500                              # rotated-lattice scan (also 8, 9, 10)
 uv run analyze.py && uv run tables.py
 ```
 

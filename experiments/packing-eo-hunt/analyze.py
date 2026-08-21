@@ -253,6 +253,23 @@ def main():
         P("   (not run)")
     P("")
 
+    # ---------------- rotated lattice scan
+    scans = sorted(glob.glob(os.path.join(OUT, "lattice-scan-k*.json")),
+                   key=lambda f: int(f.rsplit("k", 1)[-1].split(".")[0]))
+    if scans:
+        P("4b. ROTATED-LATTICE SCAN (out/lattice-scan-k*.json): the largest hexagonal-lattice")
+        P("    spacing, over all rotations theta and offsets, still holding Delta(k)-1 points in")
+        P("    the unit triangle. If a counterexample were a rotated lattice fragment this would")
+        P("    exceed 1/(k-1).")
+        P(f"    {'k':>3} {'n':>4} {'1/(k-1)':>19} {'best rotated s':>19} {'excess':>11} {'theta_deg':>10}")
+        for f in scans:
+            r = json.load(open(f))
+            P(f"    {r['k']:>3} {r['n']:>4} {r['aligned_spacing']:>19.15f} "
+              f"{r['best_rotated_spacing']:>19.15f} {r['excess']:>11.2e} {r['best_at'][0]:>10.1f}")
+        P("    The maximum is 1/(k-1) at every k, attained at theta = 0 (the aligned lattice); the")
+        P("    excess column is at the 1e-13 level of the bisection, not a real margin.")
+        P("")
+
     # ---------------- margin curve
     P("5. THE MARGIN CURVE AND THE COUNTEREXAMPLE WINDOW")
     P("")
@@ -283,12 +300,19 @@ def main():
         thr = 1.0 / (k - 1)
         delta = m2 - thr
         lo = 1.0 / m2
+        if delta <= 0:
+            P(f"   {k:>3} {n2:>5} {m2:>19.15f} {src:>10} {'<= 0':>11} {'--':>7} "
+              f"{'UNDER-SEARCHED: no slack found':>28} {'--':>10}")
+            continue
         ratio = prev / delta if prev else float("nan")
         P(f"   {k:>3} {n2:>5} {m2:>19.15f} {src:>10} {delta:>11.4e} "
           f"{ratio:>7.2f} {'[' + format(lo, '.9f') + ', ' + str(k - 1) + ')':>28} {k - 1 - lo:>10.3e}")
         prev = delta
     P("")
-    P("   'ratio' = delta(k-1)/delta(k): how fast the margin collapses as k grows.")
+    P("   'ratio' = delta(k-1)/delta(k): how fast the margin collapses as k grows. It is only")
+    P("   meaningful between consecutive GL/Friedman rows; the 'ours' rows are lower bounds from a")
+    P("   short search (130-240 s of stage-1 in insert.py) and at k=10 that search did not beat the")
+    P("   lattice value at n = 53 at all, which is a statement about the search, not about m(53).")
     P("")
     with open(os.path.join(OUT, "report.txt"), "w") as fh:
         fh.write("\n".join(L) + "\n")

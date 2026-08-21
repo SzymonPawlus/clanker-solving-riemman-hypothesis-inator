@@ -1,0 +1,6 @@
+--- k=10: insert into Delta(k)-2 = 53 to reach 54; threshold m > 0.1111111111111111
+  stage 1: 86 solves, best m(53) = 0.11111111111111083 (a = 9.000000000000023)
+           elites: [0.111111111111, 0.105174025263, 0.104484520292, 0.103977733614, 0.1]
+  stage 2+3: 352 insertions, best m(54) = 0.11111111111111077
+             threshold 0.1111111111111111; excess = -3.3306690738754696e-16
+             exact gate: a_min = 9.0, refutes EO(10) = False

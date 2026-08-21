@@ -1,0 +1,5 @@
+  n014-exact.json    n=14  a<=4  boxes tested 5661  tightest box (0, (0, 1, 4, 5, 4, 5), 1, 1)
+  n015-exact.json    n=15  a<=4  boxes tested 5781  tightest box (0, (0, 1, 4, 5, 4, 5), 1, 1)
+  n020-exact.json    n=20  a<=5  boxes tested 13677  tightest box (0, (0, 1, 5, 6, 5, 6), 1, 1)
+  n021-exact.json    n=21  a<=5  boxes tested 13845  tightest box (0, (0, 1, 5, 6, 5, 6), 1, 1)
+PASS big

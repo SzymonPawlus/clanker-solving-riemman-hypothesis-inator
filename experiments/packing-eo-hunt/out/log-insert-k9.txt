@@ -1,0 +1,6 @@
+--- k=9: insert into Delta(k)-2 = 43 to reach 44; threshold m > 0.125
+  stage 1: 160 solves, best m(43) = 0.1250006681245559 (a = 7.999957240256973)
+           elites: [0.125000668125, 0.125000584761, 0.125000581559, 0.125000041534, 0.125, 0.124999945606, 0.124999659393, 0.111111111111]
+  stage 2+3: 654 insertions, best m(44) = 0.12499999999999976
+             threshold 0.125; excess = -2.3592239273284576e-16
+             exact gate: a_min = 8.0, refutes EO(9) = False
