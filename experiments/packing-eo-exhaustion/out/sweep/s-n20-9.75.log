@@ -1,0 +1,22 @@
+{
+ "schema": "eoex/1",
+ "n": 20,
+ "d": "39/4",
+ "d_float": 9.75,
+ "max_level": 10,
+ "max_cited": 15,
+ "oler_caps": true,
+ "oler_hull": true,
+ "symmetry": true,
+ "status": "timeout",
+ "nodes": 4097024,
+ "elapsed_s": 420.018,
+ "frontier_count": 123,
+ "frontier_digest": "fdcaee074e12644224e18b529af95e5e91b9a6ecdf620ac641a9115c05acb82a",
+ "meta": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39",
+  "utc": "2026-08-21T13:45:53Z"
+ }
+}
+NOT PROVED (timeout). Nothing follows from this run.

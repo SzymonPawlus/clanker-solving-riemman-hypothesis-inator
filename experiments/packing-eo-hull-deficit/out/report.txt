@@ -1,0 +1,287 @@
+==============================================================================
+EO HULL-DEFICIT -- exact report
+==============================================================================
+
+Normalisation: separation 1, triangle side a.  Repo certificates use separation 2
+and side d = 2a, so every coordinate is HALVED on load.
+
+------------------------------------------------------------------------------
+1.  CORNER-DEFICIT LEMMA on every exact certificate in the repo
+------------------------------------------------------------------------------
+
+  t_V := 2*min_{p in E} h_V(p)/sqrt3   (side of the empty corner triangle at V)
+  Lemma:  def(H) >= sum_V (t_V^2 + t_V)/2   =: CD
+
+  Proof: E lies in the hexagon K = T inter {h_V >= t_V*sqrt3/2 : V}, so H = conv(E)
+  lies in K too; area and perimeter are monotone on nested convex sets, hence
+  def(H) >= def(K) = sum_V (t_V^2+t_V)/2.  Both steps are checked EXACTLY below:
+  containment of every point in K, and A(K) = A(T) - (sqrt3/4) sum t_V^2 exactly.
+
+  n configuration                  t_A,t_B,t_C                 CD  E in K  A(K) ok           def(H) enclosure
+  3 full triangular lattice T(2) o 0.0000,0.0000,0.0000  0.000000    True     True [0.000000000000, 0.000000000000]
+  4 three corners of the point-tri 0.0000,0.0000,0.0000  0.000000    True     True [-0.000000000000, 0.000000000000]
+  5 triangular lattice T(3) of sid 0.0000,0.0000,1.0000  1.000000    True     True [1.000000000000, 1.000000000000]
+  6 full triangular lattice T(3) o 0.0000,0.0000,0.0000  0.000000    True     True [0.000000000000, 0.000000000000]
+  7 three corners + two edge point 0.0000,0.0000,0.0000  0.000000    True     True [-0.000000000000, 0.000000000000]
+  8 bottom row of 3; symmetric pai 0.0000,0.0000,0.0000  0.000000    True     True [-0.000000000000, 0.000000000000]
+  9 triangular lattice T(4) of sid 0.0000,0.0000,1.0000  1.000000    True     True [1.000000000000, 1.000000000000]
+ 10 full triangular lattice T(4) o 0.0000,0.0000,0.0000  0.000000    True     True [0.000000000000, 0.000000000000]
+ 14 triangular lattice T(5) of sid 0.0000,0.0000,1.0000  1.000000    True     True [1.000000000000, 1.000000000000]
+ 15 full triangular lattice T(5) o 0.0000,0.0000,0.0000  0.000000    True     True [0.000000000000, 0.000000000000]
+ 20 triangular lattice T(6) of sid 0.0000,0.0000,1.0000  1.000000    True     True [1.000000000000, 1.000000000000]
+ 21 full triangular lattice T(6) o 0.0000,0.0000,0.0000  0.000000    True     True [0.000000000000, 0.000000000000]
+
+  corner-deficit lemma verified on every certificate: PASS
+  (def(H) itself is only an enclosure -- it contains a perimeter -- but the lemma
+   is certified without it, through the exact containment E subset K.)
+
+  K2 control -- def(H) must be exactly 1 on T(k)-apex and exactly 0 on T(k):
+    n=  3  lattice     CD=0.000000 def(H)=[0.000000000000, 0.000000000000]  PASS
+    n=  5  T(k)-apex   CD=1.000000 def(H)=[1.000000000000, 1.000000000000]  PASS
+    n=  6  lattice     CD=0.000000 def(H)=[0.000000000000, 0.000000000000]  PASS
+    n=  9  T(k)-apex   CD=1.000000 def(H)=[1.000000000000, 1.000000000000]  PASS
+    n= 10  lattice     CD=0.000000 def(H)=[0.000000000000, 0.000000000000]  PASS
+    n= 14  T(k)-apex   CD=1.000000 def(H)=[1.000000000000, 1.000000000000]  PASS
+    n= 15  lattice     CD=0.000000 def(H)=[0.000000000000, 0.000000000000]  PASS
+    n= 20  T(k)-apex   CD=1.000000 def(H)=[1.000000000000, 1.000000000000]  PASS
+    n= 21  lattice     CD=0.000000 def(H)=[0.000000000000, 0.000000000000]  PASS
+
+------------------------------------------------------------------------------
+2.  CORNER-OCCUPANCY LEMMA  (K3 control)
+------------------------------------------------------------------------------
+
+  A closed equilateral triangle of side t has diameter t, so t < 1 forces at most
+  one point of a unit-separated set inside it.  Checked exactly on every
+  certificate at t = 1 - 1/10^6, at all three corners:
+  max points found in any corner triangle of side 0.999999: 1  PASS
+
+------------------------------------------------------------------------------
+3.  NEUTRALITY:  the corner cut is never worth more than the points it removes
+------------------------------------------------------------------------------
+
+  gain(t) := (t^2+t)/2 - N(t), where N(t) = max unit-separated points in a
+  CLOSED equilateral triangle of side t.  Claim: gain(t) < 0 strictly for every t,
+  with supremum 0 approached as t -> j^- (j a positive integer).  Two checks:
+  against the lattice count T(floor(t)+1) <= N(t), and against `cited` N(t), t <= 4.
+
+         t    (t^2+t)/2   T(|t|+1)  N(t) cited  gain vs lattice  gain vs N
+       1/8     0.070312          1           1        -0.929688  -0.929688
+       1/4     0.156250          1           1        -0.843750  -0.843750
+       3/8     0.257812          1           1        -0.742188  -0.742188
+       1/2     0.375000          1           1        -0.625000  -0.625000
+       5/8     0.507812          1           1        -0.492188  -0.492188
+       3/4     0.656250          1           1        -0.343750  -0.343750
+       7/8     0.820312          1           1        -0.179688  -0.179688
+         1     1.000000          3           3        -2.000000  -2.000000 <-- integer t
+       9/8     1.195312          3           3        -1.804688  -1.804688
+       5/4     1.406250          3           3        -1.593750  -1.593750
+      11/8     1.632812          3           3        -1.367188  -1.367188
+       3/2     1.875000          3           3        -1.125000  -1.125000
+      13/8     2.132812          3           3        -0.867188  -0.867188
+       7/4     2.406250          3           4        -0.593750  -1.593750
+      15/8     2.695312          3           4        -0.304688  -1.304688
+         2     3.000000          6           6        -3.000000  -3.000000 <-- integer t
+      17/8     3.320312          6           6        -2.679688  -2.679688
+       9/4     3.656250          6           6        -2.343750  -2.343750
+      19/8     4.007812          6           6        -1.992188  -1.992188
+       5/2     4.375000          6           6        -1.625000  -1.625000
+      21/8     4.757812          6           6        -1.242188  -1.242188
+      11/4     5.156250          6           7        -0.843750  -1.843750
+      23/8     5.570312          6           7        -0.429688  -1.429688
+         3     6.000000         10          10        -4.000000  -4.000000 <-- integer t
+      25/8     6.445312         10          10        -3.554688  -3.554688
+      13/4     6.906250         10          10        -3.093750  -3.093750
+      27/8     7.382812         10          10        -2.617188  -2.617188
+       7/2     7.875000         10          10        -2.125000  -2.125000
+      29/8     8.382812         10          10        -1.617188  -1.617188
+      15/4     8.906250         10          12        -1.093750  -3.093750
+      31/8     9.445312         10          12        -0.554688  -2.554688
+         4    10.000000         15          15        -5.000000  -5.000000 <-- integer t
+
+  max over the grid of [(t^2+t)/2 - T(floor(t)+1)] = -0.1796875  (at t just below 1)  PASS
+  (Algebraically, with t = m + f, 0 <= f < 1: (t^2+t)/2 - T(m+1) = (f-1)(2m+f+2)/2 < 0.
+   It tends to 0 as f -> 1, i.e. as t approaches an integer FROM BELOW; at t = j
+   exactly the closed corner triangle gains a whole lattice row and the cut is a
+   strict loss.  Verified above on 32 exact rational t.)
+
+------------------------------------------------------------------------------
+4.  THE BARRIER at a = 6:  def(K) <= N(T\K) for EVERY convex K
+------------------------------------------------------------------------------
+
+  Proof (see the write-up): the lattice T(7) has 28 = Oler(6) points in T(6), so
+  Oler applied to Lambda inter K gives 28 - |Lambda inter (T\K)| <= Oler(6) - def(K).
+  Below: the same inequality checked exactly on explicit families of K, using the
+  actual lattice count |Lambda inter (T\K)| (never bigger than N(T\K)).
+
+  |Lambda| = 28,  Oler(6) = 28
+
+  (a) single corner cut at A of side t  ->  K = T inter {h_A >= t*sqrt3/2}
+             t                 def(K)  |Lam - K|       gain
+           1/2 [0.375000000000, 0.375000000000]          1  -0.625000 
+             1 [1.000000000000, 1.000000000000]          1   0.000000 
+           3/2 [1.875000000000, 1.875000000000]          3  -1.125000 
+             2 [3.000000000000, 3.000000000000]          3   0.000000 
+           5/2 [4.375000000000, 4.375000000000]          6  -1.625000 
+             3 [6.000000000000, 6.000000000000]          6   0.000000 
+           7/2 [7.875000000000, 7.875000000000]         10  -2.125000 
+             4 [10.000000000000, 10.000000000000]         10   0.000000 
+
+  (b) three corner cuts of sides (tA,tB,tC)
+            (tA,tB,tC)                 def(K)  |Lam - K|       gain
+       ('1', '1', '1') [3.000000000000, 3.000000000000]          3   0.000000 
+       ('1', '2', '3') [10.000000000000, 10.000000000000]         10   0.000000 
+       ('2', '2', '2') [9.000000000000, 9.000000000000]          9   0.000000 
+       ('3', '3', '0') [12.000000000000, 12.000000000000]         12   0.000000 
+      ('3/2', '3/2', '3/2') [5.625000000000, 5.625000000000]          9  -3.375000 
+       ('1', '1', '0') [2.000000000000, 2.000000000000]          2   0.000000 
+
+  (c) arbitrary single-line cuts K = T inter {n.x >= c}, rational normals
+              normal          c                 def(K)  |Lam - K|       gain
+               (1,0)         -4 [0.000000000000, 0.000000000000]          0   0.000000 
+               (1,0)         -2 [0.000000000000, 0.000000000000]          0   0.000000 
+               (1,0)         -1 [0.000000000000, 0.000000000000]          0   0.000000 
+               (1,0)          0 [0.000000000000, 0.000000000000]          0   0.000000 
+               (1,0)          1 [1.633974596216, 1.633974596216]          2  -0.366025 
+               (1,0)          2 [5.267949192431, 5.267949192431]          6  -0.732051 
+               (1,0)        7/2 [14.834936490539, 14.834936490539]         16  -1.165064 
+               (1,0)          5 [23.633974596216, 23.633974596216]         24  -0.366025 
+               (0,1)         -4 [0.000000000000, 0.000000000000]          0   0.000000 
+               (0,1)         -2 [0.000000000000, 0.000000000000]          0   0.000000 
+               (0,1)         -1 [0.000000000000, 0.000000000000]          0   0.000000 
+               (0,1)          0 [0.000000000000, 0.000000000000]          0   0.000000 
+      ... 90 half-plane cuts tested; worst gain = 0.000000
+
+  barrier holds on every K tested: PASS
+
+------------------------------------------------------------------------------
+5.  WHAT THE ROUTE STILL BUYS:  necessary conditions on a k=7 counterexample
+------------------------------------------------------------------------------
+
+  Suppose 27 unit-separated points lie in T(a) with a < 6.  Write
+      eps(a) = a^2/2 + 3a/2 - 26   (< 1 for a < 6; = 0 at a0 = (-3+sqrt217)/2).
+  For disjoint corner cuts (t_A,t_B,t_C), with m_V = |E inter Delta_V(t_V)|:
+      sum_V [ (t_V^2+t_V)/2 - m_V ]  <=  eps(a).
+
+           a     eps(a)        t  need sum m_V >=  3*N(t) avail  contradiction?
+       59/10   0.255000      7/8                3             3           False
+       59/10   0.255000        1                3             9           False
+       59/10   0.255000      3/2                6             9           False
+       59/10   0.255000        2                9            18           False
+       59/10   0.255000      5/2               13            18           False
+       59/10   0.255000    59/20               18            24           False
+     599/100   0.925050      7/8                2             3           False
+     599/100   0.925050        1                3             9           False
+     599/100   0.925050      3/2                5             9           False
+     599/100   0.925050        2                9            18           False
+     599/100   0.925050      5/2               13            18           False
+     599/100   0.925050  599/200               18            24           False
+   5999/1000   0.992501      7/8                2             3           False
+   5999/1000   0.992501        1                3             9           False
+   5999/1000   0.992501      3/2                5             9           False
+   5999/1000   0.992501        2                9            18           False
+   5999/1000   0.992501      5/2               13            18           False
+   5999/1000   0.992501 5999/2000               18            24           False
+599999/100000   0.999925      7/8                2             3           False
+599999/100000   0.999925        1                3             9           False
+599999/100000   0.999925      3/2                5             9           False
+599999/100000   0.999925        2                9            18           False
+599999/100000   0.999925      5/2               13            18           False
+599999/100000   0.999925 599999/200000               18            24           False
+
+  Exact occupancy thresholds forced on a counterexample.  For t with
+  3(t^2+t)/2 - eps(a) > c the three corner triangles of side t hold > c points:
+             a     eps(a)  t*(a) (>=1 pt/corner)  t+(a) (>=9 pts total)
+         59/10   0.255000            0.824134938            1.898610709
+       599/100   0.925050            0.983250934            1.989986613
+     5999/1000   0.992501            0.998332518            1.998999867
+ 599999/100000   0.999925            0.999983333            1.999990000
+
+  Read: in any 27-point counterexample at side a, EVERY corner triangle of side
+  t*(a) contains a point of E (and, being of side < 1, exactly one), and the three
+  corner triangles of side t+(a) contain at least 9 points between them.
+
+  any contradiction found by corner counting alone: False
+  (False is the expected -- and, by section 4, the forced -- answer.)
+
+  The conditions are nonetheless non-vacuous.  Two consequences, exact:
+   (i) t -> 1^-: at most one point can sit in a corner triangle of side < 1 (sec. 2),
+       and sum_V m_V >= 3 - eps(a) > 2, so EVERY corner of T carries exactly one
+       point of E in its open unit corner triangle.
+  (ii) t -> 2^-: sum_V (3 - m_V) <= eps(a) < 1 and the m_V are integers, so
+       sum_V m_V >= 9: the three open corner triangles of side 2 hold >= 9 points.
+  (iii) In particular, if ANY corner of T has an empty closed unit corner triangle,
+       then n <= a^2/2 + 3a/2, which forces a >= k-1 whenever n = T(k)-1.
+
+  HEADLINE necessary condition (one corner at a time, t -> j^-):  in any 27-point
+  counterexample at side a < 6, for EVERY corner V and EVERY integer 1 <= j <= 5,
+  the OPEN corner triangle Delta_V(j) holds at least T(j) points of E.
+  Discrimination test -- does the condition actually cut anything out?
+configuration                       corner j=1 j=2 j=3 j=4 j=5   verdict
+lattice T(7), n=28                       A   1   3   6  10  15   not excluded
+lattice T(7), n=28                       B   1   3   6  10  15   not excluded
+lattice T(7), n=28                       C   1   3   6  10  15   not excluded
+T(7) minus an INTERIOR point, n=27       A   1   3   5   9  14   EXCLUDED at j=3
+T(7) minus an INTERIOR point, n=27       B   1   3   6  10  15   not excluded
+T(7) minus an INTERIOR point, n=27       C   1   3   6  10  15   not excluded
+T(7) minus the APEX, n=27                A   1   3   6  10  15   not excluded
+T(7) minus the APEX, n=27                B   1   3   6  10  15   not excluded
+T(7) minus the APEX, n=27                C   0   2   5   9  14   EXCLUDED at j=1
+  required T(j) for j=1..5: [1, 3, 6, 10, 15]
+  the condition excludes the T(7)-minus-apex configuration: PASS
+  (It must: that configuration needs a = 6 exactly, and the condition is derived
+   under the assumption a < 6.  The interior-point deletion is NOT excluded, which
+   is section 6's point -- corner conditions cannot see it.)
+
+  Check of (iii) against the extremal certificates (T(k)-apex, a = k-1):
+    n=  2 a=1  corner gains = (0.0000, 0.0000, 1.0000)  total = 1.000000  PASS
+    n=  5 a=2  corner gains = (0.0000, 0.0000, 1.0000)  total = 1.000000  PASS
+    n=  9 a=3  corner gains = (0.0000, 0.0000, 1.0000)  total = 1.000000  PASS
+    n= 14 a=4  corner gains = (0.0000, 0.0000, 1.0000)  total = 1.000000  PASS
+    n= 20 a=5  corner gains = (0.0000, 0.0000, 1.0000)  total = 1.000000  PASS
+
+------------------------------------------------------------------------------
+6.  THE WITNESS: the corner route buys ZERO unconditionally
+------------------------------------------------------------------------------
+
+  E := lattice T(7) minus ONE INTERIOR point, a = 6, n = 27 -- exactly the
+  Erdos-Oler count at the first open case, at the extremal side length.
+  All three corners of T are occupied, so every t_V = 0 and def(H) = 0: the whole
+  slack (= 1) sits in Oler's inequality on the hull, where this route cannot see it.
+
+  removed point = (3/2, 1/2*sqrt3);  |E| = 27
+  feasible (separation >= 1, inside T(6)), exact: PASS
+  t_A, t_B, t_C = [0.0, 0.0, 0.0]   corner deficit CD = 0.000000
+  hull equals the whole triangle (exact area test): True
+  def(H) enclosure = [0.000000000000, 0.000000000000]
+  Oler(6) - n = 1.000000  = stage-1 slack, all of it
+  PASS
+
+  Consequence: no inequality of the form  def(H) >= f(a, n) > 0  can hold, and no
+  corner-cut bound can supply the missing unit for n = T(k)-1 in general.  Whatever
+  proves Erdos-Oler must extract the unit from Oler's inequality ON THE HULL
+  (stage 1), for configurations whose hull is the whole triangle.
+
+------------------------------------------------------------------------------
+7.  The Steiner-type alternative, refuted
+------------------------------------------------------------------------------
+
+  Natural guess: for convex K in T, def(K) >= mu^2/6 + mu/2 where mu = M(T)-M(K).
+  It is exactly TIGHT for three equal corner cuts, which is what makes it tempting.
+  It is FALSE: a deep strip cut beats it.  a = 6, K = the triangle of side 6-u
+
+family                             mu       def(K)   mu^2/6+mu/2  guess holds?
+3 corner cuts t=1              3.0000     3.000000      3.000000          True
+strip cut along AB, u=1        3.0000     7.000000      3.000000          True
+strip cut along AB, u=2        6.0000    13.000000      9.000000          True
+strip cut along AB, u=3        9.0000    18.000000     18.000000          True
+strip cut along AB, u=4       12.0000    22.000000     30.000000         False
+strip cut along AB, u=5       15.0000    25.000000     45.000000         False
+strip cut along AB, u=6       18.0000    27.000000     63.000000         False
+
+  (def for the shrink is au - u^2/2 + 3u/2 with a = 6, computed exactly; the
+   corner-cut row is (t^2+t)/2 summed over three corners.)
+  guess refuted by an exact witness: PASS
+
+==============================================================================
+ALL CHECKS PASSED
+==============================================================================

@@ -1,0 +1,110 @@
+==============================================================================
+INDEPENDENT REVIEW CHECKER  (claude, reviewer role)
+field: Q(sqrt3,sqrt11); areas/face-excess EXACT, lengths enclosed
+==============================================================================
+
+### CLAIM 2 -- slack atlas recomputed from certificate coordinates
+
+  n   b   i   F       faceExc       edgeExc        stage1        stage2      total sep2>=1
+------------------------------------------------------------------------------------------
+  1  (degenerate hull -- skipped, as the write-up says)
+  2  (degenerate hull -- skipped, as the write-up says)
+  3   3   0   1     0.0000000     0.0000000     0.0000000    -0.0000000  0.0000000     yes
+  4   3   1   3     0.0000000     1.0980762     1.0980762     0.0000000  1.0980762     yes
+  5   5   0   3     0.0000000     0.0000000     0.0000000     1.0000000  1.0000000     yes
+  6   6   0   4     0.0000000     0.0000000     0.0000000    -0.0000000  0.0000000     yes
+  7   6   1   6     0.7320508     1.0980762     1.8301270     0.0000000  1.8301270     yes
+  8   6   2   8     0.2481875     1.3722813     1.6204689    -0.0000000  1.6204689     yes
+  9   8   1   8     0.0000000     0.0000000     0.0000000     1.0000000  1.0000000     yes
+ 10   9   1   9     0.0000000     0.0000000     0.0000000    -0.0000000  0.0000000     yes
+ 14  11   3  15     0.0000000     0.0000000     0.0000000     1.0000000  1.0000000     yes
+ 15  12   3  16     0.0000000     0.0000000     0.0000000    -0.0000000  0.0000000     yes
+ 20  14   6  24     0.0000000     0.0000000     0.0000000     1.0000000  1.0000000     yes
+ 21  15   6  25     0.0000000     0.0000000     0.0000000    -0.0000000  0.0000000     yes
+
+stage-1 exact-zero test -- EXACT, not an enclosure:
+  n=  3: face_exc==0 -> True   M = 3 exactly, b = 3, M-b = 0                  => stage1 EXACTLY 0
+  n=  4: face_exc==0 -> True   M = 3*r3 exactly, b = 3, M-b = -3 + 3*r3       => stage1 faceExc=0 only
+  n=  5: face_exc==0 -> True   M = 5 exactly, b = 5, M-b = 0                  => stage1 EXACTLY 0
+  n=  6: face_exc==0 -> True   M = 6 exactly, b = 6, M-b = 0                  => stage1 EXACTLY 0
+  n=  7: face_exc==0 -> False  M irrational (interval only)                   => stage1 -
+  n=  8: face_exc==0 -> False  M irrational (interval only)                   => stage1 -
+  n=  9: face_exc==0 -> True   M = 8 exactly, b = 8, M-b = 0                  => stage1 EXACTLY 0
+  n= 10: face_exc==0 -> True   M = 9 exactly, b = 9, M-b = 0                  => stage1 EXACTLY 0
+  n= 14: face_exc==0 -> True   M = 11 exactly, b = 11, M-b = 0                => stage1 EXACTLY 0
+  n= 15: face_exc==0 -> True   M = 12 exactly, b = 12, M-b = 0                => stage1 EXACTLY 0
+  n= 20: face_exc==0 -> True   M = 14 exactly, b = 14, M-b = 0                => stage1 EXACTLY 0
+  n= 21: face_exc==0 -> True   M = 15 exactly, b = 15, M-b = 0                => stage1 EXACTLY 0
+
+### CLAIM 1 -- identity, checked via an explicit triangulation
+
+  n=  3: triangles built=  1  2n-b-2=  1  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n=  4: triangles built=  3  2n-b-2=  3  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n=  5: triangles built=  3  2n-b-2=  3  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n=  6: triangles built=  4  2n-b-2=  4  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n=  7: triangles built=  6  2n-b-2=  6  MATCH    faceExc(triangulated)=+0.7320508 vs formula +0.7320508  identity=holds
+  n=  8: triangles built=  8  2n-b-2=  8  MATCH    faceExc(triangulated)=+0.2481875 vs formula +0.2481875  identity=holds
+  n=  9: triangles built=  8  2n-b-2=  8  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n= 10: triangles built=  9  2n-b-2=  9  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n= 14: triangles built= 15  2n-b-2= 15  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n= 15: triangles built= 16  2n-b-2= 16  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n= 20: triangles built= 24  2n-b-2= 24  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+  n= 21: triangles built= 25  2n-b-2= 25  MATCH    faceExc(triangulated)=+0.0000000 vs formula +0.0000000  identity=holds
+
+### CLAIM 3 -- hypothesis H (face excess >= 0) refuted
+
+  witness {(0,0),(1,0),(2,1/2)}: min sep^2 = 1 (>=1? True)
+  area = 1/4  = 0.2500000   (sqrt3/4 = 0.4330127)
+  face excess = -1/2 + 1/6*r3 = -0.2113249  sign = -1
+  Oler slack  = +0.3784685  (still >= 0: True)
+
+  flat-arc family p_j = (j, j(m-j)/m^3):
+    m   n   b      minsep2       faceExc     olerSlack
+    3   4   4     1.000000    -0.8289333     0.1738065
+    4   5   5     1.000244    -1.3195780     0.1816421
+    6   7   7     1.000021    -2.3128957     0.1874793
+    8   9   9     1.000004    -3.3105569     0.1896033
+   12  13  13     1.000000    -5.3088864     0.1911615
+   16  17  17     1.000000    -7.3083017     0.1917186
+
+### CLAIM 4 -- FP implies Erdos-Oler, re-derived exactly
+
+  For a < k-1 we get floor(a) <= k-2, so FP bounds n by
+  a^2/2 + (3/2)(k-2) + 1 < (k-1)^2/2 + (3/2)(k-2) + 1.
+    k  T(k)  bound at a->(k-1)^-  => n <=   T(k)-1 excluded?
+    3     6                  9/2        4                yes
+    4    10                 17/2        8                yes
+    5    15                 27/2       13                yes
+    6    21                 39/2       19                yes
+    7    28                 53/2       26                yes
+    8    36                 69/2       34                yes
+    9    45                 87/2       43                yes
+   10    55                107/2       53                yes
+   11    66                129/2       64                yes
+   12    78                153/2       76                yes
+   13    91                179/2       89                yes
+   14   105                207/2      103                yes
+   15   120                237/2      118                yes
+   16   136                269/2      134                yes
+   17   153                303/2      151                yes
+   18   171                339/2      169                yes
+   19   190                377/2      188                yes
+   20   210                417/2      208                yes
+
+  => T(k)-1 points force a >= k-1 for every k; the lattice T(k)
+     minus one point realises a = k-1, so s(T(k)-1) = s(T(k)).
+
+### BONUS -- the 'stage 1 = 0, stage 2 = 1' finding, proved for all k
+
+  k=  3: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k=  4: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k=  5: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k=  6: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k=  7: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k=  8: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k=  9: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k= 10: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k= 11: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+  k= 12: T(k)  faceExc=0 edgeExc=0 total=0   |   T(k)-1  faceExc=0 edgeExc=0 stage2=1
+
+All assertions passed.

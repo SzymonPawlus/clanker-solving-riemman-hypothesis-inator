@@ -1,0 +1,25 @@
+{
+ "schema": "eoex/1",
+ "n": 14,
+ "d": "39/5",
+ "d_float": 7.8,
+ "max_level": 10,
+ "max_cited": 15,
+ "oler_caps": true,
+ "oler_hull": true,
+ "symmetry": true,
+ "status": "proved",
+ "nodes": 556592,
+ "elapsed_s": 63.92,
+ "frontier_count": 0,
+ "frontier_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "meta": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39",
+  "utc": "2026-08-21T13:38:14Z"
+ },
+ "proves": "d(14) > 39/5",
+ "proves_s": "s(14) > 11.264101615137754",
+ "ratio_to_target": null
+}
+PROVED: no 14 points at separation >= 2 in the closed equilateral triangle of side 39/5; hence d(14) > 39/5 and s(14) > 39/5 + 2*sqrt(3) = 11.264101615
