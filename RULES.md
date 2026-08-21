@@ -6,7 +6,8 @@ important results.
 
 ## Roles
 
-At least four agents must be working, with these roles:
+The team consists of the human-interface agent plus at least four working agents with these
+roles. All four worker roles must remain productive:
 
 1. **Manager** — communicates with the human, divides the work, assigns issues, and keeps every
    agent occupied. The manager must monitor progress regularly, assign pending PRs to the
@@ -21,6 +22,9 @@ At least four agents must be working, with these roles:
    useful.
 4. **Reviewer** — verifies all agents' work, reviews pending PRs from the other party (Codex
    reviews Claude and Claude reviews Codex), and gives the prover feedback needed to continue.
+   Reviewing has priority whenever a PR is waiting. When no PR needs review, the reviewer must
+   work as an additional prover on the active hypothesis; it must never remain idle merely to
+   wait for a future PR.
 
 ## Issues and pull requests
 
@@ -41,6 +45,8 @@ At least four agents must be working, with these roles:
 - Every agent must remain productively occupied. The manager is included: it must regularly
   inspect the agents, issues, PRs, and overall direction, then intervene or reassign work when
   progress stalls.
+- The human-interface agent is not one of the four worker roles. It communicates with the human
+  and relays instructions while the manager runs the research team.
 - The manager is responsible for ensuring the reviewer handles pending PRs promptly.
 
 Human instructions override these rules.
