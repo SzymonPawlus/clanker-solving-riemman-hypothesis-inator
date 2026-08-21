@@ -1,0 +1,137 @@
+[
+  {
+    "n": 12,
+    "d": "5.0",
+    "max_level": 4,
+    "eps": 2.4641,
+    "status": "proved",
+    "nodes": 3190,
+    "seconds": 0.09
+  },
+  {
+    "n": 12,
+    "d": "5.5",
+    "max_level": 4,
+    "eps": 1.9641,
+    "status": "proved",
+    "nodes": 4238,
+    "seconds": 0.1
+  },
+  {
+    "n": 12,
+    "d": "6.0",
+    "max_level": 5,
+    "eps": 1.4641,
+    "status": "proved",
+    "nodes": 4238,
+    "seconds": 0.1
+  },
+  {
+    "n": 12,
+    "d": "6.2",
+    "max_level": 5,
+    "eps": 1.2641,
+    "status": "proved",
+    "nodes": 7288806,
+    "seconds": 40.9
+  },
+  {
+    "n": 12,
+    "d": "6.4",
+    "max_level": 5,
+    "eps": 1.0641,
+    "status": "proved",
+    "nodes": 7675792,
+    "seconds": 34.82
+  },
+  {
+    "n": 12,
+    "d": "6.5",
+    "max_level": 5,
+    "eps": 0.9641,
+    "status": "proved",
+    "nodes": 7675792,
+    "seconds": 38.25
+  },
+  {
+    "n": 12,
+    "d": "6.6",
+    "max_level": 6,
+    "eps": 0.8641,
+    "status": "proved",
+    "nodes": 7675792,
+    "seconds": 40.04
+  },
+  {
+    "n": 12,
+    "d": "6.8",
+    "max_level": 6,
+    "eps": 0.6641,
+    "status": "proved",
+    "nodes": 7675980,
+    "seconds": 33.82
+  },
+  {
+    "n": 12,
+    "d": "6.9",
+    "max_level": 6,
+    "eps": 0.5641,
+    "status": "proved",
+    "nodes": 7675980,
+    "seconds": 35.97
+  },
+  {
+    "n": 16,
+    "d": "6.0",
+    "max_level": 4,
+    "eps": 3.2495,
+    "status": "proved",
+    "nodes": 1908,
+    "seconds": 0.17
+  },
+  {
+    "n": 16,
+    "d": "7.0",
+    "max_level": 5,
+    "eps": 2.2495,
+    "status": "proved",
+    "nodes": 5677,
+    "seconds": 0.2
+  },
+  {
+    "n": 16,
+    "d": "7.5",
+    "max_level": 5,
+    "eps": 1.7495,
+    "status": "proved",
+    "nodes": 5677,
+    "seconds": 0.2
+  },
+  {
+    "n": 16,
+    "d": "7.9",
+    "max_level": 5,
+    "eps": 1.3495,
+    "status": "proved",
+    "nodes": 5677,
+    "seconds": 0.2
+  },
+  {
+    "n": 16,
+    "d": "7.99",
+    "max_level": 5,
+    "eps": 1.2595,
+    "status": "proved",
+    "nodes": 5677,
+    "seconds": 0.2
+  },
+  {
+    "n": 16,
+    "d": "7.999",
+    "max_level": 6,
+    "eps": 1.2505,
+    "status": "proved",
+    "nodes": 5677,
+    "seconds": 0.2
+  }
+]

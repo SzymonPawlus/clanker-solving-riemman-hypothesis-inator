@@ -1,0 +1,34 @@
+{
+  "status": "proved",
+  "n": 16,
+  "d": "15/2",
+  "d_float": 7.5,
+  "max_level": 5,
+  "max_cited": 2,
+  "symmetry": true,
+  "nodes": 5677,
+  "pruned_pair": 11314,
+  "pruned_cap": 453042,
+  "max_split_level": 3,
+  "stack_remaining": 0,
+  "elapsed_seconds": 0.27951294900049106,
+  "capacity_by_level": [
+    null,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "witness": null,
+  "meta": {
+    "python": "3.14.5 (main, May 10 2026, 18:26:20) [GCC 16.1.1 20260430]",
+    "implementation": "CPython",
+    "platform": "Linux-6.18.33-1-MANJARO-x86_64-with-glibc2.43",
+    "note": "search is exact integer arithmetic; no seeds, fully deterministic"
+  }
+}
+
+PROVED: no 16 points at mutual distance >= 2 lie in the closed equilateral triangle of side 15/2 = 7.500000000.
+  => d(16) > 15/2,  s(16) > 15/2 + 2*sqrt(3) = 10.964101615
