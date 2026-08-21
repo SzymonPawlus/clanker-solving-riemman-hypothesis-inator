@@ -32,13 +32,20 @@ def oler(a):
     return F(a) * F(a) / 2 + 3 * F(a) / 2 + 1
 
 
-def build(k, a):
+def build(k, a, use_lower_eo=True):
     """Return (cells, cellcap, constraints, info).  a is a Fraction with a < k-1."""
     a = F(a)
     n = tri(k) - 1
     J = int(a)                      # floor(a) = k-2 in the range of interest
     assert J == k - 2, (J, k)
     assert oler(a) - n < 1, "a must be below k-1 so that eps(a) < 1"
+    # circularity guard: never use d(T(k)-1) = k-1, the statement under test.
+    G.EXCLUDE = {n}
+    if not use_lower_eo:
+        # additionally drop every Erdos-Oler value at lower levels (d(T(m)-1)),
+        # leaving only Oler's triangular values and the non-EO optimality results
+        for m in range(2, k):
+            G.EXCLUDE.add(tri(m) - 1)
     base = G.tri_constraints(a)
 
     # ---- cells -----------------------------------------------------------

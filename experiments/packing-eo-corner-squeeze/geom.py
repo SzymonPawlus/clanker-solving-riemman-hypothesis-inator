@@ -191,8 +191,17 @@ def oler_root(n):
     return (Ival.sqrt_of(F(8 * n + 1)) - 3) * F(1, 2)
 
 
+# Circularity guard.  Testing Erdos-Oler at level k must not use the value
+# d(T(k)-1) = k-1, because that value IS the statement being tested.  Set
+# EXCLUDE = T(k)-1 and the table falls back to the Oler root for that n, which is
+# a rigorous lower bound on d(n) that assumes nothing.  Everything else (Oler at
+# triangular n, Melissen, Payan at lower levels) stays available: using
+# Erdos-Oler at levels < k is induction, not circularity.
+EXCLUDE = set()
+
+
 def d_lower(n):
-    if n in D_PROVEN:
+    if n in D_PROVEN and n not in EXCLUDE:
         return D_PROVEN[n]
     return oler_root(n)
 
