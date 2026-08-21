@@ -1,12 +1,17 @@
 # Attack: a 15-piece covering lower bound for $n = 16$
 
-> **SUPERSEDED, 2026-08-22.** [`../n16-shapes/`](../n16-shapes/) improves this to
-> $a_{16} \ge 446335/99989 = 4.4638410225$, i.e. $s(16) \ge 12.391783660$, by an overlapping
-> 15-piece cover — independently verified by the manager via inclusion–exclusion, a different
-> coverage argument from either author's. That file also proves **Theorem SI**: covering by sets of
-> diameter $<1$ is equivalent to covering by convex *polygons*, so the convex restriction assumed
-> throughout this attack was never a restriction at all. This file is kept for the mechanism, the
-> loss audit and the corrections recorded in it.
+> **SUPERSEDED, 2026-08-22.** Three later lanes improved this. The current best is
+> [`../n16-covering-2/`](../n16-covering-2/):
+>
+> $$a_{16} \ \ge\ \frac{139503175473}{31250000000} = 4.464101615136 \quad\text{(verified)},
+> \qquad s(16) \ \ge\ 12.392304845\ldots$$
+>
+> claimed in closed form as $a_{16} \ge 1 + 2\sqrt3$, i.e. $s(16) \ge 2 + 6\sqrt3$ — which sits
+> $1.8\times10^{-12}$ above the rational value the manager independently verified.
+> [`../n16-shapes/`](../n16-shapes/) reached $4.4638410225$ and proves **Theorem SI** (covering by
+> sets of diameter $<1$ is equivalent to covering by convex *polygons*, so the convex restriction
+> here was never a restriction); [`../n16-dual/`](../n16-dual/) reached $4.4640971380$ and supplies
+> the controls. This file is kept for the mechanism, the loss audit and the corrections in it.
 
 **Claim type: OPTIMALITY / LOWER BOUND** (problem [`../../RULES.md`](../../RULES.md) §1). This
 file asserts $s(16) \ge c$ for an explicit $c$ — the hard direction. It makes **no** claim about

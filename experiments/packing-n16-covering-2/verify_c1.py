@@ -116,7 +116,7 @@ def bbox_disjoint(b1, b2):
 
 # ----------------------------------------------------------------- the checks
 
-def check(a, faces, do_cover=True, verbose=True):
+def check(a, faces, do_cover=True, verbose=True, strict=True):
     fail = []
     say = (lambda s: print(s)) if verbose else (lambda s: None)
     tri = [(F(0), F(0)), (a, F(0)), (F(0), a)]
@@ -147,13 +147,15 @@ def check(a, faces, do_cover=True, verbose=True):
             for j in range(i + 1, len(f)):
                 q = Q(f[i][0] - f[j][0], f[i][1] - f[j][1])
                 if q > d: d = q
-        if d >= 1:
-            fail.append("piece %d has squared diameter %s >= 1" % (k, d))
+        if (d >= 1) if strict else (d > 1):
+            fail.append("piece %d has squared diameter %s %s 1"
+                        % (k, d, ">=" if strict else ">"))
         if d > worst:
             worst, wk = d, k
     say("  [2] max squared diameter = %s" % worst)
-    say("      = %.15f   < 1 strictly : %s   (piece %d)"
-        % (float(worst), worst < 1, wk))
+    say("      = %.15f   %s : %s   (piece %d)"
+        % (float(worst), "< 1 STRICTLY" if strict else "<= 1 (non-strict test)",
+           (worst < 1) if strict else (worst <= 1), wk))
 
     # (3) pairwise interior-disjointness, by exact convex clipping
     nover = 0

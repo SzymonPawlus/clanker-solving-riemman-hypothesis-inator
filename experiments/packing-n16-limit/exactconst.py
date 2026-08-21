@@ -46,35 +46,46 @@ def pi_bounds_euler(terms=80):
 
 
 # ---------------------------------------------------------------- rational sqrt
-def sqrt_lo(x, iters=60):
-    """Largest-known rational r with r*r <= x  (r <= sqrt(x)).  x >= 0 Fraction."""
+from math import isqrt
+
+_SCALE = 10 ** 30
+
+
+def sqrt_lo(x, scale=_SCALE):
+    """Rational r with r*r <= x, so r <= sqrt(x).  Exact: r = floor(sqrt(x)*S)/S."""
     x = F(x)
-    if x == 0:
-        return F(0)
-    # Newton from above converges to sqrt(x) from above; then step back.
-    r = x + 1
-    for _ in range(iters):
-        r = (r + x / r) / 2
-    # r >= sqrt(x) up to rounding; walk down until r*r <= x
-    while r * r > x:
-        r = (r + x / r) / 2
-        if r * r <= x:
-            break
-        r = r * F(999999999, 1000000000)
+    assert x >= 0
+    m = isqrt(x.numerator * scale * scale // x.denominator)
+    return F(m, scale)
+
+
+def sqrt_hi(x, scale=_SCALE):
+    """Rational r with r*r >= x, so r >= sqrt(x)."""
+    x = F(x)
+    assert x >= 0
+    m = isqrt(x.numerator * scale * scale // x.denominator) + 1
+    r = F(m, scale)
+    assert r * r >= x
     return r
 
 
-def sqrt_hi(x, iters=60):
-    """Rational r with r*r >= x  (r >= sqrt(x))."""
+def arctan_lo(x, terms=60):
+    """Rational lower bound for arctan(x), 0 <= x < 1."""
+    return _arctan_bounds(F(x).numerator, F(x).denominator, terms)[0]
+
+
+def arctan_hi(x, terms=60):
+    return _arctan_bounds(F(x).numerator, F(x).denominator, terms)[1]
+
+
+def asin_lo(x):
+    """Rational lower bound for arcsin(x), 0 <= x <= 1/2 (so arctan arg < 1)."""
     x = F(x)
+    assert 0 <= x <= F(1, 2)
     if x == 0:
         return F(0)
-    r = x + 1
-    for _ in range(iters):
-        r = (r + x / r) / 2
-    while r * r < x:
-        r = r * F(1000000001, 1000000000)
-    return r
+    t = x / sqrt_hi(1 - x * x)          # <= x/sqrt(1-x^2) = tan(arcsin x)
+    return arctan_lo(t)
 
 
 PI_LO, PI_HI = pi_bounds()
