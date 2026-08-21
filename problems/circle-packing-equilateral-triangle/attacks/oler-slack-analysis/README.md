@@ -1,0 +1,309 @@
+# Attack: Oler slack localisation — where the slack lives, and one dead route
+
+**Claim type: neither. No bound on $s(n)$ — upper or lower — is claimed anywhere in this file.**
+Problem [`../../RULES.md`](../RULES.md) §1 asks for that sentence first, and here it is the literal
+truth: this attack produces an *identity*, a *measurement*, and a *refutation*. Nothing enters
+`results/`; nothing here is assumable, including by me (repo [`RULES.md`](../../../../RULES.md) §3).
+
+- Issue: [#78](https://github.com/SzymonPawlus/clanker-solving-riemman-hypothesis-inator/issues/78)
+- Code: [`experiments/packing-oler-slack/`](../../../../experiments/packing-oler-slack/) — one
+  command, Python standard library only, exact arithmetic throughout
+- Transcript: [`out/report.txt`](../../../../experiments/packing-oler-slack/out/report.txt)
+- Author: `claude` (Claude Opus 5 — convergent role, `RULES.md` §8: this is checking and exact
+  calculation, not ideation), 2026-08-21
+
+| What | Status |
+|---|---|
+| §1 the decomposition identity | `sketch` — my derivation; elementary, and verified exactly on 15 configurations, but not cross-examined and **not assumable** |
+| §3 the slack atlas numbers | `numerical` — exact computations about specific explicit configurations |
+| §4 refutation of face-excess nonnegativity | `refuted` — the hypothesis is false; the witness is exact and needs nothing from §1 |
+| §5 the floored-perimeter statement | **bare conjecture**, unproved and not to be attacked here; §5.3 says why |
+| Oler's inequality itself | `cited` — Oler 1961, see [`../oler-lower-bound/`](../oler-lower-bound/) |
+
+**Kill-criterion outcome, stated up front** (repo `RULES.md` §6.3):
+
+> **Primary** (issue #78): *"if the face-excess-nonnegativity hypothesis is refuted by an explicit
+> configuration verified in exact rational arithmetic, the local/discharging route to a
+> floored-perimeter strengthening is dead. Stop there."*
+>
+> **MET — §4.** The hypothesis is false, by a three-point configuration in exact rational
+> coordinates, and the deficit is unbounded. The route is dead and I stopped. §5 records what the
+> route was *aiming* at, why it is not being pursued, and what it would imply — no re-scoping.
+>
+> **Secondary:** *"if the decomposition identity fails on any triangular control ($n = 3, 6, 10$
+> must give exactly zero), the identity is wrong."* **Not met** — all three controls give exactly
+> zero, with zero excess on every individual face and every boundary edge.
+
+**What to review hardest**, if you are the cross-examiner: §1's face-count step ($F = 2n-b-2$)
+and the claim in §2 that the boundary-edge excess is non-negative *always*. Everything downstream
+of §2 is arithmetic.
+
+---
+
+## 1. The identity — `sketch`
+
+Throughout, points are at minimum separation **1** (Oler's normalisation; the certificates in this
+repo use separation 2, so the code halves every coordinate — see the experiment README).
+
+Let $E$ be a finite, non-collinear point set, $P = \operatorname{conv}(E)$, $n = |E|$. Write $b$
+for the number of points of $E$ on $\partial P$ — hull vertices *and* points lying inside a hull
+edge — and $i = n - b$ for the rest. Let $\mathcal{T}$ be **any** triangulation of $P$ whose vertex
+set is exactly $E$ (so every point is a corner of some triangle; no point is left over and no
+extra point is introduced).
+
+> **Identity.**
+> $$\underbrace{\tfrac{2}{\sqrt3}A(P) + \tfrac12 M(P) + 1 - n}_{\text{Oler's slack}}
+> \;=\; \sum_{f \in \mathcal{T}} \tfrac{2}{\sqrt3}\Bigl(A_f - \tfrac{\sqrt3}{4}\Bigr)
+> \;+\; \sum_{e \subset \partial P} \tfrac12\bigl(\ell_e - 1\bigr),$$
+> the second sum being over the $b$ boundary edges of $\mathcal{T}$.
+
+Call the two sums the **face excess** and the **boundary-edge excess**. $\sqrt3/4$ is the area of
+the unit equilateral triangle and $1$ is the minimum separation, so each term measures one cell's
+departure from the extremal lattice cell.
+
+**Proof.** Three ingredients.
+
+1. **Face count: $F = 2n - b - 2$.** Euler for the planar subdivision: $V = n$, faces $F + 1$
+   counting the outer one. Every triangle has three sides; interior edges are shared by two
+   triangles and boundary edges by one, so $3F = 2\lvert E_{\text{edges}}\rvert - b$, giving
+   $\lvert E_{\text{edges}}\rvert = (3F+b)/2$. Then $V - \lvert E_{\text{edges}}\rvert + (F+1) = 2$
+   yields $n - F/2 - b/2 = 1$, i.e. $F = 2n - b - 2$.
+2. **Areas: $\sum_f A_f = A(P)$**, since $\mathcal{T}$ tiles $P$.
+3. **Lengths: $\sum_e \ell_e = M(P)$**, since the boundary edges of $\mathcal{T}$ subdivide the
+   hull edges, and subdividing a segment preserves total length.
+
+Expand the right-hand side with these:
+$$\tfrac{2}{\sqrt3}A(P) - \tfrac{F}{2} + \tfrac12 M(P) - \tfrac{b}{2}
+= \tfrac{2}{\sqrt3}A(P) + \tfrac12 M(P) - \tfrac{2n-b-2}{2} - \tfrac{b}{2}
+= \tfrac{2}{\sqrt3}A(P) + \tfrac12 M(P) + 1 - n. \qquad\blacksquare$$
+
+**Two properties that matter later.**
+
+- **The identity is combinatorial.** Nothing in it uses the separation hypothesis; it holds for
+  any non-collinear finite $E$. Oler's *theorem* is the separate statement that the left-hand side
+  is $\ge 0$ when the separation is at least 1.
+- **The total face excess does not depend on the triangulation.** Summing, it equals
+  $\frac{2}{\sqrt3}A(P) - \frac{2n-b-2}{2}$, a function of $A(P)$, $n$ and $b$ only. So does the
+  boundary-edge excess, $\frac12(M(P) - b)$. Choosing a cleverer triangulation — Delaunay, or
+  anything else — cannot change either total. This kills the obvious repair attempt in §4 before
+  it starts.
+
+**Verification** (`experiments/packing-oler-slack`, exact): both halves — $F = 2n-b-2$ and
+$\sum_f A_f = A(P)$ — are checked on all 15 non-degenerate configurations available, and
+separately the two sides of the identity are computed by independent routes (left from
+$A, M, n$; right from the triangulation) and their enclosures checked to intersect. The
+triangular controls $n = 3, 6, 10$ give exactly zero on both sides, every face and every edge.
+
+$n = 1$ and $n = 2$ are **excluded**: their hulls are a point and a segment, so there is no
+triangulation and no Jordan polygon. That is the same degeneracy [`../oler-lower-bound/`](../oler-lower-bound/)
+§2.1 records in Oler's own derivation, and it is handled the same way — separately, not silently.
+
+## 2. What the identity says about Oler — `sketch`
+
+Under the separation hypothesis, consecutive boundary points are at distance $\ge 1$, so
+**every** boundary-edge term is $\ge 0$; the boundary-edge excess is never the reason Oler fails to
+be tight. So, writing $\mathrm{FE}$ and $\mathrm{BE}$ for the two sums:
+
+$$\text{Oler} \iff \mathrm{FE} + \mathrm{BE} \ge 0, \qquad \mathrm{BE} \ge 0 \text{ always}.$$
+
+Individual *faces* can certainly be negative — a triangle with all sides $\ge 1$ can have area far
+below $\sqrt3/4$ if it is obtuse enough. The natural strengthening is therefore to ask whether the
+negative faces are always paid for **in aggregate**:
+
+> **Hypothesis H (face-excess nonnegativity).** For every unit-separated finite $E$,
+> $\mathrm{FE} \ge 0$; equivalently $n \le \frac{2}{\sqrt3}A(P) + \frac{b}{2} + 1$.
+
+The equivalence is immediate from $\mathrm{FE} = \frac{2}{\sqrt3}A(P) - \frac{2n-b-2}{2}$. Read the
+right-hand form: it is Oler's inequality with the boundary term $\frac12 M(P)$ — a *length* —
+replaced by $\frac{b}{2}$, a *count*. H is exactly the statement that Oler's boundary term can be
+counted rather than measured, and it is strictly stronger than Oler whenever some boundary edge is
+longer than 1.
+
+H is what a floored-perimeter strengthening would be built on; §4 refutes it.
+
+## 3. The slack atlas — `numerical`
+
+Oler's route to a bound on $s(n)$ applies the inequality **twice**: first to the hull $H$ of the
+configuration, then relaxing $A(H) \le A(T)$, $M(H) \le M(T)$ to the containing triangle $T$ of
+side $a$. [`../oler-lower-bound/`](../oler-lower-bound/) §2.1 flags that *both* stages can lose but
+does not say how much each loses. That is measurable, and here it is measured, exactly, for every
+exact certificate in the repo:
+
+$$\underbrace{\left[\tfrac{a^2}{2} + \tfrac{3a}{2} + 1\right] - n}_{\text{total}}
+\;=\; \underbrace{\left[\tfrac{2}{\sqrt3}A(H) + \tfrac12 M(H) + 1 - n\right]}_{\textbf{stage 1}}
+\;+\; \underbrace{\left[\tfrac{2}{\sqrt3}\bigl(A(T)-A(H)\bigr) + \tfrac12\bigl(M(T)-M(H)\bigr)\right]}_{\textbf{stage 2}}$$
+
+with stage 1 split further into face and edge excess by §1. All values below are exact
+(enclosures where a perimeter is involved); $b$, $i$, $F$ are the boundary, interior and face
+counts. $a$ is in Oler normalisation, i.e. half this repo's `point_triangle_side`.
+
+| $n$ | configuration | $b$ | $i$ | $F$ | face exc. | edge exc. | **stage 1** | **stage 2** | total |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 3 | lattice $T(2)$ | 3 | 0 | 1 | 0 | 0 | **0** | 0 | 0 |
+| 4 | corners + centroid | 3 | 1 | 3 | 0 | 1.0980762 | **1.0980762** | 0 | 1.0980762 |
+| 5 | $T(3)$ − apex | 5 | 0 | 3 | 0 | 0 | **0** | 1 | 1 |
+| 6 | lattice $T(3)$ | 6 | 0 | 4 | 0 | 0 | **0** | 0 | 0 |
+| 7 | Melissen | 6 | 1 | 6 | 0.7320508 | 1.0980762 | **1.8301270** | 0 | 1.8301270 |
+| 8 | Melissen | 6 | 2 | 8 | 0.2481875 | 1.3722813 | **1.6204689** | 0 | 1.6204689 |
+| 9 | $T(4)$ − apex | 8 | 1 | 8 | 0 | 0 | **0** | 1 | 1 |
+| 10 | lattice $T(4)$ | 9 | 1 | 9 | 0 | 0 | **0** | 0 | 0 |
+| 14 | $T(5)$ − apex | 11 | 3 | 15 | 0 | 0 | **0** | 1 | 1 |
+| 15 | lattice $T(5)$ | 12 | 3 | 16 | 0 | 0 | **0** | 0 | 0 |
+| 20 | $T(6)$ − apex | 14 | 6 | 24 | 0 | 0 | **0** | 1 | 1 |
+| 21 | lattice $T(6)$ | 15 | 6 | 25 | 0 | 0 | **0** | 0 | 0 |
+
+(The two files in `results/`, $n = 3$ and $n = 6$, reproduce their rows above exactly. $n = 1, 2$
+are degenerate, per §1.)
+
+**The finding, and it is the useful part of this attack.** For every lattice and
+lattice-minus-apex configuration — that is, for $n = T(k)$ *and* for the Erdős–Oler cases
+$n = T(k) - 1$ — **stage 1 is exactly zero**: Oler's inequality applied to the configuration's own
+convex hull is exactly tight, with no slack in any face or any edge. All of the loss at
+$n = T(k) - 1$ is stage 2, and it is exactly $1$, for every $k = 3, 4, 5, 6$ checked.
+
+That is a sharper statement than "Oler is slack at non-triangular $n$", and it relocates the
+problem. At $n = T(k)-1$ the packing bound is not what is failing; the hull → triangle relaxation
+is, and it is failing by exactly the one point that separates $T(k)-1$ from $T(k)$. Anything hoping
+to prove Erdős–Oler through Oler's inequality has to find that exact 1 in the relaxation step, not
+in a better packing inequality. Conversely at $n = 4, 7, 8$ — where the hull *is* the whole
+triangle, so stage 2 is zero — every bit of the slack is stage 1, i.e. genuinely a weakness of the
+packing bound.
+
+**What this is not.** These are twelve explicit configurations, not a theorem about all $n$. The
+"exactly 1" at $n = T(k)-1$ is checked for $k \le 6$ and is `numerical`; I have not proved it for
+all $k$, and it is not used for anything below.
+
+## 4. The probe: hypothesis H is false — `refuted`
+
+**Minimal witness.** $E = \{(0,0),\,(1,0),\,(2,\tfrac12)\}$. Pairwise squared distances are
+$1$, $\tfrac54$, $\tfrac{17}4$, all $\ge 1$. The hull is one triangle, so there is exactly one
+triangulation with vertex set $E$, and its area is $\tfrac14 < \tfrac{\sqrt3}{4} = 0.4330\ldots$:
+
+$$\mathrm{FE} = \tfrac{2}{\sqrt3}\Bigl(\tfrac14 - \tfrac{\sqrt3}{4}\Bigr)
+= \tfrac{\sqrt3}{6} - \tfrac12 = -0.2113248\ldots < 0.$$
+
+Everything here is exact rational or $\mathbb{Q}(\sqrt3)$ arithmetic, and it needs nothing from
+§1 — with one face there is nothing to sum. **H is false.**
+
+**The deficit is unbounded, not a three-point curiosity.** Take
+$p_j = \bigl(j,\; j(m-j)/m^3\bigr)$ for $j = 0,\dots,m$: consecutive points differ by 1 in $x$ so
+are at distance $\ge 1$, non-consecutive ones by $\ge 2$; the $y$-values are strictly concave, so
+all $m+1$ points are hull vertices and $b = n$; and the hull area is $O(1)$ while $n$ grows.
+Computed exactly:
+
+| configuration | $n$ | min sep$^2$ | total face excess | Oler slack |
+|---|---:|---:|---:|---:|
+| obtuse triangle $(0,0),(1,0),(2,\tfrac12)$ | 3 | 1 | $-0.2113249$ | $0.3784685$ |
+| flat arc, $m = 3$ | 4 | 1 | $-0.8289333$ | $0.1738065$ |
+| flat arc, $m = 4$ | 5 | $1.000244$ | $-1.3195780$ | $0.1816421$ |
+| flat arc, $m = 6$ | 7 | $1.000021$ | $-2.3128957$ | $0.1874793$ |
+| flat arc, $m = 8$ | 9 | $1.000004$ | $-3.3105569$ | $0.1896033$ |
+| flat arc, $m = 12$ | 13 | $1.000000$ | $-5.3088864$ | $0.1911615$ |
+| flat arc, $m = 16$ | 17 | $1.000000$ | $-7.3083017$ | $0.1917186$ |
+
+The face excess falls off like $-n/2$; Oler's inequality survives (right column stays positive)
+precisely because the boundary-edge excess pays for it. **Oler's boundary term genuinely needs
+length, not count** — that is what H got wrong, and the atlas in §3 could not see it because every
+configuration there is close to a lattice.
+
+**No triangulation repairs this** (§1): the total face excess is a function of $A(P)$, $n$ and $b$
+alone. Choosing Delaunay, or any other triangulation, changes nothing.
+
+**Consequence: the route is dead.** The floored-perimeter derivation was to be (i) H, giving
+$n \le \frac{2}{\sqrt3}A + \frac b2 + 1$; then (ii) $b \le 3\lfloor a\rfloor$, since a side of
+length $a$ carries at most $\lfloor a \rfloor + 1$ separated points and the three corners are
+shared. Step (i) is false. **Step (ii) is separately unjustified** and I am recording that too,
+because it would have needed catching anyway: $b$ counts points on $\partial\operatorname{conv}(E)$,
+which need not lie on $\partial T$ at all — a hull vertex can sit strictly inside the triangle. The
+route fails twice over. Per issue #78's kill-criterion and `RULES.md` §6.3, I stop here rather than
+re-scoping.
+
+## 5. What the route was aiming at — a bare conjecture, not a target
+
+### 5.1 The statement
+
+> **Conjecture FP (floored perimeter).** If $n$ points at pairwise distance $\ge 1$ lie in a closed
+> equilateral triangle of side $a$, then
+> $$n \;\le\; \tfrac{a^2}{2} + \tfrac32\lfloor a \rfloor + 1 .$$
+
+Oler gives the same with $\lfloor a\rfloor$ replaced by $a$, so FP is a strict improvement at every
+non-integer $a$ and identical at integer $a$. **FP is unproved here, and §4 killed the only
+derivation this attack had for it.** It is stated so the next reader does not have to reconstruct
+what was being attempted — not as a result, and not as an open task.
+
+### 5.2 It is consistent with everything this repo records — `numerical`
+
+FP holds, checked exactly, on all 17 values of $n$ whose $s(n)$ this repo records as `cited`, and
+on all 28 best-known constructions the repo records for $4 \le n \le 36$ (Graham–Lubachevsky's
+$d(n)$, loaded from `experiments/circle-packing-search/reference.py`). Every row is a
+configuration that provably *exists*, so a single violation would refute FP; there are none.
+
+It is **exactly tight** — equality — at $n = 4$ and at every triangular number $T(k)$ in range
+($3, 6, 10, 15, 21, 28, 36$). The tightest non-equality margins are, in order,
+
+| $n$ | 8 | 13 | 19 | 12 | 26 | 34 |
+|---|---:|---:|---:|---:|---:|---:|
+| slack of FP | 0.2482 | 0.3852 | 0.4599 | 0.4641 | 0.4845 | 0.4957 |
+
+and $n = 8, 13, 19, 26, 34$ is exactly the family $T(k) - 2$, whose margin appears to climb toward
+$\tfrac12$ from below. **That is where FP would break if it is false**: a $T(k)-2$ packing slightly
+better than the best known, for $k$ beyond the checked range, is all it would take. Recorded as a
+pointer for whoever wants to try to refute it — refuting is the useful direction here, per §5.3.
+
+### 5.3 Why nobody in this repo should try to *prove* it
+
+Exactly (`erdos_oler_implication`, exact rational arithmetic, $k \le 12$): for $a < k-1$ we have
+$\lfloor a \rfloor \le k-2$, so FP gives
+$n < \frac{(k-1)^2}{2} + \frac32(k-2) + 1 = T(k) - \frac32$, i.e. at most $T(k) - 2$ points. So
+$T(k) - 1$ points force $a \ge k-1$:
+
+> **FP implies $s(T(k)-1) = s(T(k))$ for every $k$ — the full Erdős–Oler conjecture**, open for
+> $k \ge 7$ (this problem's [`README.md`](../../README.md)).
+
+By repo `RULES.md` §7 that settles the posture. A short proof of FP would be a proof of an open
+conjecture, so the prior against any such proof produced here is overwhelming, and an argument
+that *looks* fine is exactly what a subtle error looks like from the inside. Do not attack FP from
+the proof side. If FP is worth anything to this project it is as a **falsification target**
+(§5.2), or as a statement to look up (§6).
+
+## 6. Honest accounting
+
+**Novelty: UNVERIFIED.** FP and the §1 identity are elementary enough that both are plausibly
+known. The obvious prior art to check is Folkman & Graham, *A packing inequality for compact
+convex subsets of the plane*, Canad. Math. Bull. — a paper that improves Oler-type inequalities,
+named in issue #78 and found by a search here as a Cambridge Core record. **Its page is blocked at
+this session's egress proxy** (`EGRESS_BLOCKED` on `cambridge.org`), so nothing about its contents
+is verified: not its statement, not its year, not whether it already contains either result. Also
+unchecked for the same reason: Groemer 1960 beyond what
+[`../../README.md`](../../README.md) already records, Melissen's thesis, and the Zassenhaus–
+Groemer–Oler literature that a search suggests exists. **Assume both are known until someone with
+library access says otherwise.**
+
+**Recorded because it nearly went the other way.** Feeding Graham–Lubachevsky's printed 15-s.f.
+decimals into the §5.2 check as if they were exact — $d(20) = 0.2$, $d(27) =
+0.166666666666667$, $d(35) = 0.142857142857143$ — makes $\lfloor a \rfloor$ come out one too small
+at $n = 4, 27, 28, 35, 36$ and reports **five refutations of FP**. All five are artefacts of the
+last printed digit at the lattice cases, where $a = k-1$ is exactly an integer and $\lfloor
+a\rfloor$ is maximally sensitive. The fix is to use the exact closed form wherever the repo has one
+and to treat a printed decimal as a $\pm 1$ ulp *enclosure* otherwise, which is what the code now
+does. This is the same failure mode this repo's `FINDINGS.md` keeps logging — a correction that is
+itself the error, driven by a secondhand record — one layer down, in a rounding digit rather than a
+bibliographic field.
+
+**What is exact and what is enclosed.** Every decision — every sign, every comparison that
+produces a conclusion above — is exact, in $\mathbb{Q}$ or $\mathbb{Q}(\sqrt3,\sqrt{11})$. Only
+quantities containing an edge *length* (perimeters, boundary-edge excess, Oler's slack itself) are
+rational intervals with outward rounding. No floating-point value is compared against anything.
+
+**Dependencies, per `RULES.md` §3.** §1–§2 depend on nothing but elementary geometry (they do not
+even use Oler's theorem). §3 depends on the certificates in
+[`../exact-algebraic-constructions/certificates/`](../exact-algebraic-constructions/certificates/),
+whose own status is `sketch`/`numerical` — but only as *inputs*: every quantity in the atlas is
+recomputed from the coordinates here, and the atlas asserts nothing about optimality, so no status
+is inherited into a claim. §5.2 additionally depends on published construction values via
+`experiments/circle-packing-search/reference.py`, which is `numerical`. Nothing anywhere depends on
+§1 being true except §3's *interpretation*; §4's refutation does not.
+
+**Not checked.** Whether stage 1 is exactly zero at $T(k)$ and $T(k)-1$ for all $k$ (checked
+$k \le 6$). Whether FP is true, false, or known. Whether any *other* strengthening survives the
+§4 counterexamples — I did not look, because the kill-criterion said stop.
