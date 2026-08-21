@@ -1,0 +1,139 @@
+==============================================================================
+1. CONTROLS -- triangular lattices must give exactly zero slack
+==============================================================================
+  n= 3  faces= 1 (=2n-b-2= 1)  face excess all exactly 0: True  boundary edges all exactly length 1: True  slack=[0.000000000000, 0.000000000000]  -> PASS
+  n= 6  faces= 4 (=2n-b-2= 4)  face excess all exactly 0: True  boundary edges all exactly length 1: True  slack=[0.000000000000, 0.000000000000]  -> PASS
+  n=10  faces= 9 (=2n-b-2= 9)  face excess all exactly 0: True  boundary edges all exactly length 1: True  slack=[0.000000000000, 0.000000000000]  -> PASS
+
+  controls: PASS
+
+==============================================================================
+2. SLACK ATLAS -- where the slack sits, for every exact certificate
+==============================================================================
+  stage 1 = slack of Oler applied to the hull; stage 2 = hull -> triangle
+  file                         n   b   i   F    face exc    edge exc     stage 1     stage 2       total  id
+  n001-exact.json              1   -- degenerate hull, identity not applicable
+  n002-exact.json              2   -- degenerate hull, identity not applicable
+  n003-exact.json              3   3   0   1   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+  n004-exact.json              4   3   1   3   0.0000000   1.0980762   1.0980762   0.0000000   1.0980762  ok
+  n005-exact.json              5   5   0   3   0.0000000   0.0000000   0.0000000   1.0000000   1.0000000  ok
+  n006-exact.json              6   6   0   4   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+  n007-exact.json              7   6   1   6   0.7320508   1.0980762   1.8301270   0.0000000   1.8301270  ok
+  n008-exact.json              8   6   2   8   0.2481875   1.3722813   1.6204689   0.0000000   1.6204689  ok
+  n009-exact.json              9   8   1   8   0.0000000   0.0000000   0.0000000   1.0000000   1.0000000  ok
+  n010-exact.json             10   9   1   9   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+  n014-exact.json             14  11   3  15   0.0000000   0.0000000   0.0000000   1.0000000   1.0000000  ok
+  n015-exact.json             15  12   3  16   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+  n020-exact.json             20  14   6  24   0.0000000   0.0000000   0.0000000   1.0000000   1.0000000  ok
+  n021-exact.json             21  15   6  25   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+  n003-lean-corners.json       3   3   0   1   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+  n006-lean-t3-lattice.json    6   6   0   4   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  ok
+
+==============================================================================
+3. PROBE -- is the total face excess >= 0 for unit-separated sets?
+==============================================================================
+  configuration                            n  min sep^2  total face excess   Oler slack
+  obtuse triangle (0,0),(1,0),(2,1/2)      3   1.000000       -0.211324865  0.378468535
+  flat arc, m=3 (n=4)                      4   1.000000       -0.828933254  0.173806478
+  flat arc, m=4 (n=5)                      5   1.000244       -1.319578041  0.181642052
+  flat arc, m=6 (n=7)                      7   1.000021       -2.312895746  0.187479299
+  flat arc, m=8 (n=9)                      9   1.000004       -3.310556943  0.189603269
+  flat arc, m=12 (n=13)                   13   1.000000       -5.308886369  0.191161521
+  flat arc, m=16 (n=17)                   17   1.000000       -7.308301668  0.191718597
+
+  face-excess-nonnegativity hypothesis: REFUTED (exact, see negative column above)
+  note: the total face excess is triangulation-independent (= (2/sqrt3)A - (2n-b-2)/2),
+        so no choice of triangulation -- Delaunay included -- can repair the sign.
+
+==============================================================================
+4. THE FLOORED-PERIMETER CONCLUSION -- consistency, not evidence
+==============================================================================
+   claim under test:  n <= a^2/2 + (3/2)*floor(a) + 1,  a = (s(n) - 2 sqrt3)/2
+    n              a  floor a   Oler bound  floored bound  holds  status
+    1    0.000000000        0     1.000000       1.000000   True  cited
+    2    1.000000000        1     3.000000       3.000000   True  cited
+    3    1.000000000        1     3.000000       3.000000   True  cited
+    4    1.732050808        1     5.098076       4.000000   True  cited
+    5    2.000000000        2     6.000000       6.000000   True  cited
+    6    2.000000000        2     6.000000       6.000000   True  cited
+    7    2.732050808        2     8.830127       7.732051   True  cited
+    8    2.914854216        2     9.620469       8.248188   True  cited
+    9    3.000000000        3    10.000000      10.000000   True  cited
+   10    3.000000000        3    10.000000      10.000000   True  cited
+   11    3.632993162        3    13.048809      12.099320   True  cited
+   12    3.732050808        3    13.562178      12.464102   True  cited
+   13    3.971197119        3    14.841999      13.385203   True  cited
+   14    4.000000000        4    15.000000      15.000000   True  cited
+   15    4.000000000        4    15.000000      15.000000   True  cited
+   20    5.000000000        5    21.000000      21.000000   True  cited (qualified: Payan abstract only)
+   21    5.000000000        5    21.000000      21.000000   True  cited
+
+  values where the floored bound would newly pin n exactly (Oler does not): [4, 7, 8, 12, 13]
+
+==============================================================================
+5. THE SAME CONCLUSION vs EVERY BEST-KNOWN PACKING (Graham-Lubachevsky)
+==============================================================================
+   d(n) read from experiments/circle-packing-search/reference.py (GL 1995)
+   exact closed forms are used wherever the repo has one; a printed
+   15-s.f. decimal is used only as a +-1 ulp enclosure (see note below)
+    n     a = 1/d(n)  floor a  floored bound     margin  holds  arithmetic
+    4    1.732050808        1       4.000000   0.000000   True  exact (4*sqrt(3))
+    7    2.732050808        2       7.732051   0.732051   True  exact (2 + 4*sqrt(3))
+    8    2.914854216        2       8.248188   0.248188   True  exact (2 + 2*sqrt(3) + 2*sqrt(33)/3)
+   11    3.632993162        3      12.099320   1.099320   True  enclosure of closed form
+   12    3.732050808        3      12.464102   0.464102   True  exact (4 + 4*sqrt(3))
+   13    3.971197119        3      13.385203   0.385203   True  enclosure of closed form
+   16    4.624763580        4      17.694219   1.694219   True  +-1 ulp enclosure of GL decimal
+   17    4.732050808        4      18.196152   1.196152   True  +-1 ulp enclosure of GL decimal
+   18    4.914844410        4      19.077848   1.077848   True  +-1 ulp enclosure of GL decimal
+   19    4.991976422        4      19.459914   0.459914   True  +-1 ulp enclosure of GL decimal
+   20    5.000000000        5      21.000000   1.000000   True  exact (10 + 2*sqrt(3))
+   21    5.000000000        5      21.000000   0.000000   True  exact (10 + 2*sqrt(3))
+   22    5.574232063        5      24.036032   2.036032   True  +-1 ulp enclosure of GL decimal
+   23    5.709284082        5      24.797962   1.797962   True  +-1 ulp enclosure of GL decimal
+   24    5.732050808        5      24.928203   0.928203   True  +-1 ulp enclosure of GL decimal
+   25    5.914854216        5      25.992750   0.992750   True  +-1 ulp enclosure of GL decimal
+   26    5.997418733        5      26.484516   0.484516   True  +-1 ulp enclosure of GL decimal
+   27    6.000000000        6      28.000000   1.000000   True  exact (12 + 2*sqrt(3))
+   28    6.000000000        6      28.000000   0.000000   True  exact (12 + 2*sqrt(3))
+   29    6.570750614        6      31.587382   2.587382   True  +-1 ulp enclosure of GL decimal
+   30    6.632993162        6      31.998299   1.998299   True  +-1 ulp enclosure of GL decimal
+   31    6.732050808        6      32.660254   1.660254   True  +-1 ulp enclosure of GL decimal
+   32    6.891695732        6      33.747735   1.747735   True  +-1 ulp enclosure of GL decimal
+   33    6.971196004        6      34.298787   1.298787   True  +-1 ulp enclosure of GL decimal
+   34    6.999387363        6      34.495712   0.495712   True  +-1 ulp enclosure of GL decimal
+   35    7.000000000        7      36.000000   1.000000   True  exact (14 + 2*sqrt(3))
+   36    7.000000000        7      36.000000   0.000000   True  exact (14 + 2*sqrt(3))
+
+  refuting rows: none (a single one would kill the conjecture); undecided: none
+  tightest margins: n=4 (0.0000), n=21 (0.0000), n=28 (0.0000), n=36 (0.0000), n=8 (0.2482), n=13 (0.3852)
+
+  NOTE, recorded because it nearly went the other way: feeding the printed
+  15-s.f. decimals in blind -- i.e. treating d(20), d(27), d(35) = 0.2,
+  0.166666666666667, 0.142857142857143 as if exact -- makes floor(a) come out
+  one too small at n = 4, 27, 28, 35, 36 and reports five refutations of the
+  conjecture.  All five are artefacts of the last printed digit: those n are the
+  lattice cases T(k), T(k)-1, where a = k-1 is exactly an integer.  A conjecture
+  is not refuted by the rounding of a table.
+
+==============================================================================
+6. WHAT THE CONCLUSION WOULD IMPLY -- the full Erdos-Oler conjecture
+==============================================================================
+    k  T(k)   sup of bound for a < k-1  => max points
+    2     3                        3/2              1   T(k)-2 = 1
+    3     6                        9/2              4   T(k)-2 = 4
+    4    10                       17/2              8   T(k)-2 = 8
+    5    15                       27/2             13   T(k)-2 = 13
+    6    21                       39/2             19   T(k)-2 = 19
+    7    28                       53/2             26   T(k)-2 = 26
+    8    36                       69/2             34   T(k)-2 = 34
+    9    45                       87/2             43   T(k)-2 = 43
+   10    55                      107/2             53   T(k)-2 = 53
+   11    66                      129/2             64   T(k)-2 = 64
+   12    78                      153/2             76   T(k)-2 = 76
+
+  every k gives at most T(k)-2 points strictly below side k-1: True
+  => the conjecture implies s(T(k)-1) = s(T(k)) for every k, i.e. Erdos-Oler
+  => by RULES.md §7 it should be assumed FALSE or out of reach, not attacked
+
+wrote /home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-oler-slack/out/report.json
