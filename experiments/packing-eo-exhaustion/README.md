@@ -45,11 +45,18 @@ union of cells, rigorous upper bound), `eoex.caps.capacity(side, n)` (points in 
 given side), `eoex.lattice.pair_compatible(c1, c2, d)` (exact integer max-separation test).
 **Everything returns `numerical` evidence; none of it is assumable** (repo `RULES.md` §3).
 
-Two results in here are about what a proof *cannot* look like and may save you time:
-the partition lemma in
+Two results in
 [`attacks/eo-exhaustion/`](../../problems/circle-packing-equilateral-triangle/attacks/eo-exhaustion/README.md)
-§3 (any partition-and-count refinement of Oler is strictly worse than Oler itself, by
-$I + (m-1)$), and §0 below.
+bound what a proof can look like — read the precise scoping there, both were stated too broadly in
+the first version and corrected on 2026-08-21 after an independent verifier refuted them:
+
+* **§3** — the partition lemma. *Oler-per-piece-then-sum* always loses exactly $I + (m-1)$ and is
+  dead. ***True-capacity*-per-piece-then-sum is live** and is how the $k \le 3$ case is proved
+  outright (`python3 -m eoex prove --n 5 --d 1999/500 --max-level 4` closes in 1 node at a side
+  where Oler gives only $n \le 5.9965$). Do not read the lemma as killing the family.
+* **§1** — a finite family of refutations at *fixed rational sides* cannot on its own reach the
+  conjecture (monotonicity). This does **not** exclude an argument uniform in $d$, nor exhaustion
+  plus a gap/rigidity theorem; §1.2 there says what each would need.
 
 ---
 
@@ -58,21 +65,35 @@ $I + (m-1)$), and §0 below.
 The Erdős–Oler conjecture at $k$ is $d(T(k)-1) = 2(k-1)$: no $T(k)-1$ points at separation $2$
 fit in a triangle of side $d$ for **any** $d < 2(k-1)$.
 
-Ruling out one rational $d$ proves $d(n) > d$ and nothing more. The set of configurations of
-$T(k)-1$ points at separation $\ge 2$ in the closed triangle of side exactly $2(k-1)$ is
-**non-empty** (delete any point from the $k$-row lattice packing), so the family of statements
-"$d(n) > 2(k-1) - \varepsilon$" has no finite subfamily equivalent to the conjecture, and no
-limiting run exists. Shrinking $\varepsilon$ narrows an enclosure; it never closes it. This is the
-same point `experiments/circle-packing-bnb/README.md` makes, and it applies here verbatim.
+> **CORRECTED 2026-08-21.** This section previously justified itself with a topological argument
+> — that the sets of configurations at side $2(k-1)-\varepsilon$ have non-empty "limit"
+> $\bigcap_{\varepsilon>0}$. That argument is **wrong** (the family is decreasing in
+> $\varepsilon$, and the intersection is empty, not $S(0)$); it was refuted by an independent
+> verifier. The conclusion below survives on a different and simpler argument. The original and
+> the refutation are kept in the attack write-up §1.3.
+
+Ruling out one rational $d$ proves $d(n) > d$ and nothing more, and **feasibility is monotone in
+the side** — a configuration in $T(d)$ sits in $T(d')$ for every $d' \ge d$. So a finite family of
+exhaustions at rationals $d_1,\dots,d_N$, all below $D = 2(k-1)$, collapses to the single
+strongest statement $d(n) > \max_i d_i$; and a maximum of finitely many rationals each $< D$ is
+itself $< D$. Fixed-rational-side refutation, used alone, therefore never yields $d(n) \ge D$,
+however many runs it makes. Shrinking $\varepsilon$ narrows an enclosure; it never closes it. This
+is the same point `experiments/circle-packing-bnb/README.md` makes, and it applies here verbatim.
+
+**Read the scope carefully — "used alone" is doing real work.** This rules out one *shape of
+output*, not computation in general. It does **not** exclude:
+
+* **an argument uniform in $d$**, which refutes every $d < D$ in one stroke. §4.1 below is exactly
+  one, and it proves $d(5) \ge 4$ — the full $k=3$ case of the conjecture — by a finite cell
+  computation. So a cell method *can* settle a case outright; it just did not do so above $k=3$.
+* **exhaustion plus a closing gap/rigidity theorem**, where a theorem
+  $d(n) \notin (D-\delta, D)$ reduces the conjecture to a single rational run at $D - \delta/2$.
+  §4 measures exactly how small a $\delta$ each $k$ can afford, which is the useful thing here.
 
 So what this directory can honestly produce is a **measured cost curve**: for each $k$, the
 largest rational $d$ at which the exhaustion closes, expressed as the ratio
 $\rho = d / 2(k-1)$ of the conjectured value. Reaching $\rho$ close to $1$ is the whole
 difficulty; the table in §4 says how close each $k$ gets and at what cost.
-
-One exception, and it is worth stating because it is the only case where a cell argument *is*
-uniform in $d$: for $k \le 3$ the refutation happens at level 1 for **every** $d < 2(k-1)$
-simultaneously (§4.1), so those cases are settled outright rather than approached.
 
 ## 1. Why a separate directory from `circle-packing-bnb`
 

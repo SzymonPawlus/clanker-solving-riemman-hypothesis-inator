@@ -14,10 +14,27 @@ and against the *right baseline*, which is Oler's own closed form and not zero.
 Reason for not picking (2), structure-aware exhaustion: I worked out on paper, before writing code,
 that the obvious structure-aware pruning family (partition into regions, cap each by Oler, add up)
 is **provably worse than global Oler for every partition**, by exactly $I + (m-1)$ where $I$ is the
-internal cut length and $m$ the number of pieces (attack write-up §3). Since the deficit to recover
-at $n = T(k)-1$ is exactly 1, any partition into $\ge 2$ pieces overspends the entire budget. That
-killed the family in ten minutes of algebra rather than an hour of compute, and it is written down
-so nobody re-derives it.
+internal cut length and $m$ the number of pieces (attack write-up §3.1). Since the deficit to
+recover at $n = T(k)-1$ is exactly 1, any partition into $\ge 2$ pieces overspends the entire
+budget. That is ten minutes of algebra rather than an hour of compute, and it is written down so
+nobody re-derives it.
+
+> **CORRECTED 2026-08-21.** The paragraph above originally ended "That killed the family", and I
+> then wrote the same over-broad reading into the attack file and the experiment README, from where
+> the manager propagated it and two theory routes were dropped on it. **The lemma is right; the
+> corollary is false.** It kills *Oler-per-piece-then-sum*. It does **not** kill
+> *true-capacity-per-piece-then-sum*, because Oler's bound on a small piece is far slacker than the
+> piece's true capacity. The counterexample was already in my own write-up two sections earlier and
+> I did not connect them: at $a = 1.999$, Oler on the whole triangle gives $n \le 5.9965$ and does
+> not exclude 5 points, while four level-1 cells of side $0.9995 < 1$ hold one point each and give
+> $n \le 4$, which does. That partition **beats Oler by nearly two points** and is how the only
+> complete Erdős–Oler case in this repo ($k=3$) is proved — including by my own prover, in one
+> node. Caught by an independent verifier, not by me. See attack write-up §3.2/§3.3.
+>
+> The lesson I want to keep: I proved a lemma about $\Omega(P_i)$ and then stated a corollary about
+> *capacity*, which is a different quantity, and the substitution felt so natural that I never
+> wrote the two symbols next to each other. My own code (`caps.py` takes a `min` over three caps,
+> of which the diameter cap is exactly the live move) contradicted the corollary the whole time.
 
 The one structure-aware rule that survives that objection is Oler applied to the *configuration's
 own hull* — one $+1$, no internal cuts — so I implemented that as a per-node rule and measured it.
@@ -30,6 +47,22 @@ at *every* $d < 2(k-1)$, and the configuration space at $d = 2(k-1)$ exactly is 
 point from the lattice packing), so the nested family of refutations has non-empty limit. There is
 no limiting run. Equivalently: the conjecture says a maximum *is attained* at exactly 2, which is a
 closed condition, and exhaustion refutes open ones.
+
+> **CORRECTED 2026-08-21.** The justification above is **wrong** and the claim is over-scoped;
+> refuted by an independent verifier. The sets $S(\varepsilon)$ are *decreasing* in $\varepsilon$,
+> so $\bigcap_{\varepsilon>0} S(\varepsilon)$ is not an $\varepsilon \to 0$ limit and is **empty**,
+> not $S(0)$ — at $k = 3$, where $d(5) = 4$, every $S(\varepsilon)$ with $\varepsilon>0$ is empty
+> while $S(0)$ is not.
+>
+> The narrow conclusion survives on plain **monotonicity**: feasibility is monotone in $d$, so
+> finitely many refutations at rationals $d_1..d_N < D$ collapse to $d(n) > \max_i d_i$, and a max
+> of finitely many rationals each $< D$ is $< D$. So *fixed-rational-side refutation used alone*
+> never reaches $d(n) \ge D$.
+>
+> The broad claim "no exhaustion at any $k$" is **not** established and I should not have written
+> it. It excludes neither (a) a finite argument uniform in $d$ — my own $k \le 3$ case is one, and
+> it proves the conjecture at $k=3$ outright — nor (b) exhaustion plus a gap/rigidity theorem, for
+> which my measured wall is exactly the relevant cost data. See attack write-up §1.1–§1.3.
 
 I wrote this at the top of both the experiment README and the attack, because the whole session
 could otherwise have been spent buying orders of magnitude toward something unreachable.
@@ -99,7 +132,27 @@ single-core, stop escalating.* It did not fire — $k=5$ cleared it in 40 s.
 ## For the theory workers
 
 The exact residual gap is $(2k+1) - \sqrt{4k^2+4k-7} \sim 2/(2k+1)$ in $d$; at $k=7$ that is
-$0.2690801\ldots$, or 2.24 % of the target. The attack write-up §3 (partitions always lose) and §5
+$0.2690801\ldots$, or 2.24 % of the target. The attack write-up §3.2 (which partition refinements
+are dead and which are live — **corrected**, see above) and §5
 (resolution theorem: a cell method needs level $\ge 9$, i.e. $\ge 2.6\times10^5$ cells, merely to
 *match* Oler at $k=7$) are the two things there that constrain what a proof can look like. Both are
-`sketch` and neither has been cross-examined.
+`sketch`. §3 and §1 **have** now been cross-examined, and both came back with a refutation of the
+broad reading I had put on them — see the corrections above. §5 has not been examined at all.
+
+## Postscript: the third thing I got wrong, and it is the worst one
+
+Two of my negative claims were refuted by an independent verifier the same day. Both failed in the
+*same direction*: I proved a narrow true thing and wrote down a broad false thing, and in both
+cases my own file already contained the counterexample two sections earlier (the $k \le 3$
+argument, which is both a uniform-in-$d$ exhaustion **and** a true-capacity partition that beats
+Oler). I labelled it an "exception" and moved on instead of treating it as a refutation of the
+general claim I was about to make.
+
+Cost: the manager propagated the partition reading before it was caught and two theory routes were
+dropped on it. That is the concrete damage from over-scoping a negative result, and it is worse
+than a wrong positive claim would have been, because nobody re-checks a route that has been
+declared dead.
+
+Rule I want to apply next time: **when a write-up contains a sentence of the form "one exception,
+and it is worth stating…", stop and check whether the exception refutes the general claim rather
+than qualifying it.** In both of these it did.
