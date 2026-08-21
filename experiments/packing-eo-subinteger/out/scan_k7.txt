@@ -1,0 +1,1 @@
+k=7 n=27 M= 6 a=5.99000 cells= 36 boxes=  409  floor(Oler)=27  LP=27.000000561999997  target<=26  (build 175s, lp 0s)

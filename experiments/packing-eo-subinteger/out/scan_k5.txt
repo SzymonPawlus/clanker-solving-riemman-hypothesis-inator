@@ -1,0 +1,14 @@
+k=5 n=14 M= 4 a=3.99000 cells= 16 boxes=   39  floor(Oler)=14  LP=14.0  target<=13  (build 14s, lp 0s)
+k=5 n=14 M= 5 a=3.99000 cells= 25 boxes=  137  floor(Oler)=14  LP=14.0  target<=13  (build 43s, lp 0s)
+k=5 n=14 M= 6 a=3.99000 cells= 36 boxes=  538  floor(Oler)=14  LP=14.0  target<=13  (build 57s, lp 0s)
+Traceback (most recent call last):
+  File "/home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-eo-subinteger/scan.py", line 17, in <module>
+    val,y = lp.solve_cover(cols,caps,len(cells))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-eo-subinteger/lp.py", line 93, in solve_cover
+    for j in range(n):
+         ^^^^^^^^^^
+  File "/home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-eo-subinteger/lp.py", line 79, in run
+    if f != 0.0:
+^^^^^^^^^^^^^^^^^
+RuntimeError: simplex iteration limit

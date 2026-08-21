@@ -1,0 +1,12 @@
+k=5 n=14 M=6 a0(Oler)=3.81507 truth=4   LP at a=(k-1)-1e-3: 14.000000318000005
+  a=2.00000 LP=6.000000122 -> certifies
+  a=3.00000 LP=10.000000221999999 -> certifies
+  a=3.50000 LP=12.000000262 -> certifies
+  a=3.75000 LP=13.000000287 -> certifies
+  a=3.87500 LP=14.000000309 -> does not
+  a=3.81250 LP=13.000000308 -> certifies
+  a=3.84375 LP=14.000000309 -> does not
+  a=3.82812 LP=14.000000309 -> does not
+  a=3.82031 LP=14.000000309 -> does not
+  a*(k=5,M=6) in [3.81250, 3.82031]; Oler alone gives 3.81507
+  fraction of the a-gap closed: -0.014

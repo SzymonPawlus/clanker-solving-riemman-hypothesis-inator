@@ -1,0 +1,491 @@
+==============================================================================
+A. eo-exhaustion §2 — Oler's free lower bound and the residual gap
+==============================================================================
+  [PASS] 8(T(k)-1)+1 = 4k^2+4k-7 for k=3..14
+  [PASS] (2k+1)^2 - (4k^2+4k-7) = 8  (so gap = 8/((2k+1)+sqrt(...)))
+  [PASS] Oler RHS at a=k-1 equals T(k) exactly, k=2..39
+
+  reproduce the §2 table (exact brackets on the irrational parts):
+    k    n  target d      Oler d >    residual   rho_Oler  file rho_Oler
+    3    5         4     3.4031242   0.5968758    0.85078        0.85078  gap ok / rho ok
+    4    9         6     5.5440037   0.4559963    0.92400        0.92400  gap ok / rho ok
+    5   14         8     7.6301458   0.3698542    0.95377        0.95377  gap ok / rho ok
+    6   20        10     9.6885775   0.3114225    0.96886        0.96886  gap ok / rho ok
+    7   27        12    11.7309199   0.2690801    0.97758        0.97758  gap ok / rho ok
+    8   35        14    13.7630546   0.2369454    0.98308        0.98308  gap ok / rho ok
+   12   77        22    21.8394847   0.1605153    0.99270        0.99270  gap ok / rho ok
+  [PASS] eo-exhaustion §2 table reproduced exactly
+
+  NOTE ON STRICTNESS: Oler gives n <= a^2/2+3a/2+1, so n points force a >= root,
+  not a > root.  eo-exhaustion §2 writes 'd(n) > sqrt(8n+1)-3'.  The strict form is
+  not what Oler yields (equality is attainable in Oler).  eo-boundary-counting §2 gets
+  this right ('the entire open window is a in [a*, 6)', closed at a*).
+
+==============================================================================
+B. eo-exhaustion §4 — the rho column
+==============================================================================
+  [PASS] k=4: rho = d/2(k-1) = 0.98333 matches file 0.98333
+  [PASS] k=5: rho = d/2(k-1) = 0.99875 matches file 0.99875
+  (The node counts / seconds / 'proved' verdicts in §4 are properties of the author's
+   implementation.  Problem RULES.md §3 forbids me rerunning their code, and re-deriving
+   a wall-clock measurement is not possible.  NOT EXAMINED — see report.)
+
+==============================================================================
+C. eo-exhaustion §5 — the levels table
+==============================================================================
+  §5's threshold:  2^L > d / (sqrt3 (1-rho)),  d = rho * d(n),  d(n) = 12 at k=7
+  [PASS] rho=0.90: level = 6 (file says 6), cells 4^L = 4096
+  [PASS] rho=0.95: level = 8 (file says 8), cells 4^L = 65536
+  [PASS] rho=0.9776: level = 9 (file says 9), cells 4^L = 262144
+  [PASS] rho=0.99: level = 10 (file says 10), cells 4^L = 1048576
+  [PASS] rho=0.999: level = 13 (file says 13), cells 4^L = 67108864
+
+==============================================================================
+D. eo-boundary-counting §2 — the window table
+==============================================================================
+  [PASS] k=3: window 1.701562, gap 0.298438, non-integrality root 1.372281
+  [PASS] k=4: window 2.772002, gap 0.227998, non-integrality root 2.531129
+  [PASS] k=6: window 4.844289, gap 0.155711, non-integrality root 4.684658
+  [PASS] k=7: window 5.865460, gap 0.134540, non-integrality root 5.728416
+  [PASS] t_7 bracket 0.457427 < t_7 < 0.457428 :: [0.457427108, 0.457427108]
+  [PASS] t_7 satisfies t^2+t = 2/3 (checked via the bracket)
+  [PASS] a* bracket 5.865459 < a* < 5.865460
+
+==============================================================================
+E. oler-slack-analysis §1 — independent reconstruction (Codex reviewed this on PR #90)
+==============================================================================
+  Independent derivation of F = 2n - b - 2 and the identity, re-done here:
+   V = n, E_edges = (3F+b)/2, faces = F+1 (incl. outer);
+   Euler V - E + F_all = 2  =>  n - (3F+b)/2 + F + 1 = 2  =>  n - F/2 - b/2 = 1
+  [PASS] Euler closes for every (n,b) with F = 2n-b-2
+  [PASS] lattice T(2): n=3, b=3, faces built=1, 2n-b-2=1
+  [PASS] lattice T(3): n=6, b=6, faces built=4, 2n-b-2=4
+  [PASS] lattice T(4): n=10, b=9, faces built=9, 2n-b-2=9
+  [PASS] lattice T(5): n=15, b=12, faces built=16, 2n-b-2=16
+  [PASS] lattice T(6): n=21, b=15, faces built=25, 2n-b-2=25
+  [PASS] lattice T(7): n=28, b=18, faces built=36, 2n-b-2=36
+  [PASS] lattice T(8): n=36, b=21, faces built=49, 2n-b-2=49
+
+  Codex's PR#90 review claims re-derived here: F=2n-b-2 with b counting ALL hull-boundary
+  points (agree); boundary-edge excess >= 0 since consecutive boundary points are
+  separated points at distance >= 1 (agree); minimal witness (0,0),(1,0),(2,1/2):
+  [PASS]   witness squared distances are 1, 5/4, 17/4, all >= 1
+  [PASS]   witness area = 1/4 < sqrt3/4
+  [PASS] FP's sup below a=k-1 is exactly T(k)-3/2, so n <= T(k)-2  (agrees with Codex)
+
+==============================================================================
+FAILURES: none
+==============================================================================
+==============================================================================
+T1  (attacks/eo-boundary-counting §5)
+==============================================================================
+family: lambda = 101/100, eps = 1/1000   (the values §4 states)
+
+  k    n   b       minsep^2    (2/r3)A(hull)   lower bd on Phi(3)   (3k-3)/2
+  3    6   3    1.016604257      2.036702757          2.963297243          3
+  [PASS] k=3: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=3: all points inside the scaled triangle
+  [PASS] k=3: hull is a triangle
+  [PASS] k=3: hull vertices are exactly the three moved corners
+  [PASS] k=3: b = 3
+  4   10   3    1.016604257      4.585203386          4.414796614        9/2
+  [PASS] k=4: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=4: all points inside the scaled triangle
+  [PASS] k=4: hull is a triangle
+  [PASS] k=4: hull vertices are exactly the three moved corners
+  [PASS] k=4: b = 3
+  5   15   3    1.016604257      8.153804015          5.846195985          6
+  [PASS] k=5: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=5: all points inside the scaled triangle
+  [PASS] k=5: hull is a triangle
+  [PASS] k=5: hull vertices are exactly the three moved corners
+  [PASS] k=5: b = 3
+  6   21   3    1.016604257     12.742504643          7.257495357       15/2
+  [PASS] k=6: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=6: all points inside the scaled triangle
+  [PASS] k=6: hull is a triangle
+  [PASS] k=6: hull vertices are exactly the three moved corners
+  [PASS] k=6: b = 3
+  7   28   3    1.016604257     18.351305272          8.648694728          9
+  [PASS] k=7: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=7: all points inside the scaled triangle
+  [PASS] k=7: hull is a triangle
+  [PASS] k=7: hull vertices are exactly the three moved corners
+  [PASS] k=7: b = 3
+  8   36   3    1.016604257     24.980205901         10.019794099       21/2
+  [PASS] k=8: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=8: all points inside the scaled triangle
+  [PASS] k=8: hull is a triangle
+  [PASS] k=8: hull vertices are exactly the three moved corners
+  [PASS] k=8: b = 3
+  9   45   3    1.016604257     32.629206529         11.370793471         12
+  [PASS] k=9: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=9: all points inside the scaled triangle
+  [PASS] k=9: hull is a triangle
+  [PASS] k=9: hull vertices are exactly the three moved corners
+  [PASS] k=9: b = 3
+ 10   55   3    1.016604257     41.298307158         12.701692842       27/2
+  [PASS] k=10: separation >= 1 :: minsep^2 = 1.016604257
+  [PASS] k=10: all points inside the scaled triangle
+  [PASS] k=10: hull is a triangle
+  [PASS] k=10: hull vertices are exactly the three moved corners
+  [PASS] k=10: b = 3
+
+Is the lower bound on Phi(3) unbounded?
+  [PASS] lower bound on Phi(3) is strictly increasing in k
+  exact gap  (3k-3)/2 - lower(k):
+    k= 3: 0.036702757
+    k= 4: 0.085203386
+    k= 5: 0.153804015
+    k= 6: 0.242504643
+    k= 7: 0.351305272
+    k= 8: 0.480205901
+    k= 9: 0.629206529
+    k=10: 0.798307158
+  [PASS] lower bound on Phi(3) exceeds any fixed real for large k (checked to k=10, and grows ~ (3k-3)/2)
+
+VERDICT input: if b=3 and the lower bound grows without bound, T1 holds.
+
+all checks passed
+==============================================================================
+Step 1: verify the closed form against the exact geometry (k = 3..10)
+==============================================================================
+  k= 3  geometric 2.963297242631   closed form 2.963297242631   EQUAL (exact)
+  k= 4  geometric 4.414796613947   closed form 4.414796613947   EQUAL (exact)
+  k= 5  geometric 5.846195985263   closed form 5.846195985263   EQUAL (exact)
+  k= 6  geometric 7.257495356578   closed form 7.257495356578   EQUAL (exact)
+  k= 7  geometric 8.648694727894   closed form 8.648694727894   EQUAL (exact)
+  k= 8  geometric 10.019794099210   closed form 10.019794099210   EQUAL (exact)
+  k= 9  geometric 11.370793470525   closed form 11.370793470525   EQUAL (exact)
+  k=10  geometric 12.701692841841   closed form 12.701692841841   EQUAL (exact)
+  closed form validated: True
+
+==============================================================================
+Step 2: the fixed-parameter family, pushed out in k
+==============================================================================
+  lambda = 101/100, eps = 1/1000  (exactly the values §4 fixes)
+  k=  10   lower bound on Phi(3) =      12.701693
+  k=  20   lower bound on Phi(3) =      24.905187
+  k=  40   lower bound on Phi(3) =      43.282174
+  k=  60   lower bound on Phi(3) =      53.619161
+  k=  70   lower bound on Phi(3) =      55.772655
+  k=  76   lower bound on Phi(3) =      56.099951
+  k=  80   lower bound on Phi(3) =      55.916149
+  k= 100   lower bound on Phi(3) =      50.173136
+  k= 150   lower bound on Phi(3) =       0.640605
+  k= 200   lower bound on Phi(3) =     -99.141927
+
+  MAXIMUM over k <= 200:  56.099951  attained at k = 76
+  and it is strictly decreasing thereafter (coefficient of k^2 is (1 - lambda^2)/2 = -0.010050 < 0)
+
+  => with lambda fixed at 101/100 the family gives Phi(3) >= 56.0999... and NOTHING MORE.
+     It is a FINITE lower bound.  T1's stated proof does not go through as written.
+
+==============================================================================
+Step 3: repair -- let lambda, eps depend on k.  delta_k = 1/k^3, eps_k = delta_k/2
+==============================================================================
+  separation after the push >= lambda - 2 eps = 1 + delta - delta = 1, so still >= 1.
+
+   k      n   b         minsep^2    lower bd Phi(3)   (3k-3)/2
+   3      6   3   1.009948665827        2.915119921          3  ok
+   4     10   3   1.004191088259        4.399414051        9/2  ok
+   5     15   3   1.002144742288        5.899398515          6  ok
+   6     21   3   1.001240890234        7.404122997       15/2  ok
+   7     28   3   1.000781345546        8.910080846          9  ok
+   8     36   3   1.000523406737       10.416065301       21/2  ok
+   9     45   3   1.000367590966       11.921664330         12  ok
+  10     55   3   1.000267967142       13.426761148       27/2  ok
+  11     66   3   1.000201324326       14.931351550         15  ok
+  12     78   3   1.000155069201       16.435472548       33/2  ok
+  16    136   3   1.000065418353       22.448233886       45/2  ok
+  20    210   3   1.000033493930       28.456929241       57/2  ok
+  25    325   3   1.000017148822       35.964465119         36  ok
+
+  continued by closed form (geometry already validated in step 1):
+    k=    50  lower bound on Phi(3) =        73.4811   ((3k-3)/2 = 73.5)
+    k=   100  lower bound on Phi(3) =       148.4903   ((3k-3)/2 = 148.5)
+    k=   500  lower bound on Phi(3) =       748.4980   ((3k-3)/2 = 748.5)
+    k=  1000  lower bound on Phi(3) =      1498.4990   ((3k-3)/2 = 1498.5)
+    k= 10000  lower bound on Phi(3) =     14998.4999   ((3k-3)/2 = 14998.5)
+
+  => Phi(3) must exceed every real number.  T1 is TRUE, with this repaired family.
+==============================================================================
+Lemma T -- exhaustive-ish exact scan
+==============================================================================
+  grid scan (sides in [1,4], step 1/12): 7761 triangles, 0 violations
+  equality triples found: ['(Fraction(1, 1), Fraction(1, 1), Fraction(1, 1))', '(Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))']
+  [PASS] no violation on the grid
+  [PASS] equality set is exactly {(1,1,1),(1,1,2)}
+  random scan (sides in [1,7]): 142035 triangles, 0 violations, equality ['(Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))']
+  [PASS] no violation in the random scan
+  [PASS] random scan finds no third equality triple
+
+  adversarial probes around the two equality cases and at degeneracy:
+  [PASS] no violation and no new equality within 6/1000 of either equality case :: []
+  [PASS] degenerate family x=y+z: no violation, equality only at (2,1,1)
+  [PASS] large-S / thin-sliver probes: no violation
+
+==============================================================================
+Step 3 (the author's flagged step): min of a*b*c over Delta_S
+==============================================================================
+  claim: for S in (3,4), Delta_S is the triangle on the permutations of (S-2,S-2,4-S),
+         and min a*b*c = (S-2)^2 (4-S).
+  [PASS] grid minimum equals (S-2)^2(4-S) for S = 3.0 .. 3.9 :: []
+  [PASS] identity S(S-2)^2+3S-12 == (S-3)(S^2-S+4)
+  [PASS] S^2-S+4 > 0 always (discriminant -15)
+
+==============================================================================
+T2 identity and S2
+==============================================================================
+  [PASS] |E_int| = 3n-2b-3 follows from F = 2n-b-2
+  [PASS] S2: (a^2+3a+2)/2 = T(k) exactly at a=k-1, so deficit>=1 <=> a>=k-1 <=> EO
+  epsilon scale a_eps = (-3+sqrt(217+8eps))/2:
+    eps=   0  a_eps = 5.865460
+    eps= 1/4  a_eps = 5.899324
+    eps= 1/2  a_eps = 5.933034
+    eps= 3/4  a_eps = 5.966592
+    eps=   1  a_eps = 6.000000
+  [PASS] eps=1 gives a=6 exactly (sqrt225=15)
+
+FAILURES: none
+==============================================================================
+(A) the geometric core:  maxsep(c_i,c_j) <= |g_i - g_j| + 2h/sqrt3
+    equivalently  (maxsep - |g_i-g_j|)^2 <= 4h^2/3   [both sides rational]
+==============================================================================
+  pairs tested (exact): 8568   violations: 0
+  [PASS] the circumradius bound holds on every pair
+
+==============================================================================
+(B) is  'can only close once h < sqrt3 (1-rho)'  the contrapositive?
+==============================================================================
+  claim:      node survives  =>  d >= d(n)(1 - h/sqrt3)  =>  h >= sqrt3(1-rho)
+  contrapos.: h < sqrt3(1-rho)  =>  NO node survives  =>  the search CLOSES
+  §5 asserts: the search closes  =>  h < sqrt3(1-rho)      <-- that is the CONVERSE
+
+  A single instance where the search closes with h WELL ABOVE the threshold
+  refutes the asserted direction.  d(n) values below are the repo's `cited` table.
+
+  n          d       rho  L needed per §5    cells 4^L   L that actually closes
+  5    3.99800  0.999500               13     67108864                      L=1
+      -> k=3 EO case; d(5)=4 from s(5)=4+2sqrt3
+         pigeonhole: 4 cells < 5 points
+         h at that level = 1.999000, threshold sqrt3(1-rho) = 0.00086603
+  5    3.99980  0.999950               16   4294967296                      L=1
+      -> k=3 EO case, even closer to 4
+         pigeonhole: 4 cells < 5 points
+         h at that level = 1.999900, threshold sqrt3(1-rho) = 0.00008660
+  6    3.99800  0.999500               13     67108864                      L=1
+      -> n=6=T(3); d(6)=4 from s(6)=4+2sqrt3
+         pigeonhole: 4 cells < 6 points
+         h at that level = 1.999000, threshold sqrt3(1-rho) = 0.00086603
+  9    5.90000  0.983333                8        65536        not found at L<=4
+
+  [REFUTED] every instance closes at a level FAR COARSER than the level §5
+            says is needed.  'can only close once h < sqrt3(1-rho)' is FALSE.
+
+==============================================================================
+summary
+==============================================================================
+  claim (A) geometric core: CONFIRMED
+  stated contrapositive (B): REFUTED
+         a  floor(a)  3*floor(a)  floor(3a)  best found verdict
+         1         1           3          3           3 OK
+       3/2         1           3          4           3 OK
+         2         2           6          6           6 OK
+       5/2         2           6          7           6 OK
+         3         3           9          9           9 OK
+      17/5         3           9         10           9 OK
+         4         4          12         12          12 OK
+       9/2         4          12         13          12 OK
+         5         5          15         15          15 OK
+     59/10         5          15         17          15 OK
+         6         6          18         18          18 OK
+==============================================================================
+1. 'Groemer 1960 == Oler 1961' -- independent symbolic check
+==============================================================================
+  F - kappa*U + lambda      = [((0, 0, 1, 0), Fraction(1, 1)), ((1, 0, 0, 0), Fraction(2, 1)), ((1, 0, 0, 1), Fraction(1, 2))]
+  A + (sqrt3/2) M + sqrt12  = [((0, 0, 1, 0), Fraction(1, 1)), ((1, 0, 0, 0), Fraction(2, 1)), ((1, 0, 0, 1), Fraction(1, 2))]
+  [PASS] Groemer on K = hull-of-circles is exactly  n*sqrt12 <= A(H) + (sqrt3/2)M(H) + sqrt12
+  dividing by sqrt12 = 2 sqrt3:   n <= A(H)/(2 sqrt3) + M(H)/4 + 1     [separation 2]
+  rescaling to separation 1 (A -> 4A, M -> 2M):  n <= (2/sqrt3)A + M/2 + 1  = OLER
+  [PASS] and it is exactly tight on every T(k) lattice (k=2..7)
+
+  CAVEAT: this is Groemer's inequality SPECIALISED to K = the hull of the circles.
+  The problem README's Groemer table applies it to the CONTAINING TRIANGLE instead,
+  which is a different (strictly weaker) application -- which is exactly the
+  explanation eo-literature §3 conjectured.  Confirmed here.
+  I did NOT read Groemer; I used the transcription on the problem README (`cited`).
+
+==============================================================================
+2. Theorem Q (quantitative Lemma T) -- proof steps and adversarial scan
+==============================================================================
+  proof needs D = (2/sqrt3)A + (4-S)/2 <= 1 on S in [3,4].
+   (2/sqrt3)A <= S^2/18 (isoperimetric among triangles: equilateral maximises area)
+  [PASS] S^2/18 + (4-S)/2 <= 1 on [3,4] (max at S=3, value exactly 1) :: at S=3: 1
+  [PASS] derivative S/9 - 1/2 < 0 on [3,4] (so it is decreasing)
+  [PASS] S*m(S) - 3(4-S)^2 == (4-S)(S-3)(S^2-S+4)
+  [PASS] S^2-S+4 >= 10 on [3,4]
+  adversarial exact scan of  tau >= [S*Q - 3(4-S)^2]/12  (and (S-4)/2 for S>=4):
+  [PASS] Theorem Q holds on 93366 exactly-checked triangles (incl. degenerate, slivers, both equality cases, large S) :: []
+
+==============================================================================
+3. Theorem E -- consistency against the repo's `cited` table
+==============================================================================
+  Theorem E predicts: a_n = a*_n  (Oler exactly tight)  IFF  n is triangular,
+  and a_n > a*_n strictly for every other n.  Test against `cited` values.
+    n   a_n (cited)  a*_n (Oler root)   a_n - a*_n  triangular? consistent?
+    2   1.000000000       0.561552813  0.438447187        False yes
+    3   1.000000000       1.000000000  0.000000000         True yes
+    4   1.732050808       1.372281323  0.359769484        False yes
+    5   2.000000000       1.701562119  0.298437881        False yes
+    6   2.000000000       2.000000000  0.000000000         True yes
+    7   2.732050808       2.274917218  0.457133590        False yes
+    8   2.914854216       2.531128874  0.383725341        False yes
+    9   3.000000000       2.772001873  0.227998127        False yes
+   10   3.000000000       3.000000000 -0.000000000         True yes
+   11   3.632993162       3.216990566  0.416002596        False yes
+   12   3.732050808       3.424428901  0.307621907        False yes
+   13   3.971197119       3.623475383  0.347721736        False yes
+   14   4.000000000       3.815072906  0.184927094        False yes
+   15   4.000000000       4.000000000 -0.000000000         True yes
+   20   5.000000000       4.844288770  0.155711230        False yes
+   21   5.000000000       5.000000000  0.000000000         True yes
+  [PASS] Theorem E is consistent with every `cited` value: equality exactly at triangular n :: []
+
+  the arithmetic lemma Theorem E needs: 4k^2+4k-7 is never a perfect square (k>=2)
+  [PASS] no k in [2, 300000) makes 4k^2+4k-7 a perfect square :: []
+  (proof: (2a+3)^2 = (2k+1)^2 - 8 => (k-a-1)(k+a+2) = 2 => k=1,a=-1 only.  Re-derived and agreed.)
+
+  break attempt: is there a def=0 configuration that is NOT a full lattice triangle?
+  Theorem E forbids it.  Every `cited` row above with a_n = a*_n (n = 3,6,10,15,21)
+  is the full lattice triangle, and every other row is strictly above.  No witness found.
+
+==============================================================================
+4. Proposition V -- is step (1) really vacuous?
+==============================================================================
+  T2 is an IDENTITY: slack = sum_f tau(f) - sum_{e int}(len(e)-1).
+  So for any 0 <= Psi <= tau,  sum_f Psi - sum_int(len-1) <= slack, with equality at
+  Psi = tau.  A lower bound on slack obtained this way is therefore never stronger
+  than the identity itself.  Logic checked and AGREED.
+
+  (V3): a face with all three edges interior has
+        sigma(f) = tau(f) - (1/2)*sum_{3 interior edges}(len-1)
+    (    1,    1,    1)  (2/sqrt3)A = 0.500000000  sigma = +0.000000000
+    (    1,    1,19/10)  (2/sqrt3)A = 0.342527371  sigma = -0.157472629
+    (    1,    1,  3/2)  (2/sqrt3)A = 0.572821962  sigma = +0.072821962
+    (    2,    2,    2)  (2/sqrt3)A = 2.000000000  sigma = +1.500000000
+  [PASS] sigma(f) = (2/sqrt3)A_f - 1/2 for an all-interior face, and it goes negative
+  => (V3) is the already-refuted face-excess hypothesis.  AGREED.
+
+  CAVEAT I record against V1/V2's phrasing: Psi combined with an INDEPENDENT upper
+  bound on sum_int(len-1) is not excluded -- that is step (3) of the programme, and
+  the lane keeps it live.  V2 says this; V1's 'not a strengthening of anything'
+  should be read as 'the inequality (*) produces is never stronger than the target'.
+
+FAILURES: none
+self-test: uniform subdivision of T_6 into 36 cells of side 1 (diam exactly 1)
+  pieces: 36   a = 6
+  [PASS] C1 diam^2 <= 1
+  [PASS] C1' pieces with diam exactly 1 (need side < a strictly to be safe)  :: 36
+  [PASS] C2 pieces inside T_a
+  [PASS] C3 pairwise disjoint interiors
+  [PASS] C4 sum of areas == area(T_a)  :: ('36', '36')
+  [PASS] C5 coverage probe (grid + vertices + edge midpoints)
+  => 36 pieces, all checks PASS
+  (36 > 26: this is the known baseline, not a proof of anything)
+
+negative control: drop one piece -- the checker must catch it
+  35 pieces: overall correctly FAILS; C4 False, C5 False
+
+negative control: enlarge one piece so its diameter exceeds 1
+  overall correctly FAILS; C1 caught it: True
+==============================================================================
+eo-covering-construct certificates -- independent exact verification
+==============================================================================
+  ../packing-eo-covering/cert26.json
+    a = 2889/500 = 5.778000   sites = 26   non-empty cells = 26
+    max squared diameter (exact) = 10741384420374235864339824721/10744980964000000000000000000  = 0.999665281527
+    diameter <= 1 ?  YES   (strictly < 1 ? yes)
+    sum of cell areas == area(T_a) ?  True   (8346321/250000 vs 8346321/250000)
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_5.7780 is covered by 26 convex sets of diameter <= 1
+    ==> implies a_{26+1} = a_{27} >= 5.778000
+
+  ../packing-eo-covering/cert27.json
+    a = 2901/500 = 5.802000   sites = 27   non-empty cells = 27
+    max squared diameter (exact) = 2985556834744281452205014979901943076550459534983501/2985861307769364260207356609000000000000000000000000  = 0.999898028410
+    diameter <= 1 ?  YES   (strictly < 1 ? yes)
+    sum of cell areas == area(T_a) ?  True   (8415801/250000 vs 8415801/250000)
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_5.8020 is covered by 27 convex sets of diameter <= 1
+    ==> implies a_{27+1} = a_{28} >= 5.802000
+
+  ../packing-eo-covering/cert28opt.json
+    a = 762/125 = 6.096000   sites = 28   non-empty cells = 28
+    max squared diameter (exact) = 631346220804301249254746189731824586738459374221023/631517588995268117061827797013016796875000000000000  = 0.999728640668
+    diameter <= 1 ?  YES   (strictly < 1 ? yes)
+    sum of cell areas == area(T_a) ?  True   (580644/15625 vs 580644/15625)
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_6.0960 is covered by 28 convex sets of diameter <= 1
+    ==> implies a_{28+1} = a_{29} >= 6.096000
+
+  ../packing-eo-covering/cert28.json   [explicit-cell format, Q(sqrt3)]
+    a = 6.000000   cells = 28
+    max squared diameter (exact Q(sqrt3)) = (1+0r3=1.0000000000)
+    diameter <= 1 ?  YES   (strictly < 1 ? no -- equals 1)
+    sum of cell areas == area(T_a) ?  True
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_6.0000 covered by 28 convex sets of diameter <= 1
+
+==============================================================================
+What each certificate proves, against Oler (a_n >= (-3+sqrt(8n+1))/2)
+==============================================================================
+            cert    N        a_0                  gives   Oler gives  beats Oler?
+     cert26.json   26   5.778000       a_27 >= 5.778000     5.865460           no
+     cert27.json   27   5.802000       a_28 >= 5.802000     6.000000           no
+  cert28opt.json   28   6.096000       a_29 >= 6.096000     6.132169           no
+     cert28.json   28   6.000000       a_29 >= 6.000000     6.132169           no
+
+  EO(7) needs a_27 >= 6 exactly.  A 26-piece cover of T_6 would prove it.
+==============================================================================
+Lemma D, re-derived: 6 points at mutual distance >= 1 need circumradius >= 1
+==============================================================================
+  Sort m points by polar angle about O; some gap Delta <= 2pi/m, so cos Delta >= c.
+  |PiPj|^2 = ri^2 + rj^2 - 2 ri rj cos Delta <= ri^2 + rj^2 - 2c ri rj.
+  max of x^2+y^2-2cxy over [0,rho]^2 is rho^2 * max(1, 2-2c)  (corner (rho,0) or (rho,rho)).
+  m=6: c = 1/2, 2-2c = 1, so |PiPj|^2 <= rho^2.  rho < 1 => some pair is < 1 apart.
+  [PASS] max_{[0,1]^2} (x^2+y^2-2cxy) = max(1, 2-2c) for m = 2..6 :: []
+  [PASS] m=6 gives c=1/2 and 2-2c=1, so the bound is rho^2 exactly
+  [PASS] equivalent form 1 <= 2 rho sin(pi/m): at m=6, 2 sin(pi/6) = 1, so rho >= 1
+  A point AT O is covered too: then |PiPj|^2 = rj^2 <= rho^2 < 1 directly.
+  => cap(circumradius < 1) <= 5.  CONFIRMED, and it uses no d(n) from any table.
+
+==============================================================================
+The k=4 cover: T_a = three corner triangles of side t=a/3, plus a regular hexagon
+==============================================================================
+  (i) the cover is complete: a point outside every Delta_V(t) has u_V > t for all V,
+      which is the definition of H.
+  [PASS] (ii) corner cuts are disjoint: need t + t <= a, i.e. 2(a/3) <= a :: true for a > 0
+  (iii) H is a regular hexagon of side t:
+    a=        2  t=a/3=0.666667  cut edge=0.666667  remnant=0.666667  regular? True  t<1? True
+    a=      5/2  t=a/3=0.833333  cut edge=0.833333  remnant=0.833333  regular? True  t<1? True
+    a=    29/10  t=a/3=0.966667  cut edge=0.966667  remnant=0.966667  regular? True  t<1? True
+    a=  299/100  t=a/3=0.996667  cut edge=0.996667  remnant=0.996667  regular? True  t<1? True
+    a=2999/1000  t=a/3=0.999667  cut edge=0.999667  remnant=0.999667  regular? True  t<1? True
+  [PASS] H is a regular hexagon of side t = a/3 < 1 for every a < 3
+  (iv) circumradius of a regular hexagon of side t is exactly t  (six equilateral triangles)
+  (v) corner triangle has diameter t < 1, so holds <= 1 point
+
+  TOTAL:  3 * 1  +  5  =  8  <  9.
+  [PASS] 3*1 + 5 = 8 < 9
+
+  Boundary behaviour at a = 3 (the proof must say nothing there, since 10 points DO fit):
+    t = 1: corner triangles have side 1 (cap 3 each), H has circumradius 1 (cap 6),
+    total 3*3 + 6 = 15 -- vacuous, as it must be.
+  [PASS] at a=3 the same cover gives 15, i.e. says nothing
+
+  CIRCULARITY CHECK: the two capacities used are (diameter < 1 => 1) and
+  (circumradius < 1 => 5).  Both are geometric.  Neither reads d(n), s(n) or a_n.
+  The proof is therefore NOT circular with respect to Erdos-Oler at any k.
+
+FAILURES: none

@@ -1,0 +1,2 @@
+k=6 n=20 M= 5 a=4.99000 cells= 25 boxes=  142  floor(Oler)=20  LP=20.000000289  target<=19  (build 60s, lp 0s)
+k=6 n=20 M= 6 a=4.99000 cells= 36 boxes=  444  floor(Oler)=20  LP=20.000000436750003  target<=19  (build 207s, lp 0s)

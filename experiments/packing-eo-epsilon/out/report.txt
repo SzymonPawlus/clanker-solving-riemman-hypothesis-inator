@@ -1,0 +1,277 @@
+
+==============================================================================
+0. Normalisation, asserted
+==============================================================================
+  a*  in [185631347583655/31648216807718, 291400341245407/49680731717048]  ~ 5.865459931328
+  Oler(a) := (a^2+3a+2)/2 ;  Oler(6) = 28 = T(7) ;  target n = 27, a < 6
+  separation-2 (certificate) form: d = 2a, s = d + 2*sqrt3.
+  at a = 6:  d = 12, s = 12 + 2*sqrt3 ~ 15.464102
+  at a = a*: d = 2a* ~ 11.730919863
+
+  eps-scale  a_eps = (-3+sqrt(217+8 eps))/2 :
+    eps = 0       a_eps ~ 5.865459931
+    eps = 1/100   a_eps ~ 5.866817495
+    eps = 1/10    a_eps ~ 5.879024326
+    eps = 1/4     a_eps ~ 5.899324293
+    eps = 1/2     a_eps ~ 5.933034374
+    eps = 3/4     a_eps ~ 5.966592262
+    eps = 1       a_eps ~ 6.000000000
+
+==============================================================================
+1. Lemma T, re-derived and exactly checked  (K1)
+==============================================================================
+  Claim (T1).  x,y,z >= 1 sides of a (possibly degenerate) triangle, S = x+y+z,
+  alpha = y+z-x, beta = z+x-y, gamma = x+y-z  (all >= 0, alpha+beta+gamma = S).
+  Heron: 16 A^2 = S*alpha*beta*gamma, hence
+
+        tau := (2/sqrt3) A + S/2 - 2  =  sqrt(S*Q/12) + (S-4)/2,   Q := alpha*beta*gamma
+
+  and tau >= 0 with equality exactly at (1,1,1) and the degenerate (2,1,1).
+
+  Decision procedure used here, entirely over Q:
+    S >= 4 : tau >= 0 always; tau = 0 iff S = 4 and Q = 0.
+    S <  4 : tau >= 0  <=>  sqrt(S Q/12) >= (4-S)/2  <=>  S*Q >= 3*(4-S)^2.
+  grid sides in [1,4] step 1/12                  checked    7761  violations 0  equality 2  [(Fraction(1, 1), Fraction(1, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))]
+  degenerate x = y+z, y,z in [1,4] step 1/20     checked    3721  violations 0  equality 1  [(Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))]
+  random rationals, sides in [1,7], seed 20260821 checked  142347  violations 0  equality 0  []
+  fine perturbations at (1,1,1) and (2,1,1), sides >= 1 checked    6058  violations 0  equality 2  [(Fraction(1, 1), Fraction(1, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))]
+  integer sides 1..29                            checked   13427  violations 0  equality 4  [(Fraction(1, 1), Fraction(1, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))]
+  union of all equality triples found: [(Fraction(1, 1), Fraction(1, 1), Fraction(1, 1)), (Fraction(1, 1), Fraction(1, 1), Fraction(2, 1))]
+
+  Step 3 (the load-bearing step, flagged by its author).  Claim:
+      min { alpha*beta*gamma : alpha+beta+gamma = S, 4-S <= alpha,beta,gamma <= S-2 }
+      = m(S) := (S-2)^2 (4-S)     for S in [3,4].
+  Re-derived here independently:
+   (a) With gamma fixed, alpha*beta = alpha*(S-gamma-alpha) is a downward parabola in alpha,
+       hence concave, hence minimised on any interval at an endpoint.  So a minimiser may be
+       taken with alpha at a bound; repeating with beta leaves >= 2 coordinates at bounds, i.e.
+       a vertex of the polytope.  (Concavity => endpoint minimum is exact, not heuristic.)
+   (b) Vertex enumeration.  Two coordinates at bounds:
+         both upper  (S-2,S-2)      -> third = 4-S,   feasible iff 4-S <= S-2 iff S >= 3.
+         both lower  (4-S,4-S)      -> third = 3S-8,  feasible iff 3S-8 <= S-2 iff S <= 3.
+         one of each (S-2,4-S)      -> third = S-2,   same orbit as the first.
+       So for S in (3,4] the vertex set is exactly the permutations of (S-2,S-2,4-S),
+       giving min = (S-2)^2 (4-S); at S=3 the polytope is the single point (1,1,1).
+   (c) In side coordinates the minimiser (S-2,S-2,4-S) is the triple (1,1,S-2).
+  exact grid over the polytope for 121 values of S in [3,4]: 0 values where the grid minimum fell below m(S)  (expected 0)
+
+  Step 4 identity (checked exactly as a polynomial identity on 200 rational points):
+      S(S-2)^2 + 3S - 12  ==  (S-3)(S^2-S+4),  and S^2-S+4 > 0 (discriminant -15).
+  mismatches: 0
+
+  VERDICT K1(a): Lemma T re-derived independently and survived every exact scan.
+  I can follow and reproduce Step 3; the concavity argument is correct and the vertex
+  enumeration is complete.  It remains `sketch` per RULES.md §3 (it is my own derivation).
+
+==============================================================================
+2. The tau-identity T2, re-derived and its counts exactly checked  (K1)
+==============================================================================
+  Claim (T2).  For any triangulation of P = conv(E) with vertex set exactly E,
+      slack(E) = sum_f tau(f) - sum_{e interior} (len(e) - 1).
+  The proof is three counts plus two sums.  I re-derive:
+      3F = 2|Edges| - b,  Euler V - |Edges| + (F+1) = 2
+        => F = 2n - b - 2,  |Edges_int| = 3n - 2b - 3
+      sum_f A_f = A(P),   sum_f p_f = M(P) + 2 L_int.
+  Then sum_f tau(f) = (2/sqrt3)A + M/2 + L_int - 2F and subtracting slack leaves
+      L_int - (3n-2b-3) = sum_{e int} (len(e) - 1).       [ algebra, exact ]
+  Below the two combinatorial counts and the area sum are verified exactly on explicit
+  triangulations.  Points are exact in Z[1/2] x Z[1/2]*sqrt3, so (2/sqrt3)*A_f is RATIONAL
+  and every area comparison is exact.
+  T(2) lattice (side 1)        n=  3 b=  3 F=  1  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  T(3) lattice (side 2)        n=  6 b=  6 F=  4  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  T(4) lattice (side 3)        n= 10 b=  9 F=  9  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  T(5) lattice (side 4)        n= 15 b= 12 F= 16  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  T(6) lattice (side 5)        n= 21 b= 15 F= 25  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  T(7) lattice (side 6)        n= 28 b= 18 F= 36  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  T(7) lattice minus apex      n= 27 b= 17 F= 35  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.000000000000
+  ^ n = 27 with slack exactly 0 -- but its hull needs side 6, not a < 6.
+  lattice hull with a sqrt3 edge n=  4 b=  4 F=  2  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.366025403784
+  ^ slack = (sqrt3-1)/2 = 0.366025404  (lattice-convex but NOT Oler-extremal)
+  generic 4-point set          n=  4 b=  4 F=  2  F=2n-b-2:OK  |Eint|=3n-2b-3:OK  T2:OK  slack~0.896189060422
+
+  VERDICT K1(b): T2's Euler counts, area sum and both sides of the identity check out
+  on every configuration tested.  T2 is re-derived, and stays `sketch` (my derivation).
+
+==============================================================================
+3. Quantitative Lemma T -- statement, proof, and adversarial exact scan  (K2)
+==============================================================================
+  THEOREM Q (quantitative Lemma T).  Let x,y,z >= 1 be the sides of a (possibly degenerate)
+  triangle, S = x+y+z, alpha = y+z-x etc., Q = alpha*beta*gamma, m(S) = (S-2)^2 (4-S).
+
+    (i)  If S >= 4:      tau = (2/sqrt3)A + (S-4)/2   exactly, so  tau >= (S-4)/2  and
+                         tau >= sqrt(S*Q/12).
+    (ii) If 3 <= S <= 4:
+                 tau >= [ S*Q - 3(4-S)^2 ] / 12
+                      = [ S*(Q - m(S)) + (4-S)(S-3)(S^2-S+4) ] / 12
+                      >= (S/12)*(Q - m(S)) + (5/6)(S-3)(4-S).
+
+  PROOF of (ii).  Write N = S*Q/12 - (4-S)^2/4 and D = sqrt(S*Q/12) + (4-S)/2, so tau = N/D
+  (rationalising tau = sqrt(S Q/12) - (4-S)/2; D > 0 unless S=4 and Q=0, where tau = 0 = N).
+  N >= 0 is Lemma T.  For fixed perimeter S the area is maximal for the equilateral triangle,
+  so (2/sqrt3)A <= S^2/18, hence D <= S^2/18 + (4-S)/2, which on [3,4] is decreasing in S
+  (derivative S/9 - 1/2 < 0 there) and therefore <= 1 at S = 3.  With 0 <= N and 0 < D <= 1,
+  tau = N/D >= N.  The second line is the identity
+      S*m(S) - 3(4-S)^2 = (4-S)(S-3)(S^2-S+4)
+  (both sides expand to (4-S)(S^3-4S^2+7S-12)); the third uses S >= 3 and S^2-S+4 >= 10 on
+  [3,4].  Both summands are >= 0 and vanish simultaneously exactly at S = 3 (giving (1,1,1))
+  and at S = 4 with Q = 0 (giving (2,1,1)).                                             []
+
+  Decision procedure for the scan, entirely over Q:  tau >= B  <=>  sqrt(S Q/12) >= B+(4-S)/2,
+  and when the right side is >= 0 this is  S*Q/12 >= (B+(4-S)/2)^2.
+  grid sides in [1,4] step 1/12                  checked    7761  fine-violations 0  coarse-violations 0
+  degenerate x = y+z (slivers, sides >= 1)       checked    3721  fine-violations 0  coarse-violations 0
+  random rationals sides in [1,7]                checked  142347  fine-violations 0  coarse-violations 0
+  fine perturbations at (1,1,1) and (2,1,1), sides >= 1 checked    6058  fine-violations 0  coarse-violations 0
+  integer sides 1..29 (large S)                  checked   13427  fine-violations 0  coarse-violations 0
+  near-degenerate slivers, long side up to 12    checked    1600  fine-violations 0  coarse-violations 0
+
+  the segment (1,1,t) joining the two equality shapes:  tau vs bound
+    t        tau (exact-bracketed)   B(fine)      B(coarse)   ratio B/tau
+    1        0.000000000000          0.000000000  0.000000000  -
+    11/10    0.080400791855          0.078825000  0.075000000  0.980
+    5/4      0.188367386791          0.176757812  0.156250000  0.938
+    3/2      0.322821961869          0.265625000  0.208333333  0.823
+    7/4      0.364139870078          0.223632812  0.156250000  0.614
+    19/10    0.292527371169          0.114825000  0.075000000  0.393
+    199/100  0.109748997817          0.013142332  0.008250000  0.120
+    2        0.000000000000          0.000000000  0.000000000  -
+  bound vanishes exactly at t=1 and t=2 (the two equality shapes) and nowhere between.
+
+==============================================================================
+4. Groemer 1960 == Oler 1961  (settles the open question of eo-literature §3)
+==============================================================================
+  Groemer's Satz (as transcribed on the problem README from p.285 of the GDZ scan, `cited`):
+  for n unit circles packed in a convex region of area F and perimeter U,
+      n*sqrt(12) <= F - kappa*U + lambda,   kappa = (2-sqrt3)/2,  lambda = sqrt12 - pi(sqrt3-1),
+  with equality iff the region is the convex hull of the circles AND the hull H of the centres
+  decomposes into equilateral triangles of side 2 whose vertices are all centres (or H
+  degenerates to a segment or a point).
+
+  Apply it to the region K = H (+) B_1 (Minkowski sum), which IS the convex hull of the circles.
+  Steiner:  F = A(H) + M(H) + pi,   U = M(H) + 2pi.  Substituting must give exactly Oler.
+  Verified below symbolically over the basis {1, sqrt3, pi, pi*sqrt3} with rational coefficients
+  and the single relation sqrt3*sqrt3 = 3 (A(H), M(H) carried as two further formal symbols).
+  F - kappa U + lambda  =  [((0, 0, 1, 0), Fraction(1, 1)), ((1, 0, 0, 0), Fraction(2, 1)), ((1, 0, 0, 1), Fraction(1, 2))]
+  A(H) + (sqrt3/2) M(H) + sqrt12 = [((0, 0, 1, 0), Fraction(1, 1)), ((1, 0, 0, 0), Fraction(2, 1)), ((1, 0, 0, 1), Fraction(1, 2))]
+  So Groemer's inequality on the hull of the circles is
+      n*sqrt12 <= A(H) + (sqrt3/2) M(H) + sqrt12
+      <=>  n <= A(H)/(2 sqrt3) + M(H)/4 + 1          [ separation 2 ]
+      <=>  n <= (2/sqrt3) A + M/2 + 1                [ separation 1: A -> A/4, M -> M/2 ]
+  which is EXACTLY Oler's inequality.
+  rescaling check on T(k) lattices (separation 2, side 2(k-1)):
+    L=1  n=  3  A/(2sqrt3)+M/4+1 = 3
+    L=2  n=  6  A/(2sqrt3)+M/4+1 = 6
+    L=3  n= 10  A/(2sqrt3)+M/4+1 = 10
+    L=4  n= 15  A/(2sqrt3)+M/4+1 = 15
+    L=5  n= 21  A/(2sqrt3)+M/4+1 = 21
+    L=6  n= 28  A/(2sqrt3)+M/4+1 = 28
+
+==============================================================================
+5. Theorem E -- the deficit is strictly positive at every non-triangular n
+==============================================================================
+  THEOREM E.  Let n >= 1 and let E be a set of n points with pairwise distances >= 1 contained
+  in the closed equilateral triangle T(a) of side a.  If def(a,n) = (a^2+3a+2)/2 - n = 0, then
+      a is a positive INTEGER, E = Lambda cap T(a) for a unit triangular lattice, and
+      n = (a+1)(a+2)/2 is a triangular number.
+  Consequently, for every non-triangular n the minimum side d(n) satisfies d(n) > a*_n, the
+  root of Oler(a) = n, i.e. eps_n := def(d(n), n) > 0 STRICTLY.
+
+  PROOF.  Oler on P = conv(E) gives n <= (2/sqrt3)A(P) + M(P)/2 + 1, and monotonicity of area
+  and of perimeter under inclusion of convex sets gives (2/sqrt3)A(P)+M(P)/2 <= (2/sqrt3)A(T)
+  + M(T)/2 = (a^2+3a)/2.  def = G + slack with G = Phi(T)-Phi(P) >= 0 and slack >= 0, so
+  def = 0 forces both to vanish.  G = 0 forces A(P) = A(T); a closed convex P strictly inside T
+  would leave an open set of positive area, so P = T(a).  In particular P is non-degenerate,
+  which already rules out Groemer's degenerate alternative (a segment or a point has area 0 and
+  so has G > 0).  slack = 0 is then Groemer's equality case (§4): conv(E) is tiled by unit
+  equilateral triangles with all vertices in E.  A triangle tiled by unit lattice triangles has
+  each side a union of unit lattice edges, so a is a positive integer and E is the full lattice
+  triangle, n = (a+1)(a+2)/2.
+  For the consequence: d(n) is attained (T(a) decreasing in a, the configuration space compact,
+  and pairwise distance >= 1 is a closed condition), so if d(n) = a*_n then the minimiser has
+  def = 0, forcing n triangular.                                                          []
+
+  DEPENDENCIES:  Oler (`cited`), Groemer's equality clause (`cited`, but see the caveat: this
+  repo has read p.285 of the scan, which is the statement page, and not the proof), area and
+  perimeter monotonicity for nested convex bodies (standard, `cited`).
+
+  n = T(k)-1:  a*_k is the root of a^2+3a+4-k(k+1) = 0, i.e. a = (-3+sqrt(4k^2+4k-7))/2.
+  Lemma:  4k^2+4k-7 is never a perfect square for k >= 1, so a*_k is never an integer.
+  Proof:  (2a+3)^2 = (2k+1)^2 - 8 forces (2k+1-2a-3)(2k+1+2a+3) = 8 with both factors
+          even, i.e. (k-a-1)(k+a+2) = 2, forcing k=1, a=-1; so no k >= 2 works.
+  checked k = 2..200000: 0 perfect squares found (expected 0); k=1 gives 1 = 1^2 but a = -1 < 0, excluded by the proof
+
+  k    n=T(k)-1   a*_k                 Oler window        status of eps_k
+    2    2         0.561552812809       [a*, 1)        eps_2 > 0 by Theorem E; proved (E-O known)
+    3    5         1.701562118716       [a*, 2)        eps_3 > 0 by Theorem E; proved (E-O known)
+    4    9         2.772001872659       [a*, 3)        eps_4 > 0 by Theorem E; proved (E-O known)
+    5    14        3.815072906367       [a*, 4)        eps_5 > 0 by Theorem E; proved (E-O known)
+    6    20        4.844288770225       [a*, 5)        eps_6 > 0 by Theorem E; proved (E-O known)
+    7    27        5.865459931328       [a*, 6)        eps_7 > 0 by Theorem E; OPEN
+    8    35        6.881527307120       [a*, 7)        eps_8 > 0 by Theorem E; OPEN
+    9    44        7.894147114028       [a*, 8)        eps_9 > 0 by Theorem E; OPEN
+    10   54        8.904326023342       [a*, 9)        eps_10 > 0 by Theorem E; OPEN
+
+  WHAT THEOREM E DOES AND DOES NOT GIVE.
+  It gives eps_7 > 0, hence d(27) > a* = 5.86545993...  This is strictly more than the repo has
+  (everything sits at d(27) >= a*).  It gives NO explicit value: the final step is a compactness
+  argument by contradiction, and no modulus is extracted.  On the eps-scale of
+  `eo-oler-equality` §5 this is exactly the 0+ that the brief classifies as insufficient.
+  EXPLICIT eps proved here: 0.
+
+==============================================================================
+6. Proposition V -- step (1) of the programme is vacuous  (K3)
+==============================================================================
+  PROPOSITION V.  Let Psi be ANY function of a triangle's side lengths with 0 <= Psi(f) <=
+  tau(f) for every triangle with sides >= 1 (i.e. any correct quantitative Lemma T, however
+  sharp -- including Psi = tau itself).  Feeding it into T2 gives, for every configuration E
+  and every triangulation,
+        slack(E) = sum_f tau(f) - sum_{e int}(len(e)-1) >= sum_f Psi(f) - sum_{e int}(len(e)-1).
+  To conclude slack(E) >= eps > 0 for all 27-point configurations in T(a), a < 6, one must
+  therefore prove
+        sum_f Psi(f) - sum_{e int}(len(e)-1)  >=  eps                          (*)
+  and the strongest instance of (*), Psi = tau, is LITERALLY the target statement
+  slack(E) >= eps, because T2 is an identity.  Hence:
+
+    (V1) no quantitative Lemma T, of any sharpness, is a strengthening of anything: the
+         inequality it produces is weaker than or equal to the target it is meant to prove;
+    (V2) all of the content must come from an independent upper bound on
+         sum_{e int}(len(e)-1), and any such bound strong enough for (*) with Psi = tau is
+         equivalent to the target;
+    (V3) the per-face version -- distribute the interior-edge debt evenly, i.e. ask
+         sigma(f) := tau(f) - (1/2) sum_{e in f, interior}(len(e)-1) >= 0 -- is exactly the
+         REFUTED face-excess hypothesis, since for a face with all three edges interior
+         sigma(f) = (2/sqrt3)A_f - 1/2, which is negative for every face of area < sqrt3/4.
+
+  (V3) is checked exactly below, and the redistribution identity slack = sum_f sigma(f) with
+        sigma(f) = (2/sqrt3)A_f - (1+j_f)/2 + (1/2) sum_{e in f on bdry} len(e)
+  (j_f = number of boundary edges of f) is verified on the same configurations as §2.
+
+  sigma(f) for faces with all three edges interior, i.e. (2/sqrt3)A_f - 1/2 :
+    (1    1    1    ) (2/sqrt3)A = 0.500000000   sigma = 0.000000000   unit equilateral (the extremal face)
+    (1    1    19/10) (2/sqrt3)A = 0.342527371   sigma = -0.157472629   near-degenerate (2,1,1)
+    (1    1    3/2  ) (2/sqrt3)A = 0.572821962   sigma = 0.072821962   isoceles t=3/2
+    (2    2    2    ) (2/sqrt3)A = 2.000000000   sigma = 1.500000000   side-2 equilateral
+  => sigma(f) >= 0 is FALSE, confirming the repo's refutation of face-excess nonnegativity
+     (oler-slack-analysis §4, eo-boundary-counting §4 -- credited, not reclaimed).
+
+  redistribution identity  slack = sum_f sigma(f)  (exact where all lengths are 1):
+    T(3) lattice: sum_f sigma(f) = 0 (slack = 0)
+    T(4) lattice: sum_f sigma(f) = 0 (slack = 0)
+    T(5) lattice: sum_f sigma(f) = 0 (slack = 0)
+    T(6) lattice: sum_f sigma(f) = 0 (slack = 0)
+    T(7) lattice: sum_f sigma(f) = 0 (slack = 0)
+
+  VERDICT K3: FIRED.  Step (1) of the brief's programme cannot by itself produce eps > 0,
+  and no sharpening of Lemma T changes that, because T2 is an identity and the strongest
+  admissible Psi returns the target unchanged.  Reported explicit eps from this route: 0.
+
+==============================================================================
+7. Summary
+==============================================================================
+  explicit eps proved:              0
+  non-explicit eps (Theorem E):     > 0   (d(27) > a*, no modulus)
+  Theorem Q (quantitative Lemma T): proved, survived every adversarial exact scan
+  Proposition V:                    step (1) of the programme is vacuous
+  Groemer == Oler:                  verified symbolically; settles eo-literature §3
+
+  ALL EXACT CHECKS PASSED
