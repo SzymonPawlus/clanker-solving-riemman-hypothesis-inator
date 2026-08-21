@@ -157,6 +157,92 @@ def section_probe_boundary(samples=400000, seed=20260821):
     say("the proof of P1 is in the attack README and does not depend on this.")
 
 
+# --------------------------------------------------------------- section 3b
+
+def _enc_side(pts, N):
+    """Least side of an equilateral triangle (any rotation) containing pts.
+    For normals at angle phi + 120k the side is (2/sqrt3) * sum_k h(u_k); minimise
+    over phi.  Float, search only -- never used to decide anything."""
+    import math
+    best = 1e18
+    two3 = 2 * math.pi / 3
+    for i in range(N):
+        phi = two3 * i / N
+        s = 0.0
+        for k in range(3):
+            th = phi + two3 * k
+            ux, uy = math.cos(th), math.sin(th)
+            s += max(px * ux + py * uy for px, py in pts)
+        best = min(best, s)
+    return (2 / math.sqrt(3.0)) * best
+
+
+def _convex_position(pts):
+    import math
+    n = len(pts)
+    cx = sum(p[0] for p in pts) / n
+    cy = sum(p[1] for p in pts) / n
+    order = sorted(range(n), key=lambda i: math.atan2(pts[i][1] - cy, pts[i][0] - cx))
+    for a in range(n):
+        i, j, k = order[a], order[(a + 1) % n], order[(a + 2) % n]
+        cr = ((pts[j][0] - pts[i][0]) * (pts[k][1] - pts[i][1])
+              - (pts[j][1] - pts[i][1]) * (pts[k][0] - pts[i][0]))
+        if cr <= 1e-13:
+            return False
+    return True
+
+
+def _score(pts, N=48):
+    import math
+    m = 1e18
+    for i in range(len(pts)):
+        for j in range(i + 1, len(pts)):
+            dx = pts[i][0] - pts[j][0]
+            dy = pts[i][1] - pts[j][1]
+            d = dx * dx + dy * dy
+            if d < m:
+                m = d
+    if m <= 1e-18:
+        return 1e9
+    return _enc_side(pts, N) / math.sqrt(m)
+
+
+def section_convex_probe(restarts=8, iters=6000, seed=1):
+    rule("3b. Probe of the hull reading: a_conv(b), least side holding b points in")
+    say("     convex position at separation 1.  b <= 3*floor(a) for all a is equivalent")
+    say("     to a_conv(b) >= ceil(b/3) for all b.  Float search only.")
+    say()
+    import random
+    say(f"{'b':>4} {'a_conv (found)':>15} {'ceil(b/3)':>10} {'consistent':>11}")
+    for b in range(3, 11):
+        best = 1e9
+        for sd in range(restarts):
+            rng = random.Random(seed * 1000 + sd * 17 + b)
+            while True:
+                pts = [(rng.random(), rng.random()) for _ in range(b)]
+                if _convex_position(pts):
+                    break
+            cur = _score(pts)
+            for t in range(iters):
+                step = 0.35 * (1 - t / iters) + 0.0005
+                i = rng.randrange(b)
+                old = pts[i]
+                pts[i] = (old[0] + rng.gauss(0, step), old[1] + rng.gauss(0, step))
+                if _convex_position(pts):
+                    v = _score(pts)
+                    if v < cur:
+                        cur = v
+                        continue
+                pts[i] = old
+            best = min(best, _score(pts, 2160))
+        need = -(-b // 3)
+        say(f"{b:>4} {best:>15.5f} {need:>10} {str(best > need - 1e-3):>11}")
+    say()
+    say("Every b is consistent with b <= 3*floor(a), and b = 4, 7 are tight against it")
+    say("(a_conv = 2, 3).  So the hull reading of step (ii) looks TRUE, not false.")
+    say("Status: `numerical` -- a local search, not an exhaustive one.")
+
+
 # ---------------------------------------------------------------- section 4
 
 def lattice(k):
@@ -334,6 +420,7 @@ def main():
     section_oler_window()
     section_sharp_boundary()
     section_probe_boundary()
+    section_convex_probe()
     section_H_at_the_lattice()
     section_phi()
     section_corner_clearance()

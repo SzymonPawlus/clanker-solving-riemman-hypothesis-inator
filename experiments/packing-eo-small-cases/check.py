@@ -190,6 +190,12 @@ ymid_lo = ytop
 ymid_hi = SQ3 * R3(F(9, 10))
 mid3 = [(R3(F(9, 20)), ymid_lo), (R3(F(45, 20)), ymid_lo), (R3(F(27, 20)), ymid_hi)]
 check("middle row: 3 points pairwise >= 1", separated(mid3))
+check("bottom-row minimum squared distance is exactly 412/400",
+      min(d2(p, q) for p, q in combinations(bottom5, 2)) == R3(F(412, 400)))
+check("middle-row minimum squared distance is exactly 567/400",
+      min(d2(p, q) for p, q in combinations(mid3, 2)) == R3(F(567, 400)))
+check("closest bottom/middle cross pair is exactly 1/16",
+      min(d2(p, q) for p in bottom5 for q in mid3) == R3(F(1, 16)))
 check("middle row: all 3 lie in row-strip 2 of T_a",
       all(in_row_strip(p, a, 2) for p in mid3))
 
@@ -299,6 +305,8 @@ for i, P in enumerate(gaps):
 gd = [d2(p, q) for p, q in combinations(gaps, 2)]
 check("the 3 gap points are pairwise at distance > 1", all(g > 1 for g in gd),
       f"squared distances {[round(g.approx(), 6) for g in gd]}")
+check("that squared distance is exactly 9 - 9*sqrt3/2",
+      all(g == R3(9, F(-9, 2)) for g in gd))
 print("  => within the regime where each edge is met by exactly 3 pieces (which")
 print("     forces every boundary piece into one of these 6 maximal sets), a")
 print("     cover needs >= 6 + 3 = 9 pieces.  Outside that regime I have no")

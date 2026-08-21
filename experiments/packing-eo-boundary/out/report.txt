@@ -61,6 +61,26 @@ No sample beat 3*floor(a) anywhere.  Status: `numerical`, corroboration only;
 the proof of P1 is in the attack README and does not depend on this.
 
 ==============================================================================
+3b. Probe of the hull reading: a_conv(b), least side holding b points in
+==============================================================================
+     convex position at separation 1.  b <= 3*floor(a) for all a is equivalent
+     to a_conv(b) >= ceil(b/3) for all b.  Float search only.
+
+   b  a_conv (found)  ceil(b/3)  consistent
+   3         1.00019          1        True
+   4         2.00093          2        True
+   5         2.00369          2        True
+   6         2.01883          2        True
+   7         3.00804          3        True
+   8         3.15569          3        True
+   9         3.21384          3        True
+  10         4.10841          4        True
+
+Every b is consistent with b <= 3*floor(a), and b = 4, 7 are tight against it
+(a_conv = 2, 3).  So the hull reading of step (ii) looks TRUE, not false.
+Status: `numerical` -- a local search, not an exhaustive one.
+
+==============================================================================
 4. KC-2: hypothesis H fails at the extremal lattice itself
 ==============================================================================
 H (refuted in ../oler-slack-analysis §4 by flat arcs):
