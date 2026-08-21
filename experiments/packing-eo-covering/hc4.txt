@@ -1,0 +1,1 @@
+a=4  min hexagons meeting T_a = 15  at theta=0.00000 off=(0.0000,0.0000) covered-area=6.9282

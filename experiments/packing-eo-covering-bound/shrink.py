@@ -52,9 +52,9 @@ def relax(pts, a, target, sweeps, rng, alpha=0.5):
                     if target - d > worst: worst = target - d
             if fx or fy:
                 pts[i] = clamp(xi + alpha * fx, yi + alpha * fy, a)
-        if worst < 1e-14:
+        if worst < 1e-11:
             return True
-    return min_dist(pts) >= target - 1e-13
+    return min_dist(pts) >= target - 1e-10
 
 def run(n, a0, a_floor, rng, margin=1.002, sweeps=500, kicks=25, start=None):
     pts = list(start) if start is not None else [sample(a0, rng) for _ in range(n)]

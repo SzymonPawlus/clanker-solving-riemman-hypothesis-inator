@@ -126,6 +126,16 @@ if __name__ == '__main__':
         res.append(r)
         if r['chi_lb'] >= 3 or r['floor'] >= 27:
             print("  !!", r, flush=True)
+    # delete two points at a time (nearby pairs first: those leave one connected, larger hole)
+    from itertools import combinations
+    pairs = [(i, j) for i, j in combinations(range(n), 2) if d2(P[i], P[j]) <= 9]
+    for (i, j) in pairs:
+        Q = [P[t] for t in range(n) if t not in (i, j)]
+        r = analyse(Q, a, q, f"-{i},{j}")
+        res.append(r)
+        if r['chi_lb'] > r['alpha_lb']:
+            print("  GAP!", r, flush=True)
+    print(f"delete-2 patterns tried: {len(pairs)}")
     best = max(res, key=lambda r: r['floor'])
     print("best floor from (*):", best)
     with open(os.path.join(HERE, 'out', f'gap_n{which}_q{q}.json'), 'w') as f:

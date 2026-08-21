@@ -86,10 +86,13 @@ if __name__ == '__main__':
     report = []
     for t in targets:
         n = int(t)
-        path = os.path.join(HERE, 'out', f'shrink_n{n}.json')
-        if not os.path.exists(path):
+        import glob
+        cands = sorted(glob.glob(os.path.join(HERE, 'out', f'shrink_n{n}*.json')))
+        cands = [json.load(open(p)) for p in cands]
+        cands = [c for c in cands if c.get('n') == n and c.get('pts')]
+        if not cands:
             print(f"n={n}: no hypothesis file"); continue
-        data = json.load(open(path))
+        data = min(cands, key=lambda c: c['a'])
         af = data['a']
         # NO rescaling: the float config already has min pairwise distance ~1.002 >= 1 inside
         # T_af, so it certifies n points at separation 1 in T_af directly, with 0.002 of margin

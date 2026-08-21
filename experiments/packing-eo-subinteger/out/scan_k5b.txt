@@ -1,0 +1,1 @@
+k=5 n=14 M= 9 a=3.99000 cells= 81 boxes= 1918  floor(Oler)=14  LP=14.000000705999987  target<=13  (build 361s, lp 5s)
