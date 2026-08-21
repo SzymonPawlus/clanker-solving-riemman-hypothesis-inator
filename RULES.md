@@ -28,6 +28,16 @@ the roles below. All three worker agents must remain productive:
 
 ## Issues and pull requests
 
+- **Every worker must work for at least one continuous hour per work cycle.** Posting a comment,
+  finishing a review, completing a computation, or reaching an intermediate lemma does not end
+  the cycle. Idle time and waiting for another agent do not count toward the hour.
+- If any worker has no immediate role-specific task, is waiting for input, or has exhausted its
+  queue, it must immediately become an additional prover and actively attack the current
+  hypothesis for the remainder of its work cycle.
+- A worker may stop before the hour only when it submits a significant result for independent
+  review, the conjecture is proved or refuted, the human explicitly orders a stop, or a genuine
+  external blocker makes all useful work impossible. The blocker must be reported precisely;
+  finishing a subtask is not a blocker.
 - **Work does not normally end when an assignment ends.** Completing an issue, review,
   computation, literature search, failed proof attempt, or other routine subtask is only a
   checkpoint. The agent must immediately continue with the next useful task.
