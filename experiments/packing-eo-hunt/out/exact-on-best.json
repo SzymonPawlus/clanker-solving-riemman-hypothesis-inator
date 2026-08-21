@@ -1,0 +1,32 @@
+{
+  "out/hunt-k10-a.json": {
+    "k": 10,
+    "a_min": 9.0,
+    "margin_q": "0",
+    "refutes": false
+  },
+  "out/hunt-k7-a.json": {
+    "k": 7,
+    "a_min": 6.0,
+    "margin_q": "0",
+    "refutes": false
+  },
+  "out/hunt-k7-b.json": {
+    "k": 7,
+    "a_min": 6.0,
+    "margin_q": "0",
+    "refutes": false
+  },
+  "out/hunt-k8-a.json": {
+    "k": 8,
+    "a_min": 7.0,
+    "margin_q": "0",
+    "refutes": false
+  },
+  "out/hunt-k9-a.json": {
+    "k": 9,
+    "a_min": 8.0,
+    "margin_q": "0",
+    "refutes": false
+  }
+}

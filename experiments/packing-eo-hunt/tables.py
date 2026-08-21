@@ -80,6 +80,24 @@ def main():
             P(f"| {k} | `{fam}` | {a['solves']} | {a['hits']} ({frac:.1f}%) | {a['best']:.15f} |")
     P("")
 
+    P("### 5d. The best configuration at every $k$, put through the exact gate\n")
+    P("Not just \"$m$ agreed with $1/(k-1)$ to 15 digits\": rationalised (denominator bound "
+      "$10^8$) the best configuration found at each $k$ has $q_{\\min}$ **exactly** equal to "
+      "$1/(k-1)^2$, i.e. it *is* the $T(k)$ lattice minus a point, certified in exact rational "
+      "arithmetic. The margin is exactly zero — not small, zero.\n")
+    P("| $k$ | exact $a_{\\min}$ | $q_{\\min} - 1/(k-1)^2$ | gate reports refutation? |")
+    P("|---|---|---|---|")
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from exact_check import to_rational_barycentric, check_barycentric  # noqa: E402
+    for k in sorted(runs):
+        d = max(runs[k], key=lambda x: x["best_m"])
+        b = to_rational_barycentric(d["best_points"], max_den=10**8)
+        r = check_barycentric(b, k=k)
+        P(f"| {k} | {r['a_min_float']:.15f} | {r['margin_q']} | "
+          f"{'**yes**' if r['refutes_EO'] else 'no'} |")
+    P("")
+
     # insertion
     ins = []
     for f in sorted(glob.glob(os.path.join(OUT, "insert-*.json"))):

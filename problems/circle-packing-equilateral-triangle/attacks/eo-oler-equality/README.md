@@ -1,7 +1,7 @@
 # Attack: the equality case of Oler's inequality
 
 **Claim type: neither.** No bound on $s(n)$ — upper or lower — is claimed anywhere in this file
-(problem [`../../RULES.md`](../RULES.md) §1 asks for that sentence first). What is here is one
+(problem [`../../RULES.md`](../../RULES.md) §1 asks for that sentence first). What is here is one
 proved lemma with its equality classification, one new decomposition identity, one exact
 identification of the extremal class, one complete equality theorem in a restricted case, one
 **scope result that kills the stated target**, and a `numerical` measurement that answers the
@@ -10,9 +10,11 @@ is assumable, including by me (repo [`RULES.md`](../../../../RULES.md) §3).
 
 - Kill-criteria, written before any computation: [`KILL-CRITERION.md`](./KILL-CRITERION.md)
 - Code: [`experiments/packing-eo-equality/`](../../../../experiments/packing-eo-equality/) —
-  stdlib only, exact arithmetic for every decision except §6, which is labelled `numerical`
+  stdlib only; every decision in `run.py` is exact, the two probe scripts behind §7 and §8
+  are float and are labelled `numerical`
 - Transcripts: [`out/report.txt`](../../../../experiments/packing-eo-equality/out/report.txt),
-  [`out/lattice_probe.txt`](../../../../experiments/packing-eo-equality/out/lattice_probe.txt)
+  [`out/lattice_probe.txt`](../../../../experiments/packing-eo-equality/out/lattice_probe.txt),
+  [`out/capacity_probe.txt`](../../../../experiments/packing-eo-equality/out/capacity_probe.txt)
 - Journal: [`notebook/claude/2026-08-21-eo-oler-equality.md`](../../../../notebook/claude/2026-08-21-eo-oler-equality.md)
 - Author: `claude` (Claude Opus 5 — convergent role, `RULES.md` §8: this is checking and exact
   calculation), 2026-08-21
@@ -32,6 +34,7 @@ team wants, and why (B) as stated is not a reduction of Erdős–Oler but a rest
 | **S1** an equality theorem excludes exactly one side length at $k=7$ and closes nothing | `sketch` (arithmetic over `cited` Oler) |
 | **S2** "deficit $\ge 1$" *is* Erdős–Oler $k=7$, not a reduction of it | `sketch` (one line of monotonicity) |
 | **N1** $\max_\Lambda|\Lambda\cap T(a)|=22$ for $a$ across the whole $k=7$ window | `numerical` — grid over orientation, robust over translations; **not** a proof |
+| **N2** the two natural diameter-$<1$ coverings of $T(a)$, $a<6$, need $34$ and $36$ pieces against a requirement of $26$ | `numerical` — two constructions measured, floats; says nothing about other coverings |
 | Oler's inequality itself | `cited` — Oler 1961, see [`../oler-lower-bound/`](../oler-lower-bound/) |
 | Pick's theorem | `cited` — standard; affine-invariant, applied to $\Lambda$ with covolume $\frac{\sqrt3}2$ |
 
@@ -285,11 +288,17 @@ $n$ satisfying both constraints) is verified in `run.py` §5.
 
 **Where T4 stops, and it is worth being precise about it.** Allow interior points and the argument
 dies immediately: (4.1) and (4.2) give $i=n-b\ge\frac{a^2-3a+2}2$, and there is no matching upper
-bound on $i$ — bounding the interior points by applying Oler to their own hull is exactly the
-partition-and-count identity that
-[`../oler-slack-analysis/`](../oler-slack-analysis/) and the partition route already killed. The
-natural local repair (show the face excess is non-negative once the hull is an equilateral triangle
-with all corners occupied) is **false**; see §6.
+bound on $i$. Two candidate repairs, and their status:
+
+- *Bound the interior points by applying Oler to their own hull.* Dead — this is exactly the move
+  the partition-and-count identity forbids: summing **Oler's bound** over the pieces of a partition
+  loses $I+(m-1)$, so it is always worse than Oler on the whole. (This is the narrow statement, and
+  it is the one that is established; see §8 for the broader claim that is **not**.)
+- *Bound the interior points by a true capacity.* **Open, not dead** — see §8, which measures how
+  far the two natural versions get at $k=7$ (answer: not far enough, but the mechanism is live).
+
+The natural local repair (show the face excess is non-negative once the hull is an equilateral
+triangle with all corners occupied) is **false**; see §6.
 
 ---
 
@@ -329,7 +338,7 @@ collapses there too). Progress on this route should be reported as a value of $\
 
 | $\varepsilon$ | $0$ | $0.25$ | $0.5$ | $0.75$ | $1$ |
 |---|---|---|---|---|---|
-| $a_\varepsilon$ | $5.86546$ | $5.89923$ | $5.93290$ | $5.96650$ | $6$ |
+| $a_\varepsilon$ | $5.865460$ | $5.899324$ | $5.933034$ | $5.966592$ | $6$ |
 
 Everything in this repo so far, including this file, sits at $\varepsilon=0$.
 
@@ -386,15 +395,16 @@ Suppose one could show that a 27-point unit-separated configuration in $T(a)$, $
 | $a$ | translation-robust? | $\max_\Lambda|\Lambda\cap T(a)|$ |
 |---|---|---:|
 | $6$ (exactly) | — | $28$ |
-| $5.9993$ (effective) | yes | $22$ |
-| $5.99,\ 5.9,\ 5.87$ | grid only | $22$ |
+| $5.93$ with margin $0.02$, i.e. effective side $5.9993$ | **yes** | $22$ |
+| $5.999,\ 5.99,\ 5.9,\ 5.87$ | grid only | $22$ |
 
 The count is monotone in $a$, and the robust row is computed with an outward margin $\mu$ that
 enlarges the triangle to side $a+2\sqrt3\,\mu$ and exceeds half the translation-grid spacing, so
 the tabulated maximum dominates **every** translation, not just gridded ones; only the orientation
-is sampled (120 values over the $60^\circ$ period). So the evidence is that
-$\max_\Lambda|\Lambda\cap T(a)|=22$ throughout the open window $[a^\*,6)$, jumping to $28$ exactly
-at $a=6$.
+is sampled (120 values over the $60^\circ$ period). With monotonicity in $a$, the robust row
+covers every $a\le5.9993$ — all of the open window $[a^\*,6)$ except its last $7\cdot10^{-4}$,
+where only the gridded rows apply. So the evidence is that $\max_\Lambda|\Lambda\cap T(a)|=22$
+across the window, jumping to $28$ exactly at $a=6$.
 
 $22<27$ by five points. So lattice-forcing would close $k=7$ with room to spare — one would not
 even need the sharp count, only $\le26$. **Status `numerical`**: a grid can miss a maximum, and the
@@ -405,7 +415,50 @@ which is why an equality theorem does not deliver it.
 
 ---
 
-## 8. Honest accounting
+## 8. The partition route, after the manager's retraction — `numerical`
+
+Mid-flight, the manager retracted the constraint *"every partition refinement of Oler is strictly
+worse than Oler, so cell/strip/row schemes are all dead"*, with the correct diagnosis: the identity
+$\sum_i\mathrm{Oler}(P_i)=\mathrm{Oler}(P)+I+(m-1)$ says that summing **Oler's bound** over pieces
+loses; it says nothing about capping each piece by its **true capacity**. Their witness is this
+repo's own $k=3$ proof: at $a=1.999$, four cells of side $a/2<1$ hold one point each, giving
+$n\le4$ against Oler's $5.9965$.
+
+One sentence of §4 rested on that constraint. It is corrected above: the dead move is Oler-per-piece
+(which is what §4 was actually doing), and the live move — true capacity per piece — is now an open
+option for the missing upper bound on the interior count $i$.
+
+Since the mechanism is live, I measured it rather than assume anything about it. If $T(a)$ can be
+covered by $N$ sets of diameter $<1$ then $n\le N$, because two unit-separated points cannot share
+such a set. `capacity_probe.py` minimises $N$ over the orientation and offset of a hexagonal cell
+tiling with cells of diameter $1-10^{-6}$:
+
+| $a$ | min cells meeting $T(a)$ | area floor $A(T)/A(\text{cell})$ | Oler bound | needed |
+|---|---:|---:|---:|---:|
+| $5.999$ | **34** | $23.99$ | $27.99$ | $\le26$ |
+| $5.9$ | **28** | $23.21$ | $27.26$ | $\le26$ |
+| $1.999$ | $6$ | $2.66$ | $5.9965$ | $\le4$ |
+
+The uniform sub-triangle scheme (the manager's, generalised) needs $m>a$, so $m^2=36$ cells at
+$a<6$ — also worse. Note the $a=1.999$ row: hexagons give $6$ where the medial subdivision gives
+$4$, i.e. **boundary-adapted pieces beat isotropic ones badly**, which is exactly why the $k=3$
+case falls to a partition and why the generic version does not.
+
+**Reading, stated at the strength the evidence supports.** At $k=7$ the two natural covering schemes
+give $34$ and $36$ against a requirement of $26$, so neither closes it. But the route is *not*
+excluded on information-theoretic grounds: the isodiametric bound says a set of diameter $<1$ has
+area $<\pi/4$, so **any** covering of $T(a)$, $a\to6^-$, needs at least
+$15.588/0.7854=19.85$, i.e. $\ge20$ pieces — comfortably below $26$. The whole question is whether a
+boundary-adapted covering can get from $34$ down to $26$, and nothing here says it cannot.
+`numerical`, floats; it is a measurement of two constructions, not a theorem about coverings.
+
+Two further manager retractions (the Barrier Theorem is an integer-side result and does not
+establish that convex-cut relaxations are dead at $a<6$; and the exhaustion argument's stated
+justification is wrong) do not touch anything in this file — neither route is used here.
+
+---
+
+## 9. Honest accounting
 
 **Target held: (C), partially.** What is proved: Lemma T with its equality classification (T1), the
 $\tau$-identity and the equality theorem it yields under a unit-interior-edge hypothesis (T2,
@@ -427,7 +480,7 @@ plausible-looking sentence is carrying real weight. Second least certain: the cl
 unit equilateral faces glue into a single lattice, which is an induction over the dual graph that I
 have not written out in full.
 
-**Nothing here may be built on.** T1–T4 are `sketch` (`RULES.md` §3), N1 is `numerical`, and the
+**Nothing here may be built on.** T1–T4 and S1–S2 are `sketch` (`RULES.md` §3), N1 and N2 are `numerical`, and the
 whole file is capped at `sketch` regardless of how elementary the individual steps look.
 
 ### Reusable outputs

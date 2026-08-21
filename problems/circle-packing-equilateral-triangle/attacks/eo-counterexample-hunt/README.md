@@ -24,6 +24,7 @@ Nothing enters `results/`; nothing here is assumable, including by me (repo
 | §2 the exact refutation test in $\mathbb{Q}$ | elementary; the identity is checked below and reproduces the lattice exactly |
 | §3 validation on the proven cases $k \le 6$ | `numerical` — reproduction, claims nothing new |
 | §4 the $n = 26$ positive control and its exact certificate | **exact** construction (of a *published* record), status `numerical` pending the §3-of-problem-`RULES` independent checker |
+| §4b the negative control (gate rejects a $10^{-12}$ near-miss) | **exact** |
 | §5 the census at $k = 7,8,9,10$ | `numerical` |
 | §6 the insertion attack | `numerical` |
 | §7 the counterexample window and margin curve | `numerical`, and **conditional** on published records being optimal |
@@ -137,6 +138,139 @@ certificate for a **known** record, offered as a validated artifact; it is delib
 promoted into `results/`, which is verification-critical and needs the independent checker of
 problem `RULES.md` §3 written by the other model family.
 
+A **third** exact checker (`verify3.py`) was then written from a different observation again: in
+the triangle $(0,0), (L,0), (L/2, L\sqrt3/2)$ with $L$ rational, every rational convex combination
+of the vertices has the form $(x, t\sqrt3)$ with $x, t$ **rational**, so dividing $\sqrt3$ out by
+hand turns all three containment tests into rational comparisons ($t \ge 0$, $x - t \ge 0$,
+$L - x - t \ge 0$) and every squared distance into $(\Delta x)^2 + 3(\Delta t)^2$. It shares no
+representation with either of the other two. All three agree on the $n = 26$ certificate: minimum
+squared distance $\tfrac{1315168458468353297523988136721}{1315167902843543860810000000000} > 1$,
+closest pair $(1, 20)$, all 26 points contained.
+
+## 4b. The negative control — the gate must reject a near-miss
+
+The complement of §4, and the test problem `RULES.md` §0 is really about. Take the $T(7)$ lattice
+minus its apex — 27 points, side exactly 6, separation exactly 1 — and shrink the triangle by a
+factor $1-\varepsilon$. Every such configuration "fits 27 points below side 6" and every one is
+infeasible; at $\varepsilon = 10^{-12}$ it is infeasible by $2\times10^{-12}$ in squared distance,
+which is invisible to a float check at tolerance $10^{-9}$ and to any solver reporting its own $m$.
+
+| shrink $\varepsilon$ | side | exact min squared distance | separation $\ge 1$? | gate reports refutation? |
+|---|---|---|---|---|
+| 1e-3 | 5.994000000000000 | 0.998001000000000027 | False | **False** |
+| 1e-5 | 5.999940000000000 | 0.999980000099999988 | False | **False** |
+| 1e-7 | 5.999999400000000 | 0.999999800000009986 | False | **False** |
+| 1e-9 | 5.999999994000000 | 0.999999997999999946 | False | **False** |
+| 1e-12 | 5.999999999994000 | 0.999999999998000044 | False | **False** |
+
+No false positive at any scale, and the barycentric gate independently returns
+$a_{\min} = 6$ exactly ($q_{\min} = 1/36$) for those 27 points. The gate is exact, not
+tolerance-based — which is the only reason a null result from it is worth reporting.
+---
+
+## 5. The census at $k = 7, 8, 9, 10$
+
+`run.py hunt`, five seed families cycled round-robin for the first 40% of the budget, then basin
+hopping from an eight-strong elite pool with four move types (teleport a random subset, re-roll the
+rattlers, Gaussian shake, and *delete-one-and-reinsert-at-the-emptiest-site* — the last aimed
+squarely at the degree of freedom Erdős–Oler is about). Every solve reports the minimum pairwise
+distance **measured after projecting the points into the triangle**, never the solver's own value
+for $m$; trusting the latter is how a fake record is born.
+
+The five seed families:
+
+| family | what it samples |
+|---|---|
+| `uniform` | uniform random points |
+| `lattice_defect` | the $T(k)$ lattice minus $T(k)-n$ points, jittered over 2 decades of amplitude |
+| `rotated_lattice` | a hexagonal lattice at random spacing/rotation/offset, cropped to the triangle — the structured competitor a random multi-start is worst at finding, and the shape several known optima (e.g. $n = 13, 26$) actually take |
+| `rows` | random row structures with row counts *not* equal to the lattice's $k, k-1, \dots, 1$ |
+| `corner_dense` | the three corner clusters of the lattice pinned at scale 2–4, interior scattered — seeded at the necessary conditions of [`../eo-hull-deficit/`](../eo-hull-deficit/) §9 |
+
+### 5a. What the sweep found
+
+| $k$ | $n$ | solves | best $m$ found | $1/(k-1)$ | best $-$ threshold | landed on $1/(k-1)$ | distinct basins |
+|---|---|---|---|---|---|---|---|
+| 7 | 27 | 9995 | 0.166666666666666 | 0.166666666666667 | -1.94e-16 | 9708 | 170 |
+| 7 | 27 | 9879 | 0.166666666666667 | 0.166666666666667 | -1.39e-16 | 9581 | 165 |
+| 8 | 35 | 3755 | 0.142857142857143 | 0.142857142857143 | -1.67e-16 | 3569 | 137 |
+| 9 | 44 | 902 | 0.125000000000000 | 0.125000000000000 | -2.08e-16 | 825 | 73 |
+| 10 | 54 | 274 | 0.111111111111111 | 0.111111111111111 | -2.50e-16 | 234 | 35 |
+
+**24805 local solves in total across the four targets, and not one exceeded $1/(k-1)$.** The largest value seen at any $k$ sits at the threshold to machine precision (the negative entries in the fourth column are the last bit of a double), so the abort-and-exactify trigger at $1/(k-1) + 10^{-9}$ never fired.
+
+### 5b. How far below the lattice value the next basin lies
+
+The naive statistic — best local optimum strictly below $1/(k-1)$ — is junk: it is dominated by incompletely converged copies of the lattice sitting $10^{-8}$ below it. Instead, for a ladder of exclusion radii $\varepsilon$, the best local optimum found below $1/(k-1) - \varepsilon$:
+
+| $k$ | $\varepsilon = 10^{-9}$ | $10^{-6}$ | $10^{-4}$ | $10^{-3}$ |
+|---|---|---|---|---|
+| 7 | 0.166666665 | 0.166665586 | 0.166371035 | 0.165614855 |
+| 8 | 0.142857141 | 0.142855785 | 0.142301027 | 0.140964689 |
+| 9 | 0.124999994 | 0.124998969 | 0.123541185 | 0.123541185 |
+| 10 | 0.109680570 | 0.109680570 | 0.109680570 | 0.109680570 |
+
+Census keys are values rounded to 9 decimals and only the top 40 per run are kept, so 'none in top-40' means the retained tail did not reach that far down.
+
+### 5c. Seed families
+
+| $k$ | family | solves | reached $1/(k-1)$ | best $m$ |
+|---|---|---|---|---|
+| 7 | `corner_dense` | 2400 | 2364 (98.5%) | 0.166666666666666 |
+| 7 | `hop` | 7732 | 7525 (97.3%) | 0.166666666666666 |
+| 7 | `lattice_defect` | 2438 | 2437 (100.0%) | 0.166666666666666 |
+| 7 | `rotated_lattice` | 2484 | 2415 (97.2%) | 0.166666666666667 |
+| 7 | `rows` | 2404 | 2227 (92.6%) | 0.166666666666666 |
+| 7 | `uniform` | 2416 | 2321 (96.1%) | 0.166666666666666 |
+| 8 | `corner_dense` | 473 | 460 (97.3%) | 0.142857142857143 |
+| 8 | `hop` | 1410 | 1349 (95.7%) | 0.142857142857143 |
+| 8 | `lattice_defect` | 459 | 458 (99.8%) | 0.142857142857143 |
+| 8 | `rotated_lattice` | 466 | 434 (93.1%) | 0.142857142857143 |
+| 8 | `rows` | 475 | 431 (90.7%) | 0.142857142857143 |
+| 8 | `uniform` | 472 | 437 (92.6%) | 0.142857142857143 |
+| 9 | `corner_dense` | 110 | 100 (90.9%) | 0.125000000000000 |
+| 9 | `hop` | 338 | 320 (94.7%) | 0.125000000000000 |
+| 9 | `lattice_defect` | 119 | 117 (98.3%) | 0.125000000000000 |
+| 9 | `rotated_lattice` | 116 | 100 (86.2%) | 0.125000000000000 |
+| 9 | `rows` | 112 | 98 (87.5%) | 0.125000000000000 |
+| 9 | `uniform` | 107 | 90 (84.1%) | 0.125000000000000 |
+| 10 | `corner_dense` | 44 | 39 (88.6%) | 0.111111111111111 |
+| 10 | `hop` | 55 | 41 (74.5%) | 0.111111111111111 |
+| 10 | `lattice_defect` | 44 | 43 (97.7%) | 0.111111111111111 |
+| 10 | `rotated_lattice` | 46 | 40 (87.0%) | 0.111111111111111 |
+| 10 | `rows` | 43 | 39 (90.7%) | 0.111111111111111 |
+| 10 | `uniform` | 42 | 32 (76.2%) | 0.111111111111111 |
+
+---
+
+## 6. The targeted attack: insert one point into a packing that already beats $k-1$
+
+Waiting for a random multi-start to stumble into a counterexample is a poor use of the budget when
+the *shape* of one is known. EO($k$) says $\Delta(k)-1$ points force side $k-1$; one point fewer
+does not — the best known $\Delta(k)-2$ packings sit strictly below side $k-1$ (this is exactly
+$d(26) > 1/6$). So:
+
+> **a counterexample to EO($k$) is precisely a $\Delta(k)-2$ packing below side $k-1$ with room
+> for one more point.**
+
+`insert.py` attacks that directly, in three stages: (1) search for an elite pool of twelve
+$\Delta(k)-2$ configurations; (2) for each, rank every site on a triangular grid plus random
+sites by clearance from the existing points, insert the extra point at each of the top 220 holes
+in turn, and re-optimise all $\Delta(k)-1$ points; (3) *delete-and-reinsert* on the resulting
+incumbent — pull one point out, re-optimise the remaining $\Delta(k)-2$, and try every deep hole
+again. Stage 3 is the same degree of freedom approached from the other side, and it is the move
+that a plain basin-hop is least likely to make.
+
+
+The stage-1 numbers double as an independent check of the published table: the search rediscovers
+$d(\Delta(k)-2)$ for $k = 5,6,7,8$ from scratch. For $k = 9, 10$ ($n = 43, 53$) there is no
+published value to compare against — Graham–Lubachevsky's table stops at $n = 36$ — so those two
+rows are this project's own best find and nothing more.
+
+**What actually happens.** In every single case, inserting the extra point drives the separation
+back down to exactly $1/(k-1)$, or below it. The configuration relaxes into the lattice-with-a-hole
+rather than finding somewhere new to put the point. That is not a proof of anything — it is what a
+local method does — but it is the specific observation a next attack should try to break.
 ---
 
 ## 7. The counterexample window, and the margin curve in $k$
@@ -191,21 +325,79 @@ number in §5 is measured on points that have been projected into the triangle f
 
 ---
 
-## 5. The census at $k = 7, 8, 9, 10$
+---
 
-`run.py hunt`, five seed families cycled round-robin for the first 40% of the budget, then basin
-hopping from an eight-strong elite pool with four move types (teleport a random subset, re-roll the
-rattlers, Gaussian shake, and *delete-one-and-reinsert-at-the-emptiest-site* — the last aimed
-squarely at the degree of freedom Erdős–Oler is about). Every solve reports the minimum pairwise
-distance **measured after projecting the points into the triangle**, never the solver's own value
-for $m$; trusting the latter is how a fake record is born.
+## 8. What this attack did **not** cover — read this before repeating it
 
-The five seed families:
+A null result is only useful with its coverage attached. This search is a **stochastic local**
+method: it establishes nothing about regions it did not visit, and the following regions it
+provably did not visit or visited badly.
 
-| family | what it samples |
-|---|---|
-| `uniform` | uniform random points |
-| `lattice_defect` | the $T(k)$ lattice minus $T(k)-n$ points, jittered over 2 decades of amplitude |
-| `rotated_lattice` | a hexagonal lattice at random spacing/rotation/offset, cropped to the triangle — the structured competitor a random multi-start is worst at finding, and the shape several known optima (e.g. $n = 13, 26$) actually take |
-| `rows` | random row structures with row counts *not* equal to the lattice's $k, k-1, \dots, 1$ |
-| `corner_dense` | the three corner clusters of the lattice pinned at scale 2–4, interior scattered — seeded at the necessary conditions of [`../eo-hull-deficit/`](../eo-hull-deficit/) §9 |
+1. **Nothing here is exhaustive.** There is no branch-and-bound, no interval covering of
+   configuration space, no rigorous global optimisation. The negative result is
+   "$N$ SLSQP descents from these seed distributions found nothing", full stop. A rigorous
+   exhaustion is what [`../eo-exhaustion/`](../eo-exhaustion/) measured the cost of, and it
+   concluded a rational-side-length exhaustion cannot prove EO at *any* $k$ for a structural
+   reason — so this gap is not one more compute budget away from being closed.
+
+2. **The lattice attractor dominates the sampling, so the hit rate is not coverage.** At
+   $n = \Delta(k)-1$ roughly 95% of *all* local solves — from uniform random seeds included — land
+   on exactly $1/(k-1)$. That looks like thorough coverage and is the opposite: most of the budget
+   is spent rediscovering the same basin. The $n = 26$ control makes the danger concrete — **0 of
+   60 uniform starts** reached $d(26)$, an optimum only $7\times10^{-5}$ above $1/6$. A structure
+   of that kind at $n = 27$ would be correspondingly hard for this method to reach, and the fact
+   that it was not reached is weak evidence.
+
+3. **Deep off-lattice structures.** Basin hopping perturbs at most $n/3$ points at a time and SLSQP
+   then descends; a counterexample requiring the *simultaneous* precise placement of many points in
+   a configuration far from every lattice fragment is exactly what this cannot construct.
+
+4. **Feasibility formulations were not tried.** Everything here is max–min optimisation. Fixing
+   $a = 5.999$ and searching for *any* feasible 27-point placement — constraint propagation, SAT/SMT
+   over a cell decomposition, interval Newton — is a differently shaped search with different
+   failure modes and was not run.
+
+5. **Lubachevsky–Stillinger was not ported.** Problem `RULES.md` §5 names LS billiard simulation as
+   the standard generator; `experiments/circle-packing-ls/` exists and was not used here. The NLP
+   was used as both generator and polisher, which is the same choice
+   `experiments/circle-packing-search` made and inherits the same blind spots.
+
+6. **$k = 9$ and $k = 10$ are thin.** Solve counts there are in the hundreds, not thousands, because
+   a single solve costs 0.5 s and 1.4 s respectively. Those two rows are orientation, not a search.
+
+7. **$k \ge 11$ was not touched at all**, and neither was any non-triangular pattern.
+
+8. **Symmetry classes were not enumerated.** No symmetric ansatz ($C_3$, $D_3$, mirror) was solved
+   in its own reduced coordinates, which is the cheapest way to reach highly symmetric
+   configurations that random seeding hits with vanishing probability. Problem `RULES.md` §5 warns
+   against *restricting* to symmetric configurations — but sampling them deliberately *in addition*
+   is not that mistake, and it was not done.
+
+9. **The corner-density necessary conditions were used only as a seeding heuristic**, never as a
+   filter and never as an assumption. [`../eo-hull-deficit/`](../eo-hull-deficit/) §9 derives (status
+   `sketch` there, and therefore not assumable) that a $k = 7$ counterexample must have at least
+   $T(j)$ points in the open corner triangle of side $j$ at every corner, $j \le 5$. The right way
+   to use that is to *enumerate* configurations satisfying it; here it only shaped one of five seed
+   families.
+
+## 9. Honest accounting
+
+**The single thing I am least sure of** is §7's conditionality. The window
+$[1/m(\Delta(k)-2), k-1)$ is rigorous, but every numeric window in the table replaces the unknown
+$m(\Delta(k)-2)$ with a *best-known* record. If any of those records is not optimal, the
+corresponding window is wider than stated — and for $k \ge 9$ the entry is merely this project's
+own best find, which understates it further. The qualitative conclusion (geometric collapse in $k$)
+would survive a modest error in any single row; a systematic one it would not.
+
+**Next in doubt**: the claim that ~95% of solves land on the lattice value is measured on *this*
+seed mixture, and the mixture was chosen by me. A different mixture would give a different number,
+so the figure characterises the method, not the problem.
+
+**Novelty: none is claimed, and I would assume there is none.** Every ingredient is standard:
+multi-start NLP, basin hopping, exact rational verification. The margin curve in §7 is arithmetic
+on published tables plus a one-line monotonicity remark; anyone who has looked at Graham–Lubachevsky's
+table next to the conjecture has probably noticed it.
+
+**What is not claimed.** No bound on $s(n)$ for any $n$. No optimality. No statement that
+Erdős–Oler is true at any $k \ge 7$ — failing to find a counterexample is not a proof, and the
+coverage list in §8 says exactly how far from one this is.

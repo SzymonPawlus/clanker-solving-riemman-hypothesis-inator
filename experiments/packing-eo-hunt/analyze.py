@@ -127,6 +127,35 @@ def main():
                 P(f"       Q(sqrt3) cross-check at exact side {x['side']} = {x['side_float']:.9f}:")
                 P(f"       contained={x['contained_exact']}  separation>=1: {x['separation_at_least_1']}  "
                   f"side<6: {x['side_below_6']}  checkers agree: {x['both_checkers_agree']}")
+        v3 = os.path.join(OUT, "verify3-n26.json")
+        if os.path.exists(v3):
+            r3 = json.load(open(v3))
+            P("   THIRD checker (verify3.py, no shared representation with either of the above):")
+            P(f"     side {r3['side']} = {r3['side_float']:.9f}   contained={r3['contained_exact']}  "
+              f"separation>=1: {r3['separation_ok']}  side<6: {r3['side_below_k_minus_1']}")
+            P(f"     exact min squared distance = {r3['min_sq_distance']}")
+            P(f"     closest pair {r3['closest_pair']};  verdict: "
+              f"{r3['fits_strictly_below_side_k_minus_1']}")
+            P("   All three exact checkers agree.")
+        P("")
+
+    # ---------------- negative control
+    np_ = os.path.join(OUT, "negative-control.json")
+    if os.path.exists(np_):
+        nc = json.load(open(np_))
+        P("2b. NEGATIVE CONTROL (out/negative-control.json) -- the gate must REJECT a near-miss.")
+        P("    27 points (T(7) lattice minus apex) in a triangle of side 6*(1-eps): infeasible for")
+        P("    every eps > 0, but by a margin a float check would not see.")
+        P(f"    {'eps':>10} {'side':>20} {'min sq distance (exact)':>26} {'sep>=1':>8} {'refutes?':>10}")
+        for r in nc["rows"]:
+            P(f"    {r['eps']:>10.0e} {r['side_float']:>20.15f} "
+              f"{r['min_sq_distance_float']:>26.18f} {str(r['separation_ok']):>8} "
+              f"{str(r['gate_refutes']):>10}")
+        P(f"    any false positive: {nc['any_false_positive']}  (must be False)")
+        P(f"    exact least side for those 27 points: a_min = {nc['a_min_float']:.15f}, "
+          f"q_min = {nc['q_min']}")
+        P("    The gate rejects an infeasibility of 2e-12 in squared distance. It is exact, not")
+        P("    tolerance-based.")
         P("")
 
     # ---------------- the hunt

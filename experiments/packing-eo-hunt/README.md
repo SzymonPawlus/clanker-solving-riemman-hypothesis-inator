@@ -42,6 +42,7 @@ uv run run.py bench                                        # cost model
 uv run run.py validate                                     # PROVEN cases k=2..6; must pass first
 uv run control_n26.py 300                                  # positive control + exact certificate
 uv run verify3.py                                          # third checker on that certificate
+uv run negative_control.py                                 # the gate must REJECT a 1e-12 near-miss
 uv run run.py hunt --k 7 --seconds 1800 --seed 20260821 --tag a
 uv run run.py hunt --k 7 --seconds 1800 --seed 770021  --tag b
 uv run run.py hunt --k 8 --seconds 1800 --seed 20260821 --tag a

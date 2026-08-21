@@ -12,29 +12,33 @@
     "scipy": "1.17.1"
   },
   "aborted_for_exact_gate": false,
-  "solves": 8595,
+  "solves": 11372,
   "best_m": 0.16666666666666646,
   "best_a": 6.000000000000007,
   "threshold_m": 0.16666666666666666,
   "threshold_a": 6.0,
   "best_minus_threshold": -1.942890293094024e-16,
-  "hits_threshold": 8346,
+  "hits_threshold": 11048,
   "n_over_threshold": 0,
   "runner_up_m": 0.16666666471186697,
   "runner_up_a": 6.000000070372789,
   "runner_up_gap": 1.9547996832347536e-09,
-  "distinct_local_optima": 146,
+  "distinct_local_optima": 187,
   "top_local_optima": [
     {
       "m": 0.166666667,
-      "count": 8344
+      "count": 11045
     },
     {
       "m": 0.166666666,
-      "count": 2
+      "count": 3
     },
     {
       "m": 0.166666665,
+      "count": 1
+    },
+    {
+      "m": 0.166666664,
       "count": 1
     },
     {
@@ -55,6 +59,10 @@
     },
     {
       "m": 0.166666619,
+      "count": 1
+    },
+    {
+      "m": 0.166666593,
       "count": 1
     },
     {
@@ -122,6 +130,10 @@
       "count": 1
     },
     {
+      "m": 0.166657844,
+      "count": 1
+    },
+    {
       "m": 0.166646205,
       "count": 1
     },
@@ -154,6 +166,10 @@
       "count": 1
     },
     {
+      "m": 0.164862569,
+      "count": 1
+    },
+    {
       "m": 0.164845914,
       "count": 1
     },
@@ -168,54 +184,38 @@
     {
       "m": 0.16399795,
       "count": 1
-    },
-    {
-      "m": 0.163799368,
-      "count": 1
-    },
-    {
-      "m": 0.163629864,
-      "count": 1
-    },
-    {
-      "m": 0.16330973,
-      "count": 1
-    },
-    {
-      "m": 0.163253991,
-      "count": 1
     }
   ],
   "by_family": {
     "uniform": {
-      "solves": 1106,
+      "solves": 1296,
       "best": 0.1666666666666664,
-      "hits": 1059
+      "hits": 1239
     },
     "lattice_defect": {
-      "solves": 1141,
-      "best": 0.16666666666666644,
-      "hits": 1140
+      "solves": 1327,
+      "best": 0.16666666666666646,
+      "hits": 1326
     },
     "rotated_lattice": {
-      "solves": 1142,
+      "solves": 1331,
       "best": 0.16666666666666644,
-      "hits": 1114
+      "hits": 1296
     },
     "rows": {
-      "solves": 1086,
+      "solves": 1302,
       "best": 0.16666666666666644,
-      "hits": 998
+      "hits": 1195
     },
     "corner_dense": {
-      "solves": 1084,
+      "solves": 1285,
       "best": 0.16666666666666644,
-      "hits": 1063
+      "hits": 1261
     },
     "hop": {
-      "solves": 3036,
+      "solves": 4831,
       "best": 0.16666666666666646,
-      "hits": 2972
+      "hits": 4731
     }
   },
   "best_points": [

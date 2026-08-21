@@ -392,6 +392,23 @@ disagreement, and its two corrections are folded in above. **This grants no stat
 until Codex examines it. It is recorded because a check that found two understatements is worth
 more than the absence of one, not because it upgrades anything.
 
+**The decomposition cannot support a stability argument, and that limits what §3 is good for.**
+A later worker measured the split as a configuration degenerates: the *slack* tends to 0 while
+$(\mathrm{FE}, \mathrm{BE})$ tends to $(-7.5, +7.5)$ at $k = 7$ — the same scaling family that
+refutes any count-based boundary term in [`../eo-boundary-counting/`](../eo-boundary-counting/).
+So the two halves are **discontinuous** in the configuration even where their sum is not. The
+identity localises slack exactly, but the localisation is unstable, so no quantitative-stability
+statement can be built on the split. Anything wanting stability has to work with the sum.
+
+**And an equality theorem for Oler would not close Erdős–Oler anyway** — worth recording here
+because §3's framing invites exactly that hope. Equality pins **one** side length,
+$a^* = \tfrac{-3+\sqrt{217}}{2} = 5.8654\ldots$ at $k = 7$; for every $a \in (a^*, 6)$ the slack
+is strictly positive and no equality statement applies. In points: the required gain is 1 and an
+equality theorem delivers $0^+$. The useful reframing from that worker is the **$\varepsilon$-scale**
+— "deficit $\ge \varepsilon$" gives $d(27) \ge \tfrac{-3+\sqrt{217 + 8\varepsilon}}{2}$, with
+$\varepsilon = 1$ equivalent to the conjecture. **This file, and every other result in this repo,
+sits at $\varepsilon = 0$.**
+
 **Not checked.** Whether FP is true, false, or known. Whether any *other* strengthening survives
 the §4 counterexamples — I did not look, because the kill-criterion said stop. Whether the
 literature already contains any of this: **not checkable from this session at all** — every
