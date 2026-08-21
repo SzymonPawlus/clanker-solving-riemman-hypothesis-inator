@@ -1,0 +1,4 @@
+k=6 tau=0 -> FEASIBLE (243560 nodes, 7s)
+k=6 tau=1 -> NOT COMPLETED (killed at ~4 min; proving infeasibility is far more
+             expensive than exhibiting a witness).  Reported as unknown, not as agreeing.
+k=7 tau=1 -> not attempted, same reason.

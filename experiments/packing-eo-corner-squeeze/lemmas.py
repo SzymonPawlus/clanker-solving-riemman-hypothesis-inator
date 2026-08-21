@@ -104,3 +104,36 @@ def check_all(kmax=12, out=print):
 
 if __name__ == "__main__":
     check_all()
+
+
+def overlaps(k, a, out=print):
+    """Exactly which corner triangles overlap, and what the shared regions hold."""
+    a = F(a)
+    n = tri(k) - 1
+    J = k - 2
+    base = G.tri_constraints(a)
+    out("  k = %d, a = %s, 2a = %s, n = %d" % (k, a, 2 * a, n))
+    out("  %3s %6s %28s %5s %30s %5s %8s" %
+        ("j", "T(j)", "pair Delta_U(j) cap Delta_V(j)", "cap", "triple intersection", "cap", "cover T?"))
+    for j in range(1, J + 1):
+        pair = 2 * j > a
+        trip = 3 * j > 2 * a
+        cp = base + G.bound_constraints(a, 0, 0, j) + G.bound_constraints(a, 1, 0, j)
+        ct = cp + G.bound_constraints(a, 2, 0, j)
+        capp = G.capacity(a, cp) if G.vertices(cp) else 0
+        capt = G.capacity(a, ct) if G.vertices(ct) else 0
+        out("  %3d %6d %28s %5d %30s %5d %8s"
+            % (j, tri(j),
+               ("triangle side %s" % (2 * j - a)) if pair else "empty", capp,
+               ("inverted triangle side %s" % (3 * j - 2 * a)) if trip else "empty", capt,
+               "YES" if trip else "no"))
+    out("")
+    out("  Delta_U(j), Delta_V(j) meet iff 2j > a;  all three meet, equivalently cover T, iff 3j > 2a.")
+    out("  Where they cover, inclusion-exclusion is an identity, so with S_j >= T(j) (CIO):")
+    for j in range(1, J + 1):
+        if 3 * j <= 2 * a:
+            continue
+        cp = base + G.bound_constraints(a, 0, 0, j) + G.bound_constraints(a, 1, 0, j)
+        capp = G.capacity(a, cp)
+        out("    j=%d: sum_V S_j >= %d, so sum_pairs >= %d ; capacity of sum_pairs <= 3*%d = %d ; margin %d"
+            % (j, 3 * tri(j), 3 * tri(j) - n, capp, 3 * capp, 3 * capp - (3 * tri(j) - n)))

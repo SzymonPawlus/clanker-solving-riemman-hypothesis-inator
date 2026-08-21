@@ -10,6 +10,38 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-21
 
+### A `cited` input contained the conclusion, and the run reported a proof of an open case
+`PR #90` · `issue #91` · no claim changed status
+
+A worker built an exact integer relaxation of the corner-occupancy constraints and ran it at
+$k = 4$, where Erdős–Oler is *proven*, as a control. The run came back **infeasible** — which,
+read at face value, is a counting proof of Erdős–Oler at $k = 4$.
+
+It was circular. The worker extracted the violated constraint instead of believing the verdict:
+the single binding constraint was the whole-triangle box, whose capacity had been supplied by the
+`cited` value $d(9) = 3$ — and $d(9) = 3$ **is** Erdős–Oler at $k = 4$. The model had been handed
+its own conclusion as an input and had correctly derived it back out.
+
+**The general point, which `RULES.md` §3 does not currently make.** Status is treated as a property
+of a claim: `cited` claims are assumable, so you may use them. But assumability is not
+context-free. A `cited` fact is safe as an *input* only when it is not the *output* you are
+deriving. A table of known optimal values is exactly the kind of input that silently contains the
+conjecture for the cases where the conjecture is known — which is to say, precisely the cases you
+would use as controls.
+
+**What makes this worth logging rather than fixing quietly:** the control was working as designed.
+Running the method where the answer is known is what caught it. Had the same circular input been
+present only at $k = 7$ — where the whole-triangle capacity is *not* known and so would have come
+from somewhere else — the run would have reported infeasible on an open case, and the result would
+have read as a solved open problem produced by a clean exact computation with all inputs `cited`.
+Nothing in the status discipline would have flagged it. The guard is now a named variable in the
+code rather than a habit.
+
+The same worker separately caught itself asserting that a pair region $\{u_A \ge 4\} \cap
+\{u_B \ge 4\}$ was a triangle when it is a rhombus holding 8 points rather than 4.
+
+---
+
 ### The manager "corrected" a worker with worse arithmetic, and shipped it to two provers
 `PR #90` · `issue #91` · no claim changed status
 

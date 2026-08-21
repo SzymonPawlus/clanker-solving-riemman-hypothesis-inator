@@ -16,7 +16,9 @@ python3 run.py --with-k7   # adds k = 7                                         
 Python standard library only. No seeds matter except `find_feasible_random`'s, which is pinned
 (`seed=20260821`) and is only a shortcut: every reported witness is re-verified against every
 constraint by `relax.check_solution`, and the exhaustive `relax.feasible` reaches the same verdict.
-Transcript: [`out/report.txt`](out/report.txt).
+Transcript: [`out/report.txt`](out/report.txt). Its section 1b was appended by a separate
+invocation (marked in the file) after `run.py` grew that section; everything else is one run.
+`out/run.log` is raw stdout and may be from a partial re-run — `out/report.txt` is authoritative.
 
 ## Files
 
@@ -27,6 +29,7 @@ Transcript: [`out/report.txt`](out/report.txt).
 | `lemmas.py` | Lemma P (the projection bound) and the Viviani/CIO/capacity aggregate accounting, checked exactly |
 | `relax.py` | builds the corner-occupancy relaxation and searches it for an integer point |
 | `validate.py` | K2/K3 controls: every exact certificate in the repo tested against every computed capacity |
+| `tighten.py` | how much sharper the capacities would have to be: least uniform $\tau$ making the relaxation infeasible |
 | `run.py` | driver |
 
 ## Normalisation

@@ -64,6 +64,11 @@ def main(with_k7=False):
     hdr("1.  LEMMA P -- the top-scale corner constraint, reproved without Oler")
     L.check_all(kmax=9, out=say)
 
+    hdr("1b.  THE OVERLAP OF THE CORNER TRIANGLES, EXACTLY")
+    for kk in (4, 5, 6, 7):
+        L.overlaps(kk, F(kk - 1) - F(1, 100), out=say)
+        say("")
+
     hdr("2.  CERTIFICATE VALIDATION (K2 / K3) -- real packings vs computed capacities")
     import validate
     say("  every certificate: exact separation >= 1, exact Viviani, exact containment,")
@@ -87,13 +92,21 @@ def main(with_k7=False):
         cells, cc, cl, info = R.build(k, aa)
         tb = time.time() - t
         t = time.time()
-        z, nodes = R.feasible(cells, cc, cl, info["n"],
-                              node_limit=(200_000_000 if k >= 7 else 20_000_000))
+        # A feasibility claim needs a witness, not a search method: the randomised
+        # search is tried first because it is fast, and whatever it returns is
+        # re-verified below against every constraint.  If it finds nothing we fall
+        # back to the exhaustive DFS, which is the only thing that can say INFEASIBLE.
+        z, nodes = R.find_feasible_random(cells, cc, cl, info["n"], tries=200000)
+        how = "randomised, %d restarts" % nodes
+        if z is None:
+            z, nodes = R.feasible(cells, cc, cl, info["n"],
+                                  node_limit=(200_000_000 if k >= 7 else 20_000_000))
+            how = "exhaustive, %d nodes" % nodes
         verdict = "FEASIBLE" if isinstance(z, list) else str(z)
         say("  k = %d   n = %2d   a = %-8s eps(a) = %.5f   cells %2d   binding boxes %4d"
             % (k, info["n"], aa, float(info["eps"]), info["ncells"], info["nbox"]))
-        say("          build %.0fs, search %.0fs, %d nodes  ->  %s"
-            % (tb, time.time() - t, nodes, verdict))
+        say("          build %.0fs, search %.0fs (%s)  ->  %s"
+            % (tb, time.time() - t, how, verdict))
         if isinstance(z, list):
             bad = R.check_solution(cells, cl, z)
             say("          re-verified against all %d constraints, violations: %d"
