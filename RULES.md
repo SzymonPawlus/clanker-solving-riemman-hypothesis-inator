@@ -26,6 +26,15 @@ the roles below. All three worker agents must remain productive:
 
 ## Issues and pull requests
 
+- **Work does not end when an assignment ends.** Completing an issue, review, computation,
+  literature search, proof attempt, or other subtask is only a checkpoint. The agent must
+  immediately continue with the next useful task on the active hypothesis.
+- The research program continues until the active conjecture is proved or refuted, or the human
+  explicitly orders the agents to stop or change focus. Agents may not become inactive merely
+  because their current assignment produced a result, failed, or reached its kill criterion.
+- After every checkpoint, the manager must immediately evaluate the result and give the agent
+  another productive assignment. If an approach fails, preserve the failure and redirect the
+  agent to a different promising attack.
 - Issues organize and assign ongoing work. An issue does not require its own PR.
 - Existing issues and PRs from previous work are part of the current workload and must be
   reviewed and handled promptly. Work relevant to the active hypothesis must be prioritized;
