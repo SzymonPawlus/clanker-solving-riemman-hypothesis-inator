@@ -88,6 +88,25 @@ def asin_lo(x):
     return arctan_lo(t)
 
 
+def asin_hi(x, terms=45):
+    """Rational UPPER bound for arcsin(x), 0 <= x <= 0.97.
+
+    Half-angle identity  arcsin(x) = 2 arctan( x / (1 + sqrt(1-x^2)) ),
+    whose argument stays < 1 on the whole range, so the alternating arctan
+    series brackets it.
+    """
+    x = F(x)
+    assert 0 <= x <= F(97, 100)
+    if x == 0:
+        return F(0)
+    t = x / (1 + sqrt_lo(1 - x * x))     # >= true argument (denominator too small)
+    # round t UP to a small denominator so the series stays cheap; arctan is
+    # increasing, so a larger argument keeps this an upper bound
+    t = F(-((-t.numerator * 10 ** 15) // t.denominator), 10 ** 15)
+    assert t < 1
+    return 2 * arctan_hi(t, terms)
+
+
 PI_LO, PI_HI = pi_bounds()
 SQRT3_LO, SQRT3_HI = sqrt_lo(3), sqrt_hi(3)
 
