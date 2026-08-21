@@ -1,0 +1,97 @@
+# 2026-08-21 — Erdős–Oler $k=7$ by exhaustion: measuring the wall
+
+Role: numerical analyst on the Erdős–Oler $k = 7$ push (27 points at separation $\ge 1$ in side
+$a < 6$; separation-2: $d(27) \ge 12$). Files I own this session:
+`experiments/packing-eo-exhaustion/`, `problems/circle-packing-equilateral-triangle/attacks/eo-exhaustion/`,
+this journal entry. No git commands run, no issues or PRs touched.
+
+## What I picked and why
+
+Three candidate targets were on the table. I picked **(1) validate the pipeline and measure the
+true wall**, but on the *right family* — $n = T(k)-1$, which is what Erdős–Oler is actually about —
+and against the *right baseline*, which is Oler's own closed form and not zero.
+
+Reason for not picking (2), structure-aware exhaustion: I worked out on paper, before writing code,
+that the obvious structure-aware pruning family (partition into regions, cap each by Oler, add up)
+is **provably worse than global Oler for every partition**, by exactly $I + (m-1)$ where $I$ is the
+internal cut length and $m$ the number of pieces (attack write-up §3). Since the deficit to recover
+at $n = T(k)-1$ is exactly 1, any partition into $\ge 2$ pieces overspends the entire budget. That
+killed the family in ten minutes of algebra rather than an hour of compute, and it is written down
+so nobody re-derives it.
+
+The one structure-aware rule that survives that objection is Oler applied to the *configuration's
+own hull* — one $+1$, no internal cuts — so I implemented that as a per-node rule and measured it.
+
+## The thing I want the team to read
+
+**A finite exhaustion at rational side lengths cannot prove Erdős–Oler at any $k$.** Not a budget
+problem. Refuting $n$ points at one rational $d$ gives $d(n) > d$; the conjecture needs refutation
+at *every* $d < 2(k-1)$, and the configuration space at $d = 2(k-1)$ exactly is non-empty (delete a
+point from the lattice packing), so the nested family of refutations has non-empty limit. There is
+no limiting run. Equivalently: the conjecture says a maximum *is attained* at exactly 2, which is a
+closed condition, and exhaustion refutes open ones.
+
+I wrote this at the top of both the experiment README and the attack, because the whole session
+could otherwise have been spent buying orders of magnitude toward something unreachable.
+
+## What ran
+
+Wrote `eoex` from the problem statement — deliberately *not* adapted from
+`experiments/circle-packing-bnb`, since problem `RULES.md` §3 makes the independent
+reimplementation the unit of verification here. Exact integer pair tests
+($p^2(a^2+ab+b^2) \ge 4q^2 4^L$), exact rational capacities, exact rational area in the Oler-hull
+rule with outward-rounded rational upper bounds on the only surds (edge lengths). No float decides
+anything.
+
+13 checks pass. The one I care about is
+`test_known_packings_survive_every_rule_at_every_level`: no rule may fire on the cells of the
+actual optimal lattice packings $n = 3,6,10,15,21$ at levels 0–6. At those configurations Oler is
+*exactly* tight, so the hull rule's margin is exactly zero — if the normalisation (separation 1 vs
+separation 2, the factor of 2 the brief warned about) were wrong by any amount, that test fails
+loudly in one direction or the other. It passes.
+
+Measured (each `proved` row is a real finite exhaustion; every `timeout` proves nothing):
+
+| $k$ | $n$ | Oler alone certifies $\rho$ | exhaustion proved | $\rho$ |
+|---|---|---|---|---|
+| 3 | 5 | 0.851 | every $d<4$, uniformly — case settled | 1 |
+| 4 | 9 | 0.924 | $d > 5.9$ | 0.983 |
+| 5 | 14 | 0.954 | $d > 7.95$ | 0.994 |
+| 6 | 20 | 0.969 | (see experiment `out/`) | |
+| 7 | 27 | 0.978 | (see experiment `out/`) | |
+
+Kill-criterion, written before launching: *if $k=5$ cannot beat $\rho_{\text{Oler}}$ in 7 minutes
+single-core, stop escalating.* It did not fire — $k=5$ cleared it in 40 s.
+
+## Two things I got wrong or nearly wrong
+
+1. **First arithmetic pass on Oler at $n=16$ gave $d(16) > 8$**, which would have been "no better
+   than free". I had mis-solved the quadratic. Correct value $\sqrt{129}-3 = 8.3578$, which is
+   *stronger* than the $d(16) > 7.999$ the repo's existing B&B spent CPU-hours on. Lesson recorded
+   in the experiment README §1: always print the closed-form baseline before starting a search.
+   (The value itself was already in `attacks/oler-lower-bound/` §2.3 — I re-derived it rather than
+   reading it, which is how I caught my own slip, but it also means I should have read first.)
+2. **The Oler-hull rule as first written was a net loss.** Ablation at $n=14$, $d=7.8$: with the
+   rule at every node, 556 592 nodes / 64 s; with it off, 720 946 nodes / 14 s. It removes ~23 % of
+   nodes and costs ~6× per node. Fixed by restricting it to shallow nodes (default: cells at level
+   $\le 3$), which is sound because narrowing where a pruning rule fires can only lose pruning.
+   The root application stays unconditional so no run can be weaker than Oler. I would not have
+   found this without measuring; the rule *looked* obviously good.
+
+## What I did not do
+
+- No attempt at an optimality proof, and no certificate written to `results/`.
+- Did not implement checkpoint *resume*. The frontier is written to the output JSON on timeout, so
+  a killed run leaves a record, but I did not build the validated resume path that
+  `circle-packing-bnb` has — its README documents a real false-`proved` bug found there in review,
+  and a half-built version of that is worse than none.
+- Did not cross-run `cpbnb` against `eoex` on a shared case. That is the obvious next check and the
+  cheapest real verification available: two independent implementations, same verdicts.
+
+## For the theory workers
+
+The exact residual gap is $(2k+1) - \sqrt{4k^2+4k-7} \sim 2/(2k+1)$ in $d$; at $k=7$ that is
+$0.2690801\ldots$, or 2.24 % of the target. The attack write-up §3 (partitions always lose) and §5
+(resolution theorem: a cell method needs level $\ge 9$, i.e. $\ge 2.6\times10^5$ cells, merely to
+*match* Oler at $k=7$) are the two things there that constrain what a proof can look like. Both are
+`sketch` and neither has been cross-examined.

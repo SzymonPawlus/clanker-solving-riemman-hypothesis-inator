@@ -23,7 +23,7 @@ Nothing enters `results/`; nothing here is assumable, including by me
 | §4 Conditional Erdős–Oler (empty-corner case) | `sketch` — mine, a corollary of §3 |
 | §5 Neutrality: a corner cut never outvalues what it displaces | `sketch` — mine, two lines of algebra, exactly checked |
 | §6 **Relaxation Barrier** | `sketch` — mine; this is what kills the route |
-| §7 The zero-gain witness | `numerical` — an exact, explicit 27-point configuration |
+| §7 The two witnesses, and what each kills | `numerical` — exact, explicit 27-point configurations |
 | §8 Steiner-type guess $\mathrm{def}\ge \mu^2/6+\mu/2$ | `refuted` — exact witness |
 | §9 Necessary conditions on a $k=7$ counterexample | `sketch` (statements) over `cited` inputs |
 | Oler's inequality itself | `cited` — Oler 1961, see [`../oler-lower-bound/`](../oler-lower-bound/) |
@@ -38,12 +38,22 @@ Nothing enters `results/`; nothing here is assumable, including by me
 > bound obtained by relaxing $H$ to a cut region can supply the missing unit, and this route is
 > dead as a standalone."*
 >
-> **MET, in the strongest available form (§6).** Not just corner cuts: for **every** convex
-> $K \subseteq T$ and every integer side $a$, $\mathrm{def}(K) \le N(T\setminus K)$. The proof is
-> three lines and uses only the lattice's exact tightness in Oler's inequality. §7 gives the
-> concrete witness at the first open case: 27 unit-separated points in the triangle of side 6 whose
-> corner deficit is exactly $0$ and whose hull is the whole triangle. I stopped there and did not
-> re-scope.
+> **MET, in two layers.**
+> *(a)* **Corner cuts (§5, Proposition 5).** The guaranteed gain of a corner cut is
+> $\tfrac{t^2+t}{2} - N(t)$, which is **strictly negative for every $t$**. So no choice of cut
+> parameters can force a contradiction, for any configuration.
+> *(b)* **All convex cuts (§6, Theorem 6).** For every convex $K \subseteq T$ and every integer
+> side $a$, $\mathrm{def}(K) \le N(T\setminus K)$ — three lines from the lattice's exact tightness
+> in Oler's inequality. At integer side length no convex-cut relaxation improves Oler at all.
+>
+> §7.1 adds the concrete witness at the first open case: 27 unit-separated points in the triangle
+> of side 6 with $\mathrm{def}(H) = 0$ and hull equal to the whole triangle, so the *assigned*
+> quantity is provably worth nothing. I stopped there and did not re-scope.
+>
+> **A correction I nearly shipped, recorded per `RULES.md` §0.** My first draft used that witness to
+> kill Theorem 3 as well. It does not: Theorem 3 is configuration-dependent and *does* exclude the
+> witness (§7.2). What kills Theorem 3 is Proposition 5, layer (a). Conflating the two would have
+> been a fluent, wrong, and load-bearing paragraph.
 >
 > **K2 (control).** *Not met* — the lemma reproduces $\mathrm{def}(H) = 1$ exactly on
 > $T(k)-\text{apex}$ for $k = 3,4,5,6$ and $0$ exactly on every full lattice $T(k)$, $k \le 6$.
@@ -51,9 +61,11 @@ Nothing enters `results/`; nothing here is assumable, including by me
 > **K3 (control).** *Not met* — no certificate has two points in a corner triangle of side $< 1$.
 
 **What survives the kill:** §3 and §4 are a real, if conditional, strengthening of Oler's triangle
-bound, and they are *tight* on exactly the extremal configurations. §9 turns them into explicit
-necessary conditions on any counterexample to Erdős–Oler at $k = 7$. §6 says where the missing unit
-must come from instead, and it is not from geometry — it is from an integer count.
+bound, *tight* on exactly the extremal configurations, and strong enough to exclude every
+single-point deletion of the lattice $T(7)$ (§7.2). §9 turns them into explicit necessary conditions
+on any counterexample to Erdős–Oler at $k = 7$. §6 says where the missing unit must come from
+instead, and it is not from the geometry of the region — it is from a global constraint on the
+configuration.
 
 ---
 
@@ -274,33 +286,66 @@ floor is not decoration; by Theorem 6 it is the only place a strengthening can l
 
 ---
 
-## 7. The witness: the corner route buys zero unconditionally — `numerical`
+## 7. Two witnesses, and exactly what each one kills — `numerical`
 
-Theorem 6 quantifies over all convex $K$ at once. Here is the concrete version of the same
-thing, at the first open case, in a single explicit configuration.
+An earlier draft of this section claimed a single witness killed everything in sight. It does not,
+and the correction is worth more than the claim was.
+
+### 7.1 The corner *deficit* buys zero — the assigned quantity is dead
 
 > Take the triangular lattice $T(7)$ in the triangle of side $a = 6$ — 28 points at separation
 > exactly 1 — and delete one **interior** point, e.g. $(\tfrac32, \tfrac{\sqrt3}{2})$. The result
 > is a unit-separated $E$ with $n = 27$, $a = 6$.
 
-Verified exactly (`run.py` §6): separation $\ge 1$ on all $\binom{27}{2}$ pairs, containment in $T$,
-and
+Verified exactly (`run.py` §6): separation $\ge 1$ on all $\binom{27}{2}$ pairs, containment in
+$T$, and
 
-- all three corners of $T$ are occupied, so $t_A = t_B = t_C = 0$ and the corner deficit is $0$;
+- all three corners of $T$ are occupied, so $t_A = t_B = t_C = 0$ and Lemma 1's bound is $0$;
 - $H = \operatorname{conv}(E) = T$ exactly (equality of areas in exact arithmetic), so
   $\mathrm{def}(H) = 0$;
 - the entire slack $\mathrm{Oler}(6) - 27 = 1$ sits in **stage 1**, Oler's inequality on the hull.
 
-So no inequality of the form $\mathrm{def}(H) \ge f(a,n)$ with $f(6,27) > 0$ can hold, and CIO's
-corner gains are all $0$ here. The route closes **exactly $0$** of the missing $1.0$
-unconditionally. What it closes conditionally is all of it (§4) — on the complementary class.
+So **no inequality of the form $\mathrm{def}(H) \ge f(a,n)$ with $f(6,27) > 0$ can hold.** The
+quantity this attack was assigned — the hull → triangle relaxation, considered on its own — closes
+exactly $0$ of the missing $1.0$, and that is not an artefact of my particular lemma: it is a
+property of $\mathrm{def}(H)$.
 
-The witness also relocates the problem one final time, sharpening
-[`../oler-slack-analysis/`](../oler-slack-analysis/) §3's finding. That attack measured that at
-$n = T(k)-1$ *the known extremal configuration* puts all its slack in stage 2. What is true in
-general is the opposite: a counterexample would be free to put all of it in stage 1, and the above
-shows a 27-point configuration doing exactly that already exists at $a = 6$. **Erdős–Oler is a
-statement about stage 1 — about Oler's inequality applied to a hull that is the whole triangle.**
+This also sharpens [`../oler-slack-analysis/`](../oler-slack-analysis/) §3. That attack measured
+that at $n = T(k)-1$ *the known extremal configuration* puts all its slack in stage 2. The witness
+shows the converse configuration exists too: at the same $n$ and the same $a$, all of the slack can
+sit in stage 1. Erdős–Oler is therefore **not** a statement about stage 2.
+
+### 7.2 CIO is strictly stronger than Lemma 1 — do not conflate them
+
+Theorem 3 is *not* a statement about $\mathrm{def}(H)$; the $m_V$ make it configuration-dependent,
+and it sees under-occupancy that the hull cannot. On the very witness of §7.1, CIO gains $1$ at
+corner $A$ and scale $j = 3$: the open $\Delta_A(3)$ holds $5$ points where the lattice holds
+$T(3) = 6$, because the deleted point sits at corner-side $2$ from $A$. Exactly checked
+(`run.py` §5): **every one of the 28 single-point deletions of $T(7)$ has best CIO gain exactly
+$1$**, at some corner and some integer scale, and is therefore excluded for $a < 6$.
+
+That is a real (if unsurprising) demonstration that Corollary 4 and §9 have teeth. It is also
+exactly the trap: from "CIO excludes every configuration I can write down" it is one careless step
+to "CIO proves Erdős–Oler". It does not, for the reason in §7.3.
+
+### 7.3 What kills CIO: Proposition 5, not the witness
+
+To conclude "$n = 27$ is impossible at side $a < 6$" from Theorem 3, one needs a choice of
+$(t_A,t_B,t_C)$ with $\sum_V\bigl[\tfrac{t_V^2+t_V}{2} - m_V\bigr] > \varepsilon(a)$ **for every
+admissible $E$**. Since a larger $m_V$ makes the gain smaller, the worst case is $m_V = N(t_V)$, and
+the guaranteed gain is therefore
+
+$$\sum_V \Bigl[\frac{t_V^2+t_V}{2} - N(t_V)\Bigr] \;<\; 0 \;\le\; \varepsilon(a)
+\qquad\text{for every choice of } (t_A,t_B,t_C),$$
+
+by Proposition 5, term by term and strictly. **So no choice of cut parameters can ever produce a
+contradiction.** Verified exactly on a grid of $a$ and $t$ in `run.py` §5, where the "need" column
+never once exceeds the "available" column; Proposition 5 is why it never can.
+
+Theorem 6 says the same thing for arbitrary convex cuts rather than corner cuts. Together: **the
+relaxation family is closed.** Any proof of Erdős–Oler must supply an argument that the corner
+regions *cannot all be lattice-dense at once* while $a < k-1$ — a global statement about the
+configuration, which no relaxation of the containing region can deliver.
 
 ---
 

@@ -266,7 +266,7 @@ python3 experiments/packing-eo-small-cases/check.py
 
 Standard library only; exact $\mathbb{Q}(\sqrt3)$ and $\mathbb{Q}(\sqrt{33})$ arithmetic with an
 exact sign test; no seeds, no tolerances, no floats in any decision. Exits non-zero if any check
-fails. 40 checks, all passing at the time of writing.
+fails. 44 checks, all passing at the time of writing.
 
 ## 6. What to review hardest
 

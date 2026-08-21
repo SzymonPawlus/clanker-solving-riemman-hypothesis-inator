@@ -21,6 +21,6 @@
  },
  "proves": "d(14) > 799/100",
  "proves_s": "s(14) > 11.454101615137755",
- "ratio_to_target": null
+ "ratio_to_target": null,
+ "frontier": []
 }
-PROVED: no 14 points at separation >= 2 in the closed equilateral triangle of side 799/100; hence d(14) > 799/100 and s(14) > 799/100 + 2*sqrt(3) = 11.454101615

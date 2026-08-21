@@ -416,11 +416,26 @@ for lbl, pts in cases:
         say(f"{lbl:<34} {nm:>7} " + " ".join(f"{c:>3}" for c in cnts)
             + ("   EXCLUDED at j=" + str(viol[0]) if viol else "   not excluded"))
 say(f"  required T(j) for j=1..5: {[tri_num(j) for j in range(1, 6)]}")
-say(f"  the condition excludes the T(7)-minus-apex configuration: "
+say(f"  the condition excludes single-point deletions of the lattice: "
     f"{check('discrimination', disc)}")
-say("  (It must: that configuration needs a = 6 exactly, and the condition is derived")
-say("   under the assumption a < 6.  The interior-point deletion is NOT excluded, which")
-say("   is section 6's point -- corner conditions cannot see it.)")
+say("  It must, and it does -- for EVERY deletion, not just the apex.  Sweep over all 28:")
+best_gains = []
+for dpt in LAM:
+    Ed = [p for p in LAM if not (p[0] == dpt[0] and p[1] == dpt[1])]
+    g = 0
+    for v in range(3):
+        for j in range(1, 7):
+            m = sum(1 for p in Ed if side_from_h(bisector_coords(a6c, p)[v]) < Alg(j))
+            g = max(g, tri_num(j) - m)
+    best_gains.append(g)
+say(f"    best CIO gain over corners x scales, per deletion: min = {min(best_gains)}, "
+    f"max = {max(best_gains)}  {check('all deletions', min(best_gains) >= 1)}")
+say("  So CIO is STRICTLY STRONGER than the corner-deficit lemma of section 1: the")
+say("  interior-point deletion of section 6 has corner deficit 0 yet CIO gain 1 (at")
+say("  corner A, scale j = 3).  Do not conflate the two.  What kills CIO anyway is")
+say("  section 3: the only configuration-independent information it has about m_V is")
+say("  m_V <= N(t_V), and the resulting guaranteed gain sum(t^2+t)/2 - N(t) is strictly")
+say("  NEGATIVE, so no choice of cut parameters yields a contradiction for all E.")
 
 say()
 say("  Check of (iii) against the extremal certificates (T(k)-apex, a = k-1):")

@@ -348,46 +348,60 @@ def flat_arc(m, eps):
 
 
 def section_phi():
-    rule("5. KC-3: no count-based boundary term can beat Oler where it matters")
-    say("Suppose some Phi makes  n <= (2/sqrt3) A(conv E) + Phi(b) + 1  true for every")
-    say("unit-separated E.  Flat arcs force Phi from below; the lattice then shows the")
-    say("resulting bound is weaker than Oler's own.")
+    rule("5. KC-3: there is no count-based boundary term at all")
+    say("Suppose some function Phi of the boundary count b made")
+    say("    n <= (2/sqrt3) A(conv E) + Phi(b) + 1")
+    say("true for every unit-separated E.  The section-4 family pins b = 3 while n")
+    say("outruns the area term, so Phi(3) would have to be infinite.")
     say()
-    say("(a) lower bound on Phi from flat arcs (exact):")
+    lam, eps = F(101, 100), F(1, 1000)
+    say(f"{'k':>3} {'n':>4} {'b':>3} {'(2/sqrt3)A(conv)':>17} {'Phi(3) >=':>11}")
+    lows = []
+    for k in (3, 4, 5, 6, 7, 8, 9):
+        pts, L, tri = perturbed_lattice(k, lam, eps)
+        val, n, b = oler_pieces(pts)
+        assert min_sep2(pts) >= 1 and all(in_triangle(q, tri) for q in pts)
+        assert b == 3
+        need = Q3(n) - val - Q3(1)
+        lows.append(need.float())
+        say(f"{k:>3} {n:>4} {b:>3} {val.float():>17.6f} {need.float():>11.6f}")
+    assert all(lows[i] < lows[i + 1] for i in range(len(lows) - 1))
+    say()
+    say("The last column grows like 3(k-1)/2 without bound while b stays 3.  Hence")
+    say()
+    say("  THEOREM T1 (sketch).  No function Phi makes n <= (2/sqrt3)A(conv E) + Phi(b) + 1")
+    say("  valid for all unit-separated E.  The same family kills the variant with the")
+    say("  containing triangle's area A(T) in place of A(conv E), since the two agree to")
+    say("  O(eps) here.")
+    say()
+    say("(b) an independent second witness, in the opposite regime -- flat arcs, where")
+    say("the area term vanishes instead of the count:")
     say(f"{'m':>4} {'n = b':>6} {'min sep^2':>12} {'(2/sqrt3)A':>12} {'Phi(b) >=':>11}")
-    for m, eps in ((3, F(1, 60)), (5, F(1, 400)), (8, F(1, 4000)), (12, F(1, 40000))):
-        pts = flat_arc(m, eps)
+    for m, epsa in ((3, F(1, 60)), (5, F(1, 400)), (8, F(1, 4000)), (12, F(1, 40000))):
+        pts = flat_arc(m, epsa)
         ms2 = min_sep2(pts)
         assert ms2 >= 1, "flat arc separation"
         val, n, b = oler_pieces(pts)
         assert b == n, "flat arc should be in convex position"
         need = Q3(n) - val - Q3(1)
         say(f"{m:>4} {n:>6} {ms2.float():>12.8f} {val.float():>12.6f} {need.float():>11.6f}")
+    say("    -> Phi(b) >= b - 1 for every b, since A -> 0 along the family.")
     say()
-    say("The bound is  Phi(b) >= b - 1 - (2/sqrt3)A, and A -> 0 along the family, so")
-    say("    Phi(b) >= b - 1  for every b >= 3.")
-    say()
-    say("(b) what that costs, at the lattice (exact; the lattice's perimeter is rational):")
-    say(f"{'k':>3} {'n':>4} {'b = M(P)':>9} {'Oler term M/2+1':>16} {'best count term b':>18}"
+    say("(c) and even if T1 could somehow be evaded, the best conceivable count term is")
+    say("weaker than Oler's own perimeter term at the lattice (exact; the lattice hull's")
+    say("perimeter is rational):")
+    say(f"{'k':>3} {'n':>4} {'b = M(P)':>9} {'Oler term M/2+1':>16} {'count term b':>13}"
         f" {'count better?':>14}")
     for k in (3, 4, 5, 6, 7, 8):
         pts = lattice(k)
-        n = len(pts)
         b = hull_boundary_count(pts)
-        M = F(3 * (k - 1))                # perimeter of the hull, exact, rational
+        M = F(3 * (k - 1))
         assert F(b) == M, "lattice boundary edges all have length exactly 1"
-        oler_term = M / 2 + 1
-        count_term = F(b)                 # Phi(b) + 1 with the minimal Phi(b) = b-1
-        say(f"{k:>3} {n:>4} {b:>9} {float(oler_term):>16.4f} {float(count_term):>18.4f}"
-            f" {str(count_term <= oler_term):>14}")
+        say(f"{k:>3} {len(pts):>4} {b:>9} {float(M/2+1):>16.4f} {float(b):>13.4f}"
+            f" {str(F(b) <= M/2+1):>14}")
     say()
-    say("The best possible count term is at least as strong as Oler's only when")
-    say("M(P) >= 2b - 2.  On the lattice M(P) = b exactly, so for b > 2 the count bound")
-    say("is strictly weaker -- and it gets worse as k grows.")
-    say()
-    say("KC-3 FIRED.  Every Phi(b) is dead.  Note the honest limit of this argument: it")
-    say("is about Phi depending on b alone.  A term Phi(n, b) is not excluded here, but")
-    say("it is also not a boundary count any more -- see the README §6.")
+    say("KC-3 FIRED.  Counting the boundary instead of measuring it cannot work, and")
+    say("the obstruction is not a bad choice of Phi -- no Phi exists.")
 
 
 # ---------------------------------------------------------------- section 6

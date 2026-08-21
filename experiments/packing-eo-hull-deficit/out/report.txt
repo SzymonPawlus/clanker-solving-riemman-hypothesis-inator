@@ -227,10 +227,15 @@ T(7) minus the APEX, n=27                A   1   3   6  10  15   not excluded
 T(7) minus the APEX, n=27                B   1   3   6  10  15   not excluded
 T(7) minus the APEX, n=27                C   0   2   5   9  14   EXCLUDED at j=1
   required T(j) for j=1..5: [1, 3, 6, 10, 15]
-  the condition excludes the T(7)-minus-apex configuration: PASS
-  (It must: that configuration needs a = 6 exactly, and the condition is derived
-   under the assumption a < 6.  The interior-point deletion is NOT excluded, which
-   is section 6's point -- corner conditions cannot see it.)
+  the condition excludes single-point deletions of the lattice: PASS
+  It must, and it does -- for EVERY deletion, not just the apex.  Sweep over all 28:
+    best CIO gain over corners x scales, per deletion: min = 1, max = 1  PASS
+  So CIO is STRICTLY STRONGER than the corner-deficit lemma of section 1: the
+  interior-point deletion of section 6 has corner deficit 0 yet CIO gain 1 (at
+  corner A, scale j = 3).  Do not conflate the two.  What kills CIO anyway is
+  section 3: the only configuration-independent information it has about m_V is
+  m_V <= N(t_V), and the resulting guaranteed gain sum(t^2+t)/2 - N(t) is strictly
+  NEGATIVE, so no choice of cut parameters yields a contradiction for all E.
 
   Check of (iii) against the extremal certificates (T(k)-apex, a = k-1):
     n=  2 a=1  corner gains = (0.0000, 0.0000, 1.0000)  total = 1.000000  PASS
