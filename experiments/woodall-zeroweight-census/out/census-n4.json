@@ -1,0 +1,14 @@
+{
+ "n": 4,
+ "wmax": 1,
+ "ut_graphs": 63,
+ "connected_graphs": 38,
+ "tau_ge2_graphs": 10,
+ "weighted_instances": 624,
+ "tau_w_ge2_instances": 46,
+ "infeasible": [],
+ "ly_checked_graphs": 38,
+ "complete": true,
+ "last_graph_mask": 63,
+ "elapsed_sec": 0.0
+}
