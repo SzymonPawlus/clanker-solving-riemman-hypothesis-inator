@@ -35,8 +35,10 @@ the roles below. All three worker agents must remain productive:
   genuinely requires independent review. Submit that result for review, then stop extending that
   attack so later work does not invalidate or obscure the reviewed version.
 - When a significant result enters review, the manager must immediately select another useful
-  issue or problem and redirect the working team to it. The new target may be in another problem
-  directory; agents must not sit idle waiting for the review.
+  attack on the **same active hypothesis** and redirect the working team to it. Switching to a
+  different problem is allowed only when continuing the current hypothesis is genuinely blocked
+  or exhausted, or when the human explicitly changes the focus. The manager must state the
+  reason before switching; agents must not sit idle waiting for review.
 - Otherwise, the research program continues until its conjecture is proved or refuted, or the
   human explicitly orders the agents to stop or change focus. Agents may not become inactive
   merely because an intermediate task failed or reached its kill criterion.
