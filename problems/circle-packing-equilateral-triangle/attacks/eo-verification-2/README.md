@@ -444,29 +444,50 @@ $\sum_{\rm int}(\ell_e-1)$ is not excluded — that is step (3) of the same prog
 says so. Read (V1) as *"the inequality (\*) produces is never stronger than the target"*, which is
 what the argument gives.
 
-## 9. `../eo-subinteger-relaxation/` — no infeasibility claimed, and the control fired correctly
+## 9. `../eo-subinteger-relaxation/` — no open case claimed, and its $k=4$ proof is sound
 
-Only `KILL-CRITERION.md` plus a partial transcript exist at the time of writing. **No
-infeasibility at $k = 7$ is claimed**, so the `extraordinary-claim` path in the brief is not
-triggered. What the transcript shows so far is exactly what K1 and K3(b) were written to detect:
+**No infeasibility at $k=7$, so the brief's `extraordinary-claim` path is not triggered.** The
+lane's scope line is right: it claims optimality only for $n = 5$ and $n = 9$, both already
+`cited`. K1 fired with a split verdict — the refinement *decides* $k=4$ and fails at $k=5$.
 
-- **K3(b) control passes**: at $k = 3$ ($n = 5$, $a = 1.99$ and $1.999$) the LP optimum is $4 < 5$,
-  so the pipeline *does* prove the one case it must be able to prove. Its binding certificate is a
-  single box with $\mathrm{cap} = 4$ sourced `via grid(eta=...)` — a geometric capacity, **not** a
-  $d(n)$ lookup, so K2's circularity guard holds on that certificate.
-- **K1 fires at $k = 4$**: LP optimum $= 9 \not< 9$, i.e. the refinement does not decide
-  Erdős–Oler even where it is `cited`-true. Both the integer and the sub-integer threshold
-  families give 9. By the lane's own K1 that means stop and report the refinement does not bite.
+The thing worth checking hard is its new proof, because a short proof of a `cited` case is exactly
+where a circular capacity would hide (the brief's *"a `cited` input contained the conclusion"*).
+I checked it (`check_eo4_proof.py`).
 
-I have **not** verified the LP optimum, the capacity function, or the cell construction — that
-needs the lane's finished write-up and its exact certificate, and none exists yet. What I can say
-now is that the reported outcome is a **negative** one, that its own control passes, and that the
-one certificate printed so far does not encode the conclusion.
+> **§5 Proposition.** Nine points at mutual distance $\ge 1$ do not fit in $T_a$ for $a < 3$.
+> Cover $T_a$ by the three corner triangles $\Delta_V(t)$, $t = a/3 < 1$, and the central region
+> $H$. Each corner triangle has diameter $t<1$, so holds $\le1$; $H$ is a regular hexagon of side
+> $t$, circumradius $t < 1$, so holds $\le 5$ by Lemma D. Total $\le 8 < 9$.
 
-## 10. The two covering lanes — no certificate yet, one checkable defect, and a verifier ready
+**Verdict: CONFIRMED, and non-circular.** Every step re-derived:
 
-Neither lane has a write-up or a certificate. Both have written kill-criteria and are searching, so
-what follows is about their search state and their plans, not about any claim.
+- **The cover is complete** — a point outside every $\Delta_V(t)$ has $u_V > t$ for all $V$, which
+  is the definition of $H$; the cuts are disjoint since $2t \le a$.
+- **$H$ is a regular hexagon of side $t$** — cutting corners of side $t$ off a triangle of side
+  $3t$ leaves remnants $3t-2t = t$ and introduces cut edges of length $t$; checked exactly at five
+  values of $a$. Its circumradius is exactly $t$.
+- **Lemma D re-derived independently.** Sort $m$ points by polar angle about $O$; some gap is
+  $\le 2\pi/m$, so $|P_iP_j|^2 \le r_i^2+r_j^2-2c\,r_ir_j$ with $c=\cos(2\pi/m)$, and the
+  maximum of $x^2+y^2-2cxy$ on $[0,\rho]^2$ is $\rho^2\max(1,2-2c)$ — I verified that maximum for
+  $m = 2..6$. At $m=6$, $c=\tfrac12$ and $2-2c=1$, so the bound is $\rho^2$: **six separated points
+  force circumradius $\ge 1$**, hence $\rho<1 \Rightarrow \mathrm{cap}\le5$. A point at $O$ is
+  covered too ($|P_iP_j|^2 = r_j^2 \le \rho^2 < 1$). This is the same $x^2-xy+y^2 \le \max^2$
+  trick as P1's corner bound, and it is exactly tight (the regular hexagon).
+- **Circularity: none.** The only capacities used are *diameter $<1\Rightarrow1$* and
+  *circumradius $<1\Rightarrow5$*. Both geometric; neither reads $d(n)$, $s(n)$ or $a_n$. The
+  lane's validation table uses `cited` values only to check its computed capacities are never *too
+  small* — the safe direction, and outside the proof.
+- **It degrades correctly.** At $a=3$ the same cover gives $3\cdot3+6 = 15$ — vacuous, as it must
+  be, since 10 points do fit at $a=3$. The proof is uniform in $a<3$, which is what its K4 demanded.
+
+Its earlier transcript rows are consistent with the finished file: LP $=4<5$ at $k=3$, and the
+integer-threshold family stuck at 9 at $k=4$ where the sub-integer one reaches 8.
+
+## 10. The two covering lanes — best is 28, floor is 25, and every certificate verifies
+
+§10.1 and §10.2 were written while both lanes were still searching and are kept as the record of
+what their mid-flight output looked like. **§10.3 is the finished verdict**, after both write-ups
+landed and I verified every certificate they produced.
 
 **The construct lane's verification plan is sound** and I want to record that, because it is the
 right plan: exact squared diameters in the lattice basis, pairwise disjoint interiors, and
@@ -583,6 +604,58 @@ has written so far is float throughout.
 own checker. Two independent checkers agreeing is what problem `RULES.md` §3 asks for, and given
 that a 26-piece partition would settle an open case, it is the minimum.
 
+### 10.3 Final state — both lanes finished, and I verified every certificate
+
+Both write-ups landed. **Neither claims a proof of an open case, and both are right not to.**
+
+**`../eo-covering-construct/`: 28, not 26.** Its Lemma L construction (Voronoi cells of a
+$\Delta(p)$ array of spacing $\sqrt3/2$ centred in $T_a$) splits $T_6$ into $\Delta(7) = 28$
+convex cells of diameter $\le 1$. I rebuilt every certificate **from the printed definition** — for
+the power-diagram certificates, from $|x-p_i|^2-w_i \le |x-p_j|^2-w_j$ expanded into half-planes
+and clipped against $T_a$ in the lattice basis, where $Q(u,v) = u^2+uv+v^2$ keeps everything
+rational; for `cert28.json`, from its explicit $\mathbb{Q}(\sqrt3)$ cells
+(`check_covering_certs.py`).
+
+| certificate | $N$ | $a_0$ | my exact max squared diameter | $\sum$ areas $=$ area $T_{a_0}$ | verdict |
+|---|---:|---:|---|:--|---|
+| `cert26.json` | 26 | $2889/500 = 5.778$ | $0.999665281527$ | yes | **VERIFIES** |
+| `cert27.json` | 27 | $2901/500 = 5.802$ | $0.999898028410$ | yes | **VERIFIES** |
+| `cert28opt.json` | 28 | $762/125 = 6.096$ | $0.999728640668$ | yes | **VERIFIES** |
+| `cert28.json` (lattice, $p=7$) | 28 | $6$ | **exactly $1$** | yes | **VERIFIES** |
+
+All four are genuine. **And all four are weaker than Oler**, which is the lane's own headline and
+I confirm it:
+
+| | gives | Oler gives | beats Oler? |
+|---|---|---|---|
+| `cert26` | $a_{27} \ge 5.778000$ | $5.865460$ | **no** |
+| `cert27` | $a_{28} \ge 5.802000$ | $6.000000$ | **no** |
+| `cert28opt` | $a_{29} \ge 6.096000$ | $6.132169$ | **no** |
+
+**The 26-piece certificate covers $T_{5.778}$, not $T_6$.** That is the number to hold on to: a
+26-piece cover of $T_6$ would prove Erdős–Oler at $k=7$; a 26-piece cover of $T_{5.778}$ gives
+$a_{27} \ge 5.778$, which is $0.087$ *behind* what Oler already gives for free. **No open case is
+settled and none is claimed.**
+
+Two notes. (i) `cert28.json` has max diameter **exactly 1**, not $<1$. That is fine and the lane
+states the reason correctly — the scale-free step only ever applies it at $a < a_0$ strictly, where
+the diameters become $a/a_0 < 1$ — but it is the one place where a careless reuse at $a = a_0$
+would be wrong. (ii) I verified Lemma L only at $p = 7$, $a = 6$; the lane's stronger claim that
+the scheme survives to $a = 7\sqrt3/2 = 6.0622$ I did **not** check, and its "general $p$" is its
+own `sketch`.
+
+**`../eo-covering-bound/`: floor 25, and it says the route is not killed.** Verdict and gap
+correct. A kill needs $N^\ast \ge 27$ (not 26 — you must exclude a 26-piece cover), the proved
+floor is 25, so **the gap is 2**, as stated. My independent verification of its $n = 22, 23, 25$
+exact certificates (§10.1) agrees with the 25.
+
+> **The synthesis neither lane can state alone.** Putting the two verified results together:
+> $$25 \;\le\; N^\ast(T_6,\ \mathrm{diam}\le1) \;\le\; 28,$$
+> both ends independently checked here. Erdős–Oler at $k=7$ would follow from $\le 26$ and would
+> be refuted by $\ge 27$ being *unachievable*… no: to be precise, $\le 26$ proves it, and
+> $N^\ast \ge 27$ merely closes this route without saying anything about the conjecture. The open
+> window is exactly the two values 26 and 27, and **today moved neither end into it.**
+
 ---
 
 ## 11. What is safe to build on, and what is not
@@ -612,26 +685,41 @@ re-derived it from the statement and tried to break it?*
 | **Proposition V**, step (1) is vacuous (`eo-epsilon` §4) | yes | **Yes**, reading (V1) as *"the inequality (\*) produces is never stronger than the target"*. $\Psi$ plus an interior-edge bound is untouched |
 | **`eo-covering-bound`** exact certificates $n = 22, 23, 25$ | yes, exactly | **Yes.** Verified in my own code; they give $N^\ast(T_6) \ge 25$, non-circularly (§10.1) |
 | **`eo-covering-bound`** raw `shrink_n*.json` search rows | yes | **NO.** Row $n=24$ violates monotonicity in $n$ and is impossible; rows 26/27 are stuck at one configuration (§10.1). The lane did not certify these, correctly |
-| **`eo-covering-construct`** | nothing produced yet | — |
-| **`eo-subinteger-relaxation`** | partial transcript only | Reports **no** infeasibility. Control passes, K1 fires at $k=4$ (§9) |
+| **`eo-covering-construct`** certificates (26@5.778, 27@5.802, 28@6.096, lattice 28@6) | yes, all four rebuilt from the definition | **Yes as certificates** — every one verifies exactly. But **all four are weaker than Oler**; none settles anything (§10.3) |
+| **`eo-covering-construct`** Lemma L for general $p$, and the $a \le 7\sqrt3/2$ range | only $p=7$, $a=6$ | **Partly.** I verified 28 cells covering $T_6$; the general-$p$ claim is the lane's own `sketch` and I did not check $a = 6.0622$ |
+| **`eo-subinteger-relaxation`** §5 proof of EO at $k=4$, and Lemma D | yes, both re-derived | **Yes.** Correct, uniform in $a<3$, degrades correctly at $a=3$, and **non-circular** (§9) |
 | **`eo-literature`** null result and its blocked-egress finding | yes, probed myself | **Yes.** No source is promoted; the operational advice is right |
 
 ### Claimed proofs of open cases — my independent verdict
 
 **There are none.** I checked specifically, because that is what this pass exists for:
 
-- `eo-covering-construct` has produced no covering and claims nothing. Its target of $\le26$
-  would be a proof of Erdős–Oler at $k=7$; **if it lands, it is unverified until my
-  `covercheck.py` and the lane's own checker agree, and my structural note in §10 says to expect
-  the search to stop short.**
-- `eo-subinteger-relaxation` reports **feasible**, not infeasible, at every $k$ it has run, and
-  its $k=4$ control says the family does not decide even a `cited`-true case. No proof is claimed.
+- **`eo-covering-construct` reports 28, not 26 — no open case is settled.** I rebuilt all four of
+  its certificates independently and **all four verify exactly**; that is a real result and the
+  lane deserves credit for it. But the certificate labelled "26" covers $T_{5.778}$, **not**
+  $T_6$, and therefore gives $a_{27} \ge 5.778$ — $0.087$ *behind* what Oler gives for free. A
+  26-piece cover of $T_6$ would have proved Erdős–Oler at $k=7$; that object does not exist in this
+  round's output. **My verdict: nothing here proves an open case, and the lane does not claim
+  otherwise.**
+- `eo-subinteger-relaxation` reports **no infeasibility at $k \ge 5$**. It does prove Erdős–Oler
+  at $k = 3$ and $k = 4$ — both already `cited` — and I checked that proof line by line and found
+  it correct and **not circular**: its two capacities are geometric (diameter and circumradius),
+  and it correctly says nothing at $a = 3$, where 10 points do fit. A valid new proof of a known
+  case, claimed as exactly that.
 - `eo-epsilon` explicitly reports **$\varepsilon = 0$** in its first line. Theorem E is a strict
   improvement ($d(27) > a^\*$) and is *not* a proof of any open case; the lane says so.
-- `eo-covering-bound` has an exactly verified floor of **25** — which I confirmed independently and which is genuinely non-circular — and that is one short of the 26 that would close the construct lane. It claims nothing beyond it.
+- `eo-covering-bound` has an exactly verified floor of **25** — confirmed independently, and
+  genuinely non-circular — and reports honestly that the route is **not** killed, since a kill
+  needs $27$. Gap 2, as stated.
 - **No row anywhere in the round-2 output refutes Erdős–Oler.** The one that superficially looks
   like it might — `shrink_n27.json` at "$a = 6.012$" — normalises to $6.000019 > 6$, i.e. *above*
   the conjectured value. I checked this explicitly (§10.1).
 
-So: the campaign's round-2 output is four honest negative or partial results, and the two
-disagreements in §0 are both in **round-1** material that is still being quoted.
+So: the campaign's round-2 output is **four honest negative or partial results** — $\varepsilon = 0$,
+no infeasibility, 28 not 26, floor 25 not 27 — every one of them reported as such in its own first
+line, with kill-criteria fixed in advance and fired as written. I found no overclaim in round 2.
+
+**Both disagreements in §0 are in round-1 material that is still being quoted**, and both have the
+same shape as the two the first pass found: a correct theorem read one logical step too broadly.
+That is now four instances of the same failure mode in this campaign, which is worth saying out
+loud — the errors here are not arithmetic, they are the sentence *after* the arithmetic.

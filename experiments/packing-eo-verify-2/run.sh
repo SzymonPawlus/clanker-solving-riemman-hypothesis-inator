@@ -13,4 +13,6 @@ mkdir -p out
   python3 break_p1.py
   python3 check_epsilon.py
   python3 covercheck.py
+  python3 check_covering_certs.py
+  python3 check_eo4_proof.py
 } 2>&1 | tee out/report.txt

@@ -10,6 +10,48 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-21
 
+### Every error found today was a correct theorem read one step too broadly
+`PR #95` · `issue #91` · no claim changed status
+
+Two verification passes over a day's work found six disagreements. A third party — the same
+verifier, summarising at the end — noticed what they have in common, and it is worth more than any
+of them individually:
+
+> All four errors found across both passes are the same failure: a correct theorem read one step
+> too broadly. None is arithmetic — every table reproduces exactly. The errors are in the sentence
+> *after* the arithmetic.
+
+The instances, all from 2026-08-21:
+
+| The theorem, correct | The sentence after it, false |
+|---|---|
+| $\sum \mathrm{Oler}(P_i) = \mathrm{Oler}(P) + I + (m-1)$ | "every partition-and-count refinement of Oler is dead" |
+| A resolution theorem bounding cell size | "there is no budget at which a cell exhaustion terminates" (it is the *converse*: a termination guarantee) |
+| A family with $b = 3$ and growing deficit | "therefore no function $\Phi$ exists" (the published family's deficit peaks at $k=76$ and falls) |
+| The atlas: stage 1 is zero at $n=T(k)-1$ | "so the relaxation is what fails, not the packing bound" (false for interior-deleted configurations) |
+| The Barrier Theorem at integer side | "convex-cut relaxations are dead at $a<6$" |
+| Oler's paper has no equality clause | "the equality characterisation is missing" (Groemer's has it) |
+
+**Why this is the shape.** Exact arithmetic is checkable and was checked — every disputed table
+reproduced to the digit. What is not checkable by rerunning is the *scope* of a conclusion, and
+scope is where a language model generalises for free: the true statement is about
+`Oler-per-piece`, the remembered statement is about `partitions`; the true statement is about
+`Oler's paper`, the remembered one is about `the literature`. Nothing in a test suite fails when
+a quantifier widens.
+
+**Three of the six were the coordinator's**, and two of those were broadcast to running workers as
+instructions before anyone caught them — so the failure compounds with authority. The coordinator's
+own summary of its errors matches the pattern exactly: in each case it had a ready explanation for
+a discrepancy and stopped checking.
+
+**What it argues for.** Exactness discipline (`RULES.md` §4, this problem's §2) protects the
+numbers and does nothing for the sentences. The cheap countermeasure is the one that actually
+caught these: when a file states a general claim *and* notes an exception to it, the exception is
+the finding. Three of today's six were sitting, labelled "one exception" or equivalent, two
+sections above the claim they refute, in the author's own file.
+
+---
+
 ### The equality characterisation the repo calls "missing" has been quoted in its own README all along
 `issue #96` · `PR #95` · affects `attacks/oler-lower-bound/` §5.2 and the problem README
 

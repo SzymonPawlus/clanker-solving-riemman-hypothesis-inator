@@ -53,14 +53,24 @@ unless you push past $k = 10$.
   identically — which answers `eo-literature` §3, undercuts the supporting table in the problem
   README's Groemer section, and means the equality case `eo-oler-equality` was hunting may
   already be `cited`.
-- **`eo-subinteger-relaxation`** claims **no** infeasibility; its $k=3$ control passes and K1
-  fires at $k=4$. No extraordinary claim to handle.
 - **`eo-covering-construct` / `eo-covering-bound`** produced kill-criteria and search output only.
   I built and negative-control-tested an independent covering verifier in advance
   (`covercheck.py`) so that a claimed $\le 26$ partition can be checked the moment it lands. I
   also recorded the structural point that the target sits on (or essentially on) its own floor:
   $N^\ast \ge \sup_{a<6}\max\{n\}$, which Erdős–Oler at $k=7$ says is $\le 26$. If the conjecture
   is false, no 26-partition exists at all.
+
+## The pattern worth naming
+
+Both of my disagreements, and both of the first pass's, are the same failure: **a correct theorem
+read one logical step too broadly.** Not one is an arithmetic error — every table in every file
+reproduces exactly. The errors are all in the sentence *after* the arithmetic: a converse sold as a
+contrapositive, a fixed-parameter family sold as a limit. That is where I would look first in round
+three, and it argues for a house rule: when a file states a corollary in prose, write the corollary
+down as a formula and test it at a value the author did not print.
+
+Round 2 itself produced no overclaim. All four lanes fixed kill-criteria before computing and fired
+them as written; all four headline a negative or partial result in their first line.
 
 ## Standing caveat
 

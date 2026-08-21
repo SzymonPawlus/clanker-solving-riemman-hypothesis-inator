@@ -19,6 +19,8 @@ rerun (problem `RULES.md` §3).
 | `break_p1.py` | break attempt on P1, $\lvert E\cap\partial T\rvert \le 3\lfloor a\rfloor$ |
 | `check_epsilon.py` | round-2 `eo-epsilon`: Groemer$\equiv$Oler, Theorem E, Theorem Q, Proposition V |
 | `covercheck.py` | independent exact verifier for a claimed small-diameter covering, with negative controls |
+| `check_covering_certs.py` | rebuilds `eo-covering-construct`'s power-diagram and lattice certificates from the printed definition and checks diameters/areas exactly |
+| `check_eo4_proof.py` | `eo-subinteger-relaxation` §5's proof of Erdős–Oler at $k=4$, and Lemma D |
 
 Findings: [`problems/circle-packing-equilateral-triangle/attacks/eo-verification-2/`](../../problems/circle-packing-equilateral-triangle/attacks/eo-verification-2/README.md).
 

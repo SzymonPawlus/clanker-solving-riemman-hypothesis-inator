@@ -399,3 +399,93 @@ negative control: drop one piece -- the checker must catch it
 
 negative control: enlarge one piece so its diameter exceeds 1
   overall correctly FAILS; C1 caught it: True
+==============================================================================
+eo-covering-construct certificates -- independent exact verification
+==============================================================================
+  ../packing-eo-covering/cert26.json
+    a = 2889/500 = 5.778000   sites = 26   non-empty cells = 26
+    max squared diameter (exact) = 10741384420374235864339824721/10744980964000000000000000000  = 0.999665281527
+    diameter <= 1 ?  YES   (strictly < 1 ? yes)
+    sum of cell areas == area(T_a) ?  True   (8346321/250000 vs 8346321/250000)
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_5.7780 is covered by 26 convex sets of diameter <= 1
+    ==> implies a_{26+1} = a_{27} >= 5.778000
+
+  ../packing-eo-covering/cert27.json
+    a = 2901/500 = 5.802000   sites = 27   non-empty cells = 27
+    max squared diameter (exact) = 2985556834744281452205014979901943076550459534983501/2985861307769364260207356609000000000000000000000000  = 0.999898028410
+    diameter <= 1 ?  YES   (strictly < 1 ? yes)
+    sum of cell areas == area(T_a) ?  True   (8415801/250000 vs 8415801/250000)
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_5.8020 is covered by 27 convex sets of diameter <= 1
+    ==> implies a_{27+1} = a_{28} >= 5.802000
+
+  ../packing-eo-covering/cert28opt.json
+    a = 762/125 = 6.096000   sites = 28   non-empty cells = 28
+    max squared diameter (exact) = 631346220804301249254746189731824586738459374221023/631517588995268117061827797013016796875000000000000  = 0.999728640668
+    diameter <= 1 ?  YES   (strictly < 1 ? yes)
+    sum of cell areas == area(T_a) ?  True   (580644/15625 vs 580644/15625)
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_6.0960 is covered by 28 convex sets of diameter <= 1
+    ==> implies a_{28+1} = a_{29} >= 6.096000
+
+  ../packing-eo-covering/cert28.json   [explicit-cell format, Q(sqrt3)]
+    a = 6.000000   cells = 28
+    max squared diameter (exact Q(sqrt3)) = (1+0r3=1.0000000000)
+    diameter <= 1 ?  YES   (strictly < 1 ? no -- equals 1)
+    sum of cell areas == area(T_a) ?  True
+    all cell vertices inside T_a ?  True
+    ==> certificate VERIFIES: T_6.0000 covered by 28 convex sets of diameter <= 1
+
+==============================================================================
+What each certificate proves, against Oler (a_n >= (-3+sqrt(8n+1))/2)
+==============================================================================
+            cert    N        a_0                  gives   Oler gives  beats Oler?
+     cert26.json   26   5.778000       a_27 >= 5.778000     5.865460           no
+     cert27.json   27   5.802000       a_28 >= 5.802000     6.000000           no
+  cert28opt.json   28   6.096000       a_29 >= 6.096000     6.132169           no
+     cert28.json   28   6.000000       a_29 >= 6.000000     6.132169           no
+
+  EO(7) needs a_27 >= 6 exactly.  A 26-piece cover of T_6 would prove it.
+==============================================================================
+Lemma D, re-derived: 6 points at mutual distance >= 1 need circumradius >= 1
+==============================================================================
+  Sort m points by polar angle about O; some gap Delta <= 2pi/m, so cos Delta >= c.
+  |PiPj|^2 = ri^2 + rj^2 - 2 ri rj cos Delta <= ri^2 + rj^2 - 2c ri rj.
+  max of x^2+y^2-2cxy over [0,rho]^2 is rho^2 * max(1, 2-2c)  (corner (rho,0) or (rho,rho)).
+  m=6: c = 1/2, 2-2c = 1, so |PiPj|^2 <= rho^2.  rho < 1 => some pair is < 1 apart.
+  [PASS] max_{[0,1]^2} (x^2+y^2-2cxy) = max(1, 2-2c) for m = 2..6 :: []
+  [PASS] m=6 gives c=1/2 and 2-2c=1, so the bound is rho^2 exactly
+  [PASS] equivalent form 1 <= 2 rho sin(pi/m): at m=6, 2 sin(pi/6) = 1, so rho >= 1
+  A point AT O is covered too: then |PiPj|^2 = rj^2 <= rho^2 < 1 directly.
+  => cap(circumradius < 1) <= 5.  CONFIRMED, and it uses no d(n) from any table.
+
+==============================================================================
+The k=4 cover: T_a = three corner triangles of side t=a/3, plus a regular hexagon
+==============================================================================
+  (i) the cover is complete: a point outside every Delta_V(t) has u_V > t for all V,
+      which is the definition of H.
+  [PASS] (ii) corner cuts are disjoint: need t + t <= a, i.e. 2(a/3) <= a :: true for a > 0
+  (iii) H is a regular hexagon of side t:
+    a=        2  t=a/3=0.666667  cut edge=0.666667  remnant=0.666667  regular? True  t<1? True
+    a=      5/2  t=a/3=0.833333  cut edge=0.833333  remnant=0.833333  regular? True  t<1? True
+    a=    29/10  t=a/3=0.966667  cut edge=0.966667  remnant=0.966667  regular? True  t<1? True
+    a=  299/100  t=a/3=0.996667  cut edge=0.996667  remnant=0.996667  regular? True  t<1? True
+    a=2999/1000  t=a/3=0.999667  cut edge=0.999667  remnant=0.999667  regular? True  t<1? True
+  [PASS] H is a regular hexagon of side t = a/3 < 1 for every a < 3
+  (iv) circumradius of a regular hexagon of side t is exactly t  (six equilateral triangles)
+  (v) corner triangle has diameter t < 1, so holds <= 1 point
+
+  TOTAL:  3 * 1  +  5  =  8  <  9.
+  [PASS] 3*1 + 5 = 8 < 9
+
+  Boundary behaviour at a = 3 (the proof must say nothing there, since 10 points DO fit):
+    t = 1: corner triangles have side 1 (cap 3 each), H has circumradius 1 (cap 6),
+    total 3*3 + 6 = 15 -- vacuous, as it must be.
+  [PASS] at a=3 the same cover gives 15, i.e. says nothing
+
+  CIRCULARITY CHECK: the two capacities used are (diameter < 1 => 1) and
+  (circumradius < 1 => 5).  Both are geometric.  Neither reads d(n), s(n) or a_n.
+  The proof is therefore NOT circular with respect to Erdos-Oler at any k.
+
+FAILURES: none
