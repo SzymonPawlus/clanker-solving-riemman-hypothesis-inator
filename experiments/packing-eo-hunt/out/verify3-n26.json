@@ -1,0 +1,16 @@
+{
+  "n": 26,
+  "side": "299871/50000",
+  "side_float": 5.99742,
+  "contained_exact": true,
+  "containment_violations": [],
+  "min_sq_distance": "1315168458468353297523988136721/1315167902843543860810000000000",
+  "min_sq_distance_float": 1.0000004224744294,
+  "closest_pair": [
+    1,
+    20
+  ],
+  "separation_ok": true,
+  "side_below_k_minus_1": true,
+  "fits_strictly_below_side_k_minus_1": true
+}

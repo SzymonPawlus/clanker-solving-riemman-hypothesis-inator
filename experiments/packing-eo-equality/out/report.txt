@@ -1,0 +1,184 @@
+
+==============================================================================
+1. Lemma T -- (2/sqrt3) A + p/2 >= 2 for every triangle with sides >= 1
+==============================================================================
+Decision is exact over Q; no floating point anywhere in this section.
+(a) grid scan, sides in [1,4] step 1/12 : 7761 triangles checked
+(b) random rational scan             : 142714 triangles checked
+(c) degenerate (collinear) triangles : 3721 checked
+(d) fine scan near (1,1,1),(2,1,1)   : 924 checked
+
+VIOLATIONS of Lemma T found : 0
+EQUALITY triples found      : [('1', '1', '1'), ('1', '1', '2')]
+K1 (Lemma T + its equality classification) holds on every case checked: True
+
+==============================================================================
+2. The algebra inside the proof of Lemma T
+==============================================================================
+(i)  identity  S(S-2)^2 + 3S - 12 = (S-3)(S^2-S+4)  at 60 rational points: True
+     degree 3 both sides, so agreement at 4 points already proves it; the discriminant of S^2-S+4 is -15 < 0, so that factor is positive, hence h(S) >= 0 for S >= 3 with equality only at S = 3.
+(ii) vertex step, S on a 1/40 grid in [3,4], polytope on a 400-grid: 0 points below (S-2)^2(4-S) -> OK
+
+==============================================================================
+3. The extremal class: slack of lattice-convex sets (exact)
+==============================================================================
+A set is *lattice-convex* here if E = Lambda ∩ conv(E) for the unit
+triangular lattice Lambda.  Prediction (Theorem 3): slack = (M - b)/2,
+so slack = 0 iff every hull edge between consecutive points has length 1.
+
+configuration                                 n   b   min sep^2           slack (enclosure)  lat-cvx
+T(2) lattice, n=3                             3   3    1.000000  [0.000000000, 0.000000000]  True
+T(3) lattice, n=6                             6   6    1.000000  [0.000000000, 0.000000000]  True
+T(4) lattice, n=10                           10   9    1.000000  [0.000000000, 0.000000000]  True
+T(5) lattice, n=15                           15  12    1.000000  [0.000000000, 0.000000000]  True
+T(7) lattice, n=28                           28  18    1.000000  [0.000000000, 0.000000000]  True
+unit rhombus (2 faces)                        4   4    1.000000  [0.000000000, 0.000000000]  True
+unit hexagon + centre                         7   6    1.000000  [0.000000000, 0.000000000]  True
+unit trapezoid (T(3) minus a corner)          5   5    1.000000  [0.000000000, 0.000000000]  True
+lattice triangle with a sqrt3 edge            4   4    1.000000  [0.366025404, 0.366025404]  True
+T(4) minus its interior point (NOT lattice-convex)  9   9    1.000000  [1.000000000, 1.000000000]  False
+T(7) minus an interior point, n=27 (NOT lattice-convex) 27  18    1.000000  [1.000000000, 1.000000000]  False
+T(7) minus its apex, n=27                    27  17    1.000000  [0.000000000, 0.000000000]  True
+
+Check slack == (M - b)/2 exactly (i.e. face excess == 0) for the
+lattice-convex rows -- this is Pick's theorem in disguise:
+  T(2) lattice, n=3                            (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  T(3) lattice, n=6                            (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  T(4) lattice, n=10                           (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  T(5) lattice, n=15                           (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  T(7) lattice, n=28                           (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  unit rhombus (2 faces)                       (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  unit hexagon + centre                        (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  unit trapezoid (T(3) minus a corner)         (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+  lattice triangle with a sqrt3 edge           (M-b)/2 in [0.366025404, 0.366025404]  agrees: True
+  T(7) minus its apex, n=27                    (M-b)/2 in [0.000000000, 0.000000000]  agrees: True
+
+Note the n = 27 row 'T(7) minus its apex': slack is exactly 0 at a
+non-triangular n.  Equality in Oler therefore does NOT by itself force
+n to be triangular; that conclusion needs the extra hypothesis that the
+hull is the whole containing triangle.
+
+Rows where slack is exactly 0 must be exactly the unit-edge ones:
+  T(2) lattice, n=3                            slack could be 0: True
+  T(3) lattice, n=6                            slack could be 0: True
+  T(4) lattice, n=10                           slack could be 0: True
+  T(5) lattice, n=15                           slack could be 0: True
+  T(7) lattice, n=28                           slack could be 0: True
+  unit rhombus (2 faces)                       slack could be 0: True
+  unit hexagon + centre                        slack could be 0: True
+  unit trapezoid (T(3) minus a corner)         slack could be 0: True
+  lattice triangle with a sqrt3 edge           slack could be 0: False
+  T(4) minus its interior point (NOT lattice-convex) slack could be 0: False
+  T(7) minus an interior point, n=27 (NOT lattice-convex) slack could be 0: False
+  T(7) minus its apex, n=27                    slack could be 0: True
+
+==============================================================================
+4. The tau-identity:  slack = sum_f tau(f) - sum_{interior e} (len e - 1)
+==============================================================================
+tau(f) = (2/sqrt3)A_f + p_f/2 - 2 >= 0 is exactly Lemma T's defect.
+Verified on explicitly given triangulations (faces listed by hand).
+single unit triangle           n= 3 b= 3 F= 1 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [0.000000000,0.000000000]  sum tau - sum(len-1) in [0.000000000,0.000000000]
+unit rhombus                   n= 4 b= 4 F= 2 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [0.000000000,0.000000000]  sum tau - sum(len-1) in [0.000000000,0.000000000]
+T(3) lattice                   n= 6 b= 6 F= 4 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [0.000000000,0.000000000]  sum tau - sum(len-1) in [0.000000000,0.000000000]
+T(4) lattice                   n=10 b= 9 F= 9 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [0.000000000,0.000000000]  sum tau - sum(len-1) in [0.000000000,0.000000000]
+T(5) lattice                   n=15 b=12 F=16 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [0.000000000,0.000000000]  sum tau - sum(len-1) in [0.000000000,0.000000000]
+witness (0,0),(1,0),(2,1/2)    n= 3 b= 3 F= 1 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [0.378468535,0.378468535]  sum tau - sum(len-1) in [0.378468535,0.378468535]
+generic 4-point set            n= 4 b= 4 F= 2 F=2n-b-2: True areas: True |E_int|=3n-2b-3: True identity: True
+                                 slack in [3.645827866,3.645827866]  sum tau - sum(len-1) in [3.645827866,3.645827866]
+tau-identity holds on every case checked: True
+
+==============================================================================
+5. Theorem D: equilateral hull, no interior points -- the arithmetic
+==============================================================================
+Equality gives n = (a^2+3a+2)/2 ; boundary-only gives n <= 3*floor(a).
+Hence a^2 + 3a + 2 <= 6*floor(a) <= 6a, i.e. a^2 - 3a + 2 <= 0, i.e.
+1 <= a <= 2.  Roots of a^2-3a+2 are exactly 1 and 2:
+  a=1: True    a=2: True
+Sub-case a in [1,2): floor(a)=1 so n <= 3, and n = (a^2+3a+2)/2 >= 3
+  with equality at a=1 only (a^2+3a-4 = (a+4)(a-1)):
+    a=1: n_eq=(a^2+3a+2)/2=3  bound 3*floor(a)=3 -> feasible: True
+    a=3/2: n_eq=(a^2+3a+2)/2=35/8  bound 3*floor(a)=3 -> feasible: False
+    a=19/10: n_eq=(a^2+3a+2)/2=1131/200  bound 3*floor(a)=3 -> feasible: False
+Sub-case a=2: n = 6 = 3*floor(2), so the boundary bound is tight, so
+  every side carries exactly 3 points at spacing exactly 1.
+A grid check that no other a in [1,3] can satisfy both constraints:
+  integer-n solutions of the joint constraint on a 1/100 grid in [1,3]: [(Fraction(1, 1), Fraction(3, 1)), (Fraction(2, 1), Fraction(6, 1))]
+
+==============================================================================
+6. Scope: what an equality theorem gives at k = 7 (control on O1)
+==============================================================================
+Oler RHS at a = k-1 is exactly T(k):
+  k= 2  a= 1  RHS=3  T(k)=3  equal: True
+  k= 3  a= 2  RHS=6  T(k)=6  equal: True
+  k= 4  a= 3  RHS=10  T(k)=10  equal: True
+  k= 5  a= 4  RHS=15  T(k)=15  equal: True
+  k= 6  a= 5  RHS=21  T(k)=21  equal: True
+  k= 7  a= 6  RHS=28  T(k)=28  equal: True
+  k= 8  a= 7  RHS=36  T(k)=36  equal: True
+  k= 9  a= 8  RHS=45  T(k)=45  equal: True
+  k=10  a= 9  RHS=55  T(k)=55  equal: True
+
+27 points force a^2 + 3a - 52 >= 0.  a* = (-3 + sqrt217)/2, bracketed
+  a* in [5.865459931, 5.865459931]
+  check RHS(a*) = 27 exactly: a*^2 + 3a* + 2 = 52 + 2 = 54, 54/2 = 27
+  window width 6 - a* in [0.134540069, 0.134540069]
+
+An equality theorem excludes ONLY the single side length a = a*, where
+slack is exactly 0.  For a in (a*, 6) Oler's RHS is strictly between 27
+and 28, so 27 points are permitted with strictly positive slack and no
+equality statement of any kind applies.  Numbers:
+  a=5.865460  Oler RHS=27.000000  slack at n=27 = -0.000000
+  a=5.875460  Oler RHS=27.073705  slack at n=27 = 0.073705
+  a=5.885460  Oler RHS=27.147509  slack at n=27 = 0.147509
+  a=5.915460  Oler RHS=27.369523  slack at n=27 = 0.369523
+  a=5.965460  Oler RHS=27.741546  slack at n=27 = 0.741546
+  a=5.995460  Oler RHS=27.965960  slack at n=27 = 0.965960
+
+The epsilon-scale: a theorem 'deficit >= eps at n=27' gives
+d(27) >= a_eps = (-3 + sqrt(217 + 8 eps))/2.  Erdos-Oler k=7 is eps = 1.
+  eps=   0  a_eps in [5.865459931, 5.865459931]
+  eps= 1/4  a_eps in [5.899324293, 5.899324293]
+  eps= 1/2  a_eps in [5.933034374, 5.933034374]
+  eps= 3/4  a_eps in [5.966592262, 5.966592262]
+  eps=   1  a_eps in [6.000000000, 6.000000000]
+
+So: to exclude n=27 for every a<6 one needs the deficit to reach 1,
+not 0+.  Deficit >= 1 at a<6 is *literally equivalent* to Erdos-Oler
+k=7, since RHS is strictly increasing in a and RHS(6) = 28 = 27 + 1.
+
+==============================================================================
+7. Control: face excess at a lattice whose corners are pushed out
+==============================================================================
+Independent re-derivation of eo-boundary-counting §4 (W1) by a different
+construction (move the three CORNERS outward rather than the edges in).
+Priority is theirs; this is a control on my own reasoning, not a claim.
+
+Construction: T(k) lattice, side a0=k-1, centroid g.  Replace each of the
+three corner points c by g + lam*(c-g), lam = 1 + delta/a0.  Every other
+point stays.  Hull becomes the equilateral triangle of side a0+delta and
+b drops to 3.
+
+  k    delta   n         a   b    min sep^2    face excess FE               total slack
+  3   0.2000   6    2.2000   3     1.000000         -1.080000  [  0.7200000,  0.7200000]
+  7   0.2000  28    6.2000   3     1.000000         -6.280000  [  1.5200000,  1.5200000]
+  3   0.0100   6    2.0100   3     1.000000         -1.479950  [  0.0350500,  0.0350500]
+  7   0.0100  28    6.0100   3     1.000000         -7.439950  [  0.0750500,  0.0750500]
+  7   0.0010  28    6.0010   3     1.000000         -7.494000  [  0.0075005,  0.0075005]
+
+FE is negative and grows like -3(k-2)/2 while the TOTAL Oler slack stays
+O(delta).  So face-excess nonnegativity fails on configurations that are
+arbitrarily close to Oler-extremal, with the hull an equilateral triangle
+and all three of its corners occupied.  Same conclusion as W1.
+
+==============================================================================
+Summary
+==============================================================================
+K1  Lemma T + equality classification survived every exact check : True
+    proof algebra (identity + vertex step) checked               : True
+K3  tau-identity reproduced exactly                              : True

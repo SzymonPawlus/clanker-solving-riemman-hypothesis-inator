@@ -1,0 +1,12 @@
+[project]
+name = "packing-eo-hunt"
+version = "0.1.0"
+description = "Counterexample hunt for the Erdos-Oler conjecture at k >= 7"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0",
+    "scipy>=1.14",
+]
+
+[tool.uv]
+package = false

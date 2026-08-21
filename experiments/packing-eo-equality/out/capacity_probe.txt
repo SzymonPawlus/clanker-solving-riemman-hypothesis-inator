@@ -1,0 +1,12 @@
+Hexagonal-cell covering of T(a) by cells of diameter 1 - eta < 1.
+n <= (number of cells meeting T), minimised over orientation and offset.
+Erdos-Oler k=7 needs n <= 26 for every a < 6.  Oler alone gives 27.
+
+       a  cell diam  min cells  area bound  Oler bound
+   5.999   0.999999         34      23.992     27.9925
+     5.9   0.999999         28      23.207     27.2550
+1.999999   0.999999          6       2.667      6.0000
+   1.999   0.999999          6       2.664      5.9965
+
+'area bound' = area(T)/area(cell): the information-theoretic floor for
+this family of coverings, before any boundary waste.

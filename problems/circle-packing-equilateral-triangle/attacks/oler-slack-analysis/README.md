@@ -69,8 +69,15 @@ departure from the extremal lattice cell.
    $\lvert E_{\text{edges}}\rvert = (3F+b)/2$. Then $V - \lvert E_{\text{edges}}\rvert + (F+1) = 2$
    yields $n - F/2 - b/2 = 1$, i.e. $F = 2n - b - 2$.
 2. **Areas: $\sum_f A_f = A(P)$**, since $\mathcal{T}$ tiles $P$.
-3. **Lengths: $\sum_e \ell_e = M(P)$**, since the boundary edges of $\mathcal{T}$ subdivide the
-   hull edges, and subdividing a segment preserves total length.
+3. **Boundary edge count: $\lvert E_{\text{bd}}\rvert = b$.** The boundary edges of
+   $\mathcal{T}$ form a single cycle through the $b$ boundary points, so there are exactly $b$ of
+   them. This is the step everything rests on and it is where a reader can silently diverge: if
+   $b$ is read as "hull *vertices*" rather than "points of $E$ on $\partial P$", the count is
+   wrong wherever a point lies inside a hull edge, and $F = 2n-b-2$ fails with it. (Flagged by an
+   independent checker, which got $F = 15$ instead of $9$ on the $T(4)$ lattice under the wrong
+   reading. Six of the twelve certificates exercise this case.)
+4. **Lengths: $\sum_e \ell_e = M(P)$**, since those $b$ edges subdivide the hull edges, and
+   subdividing a segment preserves total length.
 
 Expand the right-hand side with these:
 $$\tfrac{2}{\sqrt3}A(P) - \tfrac{F}{2} + \tfrac12 M(P) - \tfrac{b}{2}
@@ -89,7 +96,7 @@ $$\tfrac{2}{\sqrt3}A(P) - \tfrac{F}{2} + \tfrac12 M(P) - \tfrac{b}{2}
   it starts.
 
 **Verification** (`experiments/packing-oler-slack`, exact): both halves — $F = 2n-b-2$ and
-$\sum_f A_f = A(P)$ — are checked on all 15 non-degenerate configurations available, and
+$\sum_f A_f = A(P)$ — are checked on all 14 non-degenerate configurations available (16 atlas rows, of which n = 1, 2 are degenerate; count corrected per Codex's review of PR #90), and
 separately the two sides of the identity are computed by independent routes (left from
 $A, M, n$; right from the triangulation) and their enclosures checked to intersect. The
 triangular controls $n = 3, 6, 10$ give exactly zero on both sides, every face and every edge.
@@ -161,17 +168,53 @@ $n = T(k) - 1$ — **stage 1 is exactly zero**: Oler's inequality applied to the
 convex hull is exactly tight, with no slack in any face or any edge. All of the loss at
 $n = T(k) - 1$ is stage 2, and it is exactly $1$, for every $k = 3, 4, 5, 6$ checked.
 
-That is a sharper statement than "Oler is slack at non-triangular $n$", and it relocates the
-problem. At $n = T(k)-1$ the packing bound is not what is failing; the hull → triangle relaxation
-is, and it is failing by exactly the one point that separates $T(k)-1$ from $T(k)$. Anything hoping
-to prove Erdős–Oler through Oler's inequality has to find that exact 1 in the relaxation step, not
-in a better packing inequality. Conversely at $n = 4, 7, 8$ — where the hull *is* the whole
-triangle, so stage 2 is zero — every bit of the slack is stage 1, i.e. genuinely a weakness of the
-packing bound.
+That is a sharper statement than "Oler is slack at non-triangular $n$", and it says something
+about these witnesses. Conversely at $n = 4, 7, 8$ — where the hull *is* the whole triangle, so
+stage 2 is zero — every bit of the slack is stage 1, i.e. genuinely a weakness of the packing
+bound.
 
-**What this is not.** These are twelve explicit configurations, not a theorem about all $n$. The
-"exactly 1" at $n = T(k)-1$ is checked for $k \le 6$ and is `numerical`; I have not proved it for
-all $k$, and it is not used for anything below.
+> **Correction — an earlier version of this paragraph overreached, and the overreach was
+> load-bearing.** It concluded: "at $n = T(k)-1$ the packing bound is not what is failing; the
+> hull → triangle relaxation is", and therefore that a proof of Erdős–Oler must find its missing
+> point in the relaxation step. **That does not follow, and it is false.** The atlas measures the
+> configurations in this repo's certificates, and every one of them deletes the *apex*. Delete an
+> **interior** point of the $T(k)$ lattice instead and you get an equally valid $n = T(k)-1$
+> configuration at the same side $a = k-1$ whose hull is the *whole* triangle — so stage 2 is
+> zero and the entire deficit of 1 sits in stage 1. Same $n$, same $a$, same total slack of 1,
+> opposite stage. Checked at $k = 7$: Oler$(6) = 28$, $n = 27$, total $= 1$; apex-deleted gives
+> (stage 1, stage 2) $= (0, 1)$, interior-deleted gives $(1, 0)$.
+>
+> A lower-bound argument has to handle **every** configuration, not a chosen witness, so it cannot
+> route its missing point exclusively through either stage. What the atlas actually establishes is
+> narrower and still worth having: *for the apex-deleted witnesses, stage 1 is exactly tight*, so
+> no improvement to the packing inequality alone can exclude them — one must use the relaxation
+> there. The symmetric statement holds for the interior-deleted witnesses with the stages swapped.
+>
+> Found by an independent worker attacking the relaxation route, which produced the
+> interior-deleted witness as the thing that killed its own assignment; re-derived here before
+> being accepted. This is the second correction to this file from that check, and this one changes
+> what the file *means*, not just what it says.
+
+**This one generalises, and the first version of this file understated it.** I filed the pattern
+as `numerical` over twelve configurations; an independent checker pointed out it is a two-line
+count valid for **every** $k$, and re-deriving it confirms that. Both hulls have every boundary
+edge of length exactly $1$, so $M = b$ and the boundary-edge excess vanishes identically. With
+$a = k-1$:
+
+- **$n = T(k)$:** $b = 3a$, $\tfrac{2}{\sqrt3}A(H) = \tfrac{a^2}{2}$, so
+  $\mathrm{FE} = \tfrac{a^2}{2} - \tfrac{2T(k) - 3a - 2}{2} = 0$, and stage 2 $= 0$ since
+  $H = T$.
+- **$n = T(k)-1$** (apex removed, so $H$ is $T$ minus a unit corner triangle): $b = 3a - 1$,
+  $\tfrac{2}{\sqrt3}A(H) = \tfrac{a^2-1}{2}$, so
+  $\mathrm{FE} = \tfrac{a^2-1}{2} - \tfrac{2(T(k)-1) - (3a-1) - 2}{2} = 0$; and the total is
+  $\tfrac{a^2}{2} + \tfrac{3a}{2} + 1 - (T(k)-1) = T(k) - (T(k)-1) = 1$, using
+  $\tfrac{(k-1)^2 + 3(k-1) + 2}{2} = T(k)$.
+
+The $k$-dependence cancels identically in both. So **stage 1 is exactly zero and stage 2 is
+exactly 1 at $n = T(k)-1$, for every $k$** — status `sketch` (my derivation, elementary), verified
+exactly for $k = 2..30$ by formula and for $k \le 6$ against the certificates. Still not used for
+anything below; the point is that the Erdős–Oler deficit is a *constant* 1 in the relaxation step,
+not something that decays with $k$.
 
 ## 4. The probe: hypothesis H is false — `refuted`
 
@@ -212,11 +255,47 @@ alone. Choosing Delaunay, or any other triangulation, changes nothing.
 **Consequence: the route is dead.** The floored-perimeter derivation was to be (i) H, giving
 $n \le \frac{2}{\sqrt3}A + \frac b2 + 1$; then (ii) $b \le 3\lfloor a\rfloor$, since a side of
 length $a$ carries at most $\lfloor a \rfloor + 1$ separated points and the three corners are
-shared. Step (i) is false. **Step (ii) is separately unjustified** and I am recording that too,
-because it would have needed catching anyway: $b$ counts points on $\partial\operatorname{conv}(E)$,
-which need not lie on $\partial T$ at all — a hull vertex can sit strictly inside the triangle. The
-route fails twice over. Per issue #78's kill-criterion and `RULES.md` §6.3, I stop here rather than
-re-scoping.
+shared. Step (i) is false. **Step (ii) is worse than unjustified — it is unavailable**, and that is worth
+recording because it means the route is structurally dead rather than dead pending a patch. First
+the stated warrant is wrong: $b$ counts points on $\partial\operatorname{conv}(E)$, which need not
+lie on $\partial T$ at all — a hull vertex can sit strictly inside the triangle. Second, what *is*
+provable goes the wrong way. Consecutive boundary points have arc-separation at least their chord
+distance, i.e. at least $1$, and the boundary is a closed curve of length $M(H) \le M(T) = 3a$, so
+
+$$b \;\le\; \lfloor M(H) \rfloor \;\le\; \lfloor 3a \rfloor,$$
+
+and $\lfloor 3a\rfloor \ge 3\lfloor a\rfloor$ always, with strict inequality at exactly the
+non-integer $a$ the strengthening was supposed to exploit. The route needed a bound at least as
+strong as $3\lfloor a\rfloor$ and only $\lfloor 3a \rfloor$ exists; substituting it back into
+the (false) H recovers nothing better than a floored form of Oler. Both steps fail, independently.
+Per issue #78's kill-criterion and `RULES.md` §6.3, I stop here rather than re-scoping.
+
+**Correction to the paragraph above, from a worker who attacked step (ii) directly.** Saying step
+(ii) is "unavailable" conflates two different counts, and the distinction is the actual reason the
+route dies:
+
+- **Points on $\partial T$** (the triangle's own boundary). Here $3\lfloor a\rfloor$ **is** a true
+  bound, and sharp for every $a \ge 1$ — proved via a per-side count plus the fact that a $60°$
+  corner forces $\max(x,y) \ge 1$ on its two legs, with an exact attaining family in
+  $\mathbb{Q}(\sqrt3)$. So the step is not false and not unavailable.
+- **Points on $\partial\operatorname{conv}(E)$** (the count $b$ that step (i) actually consumes).
+  Here $\lfloor 3a \rfloor$ is the best available, as above.
+
+The route needed $3\lfloor a\rfloor$ *for the hull count*, and what is provable at that strength is
+about the other set. It dies on the mismatch between the two readings — not because nothing is
+provable. Recording the difference because a future attack that inherits "step (ii) is
+unavailable" would go looking in the wrong place.
+
+**And the stronger result that closes the whole family.** That worker then showed there is **no
+function $\Phi$ whatsoever** with $n \le \frac{2}{\sqrt3}A(\operatorname{conv}E) + \Phi(b) + 1$:
+scale the lattice $T(k)$ by $1+\delta$ and push every boundary point inward by $\varepsilon$, and
+$b$ collapses to $3$ while $n - \frac{2}{\sqrt3}A - 1$ grows like $\frac{3k-3}{2}$. So replacing
+Oler's boundary *length* by any function of a boundary *count* is dead in general, not merely for
+the particular H of §2 — and the same family refutes H **at the triangular lattice itself** for
+$k = 3..7$, which kills the natural "H is fine for non-degenerate configurations" repair that §4's
+flat-arc witnesses leave open. See [`../eo-boundary-counting/`](../eo-boundary-counting/).
+
+(All of this is *same-family* checking and grants no status — `RULES.md` §5.)
 
 ## 5. What the route was aiming at — a bare conjecture, not a target
 
@@ -304,6 +383,33 @@ is inherited into a claim. §5.2 additionally depends on published construction 
 `experiments/circle-packing-search/reference.py`, which is `numerical`. Nothing anywhere depends on
 §1 being true except §3's *interpretation*; §4's refutation does not.
 
-**Not checked.** Whether stage 1 is exactly zero at $T(k)$ and $T(k)-1$ for all $k$ (checked
-$k \le 6$). Whether FP is true, false, or known. Whether any *other* strengthening survives the
-§4 counterexamples — I did not look, because the kill-criterion said stop.
+**Independently rechecked, and what that is worth.** Another worker of *this same agent* wrote a
+checker from scratch (its own field arithmetic, parser, hull and triangulator, `geometry.py`
+unopened until its own had run) and reproduced every atlas column to 7 d.p., the exact face-excess
+signs, the flat-arc family, and the FP $\Rightarrow$ Erdős–Oler derivation; it found no
+disagreement, and its two corrections are folded in above. **This grants no status whatsoever**
+(`RULES.md` §5: cross-examination requires a *different model family*). The identity stays `sketch`
+until Codex examines it. It is recorded because a check that found two understatements is worth
+more than the absence of one, not because it upgrades anything.
+
+**The decomposition cannot support a stability argument, and that limits what §3 is good for.**
+A later worker measured the split as a configuration degenerates: the *slack* tends to 0 while
+$(\mathrm{FE}, \mathrm{BE})$ tends to $(-7.5, +7.5)$ at $k = 7$ — the same scaling family that
+refutes any count-based boundary term in [`../eo-boundary-counting/`](../eo-boundary-counting/).
+So the two halves are **discontinuous** in the configuration even where their sum is not. The
+identity localises slack exactly, but the localisation is unstable, so no quantitative-stability
+statement can be built on the split. Anything wanting stability has to work with the sum.
+
+**And an equality theorem for Oler would not close Erdős–Oler anyway** — worth recording here
+because §3's framing invites exactly that hope. Equality pins **one** side length,
+$a^* = \tfrac{-3+\sqrt{217}}{2} = 5.8654\ldots$ at $k = 7$; for every $a \in (a^*, 6)$ the slack
+is strictly positive and no equality statement applies. In points: the required gain is 1 and an
+equality theorem delivers $0^+$. The useful reframing from that worker is the **$\varepsilon$-scale**
+— "deficit $\ge \varepsilon$" gives $d(27) \ge \tfrac{-3+\sqrt{217 + 8\varepsilon}}{2}$, with
+$\varepsilon = 1$ equivalent to the conjecture. **This file, and every other result in this repo,
+sits at $\varepsilon = 0$.**
+
+**Not checked.** Whether FP is true, false, or known. Whether any *other* strengthening survives
+the §4 counterexamples — I did not look, because the kill-criterion said stop. Whether the
+literature already contains any of this: **not checkable from this session at all** — every
+scholarly host is blocked at the egress proxy, see `../eo-literature/`.

@@ -1,0 +1,26 @@
+{
+ "schema": "eoex/1",
+ "n": 9,
+ "d": "59/10",
+ "d_float": 5.9,
+ "max_level": 9,
+ "max_cited": 15,
+ "oler_caps": true,
+ "oler_hull": true,
+ "oler_hull_max_level": 3,
+ "symmetry": true,
+ "status": "proved",
+ "nodes": 684342,
+ "elapsed_s": 12.426,
+ "frontier_count": 0,
+ "frontier_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "meta": {
+  "python": "3.11.15",
+  "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39",
+  "utc": "2026-08-21T13:47:22Z"
+ },
+ "proves": "d(9) > 59/10",
+ "proves_s": "s(9) > 9.364101615137756",
+ "ratio_to_target": null
+}
+PROVED: no 9 points at separation >= 2 in the closed equilateral triangle of side 59/10; hence d(9) > 59/10 and s(9) > 59/10 + 2*sqrt(3) = 9.364101615

@@ -8,6 +8,75 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ---
 
+## 2026-08-21
+
+### A `cited` input contained the conclusion, and the run reported a proof of an open case
+`PR #90` · `issue #91` · no claim changed status
+
+A worker built an exact integer relaxation of the corner-occupancy constraints and ran it at
+$k = 4$, where Erdős–Oler is *proven*, as a control. The run came back **infeasible** — which,
+read at face value, is a counting proof of Erdős–Oler at $k = 4$.
+
+It was circular. The worker extracted the violated constraint instead of believing the verdict:
+the single binding constraint was the whole-triangle box, whose capacity had been supplied by the
+`cited` value $d(9) = 3$ — and $d(9) = 3$ **is** Erdős–Oler at $k = 4$. The model had been handed
+its own conclusion as an input and had correctly derived it back out.
+
+**The general point, which `RULES.md` §3 does not currently make.** Status is treated as a property
+of a claim: `cited` claims are assumable, so you may use them. But assumability is not
+context-free. A `cited` fact is safe as an *input* only when it is not the *output* you are
+deriving. A table of known optimal values is exactly the kind of input that silently contains the
+conjecture for the cases where the conjecture is known — which is to say, precisely the cases you
+would use as controls.
+
+**What makes this worth logging rather than fixing quietly:** the control was working as designed.
+Running the method where the answer is known is what caught it. Had the same circular input been
+present only at $k = 7$ — where the whole-triangle capacity is *not* known and so would have come
+from somewhere else — the run would have reported infeasible on an open case, and the result would
+have read as a solved open problem produced by a clean exact computation with all inputs `cited`.
+Nothing in the status discipline would have flagged it. The guard is now a named variable in the
+code rather than a habit.
+
+The same worker separately caught itself asserting that a pair region $\{u_A \ge 4\} \cap
+\{u_B \ge 4\}$ was a triangle when it is a rhombus holding 8 points rather than 4.
+
+---
+
+### The manager "corrected" a worker with worse arithmetic, and shipped it to two provers
+`PR #90` · `issue #91` · no claim changed status
+
+A worker reported that the side-length gap between Oler's bound and the truth at $n = T(k)-1$
+collapses like $2/(2k+1)$ — $0.298$ at $k = 3$, $0.135$ at $k = 7$. The manager (claude, Opus 5)
+re-derived it, got $0.628 \to 0.272$, concluded the worker had made a separation-1/separation-2
+slip, **published the wrong table in a commit message, and relayed it to two live provers as a
+correction.** Prover A caught it independently an hour later.
+
+The worker was right. The manager's root-solve had the discriminant wrong and solved
+$\mathrm{Oler}(a) = T(k) - \mathbf{2}$ instead of $T(k) - \mathbf{1}$. The correct root is
+$a_0 = \tfrac{-3 + \sqrt{8T(k) - 7}}{2}$, giving exactly the worker's figures; $2/(2k+1)$ is a
+good approximation to them.
+
+**This is the fourth instance of the pattern this file exists to track, and the first where the
+error came from the coordinator rather than a worker.** The previous three — the Melissen–Schuur
+volume, the $n = 20$ withdrawal, the Approach C recount — all had the same shape: a correction
+that felt *more* certain than what it replaced, because withdrawing a claim reads as rigour from
+the inside. The new element here is the delivery mechanism. A worker's error stays in a worker's
+file until review; **a manager's error is broadcast to every worker as an instruction**, arrives
+with the authority of coordination, and lands in files the manager never sees. One prover was
+mid-run with the bad table when the correction went out.
+
+**The mechanism, and it is not "check your arithmetic".** The manager had *just* written a section
+warning that separation-1 vs separation-2 is the standing trap on this problem. Holding a
+ready-made explanation for a discrepancy is what made the discrepancy stop being a question: the
+two numbers differed by roughly a factor of two, a factor of two had a known cause, and the
+check ended there. The available explanation was wrong and the arithmetic was never re-examined.
+
+**What it argues for:** a coordinator's numbers are not a review; they are one more input needing
+the same check as any other. When a discrepancy has an obvious explanation, that is exactly when
+the boring possibility — the coordinator simply computed it wrong — is worth eliminating first.
+
+---
+
 ## 2026-08-18
 
 ### The Melissen–Schuur volume went 145 → 142 → 145, and `main` was right the whole time

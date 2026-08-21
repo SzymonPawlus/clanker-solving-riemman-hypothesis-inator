@@ -1,0 +1,165 @@
+
+==============================================================================
+0.  CONTROLS -- reproduce quantities that are already known
+==============================================================================
+  Oler on T of side 6:  (2/sqrt3)A + M/2 + 1 = 18 + [18.0000000000, 18.0000000000] + 1 = 28  [= T(7), as it must]
+  closed corner triangle side 1: (2/sqrt3)A = 1/2    M = [3.0000000000, 3.0000000000] cap =  3   [T(2) = 3]
+  closed corner triangle side 2: (2/sqrt3)A = 2      M = [6.0000000000, 6.0000000000] cap =  6   [T(3) = 6]
+  closed corner triangle side 3: (2/sqrt3)A = 9/2    M = [9.0000000000, 9.0000000000] cap = 10   [T(4) = 10]
+  closed corner triangle side 4: (2/sqrt3)A = 8      M = [12.0000000000, 12.0000000000] cap = 15   [T(5) = 15]
+  closed corner triangle side 5: (2/sqrt3)A = 25/2   M = [15.0000000000, 15.0000000000] cap = 21   [T(6) = 21]
+  N(j^-) for j = 1..5 (max unit-separated points in side < j): [1, 4, 8, 13, 19]  [expect 1, 4, 8, 13, 19]
+      1 = trivial;  4, 8, 13 from Melissen/Payan;  19 from d(20) = 5 (Payan, qualified)
+
+==============================================================================
+1.  LEMMA P -- the top-scale corner constraint, reproved without Oler
+==============================================================================
+LEMMA P -- exact sign of a^2 + 3(k-1)^2 (a-k+2)^2 - 4(k-1)^2 on [k-2, k-1]
+   (must be < 0 strictly inside, = 0 at a = k-1)
+   checked 56 (k, a) pairs, failures: 0
+
+   the bound m <= 1 + a/sqrt(1-w^2), and the CIO cap n - T(k-2) = 2k-2:
+     k              a      1 + a/sqrt(1-w^2)      floor       2k-2
+     3          19/10 [4.0327301610, 4.0327301610]          4          4
+     3        199/100 [4.8662648839, 4.8662648839]          4          4
+     3    19999/10000 [4.9986006596, 4.9986006596]          4          4
+     4          29/10 [5.6289039299, 5.6289039299]          5          6
+     4        299/100 [6.8091115592, 6.8091115592]          6          6
+     4    29999/10000 [6.9980009595, 6.9980009595]          6          6
+     5          39/10 [7.2250776988, 7.2250776988]          7          8
+     5        399/100 [8.7519582345, 8.7519582345]          8          8
+     5    39999/10000 [8.9974012593, 8.9974012593]          8          8
+     6          49/10 [8.8212514678, 8.8212514678]          8         10
+     6        499/100 [10.6948049098, 10.6948049098]         10         10
+     6    49999/10000 [10.9968015592, 10.9968015592]         10         10
+     7          59/10 [10.4174252367, 10.4174252367]         10         12
+     7        599/100 [12.6376515851, 12.6376515851]         12         12
+     7    59999/10000 [12.9962018590, 12.9962018590]         12         12
+     8          69/10 [12.0135990057, 12.0135990057]         12         14
+     8        699/100 [14.5804982604, 14.5804982604]         14         14
+     8    69999/10000 [14.9956021588, 14.9956021588]         14         14
+     9          79/10 [13.6097727746, 13.6097727746]         13         16
+     9        799/100 [16.5233449357, 16.5233449357]         16         16
+     9    79999/10000 [16.9950024587, 16.9950024587]         16         16
+
+AGGREGATE ACCOUNTING  (S = sum_V sum_j S_j^(V))
+     k     n     V(k)     C(k)     U(k)        U-V   k^2-4k+6
+     4     9        9       12       15          6          6
+     5    14       28       30       39         11         11
+     6    20       60       60       78         18         18
+     7    27      108      105      135         27         27
+     8    35      175      168      216         41         38
+     9    44      264      252      321         57         51
+
+   V(k) - C(k) = (k-1)(k-6)/2, so Viviani only starts adding to CIO at k >= 7:
+      k= 4  V-C =   -3   (formula   -3)
+      k= 5  V-C =   -2   (formula   -2)
+      k= 6  V-C =    0   (formula    0)
+      k= 7  V-C =    3   (formula    3)
+      k= 8  V-C =    7   (formula    7)
+      k= 9  V-C =   12   (formula   12)
+
+==============================================================================
+1b.  THE OVERLAP OF THE CORNER TRIANGLES, EXACTLY
+==============================================================================
+  k = 4, a = 299/100, 2a = 299/50, n = 9
+    j   T(j) pair Delta_U(j) cap Delta_V(j)   cap            triple intersection   cap cover T?
+    1      1                        empty     0                          empty     0       no
+    2      3        triangle side 101/100     3    inverted triangle side 1/50     1      YES
+
+  Delta_U(j), Delta_V(j) meet iff 2j > a;  all three meet, equivalently cover T, iff 3j > 2a.
+  Where they cover, inclusion-exclusion is an identity, so with S_j >= T(j) (CIO):
+    j=2: sum_V S_j >= 9, so sum_pairs >= 0 ; capacity of sum_pairs <= 3*3 = 9 ; margin 9
+
+  k = 5, a = 399/100, 2a = 399/50, n = 14
+    j   T(j) pair Delta_U(j) cap Delta_V(j)   cap            triple intersection   cap cover T?
+    1      1                        empty     0                          empty     0       no
+    2      3          triangle side 1/100     1                          empty     0       no
+    3      6        triangle side 201/100     6   inverted triangle side 51/50     3      YES
+
+  Delta_U(j), Delta_V(j) meet iff 2j > a;  all three meet, equivalently cover T, iff 3j > 2a.
+  Where they cover, inclusion-exclusion is an identity, so with S_j >= T(j) (CIO):
+    j=3: sum_V S_j >= 18, so sum_pairs >= 4 ; capacity of sum_pairs <= 3*6 = 18 ; margin 14
+
+  k = 6, a = 499/100, 2a = 499/50, n = 20
+    j   T(j) pair Delta_U(j) cap Delta_V(j)   cap            triple intersection   cap cover T?
+    1      1                        empty     0                          empty     0       no
+    2      3                        empty     0                          empty     0       no
+    3      6        triangle side 101/100     3                          empty     0       no
+    4     10        triangle side 301/100    10  inverted triangle side 101/50     6      YES
+
+  Delta_U(j), Delta_V(j) meet iff 2j > a;  all three meet, equivalently cover T, iff 3j > 2a.
+  Where they cover, inclusion-exclusion is an identity, so with S_j >= T(j) (CIO):
+    j=4: sum_V S_j >= 30, so sum_pairs >= 10 ; capacity of sum_pairs <= 3*10 = 30 ; margin 20
+
+  k = 7, a = 599/100, 2a = 599/50, n = 27
+    j   T(j) pair Delta_U(j) cap Delta_V(j)   cap            triple intersection   cap cover T?
+    1      1                        empty     0                          empty     0       no
+    2      3                        empty     0                          empty     0       no
+    3      6          triangle side 1/100     1                          empty     0       no
+    4     10        triangle side 201/100     6    inverted triangle side 1/50     1      YES
+    5     15        triangle side 401/100    15  inverted triangle side 151/50    10      YES
+
+  Delta_U(j), Delta_V(j) meet iff 2j > a;  all three meet, equivalently cover T, iff 3j > 2a.
+  Where they cover, inclusion-exclusion is an identity, so with S_j >= T(j) (CIO):
+    j=4: sum_V S_j >= 30, so sum_pairs >= 3 ; capacity of sum_pairs <= 3*6 = 18 ; margin 15
+    j=5: sum_V S_j >= 45, so sum_pairs >= 18 ; capacity of sum_pairs <= 3*15 = 45 ; margin 27
+
+
+==============================================================================
+2.  CERTIFICATE VALIDATION (K2 / K3) -- real packings vs computed capacities
+==============================================================================
+  every certificate: exact separation >= 1, exact Viviani, exact containment,
+  then EVERY corner-coordinate box capacity is tested against the true count.
+   n003-exact.json    n= 3  a<=1              boxes   104  tightest slack 0 at (0, 1, 1, 2, 1, 2) (1 of 1)
+   n004-exact.json    n= 4  a<=1732051/1000000 boxes   112  tightest slack 0 at (0, 1, 1, 2, 1, 2) (1 of 1)
+   n005-exact.json    n= 5  a<=2              boxes   520  tightest slack 0 at (0, 1, 2, 3, 2, 3) (1 of 1)
+   n006-exact.json    n= 6  a<=2              boxes   568  tightest slack 0 at (0, 1, 2, 3, 2, 3) (1 of 1)
+   n007-exact.json    n= 7  a<=2732051/1000000 boxes   580  tightest slack 0 at (0, 1, 2, 3, 2, 3) (1 of 1)
+   n008-exact.json    n= 8  a<=582971/200000  boxes   592  tightest slack 0 at (0, 1, 2, 3, 2, 3) (1 of 1)
+   n009-exact.json    n= 9  a<=3              boxes  1969  tightest slack 0 at (0, 1, 3, 4, 3, 4) (1 of 1)
+   n010-exact.json    n=10  a<=3              boxes  2049  tightest slack 0 at (0, 1, 3, 4, 3, 4) (1 of 1)
+   n014-exact.json    n=14  a<=4              boxes  5661  tightest slack 0 at (0, 1, 4, 5, 4, 5) (1 of 1)
+   n015-exact.json    n=15  a<=4              boxes  5781  tightest slack 0 at (0, 1, 4, 5, 4, 5) (1 of 1)
+   n020-exact.json    n=20  a<=5              boxes 13677  tightest slack 0 at (0, 1, 5, 6, 5, 6) (1 of 1)
+   n021-exact.json    n=21  a<=5              boxes 13845  tightest slack 0 at (0, 1, 5, 6, 5, 6) (1 of 1)
+  ALL PASS.  Several boxes are exactly tight (slack 0), so the caps are not vacuous.
+
+==============================================================================
+3.  THE CORNER-OCCUPANCY RELAXATION
+==============================================================================
+  variables z[alpha,beta,gamma] = #points with (floor u_A, floor u_B, floor u_C)
+  constraints: total = n;  (CIO-j) S_j^(V) >= T(j);  S_j^(V) <= N(j^-);
+               and sum over every corner-coordinate box <= that box's capacity.
+  circularity guard: d(T(k)-1) is REMOVED from the cited table when testing level k.
+
+  k = 4   n =  9   a = 299/100  eps(a) = 0.95505   cells 16   binding boxes  100
+          build 0s, search 0s (randomised, 739 restarts)  ->  FEASIBLE
+          re-verified against all 107 constraints, violations: 0
+          witness profile: [((0, 2, 2), 1), ((1, 1, 2), 1), ((1, 2, 1), 1), ((1, 2, 2), 1), ((2, 0, 2), 1), ((2, 1, 1), 1), ((2, 1, 2), 1), ((2, 2, 0), 1), ((2, 2, 1), 1)]
+          its corner profiles S_j^(V), j = 1..2:
+             V=A  [1, 4]   [CIO floor [1, 3], capacity ceiling [1, 4]]
+             V=B  [1, 4]   [CIO floor [1, 3], capacity ceiling [1, 4]]
+             V=C  [1, 4]   [CIO floor [1, 3], capacity ceiling [1, 4]]
+          *** Erdos-Oler is CITED-TRUE at k = 4, so the true geometric
+              system is INFEASIBLE here.  The relaxation is not. ***
+  k = 5   n = 14   a = 399/100  eps(a) = 0.94505   cells 28   binding boxes  538
+          build 1s, search 0s (randomised, 469 restarts)  ->  FEASIBLE
+          re-verified against all 548 constraints, violations: 0
+          witness profile: [((0, 3, 2), 1), ((1, 2, 3), 1), ((1, 3, 1), 1), ((1, 3, 3), 1), ((2, 1, 3), 2), ((2, 2, 3), 1), ((2, 3, 2), 1), ((3, 0, 2), 1), ((3, 1, 3), 1), ((3, 2, 1), 1), ((3, 2, 2), 1), ((3, 3, 0), 1), ((3, 3, 1), 1)]
+          its corner profiles S_j^(V), j = 1..3:
+             V=A  [1, 4, 8]   [CIO floor [1, 3, 6], capacity ceiling [1, 4, 8]]
+             V=B  [1, 4, 8]   [CIO floor [1, 3, 6], capacity ceiling [1, 4, 8]]
+             V=C  [1, 4, 8]   [CIO floor [1, 3, 6], capacity ceiling [1, 4, 8]]
+          *** Erdos-Oler is CITED-TRUE at k = 5, so the true geometric
+              system is INFEASIBLE here.  The relaxation is not. ***
+  k = 6   n = 20   a = 499/100  eps(a) = 0.93505   cells 43   binding boxes 1874
+          build 3s, search 0s (randomised, 101 restarts)  ->  FEASIBLE
+          re-verified against all 1887 constraints, violations: 0
+          witness profile: [((0, 4, 4), 1), ((1, 4, 3), 2), ((1, 4, 4), 1), ((2, 2, 4), 3), ((2, 4, 3), 1), ((3, 1, 3), 1), ((3, 2, 2), 1), ((3, 3, 2), 2), ((3, 4, 2), 1), ((4, 0, 4), 1), ((4, 1, 4), 1), ((4, 2, 3), 1), ((4, 3, 1), 3), ((4, 4, 0), 1)]
+          its corner profiles S_j^(V), j = 1..4:
+             V=A  [1, 4, 8, 13]   [CIO floor [1, 3, 6, 10], capacity ceiling [1, 4, 8, 13]]
+             V=B  [1, 3, 8, 13]   [CIO floor [1, 3, 6, 10], capacity ceiling [1, 4, 8, 13]]
+             V=C  [1, 4, 8, 13]   [CIO floor [1, 3, 6, 10], capacity ceiling [1, 4, 8, 13]]
+          *** Erdos-Oler is CITED-TRUE at k = 6, so the true geometric
+              system is INFEASIBLE here.  The relaxation is not. ***

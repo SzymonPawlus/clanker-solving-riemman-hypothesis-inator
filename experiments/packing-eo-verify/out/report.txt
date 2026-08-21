@@ -1,0 +1,117 @@
+=== check_partition.py ===
+PASS m=1, no cut   m=1  sum(B)-B(P) = 0   predicted 0
+PASS T_6 into 2 horizontal strips   m=2  sum(B)-B(P) = 4  (~4.000000000)   predicted 4  (~4.000000000)
+PASS T_6 into 3 horizontal strips   m=3  sum(B)-B(P) = 8  (~8.000000000)   predicted 8  (~8.000000000)
+PASS T_6 into 7 horizontal strips   m=7  sum(B)-B(P) = 24  (~24.000000000)   predicted 24  (~24.000000000)
+PASS eo-exhaustion Sec.3 arithmetic: 7 strips at a=6 lose exactly 24   loss = 24  (~24.000000000)
+PASS T_6 into 2^2 = 4 cells   m=4  sum(B)-B(P) = 12  (~12.000000000)   predicted 12  (~12.000000000)
+PASS cell count is exactly 2^2   got 4
+PASS T_6 into 3^2 = 9 cells   m=9  sum(B)-B(P) = 26  (~26.000000000)   predicted 26  (~26.000000000)
+PASS cell count is exactly 3^2   got 9
+PASS T_6 into 4^2 = 16 cells   m=16  sum(B)-B(P) = 42  (~42.000000000)   predicted 42  (~42.000000000)
+PASS cell count is exactly 4^2   got 16
+PASS T_6 into 5^2 = 25 cells   m=25  sum(B)-B(P) = 60  (~60.000000000)   predicted 60  (~60.000000000)
+PASS cell count is exactly 5^2   got 25
+PASS three pieces meeting at the centroid   m=3  sum(B)-B(P) = 2 + 6*sqrt3  (~12.392304845)   predicted 2 + 6*sqrt3  (~12.392304845)
+PASS quadrilateral fanned from an interior point   m=4  sum(B)-B(P) = 3 + 1*sqrt3 + 2*sqrt7 + 1*sqrt19  (~14.382452373)   predicted 3 + 1*sqrt3 + 2*sqrt7 + 1*sqrt19  (~14.382452373)
+PASS T-junction (three pieces, one cut split between two)   m=3  sum(B)-B(P) = 8  (~8.000000000)   predicted 8  (~8.000000000)
+PASS EDGE CASE: identity FAILS when a piece is a segment (as it must)   lhs-rhs = 4  (~4.000000000)  (excess 4  (~4.000000000))
+PASS EDGE CASE: identity FAILS if a boundary segment is counted in I   m=2  sum(B)-B(P) = 4  (~4.000000000)   predicted 10  (~10.000000000)  [PERIMETER IDENTITY FAILS]
+PASS a=1.9000: sum of Oler-per-cell = 11.5050 > Oler(T) = 5.6550 > true 4-cell capacity 4
+PASS a=1.9900: sum of Oler-per-cell = 11.9500 > Oler(T) = 5.9650 > true 4-cell capacity 4
+PASS a=1.9990: sum of Oler-per-cell = 11.9950 > Oler(T) = 5.9965 > true 4-cell capacity 4
+
+21/21 checks passed
+
+=== check_corner_deficit.py ===
+PASS Lemma 1 holds on all 2148 random configurations satisfying t_U+t_V<=a   (failures: 0)
+PASS the side condition is NOT vacuous: 1852 random configurations violate it, 660 of those break the lemma   first witness: a=27/10 E=[(Fraction(1, 8), Fraction(0, 1))] t=(Fraction(1, 8), Fraction(103, 40), Fraction(27, 10))
+PASS WITNESS a=2: E={apex}, t=(Fraction(2, 1), Fraction(2, 1), Fraction(0, 1)) violates t_A+t_B<=a and the lemma is FALSE   def(H) = 5.0000 < RHS = 6.0000
+PASS WITNESS a=3: E={apex}, t=(Fraction(3, 1), Fraction(3, 1), Fraction(0, 1)) violates t_A+t_B<=a and the lemma is FALSE   def(H) = 9.0000 < RHS = 12.0000
+PASS WITNESS a=4: E={apex}, t=(Fraction(4, 1), Fraction(4, 1), Fraction(0, 1)) violates t_A+t_B<=a and the lemma is FALSE   def(H) = 14.0000 < RHS = 20.0000
+PASS WITNESS a=6: E={apex}, t=(Fraction(6, 1), Fraction(6, 1), Fraction(0, 1)) violates t_A+t_B<=a and the lemma is FALSE   def(H) = 27.0000 < RHS = 42.0000
+PASS WITNESS a=6: 3-point full-dimensional hull near the apex, side condition violated, lemma FALSE   t=(Fraction(5, 1), Fraction(5, 1), Fraction(0, 1))  def(H)=25.0000 < RHS=30.0000
+PASS BOUNDARY a=2: medial triangle, t=(1,1,1) with t_U+t_V = a exactly   def(H) = 3.000000  RHS = 3.000000  equal=True
+PASS BOUNDARY a=4: medial triangle, t=(2,2,2) with t_U+t_V = a exactly   def(H) = 9.000000  RHS = 9.000000  equal=True
+PASS BOUNDARY a=6: medial triangle, t=(3,3,3) with t_U+t_V = a exactly   def(H) = 18.000000  RHS = 18.000000  equal=True
+PASS AT/INSIDE BOUNDARY a=6, t=(2.9000)^3, sum of a pair = 5.8000 <= 6   def-RHS = 0.000000000
+PASS AT/INSIDE BOUNDARY a=6, t=(2.9900)^3, sum of a pair = 5.9800 <= 6   def-RHS = 0.000000000
+PASS AT/INSIDE BOUNDARY a=6, t=(2.9990)^3, sum of a pair = 5.9980 <= 6   def-RHS = 0.000000000
+PASS AT/INSIDE BOUNDARY a=6, t=(3.0000)^3, sum of a pair = 6.0000 <= 6   def-RHS = 0.000000000
+PASS JUST OUTSIDE a=6, t=(3.0010)^3, pair sum 6.0020 > 6 -> lemma still holds   def-RHS = 0.002994000
+PASS JUST OUTSIDE a=6, t=(3.0100)^3, pair sum 6.0200 > 6 -> lemma still holds   def-RHS = 0.029400000
+PASS JUST OUTSIDE a=6, t=(3.1000)^3, pair sum 6.2000 > 6 -> lemma still holds   def-RHS = 0.240000000
+PASS JUST OUTSIDE a=6, t=(3.3000)^3, pair sum 6.6000 > 6 -> lemma still holds   def-RHS = 0.360000000
+PASS JUST OUTSIDE a=6, t=(3.5000)^3, pair sum 7.0000 > 6 -> lemma still holds   def-RHS = 0.000000000
+PASS JUST OUTSIDE a=6, t=(4.0000)^3, pair sum 8.0000 > 6 -> lemma FAILS   def-RHS = -3.000000000
+PASS lattice T(3) minus apex at a=2: t=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)), sum(t^2+t)/2 = 1.0000, def(H) = 1.0000
+PASS lattice T(4) minus apex at a=3: t=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)), sum(t^2+t)/2 = 1.0000, def(H) = 1.0000
+PASS lattice T(5) minus apex at a=4: t=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)), sum(t^2+t)/2 = 1.0000, def(H) = 1.0000
+PASS lattice T(6) minus apex at a=5: t=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)), sum(t^2+t)/2 = 1.0000, def(H) = 1.0000
+PASS lattice T(7) minus apex at a=6: t=(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)), sum(t^2+t)/2 = 1.0000, def(H) = 1.0000
+
+25/25 checks passed
+
+=== check_barrier.py ===
+PASS m=3: half-plane cuts (888 cuts) -- max gain 0.000000, 132 exactly neutral
+PASS m=3: one/two/three corner cuts (287 cuts) -- max gain 0.000000, 54 exactly neutral
+PASS m=3: random convex hulls (273 cuts) -- max gain 0.000000, 51 exactly neutral
+PASS m=4: half-plane cuts (1168 cuts) -- max gain 0.000000, 150 exactly neutral
+PASS m=4: one/two/three corner cuts (609 cuts) -- max gain 0.000000, 105 exactly neutral
+PASS m=4: random convex hulls (262 cuts) -- max gain 0.000000, 61 exactly neutral
+PASS m=5: half-plane cuts (1448 cuts) -- max gain 0.000000, 168 exactly neutral
+PASS m=5: one/two/three corner cuts (1111 cuts) -- max gain 0.000000, 181 exactly neutral
+PASS m=5: random convex hulls (262 cuts) -- max gain 0.000000, 39 exactly neutral
+PASS m=6: half-plane cuts (1728 cuts) -- max gain 0.000000, 186 exactly neutral
+PASS m=6: one/two/three corner cuts (1833 cuts) -- max gain 0.000000, 287 exactly neutral
+PASS m=6: random convex hulls (254 cuts) -- max gain 0.000000, 39 exactly neutral
+PASS m=6: K={u+v>=(1)}, def(K) = 1.0000 = T(1) = 1, lattice points removed = 1, gain = 0.0000
+PASS m=6: K={u+v>=(2)}, def(K) = 3.0000 = T(2) = 3, lattice points removed = 3, gain = 0.0000
+PASS m=6: K={u+v>=(3)}, def(K) = 6.0000 = T(3) = 6, lattice points removed = 6, gain = 0.0000
+PASS m=6: K={u+v>=(4)}, def(K) = 10.0000 = T(4) = 10, lattice points removed = 10, gain = 0.0000
+PASS m=6: K={u+v>=(5)}, def(K) = 15.0000 = T(5) = 15, lattice points removed = 15, gain = 0.0000
+PASS NON-CONVEX K (two disjoint unit cells): Theorem 6 FAILS   def(K) = 23.0000 > |Lambda ∩ (T\K)| = 22   (B(K) = 5.0000 < |Lambda ∩ K| = 6)
+PASS a=5.9: Oler(a) = 27.2550, and the largest unit lattice inside T_a has 21 points -- the proof's identity |Lambda| = Oler(a) holds only at integer a
+PASS a=5.99: Oler(a) = 27.9250, and the largest unit lattice inside T_a has 21 points -- the proof's identity |Lambda| = Oler(a) holds only at integer a
+PASS a=6.0: Oler(a) = 28.0000, and the largest unit lattice inside T_a has 28 points -- the proof's identity |Lambda| = Oler(a) holds only at integer a
+
+21/21 checks passed
+
+=== check_cio_and_small.py ===
+PASS def(one corner cut of side t) = (t^2+t)/2 exactly, 160+ values of (a,t)
+PASS three-corner closed form A(K),M(K) correct on all 130 admissible triples   (failures 0) 
+PASS the side condition is necessary for the closed form: it over-states def(K) on 21 inadmissible triples   e.g. t=(Fraction(2, 1), Fraction(3, 1), Fraction(5, 1)) def=23.000 claimed=24.000
+PASS Oler(k-1) = Delta(k) exactly, k = 1..60
+PASS Corollary 4's contradiction arithmetic: a^2/2+3a/2 at a=k-1 equals Delta(k)-1
+PASS eps(a) = Oler(a) - (Delta(k)-1) < 1 strictly for every a < k-1 tested
+PASS threshold: sup_{t<j} gain > eps  <=>  m_open <= T(j)-1, for every eps in [0,1)
+PASS => Sec.9's necessary condition 'open corner triangle of side j holds >= T(j) points' is CORRECT (it needs eps(a) < 1, which holds for a < k-1)
+PASS closed variant (t = j exactly): gain = T(j) - m_closed >= 1 <=> m_closed <= T(j)-1  -- weaker, since m_closed >= m_open
+PASS Lambda(7) has Delta(7) = 28 points
+PASS Sec.7.2: all 28 single-point deletions of Lambda(7) admit a corner V and integer j with m_open <= T(j)-1, hence are excluded for a < 6   failures: []
+PASS the best available sup-gain over all 28 deletions is exactly 1 (never 2+)   observed [1]
+PASS at a = 6 exactly, eps = 1 and sup-gain = 1 is not attained, so CIO does NOT exclude them -- consistent with their existence
+PASS Prop 5 left inequality (t^2+t)/2 < T(floor(t)+1) at integer t
+PASS Prop 5 'Reading': the limit of gain as t -> j^- is 0 ONLY for j = 1; for j = 2,3,4 it is -1, -2, -3   limits {1: 0, 2: -1, 3: -2, 4: -3}  (N(2^-) = 4, not T(2) = 3)
+PASS Prop 5's headline (gain < 0 strictly, sup 0) survives that correction
+PASS m=1: exactly 1 cells, all equilateral of side a/m
+PASS m=2: exactly 4 cells, all equilateral of side a/m
+PASS m=3: exactly 9 cells, all equilateral of side a/m
+PASS m=4: exactly 16 cells, all equilateral of side a/m
+PASS m=5: exactly 25 cells, all equilateral of side a/m
+PASS m=6: exactly 36 cells, all equilateral of side a/m
+PASS m=7: exactly 49 cells, all equilateral of side a/m
+PASS covering: every one of ~10k exact grid points of T_6 lies in some closed cell (m = 2,3,4,5)   misses = 0
+PASS EO(3) witness: 5 points at a = 2, separation >= 1 (min^2 = 1)
+PASS EO(3) witness: 6 points at a = 2, separation >= 1 (min^2 = 1)
+PASS EO(3) lower bound: a < 2 => at most 2^2 = 4 points < 5, so a_5 = a_6 = 2
+PASS subdivision re-proves a_{Delta(k)} = k-1 exactly for k <= 4
+PASS Sec.4.1 identity (k-1)^2 - (Delta(k)-2) = (k-2)(k-3)/2; = 10 at k = 7
+PASS Oler in separation-2 units: d(n) > sqrt(8n+1) - 3 is the same bound as a > (-3+sqrt(8n+1))/2 with d = 2a
+PASS eo-exhaustion Sec.2 residual-gap table reproduced (d units)
+PASS eo-hull-deficit Sec.0.1(d) gap table reproduced (separation-1 units), and it is exactly half the eo-exhaustion table -- the two files agree
+PASS S(0) at k=3 is non-empty (the 5-point config above at a = 2)
+PASS S(eps) at k=3 is EMPTY for every eps > 0 (subdivision lemma), so ∩_{eps>0} S(eps) = ∅ != S(0) -- the stated justification is false as written
+
+34/34 checks passed
+
