@@ -2,9 +2,10 @@
 
 **Claim type: neither.** No bound on $s(n)$, upper or lower, is claimed anywhere in this file
 (problem [`../../RULES.md`](../../RULES.md) §1 asks for that sentence first). What is here is one
-proved-and-sharp counting lemma, one structural impossibility theorem, exact refutations of two
-hypotheses (including one that this attack itself proposed), and a precise statement of the window
-that Erdős–Oler $k = 7$ actually lives in. Nothing enters `results/`; nothing here is assumable,
+proved-and-sharp counting lemma, one structural impossibility theorem, exact witnesses refuting a
+published hypothesis at the configurations that matter, one conditional reduction, a precise
+statement of the window that Erdős–Oler $k = 7$ actually lives in — and a refutation of this
+attack's own opening expectation, which was that the boundary count would turn out false. Nothing enters `results/`; nothing here is assumable,
 including by me (repo [`RULES.md`](../../../../RULES.md) §3).
 
 - Code: [`experiments/packing-eo-boundary/`](../../../../experiments/packing-eo-boundary/) — one
@@ -26,7 +27,7 @@ including by me (repo [`RULES.md`](../../../../RULES.md) §3).
 | **T1** no function $\Phi$ of the boundary count can carry Oler's boundary term | `sketch` (proof below), with exact witnesses |
 | **W1** hypothesis H fails *at the extremal lattice*, not only on degenerate sets | `refuted` — exact witnesses, independent of T1 |
 | **Lemma C** corner clearance $\Rightarrow$ quantified Oler gain | `sketch` |
-| **C1** one corner clear of $E$ at reach $1$ $\Rightarrow$ the $k$ case follows | `sketch` — depends on Lemma C, so capped there |
+| **C1** one corner clear of $E$ at reach $1$ $\Rightarrow$ that configuration is excluded, for every $k$ | `sketch` — depends on Lemma C, so capped there |
 | **O1** the $k = 7$ open window is $a \in [\,(-3+\sqrt{217})/2,\ 6)$ | `sketch` (arithmetic on top of `cited` Oler) |
 | Oler's inequality itself | `cited` — Oler 1961, see [`../oler-lower-bound/`](../oler-lower-bound/) |
 
@@ -84,6 +85,13 @@ actually usable. The answer is not the one the brief anticipated.
 That is a more complete kill than "step (ii) is unjustified" would have been: it closes the whole
 family of repairs rather than one member of it, so nobody has to come back and try
 $\Phi(b) = b/2 + c$, or $b$-on-$\partial T$, or a cleverer floor.
+
+**The one thing this attack leaves pointing forward** is §6: replace the *count* of boundary points
+by the *clearance* at the corners, which is the same information measured instead of counted, and
+is stable under exactly the perturbation that destroys the count. That yields Corollary C1 — if any
+one corner of $T$ has no point of $E$ within distance $1$, then $T(k)-1$ points cannot fit with
+$a < k-1$, for every $k$, with a threshold that does not move with $k$. It is a reduction, not a
+proof of anything, and the configurations it removes are not the hard ones.
 
 ## 2. Where Erdős–Oler $k = 7$ actually lives — `sketch`
 
