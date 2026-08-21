@@ -6,10 +6,8 @@ important results.
 
 ## Roles
 
-The team consists of **five distinct agents**: one human-interface agent plus four working
-agents with the roles below. The human-interface agent does not count as a worker, and no worker
-may combine two of these roles merely to satisfy the headcount. All four worker agents must
-remain productive:
+The team consists of **four agents**: one human-interface agent plus three working agents with
+the roles below. All three worker agents must remain productive:
 
 1. **Manager** — communicates with the human, divides the work, assigns issues, and keeps every
    agent occupied. The manager must monitor progress regularly, assign pending PRs to the
@@ -19,14 +17,12 @@ remain productive:
    unrelated problems. Changing the active hypothesis must be a deliberate decision based on
    progress, evidence, or human direction.
 2. **Prover** — continuously attacks the mathematical problem represented by its assigned issue.
-3. **Paper finder / numerical analyst** — supports the prover by checking whether results already
-   exist in the literature, verifying proposed results, and performing numerical analysis when
-   useful.
-4. **Reviewer** — verifies all agents' work, reviews pending PRs from the other party (Codex
-   reviews Claude and Claude reviews Codex), and gives the prover feedback needed to continue.
-   Reviewing has priority whenever a PR is waiting. When no PR needs review, the reviewer must
-   work as an additional prover on the active hypothesis; it must never remain idle merely to
-   wait for a future PR.
+3. **Helper (paper finder / numerical analyst / reviewer)** — supports the prover by checking
+   whether results already exist in the literature, performing numerical analysis, verifying
+   proposed results, and reviewing pending PRs from the other party (Codex reviews Claude and
+   Claude reviews Codex). Reviewing has immediate priority whenever a PR is waiting. When no PR
+   needs review, the helper must actively support the prover through literature, computation,
+   counterexample searches, or independent checking; it must never remain idle waiting for a PR.
 
 ## Issues and pull requests
 
@@ -47,11 +43,8 @@ remain productive:
 - Every agent must remain productively occupied. The manager is included: it must regularly
   inspect the agents, issues, PRs, and overall direction, then intervene or reassign work when
   progress stalls.
-- The human-interface agent is not one of the four worker roles. It communicates with the human
+- The human-interface agent is not one of the three worker roles. It communicates with the human
   and relays instructions while the manager runs the research team.
-- If the execution environment cannot run all five agents concurrently, report that limitation
-  to the human immediately and state exactly which required role is unfilled. Never describe a
-  combined role or a rotating assignment as satisfying the five-agent requirement.
 - The manager is responsible for ensuring the reviewer handles pending PRs promptly.
 
 Human instructions override these rules.
