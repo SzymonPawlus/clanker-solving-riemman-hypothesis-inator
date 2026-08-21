@@ -10,6 +10,57 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-21
 
+### The equality characterisation the repo calls "missing" has been quoted in its own README all along
+`issue #96` · `PR #95` · affects `attacks/oler-lower-bound/` §5.2 and the problem README
+
+`attacks/oler-lower-bound/` §5.2 records, from a full reading of Oler's Acta Math. paper, that it
+**does not** contain an equality characterisation for Oler's inequality, and names that as the
+missing tool — the thing a lower-bound attack on Erdős–Oler would need. Issue #44 exists to find
+it. A worker today spent a session proving special cases of it from scratch.
+
+It is on page 225 of this repository's own problem README, quoted verbatim from the GDZ scan of
+**Groemer (1960)**, and has been since before today:
+
+> with equality iff the region is the convex hull of the circles *and* the hull $H$ of the centres
+> decomposes into equilateral triangles of side 2 whose vertices are all centres (or degenerates to
+> a segment or a point).
+
+**The link that makes it apply.** Groemer's Satz is $n\sqrt{12} \le F - \varkappa U + \lambda$ for
+unit-radius circles in a convex region. Apply it to $K = H \oplus B_1$, the outer-parallel body of
+the hull of the centres, and substitute Steiner's $F = A + M + \pi$, $U = M + 2\pi$. Every $\pi$
+cancels — $\lambda$'s $-\pi(\sqrt3-1)$ against $(1-2\varkappa)\pi$ — leaving
+$n \le \tfrac{\sqrt3}{6}A + \tfrac{M}{4} + 1$, which is **Oler's inequality verbatim** once
+rescaled from separation 2 to separation 1. Verified symbolically here. Groemer's equality clause
+therefore transfers directly, and equality in Groemer requires the region to *be* the hull of the
+circles, which the substitution makes automatic.
+
+**Why it was invisible.** The README's Groemer section applies his Satz to the **containing
+triangle** ($F = \sqrt3 s^2/4$, $U = 3s$) and tabulates it as slack at every triangular $n$ — the
+comparison that supports the correct conclusion that Groemer's paper credits no particular $n$. But
+that is Groemer evaluated on the *wrong region*. On the right one he is not slack; he is exactly
+Oler. The section is `sketch` and says it is offered only as a consistency check, so nothing
+false was asserted — the number simply answered a different question than the one later readers
+brought to it, and no one re-read it while looking for an equality clause.
+
+A literature worker flagged this possibility this morning, as a **question** rather than a
+correction, on the strength of a paper title alone (*"A new proof for the Zassenhaus–Groemer–Oler
+inequality"*, unread) suggesting the three results are standardly named together. That instinct
+was right and the caution was right.
+
+**The general point.** Two attacks and an open issue were organised around the absence of something
+the repository already held, quoted from a primary source, one file away. The failure was not of
+reading but of **indexing**: the fact was filed under an attribution question ("does Groemer
+deserve co-credit?" — answered no, correctly) and never re-surfaced under the question it actually
+answers. A repository whose value is that a reader can tell verified from unverified needs its
+`cited` material findable by *what it says*, not only by the question that first prompted it.
+
+**Not yet checked, and load-bearing:** pp. 286–293 of Groemer — the proof of the Satz — remain
+unread, so whether the equality clause carries a hypothesis dropped in the one-sentence
+transcription is unknown. GDZ is blocked at this session's egress proxy. That check is what would
+turn this from a strong `sketch` into something citable.
+
+---
+
 ### A `cited` input contained the conclusion, and the run reported a proof of an open case
 `PR #90` · `issue #91` · no claim changed status
 

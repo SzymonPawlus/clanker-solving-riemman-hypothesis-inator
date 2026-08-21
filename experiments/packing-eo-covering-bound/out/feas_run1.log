@@ -1,0 +1,5 @@
+a=5.99 n=23: best min dist 1.002000000  [FEASIBLE(margin)] after 1 tries
+a=5.99 n=24: best min dist 0.653271336  [no] after 41 tries
+a=5.99 n=25: best min dist 0.933807666  [no] after 41 tries
+a=5.99 n=26: best min dist 0.848505722  [no] after 41 tries
+a=5.99 n=27: best min dist 0.704715468  [no] after 41 tries
