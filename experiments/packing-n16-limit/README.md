@@ -16,7 +16,7 @@ largest $a_{16}$ any covering argument of that shape could ever certify.
 | `outer.py` | the structure lemma → the bound on $A_{15}$, exact rational bisection |
 
 ```sh
-sh run.sh
+sh run.sh          # ~7 min cold, ~35 s with out/f_grid.json cached
 ```
 
 No value of $s(n)$, $d(n)$ or $a_n$ from the literature or from `results/` is an input anywhere

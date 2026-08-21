@@ -42,8 +42,11 @@ constructors keep going with reason to hope.**
 > could cite moves that wall only to $4.7258$, and adding a per-piece corner cap on top of it only
 > to $\approx 4.67$. **All three are above $4.6247636$.**
 
-This is proved, not estimated: §4 exhibits explicit admissible pieces realising the budget, so the
-inequality is *satisfiable* at those $a$ and no contradiction can be derived from it. K1 fired.
+This is proved, not estimated. Lemma S is an inequality a covering must satisfy; it refutes a
+covering only where its right-hand side drops below $\operatorname{area}(T_a)$. §3 exhibits an
+**explicit** admissible set proving $f(\ell)\ge f_{\mathrm{lo}}(\ell)$, so the right-hand side is
+at least $3\cdot\frac\pi6+12f_{\mathrm{lo}}\bigl(\frac{a-2}{4}\bigr)$ whatever the true $f$ is,
+and below $4.836854$ that already exceeds the area. K1 fired.
 
 ### Why, in one line
 
@@ -55,8 +58,10 @@ $$\frac{\operatorname{area}(T_a)}{15}=\frac{\sqrt3\,a^2}{60}=0.6174310\ldots
 the area of a **regular hexagon of diameter 1** — which *tiles the plane with no waste at all*.
 Beating the ceiling therefore requires proving that 15 diameter-$<1$ pieces cannot reach 95% of
 perfect hexagonal tiling efficiency. Per-piece area caps cannot see that: the sharp per-piece cap
-is $\pi/4$ (a disk of diameter 1 fits in the interior and attains it), $15\cdot\pi/4 = 11.78$, and
-the boundary corrections proved below recover only 21% of the way to $9.2615$.
+is $\pi/4$ (a disk of diameter 1 fits in the interior and attains it), giving the trivial
+$a\le5.216032$. Measured against the distance from that to the ceiling, the boundary corrections
+proved below close **51%**, the lemma's own ceiling closes **64%**, and lending the coverer both
+unverifiable citations of §5 closes **83%** — the last 17% is not reachable by any of this.
 
 ---
 
@@ -139,8 +144,12 @@ $w(y)=\beta(y)-\alpha(y)$, and $H=\max\{y\in S\}$.
    $w(y)\le 2\sqrt{1-y^2}-\ell$; also $H\le\sqrt{1-\ell^2/4}$ (the apex is within 1 of both $A$ and
    $B$). Integrating,
    $$f(\ell)\ \le\ \frac\pi2-\arcsin\frac\ell2-\frac{\ell}{2}\sqrt{1-\frac{\ell^2}4}.$$
-   At $\ell=1$ this is **exact**: the admissible region is then the Reuleaux triangle on $AB$ and
-   $f(1)=\tfrac{\pi-\sqrt3}{2}=0.6141848\ldots$
+   At $\ell=1$ this is **exact**: the admissible region is then
+   $B(A,1)\cap B(B,1)\cap\{y\ge0\}$, the circular triangle with two unit arcs over the straight
+   side $AB$ — *not* a Reuleaux triangle, which bulges on all three sides and has the larger area
+   $\tfrac{\pi-\sqrt3}{2}=0.70477$. Its diameter is exactly 1, so it is admissible, and
+   $$f(1)=\frac{\sqrt3}{4}+2\left(\frac\pi6-\frac{\sqrt3}{4}\right)=\frac\pi3-\frac{\sqrt3}{4}
+   =0.6141848\ldots$$
 3. **Cross-slice inequality (a):** for $y,y'\in[0,H]$ the four cross distances give
    $\beta(y)-\alpha(y')\le\sqrt{1-(y-y')^2}$ and symmetrically, so
    $$w(y)+w(y')\ \le\ 2\sqrt{1-(y-y')^2}.$$
@@ -248,7 +257,7 @@ there only to show that even this extra assumption does not reach the ceiling.
   would have been a bug in *my* argument, and the run would have failed rather than reported it.
   No lower bound on $A_{15}$ was derived at all, so the packing-refutation branch never arose.
 - **K4 (citation dependence): fired, and is why C1/C2/X2/X3 are labelled conditional.**
-- **K5 (budget): held** — the whole pipeline is about 7 minutes.
+- **K5 (budget): held** — the whole pipeline is about 7 minutes; the session was well inside the hour.
 
 ---
 
@@ -274,7 +283,8 @@ there only to show that even this extra assumption does not reach the ceiling.
 sh experiments/packing-n16-limit/run.sh
 ```
 
-~7 minutes, no network, no seeds outside the explicitly `numerical` side-computations. LPs are
+~7 minutes cold (~35 s once `out/f_grid.json` is cached), no network, no seeds outside the
+explicitly `numerical` side-computations. LPs are
 solved with scipy but every reported LP value is re-derived from an exact rational dual
 certificate; $\pi$ and $\sqrt3$ enter only as certified enclosures, rounded against the conclusion
 ($\operatorname{area}(T_a)$ from below, the covering budget from above).

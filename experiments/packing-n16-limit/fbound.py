@@ -125,7 +125,8 @@ def analytic_bound(ell):
         f(l) <= int_0^h (2 sqrt(1-y^2) - l) dy = pi/2 - arcsin(l/2) - l*h/2,
         h = sqrt(1 - l^2/4).
 
-    Exact at l = 1 (the half-lens = Reuleaux triangle, area (pi - sqrt 3)/2).
+    Exact at l = 1: the admissible region is then B(A,1) cap B(B,1) cap {y>=0},
+    of area pi/3 - sqrt(3)/4 = 0.6141848...
     """
     ell = F(ell)
     return PI_HI / 2 - asin_lo(ell / 2) - ell * sqrt_lo(1 - ell * ell / 4) / 2

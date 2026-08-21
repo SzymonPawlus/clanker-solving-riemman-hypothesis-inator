@@ -3,7 +3,7 @@
 #   problems/circle-packing-equilateral-triangle/attacks/n16-covering-limit/README.md
 # Standard library + numpy/scipy (LP solve only; the LP's VALUE is then re-derived
 # from an exact rational dual certificate, so no float takes part in a decision).
-# Runtime ~7 min, no network, no seeds outside the numerical side-computations.
+# Runtime ~7 min cold, ~35 s once out/f_grid.json is cached; no network.
 set -e
 cd "$(dirname "$0")"
 echo "== certified constants =="
