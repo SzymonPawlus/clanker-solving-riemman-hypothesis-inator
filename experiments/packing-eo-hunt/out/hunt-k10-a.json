@@ -12,22 +12,22 @@
     "scipy": "1.17.1"
   },
   "aborted_for_exact_gate": false,
-  "solves": 177,
+  "solves": 188,
   "best_m": 0.11111111111111086,
   "best_a": 9.000000000000021,
   "threshold_m": 0.1111111111111111,
   "threshold_a": 9.0,
   "best_minus_threshold": -2.498001805406602e-16,
-  "hits_threshold": 155,
+  "hits_threshold": 165,
   "n_over_threshold": 0,
   "runner_up_m": 0.10968056967655367,
   "runner_up_a": 9.117385175414249,
   "runner_up_gap": 0.001430541434557439,
-  "distinct_local_optima": 22,
+  "distinct_local_optima": 23,
   "top_local_optima": [
     {
       "m": 0.111111111,
-      "count": 155
+      "count": 165
     },
     {
       "m": 0.10968057,
@@ -39,6 +39,10 @@
     },
     {
       "m": 0.108650552,
+      "count": 1
+    },
+    {
+      "m": 0.105814776,
       "count": 1
     },
     {
@@ -116,29 +120,29 @@
   ],
   "by_family": {
     "uniform": {
-      "solves": 35,
+      "solves": 37,
       "best": 0.11111111111111073,
-      "hits": 25
+      "hits": 27
     },
     "lattice_defect": {
-      "solves": 36,
+      "solves": 39,
       "best": 0.11111111111111086,
-      "hits": 35
+      "hits": 38
     },
     "rotated_lattice": {
-      "solves": 36,
+      "solves": 38,
       "best": 0.11111111111111055,
-      "hits": 32
+      "hits": 33
     },
     "rows": {
-      "solves": 35,
+      "solves": 37,
       "best": 0.11111111111111073,
-      "hits": 32
+      "hits": 34
     },
     "corner_dense": {
-      "solves": 35,
+      "solves": 37,
       "best": 0.11111111111111069,
-      "hits": 31
+      "hits": 33
     }
   },
   "best_points": [
