@@ -1,0 +1,20 @@
+{
+ "n": 1,
+ "claim": "construction",
+ "_claim_note": "UPPER BOUND ONLY: this is an explicit feasible packing witnessing s(n) <= side_length. It is NOT an optimality proof and carries no lower-bound content whatsoever.",
+ "side_length": "2*sqrt(3)",
+ "point_triangle_side": "0",
+ "coordinates": [
+  [
+   "0",
+   "0"
+  ]
+ ],
+ "coordinate_type": "algebraic",
+ "tight": true,
+ "construction": "full triangular lattice T(1) of side 0",
+ "verified_by": "experiments/packing-exact-algebraic/exact_check.py (independent exact-arithmetic checker, issue #74)",
+ "status": "sketch",
+ "matches_published_upper_bound": "2*sqrt(3)",
+ "beats_record": "no - reproduces the value already tabulated in this problem's README; upper bound only, no optimality claim"
+}

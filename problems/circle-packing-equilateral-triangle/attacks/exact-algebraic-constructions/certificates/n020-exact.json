@@ -1,0 +1,96 @@
+{
+ "n": 20,
+ "claim": "construction",
+ "_claim_note": "UPPER BOUND ONLY: this is an explicit feasible packing witnessing s(n) <= side_length. It is NOT an optimality proof and carries no lower-bound content whatsoever.",
+ "side_length": "10 + 2*sqrt(3)",
+ "point_triangle_side": "10",
+ "coordinates": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "2",
+   "0"
+  ],
+  [
+   "4",
+   "0"
+  ],
+  [
+   "6",
+   "0"
+  ],
+  [
+   "8",
+   "0"
+  ],
+  [
+   "10",
+   "0"
+  ],
+  [
+   "1",
+   "sqrt(3)"
+  ],
+  [
+   "3",
+   "sqrt(3)"
+  ],
+  [
+   "5",
+   "sqrt(3)"
+  ],
+  [
+   "7",
+   "sqrt(3)"
+  ],
+  [
+   "9",
+   "sqrt(3)"
+  ],
+  [
+   "2",
+   "2*sqrt(3)"
+  ],
+  [
+   "4",
+   "2*sqrt(3)"
+  ],
+  [
+   "6",
+   "2*sqrt(3)"
+  ],
+  [
+   "8",
+   "2*sqrt(3)"
+  ],
+  [
+   "3",
+   "3*sqrt(3)"
+  ],
+  [
+   "5",
+   "3*sqrt(3)"
+  ],
+  [
+   "7",
+   "3*sqrt(3)"
+  ],
+  [
+   "4",
+   "4*sqrt(3)"
+  ],
+  [
+   "6",
+   "4*sqrt(3)"
+  ]
+ ],
+ "coordinate_type": "algebraic",
+ "tight": true,
+ "construction": "triangular lattice T(6) of side 10 with the apex point removed",
+ "verified_by": "experiments/packing-exact-algebraic/exact_check.py (independent exact-arithmetic checker, issue #74)",
+ "status": "sketch",
+ "matches_published_upper_bound": "10 + 2*sqrt(3)",
+ "beats_record": "no - reproduces the value already tabulated in this problem's README; upper bound only, no optimality claim"
+}
