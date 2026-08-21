@@ -270,8 +270,32 @@ strong as $3\lfloor a\rfloor$ and only $\lfloor 3a \rfloor$ exists; substituting
 the (false) H recovers nothing better than a floored form of Oler. Both steps fail, independently.
 Per issue #78's kill-criterion and `RULES.md` §6.3, I stop here rather than re-scoping.
 
-(The unavailability of step (ii) was pointed out by an independent checker and re-derived here.
-Note it is a *same-family* check and grants no status — `RULES.md` §5.)
+**Correction to the paragraph above, from a worker who attacked step (ii) directly.** Saying step
+(ii) is "unavailable" conflates two different counts, and the distinction is the actual reason the
+route dies:
+
+- **Points on $\partial T$** (the triangle's own boundary). Here $3\lfloor a\rfloor$ **is** a true
+  bound, and sharp for every $a \ge 1$ — proved via a per-side count plus the fact that a $60°$
+  corner forces $\max(x,y) \ge 1$ on its two legs, with an exact attaining family in
+  $\mathbb{Q}(\sqrt3)$. So the step is not false and not unavailable.
+- **Points on $\partial\operatorname{conv}(E)$** (the count $b$ that step (i) actually consumes).
+  Here $\lfloor 3a \rfloor$ is the best available, as above.
+
+The route needed $3\lfloor a\rfloor$ *for the hull count*, and what is provable at that strength is
+about the other set. It dies on the mismatch between the two readings — not because nothing is
+provable. Recording the difference because a future attack that inherits "step (ii) is
+unavailable" would go looking in the wrong place.
+
+**And the stronger result that closes the whole family.** That worker then showed there is **no
+function $\Phi$ whatsoever** with $n \le \frac{2}{\sqrt3}A(\operatorname{conv}E) + \Phi(b) + 1$:
+scale the lattice $T(k)$ by $1+\delta$ and push every boundary point inward by $\varepsilon$, and
+$b$ collapses to $3$ while $n - \frac{2}{\sqrt3}A - 1$ grows like $\frac{3k-3}{2}$. So replacing
+Oler's boundary *length* by any function of a boundary *count* is dead in general, not merely for
+the particular H of §2 — and the same family refutes H **at the triangular lattice itself** for
+$k = 3..7$, which kills the natural "H is fine for non-degenerate configurations" repair that §4's
+flat-arc witnesses leave open. See [`../eo-boundary-counting/`](../eo-boundary-counting/).
+
+(All of this is *same-family* checking and grants no status — `RULES.md` §5.)
 
 ## 5. What the route was aiming at — a bare conjecture, not a target
 
