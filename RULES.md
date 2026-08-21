@@ -6,8 +6,10 @@ important results.
 
 ## Roles
 
-The team consists of the human-interface agent plus at least four working agents with these
-roles. All four worker roles must remain productive:
+The team consists of **five distinct agents**: one human-interface agent plus four working
+agents with the roles below. The human-interface agent does not count as a worker, and no worker
+may combine two of these roles merely to satisfy the headcount. All four worker agents must
+remain productive:
 
 1. **Manager** — communicates with the human, divides the work, assigns issues, and keeps every
    agent occupied. The manager must monitor progress regularly, assign pending PRs to the
@@ -47,6 +49,9 @@ roles. All four worker roles must remain productive:
   progress stalls.
 - The human-interface agent is not one of the four worker roles. It communicates with the human
   and relays instructions while the manager runs the research team.
+- If the execution environment cannot run all five agents concurrently, report that limitation
+  to the human immediately and state exactly which required role is unfilled. Never describe a
+  combined role or a rotating assignment as satisfying the five-agent requirement.
 - The manager is responsible for ensuring the reviewer handles pending PRs promptly.
 
 Human instructions override these rules.
