@@ -52,13 +52,21 @@ loudly in one direction or the other. It passes.
 
 Measured (each `proved` row is a real finite exhaustion; every `timeout` proves nothing):
 
-| $k$ | $n$ | Oler alone certifies $\rho$ | exhaustion proved | $\rho$ |
-|---|---|---|---|---|
-| 3 | 5 | 0.851 | every $d<4$, uniformly — case settled | 1 |
-| 4 | 9 | 0.924 | $d > 5.9$ | 0.983 |
-| 5 | 14 | 0.954 | $d > 7.95$ | 0.994 |
-| 6 | 20 | 0.969 | (see experiment `out/`) | |
-| 7 | 27 | 0.978 | (see experiment `out/`) | |
+| $k$ | $n$ | Oler alone certifies $\rho$ | exhaustion proved | $\rho$ | beats Oler? |
+|---|---|---|---|---|---|
+| 3 | 5 | 0.851 | every $d<4$, uniformly — case settled | 1 | yes |
+| 4 | 9 | 0.924 | $d > 5.9$ (684 k nodes, 12 s) | 0.983 | yes |
+| 5 | 14 | 0.954 | $d > 7.99$ (4.2 M nodes, 98 s) | 0.99875 | yes |
+| 6 | 20 | 0.969 | nothing — timeout at $d = 9.7$, 8.4 M nodes, 400 s | — | **no** |
+| 7 | 27 | 0.978 | nothing — timeout at $d = 11.74$, 13.2 M nodes, 400 s | — | **no** |
+
+**The wall sits between $k=5$ and $k=6$.** Below it the exhaustion is strictly stronger than
+Oler's free closed form; at $k=6,7$ Oler is strictly stronger than everything the exhaustion
+produced, and those rows prove nothing. Seven attempts at $k=6,7$ spanning $d = 9.7$–$9.75$ and
+$11.74$–$11.75$, up to 400 s and $1.3\times10^7$ nodes each, all timed out with a non-empty
+frontier. Total compute for the session: about 55 minutes wall on a 4-core box, roughly 2.5
+CPU-hours; every run was time-limited in advance and reaped, no background job outlived the
+session.
 
 Kill-criterion, written before launching: *if $k=5$ cannot beat $\rho_{\text{Oler}}$ in 7 minutes
 single-core, stop escalating.* It did not fire — $k=5$ cleared it in 40 s.

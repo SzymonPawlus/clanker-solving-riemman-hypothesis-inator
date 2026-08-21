@@ -42,3 +42,24 @@ Explicitly forbidden to myself (`RULES.md` §6.3): re-scoping after any of these
 See `attacks/eo-boundary-counting/README.md`. Short version: step (ii) is **true** (proved in the
 ∂T reading, sharp; proved up to ⌊3a⌋ in the hull reading, conjectured sharp there). KC-2 and KC-3
 both fired. The route dies at the composition of its two steps, not at step (ii).
+
+## Coordination traffic
+
+Two messages arrived mid-flight from the manager.
+
+1. A table of "true side-length gaps" (0.628 at k=3 → 0.272 at k=7), together with the claim that
+   another worker's 0.298 → 0.135 figures were a separation-1/separation-2 slip. I had already
+   derived 0.298/0.135 independently from Oler's inequality, so I reconciled the two rather than
+   adopting either: the supplied figures are the root of RHS(a) = T(k)−2 instead of
+   RHS(a) = T(k)−1, i.e. they drop the integrality of n. Recorded in the attack README §2 as
+   provenance, not silently overwritten.
+2. The manager then retracted the table and reached the same diagnosis. Nothing of mine consumed
+   the withdrawn numbers. The README note now says so explicitly.
+
+Lesson for me, not for them: the reason this cost nothing is that §2 was computed from the `cited`
+inequality directly rather than from a number someone sent. That is the only defence available
+against an upstream error, and it is cheap.
+
+The manager's standing shape constraint — "any mechanism whose yield scales with k is wrong; you
+need a k-independent constant ≥ 1; the structure with that signature is the three corners" — is
+what produced Corollary C1, which is the one positive thing in this attack.

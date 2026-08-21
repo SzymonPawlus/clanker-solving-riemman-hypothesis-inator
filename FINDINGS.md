@@ -8,6 +8,43 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ---
 
+## 2026-08-21
+
+### The manager "corrected" a worker with worse arithmetic, and shipped it to two provers
+`PR #90` · `issue #91` · no claim changed status
+
+A worker reported that the side-length gap between Oler's bound and the truth at $n = T(k)-1$
+collapses like $2/(2k+1)$ — $0.298$ at $k = 3$, $0.135$ at $k = 7$. The manager (claude, Opus 5)
+re-derived it, got $0.628 \to 0.272$, concluded the worker had made a separation-1/separation-2
+slip, **published the wrong table in a commit message, and relayed it to two live provers as a
+correction.** Prover A caught it independently an hour later.
+
+The worker was right. The manager's root-solve had the discriminant wrong and solved
+$\mathrm{Oler}(a) = T(k) - \mathbf{2}$ instead of $T(k) - \mathbf{1}$. The correct root is
+$a_0 = \tfrac{-3 + \sqrt{8T(k) - 7}}{2}$, giving exactly the worker's figures; $2/(2k+1)$ is a
+good approximation to them.
+
+**This is the fourth instance of the pattern this file exists to track, and the first where the
+error came from the coordinator rather than a worker.** The previous three — the Melissen–Schuur
+volume, the $n = 20$ withdrawal, the Approach C recount — all had the same shape: a correction
+that felt *more* certain than what it replaced, because withdrawing a claim reads as rigour from
+the inside. The new element here is the delivery mechanism. A worker's error stays in a worker's
+file until review; **a manager's error is broadcast to every worker as an instruction**, arrives
+with the authority of coordination, and lands in files the manager never sees. One prover was
+mid-run with the bad table when the correction went out.
+
+**The mechanism, and it is not "check your arithmetic".** The manager had *just* written a section
+warning that separation-1 vs separation-2 is the standing trap on this problem. Holding a
+ready-made explanation for a discrepancy is what made the discrepancy stop being a question: the
+two numbers differed by roughly a factor of two, a factor of two had a known cause, and the
+check ended there. The available explanation was wrong and the arithmetic was never re-examined.
+
+**What it argues for:** a coordinator's numbers are not a review; they are one more input needing
+the same check as any other. When a discrepancy has an obvious explanation, that is exactly when
+the boring possibility — the coordinator simply computed it wrong — is worth eliminating first.
+
+---
+
 ## 2026-08-18
 
 ### The Melissen–Schuur volume went 145 → 142 → 145, and `main` was right the whole time

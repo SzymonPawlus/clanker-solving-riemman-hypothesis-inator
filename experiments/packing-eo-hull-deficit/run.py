@@ -94,6 +94,36 @@ say()
 
 # ===========================================================================
 say("-" * 78)
+say("0.  THE TARGET, exactly:  Oler's shortfall at n = T(k)-1 is exactly ONE POINT")
+say("-" * 78)
+say()
+say("  Oler(m) = m^2/2 + 3m/2 + 1 = T(m+1) for every integer m, so at a = k-1 Oler")
+say("  permits T(k) points and Erdos-Oler needs T(k)-2 whenever a < k-1: a gain of 1,")
+say("  independent of k.  The side length at which Oler stops forbidding T(k)-1 points")
+say("  is the root a0 of a^2/2 + 3a/2 + 1 = T(k)-1, i.e. a0 = (-3 + sqrt(8T(k)-7))/2.")
+say()
+say(f"{'k':>3} {'T(k)-1':>7} {'8T(k)-7':>8} {'a0':>12} {'k-1':>5} {'gap (side)':>11} {'Oler(k-1)':>10}")
+ident_ok = True
+for k in range(3, 41):
+    Tk = tri_num(k)
+    disc = 8 * Tk - 7
+    a0 = (-3 + F(disc).__float__() ** 0.5) / 2
+    # exact checks, integers only: a0 solves a^2+3a+2 = 2(T(k)-1), and a0 < k-1
+    ident_ok &= (tri_num(k) == (k - 1) ** 2 * F(1, 2) + (k - 1) * F(3, 2) + 1)
+    ident_ok &= (disc < (2 * k + 1) ** 2)          # <=> a0 < k-1, exactly
+    if k <= 8 or k == 40:
+        say(f"{k:>3} {Tk - 1:>7} {disc:>8} {a0:>12.6f} {k-1:>5} {k - 1 - a0:>11.5f} "
+            f"{float((k-1)**2*F(1,2) + (k-1)*F(3,2) + 1):>10.1f}")
+say()
+say(f"  Oler(k-1) = T(k) exactly, and a0 < k-1 exactly (8T(k)-7 = 4k^2+4k-7 < (2k+1)^2),")
+say(f"  for every k from 3 to 40: {check('target identity', ident_ok)}")
+say("  Measured in points the shortfall is 1 at every k; measured in side length it")
+say("  collapses (0.29844 at k=3, 0.13454 at k=7) -- which is why points are the unit here.")
+say("  (The a0 column is a float for display only; both checks above are integer-exact.)")
+say()
+
+# ===========================================================================
+say("-" * 78)
 say("1.  CORNER-DEFICIT LEMMA on every exact certificate in the repo")
 say("-" * 78)
 say()
@@ -455,13 +485,15 @@ for n, desc, a, pts in certs:
 # ===========================================================================
 say()
 say("-" * 78)
-say("6.  THE WITNESS: the corner route buys ZERO unconditionally")
+say("6.  THE WITNESS: def(H) -- the assigned quantity -- buys ZERO unconditionally")
 say("-" * 78)
 say()
 say("  E := lattice T(7) minus ONE INTERIOR point, a = 6, n = 27 -- exactly the")
 say("  Erdos-Oler count at the first open case, at the extremal side length.")
 say("  All three corners of T are occupied, so every t_V = 0 and def(H) = 0: the whole")
-say("  slack (= 1) sits in Oler's inequality on the hull, where this route cannot see it.")
+say("  slack (= 1) sits in Oler's inequality on the hull, where def(H) cannot see it.")
+say("  (CIO, section 5, IS strong enough to exclude this configuration for a < 6 -- the two")
+say("   must not be conflated.  What kills CIO is section 3, not this witness.)")
 say()
 a6b = Alg(6)
 LAM7 = lattice(7)
@@ -483,8 +515,7 @@ say(f"  def(H) enclosure = {d27}")
 say(f"  Oler(6) - n = {oler_triangle_bound(a6b).float() - 27:.6f}  = stage-1 slack, all of it")
 say(f"  {check('witness', CD27 == Alg(0) and hull_is_T and d27.lo <= 0 <= d27.hi)}")
 say()
-say("  Consequence: no inequality of the form  def(H) >= f(a, n) > 0  can hold, and no")
-say("  corner-cut bound can supply the missing unit for n = T(k)-1 in general.  Whatever")
+say("  Consequence: no inequality of the form  def(H) >= f(a, n) > 0  can hold.  Whatever")
 say("  proves Erdos-Oler must extract the unit from Oler's inequality ON THE HULL")
 say("  (stage 1), for configurations whose hull is the whole triangle.")
 

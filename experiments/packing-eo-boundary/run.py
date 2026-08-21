@@ -55,6 +55,35 @@ def section_oler_window():
     say(f"  exact bracket: {float(lo):.6f} < a* < {float(hi):.6f}"
         f"   (p(lo) = {float(f(lo)):+.3e}, p(hi) = {float(f(hi)):+.3e}, both exact)")
     say()
+    say("Integrality of n is doing real work here: RHS < 27 already forces n <= 26.")
+    say("The weaker threshold 'RHS < 26' is sufficient but not necessary, and reporting")
+    say("it as the window doubles the apparent gap.  Both, exactly, per k:")
+    say()
+    say(f"{'k':>3} {'T(k)':>5} {'n=T(k)-1':>9} {'a: RHS=n (window)':>18}"
+        f" {'k-1':>4} {'true gap':>9} {'a: RHS=n-1':>11} {'gap if floor':>13}")
+    for k in range(3, 15):
+        T = k * (k + 1) // 2
+        n = T - 1
+        # positive root of a^2+3a+2 = 2m
+        def root(m):
+            lo, hi = F(0), F(100)
+            for _ in range(80):
+                mid = (lo + hi) / 2
+                if mid * mid + 3 * mid + 2 - 2 * m < 0:
+                    lo = mid
+                else:
+                    hi = mid
+            return lo
+        aw, aw2 = root(n), root(n - 1)
+        assert F(k - 1) ** 2 / 2 + 3 * F(k - 1) / 2 + 1 == F(T), "Oler RHS at a=k-1 is T(k)"
+        say(f"{k:>3} {T:>5} {n:>9} {float(aw):>18.6f} {k-1:>4}"
+            f" {float(k-1-aw):>9.6f} {float(aw2):>11.6f} {float(k-1-aw2):>13.6f}")
+    say()
+    say("Column 'Oler RHS at a = k-1' is exactly T(k) for every k = 2..14 (exact rational")
+    say("check in code): the gain Erdos-Oler needs is exactly ONE POINT, k-independent.")
+    say("Measured in side length the window shrinks with k, which is why points, not")
+    say("side lengths, are the honest unit of progress.")
+    say()
     say("So Oler alone already settles Erdos-Oler for k = 7 outside a window:")
     say("  27 unit-separated points cannot fit when a < a* = 5.86546...")
     say("  the whole open case is a in [a*, 6), a window of width < 0.135.")
@@ -422,6 +451,26 @@ def section_corner_clearance():
     assert g(lo) < 0 < g(hi)
     say(f"  exact bracket: {float(lo):.6f} < t7 < {float(hi):.6f}"
         f"   (g(lo) = {float(g(lo)):+.3e}, g(hi) = {float(g(hi)):+.3e}, both exact)")
+    say()
+    say()
+    say("Much better, and k-independent: a SINGLE corner suffices.  The gain is")
+    say("sum_i (u_i^2 + u_i)/2, so u_i >= 1 at one corner already gives gain >= 1, and")
+    say("at a < k-1 Oler's RHS is < T(k), hence n < T(k) - 1, hence n <= T(k) - 2.")
+    say()
+    say("  COROLLARY C1 (sketch; depends on Lemma C `sketch` and Oler `cited`).")
+    say("  If some corner A_i of T has u_i >= 1 -- in particular if no point of E lies")
+    say("  within distance 1 of that corner -- then T(k)-1 points cannot fit with")
+    say("  a < k-1.  So Erdos-Oler for any k reduces to configurations having a point")
+    say("  within reach 1 of EVERY corner.  The threshold 1 does not depend on k.")
+    say()
+    say("Exact check of the arithmetic at each k (a = k-1-1/1000, gain exactly 1):")
+    say(f"{'k':>3} {'T(k)-1':>7} {'a':>10} {'Oler RHS':>11} {'RHS - 1':>10} {'excluded?':>10}")
+    for k in range(3, 15):
+        T = k * (k + 1) // 2
+        a = F(k - 1) - F(1, 1000)
+        rhs = a * a / 2 + 3 * a / 2 + 1
+        say(f"{k:>3} {T-1:>7} {float(a):>10.4f} {float(rhs):>11.6f}"
+            f" {float(rhs-1):>10.6f} {str(rhs - 1 < T - 1):>10}")
     say()
     say("And this is exactly why it does not close the case on its own: the lattice")
     say("T(7) has points AT the corners, t = 0, gain 0.  Lemma C is a real inequality")

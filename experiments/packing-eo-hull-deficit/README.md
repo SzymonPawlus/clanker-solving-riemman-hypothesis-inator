@@ -8,7 +8,7 @@ and are `sketch`. Nothing here is assumable (repo `RULES.md` §3).
 ## Reproduce
 
 ```bash
-python3 run.py            # ~2 seconds, Python 3.11 standard library only
+python3 run.py            # ~10 seconds, Python 3.11 standard library only
 ```
 
 No dependencies, no randomness, no seeds, no network. Output goes to `out/report.txt` and is
@@ -47,6 +47,9 @@ larger $n$ can enter that range.
 
 ## Sections
 
+0. **The target**: $\mathrm{Oler}(m) = T(m+1)$ at integer $m$, so the shortfall at $n = T(k)-1$ is
+   exactly one point for every $k$; and $a_0 = \tfrac{-3+\sqrt{8T(k)-7}}{2} < k-1$, checked by
+   integer arithmetic for $k \le 40$.
 1. **Corner-deficit lemma** on every exact certificate in the repo.
 2. **Corner-occupancy lemma** (kill-criterion K3 control).
 3. **Neutrality**: $(t^2+t)/2 \le T(\lfloor t\rfloor+1) \le N(t)$, equality iff $t \in \mathbb{Z}$.
@@ -54,5 +57,7 @@ larger $n$ can enter that range.
    cuts and 90 arbitrary half-plane cuts.
 5. Necessary conditions forced on a hypothetical $n = 27$, $a < 6$ configuration.
 6. **The witness**: lattice $T(7)$ minus one *interior* point — 27 points, $a = 6$, corner deficit
-   exactly $0$. This is why the route buys nothing unconditionally.
+   exactly $0$. This is why $\mathrm{def}(H)$ buys nothing unconditionally. (§5 separately sweeps
+   all 28 single-point deletions of $T(7)$ and finds CIO gain exactly 1 on each, which is why CIO
+   is *not* killed by this witness — Proposition 5 is what kills it.)
 7. A Steiner-type alternative bound, refuted by an exact witness.

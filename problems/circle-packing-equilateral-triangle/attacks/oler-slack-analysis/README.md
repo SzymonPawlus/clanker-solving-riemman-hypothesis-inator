@@ -168,13 +168,32 @@ $n = T(k) - 1$ — **stage 1 is exactly zero**: Oler's inequality applied to the
 convex hull is exactly tight, with no slack in any face or any edge. All of the loss at
 $n = T(k) - 1$ is stage 2, and it is exactly $1$, for every $k = 3, 4, 5, 6$ checked.
 
-That is a sharper statement than "Oler is slack at non-triangular $n$", and it relocates the
-problem. At $n = T(k)-1$ the packing bound is not what is failing; the hull → triangle relaxation
-is, and it is failing by exactly the one point that separates $T(k)-1$ from $T(k)$. Anything hoping
-to prove Erdős–Oler through Oler's inequality has to find that exact 1 in the relaxation step, not
-in a better packing inequality. Conversely at $n = 4, 7, 8$ — where the hull *is* the whole
-triangle, so stage 2 is zero — every bit of the slack is stage 1, i.e. genuinely a weakness of the
-packing bound.
+That is a sharper statement than "Oler is slack at non-triangular $n$", and it says something
+about these witnesses. Conversely at $n = 4, 7, 8$ — where the hull *is* the whole triangle, so
+stage 2 is zero — every bit of the slack is stage 1, i.e. genuinely a weakness of the packing
+bound.
+
+> **Correction — an earlier version of this paragraph overreached, and the overreach was
+> load-bearing.** It concluded: "at $n = T(k)-1$ the packing bound is not what is failing; the
+> hull → triangle relaxation is", and therefore that a proof of Erdős–Oler must find its missing
+> point in the relaxation step. **That does not follow, and it is false.** The atlas measures the
+> configurations in this repo's certificates, and every one of them deletes the *apex*. Delete an
+> **interior** point of the $T(k)$ lattice instead and you get an equally valid $n = T(k)-1$
+> configuration at the same side $a = k-1$ whose hull is the *whole* triangle — so stage 2 is
+> zero and the entire deficit of 1 sits in stage 1. Same $n$, same $a$, same total slack of 1,
+> opposite stage. Checked at $k = 7$: Oler$(6) = 28$, $n = 27$, total $= 1$; apex-deleted gives
+> (stage 1, stage 2) $= (0, 1)$, interior-deleted gives $(1, 0)$.
+>
+> A lower-bound argument has to handle **every** configuration, not a chosen witness, so it cannot
+> route its missing point exclusively through either stage. What the atlas actually establishes is
+> narrower and still worth having: *for the apex-deleted witnesses, stage 1 is exactly tight*, so
+> no improvement to the packing inequality alone can exclude them — one must use the relaxation
+> there. The symmetric statement holds for the interior-deleted witnesses with the stages swapped.
+>
+> Found by an independent worker attacking the relaxation route, which produced the
+> interior-deleted witness as the thing that killed its own assignment; re-derived here before
+> being accepted. This is the second correction to this file from that check, and this one changes
+> what the file *means*, not just what it says.
 
 **This one generalises, and the first version of this file understated it.** I filed the pattern
 as `numerical` over twelve configurations; an independent checker pointed out it is a two-line

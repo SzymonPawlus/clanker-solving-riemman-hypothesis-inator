@@ -138,10 +138,16 @@ $\rho > \rho_{\text{Oler}}$.
 | $k$ | $n$ | best $d$ **proved** | $\rho$ | vs $\rho_{\text{Oler}}$ | nodes | s |
 |---:|---:|---:|---:|:--|---:|---:|
 | 3 | 5 | *every* $d<4$ | $\to 1$ | settled outright | 1 | 0.0 |
-| 4 | 9 | $59/10 = 5.9$ | 0.9833 | **beats** 0.92400 | 598 254 | 46 |
-| 5 | 14 | $159/20 = 7.95$ | 0.99375 | **beats** 0.95377 | 1 761 513 | 40 |
-| 6 | 20 | see experiment `out/sweep/` | | | | |
-| 7 | 27 | see experiment `out/sweep/` | | | | |
+| 4 | 9 | $59/10 = 5.9$ | 0.98333 | **beats** 0.92400 | 684 342 | 12 |
+| 5 | 14 | $799/100 = 7.99$ | 0.99875 | **beats** 0.95377 | 4 241 969 | 98 |
+| 6 | 20 | **none above Oler** | — | fails at $\rho = 0.970$ | 8 368 128 (timeout) | 400 |
+| 7 | 27 | **none above Oler** | — | fails at $\rho = 0.978$ | 13 210 624 (timeout) | 400 |
+
+**The wall sits between $k = 5$ and $k = 6$.** Below it the exhaustion is strictly stronger than
+Oler; at and above it, Oler's one-line closed form is strictly stronger than everything the
+exhaustion produced, and the $k=6,7$ rows prove nothing whatsoever. Seven attempts spanning
+$d = 9.7\text{–}9.75$ ($k=6$) and $d = 11.74\text{–}11.75$ ($k=7$), at up to 400 s each and
+$1.3\times10^7$ nodes, all timed out with a non-empty frontier.
 
 Each `proved` row is a genuine finite exhaustion: e.g. $d(14) > 7.95$, hence
 $s(14) > 7.95 + 2\sqrt3 = 11.414\ldots$ against the `cited` $s(14) = 8+2\sqrt3 = 11.464\ldots$.
@@ -198,11 +204,15 @@ approached. There is no budget at which this terminates.
 1. **Qualitatively: infinite.** §1. No amount of compute converts a rational-side exhaustion into
    the conjecture, so "distance" measured in CPU-hours is the wrong axis.
 2. **Against the achievable sub-goal** — beating Oler at $k=7$, i.e. certifying
-   $d(27) > 11.7309\ldots$ — the search needs level $\ge 9$ (262 144 cells) by §5, and the runs
-   attempted at $d = 11.74$ and $11.75$ within a 7-minute budget did not close. The two lower
-   cases that did close needed $6\times10^5$ and $1.8\times10^6$ nodes with 9 and 14 points; 27
-   points at level 9 is a different regime, and the observed node growth in $k$ at fixed $\rho$ is
-   the relevant unknown. Nothing here suggests it is within a few orders of magnitude.
+   $d(27) > 11.7309\ldots$ — the answer is that this implementation does not, and the wall is
+   located: it sits between $k=5$ (which clears Oler comfortably, $\rho = 0.99875$ in 98 s) and
+   $k=6$ (which does not clear it at all in 400 s). At $k=7$, $d = 11.74$, the search burned
+   $1.3\times10^7$ nodes at $3.3\times10^4$ nodes/s and stopped with 138 branches still on the
+   frontier — not close. §5 says it needs level $\ge 9$, i.e. a subdivision with
+   $\ge 2.6\times10^5$ cells, merely to *match* a bound Oler gives in one line. No extrapolation
+   from the $k \le 5$ node counts is offered, because the branching factor at 27 points is a
+   different regime from 14 and an extrapolated exponent would be a guess dressed as a
+   measurement.
 3. **The useful residue** is not a bound at all: it is the exact statement of *what remains*.
    Erdős–Oler at $k$ is Oler's inequality plus a recovery of exactly **one unit of count**, worth
    exactly $(2k+1)-\sqrt{4k^2+4k-7} \approx 0.269$ in $d$ at $k=7$; §3 shows the recovery cannot

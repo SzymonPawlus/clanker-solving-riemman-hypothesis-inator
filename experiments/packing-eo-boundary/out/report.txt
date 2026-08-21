@@ -8,6 +8,29 @@ Let a* be the positive root of a^2 + 3a - 52 = 0, i.e. a* = (-3 + sqrt(217))/2.
 Then a*^2/2 + 3a*/2 + 1 = (a*^2 + 3a* + 2)/2 = (52 + 2)/2 = 27 exactly.
   exact bracket: 5.865459 < a* < 5.865460   (p(lo) = -1.372e-05, p(hi) = +1.012e-06, both exact)
 
+Integrality of n is doing real work here: RHS < 27 already forces n <= 26.
+The weaker threshold 'RHS < 26' is sufficient but not necessary, and reporting
+it as the window doubles the apparent gap.  Both, exactly, per k:
+
+  k  T(k)  n=T(k)-1  a: RHS=n (window)  k-1  true gap  a: RHS=n-1  gap if floor
+  3     6         5           1.701562    2  0.298438    1.372281      0.627719
+  4    10         9           2.772002    3  0.227998    2.531129      0.468871
+  5    15        14           3.815073    4  0.184927    3.623475      0.376525
+  6    21        20           4.844289    5  0.155711    4.684658      0.315342
+  7    28        27           5.865460    6  0.134540    5.728416      0.271584
+  8    36        35           6.881527    7  0.118473    6.761356      0.238644
+  9    45        44           7.894147    8  0.105853    7.787088      0.212912
+ 10    55        54           8.904326    9  0.095674    8.807764      0.192236
+ 11    66        65           9.912712   10  0.087288    9.824752      0.175248
+ 12    78        77          10.919742   11  0.080258   10.838963      0.161037
+ 13    91        90          11.925722   12  0.074278   11.851030      0.148970
+ 14   105       104          12.930870   13  0.069130   12.861407      0.138593
+
+Column 'Oler RHS at a = k-1' is exactly T(k) for every k = 2..14 (exact rational
+check in code): the gain Erdos-Oler needs is exactly ONE POINT, k-independent.
+Measured in side length the window shrinks with k, which is why points, not
+side lengths, are the honest unit of progress.
+
 So Oler alone already settles Erdos-Oler for k = 7 outside a window:
   27 unit-separated points cannot fit when a < a* = 5.86546...
   the whole open case is a in [a*, 6), a window of width < 0.135.
@@ -170,6 +193,32 @@ For k = 7 the needed gain at a -> 6 is exactly 1 (27 vs the Oler value 27 at
 a = 6), so with a common clearance t one needs 3(t^2 + t)/2 >= 1, i.e.
     t >= t7 = (-3 + sqrt(33))/6,   since  36 t^2 + 36 t + 9 = 33  <=>  t^2 + t = 2/3.
   exact bracket: 0.457427 < t7 < 0.457428   (g(lo) = -2.063e-07, g(hi) = +1.709e-06, both exact)
+
+
+Much better, and k-independent: a SINGLE corner suffices.  The gain is
+sum_i (u_i^2 + u_i)/2, so u_i >= 1 at one corner already gives gain >= 1, and
+at a < k-1 Oler's RHS is < T(k), hence n < T(k) - 1, hence n <= T(k) - 2.
+
+  COROLLARY C1 (sketch; depends on Lemma C `sketch` and Oler `cited`).
+  If some corner A_i of T has u_i >= 1 -- in particular if no point of E lies
+  within distance 1 of that corner -- then T(k)-1 points cannot fit with
+  a < k-1.  So Erdos-Oler for any k reduces to configurations having a point
+  within reach 1 of EVERY corner.  The threshold 1 does not depend on k.
+
+Exact check of the arithmetic at each k (a = k-1-1/1000, gain exactly 1):
+  k  T(k)-1          a    Oler RHS    RHS - 1  excluded?
+  3       5     1.9990    5.996500   4.996500       True
+  4       9     2.9990    9.995501   8.995501       True
+  5      14     3.9990   14.994500  13.994500       True
+  6      20     4.9990   20.993500  19.993500       True
+  7      27     5.9990   27.992500  26.992500       True
+  8      35     6.9990   35.991501  34.991501       True
+  9      44     7.9990   44.990501  43.990501       True
+ 10      54     8.9990   54.989500  53.989500       True
+ 11      65     9.9990   65.988501  64.988501       True
+ 12      77    10.9990   77.987500  76.987500       True
+ 13      90    11.9990   90.986501  89.986501       True
+ 14     104    12.9990  104.985501 103.985501       True
 
 And this is exactly why it does not close the case on its own: the lattice
 T(7) has points AT the corners, t = 0, gain 0.  Lemma C is a real inequality

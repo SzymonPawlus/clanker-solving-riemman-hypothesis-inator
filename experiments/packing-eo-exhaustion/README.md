@@ -20,6 +20,39 @@ directory, and it bounds what any amount of compute here could deliver.
 
 ---
 
+## For the workers on the theory routes — three tools you can use directly
+
+No coordination needed; these are stdlib-only and take no setup.
+
+```sh
+# 1. RIGOROUS FEASIBILITY SCREEN.  "Is n points at separation 2 in T(d) ruled out for free?"
+#    Closed form only, instant, exact.  Use before assuming a computation is needed.
+python3 -m eoex feasible --n 27 --d 12
+
+# 2. RIGOROUS REFUTATION AT ONE SIDE.  "Prove no n points fit in T(d)" for a rational d.
+#    Exact exhaustion; prints "PROVED: ..." or says plainly that nothing follows.
+python3 -m eoex prove --n 20 --d 39/4 --max-level 10 --time-limit 300
+
+# 3. THE BAR AND THE COST.  What Oler already gives per k, and what resolution a cell
+#    method needs to exceed it.
+python3 -m eoex gap    --kmax 12
+python3 -m eoex levels --kmax 7 --ratios 0.9 0.95 0.99 0.999
+```
+
+Importable pieces, if you want a lemma checked rather than a search run:
+`eoex.oler.oler_excludes(n, d)` (exact, rational), `eoex.oler.node_bound(cells, d)` (Oler on a
+union of cells, rigorous upper bound), `eoex.caps.capacity(side, n)` (points in a triangle of a
+given side), `eoex.lattice.pair_compatible(c1, c2, d)` (exact integer max-separation test).
+**Everything returns `numerical` evidence; none of it is assumable** (repo `RULES.md` §3).
+
+Two results in here are about what a proof *cannot* look like and may save you time:
+the partition lemma in
+[`attacks/eo-exhaustion/`](../../problems/circle-packing-equilateral-triangle/attacks/eo-exhaustion/README.md)
+§3 (any partition-and-count refinement of Oler is strictly worse than Oler itself, by
+$I + (m-1)$), and §0 below.
+
+---
+
 ## 0. What this can and cannot reach
 
 The Erdős–Oler conjecture at $k$ is $d(T(k)-1) = 2(k-1)$: no $T(k)-1$ points at separation $2$
@@ -266,29 +299,90 @@ exactly this: `proved` in **1 node** at every $d$ tested up to $399/100$.
 This generalises to "$4^L$ cells of side $d/2^L < 2$" only while $4^{\lfloor \log_2(k-1)\rfloor} <
 T(k)-1$, i.e. only for $k \le 3$; at $k \ge 4$ the count no longer forces a contradiction.
 
-### 4.2 $k = 4$ ($n = 9$, target $d = 6$)
+The "rules" column records the Oler-hull setting, because it changes node counts and speed
+by several times and the runs were not all made under one setting: **A** = hull rule at every
+node (the first implementation), **S** = hull rule only at nodes whose deepest cell is at level
+$\le 3$ (the shipped default), **N** = per-node hull rule off. The root Oler test is
+unconditional in all three.
 
-| $d$ | $\rho$ | max level | outcome | nodes | seconds |
-|---:|---:|---:|---|---:|---:|
-| 5.5 | 0.9167 | 8 | **proved** | 1 | 0.0 |
-| 5.6 | 0.9333 | 8 | **proved** | 11 673 | 1.0 |
-| 5.7 | 0.9500 | 8 | **proved** | 18 730 | 1.5 |
-| 5.8 | 0.9667 | 8 | **proved** | 398 707 | 30 |
-| **5.9** | **0.9833** | 8 | **proved** | 598 254 | 46 |
+### 4.2 $k = 4$ ($n = 9$, target $d = 6$), $\rho_{\text{Oler}} = 0.92400$
+
+| $d$ | $\rho$ | max level | rules | outcome | nodes | seconds |
+|---:|---:|---:|:--|---|---:|---:|
+| 5.5 | 0.9167 | 8 | A | **proved** | 1 | 0.0 |
+| 5.6 | 0.9333 | 8 | A | **proved** | 11 673 | 1.0 |
+| 5.7 | 0.9500 | 8 | A | **proved** | 18 730 | 1.5 |
+| 5.8 | 0.9667 | 8 | A | **proved** | 398 707 | 30 |
+| **5.9** | **0.9833** | 8 | A | **proved** | 598 254 | 46 |
+| **5.9** | **0.9833** | 9 | S | **proved** | 684 342 | 12 |
 
 The $d = 5.5$ row closes in one node because the root Oler test alone refutes it
 ($5.5^2/8 + 3\cdot 5.5/4 + 1 = 8.906 < 9$) — the search subsumes Oler, as designed.
 
-### 4.3 $k = 5$ ($n = 14$, target $d = 8$)
+### 4.3 $k = 5$ ($n = 14$, target $d = 8$), $\rho_{\text{Oler}} = 0.95377$
 
-| $d$ | $\rho$ | max level | outcome | nodes | seconds |
-|---:|---:|---:|---|---:|---:|
-| 7.7 | 0.9625 | 10 | **proved** | 319 603 | 45 |
-| **7.8** | **0.9750** | 10 | **proved** | 556 592 | 64 |
+| $d$ | $\rho$ | max level | rules | outcome | nodes | seconds |
+|---:|---:|---:|:--|---|---:|---:|
+| 7.7 | 0.96250 | 10 | A | **proved** | 319 603 | 45 |
+| 7.8 | 0.97500 | 10 | A | **proved** | 556 592 | 64 |
+| 7.8 | 0.97500 | 10 | N | **proved** | 720 946 | 14 |
+| 7.9 | 0.98750 | 10 | A | **proved** | 1 665 291 | 163 |
+| 7.95 | 0.99375 | 11 | S | **proved** | 1 761 513 | 40 |
+| **7.99** | **0.99875** | 11 | S | **proved** | 4 241 969 | 98 |
 
-### 4.4 $k = 6, 7$ — see `out/sweep/`
+Node growth along the A rows: $3.2\times10^5 \to 5.6\times10^5 \to 1.7\times10^6$ as $1-\rho$
+halves, i.e. roughly $(1-\rho)^{-1.5}$ over the measured range. Extrapolating that exponent is
+*not* a prediction of anything at $\rho = 1$: §0 says there is no run at $\rho = 1$.
 
-Filled in by the sweep; every non-`proved` row proves nothing.
+### 4.4 $k = 6$ ($n = 20$) and $k = 7$ ($n = 27$) — nothing proved above Oler
+
+**This is the wall, and it is a negative result.** Oler's closed form already certifies every
+$d \le 9.68857\ldots$ at $k=6$ and every $d \le 11.73091\ldots$ at $k=7$, so only $d$ above those
+values can add anything. Every attempt above them failed:
+
+| $k$ | $n$ | $d$ | $\rho$ | max level | rules | outcome | nodes | seconds |
+|---:|---:|---:|---:|---:|:--|---|---:|---:|
+| 6 | 20 | 9.7 | 0.97000 | 10 | A | timeout | 4 133 888 | 420 |
+| 6 | 20 | 9.75 | 0.97500 | 10 | A | timeout | 4 097 024 | 420 |
+| 6 | 20 | 9.75 | 0.97500 | 10 | A | timeout | 774 144 | 90 |
+| **6** | **20** | **9.7** | **0.97000** | 10 | S | **timeout** | **8 368 128** | **400** |
+| 7 | 27 | 11.75 | 0.97917 | 10 | A | timeout | 646 144 | 90 |
+| 7 | 27 | 11.74 | 0.97833 | 10 | A | timeout | 3 336 192 | 420 |
+| **7** | **27** | **11.74** | **0.97833** | 10 | S | **timeout** | **13 210 624** | **400** |
+
+Every one of these rows **proves nothing**. The measured throughput at $n = 27$ is
+$3.3\times10^4$ nodes/s on one core, and the frontier at cutoff still held 138 unresolved
+branches, so the search was nowhere near exhausting the tree.
+
+**Summary of the whole curve** — the exhaustion beats Oler at $k = 3, 4, 5$ and does not beat it
+at $k = 6$ or $k = 7$:
+
+| $k$ | $n$ | $\rho_{\text{Oler}}$ | best $\rho$ **proved** | beats Oler? |
+|---:|---:|---:|---:|:--|
+| 3 | 5 | 0.85078 | all $d<4$, uniformly (§4.1) | **yes — case settled** |
+| 4 | 9 | 0.92400 | 0.98333 ($d > 5.9$) | **yes** |
+| 5 | 14 | 0.95377 | 0.99875 ($d > 7.99$) | **yes** |
+| 6 | 20 | 0.96886 | — | **no** |
+| 7 | 27 | 0.97758 | — | **no** |
+
+### 4.5 Ablation: does the Oler-hull rule pay for itself?
+
+At $n = 14$, $d = 39/5$, `--max-level 10`, single core under identical load:
+
+| rules | nodes | seconds | nodes/s |
+|:--|---:|---:|---:|
+| A — hull rule at every node | 556 592 | 64 | 8 700 |
+| N — per-node hull rule off | 720 946 | 14 | 53 000 |
+
+**The rule as first written was a net loss**: it removes ~23 % of the nodes and costs ~6× per
+node. That is worth recording because the rule *looks* obviously good — it is the only global
+test available and it strictly dominates the pairwise tests logically. It does not dominate them
+economically.
+
+The shipped default (**S**) restricts it to nodes whose deepest cell is at level $\le 3$, where
+the hull is cheap to compute and most informative. Restricting where a pruning rule fires can
+only lose pruning, never soundness, so **S** is as sound as **A**. Reproduce with
+`./run.sh full`, which runs both.
 
 ## 5. Reproducing
 

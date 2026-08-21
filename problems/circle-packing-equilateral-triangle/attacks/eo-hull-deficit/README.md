@@ -69,6 +69,61 @@ configuration.
 
 ---
 
+## 0.1 Response to the mid-flight intelligence — including one arithmetic correction
+
+Four points reached me from the manager mid-session. Three confirm what is below; one needs
+correcting, and correcting it matters because it was itself offered as a correction.
+
+**(a) "The required gain is exactly one point, for every $k$."** Agreed, and it is §1's identity
+$\mathrm{Oler}(m) = T(m+1)$ for integer $m$ — the whole file is organised around it. Everything here
+is measured in **points**, never in side length: the target is $\mathrm{gain} \ge 1$, and
+$\varepsilon(a) < 1$ is the budget.
+
+**(b) "Any mechanism whose yield scales with $k$ is the wrong shape; the three corners are the one
+structure with a $k$-independent signature."** Agreed, and that is exactly why the corner route was
+worth trying. The answer this file returns is that the corner mechanism has the right *shape* and
+the wrong *size*: its $k$-independent guaranteed yield is $\sum_V[\tfrac{t_V^2+t_V}{2} - N(t_V)]$,
+which by Proposition 5 is **strictly negative**, never $1$. The manager's own instruction — *"if it
+yields a fixed constant, check hard whether that constant reaches 1, because reaching it would mean
+you have made an error"* — was run, and the constant does not reach 1; the only place it reaches 1
+is under a hypothesis on the configuration (Corollary 4), which is not the same thing.
+
+**(c) "Partition-style arguments are refuted for $k \ge 4$; the missing unit is an interaction term
+that any partition discards."** Consistent with, and generalised by, Theorem 6: cutting a convex
+region out and charging its capacity is neutral at best, at every integer side. I did not drift
+there.
+
+**(d) The side-length gap table needs correcting — the figure it corrected was right.** The
+manager's re-derivation gives $k=3:\,1.3723$, $k=4:\,2.5311$, $k=6:\,4.6847$, $k=7:\,5.7284$ and
+gaps $0.628 \to 0.272$, and rejects a worker's "$0.298$ at $k=3 \to 0.135$ at $k=7$" as a
+separation-1/2 normalisation slip. **It is not a normalisation slip; the worker's figures are the
+correct ones.** Those four values solve $\tfrac{a^2}{2}+\tfrac{3a}{2}+1 = T(k)-\mathbf{2}$, not
+$T(k)-1$. The relevant threshold is the largest side at which Oler still forbids $T(k)-1$ points,
+i.e. the root of $\tfrac{a^2}{2}+\tfrac{3a}{2}+1 = T(k)-1$, which is $a_0 = \tfrac{-3+\sqrt{8T(k)-7}}{2}$:
+
+| $k$ | $T(k)-1$ | $a_0 = \tfrac{-3+\sqrt{8T(k)-7}}{2}$ | truth $k-1$ | gap |
+|---:|---:|---|---:|---:|
+| 3 | 5 | $\tfrac{-3+\sqrt{41}}{2} = 1.701562$ | 2 | 0.29844 |
+| 4 | 9 | $\tfrac{-3+\sqrt{73}}{2} = 2.772002$ | 3 | 0.22800 |
+| 6 | 20 | $\tfrac{-3+\sqrt{161}}{2} = 4.844289$ | 5 | 0.15571 |
+| 7 | 27 | $\tfrac{-3+\sqrt{217}}{2} = 5.865460$ | 6 | 0.13454 |
+
+Same separation-1 normalisation as everything else here ($a = 6$ at $k = 7$, certificates halved on
+load — normalisation re-checked as instructed). $2/(2k+1)$ is a decent approximation to that gap
+($0.28571$ vs $0.29844$ at $k=3$; $0.13333$ vs $0.13454$ at $k=7$) rather than a factor-of-two
+error, which is presumably where the worker's figures came from.
+
+That the gap is strictly positive for every $k$ — i.e. that Oler never suffices — has a one-line
+exact proof from the same formula: $a_0 < k-1 \iff \sqrt{8T(k)-7} < 2k+1 \iff 4k^2+4k-7 <
+4k^2+4k+1$, true for all $k$. Checked exactly for $k \le 40$ in `run.py` §0.
+
+None of this changes the manager's qualitative conclusion, which I agree with and which the rest of
+this file supports: **measure in points, not side length.** It changes only which of two numbers is
+the wrong one, and the repo's own `FINDINGS.md` pattern — a correction that is itself the error —
+is the reason to say so rather than quietly use my own value.
+
+---
+
 ## 1. Setup
 
 Oler normalisation throughout: minimum separation **1**, containing equilateral triangle $T$ of
@@ -204,7 +259,7 @@ out for $k=7$. It is a genuine restriction — but §6 explains why it is also t
 
 ---
 
-## 5. Neutrality: a corner cut never outvalues what it displaces — `sketch`
+## 5. Neutrality: a corner cut never outvalues what it displaces — `sketch` (kill, layer a)
 
 Write $N(t)$ for the maximum number of unit-separated points in a closed equilateral triangle of
 side $t$, and define the **gain** of a corner cut of side $t$ as
@@ -237,7 +292,7 @@ configurations one point short of the lattice, break-even is exactly not enough.
 
 ---
 
-## 6. The Relaxation Barrier — `sketch`. This is the kill.
+## 6. The Relaxation Barrier — `sketch` (kill, layer b)
 
 Proposition 5 is about corner cuts. The same thing is true of **every** convex cut, and for a
 sharper reason.
@@ -404,14 +459,22 @@ at any $a$ or $t$ tested, which is exactly what Theorem 6 predicts must happen.
 
 ## 10. Honest accounting
 
-**What I am least sure of.** Theorem 3's handling of the region $K$ when the $t_V$ are not those of
-the configuration but chosen freely: the step $|E'| \ge n - \sum_V m_V$ is fine even if the corner
-triangles overlap (it is an inclusion–exclusion inequality in the safe direction), but the closed
-forms for $A(K)$ and $M(K)$ **require** $t_U + t_V \le a$ for each pair, and without that hypothesis
-the theorem is *false*, not merely unproven — the formula would subtract overlapping corner
-triangles twice. Every use above respects the hypothesis; a reader reusing Theorem 3 must check it.
-The second-least-sure step is the degenerate-$E'$ case analysis in §3, which I wrote out rather than
-inherited.
+**The single step I am least sure of** is §7.3, because it is the load-bearing step of the kill and
+it is a claim about *what an argument can do*, not a theorem. It says: the only
+configuration-independent fact CIO has about $m_V$ is $m_V \le N(t_V)$, so the guaranteed gain is
+$\sum_V[\tfrac{t_V^2+t_V}{2} - N(t_V)] < 0$ and no contradiction follows. That is correct **for CIO
+used alone**. It does *not* rule out CIO combined with some other constraint that forces the $m_V$
+to be small — indeed §9 is exactly a list of what such a constraint would have to contradict. So
+read the kill as *"the relaxation cannot be the whole argument"*, not as *"corner counts are
+useless"*. Anyone who thinks they have beaten it should check first whether their extra ingredient
+is doing all the work.
+
+**Next after that:** Theorem 3's hypothesis $t_U + t_V \le a$. The step $|E'| \ge n - \sum_V m_V$
+survives overlapping corner triangles (inclusion–exclusion in the safe direction), but the closed
+forms for $A(K)$ and $M(K)$ **require** it, and without it the theorem is *false*, not merely
+unproven — the formula would subtract overlapping corner triangles twice. Every use above respects
+the hypothesis; a reader reusing Theorem 3 must check it. Then the degenerate-$E'$ case analysis in
+§3, which I wrote out rather than inherited.
 
 **Novelty: UNVERIFIED, and I would assume not.** Theorem 6 is three lines from Oler's inequality
 and the lattice; anyone who has thought about why the Erdős–Oler conjecture is hard has probably
@@ -424,6 +487,12 @@ known until someone with library access says otherwise.**
 **What is not claimed.** Nothing here bounds $s(n)$ for any $n$. Corollary 4 is conditional on a
 hypothesis that no configuration is known to satisfy at the interesting $a$, and is `sketch`, so it
 is not assumable even by me. The Erdős–Oler conjecture is untouched.
+
+**Recorded because it nearly went the other way.** §7.2 is a correction to my own first draft,
+which used the §7.1 witness to kill Theorem 3 as well as Lemma 1. It does not — CIO excludes that
+witness, and excludes all 28 single-point deletions of $T(7)$. The draft paragraph was fluent and
+wrong; what caught it was a table written to *illustrate* the kill, which disagreed with it. The
+lesson is in `notebook/claude/2026-08-21-eo-hull-deficit.md`.
 
 **Not checked.** Whether Theorem 6's converse-flavoured question has an answer — i.e. what the
 largest $n$ is that fits in $T(a)$ for $a$ slightly below an integer, which is the counting
