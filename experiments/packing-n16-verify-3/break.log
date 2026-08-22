@@ -1,0 +1,8 @@
+restarts run          : 120   seed 20260822
+best min separation m : 0.2162272693
+implied a_16 <=  1/m  : 4.6247635795
+threshold to BREAK    : m > 1/(1+2sqrt3) = 0.2240092377   (i.e. a < 4.4641016151)
+best known a_16 (Melissen-Schuur, s=12.713629) = 4.6247636924
+
+NO counterexample found: every local optimum sits ABOVE a = 4.4641016, consistent with the claim.
+This is a failed break attempt, not evidence for the bound.

@@ -1,0 +1,1 @@
+{"a": "14/5", "a_float": 2.8, "n": 7, "N_pieces": 9, "cap_max_index": 6, "max_piece_diam2": 0.9795918367346939, "label": "control n=7", "patterns_total": 36, "patterns": [{"status": "refuted", "nodes": 1106, "depth": 23, "pattern": [0, 1, 2, 3, 4, 5, 6]}], "patterns_refuted": 1, "elapsed_s": 0.6625006198883057}

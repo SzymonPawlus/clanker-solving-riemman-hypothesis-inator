@@ -119,3 +119,15 @@ def subtract_convex(Q, P):
         if len(part) >= 3 and area2(part).sign() != 0:
             parts.append(part)
     return parts
+
+
+def touches(Q, P):
+    """True if Q and P share positive area."""
+    I = intersect_convex(Q, P)
+    return len(I) >= 3 and area2(I).sign() != 0
+
+
+def contained_in(part, P):
+    """True if every vertex of `part` lies in the closed convex polygon P
+    (hence part subset P, both convex)."""
+    return all(point_in_convex(V, P) for V in part)
