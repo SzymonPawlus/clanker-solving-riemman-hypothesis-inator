@@ -171,14 +171,32 @@ that is not piece-counting — an area or density argument (Lemma S in
 [`../n16-covering-limit/`](../n16-covering-limit/), whose own ceiling is $4.836854$), or an
 exhaustion over the now-forced $3+9+3$ structure.
 
-**Combining the two ceilings is the concrete next step this lane leaves.** Lemma S's area budget was
-computed without knowing the class counts; Theorem N now *forces* them ($3$ corner pieces each
-capped by the unit apex sector at $\pi/6$, $9$ edge pieces capped by the half-plane trace function
-$f$, $3$ deep pieces capped by the isodiametric $\pi/4$). Feeding forced counts into Lemma S is
-strictly more information than Lemma S had. Whether it clears the $0.16$ still separating the record
-from the target is unknown, and I did not attempt it — a hand-run area estimate at $a = 4.62$
-suggested it does not, but that was an estimate, not a computation, and it is recorded here only so
-the next worker knows it is not obviously free.
+### 5.1 The obvious next step is dead, and I killed it rather than leaving it as a lead
+
+My first instinct — written into an earlier draft of this file and into a comment on issue #97 — was
+that combining the two ceilings should sharpen things: Lemma S's area budget was computed *without*
+knowing the class counts, and Theorem N now **forces** them ($3$ corner pieces each capped by the
+unit apex sector at $\pi/6$, $9$ edge pieces capped by the half-plane trace function $f$, $3$ deep
+pieces capped by the isodiametric $\pi/4$). More information should mean a better bound.
+
+**It does not, and the reason is that Lemma S was already assuming exactly these counts.** Running
+the budget with Theorem N's forced classes (`area_budget` in `structure.py`):
+
+| budget | ceiling on $A_{15}$ | published in [`../n16-covering-limit/`](../n16-covering-limit/) |
+|---|---:|---:|
+| $3\cdot\tfrac\pi6 + 12\cdot\tfrac\pi4$ (isodiametric on all non-corner pieces) | $5.039166$ | U1 $= 5.039166$ |
+| the same with the closed-form slice bound on the 9 edge pieces | $4.920766$ | U2 $= 4.914308$ |
+
+The first row **reproduces that lane's U1 to six decimal places**, from a completely different
+derivation of the counts — which is a real independent confirmation of its number, and simultaneously
+the proof that Theorem N buys nothing here. The second row is *worse* than its U2 only because that
+lane's $f$ comes from a certified slab LP and mine is the weaker closed form; the structure is
+identical.
+
+So the two arguments are not complementary — they are the same argument reached twice. Lemma S's
+$k_e \ge 3$ came from a middle of length $a-2$; Theorem N's comes from a middle of length
+$a - 4/\sqrt3$. Different constants, same count of $3$ throughout the range in question, so the
+budgets coincide. **A worker sent to combine them would have spent a day rediscovering U1.**
 
 ## 6. The V3/R1 disagreement, adjudicated
 

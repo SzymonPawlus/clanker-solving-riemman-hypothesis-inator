@@ -170,3 +170,38 @@ def thresholds():
 
 if __name__ == "__main__":
     thresholds()
+
+
+# ---------------------------------------------------------------------------
+# Does feeding Theorem N's FORCED class counts into an area budget sharpen the
+# ceiling on A_15?  Answer: no -- it reproduces n16-covering-limit's U1 exactly.
+# Floats here are a DIAGNOSTIC ONLY: this routine decides nothing, it reports a
+# comparison against another lane's published figures (see README 5.1).
+# ---------------------------------------------------------------------------
+def area_budget():
+    import math
+    r3 = math.sqrt(3)
+    def area(a):
+        return r3 / 4 * a * a
+
+    def slice_bound(l):
+        return math.pi / 2 - math.asin(l / 2) - (l / 2) * math.sqrt(1 - l * l / 4)
+
+    def budget(a, use_slice):
+        l = (a - 4 / r3) / 3               # Theorem N's middle over 3 forced edge pieces
+        fe = min(math.pi / 4, slice_bound(l)) if use_slice else math.pi / 4
+        return 3 * (math.pi / 6) + 9 * fe + 3 * (math.pi / 4)
+
+    print("\narea budget on Theorem N's forced 3/9/3 classes (diagnostic, floats):")
+    for label, use_slice in (("isodiametric only", False), ("+ slice bound on edges", True)):
+        lo, hi = 4.0, 7.0
+        for _ in range(200):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if area(mid) <= budget(mid, use_slice) else (lo, mid)
+        print(f"  {label:24s}: A_15 <= {lo:.6f}")
+    print("  n16-covering-limit published U1 = 5.039166, U2 = 4.914308")
+    print("  -> row 1 reproduces U1 to 6 dp: the forced counts were already assumed there.")
+
+
+if __name__ == "__main__":
+    area_budget()
