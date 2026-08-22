@@ -342,6 +342,7 @@ Optional, and explicitly *not* exact — it contains $\arcsin$, so it is mpmath 
 decides nothing that is reported as a bound:
 
 ```bash
+python3 experiments/packing-n16-verify-4/budget2.py     # reproduces section 5.1's two published rows
 python3 experiments/packing-n16-verify-4/budget3.py     # the item-8 like-for-like comparison
 ```
 

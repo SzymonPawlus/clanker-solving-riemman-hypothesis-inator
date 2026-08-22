@@ -1,4 +1,33 @@
-# Attack: why every optimiser stops at $1+2\sqrt3$ — a counting theorem, and its ceiling
+# Attack: a class-counting theorem for coverings — with its headline corollary **refuted**
+
+> ## CORRECTION, 2026-08-22, after review by worker V4
+>
+> **This file's original headline was false and is withdrawn.** It claimed that $1+2\sqrt3$ is *the
+> least $a$ at which fifteen pieces are necessary*, and therefore that it explained the plateau
+> four searches had hit. It is not, and it does not.
+>
+> The 15-point unit triangular lattice (5 per side) lies in $T_4$ with all pairwise distances
+> $\ge 1$ — this is just $a_{15} = 4$, which is `cited`. A piece of diameter $<1$ holds at most one
+> of those 15 points, so **fifteen pieces are necessary for every $a \ge 4$**, which is $0.4641$
+> below the claimed threshold. Theorem N forces only $10$ at $a = 4$, where the truth is $\ge 15$:
+> it is five pieces slack there, and its arriving at 15 exactly at $1+2\sqrt3$ is a **coincidence,
+> not an explanation**.
+>
+> The two quantities were conflated. The plateau is about
+> $A_{15} = \sup\{a : T_a \text{ is coverable by } 15 \text{ pieces}\}$; Theorem N bounds
+> $\min\{a : N(a) \ge 15\}$. Different quantities, and the second says nothing about the first.
+>
+> **What survives, and it is the useful half:** Theorem N and its four lemmas were reconstructed
+> step by step by V4 and confirmed unchanged (§2), and so is the **class structure** they give — for
+> $a \ge 1+2\sqrt3$ every covering has at least 3 two-side, 9 one-side and 3 no-side pieces, so a
+> 15-piece covering has *exactly* those (§3.1). That is the rigorous replacement for the disputed
+> "forced $3+9+3$" claim, and it is what feeds the area budget in §5.1.
+>
+> Also corrected by the same review: **§5.1's retraction was itself wrong** and the lead it retired
+> is live again. See §5.1.
+>
+> `FINDINGS.md` carried the false headline and has been amended.
+
 
 **Claim type: NEITHER of the two in problem [`../../RULES.md`](../../RULES.md) §1.** No bound on
 $s(16)$ or $a_{16}$ is asserted here, in either direction. What is proved is a statement about
@@ -21,7 +50,8 @@ honest order and is stated here so a reviewer can weigh it.
 | assertion | status |
 |---|---|
 | §2 Theorem N (the counting theorem) and its four lemmas | `sketch` — mine, elementary, unreviewed, **not assumable, including by me** |
-| §3 the threshold identity $\delta = a - 2\sqrt3 = 1 \iff a = 1+2\sqrt3$ | `sketch` (it is one line of algebra, but it is mine) |
+| §3 the identity $\delta = a - 2\sqrt3 = 1 \iff a = 1+2\sqrt3$ | `sketch` — true, but the **corollary drawn from it is `refuted`**, see the correction above |
+| §3.1 the class structure ($\ge 3$ / $\ge 9$ / $\ge 3$, hence exactly $3/9/3$ at 15 pieces) | `sketch` — mine; **this is the part that survives and is used** |
 | §4 exact verification against the standing certificate | `numerical` — exact rational/$\mathbb{Q}(\sqrt3)$ computation on one explicit object |
 | §5 the counting ceiling $3\sqrt3$ | `sketch` — mine |
 | §6 adjudication of the V3/R1 disagreement | `sketch` — mine, with an exact witness |
@@ -38,9 +68,12 @@ of explicit site layouts — all converge on the same covering side length, $a =
 ([`../n16-covering-max/`](../n16-covering-max/) §2). The campaign has recorded that plateau four
 times and never explained it.
 
-**It is not a coincidence, and it is not an artefact of the search.** $1+2\sqrt3$ is exactly the
-side length at which fifteen pieces stop being *sufficient by accident* and start being *necessary
-by counting*. §3 is the identity; §2 is the theorem it comes from.
+**I believed I had explained it, and I had not — see the correction at the top of this file.**
+$1+2\sqrt3$ is where *Theorem N's counting* first reaches fifteen, but fifteen pieces are already
+necessary from $a = 4$ by a much cheaper argument ($a_{15} = 4$, `cited`), so the coincidence
+explains nothing. **The plateau remains unexplained.** What §2 does deliver is the class structure
+of §3.1, which is a real repair of a claim two audits had flagged, and which §5.1 now shows is
+worth something quantitative.
 
 ## 2. Theorem N — a lower bound on the number of pieces, by class
 
@@ -105,10 +138,16 @@ Borsuk-type input is required.
 
 $$\delta \ =\ a - 2\sqrt3 \ =\ 1 \qquad\Longleftrightarrow\qquad a \ =\ 1 + 2\sqrt3 .$$
 
-That is the whole explanation. Below $1+2\sqrt3$ the deep triangle has side $<1$ and one piece can
-swallow it, so Theorem N forces only $3+9+1 = 13$. At $a = 1+2\sqrt3$ the deep triangle's side
-reaches exactly $1$, its three apexes become mutually unswallowable, and the forced total jumps by
-two to $3+9+3 = 15$. Computed exactly by `structure.py`:
+The identity is correct; **the conclusion originally drawn from it is not** (see the correction at
+the top). Below $1+2\sqrt3$ the deep triangle has side $<1$ and one piece can swallow it, so
+Theorem N forces only $3+9+1 = 13$. At $a = 1+2\sqrt3$ the deep triangle's side reaches exactly
+$1$, its three apexes become mutually unswallowable, and Theorem N's forced total jumps by two to
+$3+9+3 = 15$.
+
+**But Theorem N is not the binding constraint here.** The cheap bound $N(a) \ge \omega(a)$ — a
+piece of diameter $<1$ holds at most one of any set of points at pairwise distance $\ge 1$ —
+already gives $N(a) \ge 15$ for all $a \ge a_{15} = 4$, and dominates the table below throughout.
+The table records what *this argument* forces, which is strictly less:
 
 | $a$ | | corner | edge | deep | **forced total** | $\delta = a-2\sqrt3$ |
 |---|---:|---:|---:|---:|---:|---:|
@@ -120,16 +159,22 @@ two to $3+9+3 = 15$. Computed exactly by `structure.py`:
 | $5$ | | 3 | 9 | 3 | 15 | $+1.5359$ |
 | $3\sqrt3$ | $5.196152$ | 3 | 9 | 4 | 16 | $+1.7321$ |
 
-**$1+2\sqrt3$ is the least $a$ at which fifteen pieces are necessary.** The searches are not stuck
-on it; they are sitting on the first point where the count they achieve is also the count that is
-forced — which is exactly the signature of an extremal configuration, and exactly why perturbing it
-in any direction is worse.
+### 3.1 What actually survives — the class structure
 
-**Corollary (the equality structure).** For $1+2\sqrt3 \le a$, if a covering uses exactly $15$
-pieces then it has **exactly** $3$ two-side, $9$ one-side and $3$ no-side pieces, each side is met
-by exactly $5$ pieces, and the three no-side pieces cover $D$. This is the "$3$ corner $+$ $9$ edge
-$+$ $3$ interior" structure the campaign has been asserting — now with a proof, and see §6 for why
-the previous proof did not work.
+**Corollary.** For $a \ge 1+2\sqrt3$, if a covering of $T_a$ by diameter-$<1$ pieces uses exactly
+$15$ pieces, then it has **exactly** $3$ two-side, $9$ one-side and $3$ no-side pieces, each side is
+met by exactly $5$ pieces, and the three no-side pieces cover $D$.
+
+This is the "$3$ corner $+$ $9$ edge $+$ $3$ interior" structure the campaign had been asserting
+without a valid proof — see §6 for why the previous derivation failed and how Theorem N avoids it.
+It is unaffected by the correction above, because it is a statement about the *composition* of a
+15-piece covering, not about the least $a$ at which fifteen are needed. It is also the only part of
+this file that anything downstream uses: §5.1 turns it into a quantitative gain in the area budget.
+
+**What is not claimed, and what I claimed wrongly.** Nothing here says fifteen pieces first become
+necessary at $1+2\sqrt3$; they are necessary from $a = 4$. Nothing here explains the plateau. The
+plateau is about $A_{15}$, the largest $a$ that *is* coverable by 15 pieces, and this file bounds a
+different quantity.
 
 ## 4. Exact verification against the standing certificate
 
@@ -171,32 +216,36 @@ that is not piece-counting — an area or density argument (Lemma S in
 [`../n16-covering-limit/`](../n16-covering-limit/), whose own ceiling is $4.836854$), or an
 exhaustion over the now-forced $3+9+3$ structure.
 
-### 5.1 The obvious next step is dead, and I killed it rather than leaving it as a lead
+### 5.1 I retracted this lead, and the retraction was wrong — it is live again
 
-My first instinct — written into an earlier draft of this file and into a comment on issue #97 — was
-that combining the two ceilings should sharpen things: Lemma S's area budget was computed *without*
-knowing the class counts, and Theorem N now **forces** them ($3$ corner pieces each capped by the
-unit apex sector at $\pi/6$, $9$ edge pieces capped by the half-plane trace function $f$, $3$ deep
-pieces capped by the isodiametric $\pi/4$). More information should mean a better bound.
+**First I claimed** that combining Theorem N's forced $3/9/3$ counts with Lemma S's area budget
+would sharpen the ceiling on $A_{15}$. **Then I retracted it**, on the grounds that the budget
+reproduces [`../n16-covering-limit/`](../n16-covering-limit/)'s published U1 $= 5.039166$ to six
+decimals and therefore adds nothing. **Worker V4 refuted the retraction**, and it is right.
 
-**It does not, and the reason is that Lemma S was already assuming exactly these counts.** Running
-the budget with Theorem N's forced classes (`area_budget` in `structure.py`):
+The arithmetic in both rows is fine — V4 reproduced $5.039165715$ and $4.920765783$ independently
+by rational interval arithmetic. What was wrong was the inference:
 
-| budget | ceiling on $A_{15}$ | published in [`../n16-covering-limit/`](../n16-covering-limit/) |
-|---|---:|---:|
-| $3\cdot\tfrac\pi6 + 12\cdot\tfrac\pi4$ (isodiametric on all non-corner pieces) | $5.039166$ | U1 $= 5.039166$ |
-| the same with the closed-form slice bound on the 9 edge pieces | $4.920766$ | U2 $= 4.914308$ |
+- **Row 1 was never evidence of anything.** $3\cdot\tfrac\pi6 + 12\cdot\tfrac\pi4$ uses **no**
+  class information that Lemma S lacked, so reproducing U1 from it is an arithmetic check on my own
+  code, not an independent confirmation and not a demonstration that the counts are redundant.
+- **Row 2's comparison was not like-for-like.** It set my weaker closed-form $f$ against that lane's
+  certified slab-LP $f$ and read the difference as "no gain". The actual difference is elsewhere:
+  **Lemma S knows only $k_e \ge 3$ and must therefore maximise its budget over every admissible
+  $(k_1,k_2,k_3)$, while Theorem N pins them to $3/9/3$.** Held at the *same* capped closed-form
+  $f$, Lemma S degenerates back to $5.039166$ where Theorem N gives $4.920766$ — a gain of
+  $\mathbf{0.118}$, not zero. And what the forced counts delete is precisely the $k_e = 4$ branch,
+  which `n16-covering-limit` itself describes as the branch that "decides everything" for its U2.
 
-The first row **reproduces that lane's U1 to six decimal places**, from a completely different
-derivation of the counts — which is a real independent confirmation of its number, and simultaneously
-the proof that Theorem N buys nothing here. The second row is *worse* than its U2 only because that
-lane's $f$ comes from a certified slab LP and mine is the weaker closed form; the structure is
-identical.
+So the lead is **un-retired**, and it is now the sharpest thing this lane points at: feed the forced
+$3/9/3$ into that lane's *certified* slab-LP $f$ at $\ell = (a-4/\sqrt3)/3$ and see whether it
+beats its published U2 $= 4.914308$. V4's envelope estimate is $\approx 4.88$ — **uncertified**, it
+did not rerun the LP — and if it holds it is the one place this round could move a published number
+rather than a sentence. A worker is on it.
 
-So the two arguments are not complementary — they are the same argument reached twice. Lemma S's
-$k_e \ge 3$ came from a middle of length $a-2$; Theorem N's comes from a middle of length
-$a - 4/\sqrt3$. Different constants, same count of $3$ throughout the range in question, so the
-budgets coincide. **A worker sent to combine them would have spent a day rediscovering U1.**
+**Recorded in full rather than tidied**, because the sequence — propose, retract on a bad argument,
+be corrected — is the substance. The retraction *felt* like rigour; withdrawing a claim usually
+does. `FINDINGS.md` has the pattern.
 
 ## 6. The V3/R1 disagreement, adjudicated
 
@@ -251,8 +300,18 @@ then confirmed exactly).
 `sketch`, and not assumable by anyone including me (`RULES.md` §3). Every checker on this lane is
 Claude Opus 5; `RULES.md` §5 needs an examiner from a different model family, and problem
 `RULES.md` §3 needs Codex to reimplement the check from the problem statement. **The record is
-unchanged at $a_{16}\ge1+2\sqrt3$, i.e. $s(16)\ge2+6\sqrt3$.** What this round buys is that the
-campaign now knows *why* that number and not another, that the structural claim it had been
-building on is repaired rather than merely flagged, and that piece-counting is exhausted as a route
-— which redirects the next worker to the area budget with forced counts, or away from the covering
-lane entirely.
+unchanged at $a_{16}\ge1+2\sqrt3$, i.e. $s(16)\ge2+6\sqrt3$.**
+
+After correction, what this file buys is narrower than what it first claimed, and worth stating
+exactly:
+
+- **Delivered:** Theorem N and its four lemmas, reconstructed independently by V4 and confirmed; the
+  class structure of §3.1, which is a rigorous replacement for a "forced $3+9+3$" claim that two
+  audits had shown was not proved; the adjudication in §6; and — via §5.1 — a quantified reason to
+  expect the forced counts to sharpen `n16-covering-limit`'s U2.
+- **Withdrawn:** the claim that $1+2\sqrt3$ is the least $a$ at which fifteen pieces are necessary,
+  and with it the claim to have explained the plateau. **The plateau is still unexplained.**
+- **Withdrawn:** §5.1's retraction, which was wrong in the opposite direction.
+
+Three assertions, two of them wrong, both caught by one reviewer in one pass. The theorem survived;
+everything I built on top of it did not.

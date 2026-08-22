@@ -392,7 +392,6 @@ print("=" * 78)
 print("7.  section 6: R1's witness, re-derived exactly (Cartesian, apex at origin)")
 print("=" * 78)
 # P on AB at (21/20, 0); Q on AC at (1/4, sqrt3/4).  |AQ| = 1/2.
-PQ2 = (Q3(F(21, 20)) - Q3(F(1, 4))) ** 2 if False else None
 dx = Q3(F(21, 20), 0) - Q3(F(1, 4), 0)
 dy = ZERO - Q3(0, F(1, 4))
 PQ2 = dx * dx + dy * dy

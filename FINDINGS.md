@@ -10,34 +10,47 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ## 2026-08-22
 
-### A four-times-recorded plateau turned out to be one identity nobody had checked
+### A plateau "explained" by a coincidence — the explanation was withdrawn the same day
 `issue #97` · `problems/circle-packing-equilateral-triangle/attacks/n16-structure/` · no claim changed status
 
-Four independent searches — a sequential-LP minimax solver, a Tutte-embedding beam search over
-~4000 structural neighbours, a pattern search over thousands of site layouts, and a later float
-descent — all converged on the same covering side length $a = 1+2\sqrt3$ for $n = 16$. The campaign
-logged the plateau four separate times, wrote "the family is exhausted", and never asked *why that
-number*.
+**This entry replaces one that asserted the explanation was correct.** The original is withdrawn
+and the reasoning is kept, because the withdrawal is the finding.
 
-It is a counting threshold. Classify the pieces of a diameter-$<1$ covering of $T_a$ by how many
-sides of the triangle each one meets; the classes are disjoint, so their lower bounds add. The
-three apexes force 3 two-side pieces. The middles of the sides force 9 one-side pieces. And the
-**deep triangle** — the points at distance $\ge 1$ from all three sides, which by an inner-parallel
-computation has side $\delta = a - 2\sqrt3$ — forces 3 more as soon as $\delta \ge 1$, because its
-own three apexes are then mutually unswallowable.
+Four independent searches had converged on the same covering side length $a = 1+2\sqrt3$ for
+$n = 16$, and the campaign had logged the plateau four times without asking why that number. The
+manager produced a counting theorem — classify the pieces of a diameter-$<1$ covering by how many
+sides of the triangle each meets, note the classes are disjoint so their lower bounds add, and
+observe that the *deep triangle* (points at distance $\ge 1$ from all three sides) has side
+$\delta = a - 2\sqrt3$, which reaches $1$ exactly at $a = 1+2\sqrt3$. The forced count jumps from
+13 to 15 precisely there. Headline: **$1+2\sqrt3$ is the least side length at which fifteen pieces
+are necessary**, so the optimisers are not stuck, they are sitting on an extremal point.
 
-$$\delta = a - 2\sqrt3 = 1 \iff a = 1 + 2\sqrt3 .$$
+**It is false, and the refutation is one line.** The 15-point unit triangular lattice sits in
+$T_4$ — that is just $a_{15} = 4$, which is `cited` and was sitting in the same table the argument
+drew its other inputs from. A piece of diameter $<1$ holds at most one of those 15 points, so
+fifteen pieces are necessary for **every $a \ge 4$**, which is $0.46$ below the claimed threshold.
+The counting theorem forces only $10$ at $a = 4$, where the truth is $\ge 15$: it is five pieces
+slack, and its arriving at 15 exactly at $1+2\sqrt3$ is a coincidence.
 
-So $1+2\sqrt3$ is **the least side length at which fifteen pieces are necessary**. The optimisers
-were not stuck on it; they were sitting on the first point where the count they achieve equals the
-count that is forced, which is what an extremal configuration looks like from the inside.
+**The mechanism, and it is not "check your arithmetic" — the arithmetic was all correct.** Two
+different quantities were conflated. The plateau is about
+$A_{15} = \sup\{a : T_a \text{ is coverable by } 15\}$; the theorem bounds
+$\min\{a : N(a) \ge 15\}$. Both are "15 and $a$", they move in the same direction, and the
+numerical agreement at $1+2\sqrt3$ made the conflation invisible. **A coincidence that lands on the
+number you were trying to explain is the most persuasive possible evidence and the least
+diagnostic** — the prior that an unexplained empirical constant has a one-line explanation is low,
+and matching it exactly should have raised the question "what else forces 15?", which the `cited`
+table answers immediately.
 
-**Why it is worth logging.** The plateau had been treated as an empirical fact about the search
-landscape — "a deep, isolated point of structure space" — and that framing is what stopped anyone
-asking the one-line question. A repeated numerical coincidence is a hypothesis, not a conclusion,
-and this project has enough compute to keep re-confirming a coincidence indefinitely without ever
-explaining it. The explanation also repairs the structural claim two separate audits had just
-flagged as unproved, and it does not move the record by a single digit.
+**What survives** is the half nobody had asked for: the theorem's *class structure* — any 15-piece
+covering has exactly 3 two-side, 9 one-side and 3 no-side pieces — which is a rigorous replacement
+for a "forced $3+9+3$" claim two separate audits had just shown was unproved. The plateau itself is
+**still unexplained.**
+
+**Third coordinator error in two days**, after the broadcast wrong table and the near-miss below.
+All three had the same shape: a conclusion more interesting than the boring alternative, believed
+because it was interesting. The reviewer who caught this one was given an explicit brief that
+manager output carries no privilege; that appears to have been the operative difference.
 
 ---
 
