@@ -1,0 +1,4 @@
+# seed=20260822; scaled-record baseline maxdiam = (a/a0)^2, a0=1+2sqrt3=4.464101615
+a=4.4: baseline maxdiam^2=0.971487483 (scaled record 0.971487483), best after 6 descents: 0.971487483  -> maxdiam=0.985640646 < 1  ***COVERING?***
+a=4.47: baseline maxdiam^2=1.002644331 (scaled record 1.002644331), best after 18 descents: 1.002644331  -> maxdiam=1.001321293 >= 1
+a=4.5: baseline maxdiam^2=1.016147807 (scaled record 1.016147807), best after 18 descents: 1.016147807  -> maxdiam=1.008041570 >= 1
