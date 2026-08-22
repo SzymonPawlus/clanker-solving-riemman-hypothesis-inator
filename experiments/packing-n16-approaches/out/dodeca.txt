@@ -1,0 +1,9 @@
+t = cos15 = 0.9659258;  record threshold a = 1+2sqrt3 = 4.4641016
+control: hex cheat config (M(4)<=1.5 witness): dodmin/t = 0.8966  (<1 kills the cheat?)
+a = 4.40: best min dod = 0.947717 (= 0.9811 * t) -> float-infeasible
+a = 4.44: best min dod = 0.956333 (= 0.9901 * t) -> float-infeasible
+a = 4.46: best min dod = 0.960641 (= 0.9945 * t) -> float-infeasible
+a = 4.50: best min dod = 0.969256 (= 1.0034 * t) -> float-FEASIBLE; exact check: PASS -> M6(16) <= 9/2 = 4.500000
+a = 4.55: best min dod = 0.980026 (= 1.0146 * t) -> float-FEASIBLE; exact check: PASS -> M6(16) <= 91/20 = 4.550000
+a = 4.60: best min dod = 0.990795 (= 1.0257 * t) -> float-FEASIBLE; exact check: PASS -> M6(16) <= 23/5 = 4.600000
+Feasible only at a >= 4.500000: NOT killed below the record at this effort.
