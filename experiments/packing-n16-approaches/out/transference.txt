@@ -1,0 +1,20 @@
+Oler bound  (-3+sqrt129)/2 in [4.178908345800, 4.178908345800]
+repo record 1+2sqrt3       >= 4.464101615138
+
+[W1] 19 unit-separated points, all within Euclid distance 2 of origin  (exact)
+    disk-transference ceiling <= 2*sqrt(3) <= 3.464101615138
+    DEAD: ceiling < Oler  (exact comparison)
+
+[W2] 4x4 grid: 16 unit-separated points in a side-3 square  (exact)
+    square-transference ceiling <= 3*(sqrt6-sqrt2) <= 3.105828541230
+    DEAD: ceiling < Oler  (exact comparison)
+
+[W3] best 16-subset of W1: diameter^2 = 13, diameter <= 3.605551275464
+    => delta(16) <= 3.605551275464  (diameter-relaxation ceiling)
+    DEAD: ceiling < Oler  (exact comparison)
+
+[level-1 moment bound] a >= sqrt(45/64) ~ 0.8385  -- vs Oler 4.179: hopeless.
+
+All three transference ceilings are below Oler; the proposals are refuted
+as record routes.  (Ceilings, not current technology: even a PERFECT
+lower-bound oracle for the other container cannot push them past Oler.)

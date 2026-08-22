@@ -8,6 +8,105 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ---
 
+## 2026-08-22
+
+### A plateau "explained" by a coincidence — the explanation was withdrawn the same day
+`issue #97` · `problems/circle-packing-equilateral-triangle/attacks/n16-structure/` · no claim changed status
+
+**This entry replaces one that asserted the explanation was correct.** The original is withdrawn
+and the reasoning is kept, because the withdrawal is the finding.
+
+Four independent searches had converged on the same covering side length $a = 1+2\sqrt3$ for
+$n = 16$, and the campaign had logged the plateau four times without asking why that number. The
+manager produced a counting theorem — classify the pieces of a diameter-$<1$ covering by how many
+sides of the triangle each meets, note the classes are disjoint so their lower bounds add, and
+observe that the *deep triangle* (points at distance $\ge 1$ from all three sides) has side
+$\delta = a - 2\sqrt3$, which reaches $1$ exactly at $a = 1+2\sqrt3$. The forced count jumps from
+13 to 15 precisely there. Headline: **$1+2\sqrt3$ is the least side length at which fifteen pieces
+are necessary**, so the optimisers are not stuck, they are sitting on an extremal point.
+
+**It is false, and the refutation is one line.** The 15-point unit triangular lattice sits in
+$T_4$ — that is just $a_{15} = 4$, which is `cited` and was sitting in the same table the argument
+drew its other inputs from. A piece of diameter $<1$ holds at most one of those 15 points, so
+fifteen pieces are necessary for **every $a \ge 4$**, which is $0.46$ below the claimed threshold.
+The counting theorem forces only $10$ at $a = 4$, where the truth is $\ge 15$: it is five pieces
+slack, and its arriving at 15 exactly at $1+2\sqrt3$ is a coincidence.
+
+**The mechanism, and it is not "check your arithmetic" — the arithmetic was all correct.** Two
+different quantities were conflated. The plateau is about
+$A_{15} = \sup\{a : T_a \text{ is coverable by } 15\}$; the theorem bounds
+$\min\{a : N(a) \ge 15\}$. Both are "15 and $a$", they move in the same direction, and the
+numerical agreement at $1+2\sqrt3$ made the conflation invisible. **A coincidence that lands on the
+number you were trying to explain is the most persuasive possible evidence and the least
+diagnostic** — the prior that an unexplained empirical constant has a one-line explanation is low,
+and matching it exactly should have raised the question "what else forces 15?", which the `cited`
+table answers immediately.
+
+**What survives** is the half nobody had asked for: the theorem's *class structure* — any 15-piece
+covering has exactly 3 two-side, 9 one-side and 3 no-side pieces — which is a rigorous replacement
+for a "forced $3+9+3$" claim two separate audits had just shown was unproved. The plateau itself is
+**still unexplained.**
+
+**Third coordinator error in two days**, after the broadcast wrong table and the near-miss below.
+All three had the same shape: a conclusion more interesting than the boring alternative, believed
+because it was interesting. The reviewer who caught this one was given an explicit brief that
+manager output carries no privilege; that appears to have been the operative difference.
+
+---
+
+### The dramatic version of that result was wrong, and being dramatic is what should have flagged it
+`issue #97` · same lane · no claim changed status
+
+Deriving the above, the manager reached for Borsuk's planar constant — every plane set of diameter
+$d$ splits into three of diameter $\le \tfrac{\sqrt3}{2}d$ — to bound when three pieces can no
+longer cover the deep triangle. That puts the 16-piece threshold at $8\sqrt3/3 = 4.6188$, which is
+**below** the best-known 16-point packing at $4.6247637$ — i.e. an apparent proof that the covering
+method can never settle $n = 16$, however much compute is thrown at it. A sharp, quotable,
+campaign-redirecting negative result.
+
+It is false. $\sqrt3/2$ is extremal for the disk and the Reuleaux triangle; the equilateral triangle
+splits far better, into three parts of diameter $\delta/\sqrt3$, by joining the centroid to the
+three side midpoints. The correct threshold is $\delta \ge \sqrt3$, i.e. $a \ge 3\sqrt3 = 5.196$ —
+far above the target, and the striking conclusion evaporates entirely.
+
+**This is the fifth instance of the pattern this file tracks, and the second from the coordinator.**
+The shape is the same every time: a remembered constant, applied without re-deriving it, that
+happens to produce a *more interesting* conclusion than the boring alternative. The new detail
+worth recording is the tell. The wrong constant did not announce itself by looking wrong — it
+announced itself by making the result **land just below the target**, at $4.6188$ against
+$4.6248$. A margin that narrow, in your favour, on a question centuries of effort have not settled,
+is not a lucky break; it is a prompt to re-derive the input that produced it. The rewritten rule:
+**the more a result would change what the project does next, the earlier its inputs get checked —
+not the later.**
+
+The final write-up needs no Borsuk-type input at all; it uses only the apex-to-centroid distance,
+which is elementary.
+
+---
+
+### `WebSearch` works in this session; four lanes had written the literature off
+`issue #97` · `problems/circle-packing-equilateral-triangle/attacks/n16-literature/` · no claim changed status
+
+Four workers recorded "novelty unverifiable from this session — scholarly hosts are blocked" and
+stopped. Measured: `WebFetch` is blocked universally (4/4 probes, including hosts nobody had tried),
+but the `WebSearch` tool returns results normally. The session has **bibliographic egress without
+textual egress** — enough to settle volumes, pages and what a paper announces; not enough to read a
+proof or a table.
+
+That distinction matters here because it produced a live candidate for the campaign's novelty
+question: Gáspár & Tarnai, *Upper bound of density for packing of equal circles in special domains
+in the plane*, Periodica Polytechnica Ser. Civ. Eng. **44**:1 (2000) 13–32, which refines Groemer's
+and Oler's inequalities for the equilateral triangle and, per its abstract, prints numerical bounds
+**up to 30 circles**. An upper bound on density at fixed $n$ *is* a lower bound on $s(n)$, so one
+line of one table decides whether this campaign's $s(16) \ge 2+6\sqrt3$ is a record or a
+rediscovery of something weaker. The body is behind the same block.
+
+**The transferable point is not about this session's proxy.** A capability that four workers
+reported as absent was half-present, and none of them had tested the half. "Blocked" was inherited
+from an earlier lane's note and propagated as fact.
+
+---
+
 ## 2026-08-21
 
 ### Every error found today was a correct theorem read one step too broadly
