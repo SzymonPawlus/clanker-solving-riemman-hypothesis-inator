@@ -48,7 +48,7 @@ something.
 
 | severity | what | witness | where |
 |---|---|---|---|
-| **correction** | **"The coarse structure is forced … So the layout is 3 corner + 9 edge + 3 interior" is not proved.** The counting gives only $n_2\ge3$, $I\le n_2$, $n_1+2n_2\ge15$. The step used to exclude $n_2=6$ ("the middle $a-2$ of each side still needs $\ge3$ **more** pieces") assumes a two-side piece cannot reach a side's middle — it can. And $n_2\in\{4,5,7\}$ is never considered at all. | (a) the segment from $p=(\tfrac{21}{20},0)$ on $AB$ to $q=(\tfrac14,\tfrac{\sqrt3}4)$ on $AC$ has $\lvert pq\rvert^2=\tfrac{331}{400}$, i.e. $\lvert pq\rvert=0.909670<1$; it meets **both** sides and $p$ lies in $m_{AB}$ ($1.05>1$ from $A$, $3.414>1$ from $B$). So $M_{AB}$ and the two-side pieces are **not** disjoint. (b) $(n_1,n_2,I)=(7,4,4)$ satisfies every proved constraint. | [`../n16-covering-2/`](../n16-covering-2/) §"Why this is where the family stops" 1; [`../n16-dual/`](../n16-dual/) §"The structure of the optimum" ("That type is **forced**", then substitutes the *observed* $B_2=3$) |
+| **correction** (and a **live disagreement with [`../n16-verification-3/`](../n16-verification-3/) §7**) | **"The coarse structure is forced … So the layout is 3 corner + 9 edge + 3 interior" is not proved, and the sub-step that V3 certifies as "also correct" is false.** The claim *"the middle $a-2$ of each side needs $\ge3$ **one-side** pieces, so $n_1\ge9$, hence $n_2\le6$; and $n_2=6$ forces $n_{\rm int}=0$"* assumes a piece meeting **two** sides cannot reach a side's middle. It can. With that step gone, $n_2=6$ is **not** excluded either. | The segment from $p=(\tfrac{21}{20},0)$ on $AB$ to $q=(\tfrac14,\tfrac{\sqrt3}4)$ on $AC$ has $\lvert pq\rvert^2=\tfrac{16}{25}+\tfrac{3}{16}=\tfrac{331}{400}$, i.e. $\lvert pq\rvert=0.909670<1$. It meets **both** sides, and $p$ lies in $m_{AB}$ ($1.05>1$ from $A$ and $3.414>1$ from $B$). So $M_{AB}$ and the two-side pieces are **not** disjoint, and a two-side piece can be one of the $\ge3$ covering a middle. (Feasibility of the corner constraint: $\alpha=1.05$ admits $\beta\in(0.1089,0.9411)$ in $\alpha^2-\alpha\beta+\beta^2<1$.) | [`../n16-covering-2/`](../n16-covering-2/) §"Why this is where the family stops" 1; [`../n16-dual/`](../n16-dual/) §"The structure of the optimum" ("That type is **forced**", then substitutes the *observed* $B_2=3$); [`../n16-verification-3/`](../n16-verification-3/) §7, which re-derives the same sub-step and marks it correct |
 | **correction** | **The Reuleaux-triangle row is false.** "A piece covering a length-$\ell\le D$ chunk of a side — **no penalty**, area up to $\tfrac{\pi-\sqrt3}2 D^2$ — put the Reuleaux triangle of width $D$ with its base on that side". A Reuleaux triangle's boundary contains no segment, so inside a closed half-plane it meets the boundary line in **exactly one point**; it cannot contain a chunk of positive length. | The correct cap at $\ell=D$ is $f(1)=\tfrac\pi3-\tfrac{\sqrt3}4=0.6141848$, computed exactly by the sibling lane [`../n16-covering-limit/`](../n16-covering-limit/) §3, which explicitly says the extremal set is the two-arc lens and "*not* a Reuleaux triangle". So an edge piece with a full-length trace is **below** the hexagon figure $3\sqrt3/8=0.6495191$, not $108\%$ of it. The standing certificate obeys this: its three trace-$1$ edge pieces have area $0.5669873$ each (`areas_traces.py`). | [`../n16-shapes/`](../n16-shapes/) §5 table, row 3; propagated into §5's "area forbids nothing" justification and §7's "**where the money is**: 1. the edge collar … a single boundary piece can reach $0.7048$ ($108\%$)" |
 | **correction** | **Arithmetic slip.** "$\tfrac{\sqrt3}{4}a^2 \le 3\cdot\tfrac{\pi}{6} + 12\cdot\tfrac{3\sqrt3}{8} = 9.36499 \Rightarrow a \le 4.65194$". The stated budget gives $a\le4.6505482$. $4.65194$ corresponds to a per-piece cap of $0.6499862$, not $3\sqrt3/8=0.6495191$. | exact: $\tfrac{\sqrt3}4\cdot4.65194^2 = 9.370729 \neq 9.365025$; $\sqrt{4\cdot9.365025/\sqrt3}=4.6505482$ (`arith.py`) | [`../n16-dual/`](../n16-dual/) §"How much room is left" |
 | **correction** | **"provably not tight" at $m=8$ is not proved.** What exists is an optimiser plateau at $2.97779$ from two solvers. $A_8\le a_9=3$ *is* proved (by the same pigeonhole, run backwards); $A_8<3$ is not — a sup need not be attained, and no quantitative gap was derived. | the file's own correct caveat, two paragraphs later: "the control does **not** license a claim that $4.464$ is the end of the road" | [`../n16-dual/`](../n16-dual/) §"Controls" |
@@ -64,10 +64,41 @@ something.
 
 **None of these changes any number in the lower-bound chain.** The two that would change what the
 next worker does are the first and the fifth: between them they retire the "3+9+3 is forced" and
-"the family is exhausted" reasons for abandoning the 15-piece lane, and `n16-shapes` §7.2's
-topology enumeration (3/10/2, 3/11/1, and — corrected — the $n_2\ge4$ families) is back on the
-table. Note that $I\ge1$ *is* proved (the incentre sits at distance $a/(2\sqrt3)=1.289>1$ from
-every side, so no boundary piece reaches it), which does kill 3/12/0.
+"the family is exhausted" reasons for abandoning the 15-piece lane.
+
+### 1.1 The repair for finding 1 — what actually survives
+
+The useful half is recoverable, by counting the *corner-containing* pieces out of the middles
+instead of counting all two-side pieces out of them. For $4<a<5$ and any covering of $T_a$ by 15
+sets of diameter $<1$:
+
+- $\lvert M_e\rvert\ge3$ for each side $e$ (traces of length $<1$ must cover a middle of length
+  $a-2>2$), and $M_{e}\cap M_{e'}=\emptyset$ for $e\ne e'$ (a piece meeting two middles would need
+  $\sqrt{s^2-st+t^2}\le\operatorname{diam}<1$ with $s,t>1$, impossible). So
+  $\lvert\bigcup_e M_e\rvert\ge9$.
+- A piece **containing a corner** $V$ lies in $B(V,1)$ and therefore lies in no $M_e$. There are at
+  least 3 such pieces, all of them two-side pieces.
+- Hence $9\le n_1+(n_2-3)$, i.e. $\;n_1+n_2\ge12$, i.e.
+  $$\boxed{\,n_{\rm int}\ \le\ 3\,}$$
+  for **every** value of $n_2$ — which is the conclusion the campaign actually uses.
+- And $n_{\rm int}\ge1$, because the incentre sits at distance $a/(2\sqrt3)=1.2886>1$ from every
+  side and so lies in no piece that meets a side. (This is the only part of the original $n_2=6$
+  argument that survives, and it kills the 3/12/0 layout that `n16-shapes` §7.2 lists as open.)
+
+What does **not** survive is the layout being pinned. Every triple below satisfies
+$n_1+n_2+n_{\rm int}=15$, $n_1+2n_2\ge15$, $n_1+n_2\ge12$, $n_2\ge3$, $1\le n_{\rm int}\le3$,
+and nothing in the campaign excludes any of them:
+
+`structure.py` enumerates them: **33 triples survive**, of which exactly one is $3{+}9{+}3$. The
+first nine are
+$$(11,3,1),\ (10,3,2),\ \mathbf{(9,3,3)},\ (10,4,1),\ (9,4,2),\ (8,4,3),\ (9,5,1),\ (8,5,2),\ (7,5,3).$$
+The rows with large $n_2$ are geometrically implausible — a two-side piece lies within
+$2/\sqrt3=1.1547$ of a corner, and there are only three corners — but *implausible* is not
+*excluded*, and no argument in the campaign excludes them. The honest statement is that
+$n_{\rm int}\le3$ is proved and the layout is not.
+
+So `n16-shapes` §7.2's topology enumeration is back on the table, and it is larger than that
+section thinks: not only the interior count but the *corner* count $n_2$ is unpinned.
 
 ---
 
@@ -219,6 +250,7 @@ This was the thing I most expected to break, and it does not.
 | Fejes Tóth hexagon bound $\Rightarrow15A_6=10.124715$, $a\le4.8355$ | arithmetic **reproduces** ($4.8354966$ against $4.835498$ stated; the difference is a deliberate upward rounding of $A_6$, which weakens the author's own conclusion — correct practice, not an error). Same for X2 ($4.7258037$ vs $4.725804$). |
 | area ceilings U0 $=5.2160321$, U1 $=5.0391657$, hexagon $=4.7434165$, and the gap arithmetic $0.481320$, $0.377761$, $0.103559$, $95.06\%$, $51/64/83\%$ | all **reproduce** exactly |
 | `n16-dual`'s $m=3$ control, $866025399/500000000=1.7320507980<\sqrt3$ | **sound** and is the sharpest control in the campaign |
+| $\lvert M_e\rvert\ge3$, $M_e\cap M_{e'}=\emptyset$, and corner pieces lying in no $M_e$ | **sound** — and together they give $n_{\rm int}\le3$ unconditionally (§1.1), which is more than the campaign's own argument establishes |
 
 ---
 
@@ -242,10 +274,18 @@ This was the thing I most expected to break, and it does not.
   closed-form endpoints ($f(1)$ exactly, and the explicit disk lower bound's form) and the shape
   of the argument, not the 128-slab LPs or their dual repair. Nothing in the lower-bound chain
   depends on them.
-- **The live lanes** `n16-covering-max`, `n16-mixed-capacity`, `n16-verification-3`, and
-  `n16-occupancy`'s results: no write-up existed at the close of this pass. I audited
-  `n16-occupancy`'s kill-criterion and its capacity table and circularity guard only (both sound,
-  §3.3 and §3.5).
+- **The live lanes** `n16-covering-max`, `n16-mixed-capacity`, and `n16-occupancy`'s results: no
+  write-up existed at the close of this pass. I audited `n16-occupancy`'s kill-criterion, its
+  capacity table and its circularity guard only (all sound, §3.3 and §3.5).
+  [`../n16-verification-3/`](../n16-verification-3/) landed while I was writing and I read it
+  after finishing my own checks; it independently reaches the same verdict on the bound, by the
+  same hand-transcription route, and independently notices that the "3+9+3 is forced" argument has
+  a hole. **It locates the hole in a different place from me, and its §7 explicitly certifies as
+  "also correct" the sub-step I break** ("the middle … needs $\ge3$ one-side pieces, so $n_1\ge9$
+  … and $n_2=6$ forces $n_{\rm int}=0$"). Under problem `RULES.md` §3.4 a disagreement between
+  checkers is itself a finding: one of us is wrong about that sub-step, my side of it has an exact
+  witness (§1, first row), and §1.1 gives what I believe is the correct repair. This should be
+  settled before anyone builds an exhaustion argument on the structure.
 - **Anything about $n\ne16$.** The earlier `eo-*` closures (corner-deficit, boundary-counting,
   hull-deficit) were read for their scope statements only. Each carries explicit hedges, names its
   own near-miss, and records the circular result its author caught — I found nothing to add and
@@ -292,6 +332,7 @@ python3 experiments/packing-n16-redteam/check_cov2.py     # exact Q(sqrt3) re-ve
 python3 experiments/packing-n16-redteam/areas_traces.py   # per-piece areas and traces vs f(l)
 python3 experiments/packing-n16-redteam/arith.py          # 40-digit checks of every quoted number
 python3 experiments/packing-n16-redteam/cmp_code.py       # my table transcription vs exact_1p2r3.py
+python3 experiments/packing-n16-redteam/structure.py      # finding 1: the witness, the repair, the 33 layouts
 ```
 
 Python standard library only (`fractions`, `decimal`, `itertools`). No seeds, no tolerances, no

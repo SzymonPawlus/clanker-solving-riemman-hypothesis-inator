@@ -1,0 +1,3 @@
+a = 447/100 = 4.470000, N = 21 pieces, offset (Fraction(43, 700), Fraction(43, 700))
+  cover verified: True (peak residual 24), max diam2 = 0.9795918367346939 < 1: True
+  N=21 pieces, 20349 patterns survive pair pruning
