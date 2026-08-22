@@ -84,6 +84,39 @@ The sampling distribution is over labelled stub matchings, is not uniform over l
 unlabelled multigraphs, and is biased toward weakly constrained M1 matroids.  This is the main
 limitation; no exhaustiveness claim is made.
 
+## Bad-complement matching census
+
+`bad_complement_census.py` tests the proposed intersecting-family mechanism exactly.  For each
+full M1 base `K`, it puts `K` in `F_bad` when the eight-element complement `U=E-K` splits into
+two full M1 bases but the restriction `M1|U` is not strongly base orderable.  Matching and
+disjointness refer to the four-element bases `K`, not to their eight-element complements.
+
+The independent sink-subset basis oracle and direct definition-level SBO checker give:
+
+- D27 control: 71 bases, 71 eligible complements, one bad complement, matching number one;
+- merged ID1009 realization: 271 bases, 222 eligible complements, three bad complements,
+  matching number one;
+- all 104 committed fixtures marked `independently_verified`: no bad complements;
+- the complete canonically deduplicated space of degree-preserving one-switch mutations of
+  ID1009: 1,128 unordered arc-position pairs, 1,016 nondegenerate switches, and 700 unique
+  canonical arc multisets.  Of these, 642 preserve minimum dicut at least three, 189 retain a
+  nonempty bad family, and none has two disjoint bad bases.  The 189 positive cases have 26
+  distinct census signatures.
+
+The last family deliberately targets a known non-SBO-containing realization while changing its
+sink incidence structure.  Every unordered arc-position pair is considered; degenerate swaps
+are discarded and sorted arc multisets are deduplicated before exact minimum-dicut and `F_bad`
+tests.  One representative of each distinct tuple `(base count, eligible count, bad count,
+matching number)` is retained in the compact artifact.  Different count tuples certify
+different M1 matroids; no full graph-isomorphism classification is claimed.  No disjoint bad
+pair was found.  This finite negative result is `numerical` and does not prove that `F_bad` is
+always intersecting.
+
+The compact JSON has one representative for each of the 26 census signatures.  The optional
+details output has all 104 committed records plus those representatives; the full 700 mutation
+outcomes are reproducibly held in the checkpoint cache during the run.  These artifacts are
+regenerated deterministically by the command below.
+
 ## Reproduction
 
 From the repository root:
@@ -94,8 +127,14 @@ python3 experiments/woodalls-rho4/search.py --source-count 12 --count 1000 \
   --independent-every 10 --checkpoint experiments/woodalls-rho4/results.json
 python3 experiments/woodalls-rho4/search.py --source-count 13 --count 100 \
   --independent-every 100 --checkpoint experiments/woodalls-rho4/results-m13.json
+python3 experiments/woodalls-rho4/bad_complement_census.py \
+  --output /tmp/bad-complement-census.json \
+  --details-output /tmp/bad-complement-census-details.json --jobs 1 \
+  --committed-cache /tmp/bad-complement-committed-cache.json \
+  --mutation-cache /tmp/bad-complement-mutation-cache.json
 ```
 
-Repeat the last command with source counts 14, 15, and 16 and matching output names.  Every run
-checkpoints after each accepted graph.  The committed runs used Python 3.14.6; the exact version
-is recorded in each output.  Total wall-clock time was well below the one-hour unattended budget.
+Repeat the source-count 13 search command with source counts 14, 15, and 16 and matching output
+names.  Every search run checkpoints after each accepted graph.  The committed runs used Python
+3.14.6; the exact version is recorded in each output.  Total wall-clock time was well below the
+one-hour unattended budget.
