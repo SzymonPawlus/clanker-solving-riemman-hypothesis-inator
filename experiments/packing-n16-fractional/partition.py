@@ -420,3 +420,87 @@ def vertex_variants(N, deltas=(1.5, 3.0, 6.0), offs=(0.2, -1.0), verbose=True):
         print(f"  vertex variants: {len(out)} feasible "
               f"({nfail} rejected by cap)")
     return out
+
+
+def hot_variants(N, thresh=62.6, d_in=(1.0, 2.0, 3.0), d_out=(0.8, 1.8),
+                 verbose=True):
+    """Per-face variants targeted at the diameter-critical vertices.
+
+    For each face, the 'hot' vertices are those involved in a vertex pair of
+    float length > thresh (the continuum faces have diameter exactly 1 =
+    62.947 units at N=281, attained on several vertex pairs).  A variant
+    pulls a chosen subset of hot vertices IN radially and pushes the other
+    hot vertices OUT; cold vertices move slightly out.  Cells inside the
+    modified polygon are collected, their lattice hull is the piece, and the
+    exact diameter cap filters infeasible combinations.  Mixing such
+    variants at fractional weights is exactly the freedom Lemma F's LP has
+    and an integral cover does not."""
+    from itertools import combinations
+    faces = scaled_faces_float(N)
+    cells = fr.unit_cells(N)
+    cw = fr.cell_windows(cells)
+    VX, VY = cw["VX"], cw["VY"]
+    out, seen, nfail = [], set(), 0
+
+    def build(poly, off=0.3):
+        nonlocal nfail
+        k = len(poly)
+        m = np.ones(len(cells), dtype=bool)
+        for i in range(k):
+            (x1, y1), (x2, y2) = poly[i], poly[(i + 1) % k]
+            ex, ey = x2 - x1, y2 - y1
+            ln = math.hypot(ex, ey) or 1.0
+            marg = ((ex * (VY - y1) - ey * (VX - x1)) / ln).min(axis=1)
+            m &= marg >= -off
+        idx = np.nonzero(m)[0]
+        if idx.size == 0:
+            return
+        pts = set()
+        for t in range(3):
+            pts.update(zip(VX[idx, t].tolist(), VY[idx, t].tolist()))
+        h = fr.hull_int(list(pts))
+        if h is None:
+            return
+        q = seeded.max_pair_q(h)
+        if q > fr.QMAX_ALLOWED:
+            nfail += 1
+            return
+        key = tuple(sorted(h))
+        if key in seen:
+            return
+        seen.add(key)
+        out.append(fr.Poly([(fr.Fraction(x), fr.Fraction(y))
+                            for x, y in h], tag="hot"))
+
+    for fi, poly in enumerate(faces):
+        k = len(poly)
+        cx = sum(p[0] for p in poly) / k
+        cy = sum(p[1] for p in poly) / k
+        hot = set()
+        for i in range(k):
+            for j in range(i + 1, k):
+                dx = poly[i][0] - poly[j][0]
+                dy = poly[i][1] - poly[j][1]
+                if math.sqrt(dx * dx + dx * dy + dy * dy) > thresh:
+                    hot.update((i, j))
+        hot = sorted(hot)
+        for r in range(0, len(hot) + 1):
+            for S in combinations(hot, r):
+                for di in d_in:
+                    for do in d_out:
+                        moved = []
+                        for t in range(k):
+                            x, y = poly[t]
+                            dx, dy = x - cx, y - cy
+                            ln = math.hypot(dx, dy) or 1.0
+                            if t in S:
+                                d = -di
+                            elif t in hot:
+                                d = do
+                            else:
+                                d = 0.5
+                            moved.append((x + dx / ln * d, y + dy / ln * d))
+                        build(moved)
+    if verbose:
+        print(f"  hot variants: {len(out)} feasible ({nfail} rejected by cap)")
+    return out
