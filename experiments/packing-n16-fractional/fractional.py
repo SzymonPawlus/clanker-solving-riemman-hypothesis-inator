@@ -274,6 +274,25 @@ class Poly:
                 "verts": [[str(a), str(b)] for a, b in self.vertsF]}
 
 
+def clip_to_T(piece, N):
+    """piece ∩ T_N as a Poly, or None if empty.  (Worker F3 addition.)
+    Sound for certification: every unit cell of T_N lies inside T_N, so a
+    cell is contained in `piece` iff it is contained in the clip; clipping
+    can only shrink the diameter.  It exists so that emitted certificates
+    satisfy the independent checker's containment-in-T_N check (A)."""
+    vs = piece.verts() if isinstance(piece, Box) else list(piece.vertsF)
+    poly = [(Fraction(a), Fraction(b)) for a, b in vs]
+    for (A, B, C) in ((-1, 0, 0), (0, -1, 0), (1, 1, N)):
+        poly = clip_halfplane(poly, Fraction(A), Fraction(B), Fraction(C))
+        if not poly:
+            return None
+    poly = clean_convex_ccw(poly)
+    if not poly:
+        return None
+    tag = getattr(piece, "tag", "") or piece.kind
+    return Poly(poly, tag=tag + "|T")
+
+
 def sigma_poly(piece, N):
     """The rational isometry sigma(u,v) = (N-u-v, u) (rotates T_N's corners
     A->B->C).  It preserves Q: Q(-du-dv, du) = Q(du,dv)."""
@@ -554,14 +573,26 @@ def certify(N, budget, pieces, verbose=True, r_bulk=3, fine_band=6,
         out["status"] = "rounding-exceeded"
         return out
 
-    # exact verification on the full unit-cell partition of T_N
+    # exact verification on the full unit-cell partition of T_N.
+    # F3 change: every piece is first clipped to T_N (coverage-neutral for
+    # cells, diameter-nonincreasing) so the emitted certificate is inside
+    # T_N, as the independent checker requires.
+    clipc = {}
+
+    def cpiece(pi):
+        if pi not in clipc:
+            clipc[pi] = clip_to_T(pieces[pi], N)
+        return clipc[pi]
+
     ucells = unit_cells(N)
     ucw = cell_windows(ucells)
     sums = np.zeros(len(ucells), dtype=np.int64)
+    for pi in [pi for pi in numers if cpiece(pi) is None]:
+        del numers[pi]          # entirely outside T_N: contributes nothing
     sup_list = sorted(numers)
     qmax = Fraction(0)
     for pi in sup_list:
-        p = pieces[pi]
+        p = cpiece(pi)
         d2 = p.diam2_upper()
         assert d2 <= QMAX_ALLOWED, f"piece {pi} diameter too large: {d2}"
         if d2 > qmax:
@@ -577,7 +608,10 @@ def certify(N, budget, pieces, verbose=True, r_bulk=3, fine_band=6,
                 break
             best, bestcnt = None, 0
             deficit = int((K - sums[bad]).max())
-            for pi, p in enumerate(pieces):
+            for pi in range(len(pieces)):
+                p = cpiece(pi)
+                if p is None:
+                    continue
                 m = p.contains_mask(ucw)
                 cnt = int(m[bad].sum())
                 if cnt > bestcnt:
@@ -588,7 +622,7 @@ def certify(N, budget, pieces, verbose=True, r_bulk=3, fine_band=6,
             sums[bestm] += deficit
             if best in [pi for pi in sup_list]:
                 pass
-            d2 = pieces[best].diam2_upper()
+            d2 = cpiece(best).diam2_upper()
             assert d2 <= QMAX_ALLOWED
             if d2 > qmax:
                 qmax = d2
@@ -627,7 +661,7 @@ def certify(N, budget, pieces, verbose=True, r_bulk=3, fine_band=6,
     out["certificate"] = {
         "N_units": N, "unit": f"1/{UNIT}", "K": K, "budget_points": budget,
         "weights": {str(pi): numers[pi] for pi in sorted(numers)},
-        "pieces": {str(pi): pieces[pi].desc() for pi in sorted(numers)},
+        "pieces": {str(pi): cpiece(pi).desc() for pi in sorted(numers)},
     }
     return out
 

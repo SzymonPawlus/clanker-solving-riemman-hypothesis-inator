@@ -47,3 +47,35 @@ certifying past the true $a_{16}$, and a 16-point packing at $4.6247637$ is beli
 $\le 45$ min wall clock of computation, $\le 1$ core for anything long. Checkpoint every LP
 result to `experiments/packing-n16-fractional/certs/` as it completes. When the budget is spent,
 the best *verified* $N$ is the result, whatever the LP hints more might be possible.
+
+---
+
+## Addendum (worker F3, 2026-08-23) — family-adequacy gate, fixed before computing
+
+F2's K1 controls tested small $n$ on families that happened to contain the obvious lattice
+subdivision; they never tested whether the $n=16$ family contains *any* 15-piece cover. The
+manager's post-mortem shows it does not: at $N=281$ the ratio $281/63 = 4.4603 < 1+2\sqrt3$, so a
+15-piece cover exists in the continuum, yet the LP on F2's family needs $17.67$. The criteria
+below are fixed before any new computation; K1–K4 above stand unchanged.
+
+- **A1 — adequacy gate (blocking).** Seed the family with grid-rationalised pieces of the
+  record's own 15-piece cover ([`../n16-covering-2/`](../n16-covering-2/)), plus small lattice
+  translates of them (translation preserves diameter), clipped to $T_N$. At $N = 281$ the LP
+  value must come out $\le 15.1$ (target $15.0$; up to $0.1$ allowed for residual cell
+  granularity). If it does not, the family is still inadequate: **no sweep result at any $N$ may
+  be reported as evidence about $A_{16}^{\mathrm{frac}}$**, and the write-up must say the lane
+  remains untested.
+- **A2 — what counts as an answer at $N \ge 282$.** Only after A1 passes. For each $N \ge 282$
+  the LP row is `numerical`; a claim $a_{16} \ge N/\sqrt{q_{\max}}$ requires the exact
+  `Fraction` re-verification *and* an independent pass of
+  `experiments/packing-n16-fracverify/fracverify.py` (not modified by me). A verified $N \ge
+  282$ beats the record and must be flagged prominently, not just tabulated; K3 still caps
+  everything at $4.62$.
+- **A3 — seed provenance / circularity.** The seed is the record's 15-piece *covering*
+  (`sketch`, [`../n16-covering-2/`](../n16-covering-2/)) — an input to the *family*, not to the
+  bound: Lemma F + the exact verifier alone produce the bound, and a wrong or misremembered seed
+  can only make the LP value *worse* (higher), never certify anything false. No number derived
+  from any 16-point packing is an input; `EXCLUDE_POINTS = 16` remains the only $n=16$-specific
+  constant.
+- **A4 — budget for this round.** $\le 45$ min wall clock, $\le 1$ core, checkpoints to
+  `certs/` as in K4; background jobs killed before the session ends.
