@@ -1,0 +1,4 @@
+== n=16 sweep ==
+  N=282: rows=34372 pieces=27145 nnz=30156194 build=12.9s
+  N=282: LP value = 17.7525 (budget 16) [244.0s]
+  n16 N=282: lp-only lp=17.752533975376494 bound=None

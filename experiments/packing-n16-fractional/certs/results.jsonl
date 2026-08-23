@@ -7,3 +7,4 @@
 {"N": 192, "budget": 10, "lp_value": 9.99999999999999, "status": "lp-only", "label": "n10"}
 {"N": 190, "budget": 10, "lp_value": 9.999999999999977, "status": "lp-only", "label": "n10"}
 {"N": 189, "budget": 10, "lp_value": 9.0, "status": "verified", "total_weight": "589828/65536", "total_float": 9.00006103515625, "qmax": "3969/1", "n_support": 9, "bound_exact_sq": "35721/3969", "bound_decimal_lower": "3.000000000000", "seconds": 24.8, "label": "n10"}
+{"N": 282, "budget": 16, "lp_value": 17.752533975376494, "status": "lp-only", "label": "n16"}
