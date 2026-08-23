@@ -12,3 +12,4 @@
 {"N": 281, "budget": 16, "lp_value": 22.00271006541722, "status": "lp-only", "label": "n16seedonly"}
 {"N": 281, "budget": 16, "lp_value": 20.40154821851055, "status": "lp-only", "label": "n16seedonly-r1"}
 {"N": 281, "budget": 16, "status": "infeasible-rows", "bad_rows": 9, "label": "n16var-only"}
+{"N": 281, "budget": 16, "lp_value": 34.8, "status": "lp-only", "label": "n16var"}

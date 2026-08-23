@@ -22,3 +22,5 @@ n=5 a=483/250: FEASIBLE (expected FEASIBLE) nodes=11857 leaves=10865 23.20s
 ALL CONTROLS PASSED
 === growth gate: n=10 at a=361/125 (caps: 300000 nodes, 600s) ===
 n=10 a=361/125: TIME_CAP nodes=269741 certified_leaves=247254 max_depth=15 600.00s
+search n=16 a=4485/1000: best min dod = 0.966026 = 1.00010*t
+exact check at a=4485/1000: True  => M6(16) <= 4485/1000

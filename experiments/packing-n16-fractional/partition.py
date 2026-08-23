@@ -359,3 +359,64 @@ def variant_polys(N, extend=(1.2, 2.2), retract=1.0, verbose=True):
         print(f"  variants: {len(out)} feasible pieces "
               f"({nfail} rejected by exact diameter cap)")
     return out
+
+
+def vertex_variants(N, deltas=(1.5, 3.0, 6.0), offs=(0.2, -1.0), verbose=True):
+    """Variants built by radially displacing ONE vertex of a face outward
+    (from the face centroid) before collecting cells.  The record proves the
+    four junction vertices are rattlers with ~0.137 separation units
+    (~8.6 grid units) of slack, so such moves can be diameter-feasible; the
+    exact cap check filters the ones that are not."""
+    faces = scaled_faces_float(N)
+    cells = fr.unit_cells(N)
+    cw = fr.cell_windows(cells)
+    VX, VY = cw["VX"], cw["VY"]
+    out, seen, nfail = [], set(), 0
+
+    def build(poly, off):
+        nonlocal nfail
+        k = len(poly)
+        m = np.ones(len(cells), dtype=bool)
+        for i in range(k):
+            (x1, y1), (x2, y2) = poly[i], poly[(i + 1) % k]
+            ex, ey = x2 - x1, y2 - y1
+            ln = math.hypot(ex, ey) or 1.0
+            marg = ((ex * (VY - y1) - ey * (VX - x1)) / ln).min(axis=1)
+            m &= marg >= -off
+        idx = np.nonzero(m)[0]
+        if idx.size == 0:
+            return
+        pts = set()
+        for t in range(3):
+            pts.update(zip(VX[idx, t].tolist(), VY[idx, t].tolist()))
+        h = fr.hull_int(list(pts))
+        if h is None:
+            return
+        q = seeded.max_pair_q(h)
+        if q > fr.QMAX_ALLOWED:
+            nfail += 1
+            return
+        key = tuple(sorted(h))
+        if key in seen:
+            return
+        seen.add(key)
+        out.append(fr.Poly([(fr.Fraction(x), fr.Fraction(y))
+                            for x, y in h], tag="vmove"))
+
+    for fi, poly in enumerate(faces):
+        k = len(poly)
+        cx = sum(p[0] for p in poly) / k
+        cy = sum(p[1] for p in poly) / k
+        for t in range(k):
+            x, y = poly[t]
+            dx, dy = x - cx, y - cy
+            ln = math.hypot(dx, dy) or 1.0
+            for d in deltas:
+                moved = list(poly)
+                moved[t] = (x + dx / ln * d, y + dy / ln * d)
+                for off in offs:
+                    build(moved, off)
+    if verbose:
+        print(f"  vertex variants: {len(out)} feasible "
+              f"({nfail} rejected by cap)")
+    return out

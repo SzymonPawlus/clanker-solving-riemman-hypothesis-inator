@@ -494,6 +494,21 @@ if __name__ == "__main__":
         n, a_str, ncap, tcap = int(sys.argv[2]), sys.argv[3], int(sys.argv[4]), float(sys.argv[5])
         gate(n, a_str, ncap, tcap)
     elif cmd == "search":
-        n, a = int(sys.argv[2]), float(sys.argv[3])
+        n, a_str = int(sys.argv[2]), sys.argv[3]
+        aF = F(a_str)
+        a = float(aF)
         m, P = iterated_lp_search(n, a, restarts=int(sys.argv[4]) if len(sys.argv) > 4 else 30)
-        log("search n=%d a=%.4f: best min dod = %.6f = %.5f*t" % (n, a, m, m / T_F))
+        log("search n=%d a=%s: best min dod = %.6f = %.5f*t" % (n, a_str, m, m / T_F))
+        if m >= T_F - 1e-9:
+            Q = [(F(u).limit_denominator(10**9), F(v).limit_denominator(10**9))
+                 for u, v in P]
+            Q = [(max(F(0), min(u, aF)), max(F(0), min(v, aF))) for u, v in Q]
+            Q = [(u - max(F(0), (u + v - aF)) / 2, v - max(F(0), (u + v - aF)) / 2)
+                 for u, v in Q]
+            ok, why = exact_witness_true_t(Q, aF)
+            log("exact check at a=%s: %s%s" %
+                (a_str, ok, "  => M6(%d) <= %s" % (n, a_str) if ok else ""))
+            if ok:
+                with open(os.path.join(OUT, "witness_n%d_%s.json" % (n, a_str.replace("/", "_"))), "w") as fh:
+                    json.dump({"n": n, "a": a_str,
+                               "points_uv": [[str(u), str(v)] for u, v in Q]}, fh, indent=1)
