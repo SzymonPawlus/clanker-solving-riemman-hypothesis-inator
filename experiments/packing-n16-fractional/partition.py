@@ -504,3 +504,112 @@ def hot_variants(N, thresh=62.6, d_in=(1.0, 2.0, 3.0), d_out=(0.8, 1.8),
     if verbose:
         print(f"  hot variants: {len(out)} feasible ({nfail} rejected by cap)")
     return out
+
+
+def repair2(N, cap=fr.QMAX_ALLOWED, max_rounds=1500, verbose=True):
+    """Strict repair: vertex evictions where every displaced cell must land
+    in a class that stays <= cap.  No move may create a new violation."""
+    faces = scaled_faces_float(N)
+    cells, assign = initial_assignment(N, faces)
+    ncls = len(faces)
+    vcount = [dict() for _ in range(ncls)]
+    for ci in range(len(cells)):
+        fi = int(assign[ci])
+        for v in cell_verts(cells[ci]):
+            vcount[fi][v] = vcount[fi].get(v, 0) + 1
+    info = [hull_diam(set(vcount[fi])) for fi in range(ncls)]
+    vmap = {}
+    for ci in range(len(cells)):
+        for v in cell_verts(cells[ci]):
+            vmap.setdefault(v, []).append(ci)
+
+    def remove_cell(ci, fi):
+        for v in cell_verts(cells[ci]):
+            vcount[fi][v] -= 1
+            if vcount[fi][v] == 0:
+                del vcount[fi][v]
+
+    def add_cell(ci, fi):
+        for v in cell_verts(cells[ci]):
+            vcount[fi][v] = vcount[fi].get(v, 0) + 1
+
+    tabu = {}
+    for rnd in range(max_rounds):
+        over = sorted(((info[fi][1], fi) for fi in range(ncls)
+                       if info[fi][1] > cap), reverse=True)
+        if not over:
+            break
+        done = False
+        for q0, fi in over:
+            _, q, pair = info[fi]
+            for v in pair:
+                v = (int(v[0]), int(v[1]))
+                group = [ci for ci in vmap.get(v, []) if assign[ci] == fi]
+                if not group:
+                    continue
+                for ci in group:
+                    remove_cell(ci, fi)
+                plan = []
+                ok = True
+                for ci in group:
+                    tgts = {int(assign[cj]) for w in cell_verts(cells[ci])
+                            for cj in vmap.get(w, [])} - {fi}
+                    tgts = {g for g in tgts
+                            if tabu.get((ci, g), -1) < rnd}
+                    best = None
+                    for gj in sorted(tgts):
+                        q_old = info[gj][1]
+                        add_cell(ci, gj)
+                        _, qj, _ = hull_diam(set(vcount[gj]))
+                        remove_cell(ci, gj)
+                        # admissible: stays under cap, or (already over) does
+                        # not get worse -- its own eviction comes later
+                        if (qj <= cap or qj <= q_old) and                                 (best is None or qj < best[0]):
+                            best = (qj, gj)
+                    if best is None:
+                        ok = False
+                        break
+                    add_cell(ci, best[1])
+                    plan.append((ci, best[1]))
+                if not ok:
+                    for ci, gj in plan:
+                        remove_cell(ci, gj)
+                    for ci in group:
+                        add_cell(ci, fi)
+                    continue
+                # commit
+                for ci, gj in plan:
+                    assign[ci] = gj
+                    tabu[(ci, fi)] = rnd + 200
+                info[fi] = hull_diam(set(vcount[fi]))
+                for gj in {g for _, g in plan}:
+                    info[gj] = hull_diam(set(vcount[gj]))
+                done = True
+                break
+            if done:
+                break
+        if not done:
+            if verbose:
+                print(f"  repair2 stuck at round {rnd}; over-cap: "
+                      f"{[(fi, info[fi][1]) for _, fi in over]}")
+            return None
+        if verbose and rnd % 50 == 0:
+            print(f"  round {rnd}: worst={max(info[k][1] for k in range(ncls))}"
+                  f" n_over={sum(1 for k in range(ncls) if info[k][1] > cap)}")
+    else:
+        if verbose:
+            print("  repair2: round limit")
+        return None
+    # exact audit from scratch
+    fresh = [class_points(cells, assign, fi) for fi in range(ncls)]
+    hulls = []
+    for fi in range(ncls):
+        h, q, _ = hull_diam(fresh[fi])
+        assert q <= cap, f"audit: class {fi} diam2 {q}"
+        hulls.append(h)
+    counts = np.bincount(assign, minlength=ncls)
+    assert counts.sum() == len(cells) and (assign >= 0).all()
+    if verbose:
+        print(f"  PARTITION OK at N={N}: max diam2 = "
+              f"{max(hull_diam(f)[1] for f in fresh)}")
+    return hulls
