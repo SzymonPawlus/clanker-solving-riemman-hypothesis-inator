@@ -386,19 +386,24 @@ def gen_family(N, step_bulk=4, step_edge=6, quad_caps=True):
         for L2 in range(lo, hi, step_bulk):
             if L1 + L2 > N or L1 + L2 + 2 * W < 0:
                 continue
-            for k, styp in ((0, "up"), (W, "down"), (16, "hex"), (32, "hex"), (48, "hex")):
+            # s-offsets are multiples of 3 so the s-slab stays aligned with
+            # the r=3 bulk rows (63 = 21*3; misaligned offsets erode).
+            for k, styp in ((0, "up"), (W, "down"), (15, "hex"), (30, "hex"), (45, "hex")):
                 b = Box(L1, L1 + W, L2, L2 + W, L1 + L2 + k, L1 + L2 + k + W)
                 if b.nonempty():
                     pieces.append(b)
     # edge-flush boxes: slide along each edge at step_edge for finer
     # boundary structure (u=0 edge, v=0 edge, hypotenuse)
     for t in range(-W, N + 1, step_edge):
-        for k, styp in ((0, "up"), (W, "down"), (32, "hex")):
+        for k, styp in ((0, "up"), (W, "down"), (30, "hex")):
             pieces.append(Box(t, t + W, 0, W, t + k, t + k + W))          # v=0 flush
             pieces.append(Box(0, W, t, t + W, t + k, t + k + W))          # u=0 flush
-            pieces.append(Box(t, t + W, N - W - t - k, N - t - k + 0 + W,
+            pieces.append(Box(t, t + W, N - W - t - k, N - t - k,
                               N - W, N))                                   # s=N flush
-    pieces = [p for p in pieces if p.nonempty()]
+    # defense in depth: no piece with (upper-bounded) squared diameter over
+    # the cap may ever reach the LP, not merely the final certificate.
+    pieces = [p for p in pieces
+              if p.nonempty() and p.diam2_upper() <= QMAX_ALLOWED]
 
     # corner sectors: hull of integer points of the 60-degree wedge within
     # distance 63 of the apex, at each corner (exact images under sigma).
@@ -449,8 +454,10 @@ def gen_family(N, step_bulk=4, step_edge=6, quad_caps=True):
     # sector hull's lattice chord near the diagonal (needed at the n=4
     # control; harmless elsewhere).  Filter by exact diameter.
     if quad_caps:
-        for c in range(90, min(2 * W + 20, N + 8) + 1, 1):
-            for m in range(2 * c // 3 - 4, 146):
+        cs = sorted(set(range(max(90, N - 2), min(2 * W + 20, N + 8) + 1))
+                    | set(range(100, min(127, N), 6)))
+        for c in cs:
+            for m in range(2 * c // 3 - 4, 146, 2):
                 cap = Fraction(m, 2)
                 poly = [(Fraction(0), Fraction(0)), (Fraction(3 * N), Fraction(0)),
                         (Fraction(0), Fraction(3 * N))]
@@ -469,7 +476,16 @@ def gen_family(N, step_bulk=4, step_edge=6, quad_caps=True):
                     q2 = sigma_poly(q1, N)
                     if q2:
                         polys.append(q2)
-    pieces.extend([p for p in polys if p.nonempty()])
+    # dedupe polys by exact vertex tuples (many (c,cap) collapse to one shape)
+    seen = set()
+    for p in polys:
+        if not p.nonempty() or p.diam2_upper() > QMAX_ALLOWED:
+            continue
+        key = tuple(sorted((str(a), str(b)) for a, b in p.vertsF))
+        if key in seen:
+            continue
+        seen.add(key)
+        pieces.append(p)
     return pieces
 
 
@@ -656,7 +672,7 @@ def controls():
     for label, n, Ns, cap in plans:
         best = None
         for N in Ns:
-            pieces = gen_family(N, step_bulk=3, step_edge=3)
+            pieces = gen_family(N, step_bulk=6, step_edge=3)
             r = run_case(label, n, N, pieces=pieces, r_bulk=3, fine_band=8,
                          corner_rad=75)
             if r["status"] == "verified":

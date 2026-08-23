@@ -381,7 +381,7 @@ def check(path, verbose=True):
         if dmin is None or v.cmp(dmin) > 0:
             dmin, argmax = v, i
     gap = Q3(dq, 0) - dmin
-    gate("G5.1 reported side_length is a valid upper bound (d >= d_min)",
+    gate("G4.1 reported side_length is a valid upper bound (d >= d_min)",
          gap.sign() >= 0,
          f"d - d_min = {dec(gap, 20)}, argmax point {argmax}")
     tight = gap.sign() == 0
