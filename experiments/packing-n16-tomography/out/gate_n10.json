@@ -1,0 +1,9 @@
+{
+ "n": 10,
+ "a": "2888/1000",
+ "verdict": "TIME_CAP",
+ "nodes": 269741,
+ "leaves_certified": 247254,
+ "max_depth": 15,
+ "seconds": 600.0
+}

@@ -269,3 +269,93 @@ if __name__ == "__main__":
     N = int(sys.argv[1]) if len(sys.argv) > 1 else 281
     label = sys.argv[2] if len(sys.argv) > 2 else f"n16part"
     certify_partition(N, label)
+
+
+# ---------------------------------------------------------------------------
+# F3, second construction: per-face hull VARIANTS for the LP to mix.
+# A variant of face fi is the convex hull of the lattice vertices of all
+# unit cells that lie (vertex-exactly) inside face fi offset by off_e along
+# each edge e (off_e > 0 extends outward, < 0 retracts).  Hulls of cells
+# inside T_N have integer vertices inside T_N, so containment in T_N is
+# automatic; each variant is kept only if its EXACT squared diameter is
+# <= 3969.  The LP can then share weight between variants that extend at
+# one seam and retract at another -- the fractional move a single
+# diameter-63 piece cannot make.
+# ---------------------------------------------------------------------------
+
+def variant_polys(N, extend=(1.2, 2.2), retract=1.0, verbose=True):
+    faces = scaled_faces_float(N)
+    cells = fr.unit_cells(N)
+    cw = fr.cell_windows(cells)
+    VX, VY = cw["VX"], cw["VY"]          # [ncells, 3] int64
+    out, seen = [], set()
+    nfail = 0
+    for fi, poly in enumerate(faces):
+        k = len(poly)
+        # edge data: unit-normalised inward margin per cell vertex
+        edges = []
+        for i in range(k):
+            (x1, y1), (x2, y2) = poly[i], poly[(i + 1) % k]
+            ex, ey = x2 - x1, y2 - y1
+            ln = math.hypot(ex, ey) or 1.0
+            marg = (ex * (VY - y1) - ey * (VX - x1)) / ln   # [ncells,3]
+            onb = (abs(x1 - round(x1)) < 1e-9 and abs(x2 - round(x2)) < 1e-9
+                   and ((round(x1) == 0 and round(x2) == 0)))
+            # boundary edge iff both endpoints on the same side of T
+            def onside(px, py):
+                return (abs(px) < 1e-7, abs(py) < 1e-7,
+                        abs(px + py - N * (1 + 2 * math.sqrt(3.0)) /
+                            (1 + 2 * math.sqrt(3.0))) < 1e-7)
+            b1 = (abs(x1) < 1e-7, abs(y1) < 1e-7, abs(x1 + y1 - N) < 1e-6)
+            b2 = (abs(x2) < 1e-7, abs(y2) < 1e-7, abs(x2 + y2 - N) < 1e-6)
+            isbnd = any(a and b for a, b in zip(b1, b2))
+            edges.append((marg.min(axis=1), isbnd))   # worst vertex margin
+        margins = [e[0] for e in edges]
+        isbnd = [e[1] for e in edges]
+        inner = [i for i in range(k) if not isbnd[i]]
+
+        def build(offs):
+            nonlocal nfail
+            m = np.ones(len(cells), dtype=bool)
+            for i in range(k):
+                off = 0.5 if isbnd[i] else offs[i]
+                m &= margins[i] >= -off
+            idx = np.nonzero(m)[0]
+            if idx.size == 0:
+                return
+            pts = set()
+            for t in range(3):
+                pts.update(zip(VX[idx, t].tolist(), VY[idx, t].tolist()))
+            h = fr.hull_int(list(pts))
+            if h is None:
+                return
+            q = seeded.max_pair_q(h)
+            if q > fr.QMAX_ALLOWED:
+                nfail += 1
+                return
+            key = tuple(sorted(h))
+            if key in seen:
+                return
+            seen.add(key)
+            out.append(fr.Poly([(fr.Fraction(x), fr.Fraction(y))
+                                for x, y in h], tag=f"var{fi}"))
+
+        base = [0.0] * k
+        build(base)                          # offset 0
+        build([-retract] * k)                # uniform retract
+        for j in inner:
+            for ext in extend:
+                offs = [-retract] * k
+                offs[j] = ext
+                build(offs)
+                # pairs of adjacent interior edges extended together
+            offs = [-retract] * k
+            offs[j] = extend[0]
+            jn = (j + 1) % k
+            if jn in inner:
+                offs[jn] = extend[0]
+                build(offs)
+    if verbose:
+        print(f"  variants: {len(out)} feasible pieces "
+              f"({nfail} rejected by exact diameter cap)")
+    return out

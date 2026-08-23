@@ -69,4 +69,38 @@ b5["certificate"]["weights"][ks[0]] += need + 1
 allgood &= run(b5, "total weight inflated to the budget")
 
 print("\nSELFTEST", "PASS" if allgood else "FAIL")
+
+
+# --- regressions for the three bugs worker V6 found (C1, C2, C3) -------------
+print("\nregressions for V6's findings:")
+import fracverify as FV
+from fractions import Fraction as Fr
+
+# C1: the u+v clip must survive negative and zero bounds.
+ok_c1 = True
+for bounds, want_nonempty in ((["0", "4", "0", "4", "-3", "4"], True),
+                              (["0", "4", "0", "4", "2", "0"], False),
+                              (["0", "4", "0", "4", "0", "4"], True)):
+    poly = FV.piece_polygon({"kind": "box", "bounds": bounds})
+    got = bool(poly)
+    good = (got == want_nonempty)
+    ok_c1 &= good
+    print(f"  {'ok' if good else '*** WRONG ***':>18}  box u+v bounds {bounds[4]}..{bounds[5]} "
+          f"-> {'non-empty' if got else 'empty'} (want {'non-empty' if want_nonempty else 'empty'})")
+    if poly:
+        for (u, v) in poly:
+            assert Fr(bounds[4]) <= u + v <= Fr(bounds[5]), "vertex violates its own u+v bound"
+
+# C2: decimal strings and bare floats in exact fields must be rejected.
+ok_c2 = True
+for bad in ("1.5", "1e3", 1.5):
+    try:
+        FV.exact(bad)
+        ok_c2 = False
+        print(f"  {'*** ACCEPTED ***':>18}  exact field {bad!r}")
+    except ValueError:
+        print(f"  {'REJECTED':>18}  exact field {bad!r}")
+
+allgood &= ok_c1 and ok_c2
+print("\nREGRESSIONS", "PASS" if (ok_c1 and ok_c2) else "FAIL")
 sys.exit(0 if allgood else 1)

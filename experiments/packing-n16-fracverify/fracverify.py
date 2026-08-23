@@ -100,19 +100,36 @@ def sqdiam(poly):
 
 
 # ---------- certificate decoding -------------------------------------------
+def exact(z):
+    """Parse an exact field.  Problem RULES.md section 2 bans decimal strings;
+    a bare JSON float is worse.  (Bugs C2, found by worker V6.)"""
+    if isinstance(z, float):
+        raise ValueError(f"bare float {z!r} in an exact field")
+    if isinstance(z, str):
+        if "." in z or "e" in z.lower():
+            raise ValueError(f"decimal string {z!r} in an exact field")
+    return F(z)
+
+
 def piece_polygon(spec):
     """Decode one piece to a ccw integer polygon in the (u,v) chart."""
     if spec["kind"] == "poly":
         # vertices may be integers or exact rationals like "107/2"
-        return ccw([(F(x), F(y)) for x, y in spec["verts"]])
+        return ccw([(exact(x), exact(y)) for x, y in spec["verts"]])
     if spec["kind"] == "box":
         ulo, uhi, vlo, vhi, wlo, whi = spec["bounds"]
         # {ulo<=u<=uhi, vlo<=v<=vhi, wlo<=u+v<=whi} -- clip the u,v box by w
-        ulo, uhi, vlo, vhi, wlo, whi = (F(z) for z in (ulo, uhi, vlo, vhi, wlo, whi))
-        poly = [(ulo, vlo), (uhi, vlo), (uhi, vhi), (ulo, vhi)]
-        poly = ccw(poly)
-        for a, b, keep in (((wlo, 0), (0, wlo), -1), ((whi, 0), (0, whi), 1)):
-            poly = clip(poly, a, b, keep)
+        ulo, uhi, vlo, vhi, wlo, whi = (exact(z) for z in (ulo, uhi, vlo, vhi, wlo, whi))
+        poly = ccw([(ulo, vlo), (uhi, vlo), (uhi, vhi), (ulo, vhi)])
+        # The u+v bounds MUST NOT be clipped against the point pair
+        # ((c,0),(0,c)): that cross product carries a factor of c, so the
+        # inequality flips for c < 0 and vanishes for c = 0.  (Bug C1, found
+        # by worker V6; gen_family emits w-bounds down to -126.)
+        # Use the direction-fixed pair (c,0),(c-1,1): then
+        #   cross((c,0),(c-1,1),P) = c - (Pu+Pv),
+        # whose sign is independent of the sign of c.
+        for c, keep in ((whi, 1), (wlo, -1)):
+            poly = clip(poly, (c, F(0)), (c - 1, F(1)), keep)
             if not poly:
                 return []
         return poly
@@ -132,8 +149,20 @@ def verify(path, verbose=True):
     UNIT = F(unit).denominator if isinstance(unit, str) else int(round(1 / unit))
     cap = (UNIT - 1) ** 2
 
-    polys = {k: piece_polygon(specs[k]) for k in weights}
     fails = []
+    missing = [k for k in weights if k not in specs]
+    if missing:
+        fails.append(f"weights reference {len(missing)} piece(s) with no spec: {missing[:5]}")
+    polys = {}
+    for k in weights:
+        if k not in specs:
+            continue
+        try:
+            polys[k] = piece_polygon(specs[k])
+        except ValueError as e:
+            fails.append(f"piece {k}: {e}")
+    if not polys:
+        return False, 0.0, 0
 
     # (A) containment in T_N
     for k, P in polys.items():
