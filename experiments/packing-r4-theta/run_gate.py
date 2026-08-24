@@ -36,7 +36,7 @@ def grid_k(d: float, refine: int) -> int:
     return max(3, int(round(d * refine / 2.0)) + 1)
 
 
-def run_case(n, d_expr, label, refine, per_solve=110.0, eps=1e-5):
+def run_case(n, d_expr, label, refine, per_solve=80.0, eps=1e-5):
     d = float(d_expr)
     k = grid_k(d, refine)
     t0 = time.time()
@@ -62,30 +62,35 @@ def append(rec, path=OUT):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true")
-    ap.add_argument("--budget", type=float, default=1800.0)
+    ap.add_argument("--budget", type=float, default=780.0)
     args = ap.parse_args()
     t_start = time.time()
     deadline = t_start + args.budget
 
     eps_probe = sp.Rational(1, 100)   # probe just below the truth
 
-    cases = []
-    # (A) resolution ladder at the single most informative point: n = 8 at Oler's floor
-    dO8 = sp.sqrt(65) - 3
-    for r in (4, 6, 8, 10):
-        cases.append((8, dO8, "oler-floor", r))
-    # (B) n = 8 and n = 12: Oler's floor, and just below the true d(n)
-    dO12 = sp.sqrt(97) - 3
-    cases += [(12, dO12, "oler-floor", 6),
-              (8, KNOWN_D[8] - eps_probe, "just-below-d(n)", 6),
-              (12, KNOWN_D[12] - eps_probe, "just-below-d(n)", 6)]
-    # (C) triangular n: Oler is exactly tight there (Oler floor == d(n)), so the only
-    #     meaningful probe is just below d(n).
-    for n in (3, 6, 10, 15, 21):
-        cases.append((n, KNOWN_D[n] - eps_probe, "just-below-d(n)", 6 if n <= 10 else 4))
-    # (D) the open case n = 16, at Oler's floor
-    cases.append((16, sp.sqrt(129) - 3, "oler-floor", 4))
-    cases.append((16, sp.sqrt(129) - 3, "oler-floor", 6))
+    dO8, dO12, dO16 = sp.sqrt(65) - 3, sp.sqrt(97) - 3, sp.sqrt(129) - 3
+    # Ordered most-informative first, because --budget truncates from the end.
+    #  * "oler-floor" probes are the gate proper: does theta' reach n at Oler's floor?
+    #  * "just-below-d(n)" probes ask the harder question, whether theta' is exact.
+    #    For triangular n, Oler's floor IS d(n), so only this probe is meaningful.
+    #  * n = 8 at Oler's floor doubles as the grid-refinement ladder.
+    cases = [
+        (8,  dO8,  "oler-floor", 4),
+        (8,  dO8,  "oler-floor", 6),
+        (12, dO12, "oler-floor", 6),
+        (16, dO16, "oler-floor", 6),
+        (8,  KNOWN_D[8] - eps_probe,  "just-below-d(n)", 6),
+        (3,  KNOWN_D[3] - eps_probe,  "just-below-d(n)", 6),
+        (6,  KNOWN_D[6] - eps_probe,  "just-below-d(n)", 6),
+        (10, KNOWN_D[10] - eps_probe, "just-below-d(n)", 6),
+        (15, KNOWN_D[15] - eps_probe, "just-below-d(n)", 4),
+        (21, KNOWN_D[21] - eps_probe, "just-below-d(n)", 4),
+        (12, KNOWN_D[12] - eps_probe, "just-below-d(n)", 6),
+        (8,  dO8,  "oler-floor", 8),
+        (8,  dO8,  "oler-floor", 10),
+        (16, dO16, "oler-floor", 4),
+    ]
 
     for (n, d_expr, label, r) in cases:
         if time.time() > deadline:

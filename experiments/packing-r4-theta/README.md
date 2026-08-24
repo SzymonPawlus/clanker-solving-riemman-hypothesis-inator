@@ -67,10 +67,10 @@ is true of the variable count (4) and false of the degree, hence of the SDP size
 ## Reproduce
 
 ```bash
-cd experiments/packing-r4-theta && python3 theta_gate.py --selftest && python3 run_gate.py --all --budget 2100 && python3 run_anchored.py && python3 make_table.py
+cd experiments/packing-r4-theta && python3 theta_gate.py --selftest && python3 run_gate.py --all --budget 780 && python3 run_anchored.py && python3 make_table.py
 ```
 
-Runtime about 35 minutes on 4 idle cores. `run_gate.py` checkpoints to `results.json` after
+Runtime about 20 minutes on 4 idle cores. `run_gate.py` checkpoints to `results.json` after
 every solve and honours `--budget` (seconds), so a partial run is still a usable partial
 result; `run_anchored.py` appends to the same file. `make_table.py` renders `results.json`
 as the markdown tables in the write-up. **Run only one battery at a time** — they append to
@@ -95,8 +95,7 @@ on grids finer than the packing.
 ## Environment
 
 Python 3.11.15, `numpy` 2.4.6, `scipy` 1.17.1, `sympy` 1.14.0, `cvxpy` 1.9.2
-(solvers CLARABEL and SCS), `networkx` 3.6.1. SCS is run at `eps = 1e-5` (battery 1) or
-`1e-6` (battery 2) with a per-solve wall-clock cap; CLARABEL is used for the small self-test
+(solvers CLARABEL and SCS), `networkx` 3.6.1. SCS is run at `eps = 1e-5` with a per-solve wall-clock cap; CLARABEL is used for the small self-test
 graphs. The only seed is `numpy.random.default_rng(20260824)` for the six random self-test
 graphs; the grids and the SDPs are deterministic. The one non-reproducible quantity is SCS's
 stopping point under the time cap, recorded per row (`status`, `solve_s`), which affects only

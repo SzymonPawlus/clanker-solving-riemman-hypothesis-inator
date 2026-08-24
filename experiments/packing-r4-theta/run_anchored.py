@@ -33,7 +33,7 @@ if __name__ == "__main__":
         adj, pts, h = conflict_adj_anchored(d_expr, refine)
         a = alpha_exact(adj)
         t1 = time.time()
-        lb, status, M, vs = theta_prime_lb(adj, eps=1e-6, time_limit=120.0)
+        lb, status, M, vs = theta_prime_lb(adj, eps=1e-5, time_limit=90.0)
         append(dict(n=n, label=label + "-anchored", d=d, refine=refine,
                     k=int(sp.floor(sp.nsimplify(d_expr) / sp.Rational(2, refine))) + 1,
                     N=len(pts), spacing=h, alpha_grid=a, theta_lb=lb, theta_solver=vs,
