@@ -105,8 +105,41 @@ good — including one that would have been the repo's first machine-checked *op
 | `r4-dual` | **exact dual certificate**, no rounding, no repair; collapse proposition closes; holds at every `n` by symbolic identity | `numerical`/`sketch` |
 | `r4-krawczyk` | **20 exact tight certificates**, Krawczyk contracted at all 20 | `numerical` |
 | `r4-famcert` (FAM-CERT) | staircase certified at **`n = 40` and `n = 49`**; reproduction gate passed | `numerical` |
-| `r4-theta` (AC) | not delivered — worker did not report | — |
+| `r4-theta` (AC) | **not delivered — destroyed by manager error**, see below | — |
 | `r4-cover4` (AG) | **not delivered** — killed mid-run at "still SAT", before either direction closed; left probe scripts only, no results, not merged | — |
+
+### The `r4-theta` lane was destroyed by manager error, not by the mathematics
+
+Recorded because the alternative is a silently missing lane, and because a process error that eats
+a worker's output is exactly as damaging to this repo as a mathematical one.
+
+The θ′ worker was still running — it had never reported — when the manager ran
+`git worktree remove --force` across all lanes as cleanup. Its worktree was deleted underneath it
+while its solver was mid-run, and its branch `r4-theta` carried **no commits**. Nothing it computed
+survives except one line recovered afterwards from the still-open file descriptor of its deleted
+log:
+
+```json
+{"n": 8, "label": "oler-floor-anchored", "d": 5.06225774829855, "refine": 6, "k": 16,
+ "N": 136, "spacing": 0.333…, "alpha_grid": 6, "theta_lb": 5.995292871002561,
+ "theta_solver": 6.00102859863399, "status": "optimal", "nonedges": 4620,
+ "build_s": 0.1, "solve_s": 97.5, "fires": false,
+ "d_exact": "-3 + sqrt(65)", "oler_floor": 5.062257748298549,
+ "d_known": 5.829708431025352}
+```
+
+**No conclusion is drawn from it.** The field semantics — in particular what `fires: false` refers
+to, and whether `theta_lb` is a bound on the independence number or on something else — are defined
+only in code that no longer exists. A single data point whose meaning cannot be confirmed is not
+evidence, and reading a result into it would be precisely the failure `RULES.md` §0 describes.
+
+**Lessons, both procedural:** worktrees must not be reclaimed until every dispatched worker has
+reported; and a worker that commits nothing until the end has no partial-result story at all, which
+is why the protocol tells workers to checkpoint. Two other lanes this round survived their own
+deaths only because they had written files to disk.
+
+`r4-theta` should simply be re-run. The question it was asked — whether the container-θ′ bound
+shares the `√6` ceiling that killed the moment hierarchy — is untouched.
 
 ### The Krawczyk result, and its load-bearing negative
 
