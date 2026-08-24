@@ -22,9 +22,11 @@ $\vartheta'(G_d[W])$ on a **finite** witness $W \subset T_d$. By the ceiling lem
 (§2.2, `sketch`), $\vartheta'(G_d[W]) \le \vartheta'(G_d)$, so the instrument can only ever
 show that $\vartheta'$ is **too weak**. It can never show that $\vartheta'$ is strong,
 because a value below $n$ is compatible with the continuum value being anything above it.
-The measurements came back at the "$\vartheta'$ is strong" end (§4: at every $d$ well below
-$d(n)$ the value sits on $\alpha(G_d[W])$ to a few thousandths, and nowhere does it exceed
-$\alpha$ by as much as $1/2$), so **no ceiling was detected and the gate did not fire**.
+The measurements came back at the "$\vartheta'$ is strong" end — over 20 solves at seven
+values of $n$, $\vartheta'(G_d[W])$ never reached $n$; at every $d$ well below $d(n)$ it sat
+on $\alpha(G_d[W])$ to a few thousandths (at $n = 16$, $d = \sqrt{129}-3$: $\alpha = 15$ and
+$\vartheta' = 15.0000$, converged), and nowhere did it exceed $\alpha$ by as much as $0.45$.
+So **no ceiling was detected and the gate did not fire**.
 
 That is an honest null result, not evidence for AC. §4.4 records exactly how blunt the
 instrument is — in particular that the witness *undershoots* $\alpha(G_d)$ precisely at the

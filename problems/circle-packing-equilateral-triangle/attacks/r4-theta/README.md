@@ -34,9 +34,11 @@ kill the proposal's headline claim.
 3. **`r3-sdpgate`'s ceiling has no analogue here.** $d_2(n) \le \sqrt6$ was *bounded*;
    §2.5 shows $\vartheta'(G_d) = \Theta(d^2)$, so the $\vartheta'$ floor grows like
    $\sqrt n$ — the right order. This family of relaxations is **not** flat.
-4. **The cheap measurement found no weakness at all**, which is a null result and not
-   evidence for AC: the instrument (§3) is one-sided by construction and can only ever
-   detect weakness. §4.4 says exactly how blunt it is and why.
+4. **The cheap measurement found no weakness at all** — over 20 solves at seven values of
+   $n$, $\vartheta'$ on a finite witness never reached $n$, and at $n = 16$, $d = \sqrt{129}-3$
+   it came back at exactly $\alpha = 15$. That is a null result and **not** evidence for AC:
+   the instrument (§3) is one-sided by construction and can only ever detect weakness. §4.4
+   says exactly how blunt it is and why.
 
 ---
 
@@ -253,7 +255,67 @@ All values `numerical`. Every $\vartheta'$ entry is a **repaired-primal lower bo
 $\vartheta'(G_d[W])$, hence (Lemma 2) a lower bound on $\vartheta'(G_d)$. The gate fires at a
 row iff that value reaches $n$.
 
-<!--TABLES-->
+### 4.1 Refinement ladder — the instrument, not the quantity
+
+*n = 8 at d = Oler's floor, corner-to-corner grid.  The reported value is a repaired-primal LOWER bound, so a coarse grid whose solve converges beats a fine grid whose solve does not.*
+
+| refine | pts/side | N | spacing | alpha(grid) | theta'(grid) >= | solver value | status | solve |
+|---:|---:|---:|---:|---:|---:|---:|:--|---:|
+| 4 | 11 | 66 | 0.506 | 6 | 5.9997 | 6.0001 | `optimal` | 1 s |
+| 6 | 16 | 136 | 0.337 | 6 | 5.9550 | 6.0076 | `optimal` | 41 s |
+| 8 | 21 | 231 | 0.253 | 6 | 5.5738 | 6.1219 | `optimal_inaccurate` | 80 s |
+| 10 | 26 | 351 | 0.202 | 6 | 4.9987 | 6.2704 | `optimal_inaccurate` | 81 s |
+
+### 4.2 The gate table
+
+*Best (largest) certified value per (n, probe).  The gate fires iff it reaches n.*
+
+*`gain` is theta' minus alpha on the same witness.  theta' >= alpha always (Lemma 1), so a NEGATIVE gain means only that the repaired-primal bound fell short of the truth because the solve did not converge inside its cap — read those rows as "at least alpha".*
+
+| n | known d(n) | Oler floor | d probe | what d is | witness | N | alpha(grid) | theta'(grid) >= | gain | reaches n? |
+|---:|---:|---:|---:|:--|:--|---:|---:|---:|---:|:--|
+| 3 | 2.000000 | 2.000000 | 1.990000 | just-below-d(n) | corner | 28 | 1 | 1.0000 | +0.0000 | **no** |
+| 6 | 4.000000 | 4.000000 | 3.990000 | just-below-d(n) | corner | 91 | 4 | 3.9971 | -0.0029 | **no** |
+| 8 | 5.829708 | 5.062258 | 5.819708 | just-below-d(n) | corner | 171 | 7 | 7.3368 | +0.3368 | **no** |
+| 8 | 5.829708 | 5.062258 | 5.819708 | just-below-d(n) | anchored | 171 | 7 | 7.3368 | +0.3368 | **no** |
+| 8 | 5.829708 | 5.062258 | 5.062258 | oler-floor | corner | 66 | 6 | 5.9997 | -0.0003 | **no** |
+| 8 | 5.829708 | 5.062258 | 5.062258 | oler-floor | anchored | 136 | 6 | 5.9550 | -0.0450 | **no** |
+| 10 | 6.000000 | 6.000000 | 5.990000 | just-below-d(n) | corner | 190 | 7 | 7.3150 | +0.3150 | **no** |
+| 12 | 7.464102 | 6.848858 | 7.454102 | just-below-d(n) | corner | 276 | 11 | 9.9881 | -1.0119 | **no** |
+| 12 | 7.464102 | 6.848858 | 7.454102 | just-below-d(n) | anchored | 276 | 11 | 10.0900 | -0.9100 | **no** |
+| 12 | 7.464102 | 6.848858 | 6.848858 | oler-floor | corner | 253 | 10 | 9.9488 | -0.0512 | **no** |
+| 12 | 7.464102 | 6.848858 | 6.848858 | oler-floor | anchored | 231 | 10 | 9.8698 | -0.1302 | **no** |
+| 15 | 8.000000 | 8.000000 | 7.990000 | just-below-d(n) | corner | 153 | 10 | 10.4471 | +0.4471 | **no** |
+| 16 | *open* | 8.357817 | 8.357817 | oler-floor | corner | 351 | 15 | 13.6627 | -1.3373 | **no** |
+| 16 | *open* | 8.357817 | 8.357817 | oler-floor | anchored | 153 | 15 | 14.9999 | -0.0001 | **no** |
+| 21 | 10.000000 | 10.000000 | 9.990000 | just-below-d(n) | corner | 231 | 15 | 14.3735 | -0.6265 | **no** |
+
+### 4.3 Every record
+
+| n | label | d | refine | N | non-edges | alpha | theta' >= | solver | status | build | solve |
+|---:|:--|---:|---:|---:|---:|---:|---:|---:|:--|---:|---:|
+| 8 | oler-floor | 5.0623 | 4 | 66 | 1134 | 6 | 5.9997 | 6.0001 | `optimal` | 1.3 s | 0.7 s |
+| 8 | oler-floor | 5.0623 | 6 | 136 | 4620 | 6 | 5.9550 | 6.0076 | `optimal` | 2.3 s | 40.7 s |
+| 12 | oler-floor | 6.8489 | 6 | 253 | 20700 | 10 | 9.9488 | 10.0089 | `optimal` | 5.6 s | 22.7 s |
+| 16 | oler-floor | 8.3578 | 6 | 351 | 46515 | 15 | 13.6627 | 15.0886 | `optimal_inaccurate` | 8.1 s | 80.4 s |
+| 8 | just-below-d(n) | 5.8197 | 6 | 171 | 8385 | 7 | 7.3368 | 7.3642 | `optimal` | 1.5 s | 29.5 s |
+| 3 | just-below-d(n) | 1.9900 | 6 | 28 | 0 | 1 | 1.0000 | 1.0000 | `optimal` | 0.0 s | 0.0 s |
+| 6 | just-below-d(n) | 3.9900 | 6 | 91 | 1386 | 4 | 3.9971 | 4.0014 | `optimal` | 0.0 s | 5.2 s |
+| 10 | just-below-d(n) | 5.9900 | 6 | 190 | 10647 | 7 | 7.3150 | 7.3662 | `optimal` | 0.1 s | 50.4 s |
+| 15 | just-below-d(n) | 7.9900 | 4 | 153 | 8463 | 10 | 10.4471 | 10.4940 | `optimal` | 0.2 s | 16.9 s |
+| 21 | just-below-d(n) | 9.9900 | 4 | 231 | 21420 | 15 | 14.3735 | 15.0685 | `optimal_inaccurate` | 0.3 s | 80.6 s |
+| 12 | just-below-d(n) | 7.4541 | 6 | 276 | 26775 | 11 | 9.9881 | 11.0438 | `optimal_inaccurate` | 2.4 s | 80.5 s |
+| 8 | oler-floor | 5.0623 | 8 | 231 | 12636 | 6 | 5.5738 | 6.1219 | `optimal_inaccurate` | 4.1 s | 80.3 s |
+| 8 | oler-floor | 5.0623 | 10 | 351 | 27828 | 6 | 4.9987 | 6.2704 | `optimal_inaccurate` | 7.4 s | 81.0 s |
+| 16 | oler-floor | 8.3578 | 4 | 171 | 10920 | 11 | 10.8898 | 11.1470 | `optimal_inaccurate` | 4.2 s | 80.3 s |
+| 8 | oler-floor-anchored | 5.0623 | 6 | 136 | 4620 | 6 | 5.9550 | 6.0076 | `optimal` | 0.1 s | 41.1 s |
+| 12 | oler-floor-anchored | 6.8489 | 6 | 231 | 17580 | 10 | 9.8698 | 10.0090 | `optimal` | 0.3 s | 64.7 s |
+| 16 | oler-floor-anchored | 8.3578 | 4 | 153 | 8736 | 15 | 14.9999 | 15.0000 | `optimal` | 0.1 s | 3.3 s |
+| 16 | oler-floor-anchored | 8.3578 | 6 | 351 | 46515 | 15 | 13.7869 | 15.0760 | `optimal_inaccurate` | 0.6 s | 90.8 s |
+| 8 | just-below-d(n)-anchored | 5.8197 | 6 | 171 | 8385 | 7 | 7.3368 | 7.3642 | `optimal` | 0.3 s | 29.1 s |
+| 12 | just-below-d(n)-anchored | 7.4541 | 6 | 276 | 26775 | 11 | 10.0900 | 11.0381 | `optimal_inaccurate` | 0.4 s | 90.6 s |
+
+*(Generated by `make_table.py` from `results.json`; not hand-typed.)*
 
 ### 4.4 How blunt the instrument is, and why the null result is weak evidence
 
@@ -268,10 +330,14 @@ Two things limit it, and they compound:
    any lattice, and the anchored grid still undershoots. So the witness undershoots
    $\alpha(G_d)$ precisely where the gate needs it to overshoot.
 2. **The gap that would have to be crossed is $\ge 1$, and the observed gaps are $< 1/2$.**
-   Where the grid does reproduce $\alpha(G_d)$ — at $d$ well below $d(n)$, e.g. every
-   `oler-floor` row — the measured $\vartheta'$ sits *on* $\alpha$ to within a few
-   thousandths. Where it exceeds $\alpha$ it does so by at most about $0.45$. Firing the gate
-   from $\alpha = n-1$ requires a gain of a full $1$.
+   Where the witness does reproduce $\alpha(G_d)$ — at $d$ well below $d(n)$, i.e. the
+   `oler-floor` rows — the measured $\vartheta'$ sits *on* $\alpha$ to within a few
+   thousandths. The cleanest instance is the one that matters most: at $n = 16$,
+   $d = \sqrt{129}-3$, the anchored 153-point witness has $\alpha = 15$, which is exactly
+   $\alpha(G_d)$ here (since $d(15) = 8 \le d < d(16)$), and its $\vartheta'$ came back
+   $15.0000$ in a converged 3-second solve. Where $\vartheta'$ does exceed $\alpha$ it does
+   so by at most $+0.447$ (the $n = 15$ row). Firing the gate from $\alpha = n-1$ requires a
+   gain of a full $1$, and nothing here got close.
 
 So the honest reading of §4 is **"no ceiling detected by this instrument"**, not
 "$\vartheta'$ is strong". A sharper witness is the obvious next attempt: circulant-shaped

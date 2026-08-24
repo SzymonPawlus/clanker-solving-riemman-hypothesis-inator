@@ -24,6 +24,10 @@ for r in rows:
 
 print("\n### 4.2 The gate table\n")
 print("*Best (largest) certified value per (n, probe).  The gate fires iff it reaches n.*\n")
+print("*`gain` is theta' minus alpha on the same witness.  theta' >= alpha always "
+      "(Lemma 1), so a NEGATIVE gain means only that the repaired-primal bound fell "
+      "short of the truth because the solve did not converge inside its cap — read those "
+      "rows as \"at least alpha\".*\n")
 print("| n | known d(n) | Oler floor | d probe | what d is | witness | N | alpha(grid) | "
       "theta'(grid) >= | gain | reaches n? |")
 print("|---:|---:|---:|---:|:--|:--|---:|---:|---:|---:|:--|")
