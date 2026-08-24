@@ -8,6 +8,97 @@ the PR or file where the claim lives with its real status (`RULES.md` §3).
 
 ---
 
+## 2026-08-23
+
+### Round-2 recorded a lower bound weaker than the one already on `main`
+`issue #110` · `attacks/r3-approaches/README.md` §0.1 · no claim changed status
+
+Round 2 records the rigorous state of the art at `n = 16` as "exactly `d(16) >= 8` (free)",
+reasoning that 16 points contain 15. But `attacks/oler-lower-bound/oler_bound.py`, merged on
+`main`, already gives `d(n) >= sqrt(8n+1) - 3`, i.e. **8.3578 at n = 16**.
+
+Checked four independent ways: re-derived symbolically from Oler's statement; confirmed exactly
+tight at all six triangular numbers `Delta(k)`, k = 2..7; matched against the merged closed form;
+and re-derived again by a separate worker, which strengthened it (tightness at triangular `n` is a
+polynomial identity in k, not six spot checks).
+
+Two ideation lenses caught this independently before any execution work started. **Gates in rounds
+1-2 phrased as "beat 7.999" or "beat 8.05" aim below a bound the repo already had.** The lesson is
+not about Oler: a number was carried forward as folklore across a round boundary without anyone
+re-checking it against the repo's own merged code.
+
+### Approach C died on strength, not on size — and the board records the wrong reason
+`issue #110` · `attacks/r3-sdpgate/` · direction retired
+
+Round 1 predicted the Lasserre/moment hierarchy dies on SDP size and recommended a size estimate
+before anything else. That estimate was finally done, and **the size prediction was wrong**: after
+`S_n` reduction the level-2 moment matrix at `n = 16` has blocks 9, 9, 3, 1; level 3 has largest
+block 31; even level 5 is trivial. Block sizes are independent of `n` for `n >= 2L`.
+
+The relaxation is nonetheless hopeless, on *strength*: relative gaps of 39-69 % against known
+optima at `n = 4..12`. The level-2 value coincides with the elementary "min <= mean" bound, with
+apparent closed form `d_2(n) = sqrt(6(n-1)/n)` (a `numerical` fit to seven points, not proved).
+That is **bounded above by sqrt(6) = 2.4495 for every n**, while the truth grows without bound —
+so it is weaker than the `cited` Oler bound at every `n` tested, and the gap diverges.
+
+**Why this is worth recording rather than just closing:** a future agent reading "C died on size"
+next to the correct new size finding could reasonably reopen it. The stated reason a direction was
+abandoned is load-bearing, and it was wrong.
+
+### An exclusivity claim was false because its input table was quietly wrong
+`issue #110` · `attacks/r3-approaches/README.md` §0.2 · corrected in place
+
+The round-3 triage claimed exactly three open cases have best-known values in `Q(sqrt3)`
+(n = 17, 24, 31) and asserted exclusivity. The scan behind it silently omitted `n = 27` and
+`n = 28` from its input; 28 is triangular and proven, but **27 is open** and has
+`s(27) = 12 + 2*sqrt(3)`. The audit worker caught it.
+
+The arithmetic was never wrong — the *input* was, and the output was a clean-looking table that
+survived a round of manager checking. This is the `RULES.md` §0 failure mode occurring inside the
+round whose stated purpose was to catch it. Original claim left visible in the file next to the
+correction.
+
+Nuance the correction adds: `27 = Delta(7) - 1` and its best-known value equals the **proven**
+`s(28)`, so `s(27) <= 12 + 2*sqrt(3)` follows by deleting a point from the optimal 28-point
+packing. Cheap, and nearly vacuous — a calibration control, not a result.
+
+### Two lower-bound methods refuted, both with the reason measured rather than asserted
+`issue #110` · `attacks/r3-gridmis/`, `attacks/r3-stationarity/` · both `refuted` as methods
+
+- **Grid-rounding to a finite independent-set refutation** works and is sound: two-sided
+  calibration at `n = 12` refuted `d(12) > 7.0` (93.8 % of the `cited` value) and never refuted
+  anything above `d(12)`, with SAT proofs checked by `drat-trim`, an external checker this project
+  did not write. It simply does not reach past the Oler floor at `n = 16` in budget.
+- **Stationarity exclusion** delivered the lemma approach E said it could not state: compactness
+  plus Fritz John, and in this container the degenerate multiplier case is impossible so plain KKT
+  holds at every maximiser with no regularity hypothesis. **The lemma is real and the method still
+  dies** — it is not a reduction to a *finite* computation, because rattlers carry no multiplier
+  and the underdetermined strata (where interval Newton has no square system to contract on) are
+  forced for every sparse support rather than exceptional.
+
+Both are honest negatives with the mechanism quantified, which is the outcome `RULES.md` §0 asks
+for. Neither is assumable; the lemmas are `sketch` and uncross-examined.
+
+### Egress policy blocks the one source that decides a novelty question
+`issue #110` · `attacks/r3-audit/` · **standing instruction, binding**
+
+Gaspar & Tarnai, *Per. Polytechnica Ser. Civ. Eng.* 44:1 (2000) 13-32 refines Groemer/Oler for the
+equilateral triangle and reportedly tabulates density bounds to 30 circles. **One line of one table
+decides whether the current `s(16) >= 2 + 6*sqrt(3)` work is a record or a rediscovery.**
+Calibration, re-derived exactly: their `n = 16` line beats it iff their density bound is
+`<= 8*pi*(14*sqrt(3) - 9)/507 = 0.755901213657`. Baselines: Oler 0.8306, Groemer 0.8527.
+
+The organization's egress proxy returns **403 to CONNECT** for `pp.bme.hu`, `www.math.ucsd.edu`,
+`www.packomania.com` and `arxiv.org` — policy denials, which the proxy documentation says to report
+rather than retry or route around. Their bounds also contain an `int(x)` term and are non-monotone
+in `n`, so the `n = 16` row **cannot be interpolated** from neighbours.
+
+**Assume the Gaspar-Tarnai bound is known, and claim no novelty at `n = 16`, until a human reads
+that table line.** Also surfaced: Nurmela-Ostergard 1999 (DCG 22, 439-457) appears to be uncited
+prior art for round-2 approach I, at search-snippet tier only.
+
+---
+
 ## 2026-08-21
 
 ### A `cited` input contained the conclusion, and the run reported a proof of an open case
