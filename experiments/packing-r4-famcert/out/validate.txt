@@ -1,0 +1,36 @@
+==============================================================================
+GATE 1 -- reproduction of known members
+==============================================================================
+  j=0  n=  4  s=4*sqrt(3)        feasible=True tight=True minsq4=True contacts=3
+         - matches CITED proven optimum
+  j=1  n=  7  s=2 + 4*sqrt(3)    feasible=True tight=True minsq4=True contacts=7
+         - matches CITED proven optimum
+  j=2  n= 12  s=4 + 4*sqrt(3)    feasible=True tight=True minsq4=True contacts=18
+         - matches CITED proven optimum
+  j=3  n= 17  s=6 + 4*sqrt(3)    feasible=True tight=True minsq4=True contacts=28
+         - POINT SET DIFFERS (shared 12/17)
+  j=4  n= 24  s=8 + 4*sqrt(3)    feasible=True tight=True minsq4=True contacts=45
+         - POINT SET identical to committed certificate
+  j=5  n= 31  s=10 + 4*sqrt(3)   feasible=True tight=True minsq4=True contacts=61
+         - POINT SET DIFFERS (shared 30/31)
+
+GATE 1 PASSED
+
+==============================================================================
+GATE 2 -- predictions past the published table (n = 40, 49)
+==============================================================================
+The published Graham-Lubachevsky table stops at n = 34. These are NOT
+record claims: Amore (2022, arXiv:2212.12287) reports triangle numerics
+to N = 400 and is behind the egress block, so 'no published value here'
+does NOT mean 'nobody has done better'. These are exact certified
+UPPER BOUNDS and nothing more.
+
+  j=6  n= 40  s=12 + 4*sqrt(3)   feasible=True tight=True pairs=780 minsq4=True contacts=84 on_boundary=None
+  j=7  n= 49  s=14 + 4*sqrt(3)   feasible=True tight=True pairs=1176 minsq4=True contacts=106 on_boundary=None
+
+==============================================================================
+NEGATIVE CONTROLS (a checker that accepts everything proves nothing)
+==============================================================================
+  duplicate point          -> ok=False (must be False)
+  deflated s by 1          -> ok=False (must be False)
+  inflated s by 1          -> ok=True tight=False (must be True / False)
