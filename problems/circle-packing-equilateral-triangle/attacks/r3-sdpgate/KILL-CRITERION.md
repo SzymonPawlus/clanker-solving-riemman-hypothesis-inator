@@ -23,7 +23,7 @@ Round 1's approach C stated the same gate in a sharper form:
 ## Verdict
 
 **Fired, by roughly two orders of magnitude on the stated threshold.** The relative slack of the
-dense level-2 relaxation against the published exact $d(n)$ is **38–71 %** across
+dense level-2 relaxation against the published exact $d(n)$ is **38.8–68.6 %** across
 $n = 4,5,6,7,8,10,12$ — not "a few percent", and not 1 %. See
 [`README.md`](./README.md) §3 for the table and §4 for the diagnosis.
 

@@ -23,7 +23,7 @@ success under `RULES.md` §0 — a clearly documented refutation is the product.
 1. **The size claim is right.** Re-derived here from scratch; every number in proposal X
    reproduces, including its own consistency check. One wording correction, in §2.4.
 2. **It does not matter.** The dense level-2 relaxation is slack against the *published exact*
-   $d(n)$ by **38–71 %** at $n = 4,5,6,7,8,10,12$. The gate allowed "a few percent".
+   $d(n)$ by **38.8–68.6 %** at $n = 4,5,6,7,8,10,12$. The gate allowed "a few percent".
 3. **Why, exactly.** The level-2 value equals, to solver precision, the elementary bound
    $f(n) \le 2n/(3(n-1))$ obtained from "min $\le$ mean" and one convexity remark. The entire
    level-2 hierarchy reproduces a two-line variance argument. Its lower bound on $d(n)$ rises to
@@ -157,11 +157,73 @@ Dense level 2. $d_2$ is the relaxation's lower bound on $d(n)$; $d(n)$ is the pu
 value (`../../README.md`, `cited` there). **$d_2$ is float SDP output and is therefore a
 `numerical` hypothesis, not a bound.**
 
-<!--TABLE-->
+| $n$ | exact $d(n)$ | $d(n)$ | level-2 $d_2$ | abs gap | **rel gap** | measured $f_2$ | $\tfrac{2n}{3(n-1)}$ | cap active? |
+|---:|---|---:|---:|---:|---:|---:|---:|:--|
+| 4 | $2\sqrt3$ | 3.464102 | 2.121320 | 1.3428 | **38.8%** | 0.8888888 | $8/9 = 0.8888889$ | no |
+| 5 | $4$ | 4.000000 | 2.190890 | 1.8091 | **45.2%** | 0.8333333 | $5/6 = 0.8333333$ | no |
+| 6 | $4$ | 4.000000 | 2.236068 | 1.7639 | **44.1%** | 0.7999999 | $4/5 = 0.8000000$ | no |
+| 7 | $2+2\sqrt3$ | 5.464102 | 2.267784 | 3.1963 | **58.5%** | 0.7777794 | $7/9 = 0.7777778$ | no |
+| 8 | $2+\tfrac{2\sqrt{33}}{3}$ | 5.829708 | 2.291287 | 3.5384 | **60.7%** | 0.7619056 | $16/21 = 0.7619048$ | no |
+| 10 | $6$ | 6.000000 | 2.323787 | 3.6762 | **61.3%** | 0.7407425 | $20/27 = 0.7407407$ | no |
+| 12 | $4+2\sqrt3$ | 7.464102 | 2.345209 | 5.1189 | **68.6%** | 0.7272720 | $8/11 = 0.7272727$ | no |
+
+Every $n$ the kill-criterion named — $5, 7, 8, 12$ — is in that table, plus the triangular
+$n = 6, 10$ where $d(n) = 2(k-1)$ exactly, plus $n = 4$. The gate's threshold was "a few
+percent"; approach C's was 1 %. The measured slack is **38.8 % to 68.6 %**, and it *grows*
+with $n$. The cap $t \le 1$ is inactive at every row, so none of this is an artefact of it.
+
+Solver notes, for honesty: $n = 4,5,6$ were solved with CLARABEL at default tolerance
+(`optimal_inaccurate`), $n = 7,8,10,12$ with SCS at `eps = 1e-5` (`optimal`). The last column
+shows agreement with $2n/(3(n-1))$ to between $5\times10^{-8}$ and $2\times10^{-6}$ relative —
+that agreement is the real accuracy check, and it is far tighter than the gaps being measured.
 
 ### 3.4 Level 3
 
-<!--L3TABLE-->
+Level 3 was run at $n = 4$, the smallest case where level 2 is already loose (at $n = 2, 3$ both
+levels are exact). It improves the bound and comes nowhere near closing the gap:
+
+| $n$ | level | dense moment matrix | moment variables | $f_L$ | $d_L$ | known $d(n)$ | rel gap |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 4 | 2 | $55$ | $715$ | 0.888889 | 2.121320 | 3.464102 | **38.8 %** |
+| 4 | 3 | $220$ | $5{,}005$ | 0.653211 | 2.474589 | 3.464102 | **28.6 %** |
+
+A factor of seven in moment variables buys ten percentage points, at the *easiest* nontrivial $n$.
+(The level-3 solve hit its 240 s wall-clock cap and returned `optimal_inaccurate`; the true
+level-3 value is somewhere near, not obviously below, and the conclusion is insensitive to it.)
+Level 3 at $n = 5, 6$ was launched and did not finish inside the compute budget; that is recorded
+rather than papered over, and it does not affect the verdict, which the level-2 row of the table
+above already settles at every $n$ the gate named.
+
+**"You under-built the relaxation" — tested, and it does not rescue it.**
+[`extra_test.py`](../../../../experiments/packing-r3-sdpgate/extra_test.py) re-solves level 2 at
+$n = 4$ after adding the pairwise products of each point's three containment half-planes as
+explicit (valid, redundant, degree-2) constraints:
+
+| $n=4$, level 2 | extra constraints | $f_2$ | $d_2$ | rel gap |
+|---|---:|---:|---:|---:|
+| as built | 0 | 0.888889 | 2.121320 | **38.8 %** |
+| + corner products | 12 | 0.691363 | 2.405342 | **30.6 %** |
+
+So the relaxation *is* strengthenable — and 30.6 % is still two orders of magnitude past the gate.
+The cross-point products ($h_{i,k}h_{j,l}$, $i \ne j$) were launched too and did not finish inside
+the budget; they are the obvious next thing anyone re-opening this should try, and they would have
+to close a 30-point gap to change anything.
+
+**Size is emphatically not the obstruction.** Extending §2's computation upward at $n = 16$:
+
+| level | dense moment matrix | reduced blocks | invariant scalar moments (deg $\le 2L$) | dense |
+|---:|---:|---|---:|---:|
+| 2 | $561$ | $9, 9, 3, 1$ | 56 | 58,905 |
+| 3 | $6{,}545$ | $31, 23, 15, 9, 4, 2$ | 275 | 2,760,681 |
+| 4 | $58{,}905$ | $90, 59, 56, 38, 21, 18, 5, 3, 3, 1$ | 1,164 | 76,904,685 |
+| 5 | $435{,}897$ | $238, 187, 132, \ldots$ (14 irreps) | 4,435 | 1,471,442,973 |
+
+Even the reduced **level 5** at $n = 16$ is a trivial SDP by modern standards — largest block
+$238$, four thousand scalar variables. Proposal X's size finding is not merely right, it is more
+right than stated. That is exactly what makes the slack measurement decisive rather than
+inconclusive: there is no "if only we had a bigger solver" left to appeal to. (Caveat: this counts
+the moment matrix and the invariant scalar moments. The localizing matrices reduce by the same
+mechanism but their block structure was not computed here.)
 
 ---
 
@@ -179,6 +241,11 @@ $$\sum_{i<j}\lVert p_i - p_j\rVert^2 \;=\; n\sum_i \lVert p_i - c\rVert^2$$
 is convex in each $p_i$ separately, hence maximised over the closed triangle with every point at
 a vertex; with $a, b, c$ points at the three vertices of $T_1$ it equals $ab+bc+ca \le n^2/3$
 over the real simplex $a+b+c=n$; divide by $\binom n2$.
+
+This identity is for the relaxation *as approach C specifies it*. Augmenting it with redundant
+valid inequalities does move the value (§3.4), so the coincidence is a property of that particular
+build, not a theorem about every level-2 relaxation of this problem. What survives augmentation is
+the size of the gap.
 
 Three consequences, and they are what actually kills the direction:
 
@@ -223,7 +290,7 @@ Whether $f_2(n) = 2n/(3(n-1))$ **exactly**, or only to the seven digits I measur
 prove the identity; I matched it numerically at the $n$ listed and gave the elementary argument
 for why that value is a valid upper bound on $f(n)$ (which makes $f_2 \le 2n/(3(n-1))$ the
 plausible half, and the exactness — that level 2 gains nothing on top — the observed half).
-The verdict does not depend on it: a 38–71 % gap survives any reasonable reading of the numbers.
+The verdict does not depend on it: a 38.8–68.6 % gap survives any reasonable reading of the numbers.
 
 Secondarily: several solves returned `optimal_inaccurate`. For a *negative* result this is
 tolerable — solver error of order $10^{-5}$ does not close a 40 % gap — but it is the reason no

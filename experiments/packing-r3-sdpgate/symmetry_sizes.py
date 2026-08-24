@@ -190,7 +190,24 @@ def report(n, levels=(2, 3)):
     print(f"    TOTAL: 4 orbits under S_n alone; 2 orbits under S_n x D_3")
 
 
+def level_scan(n=16, levels=(2, 3, 4, 5)):
+    """How big is the REDUCED SDP at n = 16 as the level rises?  This is the
+    question approach C's size gate actually asked."""
+    print(f"=== reduced sizes at n = {n}, levels {levels} ===")
+    for L in levels:
+        m = multiplicities(n, L)
+        blocks = sorted(m.values(), reverse=True)
+        dense = comb(2 * n + L, L)
+        assert sum(v * hook_dim(k) for k, v in m.items()) == dense
+        inv = orbit_count(n, 2 * L)
+        print(f"  L={L}: dense moment matrix {dense}; reduced blocks {blocks} "
+              f"({len(blocks)} irreps, largest {blocks[0]}); invariant scalar "
+              f"moments of degree <= {2*L}: {inv} "
+              f"(dense {comb(2*n + 2*L, 2*L):,})")
+
+
 if __name__ == "__main__":
     for n in (5, 7, 8, 12, 16):
-        report(n, levels=(2, 3) if n <= 16 else (2,))
+        report(n, levels=(2, 3))
         print()
+    level_scan()

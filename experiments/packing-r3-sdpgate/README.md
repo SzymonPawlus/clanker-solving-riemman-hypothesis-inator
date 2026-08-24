@@ -40,7 +40,9 @@ so $N = 2n+1$.
 | `symmetry_sizes.py` | independent re-derivation of the $S_n$-isotypic block structure: Murnaghan–Nakayama via beta-sets, exact `Fraction` arithmetic, self-checking on $\sum_\lambda m_\lambda \dim\lambda = \binom{N+L}{L}$ |
 | `moment_gate.py` | builds and solves the **dense** level-$L$ moment relaxation with `cvxpy`; `--selftest` validates on instances with closed-form answers |
 | `elementary_bound.py` | the trivial mean-pairwise-squared-distance bound $f(n) \le 2n/(3(n-1))$, for comparison |
-| `results_*.json` | solver output (checked in as the record of the runs) |
+| `extra_test.py` | tests the "you under-built the relaxation" objection: re-solves level 2 with redundant *valid* inequalities added |
+| `make_table.py` | renders the slack table as markdown from the JSON (presentation only, computes nothing) |
+| `results_*.json`, `*.log` | solver output, checked in as the record of the runs |
 
 ## Reproduce
 
@@ -50,9 +52,18 @@ Single command, from this directory:
 bash reproduce.sh
 ```
 
-That runs, in order: the symmetry derivation, the self-tests, the elementary bound, and the
-level-2 sweep over $n = 4,5,6,7,8,10,12$. Expect **20–40 minutes**; the SDPs at $n = 10, 12$
-dominate. Everything is deterministic — there are no random seeds anywhere in this experiment.
+That runs, in order: the symmetry derivation (including the reduced-size scan to level 5 at
+$n = 16$), the self-tests, the elementary bound, and the level-2 sweep over
+$n = 4,5,6,7,8,10,12$. Expect **20–60 minutes** depending on machine load; the SDPs at
+$n = 10, 12$ dominate. Everything is deterministic — there are **no random seeds anywhere** in
+this experiment.
+
+The two optional extras are not in `reproduce.sh` because each takes another 10–20 minutes:
+
+```bash
+python3 moment_gate.py --sweep --level 3 --ns 4 --tcap 1.0 --solver SCS --eps 1e-5 --max-seconds 240
+python3 extra_test.py
+```
 
 ## Environment (pinned)
 
@@ -62,7 +73,8 @@ Python 3.11.15; `numpy` 2.4.6, `scipy` 1.17.1, `sympy` 1.14.0 (preinstalled);
 
 ## Result, in one line
 
-The size claim is **confirmed**; the relaxation is **useless**. Level 2 returns exactly the
-elementary mean-distance bound $2n/(3(n-1))$, whose $d$-value tends to $\sqrt6 = 2.449\ldots$
-while $d(n)$ grows like $\sqrt{8n}$. See
+The size claim is **confirmed** (and then some — even the *reduced* level-5 SDP at $n=16$ is
+small). The relaxation is **useless**: level 2 returns exactly the elementary mean-distance bound
+$2n/(3(n-1))$, whose $d$-value tends to $\sqrt6 = 2.449\ldots$ while $d(n)$ grows like
+$\sqrt{8n}$. Measured slack against the published exact $d(n)$: **38.8 % to 68.6 %**. See
 `problems/circle-packing-equilateral-triangle/attacks/r3-sdpgate/README.md`.
