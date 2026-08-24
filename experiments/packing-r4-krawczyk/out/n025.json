@@ -1,0 +1,52 @@
+{
+  "n": 25,
+  "ok": true,
+  "seconds": 2.37,
+  "candidate_source": "experiments/circle-packing-search/out/n25.json",
+  "krawczyk": {
+    "attempted": true,
+    "newton_residual": "3.3735e-80",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 51,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "1182970843102535243990040764547928621214684297198843/100000000000000000000000000000000000000000000000000",
+      "591485421551267621995020382273964310607342148599429/50000000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 1.5e-49,
+    "max_row_magnitude_I_minus_CJ": 3.8064114183873718e-28,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 63,
+    "variables": 51,
+    "rank_of_tight_jacobian": 51,
+    "frozen_variables": 0,
+    "dropped_tight_equations": 12,
+    "d_is_determined": true,
+    "isostatic": false
+  },
+  "witness": {
+    "d": "5914854215512676219950203822739643106073577770943447233483790603375892439973553036037/500000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "d_float": 11.829708431025352,
+    "feasible": true,
+    "tight": true,
+    "contacts_exactly_2": 0,
+    "boundary_points": 15,
+    "lambda_minus_1": 3.0055e-41
+  },
+  "interval_certificate_checks": {
+    "separation_ok": true,
+    "containment_ok": true
+  },
+  "comparison": {
+    "gl_D_band": [
+      11.829708431025326,
+      11.829708431025395
+    ],
+    "gl_D_band_width": 6.997100078153625e-14,
+    "vs_record": "within_table_rounding",
+    "witness_minus_gl_midpoint": -8.207691790728241e-15
+  },
+  "beats_record": "APPARENTLY BELOW the printed Graham-Lubachevsky value -- see the attack README; treat as a bug/misread until independently checked (RULES.md \u00a74, \u00a77)."
+}

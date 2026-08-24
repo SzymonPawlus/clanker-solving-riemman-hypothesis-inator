@@ -1,0 +1,48 @@
+{
+  "n": 10,
+  "ok": true,
+  "seconds": 0.21,
+  "candidate_source": "experiments/circle-packing-search/out/n10.json",
+  "krawczyk": {
+    "attempted": true,
+    "newton_residual": "1.68675e-80",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 21,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "599999999999999999999999999999999999999999999999999/100000000000000000000000000000000000000000000000000",
+      "600000000000000000000000000000000000000000000000001/100000000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 2e-50,
+    "max_row_magnitude_I_minus_CJ": 1.4266666666666664e-28,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 30,
+    "variables": 21,
+    "rank_of_tight_jacobian": 21,
+    "frozen_variables": 0,
+    "dropped_tight_equations": 9,
+    "d_is_determined": true,
+    "isostatic": false
+  },
+  "witness": {
+    "d": "6",
+    "d_float": 6.0,
+    "feasible": true,
+    "tight": true,
+    "contacts_exactly_2": 18,
+    "boundary_points": 9,
+    "lambda_minus_1": 0.0
+  },
+  "interval_certificate_checks": {
+    "separation_ok": true,
+    "containment_ok": true
+  },
+  "comparison": {
+    "exact_d": "6 + 0*sqrt(1)",
+    "witness_ge_exact": true,
+    "enclosure_contains_exact": true
+  },
+  "beats_record": "unknown"
+}

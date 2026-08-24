@@ -1,0 +1,128 @@
+{
+  "n": 21,
+  "claim": "construction",
+  "side_length": "2*sqrt(3) + 10",
+  "coordinates": [
+    [
+      "3",
+      "3*sqrt(3)"
+    ],
+    [
+      "4",
+      "2*sqrt(3)"
+    ],
+    [
+      "4",
+      "0"
+    ],
+    [
+      "5",
+      "3*sqrt(3)"
+    ],
+    [
+      "6",
+      "4*sqrt(3)"
+    ],
+    [
+      "10",
+      "0"
+    ],
+    [
+      "7",
+      "1*sqrt(3)"
+    ],
+    [
+      "1",
+      "1*sqrt(3)"
+    ],
+    [
+      "9",
+      "1*sqrt(3)"
+    ],
+    [
+      "8",
+      "2*sqrt(3)"
+    ],
+    [
+      "5",
+      "5*sqrt(3)"
+    ],
+    [
+      "3",
+      "1*sqrt(3)"
+    ],
+    [
+      "6",
+      "2*sqrt(3)"
+    ],
+    [
+      "4",
+      "4*sqrt(3)"
+    ],
+    [
+      "5",
+      "1*sqrt(3)"
+    ],
+    [
+      "8",
+      "0"
+    ],
+    [
+      "6",
+      "0"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "2",
+      "0"
+    ],
+    [
+      "2",
+      "2*sqrt(3)"
+    ],
+    [
+      "7",
+      "3*sqrt(3)"
+    ]
+  ],
+  "coordinate_type": "algebraic",
+  "verified_by": "experiments/packing-r4-krawczyk/witness.py verify_exact() -- exact rational arithmetic in the sheared coordinates (x, u) with y = sqrt(3)*u, stdlib Fraction only, no float in any accept/reject decision. SELF-CHECKED ONLY: under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 this earns verified:review only from a checker written independently by an agent of a different model family. That has not happened.",
+  "status": "numerical",
+  "beats_record": "no. This reproduces the published Graham-Lubachevsky value; it does not improve it. Published record: Graham & Lubachevsky, Electron. J. Combin. 2 (1995) #A1, as tabulated in experiments/circle-packing-search/reference.py.",
+  "_claim_is_upper_bound_only": "This certifies s(n) <= the stated side length. It says nothing about optimality.",
+  "_tight": true,
+  "_min_squared_distance": "4",
+  "_contacts_at_distance_exactly_2": 45,
+  "_points_on_the_boundary": 15,
+  "_repair_factor_lambda_minus_1": "0",
+  "_provenance": {
+    "candidate": "experiments/circle-packing-search/out/n21.json",
+    "method": "LS/SLSQP float candidate -> tight-structure identification -> Newton at 80 digits on a nonsingular square subsystem -> snap to denominator 10**40 -> exact rational homothety repair -> exact verification. See README.md."
+  },
+  "_krawczyk": {
+    "attempted": true,
+    "newton_residual": "1.68675e-80",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 43,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "999999999999999999999999999999999999999999999999999/100000000000000000000000000000000000000000000000000",
+      "1000000000000000000000000000000000000000000000000001/100000000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 2e-50,
+    "max_row_magnitude_I_minus_CJ": 1.456e-28,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 63,
+    "variables": 43,
+    "rank_of_tight_jacobian": 43,
+    "frozen_variables": 0,
+    "dropped_tight_equations": 20,
+    "d_is_determined": true,
+    "isostatic": false
+  }
+}

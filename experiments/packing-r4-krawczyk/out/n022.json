@@ -1,0 +1,52 @@
+{
+  "n": 22,
+  "ok": true,
+  "seconds": 1.38,
+  "candidate_source": "experiments/circle-packing-ls/candidates/n022-ls.json",
+  "krawczyk": {
+    "attempted": true,
+    "newton_residual": "3.3735e-80",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 41,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "1114846412614109311658577964359719536067202209235167/100000000000000000000000000000000000000000000000000",
+      "69677900788381831978661122772482471004200138077199/6250000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 1.7e-49,
+    "max_row_magnitude_I_minus_CJ": 9.532955364560608e-29,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 47,
+    "variables": 45,
+    "rank_of_tight_jacobian": 41,
+    "frozen_variables": 4,
+    "dropped_tight_equations": 6,
+    "d_is_determined": true,
+    "isostatic": false
+  },
+  "witness": {
+    "d": "2721792999546165311666450108300096523601591416328827178460271144365950580225466743/244140625000000000000000000000000000000000000000000000000000000000000000000000000",
+    "d_float": 11.148464126141093,
+    "feasible": true,
+    "tight": true,
+    "contacts_exactly_2": 0,
+    "boundary_points": 13,
+    "lambda_minus_1": 1.0624e-41
+  },
+  "interval_certificate_checks": {
+    "separation_ok": true,
+    "containment_ok": true
+  },
+  "comparison": {
+    "gl_D_band": [
+      11.14846412614106,
+      11.148464126141123
+    ],
+    "gl_D_band_width": 6.214412618592742e-14,
+    "vs_record": "within_table_rounding",
+    "witness_minus_gl_midpoint": 1.270150195055348e-15
+  },
+  "beats_record": "no. This reproduces the published Graham-Lubachevsky value; it does not improve it. Published record: Graham & Lubachevsky, Electron. J. Combin. 2 (1995) #A1, as tabulated in experiments/circle-packing-search/reference.py."
+}
