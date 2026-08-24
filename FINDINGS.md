@@ -79,6 +79,35 @@ packing. Cheap, and nearly vacuous — a calibration control, not a result.
 Both are honest negatives with the mechanism quantified, which is the outcome `RULES.md` §0 asks
 for. Neither is assumable; the lemmas are `sketch` and uncross-examined.
 
+### `verified:lean` is unreachable from this session type — the toolchain itself is blocked
+`issue #110` · environment finding, no claim changed status
+
+A round-4 ideation lens ranked a Lean-verified optimality result for `d(5) = 4` as its second
+proposal, on the grounds that it would be the repo's **first machine-checked optimality artifact** —
+`FINDINGS.md`'s standing gap #1 is that the repo has no lower-bound artifact of any kind, and
+`RULES.md` §4 says to prefer Lean.
+
+It is not dispatchable here. The container has no `elan`, no `lake`, no `lean`, and no `.lake/`
+Mathlib cache, and the hosts that would supply them are behind the same egress policy as the
+literature:
+
+```
+https://elan.lean-lang.org/elan-init.sh   -> CONNECT tunnel failed, 403
+https://release.lean-lang.org/            -> CONNECT tunnel failed, 403
+```
+
+So the repo's **strongest verification status cannot be produced by an agent in this environment at
+all**, for infrastructure reasons rather than mathematical ones. This is worth knowing before
+anyone files another Lean task: issues #15, #18 and the `verified:lean` half of every proposal on
+the board are undispatchable from a session configured like this one, however good the mathematics.
+
+It also sharpens a structural point about the project. `RULES.md` §3 caps a claim at its weakest
+dependency and §4 prefers Lean over cross-examination; but if Lean is unavailable and cross-family
+review is the only other route to an assumable claim, then **every result this session can produce
+is capped at `verified:review` at best, and at `numerical`/`sketch` in practice until Codex acts.**
+Every exact certificate now in the repo is still same-family `numerical`. That is a queue problem,
+not a mathematics problem, and it is currently the binding constraint on the whole board.
+
 ### Egress policy blocks the one source that decides a novelty question
 `issue #110` · `attacks/r3-audit/` · **standing instruction, binding**
 
