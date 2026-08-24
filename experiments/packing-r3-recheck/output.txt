@@ -1,0 +1,225 @@
+==============================================================================
+CONTROL A -- known-optimal triangular cases n = k(k+1)/2, s = 2(k-1) + 2*sqrt(3)
+  (status `cited` in problems/.../README.md, Oler 1961). The checker must
+  ACCEPT these and report them TIGHT.
+==============================================================================
+--- triangular lattice k=2, n=3, s = 2 + 2*sqrt(3)
+  [PASS] separation: all 3 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,1); 3 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  3 of 3
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 2 (~2.000000000000) attained at point 1
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: triangular lattice k=2, n=3, s = 2 + 2*sqrt(3)
+      expected s(n) = 2*1 + 2*sqrt(3) = 2 + 2*sqrt(3); tight = True
+--- triangular lattice k=3, n=6, s = 4 + 2*sqrt(3)
+  [PASS] separation: all 15 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,1); 9 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  6 of 6
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 4 (~4.000000000000) attained at point 2
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: triangular lattice k=3, n=6, s = 4 + 2*sqrt(3)
+      expected s(n) = 2*2 + 2*sqrt(3) = 4 + 2*sqrt(3); tight = True
+--- triangular lattice k=4, n=10, s = 6 + 2*sqrt(3)
+  [PASS] separation: all 45 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,1); 18 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  9 of 10
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6 (~6.000000000000) attained at point 3
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: triangular lattice k=4, n=10, s = 6 + 2*sqrt(3)
+      expected s(n) = 2*3 + 2*sqrt(3) = 6 + 2*sqrt(3); tight = True
+--- triangular lattice k=5, n=15, s = 8 + 2*sqrt(3)
+  [PASS] separation: all 105 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,1); 30 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  12 of 15
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 8 (~8.000000000000) attained at point 4
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: triangular lattice k=5, n=15, s = 8 + 2*sqrt(3)
+      expected s(n) = 2*4 + 2*sqrt(3) = 8 + 2*sqrt(3); tight = True
+--- triangular lattice k=6, n=21, s = 10 + 2*sqrt(3)
+  [PASS] separation: all 210 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,1); 45 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  15 of 21
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 10 (~10.000000000000) attained at point 5
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: triangular lattice k=6, n=21, s = 10 + 2*sqrt(3)
+      expected s(n) = 2*5 + 2*sqrt(3) = 10 + 2*sqrt(3); tight = True
+
+==============================================================================
+MAIN -- the three certificates under test
+==============================================================================
+--- /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n017-r3-qsqrt3.json [structure]
+  [PASS] side_length parses exactly  s = 6 + 4*sqrt(3) (~12.928203230276)
+  [PASS] len(coordinates) == n  17 vs n = 17
+  [PASS] all coordinates parse exactly, no decimal strings  17 points in Q(sqrt 3)
+  [PASS] derived d = s - 2*sqrt(3)  d = 6 + 2*sqrt(3) (~9.464101615138)
+  [PASS] informational `_d` field agrees with s - 2*sqrt(3)  _d = 6 + 2*sqrt(3)
+  [PASS] claim is 'construction' (upper bound)  claim = 'construction'
+  [PASS] status field is one of the allowed values  status = 'numerical'
+  => ACCEPT: /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n017-r3-qsqrt3.json [structure]
+--- /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n017-r3-qsqrt3.json [n = 17, s = 6 + 4*sqrt(3)]
+  [PASS] separation: all 136 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,3); 26 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  11 of 17
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6 + 2*sqrt(3) (~9.464101615138) attained at point 3
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n017-r3-qsqrt3.json [n = 17, s = 6 + 4*sqrt(3)]
+
+--- /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n024-r3-qsqrt3.json [structure]
+  [PASS] side_length parses exactly  s = 8 + 4*sqrt(3) (~14.928203230276)
+  [PASS] len(coordinates) == n  24 vs n = 24
+  [PASS] all coordinates parse exactly, no decimal strings  24 points in Q(sqrt 3)
+  [PASS] derived d = s - 2*sqrt(3)  d = 8 + 2*sqrt(3) (~11.464101615138)
+  [PASS] informational `_d` field agrees with s - 2*sqrt(3)  _d = 8 + 2*sqrt(3)
+  [PASS] claim is 'construction' (upper bound)  claim = 'construction'
+  [PASS] status field is one of the allowed values  status = 'numerical'
+  => ACCEPT: /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n024-r3-qsqrt3.json [structure]
+--- /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n024-r3-qsqrt3.json [n = 24, s = 8 + 4*sqrt(3)]
+  [PASS] separation: all 276 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,4); 45 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  15 of 24
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 8 + 2*sqrt(3) (~11.464101615138) attained at point 0
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n024-r3-qsqrt3.json [n = 24, s = 8 + 4*sqrt(3)]
+
+--- /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n031-r3-qsqrt3.json [structure]
+  [PASS] side_length parses exactly  s = 10 + 4*sqrt(3) (~16.928203230276)
+  [PASS] len(coordinates) == n  31 vs n = 31
+  [PASS] all coordinates parse exactly, no decimal strings  31 points in Q(sqrt 3)
+  [PASS] derived d = s - 2*sqrt(3)  d = 10 + 2*sqrt(3) (~13.464101615138)
+  [PASS] informational `_d` field agrees with s - 2*sqrt(3)  _d = 10 + 2*sqrt(3)
+  [PASS] claim is 'construction' (upper bound)  claim = 'construction'
+  [PASS] status field is one of the allowed values  status = 'numerical'
+  => ACCEPT: /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n031-r3-qsqrt3.json [structure]
+--- /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n031-r3-qsqrt3.json [n = 31, s = 10 + 4*sqrt(3)]
+  [PASS] separation: all 465 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,3); 59 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  18 of 31
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 10 + 2*sqrt(3) (~13.464101615138) attained at point 0
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => ACCEPT: /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n031-r3-qsqrt3.json [n = 31, s = 10 + 4*sqrt(3)]
+
+==============================================================================
+CONTROL B -- negative controls on /home/user/r3-worktrees/recheck/experiments/packing-r3-qsqrt3/certificates/n017-r3-qsqrt3.json
+  A checker that accepts everything proves nothing.
+==============================================================================
+--- B1 corrupted: point 0 moved by 1/1000 toward point 3 (must REJECT)
+  [FAIL] separation: all 136 pairwise squared distances >= 4  min = 3996001/1000000 (~3.996001000000) at pair (0,3); 23 exact contacts; VIOLATIONS: [(0, 3, '3996001/1000000'), (0, 14, '3998001/1000000')]
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  11 of 17
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6 + 2*sqrt(3) (~9.464101615138) attained at point 3
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => REJECT: B1 corrupted: point 0 moved by 1/1000 toward point 3 (must REJECT)
+--- B2 corrupted: point 3 pushed 1/1000 outside edge BC (must REJECT)
+  [PASS] separation: all 136 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,8); 24 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [FAIL] containment (H3) sqrt(3)x + y <= sqrt(3)d  violated at [(3, '-1/1000*sqrt(3)')]
+  [PASS] points on the triangle boundary  11 of 17
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6001/1000 + 2*sqrt(3) (~9.465101615138) attained at point 3
+  [FAIL] declared d >= d_min  declared d = 6 + 2*sqrt(3) < d_min = 6001/1000 + 2*sqrt(3): the certificate does NOT fit its own declared triangle
+  [PASS] tightness  N/A -- certificate already invalid
+  => REJECT: B2 corrupted: point 3 pushed 1/1000 outside edge BC (must REJECT)
+--- B2b corrupted: point 0 pushed 1/1000 below edge AB (must REJECT)
+  [PASS] separation: all 136 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (1,2); 23 exact contacts
+  [FAIL] containment (H1) y >= 0  violated at [(0, '-1/1000')]
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  10 of 17
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6 + 2*sqrt(3) (~9.464101615138) attained at point 3
+  [PASS] tightness  TIGHT (declared d == d_min exactly)
+  => REJECT: B2b corrupted: point 0 pushed 1/1000 below edge AB (must REJECT)
+--- B3 corrupted: declared s deflated by 1/1000 (must REJECT)
+  [PASS] separation: all 136 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,3); 26 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [FAIL] containment (H3) sqrt(3)x + y <= sqrt(3)d  violated at [(3, '-1/1000*sqrt(3)'), (4, '-1/1000*sqrt(3)'), (14, '-1/1000*sqrt(3)'), (15, '-1/1000*sqrt(3)'), (16, '-1/1000*sqrt(3)')]
+  [PASS] points on the triangle boundary  8 of 17
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6 + 2*sqrt(3) (~9.464101615138) attained at point 3
+  [FAIL] declared d >= d_min  declared d = 5999/1000 + 2*sqrt(3) < d_min = 6 + 2*sqrt(3): the certificate does NOT fit its own declared triangle
+  [PASS] tightness  N/A -- certificate already invalid
+  => REJECT: B3 corrupted: declared s deflated by 1/1000 (must REJECT)
+--- B4 corrupted: declared s inflated by 1/1000 (must ACCEPT, NOT TIGHT)
+  [PASS] separation: all 136 pairwise squared distances >= 4  min = 4 (~4.000000000000) at pair (0,3); 26 exact contacts
+  [PASS] containment (H1) y >= 0
+  [PASS] containment (H2) sqrt(3)x - y >= 0
+  [PASS] containment (H3) sqrt(3)x + y <= sqrt(3)d
+  [PASS] points on the triangle boundary  8 of 17
+  [PASS] points are pairwise distinct
+  [PASS] exact minimal enclosing d (fixed placement)  d_min = 6 + 2*sqrt(3) (~9.464101615138) attained at point 3
+  [PASS] tightness  NOT TIGHT: declared d = 6001/1000 + 2*sqrt(3) > d_min = 6 + 2*sqrt(3) (valid but inflated upper bound)
+  => ACCEPT: B4 corrupted: declared s inflated by 1/1000 (must ACCEPT, NOT TIGHT)
+
+  negative-control summary (True = the checker behaved as required):
+    OK   B1 separation broken: True
+    OK   B2 containment broken: True
+    OK   B2b y<0 broken: True
+    OK   B3 deflated s: True
+    OK   B4 inflated s -> accept but not tight: True
+    OK   B5 decimal string rejected: True
+
+==============================================================================
+CONTROL C -- consistency with the `cited` triangular values (exact)
+==============================================================================
+  n = 17: claimed s = 6 + 4*sqrt(3) (~12.928203230276)
+    [PASS] s >= s(Delta(5) = 15) = 8 + 2*sqrt(3) (~11.464101615138)   [hard: cited optimum]
+    [PASS] s <= s(Delta(6) = 21) = 10 + 2*sqrt(3) (~13.464101615138)   [soft: else the construction is worse than a known one]
+    (if `side_length` had held d = 6 + 2*sqrt(3) (~9.464101615138) instead, the hard bracket would FAIL -- so this error would be caught)
+  n = 24: claimed s = 8 + 4*sqrt(3) (~14.928203230276)
+    [PASS] s >= s(Delta(6) = 21) = 10 + 2*sqrt(3) (~13.464101615138)   [hard: cited optimum]
+    [PASS] s <= s(Delta(7) = 28) = 12 + 2*sqrt(3) (~15.464101615138)   [soft: else the construction is worse than a known one]
+    (if `side_length` had held d = 8 + 2*sqrt(3) (~11.464101615138) instead, the hard bracket would FAIL -- so this error would be caught)
+  n = 31: claimed s = 10 + 4*sqrt(3) (~16.928203230276)
+    [PASS] s >= s(Delta(7) = 28) = 12 + 2*sqrt(3) (~15.464101615138)   [hard: cited optimum]
+    [PASS] s <= s(Delta(8) = 36) = 14 + 2*sqrt(3) (~17.464101615138)   [soft: else the construction is worse than a known one]
+    (if `side_length` had held d = 10 + 2*sqrt(3) (~13.464101615138) instead, the hard bracket would FAIL -- so this error would be caught)
+
+==============================================================================
+DIAGNOSTIC (floats, NOT load-bearing, cannot pass or fail anything)
+  Would a rotated copy of the same points fit a strictly smaller triangle?
+==============================================================================
+  n017-r3-qsqrt3.json: declared d = 9.464101615138; support formula at the fixed orientation = 9.464101615138; min over rotations = 9.464101615138 at t = 0.523599 rad
+    no rotation improves on the fixed placement (to float tolerance)
+  n024-r3-qsqrt3.json: declared d = 11.464101615138; support formula at the fixed orientation = 11.464101615138; min over rotations = 11.464101615138 at t = 0.523599 rad
+    no rotation improves on the fixed placement (to float tolerance)
+  n031-r3-qsqrt3.json: declared d = 13.464101615138; support formula at the fixed orientation = 13.464101615138; min over rotations = 13.464101615138 at t = 0.523599 rad
+    no rotation improves on the fixed placement (to float tolerance)
+
+==============================================================================
+SUMMARY
+==============================================================================
+  positive controls (triangular lattices n = 3,6,10,15,21): ALL PASS
+  control C  (consistency with cited triangular values):    ALL PASS
+  negative controls (corrupted certificates rejected):      ALL PASS
+  n017-r3-qsqrt3.json: ACCEPT, tight = True
+  n024-r3-qsqrt3.json: ACCEPT, tight = True
+  n031-r3-qsqrt3.json: ACCEPT, tight = True
