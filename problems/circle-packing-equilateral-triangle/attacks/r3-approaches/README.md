@@ -51,27 +51,47 @@ below a bound the repo already had. Any lower-bound proposal below is measured a
 $8.3578$ (Oler, `sketch`) and against $8.9282$ (the covering plateau $d \ge 2 + 4\sqrt3$ of
 PRs #98/#104, also `sketch`, and **unmerged, so not usable as a dependency**).
 
-### 0.2 Three open cases have conjectured optima in $\mathbb{Q}(\sqrt3)$ — and they are one family
+### 0.2 Four open cases have conjectured optima in $\mathbb{Q}(\sqrt3)$; three of them are one family
+
+> **Corrected 2026-08-23**, after the `r3-audit` worker refuted the first version of this section.
+> As first written it claimed *three* such cases and asserted exclusivity. The scan behind it
+> silently omitted $n = 27$ and $n = 28$ from its input table — 28 is triangular and proven, but
+> **27 is open**, and it has a closed form. The exclusivity claim was therefore false. The
+> corrected scan below runs over the whole range 16–34 and marks proven versus open explicitly
+> instead of pre-filtering. Original claim kept visible here because the failure mode — a scan
+> whose *input* was quietly wrong, producing a clean-looking table — is the one `RULES.md` §0 is
+> about, and it survived one round of manager checking.
 
 Scanning the best-known table for values of the form $a + b\sqrt3$ with small integers
-(script, tolerance $2\times10^{-11}$):
+(script, tolerance $2\times10^{-11}$), over **all** of 16–34:
 
-| $n$ | best-known $s(n)$ | closed form | note |
-|---:|---|---|---|
-| 17 | 12.928203230276 | $6 + 4\sqrt3$ | $= s(12) + 2$ exactly |
-| 24 | 14.928203230275 | $8 + 4\sqrt3$ | $= s(17) + 2$ |
-| 31 | 16.928203230275 | $10 + 4\sqrt3$ | $= s(24) + 2$ |
+| $n$ | best-known $s(n)$ | closed form | status | note |
+|---:|---|---|---|---|
+| 17 | 12.928203230276 | $6 + 4\sqrt3$ | open | $= s(12) + 2$ exactly |
+| 24 | 14.928203230275 | $8 + 4\sqrt3$ | open | $= s(17) + 2$ |
+| 27 | 15.464101615138 | $12 + 2\sqrt3$ | open | $= s(28) = s(\Delta(7))$ — see below |
+| 31 | 16.928203230275 | $10 + 4\sqrt3$ | open | $= s(24) + 2$ |
 
-These are spaced 7 apart and differ by exactly 2 — the "add a lattice row" family pattern
-Graham–Lubachevsky describe. **No other open $n$ in 16–34 has a best-known value expressible as
-$a + b\sqrt3$ with small integers**; $n = 16$ in particular has only a PSLQ degree-10 minimal
-polynomial *candidate* on file (`numerical`), with no elimination link.
+$n = 20$ and $n = 28$ also have closed forms but are **proven**, not open, so they are not targets.
+$n = 16$ has only a PSLQ degree-10 minimal polynomial *candidate* on file (`numerical`), with no
+elimination link.
+
+**$n = 27$ is cheap but nearly vacuous, and the two should not be confused.** $27 = \Delta(7) - 1$,
+and its best-known value equals the *proven* $s(28) = 12 + 2\sqrt3$. So the upper bound
+$s(27) \le 12 + 2\sqrt3$ is immediate — delete any one point from the optimal 28-point triangular
+packing — and certifying it exactly establishes nothing that the proven $\Delta(7)$ row does not
+already give. It is a free **calibration control** for an exact pipeline, not a result. (It is
+also the $k = 7$ analogue of $n = 20 = \Delta(6) - 1$, which is exactly what the `eo-*` campaign
+on issue #91 is about; the interesting question there is the *lower* bound, which none of this
+touches.)
+
+The genuinely non-trivial cases are the **$+4\sqrt3$ family $n = 17, 24, 31$** — spaced 7 apart,
+each 2 more than the last, and none of them a $\Delta(k) - 1$ freebie.
 
 Why this matters: every exact-certification pipeline in the repo is cheap in $\mathbb{Q}(\sqrt3)$
-and expensive in a degree-10 field. **$n = 17$, not $n = 16$, is the cheapest open case for exact
-work** — and the campaign has spent its effort on $n = 16$. This appears not to have been noticed
-before; it is a `sketch` observation about a `numerical` table, and it certifies nothing by
-itself.
+and expensive in a degree-10 field. **$n = 17$, not $n = 16$, is the cheapest open case for
+non-trivial exact work** — and the campaign has spent its effort on $n = 16$. This is a `sketch`
+observation about a `numerical` table, and it certifies nothing by itself.
 
 ---
 
