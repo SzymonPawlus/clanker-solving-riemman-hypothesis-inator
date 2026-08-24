@@ -1,0 +1,11 @@
+[n=7] level 2, cap t<=1.0
+    moment vars M = 3,876; PSD blocks: 1 of 136, 44 of 16
+    {"n": 7, "level": 2, "status": "optimal", "f_relax": 0.7777794383994973, "f_true": 0.13397459621556135, "d_true": 5.464101615137754, "d_relax": 2.2677844171003327, "abs_gap": 3.1963171980374216, "rel_gap": 0.5849666465173964, "cap_active": false, "solve_s": 12.039134740829468, "M": 3876, "block": 136}
+[n=8] level 2, cap t<=1.0
+    moment vars M = 5,985; PSD blocks: 1 of 171, 54 of 18
+    {"n": 8, "level": 2, "status": "optimal", "f_relax": 0.7619055706189266, "f_true": 0.11769725188705982, "d_true": 5.829708431025352, "d_relax": 2.291286631449648, "abs_gap": 3.5384217995757044, "rel_gap": 0.6069637686757093, "cap_active": false, "solve_s": 40.620463371276855, "M": 5985, "block": 171}
+[n=10] level 2, cap t<=1.0
+    moment vars M = 12,650; PSD blocks: 1 of 253, 77 of 22
+    {"n": 10, "level": 2, "status": "optimal", "f_relax": 0.7407424825335076, "f_true": 0.1111111111111111, "d_true": 6.0, "d_relax": 2.323787275625845, "abs_gap": 3.676212724374155, "rel_gap": 0.6127021207290259, "cap_active": false, "solve_s": 97.75127506256104, "M": 12650, "block": 253}
+[n=12] level 2, cap t<=1.0
+    moment vars M = 23,751; PSD blocks: 1 of 351, 104 of 26
