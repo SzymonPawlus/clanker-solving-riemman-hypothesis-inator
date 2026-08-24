@@ -106,6 +106,51 @@ of the hull. *Beating Oler needs a differently-shaped conclusion, not a cleverer
 usable filter on future proposals, and it is the first time this project has been able to say why
 a whole class fails rather than that it did.
 
+### theta-prime is not ceiling-bound — do not generalise the SDP verdict
+`issue #110` · `attacks/r4-theta/` · `numerical`/`sketch`
+
+`r3-sdpgate` killed the moment/SOS hierarchy because its bound is **bounded** (`sqrt(6(n-1)/n)`,
+capped at `sqrt(6)`) while the truth grows. It would be easy, and wrong, to read that as "convex
+relaxations are flat here". The theta-prime lane checked, and the answer is no:
+
+`alpha <= theta' <= chi-bar` with both ends `Theta(d^2)` (hexagon tiling at the upper end), so
+`d_theta'(n) = Theta(sqrt n)` — **the right order**. There is no sqrt(6)-style ceiling, and
+sdpgate's verdict must not be extended to it.
+
+Two further corrections to the proposal as this project recorded it:
+
+- **Its dominance claim is right, and makes the assigned gate the wrong question.** theta-prime
+  inherits the covering plateau `d(16) >= 2+4sqrt3 = 8.928` (unmerged, `sketch`, quoted not
+  depended on), which already exceeds Oler's 8.358. "Does theta-prime beat Oler?" has an a-priori
+  answer of yes; the gate was aimed at the wrong quantity.
+- **Its size claim is false.** A feasible kernel needs `rank Z >= alpha - 1`, and a bidegree-`m`
+  kernel has rank `<= C(m+2,2)`, so `m ~ sqrt(2n)`: four *variables* for every `n`, but degree
+  `~sqrt n`, blocks `~n^2/6`, scalar variables `~n^4`. "Independent of n" was true of the wrong
+  quantity.
+
+**The honest limit:** the lane never solved the SOS problem and reports **no theta-prime value for
+any n**. Its instrument is one-sided — finite witnesses upper-bound the achievable floor against
+every kernel of every degree — and across 20 solves it detected no weakness. A null result from a
+one-sided instrument is weak evidence, not support.
+
+### The manager declared a live lane dead
+`issue #110` · `attacks/r4-approaches/` · process finding
+
+While the theta-prime worker was still running and had not reported, the manager ran
+`git worktree remove --force` across all lanes as cleanup, deleting its worktree mid-solve with
+nothing committed. The manager then recorded the lane as destroyed, on the strength of one line
+recovered from the deleted log's open file descriptor — correctly declining to draw a mathematical
+conclusion from it, but wrongly concluding the lane was gone.
+
+**The worker had recovered on its own**: detected the deletion, recreated the worktree, rebuilt
+every file, committed *before* re-running, and re-ran from scratch. Branches are not worktrees.
+
+Two lessons, and the second is the uncomfortable one. Procedurally: do not reclaim worktrees until
+every dispatched worker has reported, and workers that commit nothing until the end have no
+partial-result story. Substantively: **declaring a lane dead while it was alive is the same class
+of error as declaring a result true while it is unproved** — a confident report about a state
+never actually checked. It was caught by the worker, not by the manager.
+
 ### Twenty exact tight certificates, and the precise reason exactification kept stalling
 `issue #110` · `attacks/r4-krawczyk/` · `numerical`
 

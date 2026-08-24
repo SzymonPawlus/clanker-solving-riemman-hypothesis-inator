@@ -105,41 +105,59 @@ good — including one that would have been the repo's first machine-checked *op
 | `r4-dual` | **exact dual certificate**, no rounding, no repair; collapse proposition closes; holds at every `n` by symbolic identity | `numerical`/`sketch` |
 | `r4-krawczyk` | **20 exact tight certificates**, Krawczyk contracted at all 20 | `numerical` |
 | `r4-famcert` (FAM-CERT) | staircase certified at **`n = 40` and `n = 49`**; reproduction gate passed | `numerical` |
-| `r4-theta` (AC) | **not delivered — destroyed by manager error**, see below | — |
+| `r4-theta` (AC) | **delivered**: AC's dominance claim correct, its *size* claim false, and **no `√6`-style ceiling exists**; survived the manager error below | `numerical`/`sketch` |
 | `r4-cover4` (AG) | **not delivered** — killed mid-run at "still SAT", before either direction closed; left probe scripts only, no results, not merged | — |
 
-### The `r4-theta` lane was destroyed by manager error, not by the mathematics
+### θ′ is NOT ceiling-bound — and do not extend `r3-sdpgate`'s verdict to it
 
-Recorded because the alternative is a silently missing lane, and because a process error that eats
-a worker's output is exactly as damaging to this repo as a mathematical one.
+`../r4-theta/` is the round's sharpest correction to the *rest* of this file, so it is worth
+reading before believing §0.1's framing too broadly.
 
-The θ′ worker was still running — it had never reported — when the manager ran
-`git worktree remove --force` across all lanes as cleanup. Its worktree was deleted underneath it
-while its solver was mid-run, and its branch `r4-theta` carried **no commits**. Nothing it computed
-survives except one line recovered afterwards from the still-open file descriptor of its deleted
-log:
+- **AC's dominance claim is correct**, re-derived by an explicit clique-cover kernel:
+  `α ≤ ϑ′ ≤ χ̄`. A consequence the assignment missed — ϑ′ *inherits the covering plateau*
+  `d(16) ≥ 2 + 4√3 = 8.928` (PRs #98/#104, `sketch` and unmerged; quoted, **not** depended on),
+  which already exceeds Oler's `8.358`. **So the gate this lane was given was aimed at the wrong
+  quantity**: "does ϑ′ beat Oler?" has an a-priori answer of yes.
+- **AC's headline *size* claim is false.** A feasible kernel needs `rank Z ≥ α(G_d) − 1`
+  (pairwise-obtuse vectors), and a bidegree-`m` kernel has rank `≤ C(m+2,2)`, forcing
+  `m ≳ √(2n)`. So it is four *variables* for every `n`, but degree `∼√n`, Putinar blocks `∼n²/6`,
+  scalar variables `∼n⁴`. "Independent of `n`" is true of the wrong quantity.
+- **There is no `√6`-style ceiling here.** `α ≤ ϑ′ ≤ χ̄` with both ends `Θ(d²)` (hexagon tiling at
+  the upper end) gives `d_{ϑ′}(n) = Θ(√n)` — the *right order*, unlike the moment hierarchy's
+  bounded `√(6(n−1)/n)`. **`r3-sdpgate`'s verdict must not be extended to AC**, and §0.1 above
+  should be read as being about the moment/SOS hierarchy specifically, not about convex
+  relaxations in general.
 
-```json
-{"n": 8, "label": "oler-floor-anchored", "d": 5.06225774829855, "refine": 6, "k": 16,
- "N": 136, "spacing": 0.333…, "alpha_grid": 6, "theta_lb": 5.995292871002561,
- "theta_solver": 6.00102859863399, "status": "optimal", "nonedges": 4620,
- "build_s": 0.1, "solve_s": 97.5, "fires": false,
- "d_exact": "-3 + sqrt(65)", "oler_floor": 5.062257748298549,
- "d_known": 5.829708431025352}
-```
+**What it measured, and the honest limit.** A reusable one-sided instrument: for finite
+`W ⊂ T_d`, a feasible kernel restricts, so `ϑ′(G_d[W]) ≤ ϑ′(G_d)` — finite subgraphs upper-bound
+the achievable ϑ′ floor against *every* kernel of *every* degree, with no SOS needed. Across 20
+solves at 7 values of `n`, `ϑ′(G_d[W])` never reached `n`; cleanest row is `n = 16` at
+`d = √129 − 3` with an anchored 153-point witness giving `α = 15` (exactly `α(G_d)` there) and
+`ϑ′ = 15.0000`. Largest observed `ϑ′ − α` gain was `+0.447`; firing needs `+1`.
 
-**No conclusion is drawn from it.** The field semantics — in particular what `fires: false` refers
-to, and whether `theta_lb` is a bound on the independence number or on something else — are defined
-only in code that no longer exists. A single data point whose meaning cannot be confirmed is not
-evidence, and reading a result into it would be precisely the failure `RULES.md` §0 describes.
+**The lane never solved the SOS problem**, so it contains **no ϑ′-derived value for any `n`**. The
+instrument is one-sided and can only detect weakness; it detected none. That is a null result and
+weak evidence — explicitly *not* support for AC. The kill-criterion could not fire, and its file
+says so with the reason.
 
-**Lessons, both procedural:** worktrees must not be reclaimed until every dispatched worker has
-reported; and a worker that commits nothing until the end has no partial-result story at all, which
-is why the protocol tells workers to checkpoint. Two other lanes this round survived their own
-deaths only because they had written files to disk.
+### A manager error that this lane survived, recorded anyway
 
-`r4-theta` should simply be re-run. The question it was asked — whether the container-θ′ bound
-shares the `√6` ceiling that killed the moment hierarchy — is untouched.
+While the θ′ worker was still running and had not yet reported, the manager ran
+`git worktree remove --force` across all lanes as cleanup, deleting its worktree mid-solve with
+nothing yet committed. **The worker recovered on its own** — it detected the deletion, recreated
+the worktree with `git worktree add`, rebuilt every file, committed *before* re-running, and re-ran
+the measurements from scratch. Its branch survived because branches are not worktrees.
+
+The manager, meanwhile, had already written this lane off as destroyed on the strength of a single
+line recovered from the deleted log's open file descriptor, and correctly declined to draw a
+conclusion from it. That fragment is now interpretable and consistent with the delivered results
+(`n = 8`, `fires: false` — ϑ′ on a finite witness not reaching `n`).
+
+**Both halves are worth keeping.** The procedural lesson stands: worktrees must not be reclaimed
+until every dispatched worker has reported, and a worker that commits nothing until the end has no
+partial-result story. But so does the correction: **the manager declared a lane dead while it was
+alive**, which is the same class of error as declaring a result true while it is unproved, and it
+was caught by the worker rather than by the manager.
 
 ### The Krawczyk result, and its load-bearing negative
 
