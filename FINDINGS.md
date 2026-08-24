@@ -79,6 +79,95 @@ packing. Cheap, and nearly vacuous — a calibration control, not a result.
 Both are honest negatives with the mechanism quantified, which is the outcome `RULES.md` §0 asks
 for. Neither is assumable; the lemmas are `sketch` and uncross-examined.
 
+### A whole family of lower bounds provably cannot beat Oler — with an exact dual, and at every n
+`issue #110` · `attacks/r4-delaunay/`, `attacks/r4-dual/` · direction closed
+
+Hales-style localised scoring on the Delaunay triangulation, telescoped by Euler's formula, was
+measured and then **closed exactly**.
+
+The measurement (`r4-delaunay`): an LP over the family, refined from 10 to 63 configurations,
+returns `d(16) = 8.3578166916` — Oler's own value — and does not move. Freeing the score
+pointwise, one variable per face shape (29 shapes, 23 boundary edge lengths), gives
+`max |sigma - linear| = 0.00e+00`: **the LP picks the linear member even when free not to.** The
+prerequisite control passed first — the framework reproduces Oler to `<= 1.78e-15` across
+`n = 2..28`, exactly tight at the triangular numbers — and all rounding is outward, so the LP is an
+*optimistic* relaxation, the only direction in which a negative means anything.
+
+The closure (`r4-dual`): an **exact dual certificate**, verified in `Fraction` arithmetic with no
+rounding and no repair — the optimal dual is written down in closed form rather than reconstructed
+from a solver. Both constraints hold with equality, the objective is exactly `n - 1`, so
+`d_family(n) <= sqrt(8n+1) - 3`. The dual relations hold as **symbolic identities**, so this is not
+a per-`n` measurement: **the family cannot beat Oler at any n.** It also predicts all six rows of
+the sibling's published table, including the two *above* Oler.
+
+**The transferable part is the reason, not the verdict.** What pins the family is not that
+nonlinearity gets suppressed — it is **the shape of its conclusion**: affine in (area, perimeter)
+of the hull. *Beating Oler needs a differently-shaped conclusion, not a cleverer score.* That is a
+usable filter on future proposals, and it is the first time this project has been able to say why
+a whole class fails rather than that it did.
+
+### Twenty exact tight certificates, and the precise reason exactification kept stalling
+`issue #110` · `attacks/r4-krawczyk/` · `numerical`
+
+Interval Krawczyk in exact rational arithmetic contracted at **all 20** `n` attempted, yielding
+exact, tight certificates — including 13 of the 15 with a published Graham-Lubachevsky entry
+reproduced exactly, 2 above, and **none below**, so §4's record escalation was correctly not
+triggered. Independent control: `packing-r3-recheck/recheck.py`, written by a different worker
+straight from the problem statement, accepts all 20. Same model family, so **no `verified:review`**.
+
+Two findings outrank the table.
+
+**1. The negative that explains a year of stalling.** At all 20 configurations the tight constraint
+set is **over-determined** (`K > rank`, deficiency 1-24), so any square subsystem must drop
+constraints that are *active* at the solution, and their interval evaluation straddles zero over
+any box containing it. **A Krawczyk box can therefore never certify feasibility on its own at
+these packings.** Paired with `r3-stationarity`'s finding that *under*determined strata are forced
+for every sparse support, this is one obstruction seen from two sides — and it is why the repo's
+exactification has repeatedly reached "almost".
+
+**2. A near-miss on manufacturing a false record.** Comparisons were made against the exact
+rational band implied by G-L's printed 15 significant figures. Comparing against a single rounded
+float instead "would have manufactured a false record at `n = 25` and `n = 29`". This is problem
+`RULES.md` §4 working exactly as intended, and it is worth noting that the trap was in the
+*comparison*, not in the packing.
+
+### A staircase family, certified past the end of the published table
+`issue #110` · `attacks/r4-famcert/`, `attacks/r3-approaches/` §0.2 · `numerical`
+
+Round 3 recorded `n = 17, 24, 31` as isolated cases in `Q(sqrt3)` "spaced 7 apart". **That was
+wrong twice over, and both errors were the manager's.** First the scan's input table omitted
+`n = 27`; then the "+7" turned out to be a two-term coincidence. They are the `[16,34]` window of
+one staircase, realised in closed form as
+
+    n(j) = Delta(j+2) + floor(j/2) + 1,     s = 2j + 4*sqrt(3)
+
+over `n = 4, 7, 12, 17, 24, 31, 40, 49, 60`, whose **first three members are proven optima and sit
+on the law exactly**. Geometrically: four same-orientation triangular-lattice grains — two bottom
+corners, an inverted centre, a top grain — separated by length-2 stacking-fault seams.
+
+After a reproduction gate that recovers the three `cited` optima and the committed `n = 24`
+certificate point-for-point, `s(40) <= 12 + 4*sqrt(3)` and `s(49) <= 14 + 4*sqrt(3)` are certified
+exactly and tightly in `Q(sqrt3)`.
+
+**Not records and not new territory.** Amore (2022) reports triangle numerics to `N = 400` and is
+behind the egress block, so "no published value here" does not mean "nobody has done better".
+Unexplained and flagged: at `n = 17` the generator's packing differs from the committed
+certificate in 5 points, which is wider than the single known rattler accounts for.
+
+### The campaign's default target is its worst one
+`issue #110` · `attacks/r4-approaches/` §0.2 · `sketch`
+
+`n = 16` has absorbed most of the project's lower-bound effort (#97, and rounds 1-3 all defaulted
+to it). A round-4 ideation lens argued it is the *least* tractable open case on every axis: widest
+window (`~0.892` in `d`), no closed form, no anchor value. No round-4 slot was spent on it.
+
+Its diagnosis of why the `Delta(k) - 1` cases resist is the useful part: the repo's three
+independent exact break-even theorems — partition, convex-cut, corner-count — each close **exactly
+zero** of the missing `+1` point, because every tool tried so far is **interaction-blind**. The
+`+1` lives only in region *interactions*. It also argues the softest "one case" is a
+**reconstruction** of a `cited` result rather than an open `n`: validate the machine where the
+answer is known before pointing it anywhere open.
+
 ### `verified:lean` is unreachable from this session type — the toolchain itself is blocked
 `issue #110` · environment finding, no claim changed status
 
