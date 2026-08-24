@@ -85,8 +85,23 @@ also the $k = 7$ analogue of $n = 20 = \Delta(6) - 1$, which is exactly what the
 on issue #91 is about; the interesting question there is the *lower* bound, which none of this
 touches.)
 
-The genuinely non-trivial cases are the **$+4\sqrt3$ family $n = 17, 24, 31$** — spaced 7 apart,
-each 2 more than the last, and none of them a $\Delta(k) - 1$ freebie.
+The genuinely non-trivial cases are the **$+4\sqrt3$ family $n = 17, 24, 31$** — ~~spaced 7 apart,
+each 2 more than the last~~, and none of them a $\Delta(k) - 1$ freebie.
+
+> **Corrected again, 2026-08-24 (second correction to this section).** "Spaced 7 apart" was a
+> two-term coincidence, and it was mine. A round-4 ideation lens found that $17, 24, 31$ are just
+> the $[16,34]$ window of **two interleaved Graham–Lubachevsky families** —
+> $4\Delta(k) = 4, 12, 24, 40, 60$ and $2(k+1)^2 - 1 = 7, 17, 31, 49$ — which merge into one
+> staircase
+> $$n = 4,\, 7,\, 12,\, 17,\, 24,\, 31,\, 40,\, 49,\, 60,\ \ldots \qquad s = 2j + 4\sqrt3$$
+> with gaps $3, 5, 5, 7, 7, 9, 9, 11$, not a constant 7. Re-derived here by script.
+>
+> What makes this more than bookkeeping: the first three members $n = 4, 7, 12$ are **proven
+> optima** and sit on the law exactly, and $17, 24, 31$ match the published best-known exactly. So
+> the law has three `cited` anchors, and it **predicts $n = 40$ at $d = 12 + 2\sqrt3$ and $n = 49$
+> at $d = 14 + 2\sqrt3$** — past the end of the published table, where the repo has nothing.
+> **$n = 38$ is not a member**; anyone extrapolating "+7" from this file's first version would have
+> aimed at a malformed target. Followed up in `attacks/r4-famcert/`.
 
 Why this matters: every exact-certification pipeline in the repo is cheap in $\mathbb{Q}(\sqrt3)$
 and expensive in a degree-10 field. **$n = 17$, not $n = 16$, is the cheapest open case for
