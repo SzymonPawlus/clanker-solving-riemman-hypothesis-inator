@@ -1,0 +1,162 @@
+[
+ {
+  "n": 15,
+  "g": "1/4",
+  "d": "8",
+  "d_float": 8.0,
+  "V": 561,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.08
+ },
+ {
+  "n": 15,
+  "g": "1/4",
+  "d": "81/10",
+  "d_float": 8.1,
+  "V": 595,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.08
+ },
+ {
+  "n": 15,
+  "g": "1/4",
+  "d": "85/10",
+  "d_float": 8.5,
+  "V": 630,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.08
+ },
+ {
+  "n": 15,
+  "g": "1/4",
+  "d": "9",
+  "d_float": 9.0,
+  "V": 703,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.09
+ },
+ {
+  "n": 15,
+  "g": "1/5",
+  "d": "8",
+  "d_float": 8.0,
+  "V": 861,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.16
+ },
+ {
+  "n": 15,
+  "g": "1/5",
+  "d": "81/10",
+  "d_float": 8.1,
+  "V": 903,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.16
+ },
+ {
+  "n": 15,
+  "g": "1/5",
+  "d": "85/10",
+  "d_float": 8.5,
+  "V": 990,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.13
+ },
+ {
+  "n": 15,
+  "g": "1/5",
+  "d": "9",
+  "d_float": 9.0,
+  "V": 1081,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.11
+ },
+ {
+  "n": 15,
+  "g": "1/6",
+  "d": "8",
+  "d_float": 8.0,
+  "V": 1225,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.67
+ },
+ {
+  "n": 15,
+  "g": "1/6",
+  "d": "81/10",
+  "d_float": 8.1,
+  "V": 1275,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 5.18
+ },
+ {
+  "n": 15,
+  "g": "1/6",
+  "d": "85/10",
+  "d_float": 8.5,
+  "V": 1378,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.39
+ },
+ {
+  "n": 15,
+  "g": "1/6",
+  "d": "9",
+  "d_float": 9.0,
+  "V": 1540,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.27
+ },
+ {
+  "n": 15,
+  "g": "1/8",
+  "d": "8",
+  "d_float": 8.0,
+  "V": 2145,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 8.8
+ },
+ {
+  "n": 15,
+  "g": "1/8",
+  "d": "81/10",
+  "d_float": 8.1,
+  "V": 2211,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 50.97
+ },
+ {
+  "n": 15,
+  "g": "1/8",
+  "d": "85/10",
+  "d_float": 8.5,
+  "V": 2415,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.9
+ },
+ {
+  "n": 15,
+  "g": "1/8",
+  "d": "9",
+  "d_float": 9.0,
+  "V": 2701,
+  "result": "SAT",
+  "witness_ok": true,
+  "secs": 0.91
+ }
+]
