@@ -1,42 +1,50 @@
-"""Certified branch-and-bound for the lattice-count bound at side a.
+"""Certified branch-and-bound for the lattice-count bound in T(a).
 
-THEOREM SHAPE (see attacks/r5-eo7/README.md for the statement and the proof of the
-reduction).  Let Lambda be a lattice in R^2 whose shortest non-zero vector has length
->= 1, let t in R^2, and let a' < a.  Then
+THEOREM SHAPE (statement + reduction proof: attacks/r5-eo7/README.md).  Let Lambda be a
+lattice in R^2 whose shortest non-zero vector has length >= 1, let t in R^2, and let
+a' < a with a a positive integer.  Then
 
-    | (Lambda + t)  cap  T(a') |  <=  N(a),
+    | (Lambda + t) cap T(a') |  <=  N(a),
 
-where N(a) is what this program certifies.  For a = 6 the Erdos-Oler k = 7 target is
-N(6) <= 26 (since 27 points at side < 6 would refute EO(7)).
+with N(a) certified here.  For a = 6, Erdos-Oler at k = 7 needs N(6) <= 26, because 27
+points at side < 6 would refute EO(7).  THIS IS THE LATTICE CASE ONLY -- real packings
+need not be lattice subsets.  See the write-up for the (unproved) forcing hypothesis
+that would be needed to reach EO(7).
 
-REDUCTION (all of it is re-derived in the write-up):
-  * rescale by a/a' > 1 so the triangle is T(a) and the lattice separation is r > 1;
-  * take v1 a shortest vector, r = |v1|, (v1,v2) Lagrange-reduced, h = covol/r >= r*sqrt(3)/2
-    > sqrt(3)/2; Lambda+t lies on lines parallel to v1 spaced h apart, points spaced r
-    on each line;
-  * a chord of length L carries at most ceil(L) points when the spacing is > 1
-    (and at most 1 when L = 0), so the count is at most  sum_j c(ell_j)  where ell_j
-    is the chord length of T(a) on line j.
+REDUCTION.  Rescale by a/a' > 1: the triangle becomes T(a) and the lattice separation
+becomes r > 1.  Take v1 a shortest vector, r = |v1| >= 1, (v1,v2) Lagrange-reduced,
+h = covol/r >= r*sqrt(3)/2 > sqrt(3)/2.  Then Lambda+t lies on lines parallel to v1
+spaced h apart, with points spaced exactly r > 1 on each line, so a chord of length
+L > 0 carries at most ceil(L) points and a chord of length 0 at most 1.  Hence the
+count is at most sum_j c(ell_j) over the chords ell_j of T(a).
 
-PARAMETERS (3):  phi in [0, pi/6]  (line direction, folded by the D3 symmetry of T),
-                 kappa >= 1 with h = kappa*sqrt(3)/2,
-                 rho in [0,1]      (see below).
+CHORD PROFILE.  For phi in [0, pi/3] the vertex projections on n = (-sin,cos) order as
+B < A < C; writing s for the level measured from the minimum,
+    d1 = a sin(phi),   w = a cos(phi - pi/6),   L* = (a sqrt3/2)/cos(phi - pi/6),
+    K  = L*/(w - d1) = sqrt3/(cos 2phi + 1/2)          (independent of a),
+    ell(s) = L* s/d1        (0 <= s <= d1, "rising"),
+    ell(s) = L* - K(s - d1) (d1 <= s <= w, "falling").
+Symbolic facts used as hard caps (proved in the write-up):
+    (F1) L* <= a  on [0, pi/6];
+    (F2) K h >= 1 whenever h >= sqrt3/2;
+    (F3) L* - K h <= a - 1 on [0, pi/6], h >= sqrt3/2, with equality only at
+         (phi, h) = (0, sqrt3/2);
+    (F4) L* h / d1 >= 3/2 on (0, pi/6], h >= sqrt3/2.
 
-Two regimes.
-  R1  no line meets the "rising" side of the chord profile.  Lemma A (symbolic, in the
-      write-up) gives  sum <= Delta(a) + 1  with no computation.
-  R2  some line does.  Let that line (the topmost one at or below the peak) sit at
-      s = d1 - rho*d1.  Then everything is an explicit function of (phi, kappa, rho)
-      and this file branch-and-bounds it.
+PARAMETERS (3): phi in [0, pi/6] (D3 symmetry of T folds direction space to this),
+                kappa >= 1 with h = kappa sqrt3/2,
+                rho in [0,1]: the topmost line at level <= d1 sits at s = (1-rho) d1.
+Regimes:  R1 = no line at level <= d1  -> Lemma A gives  <= a(a+1)/2 + 1, no computation.
+          R2 = otherwise               -> branch and bound below.
 
-STATUS: numerical (the branch-and-bound), sketch (the reduction).  Not assumable.
+STATUS: numerical (the branch-and-bound), sketch (the reduction and F1-F4).  Not assumable.
 """
-import json, os, sys
+import json, math, sys
 from fractions import Fraction
 from mpmath import iv, mp, mpf
 
-iv.dps = 40
-mp.dps = 60
+iv.dps = 30
+mp.dps = 50
 
 PI = iv.pi
 SQ3 = iv.sqrt(3)
@@ -44,28 +52,23 @@ PI6 = PI / 6
 
 
 def _m(q):
-    """Exact mpf for a Fraction with a power-of-two denominator (all box endpoints are)."""
     if isinstance(q, Fraction):
         return mpf(q.numerator) / mpf(q.denominator)
     return q
 
 
-def _c(x_sup):
-    """Contribution cap of a chord whose length is at most x_sup, points spaced > 1."""
+def _c(x_sup, cap):
+    """Contribution of a chord whose length is at most x_sup (spacing > 1)."""
     if x_sup < 0:
         return 0
-    import math
-    v = math.ceil(x_sup)
-    return max(1, v)
+    return min(cap, max(1, math.ceil(x_sup)))
 
 
 class Box:
     __slots__ = ("phi", "kap", "rho")
 
     def __init__(self, phi, kap, rho):
-        self.phi = phi  # (lo, hi) as mpf
-        self.kap = kap
-        self.rho = rho
+        self.phi, self.kap, self.rho = phi, kap, rho
 
     def widths(self):
         return (float(self.phi[1] - self.phi[0]), float(self.kap[1] - self.kap[0]),
@@ -74,176 +77,172 @@ class Box:
     def split(self):
         w = self.widths()
         k = max(range(3), key=lambda i: w[i] / (float(PI6.b), 6.0, 1.0)[i])
-        lo, hi = (self.phi, self.kap, self.rho)[k]
-        mid = (lo + hi) / 2 if not isinstance(lo, Fraction) else Fraction(lo + hi, 2)
-        a = [self.phi, self.kap, self.rho]
-        b = [self.phi, self.kap, self.rho]
-        a[k] = (lo, mid)
-        b[k] = (mid, hi)
-        return Box(*a), Box(*b)
+        parts = [self.phi, self.kap, self.rho]
+        lo, hi = parts[k]
+        mid = Fraction(lo + hi, 2) if isinstance(lo, Fraction) else (lo + hi) / 2
+        A = list(parts); B = list(parts)
+        A[k] = (lo, mid); B[k] = (mid, hi)
+        return Box(*A), Box(*B)
 
     def as_json(self):
         f = lambda t: [float(t[0]), float(t[1])]
         return {"phi": f(self.phi), "kappa": f(self.kap), "rho": f(self.rho)}
 
 
-# ---------------------------------------------------------------- trig pieces
-def _trig(philo, phihi):
-    p = iv.mpf([philo, phihi])
-    cm = iv.cos(p - PI6)          # cos(phi - pi/6)   in [sqrt3/2, 1]
-    cp = iv.cos(p + PI6)          # cos(phi + pi/6)
+def _pieces(a, plo, phi_, kaplo, rho):
+    """Interval quantities on phi in [plo, phi_], at kappa = kaplo, rho = rho."""
+    p = iv.mpf([plo, phi_])
+    cm = iv.cos(p - PI6)
     s = iv.sin(p)
     c = iv.cos(p)
     c2 = iv.cos(2 * p)
-    return p, cm, cp, s, c, c2
-
-
-def ell_fall(a, philo, phihi, kaplo, kaphi, rholo, rhohi, i):
-    """Rigorous upper bound on ell^fall_i = L* - K*h*(1+i) + K*rho*d1 over the box.
-
-    Monotone in kappa (decreasing: h enters with -K(1+i) and +0 elsewhere) and in
-    rho (increasing).  So set kappa = kaplo, rho = rhohi and bound over phi.
-    """
-    if philo == 0:
-        # exact slice: L* = a, K = 2/sqrt3, d1 = 0, h = kappa*sqrt3/2
-        # => ell = a - kappa*(1+i).   (rho term vanishes because d1 = 0)
-        exact = Fraction(a) - kaplo * (1 + i)
-        if phihi == 0:
-            return float(exact)
-    _, cm, cp, s, c, c2 = _trig(philo, phihi)
-    kap = iv.mpf([_m(kaplo), _m(kaplo)])
-    h = kap * SQ3 / 2
-    Lstar = (iv.mpf(a) * SQ3 / 2) / cm
+    A = iv.mpf(a)
+    Lstar = (A * SQ3 / 2) / cm
     K = SQ3 / (c2 + iv.mpf(1) / 2)
-    d1 = iv.mpf(a) * s
-    rho = iv.mpf([_m(rhohi), _m(rhohi)])
-    val = Lstar - K * h * (1 + i) + K * rho * d1
-    return float(val.b)
-
-
-def ell_fall_sup(a, box, i, depth=14):
-    """Monotonicity-aware sup of ell^fall_i over the box's phi-range."""
-    philo, phihi = box.phi
-    kaplo = box.kap[0]
-    rhohi = box.rho[1]
-    # cheap symbolic caps: ell <= L* <= a, and ell <= (L*-K h) - i*K*h + rho*K*d1
-    #                      with L* - K h <= a - 1 (Lemma B) and K*h >= 1.
-    cap = min(float(a), float(a) - 1 - i + float(rhohi) * _kd1_sup(a, philo, phihi))
-    best = _sup_phi_rec(a, philo, phihi, kaplo, rhohi, i, depth)
-    return min(best, cap)
-
-
-def _kd1_sup(a, philo, phihi):
-    _, cm, cp, s, c, c2 = _trig(philo, phihi)
-    K = SQ3 / (c2 + iv.mpf(1) / 2)
-    return float((K * iv.mpf(a) * s).b)
-
-
-def _sup_phi_rec(a, philo, phihi, kaplo, rhohi, i, depth):
-    if philo == 0 and phihi == 0:
-        return float(Fraction(a) - kaplo * (1 + i))
-    v = ell_fall(a, philo, phihi, kaplo, kaplo, rhohi, rhohi, i)
-    if depth <= 0 or phihi - philo < mpf("1e-12"):
-        return v
-    # monotonicity test in phi
-    d = _dfall_dphi(a, philo, phihi, kaplo, rhohi, i)
-    if d.b <= 0:
-        return _sup_phi_rec(a, philo, philo, kaplo, rhohi, i, 0)
-    if d.a >= 0:
-        return _sup_phi_rec(a, phihi, phihi, kaplo, rhohi, i, 0)
-    mid = (philo + phihi) / 2
-    return max(_sup_phi_rec(a, philo, mid, kaplo, rhohi, i, depth - 1),
-               _sup_phi_rec(a, mid, phihi, kaplo, rhohi, i, depth - 1))
-
-
-def _dfall_dphi(a, philo, phihi, kaplo, rhohi, i):
-    p, cm, cp, s, c, c2 = _trig(philo, phihi)
     h = iv.mpf([_m(kaplo), _m(kaplo)]) * SQ3 / 2
-    rho = iv.mpf([_m(rhohi), _m(rhohi)])
+    d1 = A * s
+    return p, cm, s, c, c2, Lstar, K, h, d1
+
+
+def _fall0(a, plo, phi_, kaplo, rhohi):
+    """Interval for ell^fall_0 = L* - K h + rho K d1 on phi in [plo, phi_]."""
+    if plo == 0 and phi_ == 0:                      # exact slice: d1 = 0, L* = a, K h = kappa
+        v = float(Fraction(a) - kaplo)
+        return iv.mpf([v, v])
+    _, _, _, _, _, Ls, K, h, d1 = _pieces(a, plo, phi_, kaplo, rhohi)
+    return Ls - K * h + iv.mpf([_m(rhohi), _m(rhohi)]) * K * d1
+
+
+def _dfall0(a, plo, phi_, kaplo, rhohi):
+    p, cm, s, c, c2, Ls, K, h, d1 = _pieces(a, plo, phi_, kaplo, rhohi)
     A = iv.mpf(a)
     dL = (A * SQ3 / 2) * iv.sin(p - PI6) / (cm ** 2)
     den = c2 + iv.mpf(1) / 2
     dK = SQ3 * 2 * iv.sin(2 * p) / (den ** 2)
-    d1 = A * s
-    dd1 = A * c
-    K = SQ3 / den
-    return dL - dK * h * (1 + i) + rho * (dK * d1 + K * dd1)
+    rho = iv.mpf([_m(rhohi), _m(rhohi)])
+    return dL - dK * h + rho * (dK * d1 + K * A * c)
 
 
-def ell_rise_sup(a, box, i):
-    """Rigorous upper bound on ell^rise_i = L*(1 - rho - i*h/d1) over the box.
+def _sup_fall0(a, box, depth=8):
+    """Monotonicity-aware rigorous sup of ell^fall_0 over the box."""
+    kaplo, rhohi = box.kap[0], box.rho[1]
 
-    Decreasing in rho and in kappa; for i = 0 also decreasing in phi (L* is).
-    Returns None if no such line can exist in the box.
-    """
-    philo, phihi = box.phi
-    kaplo = box.kap[0]
-    rholo = box.rho[0]
-    _, cm, cp, s, c, c2 = _trig(philo, phihi)
-    A = iv.mpf(a)
-    Lstar = (A * SQ3 / 2) / cm
-    h = iv.mpf([_m(kaplo), _m(kaplo)]) * SQ3 / 2
-    d1 = A * s
-    if i == 0:
-        if philo == 0:
-            val = Fraction(a) * (1 - rholo)
-            return float(val)
-        return float((Lstar * (1 - iv.mpf([_m(rholo), _m(rholo)]))).b)
-    # i >= 1 needs i*h <= d1 - rho*d1 <= d1
-    if float(d1.b) < i * float(h.a):
-        return None
-    ratio = h / d1                      # d1 bounded away from 0 here
-    val = Lstar * (1 - iv.mpf([_m(rholo), _m(rholo)]) - i * ratio)
-    return float(val.b)
+    def rec(plo, phi_, d):
+        if plo == phi_:
+            return float(_fall0(a, plo, phi_, kaplo, rhohi).b)
+        v = float(_fall0(a, plo, phi_, kaplo, rhohi).b)
+        if d <= 0:
+            return v
+        g = _dfall0(a, plo, phi_, kaplo, rhohi)
+        if g.b <= 0:
+            return float(_fall0(a, plo, plo, kaplo, rhohi).b)
+        if g.a >= 0:
+            return float(_fall0(a, phi_, phi_, kaplo, rhohi).b)
+        mid = (plo + phi_) / 2
+        return max(rec(plo, mid, d - 1), rec(mid, phi_, d - 1))
+
+    v = rec(box.phi[0], box.phi[1], depth)
+    return min(v, float(a) - 1 + float(rhohi) * _kd1_sup(a, box))
 
 
-def box_bound(a, box, imax=40):
-    total = 0
-    for i in range(imax):
-        u = ell_fall_sup(a, box, i)
+def _kd1_sup(a, box):
+    p = iv.mpf([box.phi[0], box.phi[1]])
+    K = SQ3 / (iv.cos(2 * p) + iv.mpf(1) / 2)
+    return float((K * iv.mpf(a) * iv.sin(p)).b)
+
+
+def _sup_rise0(a, box):
+    """ell^rise_0 = L*(1-rho); decreasing in phi and in rho, so sup at (phi_lo, rho_lo)."""
+    plo, rholo = box.phi[0], box.rho[0]
+    if plo == 0:
+        return float(Fraction(a) * (1 - rholo))
+    Ls = (iv.mpf(a) * SQ3 / 2) / iv.cos(iv.mpf([plo, plo]) - PI6)
+    return float((Ls * (1 - iv.mpf([_m(rholo), _m(rholo)]))).b)
+
+
+def _kh_lo(a, box):
+    p = iv.mpf([box.phi[0], box.phi[1]])
+    K = SQ3 / (iv.cos(2 * p) + iv.mpf(1) / 2)
+    h = iv.mpf([_m(box.kap[0]), _m(box.kap[0])]) * SQ3 / 2
+    return max(1.0, float((K * h).a))            # (F2)
+
+
+def _risestep_lo(a, box):
+    """Lower bound on L* h / d1 (the drop between consecutive rising chords)."""
+    p = iv.mpf([box.phi[0], box.phi[1]])
+    Ls = (iv.mpf(a) * SQ3 / 2) / iv.cos(p - PI6)
+    h = iv.mpf([_m(box.kap[0]), _m(box.kap[0])]) * SQ3 / 2
+    d1 = iv.mpf(a) * iv.sin(p)
+    if float(d1.a) <= 0:
+        return None                              # no i >= 1 rising line possible here
+    return max(1.5, float((Ls * h / d1).a))      # (F4)
+
+
+def _nrise_max(a, box):
+    """Max number of rising lines: they sit at s = (1-rho)d1 - i h >= 0."""
+    d1hi = float(a) * math.sin(float(box.phi[1]))
+    hlo = float(box.kap[0]) * math.sqrt(3) / 2
+    return int(math.floor(d1hi / hlo)) + 1
+
+
+def box_bound(a, box):
+    cap = int(a)                                  # (F1): every chord is <= L* <= a
+    tot = 0
+    f0 = _sup_fall0(a, box)
+    step = _kh_lo(a, box)
+    i = 0
+    while True:
+        u = f0 - i * step
         if u < 0:
             break
-        total += min(int(a), _c(u))
-    for i in range(imax):
-        u = ell_rise_sup(a, box, i)
+        tot += _c(u, cap)
+        i += 1
+        if i > 4 * a:
+            break
+    r0 = _sup_rise0(a, box)
+    nr = _nrise_max(a, box)
+    rs = _risestep_lo(a, box)
+    for i in range(nr):
+        u = r0 if i == 0 else (None if rs is None else r0 - i * rs)
         if u is None or u < 0:
             break
-        total += min(int(a), _c(u))
-    return total
+        tot += _c(u, cap)
+    return tot
 
 
-def bnb(a, target, max_boxes=400000, out=None, minwidth=1e-7):
-    """Branch and bound over R2.  Returns (best_certified_bound, stalled_boxes, stats)."""
-    kmax = 2 * (a + 1) / (3 ** 0.5) + 1     # h > w_max => at most one line; w <= a
-    root = Box((mpf(0), PI6.b), (Fraction(1), Fraction(kmax).limit_denominator(64) + 1),
-               (Fraction(0), Fraction(1)))
+def bnb(a, target, max_boxes=2000000, out=None, minwidth=1e-9, progress=20000):
+    kmax = Fraction(math.ceil(2 * (a + 1) / math.sqrt(3)) + 1)
+    root = Box((mpf(0), PI6.b), (Fraction(1), kmax), (Fraction(0), Fraction(1)))
     stack = [root]
     worst = 0
     stalled = []
-    nboxes = 0
+    n = 0
     while stack:
-        if nboxes >= max_boxes:
+        if n >= max_boxes:
             stalled.extend(stack)
             break
         b = stack.pop()
-        nboxes += 1
+        n += 1
+        if progress and n % progress == 0:
+            print(json.dumps({"boxes": n, "stack": len(stack), "worst": worst,
+                              "stalled": len(stalled)}), flush=True)
+            if out:
+                json.dump({"partial": True, "boxes": n, "worst": worst,
+                           "stalled": len(stalled)}, open(out + ".progress", "w"))
         v = box_bound(a, b)
         if v <= target:
             worst = max(worst, v)
             continue
-        w = b.widths()
-        if max(float(w[0]), float(w[1]), float(w[2])) < minwidth:
-            stalled.append(b)
-            worst = max(worst, v)
+        if max(b.widths()) < minwidth:
+            stalled.append(b); worst = max(worst, v)
             continue
         stack.extend(b.split())
-    stats = {"a": a, "target": target, "boxes_processed": nboxes,
-             "stalled": len(stalled), "worst_certified": worst,
-             "R1_lemmaA": a * (a + 1) // 2 + 1}
+    stats = {"a": a, "target": target, "boxes_processed": n, "stalled": len(stalled),
+             "worst_certified_R2": worst, "R1_lemmaA": a * (a + 1) // 2 + 1,
+             "certified_overall": max(worst, a * (a + 1) // 2 + 1) if not stalled else None}
     if out:
-        with open(out, "w") as f:
-            json.dump({"stats": stats,
-                       "stalled_boxes": [x.as_json() for x in stalled[:200]]}, f, indent=1)
+        json.dump({"stats": stats, "stalled_boxes": [x.as_json() for x in stalled[:200]]},
+                  open(out, "w"), indent=1)
     return worst, stalled, stats
 
 

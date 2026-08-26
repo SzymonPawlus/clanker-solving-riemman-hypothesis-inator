@@ -1,0 +1,1 @@
+{"boxes": 20000, "stack": 73, "worst": 27, "stalled": 8862}
