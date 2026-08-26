@@ -68,14 +68,38 @@ this gate compares **point sets**, not just side lengths.
 **Gate 1 passed.** Three `cited` proven optima are reproduced exactly, and `n = 24` reproduces the
 committed `r3-qsqrt3` certificate point-for-point.
 
-**On the two that differ, honestly.** At `n = 17` and `n = 31` the generator emits a *different*
-valid packing at the *same* `s` — both are feasible and tight, so both are legitimate
-constructions. This is expected in kind: `r3-qsqrt3` recorded that `n = 17` and `n = 31` each
-carry a **rattler** with a free region, while `n = 24` has none — and `n = 24` is exactly the one
-that matches identically. That correspondence is a consistency check, not a proof. But the
-`n = 17` disagreement is larger than one rattler can explain (5 points differ, not 1), so the two
-configurations are related by more than a single free placement. **That is not explained here and
-should not be waved past**: it is the first thing a reviewer should look at.
+**On the two that differ — RESOLVED, see [`../r5-n17/`](../r5-n17/README.md).**
+
+At `n = 17` and `n = 31` the generator emits a *different* valid packing at the *same* `s`. Both
+are feasible and tight, so both are legitimate constructions. When this file was first written the
+`n = 17` case (5 points differing, against a reported single rattler) was flagged as unexplained
+and as the first thing a reviewer should check. A dedicated audit lane then checked it, with its
+own `Q(√3)` layer, parser and checker written from the problem statement and validated on proven
+optima plus negative controls. The outcome, `numerical`:
+
+- **All six point sets are exactly feasible, exactly tight, min squared distance exactly 4.**
+  Nothing is broken, and the three overlap figures quoted above (12/17, 24/24, 30/31) are correct
+  — re-derived, not inherited.
+- **`n = 24`: identical, and now explained.** That packing is invariant under the *full* `D₃`
+  (stabiliser order 6) and is infinitesimally rigid. An optimiser and a lattice construction had
+  nowhere else to land.
+- **`n = 31`: one differing point, and it is exactly the rattler.** Its free region is exactly the
+  segment `{(x,0) : 6 ≤ x ≤ 4+2√3}` on edge `AB`, endpoints verified feasible and just-outside
+  infeasible. The certificate parks it interior at `x = 7`; the generator parks it at the jammed
+  left endpoint `x = 6`. **Same packing.**
+- **`n = 17`: two genuinely distinct packings at the same `s`** — benign, and the interesting one.
+  Ruled out exactly: a rigid motion (all six isometries of the fixed triangle constructed in
+  `Q(√3)`; none maps one to the other, and both have trivial stabiliser); rattler freedom (the
+  certificate has exactly 1 rattler, the generator 0 — so `r3-qsqrt3`'s rattler count was *right*,
+  not an understatement); and any deformation between them (generator rigidity kernel **0**,
+  certificate kernel **2**, exactly the rattler's translations). Separating invariants:
+  **26 vs 28 contacts, 11 vs 12 boundary points, non-isomorphic contact graphs.** The generator's
+  is the more jammed of the two.
+
+So the original suspicion — "related by more than a single free placement" — was correct, and the
+resolution is that they are *not related at all*: two distinct tight configurations coexist at
+`s(17) = 6 + 4√3`. Nothing here is promoted; the audit is same-model-family, so it is a third
+agreeing implementation and not `verified:review`.
 
 ## 2. Gate 2 — the predictions, past the published table
 

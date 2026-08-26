@@ -62,6 +62,19 @@ step is exact in $\mathbb{Q}(\sqrt3)$; no float appears in any accept/reject dec
    independent confirmation of the rest: the snap procedure did not silently absorb a defect,
    it isolated it.
 
+   > **Narrowing added by the manager, 2026-08-24, from the audit in
+   > [`../r5-n17/`](../r5-n17/README.md).** Every number in this item is correct, but the phrase
+   > "strict slack in every wall constraint" describes the **optimiser's float position**, not the
+   > position actually committed. The committed `n = 31` rattler sits at `(7, 0)` — i.e. **on**
+   > wall `AB` — and rattles by *sliding along the edge*, its exact free region being the segment
+   > `{(x,0) : 6 ≤ x ≤ 4+2√3}`. Consequence for anyone writing tooling: a rattler census defining
+   > "rattler = no contact at distance 2 **and** strictly interior to all three walls" will report
+   > **0 rattlers at `n = 31`** and appear to contradict this paragraph. That is a definitional
+   > gap, not a defect in the certificate. The audit also confirmed the rattler *counts* here are
+   > right rather than understated: at `n = 17` the certificate has exactly 1 rattler and the
+   > `r4-famcert` generator has 0, and the two configurations are genuinely distinct packings, not
+   > rattler-variants of one another.
+
 ## 3. Relation to the published record
 
 `beats_record: "no"` in all three certificates. These **reproduce** the Graham–Lubachevsky values
