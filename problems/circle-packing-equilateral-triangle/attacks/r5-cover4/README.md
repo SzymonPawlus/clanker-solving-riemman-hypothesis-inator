@@ -113,6 +113,29 @@ Two limits on this reading, both real:
    attempted before the worker died.
 2. It rests on the unverified corner reduction (§2).
 
+## 4a. Cross-lane: the sibling exhaustion attempt failed too, for a *different* reason
+
+`attacks/r5-exhaust4/` attacked the **same** case (EO(4)) by the **exhaustion** route, deliberately
+without coordination. It also fails, and the two failures are not the same failure:
+
+- **Covering (here):** the method's ceiling is *below* the target — no 8-cover exists for
+  `a ≥ 2.99999`, so it falls `10⁻⁵` short of `a = 3`.
+- **Exhaustion (there):** no computational wall at all — shrinking the residual gap 50× cost only
+  4.3× the nodes — but the route is *unreachable* in principle, because for every dyadic level
+  `L ≥ 2` the node containing the `Δ(4)`-lattice-minus-one-point is refuted by none of the pair,
+  capacity or Oler-hull rules. That lane's `sketch` criterion: **dyadic pigeonhole closes EO(k) iff
+  `k ≤ 3`.**
+
+Both are counting-family methods, and both die at `Δ(k) − 1`. This is round 4's
+"interaction-blind, closes exactly zero of the missing `+1`" observed twice more, from two
+independent directions, on a case whose answer is `cited`.
+
+**One observation from that lane bears directly on this one and widens its question**
+(`sketch`, theirs, not verified here): **no triangle has capacity exactly 2**, because
+`a(2) = a(3)`. So any partition-and-capacity closure is forced to use **non-triangular pieces** —
+which is a constraint on the YES direction this lane never attempted, and the worker that found it
+could not locate it recorded anywhere in the repo.
+
 ## 5. Reproduce
 
 ```
