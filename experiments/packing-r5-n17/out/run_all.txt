@@ -1,0 +1,177 @@
+
+##############################################################################
+# 0. parser self-test (accepts Q(sqrt3), rejects decimals/other fields)
+##############################################################################
+0                -> 0
+4                -> 4
+5/2              -> 5/2
+sqrt(3)          -> sqrt(3)
+3 + sqrt(3)      -> 3 + sqrt(3)
+4 + 2*sqrt(3)    -> 4 + 2*sqrt(3)
+6 + 4*sqrt(3)    -> 6 + 4*sqrt(3)
+3 + 3*sqrt(3)    -> 3 + 3*sqrt(3)
+-1/3*sqrt(3)     -> -1/3*sqrt(3)
+rejected: 10.928 -> ValueError
+rejected: sqrt(2) -> ValueError
+rejected: sqrt(3)**3/7 + 2**(1/3) -> ValueError
+
+##############################################################################
+# 1. checker validation: 4 proven instances + 5 negative controls
+##############################################################################
+n=3 corners (proven)         ok=True  tight=True  minsq=4          contacts=3   bdry=3   d_min=2
+n=4 (proven)                 ok=True  tight=True  minsq=4          contacts=3   bdry=3   d_min=2*sqrt(3)
+n=6 lattice (proven)         ok=True  tight=True  minsq=4          contacts=9   bdry=6   d_min=4
+n=10 lattice (proven)        ok=True  tight=True  minsq=4          contacts=18  bdry=9   d_min=6
+--- negative controls ---
+NC1 overlap (expect ok=False) ok=False tight=True  minsq=39601/10000 contacts=7   bdry=6   d_min=4
+      FAIL: pair (0,1) sq dist 39601/10000 < 4
+      FAIL: pair (0,3) sq dist 39801/10000 < 4
+NC2 s inflated by 1 (expect ok=True, tight=False) ok=True  tight=False minsq=4          contacts=9   bdry=5   d_min=4
+NC3 s deflated by 1 (expect ok=False) ok=False tight=False minsq=4          contacts=9   bdry=5   d_min=4
+      FAIL: point 2 outside wall BC by -1/2*sqrt(3)
+      FAIL: point 4 outside wall BC by -1/2*sqrt(3)
+      FAIL: point 5 outside wall BC by -1/2*sqrt(3)
+NC4 point outside (expect ok=False) ok=False tight=True  minsq=1          contacts=7   bdry=5   d_min=4
+      FAIL: pair (0,5) sq dist 1 < 4
+      FAIL: point 5 outside wall AB by -1
+NC5 duplicate point (expect ok=False) ok=False tight=True  minsq=0          contacts=6   bdry=6   d_min=4
+      FAIL: pair (0,1) sq dist 0 < 4
+
+##############################################################################
+# 1b. transcription check: my generator vs the r4-famcert generator, j = 0..5
+##############################################################################
+j=0 n=4   same order: True    same set: True
+j=1 n=7   same order: True    same set: True
+j=2 n=12  same order: True    same set: True
+j=3 n=17  same order: True    same set: True
+j=4 n=24  same order: True    same set: True
+j=5 n=31  same order: True    same set: True
+
+##############################################################################
+# 2. main audit: cert vs generator at n = 17, 24, 31
+##############################################################################
+==============================================================================
+n = 17   (famcert j = 3)
+  declared s: cert 6 + 4*sqrt(3)    generator 6 + 4*sqrt(3)    equal=True
+  r3-qsqrt3 cert     ok=True  tight=True  minsq=4    contacts=26   bdry=11  d_min=6 + 2*sqrt(3)
+  r4-famcert gen     ok=True  tight=True  minsq=4    contacts=28   bdry=12  d_min=6 + 2*sqrt(3)
+  IDENTICAL POINT SETS: False   (shared 12 / 17)
+  related by a triangle symmetry: NO (all 6 tested)
+  rattlers  cert: 1   generator: 0
+     cert idx 13  at (5/2, 4)  free radius in [45938/278305, 45938/278305]  min nbr sq 77/4 + -8*sqrt(3)  min wall -2 + 5/4*sqrt(3)
+==============================================================================
+n = 24   (famcert j = 4)
+  declared s: cert 8 + 4*sqrt(3)    generator 8 + 4*sqrt(3)    equal=True
+  r3-qsqrt3 cert     ok=True  tight=True  minsq=4    contacts=45   bdry=15  d_min=8 + 2*sqrt(3)
+  r4-famcert gen     ok=True  tight=True  minsq=4    contacts=45   bdry=15  d_min=8 + 2*sqrt(3)
+  IDENTICAL POINT SETS: True   (shared 24 / 24)
+  related by a triangle symmetry: ['rot A->A B->B C->C', 'refl A->A B->C C->B', 'refl A->B B->A C->C', 'rot A->B B->C C->A', 'rot A->C B->A C->B', 'refl A->C B->B C->A']
+  rattlers  cert: 0   generator: 0
+==============================================================================
+n = 31   (famcert j = 5)
+  declared s: cert 10 + 4*sqrt(3)   generator 10 + 4*sqrt(3)   equal=True
+  r3-qsqrt3 cert     ok=True  tight=True  minsq=4    contacts=59   bdry=18  d_min=10 + 2*sqrt(3)
+  r4-famcert gen     ok=True  tight=True  minsq=4    contacts=61   bdry=18  d_min=10 + 2*sqrt(3)
+  IDENTICAL POINT SETS: False   (shared 30 / 31)
+  related by a triangle symmetry: NO (all 6 tested)
+  rattlers  cert: 0   generator: 0
+
+wrote /home/user/r5-worktrees/n17/experiments/packing-r5-n17/out/audit.json
+
+##############################################################################
+# 3. structural diff (which points differ, mobility, degree histograms)
+##############################################################################
+==============================================================================
+n = 17   |A\B| = 5   |B\A| = 5
+  in r3-qsqrt3 cert only:
+    (4 + sqrt(3), 1)                   contacts=4 walls=- free_r~0.0
+    (5 + sqrt(3), 1 + sqrt(3))         contacts=4 walls=- free_r~0.0
+    (3 + sqrt(3), 3 + sqrt(3))         contacts=4 walls=- free_r~0.0
+    (5 + sqrt(3), 3 + sqrt(3))         contacts=3 walls=['BC'] free_r~0.0
+    (5/2, 4)                           contacts=0 walls=- free_r~0.16506350946019666
+  in r4-famcert generator only:
+    (3 + 2*sqrt(3), sqrt(3))           grain=BR  contacts=4 walls=- free_r~0.0
+    (2, 2*sqrt(3))                     grain=BL  contacts=3 walls=['AC'] free_r~0.0
+    (4 + 2*sqrt(3), 2*sqrt(3))         grain=BR  contacts=3 walls=['BC'] free_r~0.0
+    (2 + sqrt(3), 1 + 2*sqrt(3))       grain=C   contacts=4 walls=- free_r~0.0
+    (4 + sqrt(3), 1 + 2*sqrt(3))       grain=C   contacts=4 walls=- free_r~0.0
+  cert: points with ZERO contacts: 1
+     idx 13  (5/2, 4)                       wall-contacts=- free_radius in [0.165063509, 0.165063509]
+  gen: points with ZERO contacts: 0
+  cert degree histogram: [(0, 1), (2, 3), (3, 6), (4, 7)]   contacts=26  boundary=11
+  gen degree histogram: [(2, 4), (3, 5), (4, 7), (5, 1)]   contacts=28  boundary=12
+==============================================================================
+n = 24   |A\B| = 0   |B\A| = 0
+  cert: points with ZERO contacts: 0
+  gen: points with ZERO contacts: 0
+  cert degree histogram: [(2, 3), (3, 6), (4, 9), (5, 6)]   contacts=45  boundary=15
+  gen degree histogram: [(2, 3), (3, 6), (4, 9), (5, 6)]   contacts=45  boundary=15
+==============================================================================
+n = 31   |A\B| = 1   |B\A| = 1
+  in r3-qsqrt3 cert only:
+    (7, 0)                             contacts=0 walls=['AB'] free_r~0.0
+  in r4-famcert generator only:
+    (6, 0)                             grain=BL  contacts=2 walls=['AB'] free_r~0.0
+  cert: points with ZERO contacts: 1
+     idx 13  (7, 0)                         wall-contacts=['AB'] free_radius in [0.000000000, 0.000000000]
+  gen: points with ZERO contacts: 0
+  cert degree histogram: [(0, 1), (2, 3), (3, 6), (4, 13), (5, 6), (6, 2)]   contacts=59  boundary=18
+  gen degree histogram: [(2, 4), (3, 5), (4, 13), (5, 7), (6, 2)]   contacts=61  boundary=18
+
+##############################################################################
+# 4. exact infinitesimal rigidity ranks and slide intervals
+##############################################################################
+control n=6 lattice: rows=18 cols=12 rank=12 kernel=0
+control 1 free point: kernel=2
+======================================================================
+n=17  r3-qsqrt3 cert   rows=40   cols=34   rank=32   kernel=2   (26 contact rows, 14 wall rows)
+n=17  r4-famcert gen   rows=43   cols=34   rank=34   kernel=0   (28 contact rows, 15 wall rows)
+   cert idx 13 (5/2, 4) slide along x: [-0.190598923, 0.370841089]
+   cert idx 13 (5/2, 4) slide along y: [-0.331457519, 0.330127019]
+======================================================================
+n=24  r3-qsqrt3 cert   rows=63   cols=48   rank=48   kernel=0   (45 contact rows, 18 wall rows)
+n=24  r4-famcert gen   rows=63   cols=48   rank=48   kernel=0   (45 contact rows, 18 wall rows)
+======================================================================
+n=31  r3-qsqrt3 cert   rows=80   cols=62   rank=61   kernel=1   (59 contact rows, 21 wall rows)
+n=31  r4-famcert gen   rows=82   cols=62   rank=62   kernel=0   (61 contact rows, 21 wall rows)
+   cert idx 13 (7, 0) slide along x: [-1.000000000, 0.464101615]
+   cert idx 13 (7, 0) slide along y: [0.000000000, 0.369550730]
+
+##############################################################################
+# 5. symmetry stabilisers
+##############################################################################
+n=17  r3-qsqrt3 cert   stabiliser order 1: ['rot']
+n=17  r4-famcert gen   stabiliser order 1: ['rot']
+n=24  r3-qsqrt3 cert   stabiliser order 6: ['rot', 'refl', 'refl', 'rot', 'rot', 'refl']
+n=24  r4-famcert gen   stabiliser order 6: ['rot', 'refl', 'refl', 'rot', 'rot', 'refl']
+n=31  r3-qsqrt3 cert   stabiliser order 1: ['rot']
+n=31  r4-famcert gen   stabiliser order 1: ['rot']
+
+##############################################################################
+# 6. exact free-region endpoints
+##############################################################################
+n=31: candidate exact endpoints of the bottom-edge free segment
+   x = 6                      feasible=True
+   x = 4+2*sqrt(3)            feasible=True
+   x = 6 - 1/1000             feasible=False
+   x = 4+2sqrt3 + 1/1000      feasible=False
+   so the free segment is exactly  {(x,0) : 6 <= x <= 4+2*sqrt(3)}, length 2*sqrt(3)-2 = 1.4641016151377545870
+   generator's differing point (6,0) is the LEFT endpoint: True  cert's (7,0) is strictly interior.
+
+n=17: rattler at (5/2, 4)
+   wall slacks: {'AB': '4', 'AC': '-2 + 5/4*sqrt(3)', 'BC': '1 + 7/4*sqrt(3)'}
+   min neighbour squared distance: 77/4 + -8*sqrt(3)   (=5.393593539448981652)
+   free-disc radius = 5/4*sqrt(3) - 2 = 0.1650635094610966169 (wall AC binds; the nearest neighbour allows sqrt(77/4 - 8*sqrt(3)) - 2)
+
+##############################################################################
+# 7. independent re-run of the famcert Gate-1/Gate-2 table, j = 0..7
+##############################################################################
+j   n    s                feas   tight  minsq=4  contacts  bdry  
+0   4    4*sqrt(3)        True   True   True     3         3     
+1   7    2 + 4*sqrt(3)    True   True   True     7         6     
+2   12   4 + 4*sqrt(3)    True   True   True     18        9     
+3   17   6 + 4*sqrt(3)    True   True   True     28        12    
+4   24   8 + 4*sqrt(3)    True   True   True     45        15    
+5   31   10 + 4*sqrt(3)   True   True   True     61        18    
+6   40   12 + 4*sqrt(3)   True   True   True     84        21    
+7   49   14 + 4*sqrt(3)   True   True   True     106       24    

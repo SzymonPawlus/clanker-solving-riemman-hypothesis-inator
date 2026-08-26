@@ -1,0 +1,15 @@
+control n=6 lattice: rows=18 cols=12 rank=12 kernel=0
+control 1 free point: kernel=2
+======================================================================
+n=17  r3-qsqrt3 cert   rows=40   cols=34   rank=32   kernel=2   (26 contact rows, 14 wall rows)
+n=17  r4-famcert gen   rows=43   cols=34   rank=34   kernel=0   (28 contact rows, 15 wall rows)
+   cert idx 13 (5/2, 4) slide along x: [-0.190598923, 0.370841089]
+   cert idx 13 (5/2, 4) slide along y: [-0.331457519, 0.330127019]
+======================================================================
+n=24  r3-qsqrt3 cert   rows=63   cols=48   rank=48   kernel=0   (45 contact rows, 18 wall rows)
+n=24  r4-famcert gen   rows=63   cols=48   rank=48   kernel=0   (45 contact rows, 18 wall rows)
+======================================================================
+n=31  r3-qsqrt3 cert   rows=80   cols=62   rank=61   kernel=1   (59 contact rows, 21 wall rows)
+n=31  r4-famcert gen   rows=82   cols=62   rank=62   kernel=0   (61 contact rows, 21 wall rows)
+   cert idx 13 (7, 0) slide along x: [-1.000000000, 0.464101615]
+   cert idx 13 (7, 0) slide along y: [0.000000000, 0.369550730]

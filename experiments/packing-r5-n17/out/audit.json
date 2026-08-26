@@ -1,0 +1,114 @@
+{
+ "17": {
+  "j": 3,
+  "s": "6 + 4*sqrt(3)",
+  "cert": {
+   "ok": true,
+   "tight": true,
+   "min_sq_distance": "4",
+   "n_contacts": 26,
+   "n_boundary": 11,
+   "d_min": "6 + 2*sqrt(3)",
+   "pairs_checked": 136,
+   "failures": []
+  },
+  "gen": {
+   "ok": true,
+   "tight": true,
+   "min_sq_distance": "4",
+   "n_contacts": 28,
+   "n_boundary": 12,
+   "d_min": "6 + 2*sqrt(3)",
+   "pairs_checked": 136,
+   "failures": []
+  },
+  "identical_point_sets": false,
+  "shared_points": 12,
+  "symmetry_related": [],
+  "rattlers_cert": [
+   {
+    "index": 13,
+    "point": [
+     "5/2",
+     "4"
+    ],
+    "free_radius_lo": "181489247973/1099511627776",
+    "free_radius_hi": "90744623987/549755813888",
+    "min_nbr_sqdist": "77/4 + -8*sqrt(3)",
+    "min_wall": "-2 + 5/4*sqrt(3)"
+   }
+  ],
+  "rattlers_gen": [],
+  "cert_declared_contacts": 26,
+  "cert_declared_boundary": 11
+ },
+ "24": {
+  "j": 4,
+  "s": "8 + 4*sqrt(3)",
+  "cert": {
+   "ok": true,
+   "tight": true,
+   "min_sq_distance": "4",
+   "n_contacts": 45,
+   "n_boundary": 15,
+   "d_min": "8 + 2*sqrt(3)",
+   "pairs_checked": 276,
+   "failures": []
+  },
+  "gen": {
+   "ok": true,
+   "tight": true,
+   "min_sq_distance": "4",
+   "n_contacts": 45,
+   "n_boundary": 15,
+   "d_min": "8 + 2*sqrt(3)",
+   "pairs_checked": 276,
+   "failures": []
+  },
+  "identical_point_sets": true,
+  "shared_points": 24,
+  "symmetry_related": [
+   "rot A->A B->B C->C",
+   "refl A->A B->C C->B",
+   "refl A->B B->A C->C",
+   "rot A->B B->C C->A",
+   "rot A->C B->A C->B",
+   "refl A->C B->B C->A"
+  ],
+  "rattlers_cert": [],
+  "rattlers_gen": [],
+  "cert_declared_contacts": 45,
+  "cert_declared_boundary": 15
+ },
+ "31": {
+  "j": 5,
+  "s": "10 + 4*sqrt(3)",
+  "cert": {
+   "ok": true,
+   "tight": true,
+   "min_sq_distance": "4",
+   "n_contacts": 59,
+   "n_boundary": 18,
+   "d_min": "10 + 2*sqrt(3)",
+   "pairs_checked": 465,
+   "failures": []
+  },
+  "gen": {
+   "ok": true,
+   "tight": true,
+   "min_sq_distance": "4",
+   "n_contacts": 61,
+   "n_boundary": 18,
+   "d_min": "10 + 2*sqrt(3)",
+   "pairs_checked": 465,
+   "failures": []
+  },
+  "identical_point_sets": false,
+  "shared_points": 30,
+  "symmetry_related": [],
+  "rattlers_cert": [],
+  "rattlers_gen": [],
+  "cert_declared_contacts": 59,
+  "cert_declared_boundary": 18
+ }
+}

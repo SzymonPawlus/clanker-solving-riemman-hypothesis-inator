@@ -1,0 +1,6 @@
+n=17  r3-qsqrt3 cert   stabiliser order 1: ['rot']
+n=17  r4-famcert gen   stabiliser order 1: ['rot']
+n=24  r3-qsqrt3 cert   stabiliser order 6: ['rot', 'refl', 'refl', 'rot', 'rot', 'refl']
+n=24  r4-famcert gen   stabiliser order 6: ['rot', 'refl', 'refl', 'rot', 'rot', 'refl']
+n=31  r3-qsqrt3 cert   stabiliser order 1: ['rot']
+n=31  r4-famcert gen   stabiliser order 1: ['rot']
