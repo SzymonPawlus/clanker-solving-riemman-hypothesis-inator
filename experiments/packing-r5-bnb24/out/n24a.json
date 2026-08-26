@@ -1,0 +1,19 @@
+[
+ {
+  "n": 24,
+  "p": 103,
+  "q": 10,
+  "L": 7,
+  "d": 10.3,
+  "verdict": "unsat",
+  "nodes": 1,
+  "forced": 0,
+  "props": 0,
+  "killed": 0,
+  "bound_prunes": 1,
+  "count_prunes": 0,
+  "prop_rounds": 0,
+  "build_s": 91.64,
+  "solve_s": 0.0
+ }
+]

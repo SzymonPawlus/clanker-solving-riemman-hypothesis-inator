@@ -1,0 +1,6 @@
+(A) adjacency recomputed in Q(sqrt3) from Cartesian coordinates
+    L=4 d=7/1: 256 cells, disagreements on 4000 random pairs = 0
+    L=5 d=71/10: 1024 cells, disagreements on 4000 random pairs = 0
+    L=5 d=7/1: 1024 cells, disagreements on 4000 random pairs = 0
+    L=5 d=15/2: 1024 cells, disagreements on 4000 random pairs = 0
+(B) verdict re-decided by glucose4 on the same graph
