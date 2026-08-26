@@ -154,7 +154,7 @@ either way. Everything reported below completed.
 | `d` | `L` | cells | verdict | nodes | prop. rounds | cells deleted by propagation | time |
 |---|---|---|---|---|---|---|---|
 | 6.0 | 5 | 1024 | **refuted** | **1** | 0 | — | 0.2 s |
-| 6.5 | 5 | 1024 | **refuted** | 347 330 | 2.0e5 | 3.5e7 | 4.2 s |
+| 6.5 | 5 | 1024 | **refuted** | 347 330 | 1.86e5 | 4.9e7 | 4.2 s |
 | 6.9 | 5 | 1024 | **refuted** | 1 578 447 | 8.29e5 | 1.89e8 | 19.0 s |
 | 7.0 | 5 | 1024 | **refuted** | 4 386 939 | 2.55e6 | 4.95e8 | 50.6 s |
 | **7.1** | 5 | 1024 | **refuted** | **4 386 939** | 2.55e6 | 4.95e8 | **53.5 s** |
