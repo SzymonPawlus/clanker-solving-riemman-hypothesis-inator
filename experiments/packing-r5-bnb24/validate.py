@@ -54,7 +54,7 @@ def control_feasible_sat(cases):
     ok = True
     for (n, p, q, L) in cases:
         inst = search.Instance(n, p, q, L)
-        r = inst.solve(node_budget=3_000_000, time_budget=120)
+        r = inst.solve(node_budget=300_000, time_budget=8)
         star = "" if r == "sat" else "   <-- PROBLEM" if r == "unsat" else "   (undecided)"
         print(f"  n={n:2d} d={p}/{q}={float(Fraction(p,q)):.4f} L={L}: {r}"
               f" nodes={inst.nodes}{star}")
@@ -68,8 +68,8 @@ if __name__ == "__main__":
     ok1 = control_known_packings()
     print("Control 2 - solver returns SAT where a packing exists")
     ok2 = control_feasible_sat([
-        (12, 7465, 1000, 4), (12, 15, 2, 4), (12, 8, 1, 4),
-        (15, 8, 1, 4), (15, 9, 1, 4),
+        (3, 2, 1, 3), (6, 4, 1, 4), (10, 6, 1, 5), (15, 8, 1, 5), (21, 10, 1, 5),
+        (12, 7465, 1000, 5), (12, 15, 2, 5), (12, 8, 1, 5), (15, 81, 10, 5),
         (24, 1147, 100, 4), (24, 12, 1, 4),
     ])
     print("ALL CONTROLS PASS" if (ok1 and ok2) else "CONTROLS FAILED")

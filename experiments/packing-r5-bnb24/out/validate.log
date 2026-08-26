@@ -1,0 +1,37 @@
+Control 1 - known optimal packings survive the conflict relation
+  ok  n= 3 d=2 L=2: 3 distinct cells, independent
+  ok  n= 3 d=2 L=3: 3 distinct cells, independent
+  ok  n= 3 d=2 L=4: 3 distinct cells, independent
+  ok  n= 3 d=2 L=5: 3 distinct cells, independent
+  ok  n= 3 d=2 L=6: 3 distinct cells, independent
+  ok  n= 6 d=4 L=2: 6 distinct cells, independent
+  ok  n= 6 d=4 L=3: 6 distinct cells, independent
+  ok  n= 6 d=4 L=4: 6 distinct cells, independent
+  ok  n= 6 d=4 L=5: 6 distinct cells, independent
+  ok  n= 6 d=4 L=6: 6 distinct cells, independent
+  ok  n=10 d=6 L=2: 10 distinct cells, independent
+  ok  n=10 d=6 L=3: 10 distinct cells, independent
+  ok  n=10 d=6 L=4: 10 distinct cells, independent
+  ok  n=10 d=6 L=5: 10 distinct cells, independent
+  ok  n=10 d=6 L=6: 10 distinct cells, independent
+  ok  n=15 d=8 L=3: 15 distinct cells, independent
+  ok  n=15 d=8 L=4: 15 distinct cells, independent
+  ok  n=15 d=8 L=5: 15 distinct cells, independent
+  ok  n=15 d=8 L=6: 15 distinct cells, independent
+  ok  n=21 d=10 L=3: 21 distinct cells, independent
+  ok  n=21 d=10 L=4: 21 distinct cells, independent
+  ok  n=21 d=10 L=5: 21 distinct cells, independent
+  ok  n=21 d=10 L=6: 21 distinct cells, independent
+Control 2 - solver returns SAT where a packing exists
+  n= 3 d=2/1=2.0000 L=3: sat nodes=6
+  n= 6 d=4/1=4.0000 L=4: sat nodes=742
+  n=10 d=6/1=6.0000 L=5: sat nodes=34367
+  n=15 d=8/1=8.0000 L=5: unknown nodes=300001   (undecided)
+  n=21 d=10/1=10.0000 L=5: unknown nodes=300001   (undecided)
+  n=12 d=7465/1000=7.4650 L=5: sat nodes=231843
+  n=12 d=15/2=7.5000 L=5: sat nodes=18
+  n=12 d=8/1=8.0000 L=5: unknown nodes=281600   (undecided)
+  n=15 d=81/10=8.1000 L=5: unknown nodes=300001   (undecided)
+  n=24 d=1147/100=11.4700 L=4: sat nodes=89
+  n=24 d=12/1=12.0000 L=4: sat nodes=89
+ALL CONTROLS PASS
