@@ -1,0 +1,5 @@
+# CNF and DRAT artifacts are large and fully regenerable by refute_exact.py from
+# refutation_points.json, which IS committed and is the actual certificate content.
+# Same convention as experiments/packing-r3-gridmis/out/.gitignore.
+*.cnf
+*.drat
