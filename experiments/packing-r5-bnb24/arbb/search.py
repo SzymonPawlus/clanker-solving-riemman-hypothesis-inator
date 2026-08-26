@@ -3,73 +3,77 @@
     "do n points at pairwise distance >= 2 fit in the closed equilateral triangle
      T_d of side d = p/q ?"
 
-A UNSAT verdict means d(n) > d.  A SAT verdict means only that *this relaxation*
-cannot refute d; it is not a packing.
+An `unsat` verdict means d(n) > d.  A `sat` verdict means only that *this relaxation*
+cannot refute d; it is NOT a packing.
 
-Relaxation.  Fix the level-L dyadic subdivision of T_d into 4^L closed cells that
-cover T_d.  Any n points at pairwise distance >= 2 give n cells (one containing each
-point).  The cells are distinct whenever the cell side h = d/2^L is < 2, and any two
-of them have maximum separation >= 2.  So a packing yields an independent set of
-size n in the conflict graph G_L (cells adjacent iff their max separation is < 2),
-and
+THE RELAXATION (this is the only place a mathematical claim is made).
+Fix the level-L dyadic subdivision of T_d into 4^L closed cells covering T_d, of side
+h = d/2^L < 2.  Let n points of T_d have pairwise distance >= 2.  Each point lies in
+at least one cell; choose one.  Two points in the same cell would be at distance
+<= h < 2, so the n cells are distinct; and for cells e != f holding two of the points,
+the maximum separation of e and f is >= 2.  Hence the n cells form an independent set
+of size n in
 
-        alpha(G_L) < n   ==>   no packing at side d   ==>   d(n) > d.
+    G_L = (cells,  e ~ f  iff  max separation of e and f is < 2),
 
-Everything below decides "alpha(G_L) >= n?" exactly.
+so   alpha(G_L) < n  ==>  no such n points exist  ==>  d(n) > d.
 
-Three ingredients, and the first two are what the repo's earlier dyadic B&B
-(experiments/circle-packing-bnb) did not have:
+The maximum of |x-y| over a product of two convex polygons is attained at a vertex
+pair, so the adjacency test is the exact integer comparison in `geom`.
 
- 1. ACTIVE-REGION PROPAGATION.  A node of the search knows that some tile (a dyadic
-    cell of side < 2, hence holding at most one point) is occupied, and knows a
-    dyadic sub-region "node" of it in which that point lies.  Every cell g that
-    conflicts with *every* cell of that sub-region is then impossible and is deleted
-    globally.  The AND-of-neighbourhoods over a whole dyadic subtree is precomputed
-    once (`capadj`), so this costs one bitset AND.
+THE SEARCH decides "alpha(G_L) >= n?" exactly and completely.  A "tile" is a dyadic
+cell of the coarsest level jt whose side is < 2; every tile is a clique of G_L, so it
+holds at most one point.  State: a global candidate bitset C, a set of tiles already
+declared OCCUPIED (with their point not yet located), and the cells already placed.
 
- 2. HIERARCHICAL OCCUPANCY / AREA BOUND.  Every dyadic cell R carries a precomputed
-    capacity cap(R) >= (max independent set of G_L inside R).  The bound of a node is
-    computed bottom-up over the dyadic tree,
-        b(R) = 1                                     if side(R) < 2 and R meets C
-        b(R) = min( cap(R), sum of b over children ) otherwise,
-    and the node is pruned when b(root) < (points still to place).  This is the
-    area-reduction signal: as propagation empties sub-regions, b drops.
-
- 3. TILE-STRUCTURED BRANCHING.  Branch on one tile at a time: either it is empty, or
-    it is occupied and we refine the point's position down the dyadic tree, running
-    (1) at every refinement step.  The product over tiles of sub-positions is never
-    enumerated.
-
-Soundness of cap(R): the centroids of an independent set of level-L cells inside R
-lie in R and are pairwise at distance >= 2 - 2h/sqrt(3) (circumradius of an
-equilateral triangle of side h is h/sqrt(3)).  Rescaling by 2/rho and applying Oler's
-inequality (`cited`; see attacks/oler-lower-bound/) to the equilateral triangle of
-side a' = 2a/rho gives  #points <= a'^2/8 + 3a'/4 + 1.  A rational OVER-estimate of
-1/sqrt(3) is used so rho is under-estimated and the capacity over-estimated, which is
-the safe direction.  cap(R) = 1 whenever side(R) < 2 needs no Oler at all.
+  * TILE FORCING.  If the number of tiles still meeting C equals the number of points
+    still to place, every one of them is occupied.  (Counting; sound.)
+  * ACTIVE-REGION PROPAGATION.  For an occupied tile t with active region
+    D_t = C & tile_t, every cell g conflicting with *every* cell of D_t is impossible:
+    the point of t sits in some cell of D_t and would be within distance < 2 of g.
+    So C &= ~ AND_{f in D_t} adj[f].  Run to fixpoint over all occupied tiles.
+    The AND is evaluated over a dyadic *cover* of D_t (using precomputed
+    AND-of-neighbourhood per dyadic subtree) when D_t is large, which under-estimates
+    the kill set and is therefore sound.
+  * HIERARCHICAL OCCUPANCY BOUND.  b(R) = 1 if R is a tile meeting C, else
+    min(cap(R), sum of children); prune when b(root) < points remaining.  cap(R) is a
+    sound capacity from Oler's inequality (`cited`) applied to the cell centroids.
+  * BRANCHING.  Either declare the most constrained tile empty / occupied, or split
+    the active region of an occupied tile along the dyadic tree (4 ways).  The product
+    over tiles of sub-positions is never enumerated - that is the difference from
+    experiments/circle-packing-bnb, which branched each cell independently.
 """
 
+import time
 from fractions import Fraction
-
-import numpy as np
 
 from . import geom
 
-INV_SQRT3_UP = Fraction(577351, 1000000)   # > 1/sqrt(3) = 0.5773502691...
+INV_SQRT3_UP = Fraction(577351, 1000000)     # > 1/sqrt(3)
 assert INV_SQRT3_UP ** 2 > Fraction(1, 3)
 
 
 def oler_capacity(a, h):
-    """Sound upper bound on the number of level-L cells (side h) inside an
-    equilateral region of side a that can be pairwise non-conflicting."""
+    """Sound upper bound on the number of pairwise non-conflicting level-L cells
+    (side h) inside an equilateral region of side a.
+
+    Centroids of such cells lie in the region and are pairwise at distance
+    >= 2 - 2h/sqrt(3) =: rho (circumradius of an equilateral triangle of side h is
+    h/sqrt(3)).  Rescale by 2/rho and apply Oler: for m points at pairwise distance
+    >= 2 in an equilateral triangle of side a', m <= a'^2/8 + 3a'/4 + 1.
+    A rational OVER-estimate of 1/sqrt(3) under-estimates rho, which over-estimates
+    the capacity: the safe direction."""
     if a < 2:
         return 1
     rho = 2 - 2 * h * INV_SQRT3_UP
     if rho <= 0:
-        return None                      # no bound from this device
+        return None
     ap = 2 * a / rho
-    val = ap * ap / 8 + 3 * ap / 4 + 1
-    return int(val)                      # floor
+    return int(ap * ap / 8 + 3 * ap / 4 + 1)
+
+
+class _Abort(Exception):
+    pass
 
 
 class Instance:
@@ -77,173 +81,195 @@ class Instance:
         self.n, self.p, self.q, self.L = n, p, q, L
         self.d = Fraction(p, q)
         self.h = self.d / (1 << L)
-        assert self.h < 2, "cell side must be < 2 so a cell holds at most one point"
+        assert self.h < 2, "cell side must be < 2"
         self.M = 1 << (2 * L)
         if verbose:
             print(f"[build] n={n} d={p}/{q}={float(self.d):.6f} L={L} cells={self.M}",
                   flush=True)
-        self.adj, self.cells, self.verts = geom.conflict_bitsets(L, p, q, progress=verbose)
+        self.adj, self.cells, self.verts = geom.conflict_bitsets(L, p, q, progress=False)
         self.jt = geom.tile_level(p, q, L)
-        assert self.jt is not None
-        # dyadic level masks
-        self.level_mask = {}
-        self.level_anc = {}
-        for j in range(0, L + 1):
+        assert self.jt is not None and self.jt <= L
+        self.level_mask, self.level_anc, self.children = {}, {}, {}
+        for j in range(L + 1):
             anc, nj = geom.ancestor_map(L, j)
             self.level_anc[j] = anc
             masks = [0] * nj
             for k in range(self.M):
                 masks[anc[k]] |= 1 << k
             self.level_mask[j] = masks
-        # child lists
-        self.children = {}
-        for j in range(0, L):
-            a2, n2 = geom.ancestor_map(j + 1, j)
+        for j in range(L):
+            a2, _ = geom.ancestor_map(j + 1, j)
             ch = [[] for _ in range(1 << (2 * j))]
             for k in range(1 << (2 * (j + 1))):
                 ch[a2[k]].append(k)
             self.children[j] = ch
-        # capacities
         self.cap = {}
-        for j in range(0, L + 1):
-            a = self.d / (1 << j)
-            c = oler_capacity(a, self.h)
+        for j in range(L + 1):
+            c = oler_capacity(self.d / (1 << j), self.h)
             cnt = 1 << (2 * (L - j))
-            if c is None:
-                c = cnt
-            self.cap[j] = min(c, cnt)
-        # tighten downward: cap(level j) <= 4 * cap(level j+1)
+            self.cap[j] = min(cnt if c is None else c, cnt)
         for j in range(L - 1, -1, -1):
             self.cap[j] = min(self.cap[j], 4 * self.cap[j + 1])
-        # AND-of-neighbourhood over each dyadic subtree
         self.capadj = {L: list(self.adj)}
         for j in range(L - 1, -1, -1):
             prev = self.capadj[j + 1]
             cur = []
-            for idx, kids in enumerate(self.children[j]):
+            for kids in self.children[j]:
                 acc = prev[kids[0]]
                 for kk in kids[1:]:
                     acc &= prev[kk]
                 cur.append(acc)
             self.capadj[j] = cur
         self.tiles = self.level_mask[self.jt]
-        self.nodes = 0
-        self.props = 0
-        self.prop_killed = 0
-        self.bound_prunes = 0
+        self.ntiles = len(self.tiles)
+        # counters
+        self.nodes = self.props = self.prop_rounds = 0
+        self.killed = self.bound_prunes = self.count_prunes = self.forced = 0
         self.witness = None
+        self._killcache = {}
 
-    # ---------------- bound ----------------
+    # ---------- capacity bound ----------
     def bound(self, C):
-        """Hierarchical occupancy/area upper bound on the size of an independent set
-        contained in the candidate set C."""
-        jt = self.jt
-        b = [1 if (C & m) else 0 for m in self.level_mask[jt]]
-        for j in range(jt - 1, -1, -1):
+        b = [1 if (C & m) else 0 for m in self.tiles]
+        for j in range(self.jt - 1, -1, -1):
             capj = self.cap[j]
             nb = []
             for kids in self.children[j]:
                 s = b[kids[0]] + b[kids[1]] + b[kids[2]] + b[kids[3]]
-                nb.append(s if s < capj else capj)
+                nb.append(capj if s > capj else s)
             b = nb
         return b[0]
 
-    # ---------------- search ----------------
-    def solve(self, node_budget=None, time_budget=None):
-        import time
-        self._t0 = time.time()
-        self._node_budget = node_budget
-        self._time_budget = time_budget
-        self._aborted = False
-        try:
-            full = (1 << self.M) - 1
-            r = self._solve(full, self.n, [])
-        except _Abort:
-            return "unknown"
-        if self._aborted:
-            return "unknown"
-        return "sat" if r else "unsat"
-
-    def _check_budget(self):
-        import time
-        self.nodes += 1
-        if self._node_budget is not None and self.nodes > self._node_budget:
-            self._aborted = True
-            raise _Abort()
-        if (self.nodes & 1023) == 0 and self._time_budget is not None:
-            if time.time() - self._t0 > self._time_budget:
-                self._aborted = True
-                raise _Abort()
-
-    def _solve(self, C, k, chosen):
-        """Is there an independent set of size k inside C (using at most one cell per
-        tile, which is automatic)?"""
-        self._check_budget()
-        if k == 0:
-            self.witness = list(chosen)
-            return True
-        avail = [t for t, m in enumerate(self.tiles) if C & m]
-        if len(avail) < k:
-            self.bound_prunes += 1
-            return False
-        if self.bound(C) < k:
-            self.bound_prunes += 1
-            return False
-        # most-constrained tile
-        best, bestc = -1, None
-        for t in avail:
-            c = (C & self.tiles[t]).bit_count()
-            if bestc is None or c < bestc:
-                best, bestc = t, c
-        t = best
-        # branch A: tile t empty
-        if len(avail) > k:
-            if self._solve(C & ~self.tiles[t], k, chosen):
-                return True
-        # branch B: tile t occupied
-        return self._refine(C, k, self.jt, t, chosen)
-
-    def _refine(self, C, k, j, idx, chosen):
-        """The point of tile (jt,t) lies in dyadic node (j, idx).  Propagate, then
-        split."""
-        self._check_budget()
-        mask = self.level_mask[j][idx]
-        dom = C & mask
-        if dom == 0:
-            return False
-        # ---- active-region propagation ----
-        pc = dom.bit_count()
-        if dom == mask:
-            kill = self.capadj[j][idx]
-        elif pc <= 64:
-            it = dom
-            kill = None
+    # ---------- active-region kill set ----------
+    def killset(self, D, t):
+        """AND over a dyadic cover of D of the conflict neighbourhoods.  Sound
+        (a cover only shrinks the kill set); exact when D is small."""
+        got = self._killcache.get(D)
+        if got is not None:
+            return got
+        pc = D.bit_count()
+        if pc <= 48:
+            it, acc = D, None
             while it:
                 b = it & -it
                 f = b.bit_length() - 1
-                kill = self.adj[f] if kill is None else (kill & self.adj[f])
+                acc = self.adj[f] if acc is None else (acc & self.adj[f])
                 it ^= b
         else:
-            kill = self.capadj[j][idx]
-        self.props += 1
-        Cp = C & ~kill
-        self.prop_killed += (C & kill).bit_count()
-        Cp |= dom                       # the point itself lives in dom
-        if self.bound(Cp) < k:
+            nodes = [(self.jt, t)]
+            while len(nodes) < 24:
+                nxt = []
+                grew = False
+                for (j, idx) in nodes:
+                    if j == self.L:
+                        nxt.append((j, idx))
+                        continue
+                    kids = [c for c in self.children[j][idx] if D & self.level_mask[j + 1][c]]
+                    if kids:
+                        grew = True
+                        nxt.extend((j + 1, c) for c in kids)
+                    else:
+                        nxt.append((j, idx))
+                if not grew or len(nxt) > 96:
+                    break
+                nodes = nxt
+            acc = None
+            for (j, idx) in nodes:
+                a = self.capadj[j][idx]
+                acc = a if acc is None else (acc & a)
+        if len(self._killcache) < 400000:
+            self._killcache[D] = acc
+        return acc
+
+    # ---------- driver ----------
+    def solve(self, node_budget=None, time_budget=None):
+        self._t0 = time.time()
+        self._nb, self._tb = node_budget, time_budget
+        try:
+            ok = self._node((1 << self.M) - 1, frozenset(), 0, [])
+        except _Abort:
+            return "unknown"
+        return "sat" if ok else "unsat"
+
+    def _tick(self):
+        self.nodes += 1
+        if self._nb is not None and self.nodes > self._nb:
+            raise _Abort()
+        if (self.nodes & 255) == 0 and self._tb is not None:
+            if time.time() - self._t0 > self._tb:
+                raise _Abort()
+
+    def _node(self, C, occ, placed, chosen):
+        """occ: frozenset of tiles declared occupied whose point is not yet located.
+        placed: number of points already located.  chosen: their cells."""
+        self._tick()
+        need = self.n - placed
+        if need == 0:
+            self.witness = list(chosen)
+            return True
+        occ = set(occ)
+        # ---------------- propagation to fixpoint ----------------
+        while True:
+            changed = False
+            live = [t for t in range(self.ntiles) if C & self.tiles[t]]
+            if len(live) < need:
+                self.count_prunes += 1
+                return False
+            for t in occ:
+                if not (C & self.tiles[t]):
+                    return False
+            if len(live) == need and len(occ) < need:
+                occ = set(live)
+                self.forced += 1
+                changed = True
+            for t in list(occ):
+                D = C & self.tiles[t]
+                if D == 0:
+                    return False
+                k = self.killset(D, t)
+                self.props += 1
+                if C & k:
+                    self.killed += (C & k).bit_count()
+                    C &= ~k
+                    changed = True
+            if not changed:
+                break
+            self.prop_rounds += 1
+        if self.bound(C) < need:
             self.bound_prunes += 1
             return False
-        if j == self.L:
-            # a leaf dyadic node is a single cell
-            b = dom & -dom
-            cell = b.bit_length() - 1
-            nxt = Cp & ~self.adj[cell] & ~self.tiles[self.level_anc[self.jt][cell]]
-            return self._solve(nxt, k - 1, chosen + [cell])
-        for ch in self.children[j][idx]:
-            if Cp & self.level_mask[j + 1][ch]:
-                if self._refine(Cp, k, j + 1, ch, chosen):
-                    return True
-        return False
+        # ---------------- branch ----------------
+        if occ:
+            # locate the point of the most constrained occupied tile
+            t = min(occ, key=lambda x: (C & self.tiles[x]).bit_count())
+            D = C & self.tiles[t]
+            if D.bit_count() == 1:
+                cell = (D & -D).bit_length() - 1
+                nxt = C & ~self.adj[cell] & ~self.tiles[t]
+                return self._node(nxt, frozenset(occ - {t}), placed + 1,
+                                  chosen + [cell])
+            j, idx = self._split_node(D, t)
+            for c in self.children[j][idx]:
+                sub = self.level_mask[j + 1][c]
+                if D & sub:
+                    if self._node(C & ~(self.tiles[t] & ~sub), frozenset(occ),
+                                  placed, chosen):
+                        return True
+            return False
+        # no occupied tile pending: decide occupancy of the most constrained live tile
+        live = [t for t in range(self.ntiles) if C & self.tiles[t]]
+        t = min(live, key=lambda x: (C & self.tiles[x]).bit_count())
+        if len(live) > need:
+            if self._node(C & ~self.tiles[t], frozenset(), placed, chosen):
+                return True
+        return self._node(C, frozenset({t}), placed, chosen)
 
-
-class _Abort(Exception):
-    pass
+    def _split_node(self, D, t):
+        """Deepest dyadic node whose subtree still contains all of D."""
+        j, idx = self.jt, t
+        while j < self.L:
+            kids = [c for c in self.children[j][idx] if D & self.level_mask[j + 1][c]]
+            if len(kids) > 1:
+                return j, idx
+            j, idx = j + 1, kids[0]
+        return j - 1, self.level_anc[j - 1][(D & -D).bit_length() - 1]
