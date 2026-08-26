@@ -1,0 +1,11 @@
+{
+ "stats": {
+  "a": 3,
+  "target": 8,
+  "boxes_processed": 31,
+  "stalled": 0,
+  "worst_certified": 8,
+  "R1_lemmaA": 7
+ },
+ "stalled_boxes": []
+}
