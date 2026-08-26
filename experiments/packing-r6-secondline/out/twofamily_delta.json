@@ -1,0 +1,44 @@
+{
+ "extremal_M22_phi29.33": {
+  "phi_deg": 29.333333333333332,
+  "Gamma": 5.3329723093534,
+  "abs_sin_angle": 0.8660254037844386,
+  "two_family_window_over_eta": 0.1875126931085164,
+  "injectivity_needs_delta_lt": 0.21650635094610965
+ },
+ "aligned_phi0": {
+  "phi_deg": 0.0,
+  "Gamma": 4.618802153517007,
+  "abs_sin_angle": 0.8660254037844386,
+  "two_family_window_over_eta": 0.21650635094610962,
+  "injectivity_needs_delta_lt": 0.21650635094610965
+ },
+ "phi15": {
+  "phi_deg": 15.0,
+  "Gamma": 5.15160440687503,
+  "abs_sin_angle": 0.8660254037844386,
+  "two_family_window_over_eta": 0.19411428382689058,
+  "injectivity_needs_delta_lt": 0.21650635094610965
+ },
+ "phi30": {
+  "phi_deg": 30.0,
+  "Gamma": 5.333333333333334,
+  "abs_sin_angle": 0.8660254037844387,
+  "two_family_window_over_eta": 0.18749999999999997,
+  "injectivity_needs_delta_lt": 0.21650635094610968
+ },
+ "min_Gamma_over_hexagonal_orientations": {
+  "Gamma": 4.618802153517007,
+  "phi_deg": 0.0,
+  "window_over_eta": 0.21650635094610962
+ },
+ "min_Gamma_over_all_direction_pairs": {
+  "Gamma": 4.309401076758503,
+  "phi1_deg": 0.0,
+  "phi2_deg": 90.0,
+  "abs_sin": 1.0,
+  "window_over_eta": 0.2320508075688773
+ },
+ "one_family_window_over_eta": 0.8660254037844386,
+ "isotropic_floor_Gamma": 3.4641016151377544
+}
