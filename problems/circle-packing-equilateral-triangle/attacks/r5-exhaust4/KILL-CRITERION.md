@@ -15,8 +15,10 @@ The cheap half was cheap and was over-delivered; the endgame half is not expensi
 ### 1. The "measured-cheap" half did not fire
 
 $a > 2.95$ was reached in 108 s / 569 301 nodes and then passed: $a > 2.97$ in 112 s / 680 793
-nodes and **$a > 2.99$ in 387 s / 1 275 604 nodes**, i.e. $d(9) > 5.98$ — better than the repo's
-previous best of 5.9. $a = 2.999$ timed out at 600 s with 26 live branches and proves nothing. The cost is close to flat over that interval, so the
+nodes, $a > 2.99$ in 387 s / 1 275 604 nodes, $a > 2.995$ in 306 s / 1 858 175 nodes, and
+**$a > 2.999$ in 497 s / 2 451 670 nodes** — i.e. $d(9) > 5.998$, well beyond the repo's previous
+best of 5.9. Shrinking the residual gap by 50x cost only 4.3x the nodes, so at $k=4$ there is **no
+computational wall**; the obstruction is entirely the shape of the output (§3 below). The cost is close to flat over that interval, so the
 trigger condition ("turns out not to be cheap") is false. This half is an **independent
 reproduction** of `attacks/eo-exhaustion/` §4's $k=4$ row, obtained with code written from the
 problem statement, not from theirs.

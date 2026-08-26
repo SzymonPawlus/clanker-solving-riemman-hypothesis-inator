@@ -21,7 +21,7 @@ Code: [`experiments/packing-r5-exhaust4/`](../../../../experiments/packing-r5-ex
 | 1 | EO(4) $\iff$ *no 9 points in the closed unit triangle at pairwise distance $> 1/3$* | `sketch` (mine, elementary) | exact, and **uniform in $a$** |
 | 2 | Machine re-derived from scratch; reproduces $d(5)\ge4$ (EO(3)) **uniformly in $a$**, and Oler's $\Delta(3),\Delta(4),\Delta(5)$ at the root | `numerical` | validation ladder passed |
 | 3 | $d(9) > 5.9$, i.e. $a > 2.95$ — **independent reproduction** of `attacks/eo-exhaustion/` §4 | `numerical` | 569 301 nodes, 108 s |
-| 4 | $d(9) > 5.98$ ($a > 2.99$) — beyond the repo's previous best of 5.9 | `numerical` | 1 275 604 nodes, 387 s |
+| 4 | $d(9) > 5.998$ ($a > 2.999$) — beyond the repo's previous best of 5.9 | `numerical` | 2 451 670 nodes, 497 s |
 | 5 | **No dyadic cell exhaustion with these rules can ever prove EO(4)** — an explicit node survives at *every* level | `sketch` + exact witness | §4, proved for all $L$ |
 | 6 | **The dyadic pigeonhole closes EO($k$) if and only if $k \le 3$** | `sketch` (mine) | §4.4, two lines |
 | 7 | The endgame on $(2.95, 3)$ is **not** reachable by this family; it reduces to a *partition-capacity* question that is not dyadic | `sketch` | §6 |
@@ -228,26 +228,33 @@ misses by exactly the $+1$.
 `numerical`, exact arithmetic throughout; one core each, at most two concurrent (4-core box shared
 with other lanes, so seconds are upper bounds). Mode `closed` at $t=1/a$ proves $d(9) > 2a$.
 
-| $a$ | $t = 1/a$ | outcome | nodes | s |
-|---:|---|---|---:|---:|
-| 2.95 | $20/59$ | **proved**, $d(9) > 5.90$ | 569 301 | 108 |
-| 2.97 | $100/297$ | **proved**, $d(9) > 5.94$ | 680 793 | 112 |
-| 2.99 | $100/299$ | **proved**, $d(9) > 5.98$ | 1 275 604 | 387 |
-| 2.995 | $200/599$ | see `out/closed-a2.995.json` | — | — |
-| 2.999 | $1000/2999$ | **timeout — nothing proved**, 26 branches still live | > 2 412 544 | 600 (cap) |
-| $\to 3$ | $\to 1/3$ | **impossible at every $L$**, not merely expensive (§4) | $\infty$ | $\infty$ |
+| $a$ | $t = 1/a$ | outcome | nodes | s | $\rho = a/3$ |
+|---:|---|---|---:|---:|---:|
+| 2.95 | $20/59$ | **proved**, $d(9) > 5.90$ | 569 301 | 108 | 0.98333 |
+| 2.97 | $100/297$ | **proved**, $d(9) > 5.94$ | 680 793 | 112 | 0.99000 |
+| 2.99 | $100/299$ | **proved**, $d(9) > 5.98$ | 1 275 604 | 387 | 0.99667 |
+| 2.995 | $200/599$ | **proved**, $d(9) > 5.99$ | 1 858 175 | 306 | 0.99833 |
+| **2.999** | $1000/2999$ | **proved**, $d(9) > 5.998$ | 2 451 670 | 497 | **0.99967** |
+| $\to 3$ | $\to 1/3$ | **impossible at every $L$**, not merely expensive (§4) | $\infty$ | $\infty$ | 1 |
 
-**How far down in $a$ I certified: $a > 2.99$, i.e. $d(9) > 5.98$ and $s(9) > 5.98 + 2\sqrt3 =
-9.4441\ldots$** against the `cited` $s(9) = 6+2\sqrt3 = 9.4641\ldots$ — so 99.67 % of the
-conjectured value, versus Oler's free 92.40 % and the repo's previous 98.33 %. Each row is one
-theorem at one rational side and, by §1/`eo-exhaustion` §1.1, **the whole column together still
-does not imply EO(4)**. The cost curve is the honest content: roughly flat from 2.95 to 2.97, a
-factor $\sim3.5$ in seconds from 2.97 to 2.99, and past the budget at 2.999.
+(The 2.99 and 2.995 rows ran with a sibling lane on the same 4-core box, so their seconds are upper
+bounds and are not comparable with each other; the node counts are.)
 
-Row 1 is an independent reproduction of `attacks/eo-exhaustion/` §4's $k=4$ row (which reports
-684 342 nodes / 12 s for the same theorem, with a different implementation and branching order).
-**I did not take that number on trust; I re-derived it with my own code, and I state it as an
-independent confirmation rather than as an inherited input.**
+**How far down in $a$ I certified: $a > 2.999$, i.e. $d(9) > 5.998$ and
+$s(9) > 5.998 + 2\sqrt3 = 9.4621\ldots$** against the `cited` $s(9)=6+2\sqrt3=9.4641\ldots$ —
+$\rho = 0.99967$ of the conjectured value, against Oler's free $0.92400$ and the repo's previous
+best $0.98333$.
+
+**The cost curve is the surprise, and it cuts against `eo-exhaustion` §5.** Shrinking the residual
+gap $1-\rho$ by a factor of 50 (from $1.67\times10^{-2}$ to $3.3\times10^{-4}$) multiplied the node
+count by only $4.3$ — roughly $\text{nodes} \sim (1-\rho)^{-0.37}$, not an explosion. At $k=4$
+**there is no computational wall at all**: the exhaustion is affordable arbitrarily close to 3.
+What stops it is not cost but shape — by §1 and `eo-exhaustion` §1.1 the whole column, however far
+it is extended, still does not imply EO(4), because a maximum of finitely many rationals below 3 is
+below 3. That is a cleaner and more damaging statement than "the search gets expensive", and it is
+the opposite of what a $k=4$ reader of that directory's §4–§5 would expect. (Its measured wall
+between $k=5$ and $k=6$ is about *bigger $n$*, and nothing here contradicts it; what is corrected
+is the implicit reading that $\rho \to 1$ is itself expensive at $k=4$.)
 
 The strict/uniform runs at $t = 1/3$, $n = 9$ do not close, exactly as Theorem 2 requires. What
 they *do* is localise:
