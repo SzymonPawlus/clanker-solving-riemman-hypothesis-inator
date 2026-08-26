@@ -1,0 +1,2 @@
+{"outcome": "proved", "n": 9, "t": "100/297", "strict": false, "max_level": 9, "use_oler": true, "oler_refused": false, "use_symmetry": true, "max_cited": 8, "nodes": 680793, "frontier": 0, "seconds": 112.2}
+PROVED: no 9 points at pairwise distance >= 100/297 lie in the closed unit triangle.  Equivalently d(9) > 297/50.
