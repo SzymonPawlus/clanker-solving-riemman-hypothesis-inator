@@ -127,6 +127,8 @@ class Instance:
         self.killed = self.bound_prunes = self.count_prunes = self.forced = 0
         self.witness = None
         self._killcache = {}
+        # cap the kill cache by bytes, not entries (a bitset is M/8 bytes)
+        self._kcmax = max(2000, 400_000_000 // max(1, self.M // 4))
 
     # ---------- capacity bound ----------
     def bound(self, C):
@@ -177,7 +179,7 @@ class Instance:
             for (j, idx) in nodes:
                 a = self.capadj[j][idx]
                 acc = a if acc is None else (acc & a)
-        if len(self._killcache) < 400000:
+        if len(self._killcache) < self._kcmax:
             self._killcache[D] = acc
         return acc
 
