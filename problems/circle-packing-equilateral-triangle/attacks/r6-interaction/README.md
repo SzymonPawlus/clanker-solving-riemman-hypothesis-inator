@@ -258,25 +258,60 @@ passes step 2, which is why it is the only one taken to step 3.
 
 ### 4.3 Step 3 — the measured ceiling (`numerical`)
 
-Two independent estimates of `ρ(n)` from above:
+Two independent estimates of `ρ(n)` from above, both of which produce **actual configurations**:
 
-1. **Restricted to Oler-tight configurations** (`shapes.py` (c)): those have integer `r, M` with
-   `r + M = 2(n − 1)`, so the minimisation is a one-line integer search.
-2. **Unrestricted, by multistart continuous optimisation** (`rho_probe.py`): minimise `φ(E)` over
-   all `n`-point configurations subject to the `C(n,2)` separation constraints (SLSQP, hull area and
-   perimeter from `scipy.spatial.ConvexHull`, every returned point rescaled so that the minimum
-   separation is exactly `1` before its value is recorded — so no reported value comes from an
-   infeasible configuration).
+1. **Constructed lattice families** (`families.py`): the triangle `T(m)` with up to three corner
+   sub-triangles removed (triangle / trapezoid / hexagon), and the `P×Q` lattice rhombus. Each is
+   built as an explicit point set, its separation is checked to be `≥ 1`, and `r` and `M` are read
+   off its **actual convex hull** — not from a formula. Every one of them turns out to be
+   Oler-tight, and the script asserts `φ(E) ≥ a_Oler(n)` for every row (Proposition C2's second
+   claim, checked numerically on 34 values of `n`).
+2. **Unrestricted multistart optimisation** (`rho_probe.py`): minimise `φ(E)` over all `n`-point
+   configurations subject to the `C(n,2)` separation constraints (SLSQP; hull area and perimeter
+   from `scipy.spatial.ConvexHull`; every returned configuration rescaled so its minimum separation
+   is exactly `1` before its value is recorded, so no reported number comes from an infeasible
+   configuration).
 
-| `n` | `a_Oler` | `ρ ≤` (tight family) | `ρ ≤` (multistart) | argmin `(r, M)` | gain in `d` |
-|---|---|---|---|---|---|
-| 9 = `Δ(4)−1` | 2.772002 | 2.828427 | **2.828427** (300 starts) | `(8, 8)` — corner-deleted trapezoid | +0.1129 |
-| 16 | 4.178908 | 4.242641 | **4.242641** (300 starts) | `(18, 12)` — `3×3` lattice rhombus | +0.1275 |
-| 25 | 5.588723 | 5.656854 | **5.656854** (120 starts) | `(32, 16)` | +0.1363 |
-| 28 = `Δ(7)` | 6.000000 | 6.000000 | — | `(36, 18)` | **0.0000** |
+> **A soundness hole I found and closed.** My first version of table 1 minimised over all *integer*
+> `(r, M)` with `r + M = 2(n−1)`. That is **unsound as an upper bound on `ρ`** — such a pair need
+> not be realised by any configuration — and it did in fact report unrealisable pairs: for `n = 23`
+> it gave `(28, 16)` (`φ = 5.3333`) where the best constructed configuration is `(29, 15)`
+> (`φ = 5.3852`), and for `n = 34` it gave `(46, 20)` where the best constructed is `(47, 19)`.
+> The table below is the constructed one. This is the `PROTOCOL-R5` §6 failure mode — a clean-looking
+> number resting on an unchecked premise — caught before it reached the report.
 
-The optimiser reproduces the lattice value to 8 decimals from random starts and finds nothing
-better, which is what one wants from a ceiling measurement: **the ceiling is real and it is small.**
+**The measured ceiling of the entire `(A, M)` conclusion class** (`d`-normalisation in the last
+three columns; `d = 2a`):
+
+| `n` | `a_Oler` | `ρ(n) ≤` | argmin `(r, M)` | `d_Oler` | `d` ceiling | gain in `d` |
+|---|---|---|---|---|---|---|
+| 9 = `Δ(4)−1` | 2.772002 | **2.828427** | `(8, 8)` | 5.5440 | 5.6569 | **+0.1129** |
+| 16 | 4.178908 | **4.242641** | `(18, 12)` | 8.3578 | 8.4853 | **+0.1275** |
+| 17 | 4.352350 | **4.358899** | `(19, 13)` | 8.7047 | 8.7178 | **+0.0131** |
+| 18 | 4.520797 | **4.582576** | `(21, 13)` | 9.0416 | 9.1652 | **+0.1236** |
+| 19 | 4.684658 | **4.690416** | `(22, 14)` | 9.3693 | 9.3808 | **+0.0115** |
+| 20 = `Δ(6)−1` | 4.844289 | **4.898979** | `(24, 14)` | 9.6886 | 9.7980 | **+0.1094** |
+| 22 | 5.152067 | **5.196152** | `(27, 15)` | 10.3041 | 10.3923 | **+0.0882** |
+| 23 | 5.300735 | **5.385165** | `(29, 15)` | 10.6015 | 10.7703 | **+0.1689** |
+| 24 | 5.446222 | **5.477226** | `(30, 16)` | 10.8924 | 10.9545 | **+0.0620** |
+| 25 | 5.588723 | **5.656854** | `(32, 16)` | 11.1774 | 11.3137 | **+0.1363** |
+| 26 | 5.728416 | **5.744563** | `(33, 17)` | 11.4568 | 11.4891 | **+0.0323** |
+| 27 | 5.865460 | **5.916080** | `(35, 17)` | 11.7309 | 11.8322 | **+0.1012** |
+| 28 = `Δ(7)` | 6.000000 | **6.000000** | `(36, 18)` | 12.0000 | 12.0000 | **+0.0000** |
+| 29 | 6.132169 | **6.164414** | `(38, 18)` | 12.2643 | 12.3288 | **+0.0645** |
+| 30 | 6.262087 | **6.324555** | `(40, 18)` | 12.5242 | 12.6491 | **+0.1249** |
+| 31 | 6.389867 | **6.403124** | `(41, 19)` | 12.7797 | 12.8062 | **+0.0265** |
+| 32 | 6.515610 | **6.557439** | `(43, 19)` | 13.0312 | 13.1149 | **+0.0837** |
+| 33 | 6.639410 | **6.666667** | `(44, 20)` | 13.2788 | 13.3333 | **+0.0545** |
+| 34 | 6.761356 | **6.855655** | `(47, 19)` | 13.5227 | 13.7113 | **+0.1886** |
+
+Every constructed argmin is Oler-tight, and at every triangular `n` the gain is **exactly 0.000000**
+(checked for `k = 2..8`): C2 matches Oler where Oler is tight and nowhere loses to it.
+
+The multistart probe was run independently at `n = 9` (300 starts), `n = 16` (300 starts) and
+`n = 25` (120 starts). All three return the constructed lattice value to 8 decimals —
+`(8, 8)`, `(18, 12)`, `(32, 16)` — and none improves on it. That is what one wants from a ceiling
+measurement: **the ceiling is real and it is small.**
 
 **Headline numbers.**
 

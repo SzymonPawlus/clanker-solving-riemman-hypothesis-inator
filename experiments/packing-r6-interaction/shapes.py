@@ -71,14 +71,16 @@ def report():
         print(f"  k={k:2d}  n={n:3d}  a_Oler={a_oler(n):.6f}   min over tight (r,M)={val:.6f}"
               f"  at (r,M)=({r},{M})   matches Oler: {abs(val-a_oler(n))<1e-12}")
     print()
-    print("--- (c) C2 at the open targets: gain over Oler (upper bound from the tight family) ---")
+    print("--- (c) C2, integer search over r+M=2(n-1).  *** NOT a valid upper bound on rho: ***")
+    print("      such an (r,M) need not be REALISABLE.  Use families.py for the sound table.")
+    print("      This block is kept only as a LOWER bound on the tight-family minimum.")
     print(f"  {'n':>4} {'a_Oler':>10} {'rho_tight<=':>12} {'(r,M)':>10} {'gain in a':>10} {'gain in d':>10}")
     for n in [16,17,18,19,22,23,24,25,26,27,28,29,30,31,32,33,34]:
         val, r, M = rho_lattice(n)
         ao = a_oler(n)
         print(f"  {n:>4} {ao:>10.6f} {val:>12.6f} {str((r,M)):>10} {val-ao:>10.6f} {2*(val-ao):>10.6f}")
     print()
-    print("--- (d) C2 at the Delta(k)-1 family: WHERE DOES IT JUMP? ---")
+    print("--- (d) C2 at Delta(k)-1: WHERE DOES IT JUMP?  (same realisability caveat as (c)) ---")
     print("  EO(k) needs the bound to rule out n=Delta(k)-1 for every a < k-1.")
     print(f"  {'k':>3} {'n':>4} {'a_Oler':>10} {'rho_tight<=':>12} {'target a=k-1':>13} {'closes EO(k)?':>14}")
     for k in range(3, 9):
