@@ -106,6 +106,87 @@ of the hull. *Beating Oler needs a differently-shaped conclusion, not a cleverer
 usable filter on future proposals, and it is the first time this project has been able to say why
 a whole class fails rather than that it did.
 
+### The staircase is now a theorem for every j, not a pattern checked member by member
+`issue #110` · `attacks/r6-stairthm/` · `sketch` + `numerical` · CONSTRUCTION only
+
+`r4-famcert` verified the four-grain family one member at a time and warned in its own write-up that
+the law was `sketch` and **must not be extrapolated** — its author's first `n = 49` transcription
+was infeasible. Round 6 closed it:
+
+> For **every** `j >= 0`, `P(j)` is feasible, contained and **tight**, hence
+> `s(n(j)) <= 2j + 4*sqrt(3)` with `n(j) = Delta(j+2) + floor(j/2) + 1`.
+
+What makes it finite: the 17 grain range-lemmas are verified by `sympy` to be **identities** in
+`(U, M, p, q)`, so they hold for all `j`; intra-grain violations are impossible because the
+separation-2 triangular lattice has minimum distance exactly 2; and the cross-grain forbidden
+difference vectors are **`j`-free**, 42 in total, checked once. Containment and tightness follow from
+explicit wall inequalities, tightness attained by one grain.
+
+Confirmations: brute-force exact check `j = 0..14` (to `n = 144`); a first-ever `n = 60` certificate;
+the ideation lane's 2-periodicity pilot reproduced and extended to `j = 13`; and the seam offsets
+shown **unique** in a 441-point box — that being exactly the freedom which made the earlier hand
+transcription fail.
+
+**This is the first general positive result the campaign has produced.** It is still a construction:
+`n(j)` for `j >= 3` are open, and nothing here bears on lower bounds.
+
+### A checker of mine reported a refutation that did not exist
+`issue #110` · `attacks/r6-stairthm/` §4 · process finding
+
+Verifying the `n = 60` certificate, the manager's first independent checker reported **14 separation
+violations** — which would have refuted the whole staircase lane. It was wrong: a regex parser read
+`"2*sqrt(3)"` as `2 + 1*sqrt3` instead of `0 + 2*sqrt3`. The certificate was correct throughout
+(re-verified: 1770 pairs, 0 violations, 135 exact contacts, tight).
+
+Fourth instance of this pattern in the campaign, and the **first where the fault was in the checker
+rather than in the input selection**. The fix is cheap and should be standard: the corrected parser
+self-tests on seven hand-written cases before it is allowed to judge anything. **A checker that has
+not been tested against known answers is not evidence — in either direction.** Note the asymmetry:
+an untested checker that *accepts* is caught by negative controls, but one that *rejects* looks like
+a finding, and this project rewards findings.
+
+### Two-family counting opens a delta-window where there was none
+`issue #110` · `attacks/r6-secondline/` · `numerical`, CONDITIONAL
+
+`r5-eo7` refuted the usable form of its own bridging hypothesis: its one-family counting bound is
+**discontinuous at `delta = 0`** (24 on-lines, 27 at `1e-9`), so the conditional tolerated no
+perturbation at all and was vacuous for real packings. Its named next step — use the second line
+family, which the relaxation threw away — was executed.
+
+Reproducing r5-eo7's table exactly as a control, the two-family count then gains **2 units** just
+below `a = 6` (24 -> 22), and the delta scan at `a = 5.99` holds the bound at **22 <= 26 across every
+delta the scan reached, out to `delta = 0.43*eta`**. The one-family window was exactly zero. That is
+a qualitative change, not a better constant: a forcing theorem supplying `delta <~ 0.4*eta` would now
+be usable, where before nothing would have been.
+
+Two honest limits, both recorded in the lane: the hypothesis (H) itself is **unproved** and this is
+only its robustness half; and the worker's own final commit message quotes a *smaller* two-family
+window (`0.19-0.23*eta`) than the committed scan shows, a discrepancy it died before reconciling and
+which the write-up flags rather than guesses at.
+
+**It also hit the Jump Lemma independently.** At `a = 6.0` the two-family count returns 28 — the
+`Delta(7)` lattice witness — so no correct bound can be below 26 there, and the "2-unit target at
+`a = 6`" was ill-posed. Two lanes reached that statement this round from different directions
+without either reading the other.
+
+### Skipped capacities are shape-specific, and several cell shapes skip none
+`issue #110` · `attacks/r6-nontri/` · `numerical`, uncertified
+
+`r5-exhaust4` observed that **no triangle has capacity exactly 2** (`a(2) = a(3)`), which would mean
+partition-and-capacity proofs cannot be built from triangles — plausibly why the merged partition
+engine has sat unused since PR #53. Computing `a(m)` for `m = 2..10` over nine cell families:
+**half-triangles, 90-degree sectors and both slabs skip nothing**; the 60-degree sector skips 2 (it
+is a triangle corner), the 120-degree sector 3, the half-disc 4, the hexagon 6, and the 60-degree
+rhombus skips **three** (3, 5, 8). Highly symmetric cells are the worst choice, which inverts the
+natural instinct.
+
+So the obstruction is real, shape-specific and **avoidable**. Three caveats the lane leads with: the
+values are **float** optimiser outputs with skips detected at `1e-9`; the optimiser demonstrably
+misses a known optimum (`disc, m = 9`), and a missed optimum can *manufacture or erase* a skip,
+which puts the load-bearing "none" rows most at risk; and `a(2) = a(3)` **was not re-verified** — the
+triangle is not among the scanned families, so that claim now propagates unverified through three
+write-ups.
+
 ### The Jump Lemma: continuity, not affineness, is what blocks the Delta(k)-1 cases
 `issue #110` · `attacks/r6-interaction/` · `sketch` (elementary, possibly folklore)
 
