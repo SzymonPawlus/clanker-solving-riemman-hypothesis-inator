@@ -106,6 +106,91 @@ of the hull. *Beating Oler needs a differently-shaped conclusion, not a cleverer
 usable filter on future proposals, and it is the first time this project has been able to say why
 a whole class fails rather than that it did.
 
+### Both counting routes to a reconstructible case are dead, for different reasons
+`issue #110` · `attacks/r5-cover4/`, `attacks/r5-exhaust4/` · direction closed
+
+Two round-5 lanes attacked **EO(4)** (`n = 9` needs `a >= 3`, `cited` — Melissen 1993) without
+coordination, one by covering and one by exhaustion. Both fail, and the failures are not the same
+failure.
+
+**Covering falls short by 1e-5.** After a two-sided `k = 3` calibration (with negative controls
+that correctly fail), a 441-point witness with 52 684 conflict pairs was refuted in exact rational
+arithmetic with a DRAT proof. The manager re-verified it from the point set alone — recomputed the
+graph exactly (52 684 edges, matches), re-encoded independently, confirmed UNSAT with a *different*
+solver; the residual's chromatic number is exactly 6, one more than an 8-cover permits. Since
+proving `d(9) >= 3` needs an 8-cover of `T(a)` for **every** `a < 3`, and none exists for
+`a >= 2.99999`, **the route fails precisely in the sliver where it must work.**
+
+**Exhaustion has no wall at all and is still unreachable.** Shrinking the residual gap 50x cost
+only 4.3x the nodes — so at `k = 4` there is no computational barrier. What blocks it is the shape
+of the output: for every dyadic level `L >= 2`, the node holding the `Delta(4)`-lattice-minus-one-point
+is refuted by none of the pair, capacity or Oler-hull rules (proved for all `L`, verified exactly to
+`L <= 12`). The corner-deleted hull is an **exact equality case of Oler**, and the cell-hull bound
+converges to 9.0002 from above, never reaching 9. Criterion: **dyadic pigeonhole closes EO(k) iff
+`k <= 3`** — proposal AF had pre-declared a ceiling at `k = 6`.
+
+The mechanism is one asymmetry: strictness survives the cell relaxation *inside* a piece but not
+*between* cells. That single gap is the whole `+1`.
+
+Spillover worth recording on its own: **no triangle has capacity exactly 2**, because `a(2) = a(3)`.
+Any partition-and-capacity closure is therefore forced onto **non-triangular pieces** — a real
+constraint on the covering route, and the worker that found it could not locate it anywhere in the
+repo.
+
+### AE delivered its finite object, then refuted its own forcing hypothesis
+`issue #110` · `attacks/r5-eo7/` · `numerical` + one `refuted`
+
+Proposal AE, ranked first for round 5, asked for two things: a certified finite lattice-count
+theorem at `k = 7`, and one named falsifiable hypothesis bridging it to EO(7). Both were delivered,
+and the second was then **measured and killed**.
+
+**Theorem L** (`numerical`, certified 3-parameter interval branch-and-bound): any set in `T(a')`,
+`a' < 6`, with pairwise distances `>= 1` that is `h`-line-structured for `h >= sqrt3/2` — which
+every unit-separation lattice is — has **at most 25 points**. The `k = 7` target is `<= 26`, so it
+closes the line-structured case with one point of slack. Validated against `cited` `k = 4, 5, 6`
+(all close) and honestly reporting that `k = 3` **does not**. An exact `Q(sqrt3)` witness places 22
+points in `T(5999/1000)`, bracketing the truth in `[22, 25]`.
+
+**Then the negative.** (H) demands *exact* collinearity, which no real packing satisfies, so the
+only usable form is `delta`-robust. Measured over the same parameter grid:
+
+| delta | 0 | 1e-9 | 1e-6 | 1e-4 |
+|---|---|---|---|---|
+| max bound | **24** | **27** | 28 | 28 |
+
+**The bound is discontinuous at `delta = 0`.** The entire gain from 28 down to 22 comes from six
+chords of the extremal configuration being *exactly* integers, so the cap is `ceil(l)` rather than
+`floor(l)+1`; any `delta > 0` restores the `+1` on every strip at once. Structural, not tuning: it
+would survive improving 25 to the true 24, or even to 22.
+
+**So AE's Half 2 is refuted in its only usable form, using the object AE's Half 1 produced.** The
+lane recorded that as a success, which is right. It also states the concrete next step with a
+measured target: a robust conditional must count with the *second* line family too, and must beat
+`28 - 26 = 2` units of loss as `delta -> 0+`.
+
+### The B&B wall's scaling, diagnosed in closed form
+`issue #110` · `attacks/r5-bnb24/` · `numerical`
+
+Per-point **active-region propagation** — the Markot-Csendes ingredient the repo's own dyadic B&B
+(#28 / PR #56) lacked — was implemented and calibrated two-sidedly: **`d(12) > 7.1`** (95.12 % of
+the `cited` value) at dyadic level 5 in 4.4M nodes, against PR #56's `6.95` (93.1 %, at level 6,
+with a *timeout* at 2.4e8 nodes for `d = 7.0`) and `r3-gridmis`'s `7.0`. Zero false refutations
+across 11 controls. So the missing ingredient does work — on a solved case.
+
+At `n = 24` it reaches only `d(24) > 10.3`, **below Oler's 10.8924**, so it adds nothing to the
+board. The lane then showed *why* in closed form: the bound-only reach is
+`10.8924 / (1 + 10.8924/(sqrt3 * 2^L))`, which converges to Oler **from below and never crosses
+it** — so every gain must come from search, and the propagator that carries `n = 12` (tile forcing)
+is exactly the one that weakens at `n = 24`, needing 40 of 64 tiles dead instead of 4 of 16.
+
+Honest limit the lane flagged itself: its two headline refutations are **not independently
+re-decided** — the reference MIS search agrees 6/6 at level 4 but could not decide `d = 7.0` or
+`7.1` in budget.
+
+**Environment fact worth passing on:** background processes in this session only advance while a
+foreground tool call is executing. Three planned runs have no verdict because of it, recorded as a
+budget fact rather than as evidence.
+
 ### theta-prime is not ceiling-bound — do not generalise the SDP verdict
 `issue #110` · `attacks/r4-theta/` · `numerical`/`sketch`
 
