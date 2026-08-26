@@ -182,7 +182,16 @@ def _nrise_max(a, box):
     """Max number of rising lines: they sit at s = (1-rho)d1 - i h >= 0."""
     d1hi = float(a) * math.sin(float(box.phi[1]))
     hlo = float(box.kap[0]) * math.sqrt(3) / 2
-    return int(math.floor(d1hi / hlo)) + 1
+    return int(math.floor((1 - float(box.rho[0])) * d1hi / hlo)) + 1
+
+
+def feasible(a, box):
+    """The parametrisation needs y = rho*d1 in [0, h): the topmost line at level <= d1
+    is at s = d1 - y and the next line up is at s = d1 - y + h > d1.  A box with
+    rho*d1 >= h everywhere carries no configuration."""
+    d1lo = float(a) * math.sin(float(box.phi[0]))
+    hhi = float(box.kap[1]) * math.sqrt(3) / 2
+    return float(box.rho[0]) * d1lo < hhi
 
 
 def box_bound(a, box):
@@ -229,6 +238,8 @@ def bnb(a, target, max_boxes=2000000, out=None, minwidth=1e-9, progress=20000):
             if out:
                 json.dump({"partial": True, "boxes": n, "worst": worst,
                            "stalled": len(stalled)}, open(out + ".progress", "w"))
+        if not feasible(a, b):
+            continue
         v = box_bound(a, b)
         if v <= target:
             worst = max(worst, v)
