@@ -1,0 +1,18 @@
+[
+ {
+  "delta": 0.0,
+  "max_bound": 24
+ },
+ {
+  "delta": 1e-09,
+  "max_bound": 27
+ },
+ {
+  "delta": 1e-06,
+  "max_bound": 28
+ },
+ {
+  "delta": 0.0001,
+  "max_bound": 28
+ }
+]
