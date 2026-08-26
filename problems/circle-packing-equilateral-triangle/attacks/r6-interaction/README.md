@@ -271,8 +271,8 @@ Two independent estimates of `ρ(n)` from above:
 | `n` | `a_Oler` | `ρ ≤` (tight family) | `ρ ≤` (multistart) | argmin `(r, M)` | gain in `d` |
 |---|---|---|---|---|---|
 | 9 = `Δ(4)−1` | 2.772002 | 2.828427 | **2.828427** (300 starts) | `(8, 8)` — corner-deleted trapezoid | +0.1129 |
-| 16 | 4.178908 | 4.242641 | **4.242641** (60 starts, see §4.4) | `(18, 12)` — `3×3` lattice rhombus | +0.1275 |
-| 25 | 5.588723 | 5.656854 | — | `(32, 16)` | +0.1363 |
+| 16 | 4.178908 | 4.242641 | **4.242641** (300 starts) | `(18, 12)` — `3×3` lattice rhombus | +0.1275 |
+| 25 | 5.588723 | 5.656854 | **5.656854** (120 starts) | `(32, 16)` | +0.1363 |
 | 28 = `Δ(7)` | 6.000000 | 6.000000 | — | `(36, 18)` | **0.0000** |
 
 The optimiser reproduces the lattice value to 8 decimals from random starts and finds nothing
@@ -291,9 +291,11 @@ better, which is what one wants from a ceiling measurement: **the ceiling is rea
 
 `numerical`, and weakly so. The multistart minimisation is a heuristic: it gives an **upper** bound
 on `ρ(n)`, so it can only ever *lower* the ceiling, never raise it. It agreeing with the tight-family
-value is evidence that the tight family is where the minimum lives, not proof. The `n = 16` row is
-60 starts (a 300-start rerun was launched; see `out/log16.txt` for whatever it reported) and `n = 9`
-is 300 starts; both returned the lattice value from the first few starts and never improved.
+value is evidence that the tight family is where the minimum lives, **not proof** — and the ceiling
+claim depends on it in the wrong direction: if some configuration `E` has `φ(E) < 3√2` the ceiling
+drops and C2 is worth less than reported, possibly nothing. Three independent `n` (9, 16, 25), 720
+starts in total, all reproduce the Oler-tight-family value to 8 decimals and none improves on it.
+That is the whole evidential basis for the `+0.1275` figure.
 
 ### 4.5 C2 against the filter
 
