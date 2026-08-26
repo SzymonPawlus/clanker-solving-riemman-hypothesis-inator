@@ -21,7 +21,7 @@ Code: [`experiments/packing-r5-exhaust4/`](../../../../experiments/packing-r5-ex
 | 1 | EO(4) $\iff$ *no 9 points in the closed unit triangle at pairwise distance $> 1/3$* | `sketch` (mine, elementary) | exact, and **uniform in $a$** |
 | 2 | Machine re-derived from scratch; reproduces $d(5)\ge4$ (EO(3)) **uniformly in $a$**, and Oler's $\Delta(3),\Delta(4),\Delta(5)$ at the root | `numerical` | validation ladder passed |
 | 3 | $d(9) > 5.9$, i.e. $a > 2.95$ — **independent reproduction** of `attacks/eo-exhaustion/` §4 | `numerical` | 569 301 nodes, 108 s |
-| 4 | $d(9) > 5.94$ ($a > 2.97$) | `numerical` | see §5 table |
+| 4 | $d(9) > 5.98$ ($a > 2.99$) — beyond the repo's previous best of 5.9 | `numerical` | 1 275 604 nodes, 387 s |
 | 5 | **No dyadic cell exhaustion with these rules can ever prove EO(4)** — an explicit node survives at *every* level | `sketch` + exact witness | §4, proved for all $L$ |
 | 6 | **The dyadic pigeonhole closes EO($k$) if and only if $k \le 3$** | `sketch` (mine) | §4.4, two lines |
 | 7 | The endgame on $(2.95, 3)$ is **not** reachable by this family; it reduces to a *partition-capacity* question that is not dyadic | `sketch` | §6 |
@@ -230,9 +230,19 @@ with other lanes, so seconds are upper bounds). Mode `closed` at $t=1/a$ proves 
 
 | $a$ | $t = 1/a$ | outcome | nodes | s |
 |---:|---|---|---:|---:|
-| 2.95 | $20/59$ | **proved**, $d(9) > 5.9$ | 569 301 | 108 |
-| 2.97 | $100/297$ | see `out/closed-a2.97.json` | — | — |
-| $\to 3$ | $\to 1/3$ | **impossible at every $L$** (§4) | $\infty$ | $\infty$ |
+| 2.95 | $20/59$ | **proved**, $d(9) > 5.90$ | 569 301 | 108 |
+| 2.97 | $100/297$ | **proved**, $d(9) > 5.94$ | 680 793 | 112 |
+| 2.99 | $100/299$ | **proved**, $d(9) > 5.98$ | 1 275 604 | 387 |
+| 2.995 | $200/599$ | see `out/closed-a2.995.json` | — | — |
+| 2.999 | $1000/2999$ | **timeout — nothing proved**, 26 branches still live | > 2 412 544 | 600 (cap) |
+| $\to 3$ | $\to 1/3$ | **impossible at every $L$**, not merely expensive (§4) | $\infty$ | $\infty$ |
+
+**How far down in $a$ I certified: $a > 2.99$, i.e. $d(9) > 5.98$ and $s(9) > 5.98 + 2\sqrt3 =
+9.4441\ldots$** against the `cited` $s(9) = 6+2\sqrt3 = 9.4641\ldots$ — so 99.67 % of the
+conjectured value, versus Oler's free 92.40 % and the repo's previous 98.33 %. Each row is one
+theorem at one rational side and, by §1/`eo-exhaustion` §1.1, **the whole column together still
+does not imply EO(4)**. The cost curve is the honest content: roughly flat from 2.95 to 2.97, a
+factor $\sim3.5$ in seconds from 2.97 to 2.99, and past the budget at 2.999.
 
 Row 1 is an independent reproduction of `attacks/eo-exhaustion/` §4's $k=4$ row (which reports
 684 342 nodes / 12 s for the same theorem, with a different implementation and branching order).
