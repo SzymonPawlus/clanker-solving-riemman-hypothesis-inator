@@ -1,0 +1,27 @@
+==============================================================================
+n = 17   (famcert j = 3)
+  declared s: cert 6 + 4*sqrt(3)    generator 6 + 4*sqrt(3)    equal=True
+  r3-qsqrt3 cert     ok=True  tight=True  minsq=4    contacts=26   bdry=11  d_min=6 + 2*sqrt(3)
+  r4-famcert gen     ok=True  tight=True  minsq=4    contacts=28   bdry=12  d_min=6 + 2*sqrt(3)
+  IDENTICAL POINT SETS: False   (shared 12 / 17)
+  related by a triangle symmetry: NO (all 6 tested)
+  rattlers  cert: 1   generator: 0
+     cert idx 13  at (5/2, 4)  free radius in [45938/278305, 45938/278305]  min nbr sq 77/4 + -8*sqrt(3)  min wall -2 + 5/4*sqrt(3)
+==============================================================================
+n = 24   (famcert j = 4)
+  declared s: cert 8 + 4*sqrt(3)    generator 8 + 4*sqrt(3)    equal=True
+  r3-qsqrt3 cert     ok=True  tight=True  minsq=4    contacts=45   bdry=15  d_min=8 + 2*sqrt(3)
+  r4-famcert gen     ok=True  tight=True  minsq=4    contacts=45   bdry=15  d_min=8 + 2*sqrt(3)
+  IDENTICAL POINT SETS: True   (shared 24 / 24)
+  related by a triangle symmetry: ['rot A->A B->B C->C', 'refl A->A B->C C->B', 'refl A->B B->A C->C', 'rot A->B B->C C->A', 'rot A->C B->A C->B', 'refl A->C B->B C->A']
+  rattlers  cert: 0   generator: 0
+==============================================================================
+n = 31   (famcert j = 5)
+  declared s: cert 10 + 4*sqrt(3)   generator 10 + 4*sqrt(3)   equal=True
+  r3-qsqrt3 cert     ok=True  tight=True  minsq=4    contacts=59   bdry=18  d_min=10 + 2*sqrt(3)
+  r4-famcert gen     ok=True  tight=True  minsq=4    contacts=61   bdry=18  d_min=10 + 2*sqrt(3)
+  IDENTICAL POINT SETS: False   (shared 30 / 31)
+  related by a triangle symmetry: NO (all 6 tested)
+  rattlers  cert: 0   generator: 0
+
+wrote /home/user/r5-worktrees/n17/experiments/packing-r5-n17/out/audit.json
