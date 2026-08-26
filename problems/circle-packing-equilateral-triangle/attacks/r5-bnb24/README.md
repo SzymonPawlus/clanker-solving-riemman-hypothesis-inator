@@ -136,6 +136,15 @@ recorded here as an available, unexercised option rather than silently omitted.
 Deterministic: no randomness, no seeds; `(n, p, q, L)` fixes the node count bit for bit.
 All raw verdicts and counters are checkpointed in `experiments/packing-r5-bnb24/out/`.
 
+### 4.0 A note on how much compute actually ran
+
+Background processes in this session make progress only while a foreground command is
+executing (measured: a nominally 300 s background solve accumulated ~90 s of CPU across
+twenty minutes of wall time). Three planned runs were cut by this and by the one-hour
+budget and have **no verdict**: `n = 12` at `L = 6` for `d = 7.2, 7.3, 7.4`, and `n = 24`
+at `L = 7` for `d = 10.5, 10.7, 10.89`. Their absence is a budget fact, not evidence
+either way. Everything reported below completed.
+
 ### 4.1 `n = 12` — the calibration, both sides
 
 `d(12) = 4 + 2√3 = 7.46410161...` (Melissen 1993, `cited`).
@@ -270,7 +279,7 @@ Round-5 protocol §6 asks for this explicitly.
 | PR #56's `d(12) > 6.95` / node counts / `n = 16` timeouts | `experiments/circle-packing-bnb/README.md` | **no** — quoted from its README, not re-run. The comparison in §0/§4 is therefore against *its own reported* numbers |
 | `r3-gridmis`'s `d(12) > 7.0` | `attacks/r3-gridmis/README.md` §4.1 | **no** — quoted, not re-run |
 | the conflict relation of `G_L` | this directory | **yes** — recomputed for 16 000 random cell pairs from Cartesian coordinates in `Q(√3)` (`Fraction` pairs, exact `√3` handling) by a code path sharing nothing with the integer test: **0 disagreements** |
-| the search verdicts | this directory | **yes, on the small instances** — re-decided by a second, independently written complete MIS search (`crosscheck2.py`: highest-degree branching, greedy clique-partition bound, no tiles, no propagation, no Oler) sharing nothing with `arbb/search.py` but the adjacency bitsets. **6/6 agreement at `L = 4`, both directions** (`d = 5, 5.5, 6, 6.2, 6.3` UNSAT; `d = 6.5` SAT). A glucose4 re-decision was attempted and abandoned: `pysat`'s `CardEnc.atleast(1024 lits, bound 12)` compiles to an at-most-1012 sequential counter, ~1e6 auxiliary variables, and did not finish in budget. That is an encoding problem, not a verdict |
+| the search verdicts | this directory | **yes, on the small instances** — re-decided by a second, independently written complete MIS search (`crosscheck2.py`: highest-degree branching, greedy clique-partition bound, no tiles, no propagation, no Oler) sharing nothing with `arbb/search.py` but the adjacency bitsets. **6/6 agreement at `L = 4`, both directions** (`d = 5, 5.5, 6, 6.2, 6.3` UNSAT; `d = 6.5` SAT), plus agreement at `L = 5, d = 6.5` (UNSAT). At `L = 5, d = 7.0` and `7.1` the reference search was **undecided** after 831 488 nodes / 45 s, so the two headline refutations are *not* independently re-decided — that is the honest limit of this control. A glucose4 re-decision was attempted and abandoned: `pysat`'s `CardEnc.atleast(1024 lits, bound 12)` compiles to an at-most-1012 sequential counter, ~1e6 auxiliary variables, and did not finish in budget. That is an encoding problem, not a verdict |
 | soundness of the enumeration logic | this directory | **this is the weak link.** See below. |
 
 **The single thing I am least sure of** is not the arithmetic and not the lemma — it is
@@ -301,6 +310,14 @@ evidence, not a proof. An independent reimplementation by the other model family
   cell count, and the tile-to-point ratio, and on all three `n = 24` is far worse than
   `n = 16`. The good property of `n = 24` — a narrow window — is a property of the
   *anchor*, and Oler occupies 95 % of it already.
+* **A second measurement worth carrying.** A deliberately naive reference MIS search
+  (highest-degree branching, greedy clique-partition bound, *none* of this lane's
+  devices) is **strictly faster on the easy instances** — `L = 5, d = 6.5` in 35 261
+  nodes / 5 s against this lane's 347 330 nodes / 4.3 s — and **fails at the hard end**,
+  undecided at `d = 7.0` after 831 488 nodes. So the propagation is not paying for
+  itself until the instance is hard, and a fair reading is that *the cell-partition
+  relaxation plus any strong bound* gets you most of the way, while the active-region
+  device is what buys the last stretch. Anyone reusing this should keep both engines.
 * **The honest transferable statement:** the diagnosed wall at `n = 16, d = 8` is real and
   the last untried repair (active-region propagation) *does* repair it, but only by about
   one level of dyadic resolution. It does not change the exponential.
