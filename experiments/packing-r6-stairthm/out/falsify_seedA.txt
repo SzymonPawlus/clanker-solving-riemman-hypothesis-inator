@@ -1,0 +1,3 @@
+n = 60   law: d = 16 + 2 sqrt3 = 19.464101615137753   m_law = 0.102753265449691
+sanity: the construction itself scores m = 0.102753265449690  (d = 19.464101615138, law 19.464101615138)
+        relaxation started AT the construction reaches m = 0.102753265449690 -> d = 19.464101615138
