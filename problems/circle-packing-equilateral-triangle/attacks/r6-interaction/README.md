@@ -30,7 +30,7 @@ repo's `d = 2a`, `s = d + 2√3`.
 | Candidates written down | **four** (§2), each answered against F1/F2/F3 |
 | Survived step 2 (matches Oler at every triangular `n`) | **one** — C2, the (A, M)-**realisability** bound |
 | C2's measured ceiling at `n = 16` | `d(16) ≥ 8.4853` against Oler's `8.3578` — **+0.1275**, i.e. **14.3 %** of the way from Oler to the best known construction `9.2495` |
-| C2's measured ceiling at `n = 9` (= `Δ(4) − 1`) | `2.8284` against the target `3` — **does not close EO(4)**, short by `0.1716` in `a` |
+| C2's measured ceiling on the `Δ(k) − 1` family | `2.8284` vs target `3` at `n = 9`; `4.8990` vs target `5` at `n = 20` — **closes neither EO(4) nor EO(6)** |
 | Main negative | **Jump Lemma** (§3): *no* bound whose container-level conclusion is left-continuous at `a = k − 1` can ever prove `EO(k)` — **whatever shape it has** |
 | Consequence | `r4-dual`'s collapse is **not special to affine conclusions**. On the `Δ(k) − 1` family the obstruction is not affineness at all; it is **continuity**, and it kills every measure-type conclusion of every shape |
 
@@ -308,6 +308,10 @@ three columns; `d = 2a`):
 Every constructed argmin is Oler-tight, and at every triangular `n` the gain is **exactly 0.000000**
 (checked for `k = 2..8`): C2 matches Oler where Oler is tight and nowhere loses to it.
 
+Note the two `Δ(k) − 1` rows. At `n = 9` the ceiling is `2.8284` against the target `3`, and at
+`n = 20` it is `4.8990` against the target `5`. **C2 fails `EO(4)` and `EO(6)` by the same
+mechanism and by a comparable margin** — its jump is at the lattice value, not at `k − 1`.
+
 The multistart probe was run independently at `n = 9` (300 starts), `n = 16` (300 starts) and
 `n = 25` (120 starts). All three return the constructed lattice value to 8 decimals —
 `(8, 8)`, `(18, 12)`, `(32, 16)` — and none improves on it. That is what one wants from a ceiling
@@ -329,8 +333,14 @@ on `ρ(n)`, so it can only ever *lower* the ceiling, never raise it. It agreeing
 value is evidence that the tight family is where the minimum lives, **not proof** — and the ceiling
 claim depends on it in the wrong direction: if some configuration `E` has `φ(E) < 3√2` the ceiling
 drops and C2 is worth less than reported, possibly nothing. Three independent `n` (9, 16, 25), 720
-starts in total, all reproduce the Oler-tight-family value to 8 decimals and none improves on it.
-That is the whole evidential basis for the `+0.1275` figure.
+starts in total, all reproduce the constructed value to 8 decimals and none improves on it. That is
+the whole evidential basis for the `+0.1275` figure.
+
+The probe's reliability visibly degrades with `n`, and this is worth recording rather than hiding:
+at `n = 24` with 120 starts it returned `5.567764` at `(31, 15)` — **worse** than the constructed
+`5.477226` at `(30, 16)`, which it simply failed to find. (Both are Oler-tight.) So the constructed
+table is the primary source; the probe corroborates it at `n = 9, 16, 25` and is not evidence of
+anything at larger `n`.
 
 ### 4.5 C2 against the filter
 
