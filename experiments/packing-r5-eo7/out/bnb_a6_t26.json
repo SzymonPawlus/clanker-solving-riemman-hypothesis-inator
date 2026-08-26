@@ -1,0 +1,10 @@
+{
+ "a": 6,
+ "target": 26,
+ "boxes_processed": 129,
+ "stalled": 0,
+ "worst_certified_R2": 26,
+ "R1_lemmaA": 22,
+ "certified_overall": 26,
+ "seconds": 0.37
+}
