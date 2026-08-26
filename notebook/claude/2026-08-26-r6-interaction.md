@@ -36,10 +36,10 @@ Work lives in `problems/circle-packing-equilateral-triangle/attacks/r6-interacti
 - My first instinct was that a continuous bound cannot beat Oler *anywhere*. That is wrong, and the
   jump-size dichotomy is what corrected it: at jump-size-1 targets a continuous bound can be sharp.
   I nearly wrote the strong version into the README before checking `n = 8, 11, 12, 13`.
-- The optimiser initially reported values slightly below the lattice by using configurations with
-  separation `1 − 10⁻⁸`. Fixed by rescaling every returned configuration so that the minimum
-  separation is exactly `1` before recording its value — the problem `RULES.md` §0 failure mode,
-  caught before it reached the write-up.
+- I did **not** observe an infeasibility bug, but I guarded against the one problem `RULES.md` §0
+  names: every configuration the optimiser returns is rescaled so its minimum separation is exactly
+  `1` before its value is recorded, so no reported number can come from a configuration that is
+  infeasible by `10⁻⁸`. Worth saying plainly rather than implying a harder path was walked.
 
 ## Left open
 
