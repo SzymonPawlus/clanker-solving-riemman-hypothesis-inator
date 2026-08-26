@@ -252,17 +252,20 @@ independent confirmation rather than as an inherited input.**
 The strict/uniform runs at $t = 1/3$, $n = 9$ do not close, exactly as Theorem 2 requires. What
 they *do* is localise:
 
-| level $L$ | surviving profiles | supportable cells | as a fraction of $T(1)$ |
-|---:|---:|---:|---:|
-| 3 | 3 332 | 48 / 64 | 0.750 |
-| 4 | 35 491 | 99 / 256 | 0.387 |
-| 5 | 5 253 | 82 / 1024 | 0.080 |
+| level $L$ | surviving profiles | supportable cells | as a fraction of $T(1)$ | s |
+|---:|---:|---:|---:|---:|
+| 3 | 3 332 | 48 / 64 | 0.750 | 6 |
+| 4 | 35 491 | 99 / 256 | 0.387 | 55 |
+| 5 | 5 253 | 82 / 1 024 | 0.080 | 127 |
+| 6 | 35 637 | 101 / 4 096 | 0.025 | 184 |
 
+The **profile count is not monotone** (it is a count of descriptions, and a finer grid needs more
+of them to describe the same region); the **supportable area is**, and it is the meaningful column.
 At $L=5$ every supportable cell lies within $0.110$ of one of the ten $\Delta(4)$ lattice points
 (mean $0.047$; cell circumradius $0.018$), and all ten lattice points carry supportable cells. So
 **AF's "finite occupancy profiles" really do appear** — the survivors collapse onto a shrinking
 neighbourhood of the lattice — but the *closure* step never arrives, because by Theorem 2 the
-neighbourhood never becomes empty.
+neighbourhood never becomes empty. That is the endgame on $(2.95,3)$, and it does not close.
 
 ## 6. What the endgame would need — and where the question actually goes
 
