@@ -76,8 +76,8 @@ if __name__ == "__main__":
         bad, M = check_adjacency(L, p, q)
         print(f"    L={L} d={p}/{q}: {M} cells, disagreements on 4000 random pairs = {bad}")
     print("(B) verdict re-decided by glucose4 on the same graph")
-    for (n, p, q, L) in [(12, 6, 1, 5), (12, 65, 10, 5), (12, 7, 1, 5), (12, 71, 10, 5),
-                         (12, 72, 10, 5), (12, 15, 2, 5)]:
+    for (n, p, q, L) in [(12, 72, 10, 5), (12, 15, 2, 5), (12, 4, 1, 4), (12, 55, 10, 4),
+                         (12, 6, 1, 4), (12, 65, 10, 5), (12, 71, 10, 5)]:
         r, M, nc = check_sat(n, p, q, L)
         print(f"    n={n} d={p}/{q} L={L}: glucose4 says {r}  ({M} vars, {nc} clauses)",
               flush=True)

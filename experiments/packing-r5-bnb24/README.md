@@ -48,7 +48,10 @@ over-estimated — the sound direction. No float is consulted anywhere.
 
 ```
 python3 validate.py        # soundness controls (must pass before any bound is believed)
-python3 crosscheck.py      # independent recomputation of adjacency + glucose4 re-decision
+python3 crosscheck.py      # adjacency recomputed independently in Q(sqrt3)  (part B is
+                           # a glucose4 re-decision; its cardinality encoding is large,
+                           # see the attack README for why it was abandoned)
+python3 crosscheck2.py     # verdicts re-decided by a second, independent MIS search
 python3 run.py cal '[[12,71,10,5]]' 0 400     # the headline n=12 refutation, ~55 s
 python3 run.py n24 '[[24,107,10,7]]' 0 400    # the n=24 push (build ~90 s, 2.2 GB)
 ```
@@ -66,6 +69,7 @@ Python 3.11.15, numpy 2.4.6, python-sat (`pysat`) for the cross-check only.
 | `arbb/geom.py` | dyadic cells, exact integer conflict test, dyadic ancestor maps |
 | `arbb/search.py` | the branch and bound; its docstring states the relaxation lemma |
 | `validate.py` | control 1 (known optima survive), control 2 (never UNSAT where feasible) |
-| `crosscheck.py` | adjacency recomputed in `Q(sqrt3)`; verdicts re-decided by glucose4 |
+| `crosscheck.py` | adjacency recomputed in `Q(sqrt3)` from Cartesian coordinates |
+| `crosscheck2.py` | verdicts re-decided by a second, independently written MIS search |
 | `run.py` | driver with per-case checkpointing |
 | `out/*.json` | every verdict produced, with node and propagation counters |

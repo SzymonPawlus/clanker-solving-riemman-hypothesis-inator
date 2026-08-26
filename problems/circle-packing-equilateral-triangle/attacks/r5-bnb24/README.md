@@ -210,11 +210,15 @@ Reference points, none of which this work establishes:
 |---|---|---|---|---|---|---|
 | 10.0 | 7 | 16 384 | **refuted** | **1** (capacity bound alone) | 88 s | 0.0 s |
 | 10.3 | 7 | 16 384 | **refuted** | **1** (capacity bound alone) | 92 s | 0.0 s |
+| 10.5 | 7 | 16 384 | *cut at the compute budget* — no verdict | — | 92 s | >400 s |
+| 10.7, 10.89 | 7 | 16 384 | not reached | — | — | — |
 
-See §6 for the runs still in flight at the budget cut and for the frontier they were
-probing. **The largest `d` refuted at `n = 24` is well below Oler's 10.8924**, so this
-lane contributes nothing to the `n = 24` lower bound, and §5 explains why that was
-predictable from the calibration.
+**Largest `d` refuted at `n = 24`: `d = 103/10 = 10.3`**, i.e. `d(24) > 10.3` and
+`s(24) > 10.3 + 2√3 = 13.7641...` (`numerical`, this directory). That is above the free
+bound `d(24) >= d(21) = 10` but **below Oler's `10.8924`**, so it adds nothing to the
+board's `n = 24` lower bound. Both refutations came from the capacity bound in a single
+node — i.e. from Oler degraded by the grid — and the search contributed nothing at all
+before the budget ran out. §5 explains why that was predictable from the calibration.
 
 **`RULES.md` §7 flag.** `n = 24` is an OPEN case. Nothing here comes near
 `d(24) >= 8 + 2√3`; if a future run of this code ever did, that would be an extraordinary
@@ -266,17 +270,19 @@ Round-5 protocol §6 asks for this explicitly.
 | PR #56's `d(12) > 6.95` / node counts / `n = 16` timeouts | `experiments/circle-packing-bnb/README.md` | **no** — quoted from its README, not re-run. The comparison in §0/§4 is therefore against *its own reported* numbers |
 | `r3-gridmis`'s `d(12) > 7.0` | `attacks/r3-gridmis/README.md` §4.1 | **no** — quoted, not re-run |
 | the conflict relation of `G_L` | this directory | **yes** — recomputed for 16 000 random cell pairs from Cartesian coordinates in `Q(√3)` (`Fraction` pairs, exact `√3` handling) by a code path sharing nothing with the integer test: **0 disagreements** |
-| the search verdicts | this directory | **partly** — re-decided by glucose4 (`pysat`) on the same graph, an independently written search procedure; see `out/crosscheck.log` |
+| the search verdicts | this directory | **yes, on the small instances** — re-decided by a second, independently written complete MIS search (`crosscheck2.py`: highest-degree branching, greedy clique-partition bound, no tiles, no propagation, no Oler) sharing nothing with `arbb/search.py` but the adjacency bitsets. **6/6 agreement at `L = 4`, both directions** (`d = 5, 5.5, 6, 6.2, 6.3` UNSAT; `d = 6.5` SAT). A glucose4 re-decision was attempted and abandoned: `pysat`'s `CardEnc.atleast(1024 lits, bound 12)` compiles to an at-most-1012 sequential counter, ~1e6 auxiliary variables, and did not finish in budget. That is an encoding problem, not a verdict |
 | soundness of the enumeration logic | this directory | **this is the weak link.** See below. |
 
 **The single thing I am least sure of** is not the arithmetic and not the lemma — it is
-**the completeness of the branching**, i.e. that the recursion in `arbb/search.py`
+**the completeness of the branching at the levels the reference search could not reach**
+(`L = 5`, `d >= 6.5`), i.e. i.e. that the recursion in `arbb/search.py`
 `_node` really covers every independent set. The propagators are individually easy to
 argue and each was written to fail closed, but the interaction of tile forcing with the
 "declare this tile empty" branch is the kind of step where an over-prune would produce a
 *false* `unsat` and hence a wrong bound. The controls in §4.1 are aimed exactly at this
-and it survived all of them, including three optima *on the nose*; that is evidence, not
-a proof. An independent reimplementation by the other model family (problem `RULES.md`
+and it survived all of them, including three optima *on the nose*, and the independent
+reference search agrees on every instance small enough for it to decide. That is
+evidence, not a proof. An independent reimplementation by the other model family (problem `RULES.md`
 §3) is what this needs, and until then everything here stays `numerical`.
 
 ---
