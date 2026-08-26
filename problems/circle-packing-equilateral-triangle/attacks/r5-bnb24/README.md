@@ -154,11 +154,11 @@ either way. Everything reported below completed.
 | `d` | `L` | cells | verdict | nodes | prop. rounds | cells deleted by propagation | time |
 |---|---|---|---|---|---|---|---|
 | 6.0 | 5 | 1024 | **refuted** | **1** | 0 | — | 0.2 s |
-| 6.5 | 5 | 1024 | **refuted** | 347 330 | 8.3e5 | — | 4.3 s |
-| 6.9 | 5 | 1024 | **refuted** | 1 578 447 | 8.3e5 | 1.89e8 | 19.0 s |
-| 7.0 | 5 | 1024 | **refuted** | 4 386 939 | 2.5e6 | 4.95e8 | 50.6 s |
-| **7.1** | 5 | 1024 | **refuted** | **4 386 939** | 2.5e6 | 4.95e8 | **53.5 s** |
-| 7.2 | 5 | 1024 | not refuted (`sat`) | 63 158 | — | — | 0.9 s |
+| 6.5 | 5 | 1024 | **refuted** | 347 330 | 2.0e5 | 3.5e7 | 4.2 s |
+| 6.9 | 5 | 1024 | **refuted** | 1 578 447 | 8.29e5 | 1.89e8 | 19.0 s |
+| 7.0 | 5 | 1024 | **refuted** | 4 386 939 | 2.55e6 | 4.95e8 | 50.6 s |
+| **7.1** | 5 | 1024 | **refuted** | **4 386 939** | 2.55e6 | 4.95e8 | **53.5 s** |
+| 7.2 | 5 | 1024 | not refuted (`sat`) | 63 158 | 4.1e4 | 8.5e6 | 0.9 s |
 
 `d = 6.0` closes in **one node**: the hierarchical capacity bound alone already gives
 `b(root) < 12` there, with no search at all.
