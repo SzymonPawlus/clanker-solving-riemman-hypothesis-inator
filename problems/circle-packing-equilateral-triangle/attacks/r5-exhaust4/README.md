@@ -269,23 +269,33 @@ Three exact remarks (`sketch`, mine):
    capacity-1 pieces is exactly **an 8-piece cover of $T(1)$ by sets of diameter $\le 1/3$**. That
    is the covering question, and it is *not* what this lane runs — a sibling lane attacks it
    independently, and I have deliberately not read its files.
-2. **No triangle has capacity exactly 2**, because $a(2)=a(3)=1$: a triangle of side $h$ holds
-   three points at separation $>t$ as soon as it holds two. (Likewise no triangle has capacity
+2. For a triangle of side $h$ the capacity is exactly $\operatorname{cap}_>= \max\{m: a(m) < h/t\}$
+   (rescale by the actual minimum separation and let it tend to $t$). Hence **no triangle has
+   capacity exactly 2**, because $a(2)=a(3)=1$ leaves no room for $h/t$: a triangle holds three
+   points at separation $>t$ as soon as it holds two. (Likewise no triangle has capacity
    exactly 5, since $a(5)=a(6)=2$.) So a mixed partition must use **non-triangular** pieces to
    realise capacity 2 — e.g. four capacity-2 pieces, or six capacity-1 plus one capacity-2. This
    is a strictly larger search space than the covering question and, as far as I can tell, is not
    recorded anywhere in the repo.
-3. The strict Oler-hull rule already yields a **forced corner structure** (`sketch`): in the
-   separation-1 scale $T(3)$, if $\rho_i$ is the side of the largest corner sub-triangle at vertex
-   $V_i$ containing no point of $E$, then $T(3)$ minus the three corner triangles is convex and
-   contains $\operatorname{conv}(E)$, so Oler gives
+3. The strict Oler-hull rule already yields a **forced corner structure** (`sketch`, mine). Work
+   in the separation-1 scale $T(3)$ and let $\rho_i$ be the side of the largest corner sub-triangle
+   at vertex $V_i$ containing no point of $E$. Cutting one corner of side $\rho$ removes area
+   $\tfrac{\sqrt3}{4}\rho^2$ and, because the corner angle is $60^\circ$, replaces $2\rho$ of
+   boundary by a chord of length $\rho$, so it removes perimeter $\rho$.
+
+   *One corner first.* $\operatorname{conv}(E)$ lies in the (convex) trapezoid $T(3)$ minus the
+   corner triangle at $V_1$, so Oler gives $9 \le 10 - \tfrac12(\rho_1^2+\rho_1)$, hence
+   $\rho_1^2+\rho_1 < 2$ and $\rho_1 < 1$; likewise for $\rho_2,\rho_3$. In particular
+   $\rho_i+\rho_j < 2 \le 3$, so **the three corner triangles are pairwise disjoint** and the
+   area/perimeter bookkeeping is additive. *Then all three:* $T(3)$ minus all three corner triangles
+   is a convex hexagon containing $\operatorname{conv}(E)$, and Oler gives
    $9 \le 10 - \tfrac12\sum_i(\rho_i^2+\rho_i)$, i.e.
    $$\sum_{i=1}^3 \big(\rho_i^2+\rho_i\big) < 2 .$$
-   In particular every $\rho_i < 1$: **each corner of $T(3)$ carries a point of $E$ within its
-   corner sub-triangle of side 1**, and if the three are balanced, within side $(\sqrt{33}-3)/6
-   \approx 0.457$. This is a genuine interaction constraint and it is already inside the machine
-   (it is what the Oler-hull rule computes); it is not enough, and Theorem 2 explains why it never
-   will be — it is an inequality on the *closed* configuration, which is feasible.
+   So **each corner of $T(3)$ carries a point of $E$ within distance 1 of it**, and if the three
+   are balanced, within $(\sqrt{33}-3)/6 \approx 0.457$. This is a genuine interaction constraint
+   and it is already inside the machine (it is what the Oler-hull rule computes); it is not enough,
+   and Theorem 2 explains why it never will be — it is an inequality on the *closed* configuration,
+   which is feasible.
 
 **The honest boundary.** A closing argument must use strictness somewhere other than inside a
 single piece of a partition. The two candidates the repo has are (a) a rigidity/uniqueness theorem
