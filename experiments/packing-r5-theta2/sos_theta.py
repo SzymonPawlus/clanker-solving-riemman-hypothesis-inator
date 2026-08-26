@@ -126,11 +126,22 @@ def block_map(basis, g: dict, idx: dict, nmon: int):
     return sp.csr_matrix((vals, (rows, cols)), shape=(nmon, k * k))
 
 
-def build_sos(m: int, rho: float, lam_fixed: float | None = None):
-    """Assemble the SDP.  Returns (problem, variables dict)."""
+def build_sos(m: int, rho: float, lam_fixed: float | None = None, D: int | None = None):
+    """Assemble the SDP.  Returns (problem, variables dict).
+
+    `m`  : bidegree of the kernel Z (so rank Z <= C(m+2,2); see Lemma 4 of r4-theta).
+    `D`  : total-degree budget of the Putinar certificates, D >= 2m and even.  D = 2m is
+           the tightest truncation; raising D strictly enlarges the set of representable
+           certificates and can only lower lam.  This is the "order" of the relaxation and
+           is a separate knob from the kernel degree m -- attacks/r4-theta's cost table
+           only counted the D = 2m case.
+    """
     ONE2 = (0, 0)
     ONE4 = (0, 0, 0, 0)
-    D2, D4 = 2 * m, 2 * m
+    if D is None:
+        D = 2 * m
+    assert D >= 2 * m and D % 2 == 0
+    D2, D4 = D, D
 
     mon2 = monomials(2, D2)
     idx2 = {e: i for i, e in enumerate(mon2)}
@@ -163,8 +174,8 @@ def build_sos(m: int, rho: float, lam_fixed: float | None = None):
 
     # ---- (P1) on T_1, 2 variables ---------------------------------------------------
     g2v = triangle_gs(2, 0)
-    b0 = monomials(2, m)
-    b1 = monomials(2, m - 1) if m >= 1 else [ONE2]
+    b0 = monomials(2, D // 2)
+    b1 = monomials(2, (D - 1) // 2)
     S0 = block_map(b0, {ONE2: 1.0}, idx2, len(mon2))
     rhs2 = -Sdiag @ cp.vec(C, order="C")
     e = np.zeros(len(mon2)); e[idx2[ONE2]] = 1.0
@@ -181,34 +192,36 @@ def build_sos(m: int, rho: float, lam_fixed: float | None = None):
     # ---- (P2) on Sigma, 4 variables --------------------------------------------------
     G = triangle_gs(4, 0) + triangle_gs(4, 2)
     h = sep_h(rho)
-    c0 = monomials(4, m)
-    c1 = monomials(4, m - 1) if m >= 1 else [ONE4]
+    c0 = monomials(4, D // 2)
+    c1 = monomials(4, (D - 1) // 2)
+    c2 = monomials(4, (D - 2) // 2)
     e4 = np.zeros(len(mon4)); e4[idx4[ONE4]] = 1.0
     lhs4 = -Skern @ cp.vec(C, order="C") - e4
     N0 = cp.Variable((len(c0), len(c0)), PSD=True)
     blocks["tau0"] = N0
     acc4 = block_map(c0, {ONE4: 1.0}, idx4, len(mon4)) @ cp.vec(N0, order="C")
     for i, g in enumerate(G + [h]):
-        Ni = cp.Variable((len(c1), len(c1)), PSD=True)
+        bas = c1 if i < len(G) else c2
+        Ni = cp.Variable((len(bas), len(bas)), PSD=True)
         blocks[f"tau{i+1}"] = Ni
-        acc4 = acc4 + block_map(c1, g, idx4, len(mon4)) @ cp.vec(Ni, order="C")
+        acc4 = acc4 + block_map(bas, g, idx4, len(mon4)) @ cp.vec(Ni, order="C")
     cons.append(lhs4 == acc4)
 
     obj = cp.Minimize(lam if lam_fixed is None else cp.Constant(0.0))
     prob = cp.Problem(obj, cons)
     blocks["lam"] = lam
-    blocks["sizes"] = {"K": K, "sig0": len(b0), "sig_i": len(b1),
-                       "tau0": len(c0), "tau_i": len(c1),
+    blocks["sizes"] = {"m": m, "D": D, "K": K, "sig0": len(b0), "sig_i": len(b1),
+                       "tau0": len(c0), "tau_i": len(c1), "tau_h": len(c2),
                        "eqs2": len(mon2), "eqs4": len(mon4)}
     return prob, blocks
 
 
 def solve_lambda(m: int, d: float, solver="SCS", eps=1e-7, max_iters=400000,
-                 time_limit=None, verbose=False):
+                 time_limit=None, verbose=False, D=None):
     """Minimise lam.  Returns dict with the SOS value (an UPPER bound on theta'(G_d),
     modulo solver accuracy -- `numerical`, not a proof)."""
     rho = 2.0 / d
-    prob, B = build_sos(m, rho)
+    prob, B = build_sos(m, rho, D=D)
     kw = {}
     if solver == "SCS":
         kw = dict(eps=eps, max_iters=max_iters)
@@ -217,10 +230,10 @@ def solve_lambda(m: int, d: float, solver="SCS", eps=1e-7, max_iters=400000,
     try:
         prob.solve(solver=solver, verbose=verbose, **kw)
     except Exception as exc:
-        return {"m": m, "d": d, "rho": rho, "lam": float("nan"),
+        return {"m": m, "D": B["sizes"]["D"], "d": d, "rho": rho, "lam": float("nan"),
                 "status": f"solver-error:{exc}", "sizes": B["sizes"]}
     lam = B["lam"].value
-    return {"m": m, "d": d, "rho": rho,
+    return {"m": m, "D": B["sizes"]["D"], "d": d, "rho": rho,
             "lam": float(lam) if lam is not None else float("nan"),
             "status": str(prob.status), "sizes": B["sizes"],
             "C": None if B["C"].value is None else np.asarray(B["C"].value)}

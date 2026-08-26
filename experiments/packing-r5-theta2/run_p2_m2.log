@@ -1,0 +1,93 @@
+=== m = 2 ===
+  m=2 d=2.000000: lam=2.999998 [optimal] 0.2s
+  m=2 d=2.400000: lam=25.000008 [optimal] 0.2s
+  m=2 d=2.800000: lam=nan [infeasible] 0.1s
+  m=2 d=2.600000: lam=nan [infeasible] 0.1s
+  m=2 d=2.500000: lam=nan [infeasible] 0.1s
+  m=2 d=2.450000: lam=nan [infeasible] 0.1s
+  m=2 d=2.425000: lam=50.261780 [optimal] 0.3s
+  m=2 d=2.437500: lam=102.399970 [optimal] 0.5s
+  m=2 d=2.443750: lam=213.630030 [optimal] 0.7s
+  m=2: SOS feasible up to d in [2.44375, 2.45000]
+  m=2 d=2.200000: lam=5.172415 [optimal] 0.1s
+  m=2 d=2.100000: lam=3.773584 [optimal] 0.2s
+  m=2 d=2.150000: lam=4.355718 [optimal] 0.1s
+  m=2 d=2.125000: lam=4.042107 [optimal] 0.2s
+  m=2 d=2.112500: lam=3.902842 [optimal] 0.1s
+  m=2 d=2.118750: lam=3.971147 [optimal] 0.2s
+  m=2 d=2.121875: lam=4.006286 [optimal] 0.2s
+  m=2 d=2.120312: lam=3.988633 [optimal] 0.2s
+  m=2 n=4: d*_m(n) >= 2.120312  (Oler 2.744563)
+  m=2 d=2.175000: lam=4.726735 [optimal] 0.1s
+  m=2 d=2.187500: lam=4.938915 [optimal] 0.1s
+  m=2 d=2.193750: lam=5.052808 [optimal] 0.1s
+  m=2 d=2.190625: lam=4.995163 [optimal] 0.1s
+  m=2 d=2.192188: lam=5.023805 [optimal] 0.1s
+  m=2 d=2.191406: lam=5.009436 [optimal] 0.1s
+  m=2 d=2.191016: lam=5.002277 [optimal] 0.1s
+  m=2 d=2.190820: lam=4.998725 [optimal] 0.1s
+  m=2 n=5: d*_m(n) >= 2.190820  (Oler 3.403124)
+  m=2 d=2.300000: lam=8.450706 [optimal] 0.2s
+  m=2 d=2.250000: lam=6.400001 [optimal] 0.1s
+  m=2 d=2.225000: lam=5.717698 [optimal] 0.1s
+  m=2 d=2.237500: lam=6.038691 [optimal] 0.1s
+  m=2 d=2.231250: lam=5.873578 [optimal] 0.1s
+  m=2 d=2.234375: lam=5.954927 [optimal] 0.1s
+  m=2 d=2.235937: lam=5.996512 [optimal] 0.1s
+  m=2 d=2.236719: lam=6.017526 [optimal] 0.1s
+  m=2 n=6: d*_m(n) >= 2.235937  (Oler 4.000000)
+  m=2 d=2.275000: lam=7.278248 [optimal] 0.1s
+  m=2 d=2.262500: lam=6.809718 [optimal] 0.2s
+  m=2 d=2.268750: lam=7.035885 [optimal] 0.1s
+  m=2 d=2.265625: lam=6.920868 [optimal] 0.1s
+  m=2 d=2.267187: lam=6.977879 [optimal] 0.1s
+  m=2 d=2.267969: lam=7.006745 [optimal] 0.2s
+  m=2 d=2.267578: lam=6.992295 [optimal] 0.1s
+  m=2 d=2.267773: lam=6.999522 [optimal] 0.2s
+  m=2 n=7: d*_m(n) >= 2.267773  (Oler 4.549834)
+  m=2 d=2.287500: lam=7.819188 [optimal] 0.1s
+  m=2 d=2.293750: lam=8.122273 [optimal] 0.2s
+  m=2 d=2.290625: lam=7.967722 [optimal] 0.2s
+  m=2 d=2.292187: lam=8.044228 [optimal] 0.1s
+  m=2 d=2.291406: lam=8.005797 [optimal] 0.2s
+  m=2 d=2.291016: lam=7.986715 [optimal] 0.1s
+  m=2 d=2.291211: lam=7.996245 [optimal] 0.2s
+  m=2 d=2.291309: lam=8.001019 [optimal] 0.2s
+  m=2 n=8: d*_m(n) >= 2.291211  (Oler 5.062258)
+  m=2 d=2.350000: lam=12.565452 [optimal] 0.2s
+  m=2 d=2.325000: lam=10.094618 [optimal] 0.2s
+  m=2 d=2.312500: lam=9.197592 [optimal] 0.2s
+  m=2 d=2.306250: lam=8.807837 [optimal] 0.2s
+  m=2 d=2.309375: lam=8.998364 [optimal] 0.2s
+  m=2 d=2.310938: lam=9.096854 [optimal] 0.1s
+  m=2 d=2.310156: lam=9.047333 [optimal] 0.1s
+  m=2 d=2.309766: lam=9.022780 [optimal] 0.1s
+  m=2 n=9: d*_m(n) >= 2.309375  (Oler 5.544004)
+  m=2 d=2.318750: lam=9.624663 [optimal] 0.2s
+  m=2 d=2.321875: lam=9.853877 [optimal] 0.2s
+  m=2 d=2.323437: lam=9.972750 [optimal] 0.2s
+  m=2 d=2.324219: lam=10.033303 [optimal] 0.1s
+  m=2 d=2.323828: lam=10.002932 [optimal] 0.1s
+  m=2 d=2.323633: lam=9.987818 [optimal] 0.1s
+  m=2 d=2.323730: lam=9.995369 [optimal] 0.1s
+  m=2 d=2.323779: lam=9.999149 [optimal] 0.1s
+  m=2 n=10: d*_m(n) >= 2.323779  (Oler 6.000000)
+  m=2 d=2.337500: lam=11.192068 [optimal] 0.2s
+  m=2 d=2.331250: lam=10.614315 [optimal] 0.2s
+  m=2 d=2.334375: lam=10.895335 [optimal] 0.2s
+  m=2 d=2.335937: lam=11.041647 [optimal] 0.2s
+  m=2 d=2.335156: lam=10.967990 [optimal] 0.2s
+  m=2 d=2.335547: lam=11.004692 [optimal] 0.2s
+  m=2 d=2.335352: lam=10.986310 [optimal] 0.1s
+  m=2 d=2.335449: lam=10.995493 [optimal] 0.2s
+  m=2 n=11: d*_m(n) >= 2.335449  (Oler 6.433981)
+  m=2 d=2.343750: lam=11.838148 [optimal] 0.2s
+  m=2 d=2.346875: lam=12.190717 [optimal] 0.2s
+  m=2 d=2.345312: lam=12.011787 [optimal] 0.2s
+  m=2 d=2.344531: lam=11.924321 [optimal] 0.2s
+  m=2 d=2.344922: lam=11.967891 [optimal] 0.2s
+  m=2 d=2.345117: lam=11.989798 [optimal] 0.2s
+  m=2 d=2.345215: lam=12.000782 [optimal] 0.2s
+  m=2 d=2.345166: lam=11.995287 [optimal] 0.2s
+  m=2 n=12: d*_m(n) >= 2.345166  (Oler 6.848858)
+done 13 s

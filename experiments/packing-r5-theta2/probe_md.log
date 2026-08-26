@@ -1,0 +1,6 @@
+CLARABEL m=3 D=6 d=3.4641: lam=nan [solver-error:Solver 'CLARABEL' failed. Try another solver, or solve with verbose=True for more information.] 2.2s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}
+/home/user/r5-worktrees/theta2/experiments/packing-r5-theta2/sos_theta.py:231: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=solver, verbose=verbose, **kw)
+SCS m=3 D=6 d=3.4641: lam=715.04060 [optimal_inaccurate] 120.2s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}
+CLARABEL m=3 D=6 d=4.0: lam=nan [infeasible] 1.2s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}
+SCS m=3 D=6 d=4.0: lam=nan [infeasible] 8.3s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}

@@ -896,3 +896,261 @@
   n16/ring/m17/R0.95                 N=  17 alpha=  5 theta'>=  5.5377 gain=+0.5377 [optimal] 0.1s
   n16/ring/m19/R0.35                 N=  19 alpha=  1 theta'>=  1.0000 gain=-0.0000 [optimal] 0.1s
   n16/ring/m19/R0.55                 N=  19 alpha=  3 theta'>=  3.5814 gain=+0.5814 [optimal] 0.1s
+  n16/ring/m19/R0.75                 N=  19 alpha=  4 theta'>=  4.5873 gain=+0.5873 [optimal] 0.1s
+  n16/ring/m19/R0.95                 N=  19 alpha=  6 theta'>=  6.2394 gain=+0.2394 [optimal] 0.1s
+  n16/ring/m21/R0.35                 N=  21 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.1s
+  n16/ring/m21/R0.55                 N=  21 alpha=  3 theta'>=  3.3177 gain=+0.3177 [optimal] 0.1s
+  n16/ring/m21/R0.75                 N=  21 alpha=  5 theta'>=  5.1515 gain=+0.1515 [optimal] 0.1s
+  n16/ring/m21/R0.95                 N=  21 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/ring/m23/R0.35                 N=  23 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.1s
+  n16/ring/m23/R0.55                 N=  23 alpha=  3 theta'>=  3.6193 gain=+0.6193 [optimal] 0.1s
+  n16/ring/m23/R0.75                 N=  23 alpha=  5 theta'>=  5.6212 gain=+0.6212 [optimal] 0.1s
+  n16/ring/m23/R0.95                 N=  23 alpha=  5 theta'>=  5.6212 gain=+0.6212 [optimal] 0.1s
+  n16/conc/5+10/0.35,0.85            N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.35,0.85+c          N=  16 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.45,0.9             N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.45,0.9+c           N=  16 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.3,0.7              N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.3,0.7+c            N=  16 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/7+14/0.35,0.85            N=  21 alpha=  4 theta'>=  4.5055 gain=+0.5055 [optimal] 0.1s
+  n16/conc/7+14/0.35,0.85+c          N=  22 alpha=  5 theta'>=  5.5055 gain=+0.5055 [optimal] 0.1s
+  n16/conc/7+14/0.45,0.9             N=  21 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+14/0.45,0.9+c           N=  22 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+14/0.3,0.7              N=  21 alpha=  4 theta'>=  4.5055 gain=+0.5055 [optimal] 0.1s
+  n16/conc/7+14/0.3,0.7+c            N=  22 alpha=  4 theta'>=  4.5055 gain=+0.5055 [optimal] 0.1s
+  n16/conc/5+11/0.35,0.85            N=  16 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.0s
+  n16/conc/5+11/0.35,0.85+c          N=  17 alpha=  6 theta'>=  6.3863 gain=+0.3863 [optimal] 0.1s
+  n16/conc/5+11/0.45,0.9             N=  16 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.0s
+  n16/conc/5+11/0.45,0.9+c           N=  17 alpha=  6 theta'>=  6.3863 gain=+0.3863 [optimal] 0.0s
+  n16/conc/5+11/0.3,0.7              N=  16 alpha=  3 theta'>=  3.4518 gain=+0.4518 [optimal] 0.1s
+  n16/conc/5+11/0.3,0.7+c            N=  17 alpha=  3 theta'>=  3.4518 gain=+0.4518 [optimal] 0.1s
+  n16/conc/6+12/0.35,0.85            N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/6+12/0.35,0.85+c          N=  19 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/6+12/0.45,0.9             N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/6+12/0.45,0.9+c           N=  19 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/6+12/0.3,0.7              N=  18 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/6+12/0.3,0.7+c            N=  19 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/9+9/0.35,0.85             N=  18 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/9+9/0.35,0.85+c           N=  19 alpha=  5 theta'>=  5.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/9+9/0.45,0.9              N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/9+9/0.45,0.9+c            N=  19 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/9+9/0.3,0.7               N=  18 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/9+9/0.3,0.7+c             N=  19 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/7+12/0.35,0.85            N=  19 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.35,0.85+c          N=  20 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.45,0.9             N=  19 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.45,0.9+c           N=  20 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.3,0.7              N=  19 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.3,0.7+c            N=  20 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/3/in0.0                   N=   9 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/3/in0.4                   N=   9 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/3/in0.8                   N=   9 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/4/in0.0                   N=  12 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/4/in0.4                   N=  12 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.0s
+  n16/edge/4/in0.8                   N=  12 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.0s
+  n16/edge/5/in0.0                   N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/5/in0.4                   N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/5/in0.8                   N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/6/in0.0                   N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/6/in0.4                   N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/6/in0.8                   N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/7/in0.0                   N=  21 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/7/in0.4                   N=  21 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/7/in0.8                   N=  21 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.1s
+  n16/edge/8/in0.0                   N=  24 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/8/in0.4                   N=  24 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/8/in0.8                   N=  24 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/9/in0.0                   N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/9/in0.4                   N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/9/in0.8                   N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/10/in0.0                  N=  30 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.2s
+  n16/edge/10/in0.4                  N=  30 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.2s
+  n16/edge/10/in0.8                  N=  30 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.2s
+  n16/edge/12/in0.0                  N=  36 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.9s
+  n16/edge/12/in0.4                  N=  36 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.2s
+  n16/edge/12/in0.8                  N=  36 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.0s
+  n16/fan/1/[1.0, 2.2]               N=   6 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/1/[0.0, 2.0, 3.5]          N=   9 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/1/[1.2, 2.6, 4.0]          N=   9 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/2/[1.0, 2.2]               N=  12 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/2/[0.0, 2.0, 3.5]          N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/2/[1.2, 2.6, 4.0]          N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/fan/3/[1.0, 2.2]               N=  18 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/3/[0.0, 2.0, 3.5]          N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/fan/3/[1.2, 2.6, 4.0]          N=  27 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.1s
+  n16/pgrid/ref1/s0.05/0             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.05/1             N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.12/0             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.12/1             N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.25/0             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.25/1             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.4/0              N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.4/1              N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref2/s0.05/0             N=  45 alpha= 10 theta'>= 10.0000 gain=-0.0000 [optimal] 2.3s
+  n16/pgrid/ref2/s0.05/1             N=  45 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.6s
+  n16/pgrid/ref2/s0.12/0             N=  45 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.6s
+  n16/pgrid/ref2/s0.12/1             N=  45 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.8s
+  n16/pgrid/ref2/s0.25/0             N=  45 alpha= 10 theta'>= 10.0000 gain=-0.0000 [optimal] 1.5s
+  n16/pgrid/ref2/s0.25/1             N=  45 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 2.3s
+  n16/pgrid/ref2/s0.4/0              N=  45 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.6s
+  n16/pgrid/ref2/s0.4/1              N=  45 alpha=  9 theta'>=  9.3601 gain=+0.3601 [optimal] 2.0s
+  n16/rnd/N12/0                      N=  12 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N12/1                      N=  12 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N12/2                      N=  12 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N18/0                      N=  18 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N18/1                      N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N18/2                      N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N24/0                      N=  24 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N24/1                      N=  24 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N24/2                      N=  24 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N30/0                      N=  30 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.3s
+  n16/rnd/N30/1                      N=  30 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.3s
+  n16/rnd/N30/2                      N=  30 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.3s
+
+=== n=16  d=9.239500  (just-below-best-known)   Oler=8.3578 ===
+  n16/grid/ref1                      N=  15 alpha= 15 theta'>= 15.0000 gain=-0.0000 [optimal] 0.0s
+  n16/grid/ref2                      N=  55 alpha= 15 theta'>= 15.0000 gain=-0.0000 [optimal] 3.9s
+/home/user/r5-worktrees/theta2/experiments/packing-r5-theta2/theta2_core.py:108: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=solver, verbose=verbose, **kw)
+  n16/grid/ref3                      N= 105 alpha= 15 theta'>= 14.9662 gain=-0.0338 [optimal_inaccurate] 25.1s
+  n16/ring/m5/R0.35                  N=   5 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m5/R0.55                  N=   5 alpha=  2 theta'>=  2.2361 gain=+0.2361 [optimal] 0.0s
+  n16/ring/m7/R0.35                  N=   7 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m7/R0.55                  N=   7 alpha=  3 theta'>=  3.3177 gain=+0.3177 [optimal] 0.0s
+  n16/ring/m7/R0.75                  N=   7 alpha=  3 theta'>=  3.3177 gain=+0.3177 [optimal] 0.0s
+  n16/ring/m9/R0.35                  N=   9 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m9/R0.55                  N=   9 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/ring/m9/R0.75                  N=   9 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.0s
+  n16/ring/m9/R0.95                  N=   9 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.0s
+  n16/ring/m11/R0.35                 N=  11 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m11/R0.55                 N=  11 alpha=  3 theta'>=  3.4518 gain=+0.4518 [optimal] 0.0s
+  n16/ring/m11/R0.75                 N=  11 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.0s
+  n16/ring/m11/R0.95                 N=  11 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.0s
+  n16/ring/m13/R0.35                 N=  13 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m13/R0.55                 N=  13 alpha=  3 theta'>=  3.1060 gain=+0.1060 [optimal] 0.0s
+  n16/ring/m13/R0.75                 N=  13 alpha=  4 theta'>=  4.2011 gain=+0.2011 [optimal] 0.0s
+  n16/ring/m13/R0.95                 N=  13 alpha=  6 theta'>=  6.4042 gain=+0.4042 [optimal] 0.0s
+  n16/ring/m15/R0.35                 N=  15 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m15/R0.55                 N=  15 alpha=  3 theta'>=  3.5294 gain=+0.5294 [optimal] 0.0s
+  n16/ring/m15/R0.75                 N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/ring/m15/R0.95                 N=  15 alpha=  7 theta'>=  7.4171 gain=+0.4171 [optimal] 0.0s
+  n16/ring/m17/R0.35                 N=  17 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.0s
+  n16/ring/m17/R0.55                 N=  17 alpha=  3 theta'>=  3.2134 gain=+0.2134 [optimal] 0.1s
+  n16/ring/m17/R0.75                 N=  17 alpha=  5 theta'>=  5.5377 gain=+0.5377 [optimal] 0.1s
+  n16/ring/m17/R0.95                 N=  17 alpha=  5 theta'>=  5.5377 gain=+0.5377 [optimal] 0.1s
+  n16/ring/m19/R0.35                 N=  19 alpha=  1 theta'>=  1.0000 gain=-0.0000 [optimal] 0.1s
+  n16/ring/m19/R0.55                 N=  19 alpha=  3 theta'>=  3.5814 gain=+0.5814 [optimal] 0.1s
+  n16/ring/m19/R0.75                 N=  19 alpha=  4 theta'>=  4.5873 gain=+0.5873 [optimal] 0.1s
+  n16/ring/m19/R0.95                 N=  19 alpha=  6 theta'>=  6.2394 gain=+0.2394 [optimal] 0.1s
+  n16/ring/m21/R0.35                 N=  21 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.1s
+  n16/ring/m21/R0.55                 N=  21 alpha=  3 theta'>=  3.3177 gain=+0.3177 [optimal] 0.1s
+  n16/ring/m21/R0.75                 N=  21 alpha=  5 theta'>=  5.1515 gain=+0.1515 [optimal] 0.1s
+  n16/ring/m21/R0.95                 N=  21 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/ring/m23/R0.35                 N=  23 alpha=  1 theta'>=  1.0000 gain=+0.0000 [optimal] 0.1s
+  n16/ring/m23/R0.55                 N=  23 alpha=  3 theta'>=  3.6193 gain=+0.6193 [optimal] 0.2s
+  n16/ring/m23/R0.75                 N=  23 alpha=  5 theta'>=  5.6212 gain=+0.6212 [optimal] 0.2s
+  n16/ring/m23/R0.95                 N=  23 alpha=  7 theta'>=  7.5744 gain=+0.5744 [optimal] 0.2s
+  n16/conc/5+10/0.35,0.85            N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.35,0.85+c          N=  16 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.45,0.9             N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/5+10/0.45,0.9+c           N=  16 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/5+10/0.3,0.7              N=  15 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/5+10/0.3,0.7+c            N=  16 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+/home/user/r5-worktrees/theta2/experiments/packing-r5-theta2/theta2_core.py:108: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=solver, verbose=verbose, **kw)
+  n16/conc/7+14/0.35,0.85            N=  21 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal_inaccurate] 0.1s
+  n16/conc/7+14/0.35,0.85+c          N=  22 alpha=  5 theta'>=  5.5055 gain=+0.5055 [optimal] 0.1s
+  n16/conc/7+14/0.45,0.9             N=  21 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+14/0.45,0.9+c           N=  22 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.2s
+  n16/conc/7+14/0.3,0.7              N=  21 alpha=  4 theta'>=  4.5055 gain=+0.5055 [optimal] 0.1s
+  n16/conc/7+14/0.3,0.7+c            N=  22 alpha=  4 theta'>=  4.5055 gain=+0.5055 [optimal] 0.2s
+  n16/conc/5+11/0.35,0.85            N=  16 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.0s
+  n16/conc/5+11/0.35,0.85+c          N=  17 alpha=  6 theta'>=  6.3863 gain=+0.3863 [optimal] 0.0s
+  n16/conc/5+11/0.45,0.9             N=  16 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.1s
+  n16/conc/5+11/0.45,0.9+c           N=  17 alpha=  6 theta'>=  6.3863 gain=+0.3863 [optimal] 0.1s
+  n16/conc/5+11/0.3,0.7              N=  16 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.0s
+  n16/conc/5+11/0.3,0.7+c            N=  17 alpha=  5 theta'>=  5.3863 gain=+0.3863 [optimal] 0.1s
+  n16/conc/6+12/0.35,0.85            N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/6+12/0.35,0.85+c          N=  19 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/6+12/0.45,0.9             N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/conc/6+12/0.45,0.9+c           N=  19 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/6+12/0.3,0.7              N=  18 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/6+12/0.3,0.7+c            N=  19 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/9+9/0.35,0.85             N=  18 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/9+9/0.35,0.85+c           N=  19 alpha=  5 theta'>=  5.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/9+9/0.45,0.9              N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/9+9/0.45,0.9+c            N=  19 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/9+9/0.3,0.7               N=  18 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/9+9/0.3,0.7+c             N=  19 alpha=  4 theta'>=  4.3601 gain=+0.3601 [optimal] 0.1s
+  n16/conc/7+12/0.35,0.85            N=  19 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.2s
+  n16/conc/7+12/0.35,0.85+c          N=  20 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.45,0.9             N=  19 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.45,0.9+c           N=  20 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.3,0.7              N=  19 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.1s
+  n16/conc/7+12/0.3,0.7+c            N=  20 alpha=  4 theta'>=  4.0000 gain=-0.0000 [optimal] 0.2s
+  n16/edge/3/in0.0                   N=   9 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/3/in0.4                   N=   9 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/3/in0.8                   N=   9 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/4/in0.0                   N=  12 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/4/in0.4                   N=  12 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/4/in0.8                   N=  12 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.0s
+  n16/edge/5/in0.0                   N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/5/in0.4                   N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/5/in0.8                   N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/6/in0.0                   N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/6/in0.4                   N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.0s
+  n16/edge/6/in0.8                   N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/7/in0.0                   N=  21 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/7/in0.4                   N=  21 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/7/in0.8                   N=  21 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/8/in0.0                   N=  24 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/8/in0.4                   N=  24 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.2s
+  n16/edge/8/in0.8                   N=  24 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.2s
+  n16/edge/9/in0.0                   N=  27 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 0.3s
+  n16/edge/9/in0.4                   N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.2s
+  n16/edge/9/in0.8                   N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/edge/10/in0.0                  N=  30 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.4s
+  n16/edge/10/in0.4                  N=  30 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.4s
+  n16/edge/10/in0.8                  N=  30 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.5s
+  n16/edge/12/in0.0                  N=  36 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 1.3s
+  n16/edge/12/in0.4                  N=  36 alpha= 12 theta'>= 12.0000 gain=-0.0000 [optimal] 1.2s
+  n16/edge/12/in0.8                  N=  36 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 1.1s
+  n16/fan/1/[1.0, 2.2]               N=   6 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/1/[0.0, 2.0, 3.5]          N=   9 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/1/[1.2, 2.6, 4.0]          N=   9 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/2/[1.0, 2.2]               N=  12 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/2/[0.0, 2.0, 3.5]          N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/fan/2/[1.2, 2.6, 4.0]          N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/fan/3/[1.0, 2.2]               N=  18 alpha=  3 theta'>=  3.0000 gain=-0.0000 [optimal] 0.0s
+  n16/fan/3/[0.0, 2.0, 3.5]          N=  27 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.3s
+  n16/fan/3/[1.2, 2.6, 4.0]          N=  27 alpha=  7 theta'>=  7.3601 gain=+0.3601 [optimal] 0.2s
+  n16/pgrid/ref1/s0.05/0             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/pgrid/ref1/s0.05/1             N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.12/0             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/pgrid/ref1/s0.12/1             N=  15 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/pgrid/ref1/s0.25/0             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/pgrid/ref1/s0.25/1             N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.4/0              N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref1/s0.4/1              N=  15 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.0s
+  n16/pgrid/ref2/s0.05/0             N=  55 alpha= 11 theta'>= 11.0000 gain=-0.0000 [optimal] 9.9s
+  n16/pgrid/ref2/s0.05/1             N=  55 alpha= 11 theta'>= 11.0000 gain=-0.0000 [optimal] 8.9s
+  n16/pgrid/ref2/s0.12/0             N=  55 alpha= 10 theta'>= 10.0000 gain=-0.0000 [optimal] 8.2s
+  n16/pgrid/ref2/s0.12/1             N=  55 alpha= 11 theta'>= 11.0000 gain=-0.0000 [optimal] 6.8s
+  n16/pgrid/ref2/s0.25/0             N=  55 alpha= 11 theta'>= 11.3177 gain=+0.3177 [optimal] 7.9s
+  n16/pgrid/ref2/s0.25/1             N=  55 alpha= 10 theta'>= 10.5249 gain=+0.5249 [optimal] 7.1s
+  n16/pgrid/ref2/s0.4/0              N=  55 alpha= 11 theta'>= 11.0000 gain=-0.0000 [optimal] 6.2s
+  n16/pgrid/ref2/s0.4/1              N=  55 alpha= 10 theta'>= 10.0000 gain=-0.0000 [optimal] 7.0s
+  n16/rnd/N12/0                      N=  12 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N12/1                      N=  12 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N12/2                      N=  12 alpha=  5 theta'>=  5.0000 gain=-0.0000 [optimal] 0.0s
+  n16/rnd/N18/0                      N=  18 alpha=  7 theta'>=  7.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N18/1                      N=  18 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N18/2                      N=  18 alpha=  6 theta'>=  6.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N24/0                      N=  24 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N24/1                      N=  24 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.2s
+  n16/rnd/N24/2                      N=  24 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.1s
+  n16/rnd/N30/0                      N=  30 alpha=  9 theta'>=  9.0000 gain=-0.0000 [optimal] 0.3s
+  n16/rnd/N30/1                      N=  30 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.3s
+  n16/rnd/N30/2                      N=  30 alpha=  8 theta'>=  8.0000 gain=-0.0000 [optimal] 0.3s
+
+done, elapsed 327 s
