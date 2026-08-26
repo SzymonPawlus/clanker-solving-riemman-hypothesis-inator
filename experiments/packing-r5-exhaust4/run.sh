@@ -42,6 +42,7 @@ echo "=== 2. fixed rational sides: how far down in a ==="
 python3 -m eo4 --n 9 --t 20/59    --max-level  8 --time-limit 900 --out out/closed-a2.95.json
 python3 -m eo4 --n 9 --t 100/297  --max-level  9 --time-limit 900 --out out/closed-a2.97.json
 python3 -m eo4 --n 9 --t 100/299  --max-level 12 --time-limit 900 --out out/closed-a2.99.json
+python3 -m eo4 --n 9 --t 200/599   --max-level 13 --time-limit 900 --out out/closed-a2.995.json
 python3 -m eo4 --n 9 --t 1000/2999 --max-level 15 --time-limit 900 --out out/closed-a2.999.json
 
 echo "=== 3. the uniform (strict) target, which provably never closes ==="
