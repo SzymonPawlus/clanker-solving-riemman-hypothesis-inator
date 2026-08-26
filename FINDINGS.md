@@ -137,6 +137,25 @@ Any partition-and-capacity closure is therefore forced onto **non-triangular pie
 constraint on the covering route, and the worker that found it could not locate it anywhere in the
 repo.
 
+### The manager deleted a live worker's worktree — for the second time, one round after recording the lesson
+`issue #110` · process finding
+
+Round 4: the manager ran `git worktree remove --force` across all lanes while the theta-prime
+worker was still running, then recorded its lane as destroyed. It had recovered on its own. That
+was written into `FINDINGS.md` with the lesson "do not reclaim worktrees until every dispatched
+worker has reported."
+
+**Round 5: the same thing happened again.** The `r5-eo7` worker had not reported when the manager
+cleaned up `/home/user/r5-worktrees/`; its worktree was deleted underneath it near the end of its
+run. It recovered again — recreated the worktree with `git worktree add`, re-verified that every
+result reproduced identically, and committed. The manager had, in the same turn, told the user that
+worktrees were "cleaned only after every worker confirmed", which was false.
+
+Worth recording precisely because the first instance was already written down. A lesson recorded in
+`FINDINGS.md` and then repeated one round later is evidence that the write-up was not the
+mechanism that would prevent it; a check before the destructive command is. The recovery both times
+came from the worker, not the manager.
+
 ### AE delivered its finite object, then refuted its own forcing hypothesis
 `issue #110` · `attacks/r5-eo7/` · `numerical` + one `refuted`
 
@@ -144,9 +163,13 @@ Proposal AE, ranked first for round 5, asked for two things: a certified finite 
 theorem at `k = 7`, and one named falsifiable hypothesis bridging it to EO(7). Both were delivered,
 and the second was then **measured and killed**.
 
-**Theorem L** (`numerical`, certified 3-parameter interval branch-and-bound): any set in `T(a')`,
-`a' < 6`, with pairwise distances `>= 1` that is `h`-line-structured for `h >= sqrt3/2` — which
-every unit-separation lattice is — has **at most 25 points**. The `k = 7` target is `<= 26`, so it
+**Theorem L** (`numerical`, certified 3-parameter interval branch-and-bound, 175 boxes, 0.6 s): any
+set in `T(a')`, `a' < 6`, with pairwise distances `>= 1` that is `h`-line-structured for
+`h >= sqrt3/2` has **at most 25 points**. It is **stronger than AE asked for**: it never uses
+"lattice" at all, only "on equally spaced lines", with the lattice case following as a corollary by
+Lagrange reduction. The worker also re-derived AE's "3 parameters" independently and reports they
+are **not the ones AE meant**. AE's "22" was reproduced *and* then certified exactly in `Q(sqrt3)`:
+22 points at separation exactly 1 in `T(5999/1000)`, via the Pythagorean rotation `(493,276,565)`. The `k = 7` target is `<= 26`, so it
 closes the line-structured case with one point of slack. Validated against `cited` `k = 4, 5, 6`
 (all close) and honestly reporting that `k = 3` **does not**. An exact `Q(sqrt3)` witness places 22
 points in `T(5999/1000)`, bracketing the truth in `[22, 25]`.
