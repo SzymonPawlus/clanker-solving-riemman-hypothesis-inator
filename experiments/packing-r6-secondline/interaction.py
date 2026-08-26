@@ -18,7 +18,7 @@ if __name__ == "__main__":
     rows = []
     for a in aa:
         B, argB = OF.scan(a, 0.0, cap="floor", hmax=a + 0.6)
-        M, infoM = TF.sweep(a)
+        M, infoM = TF.sweep(a, nphi=31, nbeta=6, nh=12, nt=36)
         rows.append({"a": a, "B_one_family": B, "M_two_family": M, "interaction_gain": B - M,
                      "argB_phi_deg": __import__("math").degrees(argB[0]), "argB_h": argB[1],
                      "argM": infoM})
