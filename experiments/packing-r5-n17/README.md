@@ -13,7 +13,8 @@ parser (`parse_exact.py`), my own checker written from the problem `README.md`/`
 of `experiments/packing-r4-famcert/generator.py` (`famgen.py`), not from its code.
 
 `famgen.py` is confirmed to emit the same point sets as the original generator for `j = 0..5`
-(that cross-check is in the report, not in `run_all.py`); everything else is independent.
+(`xcheck_generator.py`, the one place this audit touches the other lane's code, and a transcription
+check only); everything else is independent and no verdict depends on their code.
 
 **Result.** Both configurations are feasible, tight and minimally-spaced at all three `n`.
 `n = 24` is identical; `n = 31` differs by exactly one rattler sliding on the bottom edge;
@@ -40,6 +41,7 @@ committed at `out/run_all.txt`; per-step transcripts at `out/*.txt`, machine-rea
 | `checker.py` | feasibility, containment, exact minimal enclosing side, contacts, boundary, rattlers, exact free-radius bracket |
 | `selftest.py` | **validation gate**: `n = 3, 4, 6, 10` proven optima + 5 negative controls |
 | `famgen.py` | independent transcription of the four-grain generator |
+| `xcheck_generator.py` | transcription check of `famgen.py` against the original generator |
 | `symmetry.py` | the 6 exact isometries of the fixed triangle, as affine maps over `Q(√3)` |
 | `audit.py` | the main comparison at `n = 17, 24, 31` |
 | `diffs.py` | which points differ; per-point contacts/walls/mobility; degree histograms |

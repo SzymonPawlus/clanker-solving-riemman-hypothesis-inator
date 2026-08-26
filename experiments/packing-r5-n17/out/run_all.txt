@@ -38,6 +38,16 @@ NC5 duplicate point (expect ok=False) ok=False tight=True  minsq=0          cont
       FAIL: pair (0,1) sq dist 0 < 4
 
 ##############################################################################
+# 1b. transcription check: my generator vs the r4-famcert generator, j = 0..5
+##############################################################################
+j=0 n=4   same order: True    same set: True
+j=1 n=7   same order: True    same set: True
+j=2 n=12  same order: True    same set: True
+j=3 n=17  same order: True    same set: True
+j=4 n=24  same order: True    same set: True
+j=5 n=31  same order: True    same set: True
+
+##############################################################################
 # 2. main audit: cert vs generator at n = 17, 24, 31
 ##############################################################################
 ==============================================================================

@@ -10,6 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STEPS = [
     ("0. parser self-test (accepts Q(sqrt3), rejects decimals/other fields)", "parse_exact.py"),
     ("1. checker validation: 4 proven instances + 5 negative controls", "selftest.py"),
+    ("1b. transcription check: my generator vs the r4-famcert generator, j = 0..5", "xcheck_generator.py"),
     ("2. main audit: cert vs generator at n = 17, 24, 31", "audit.py"),
     ("3. structural diff (which points differ, mobility, degree histograms)", "diffs.py"),
     ("4. exact infinitesimal rigidity ranks and slide intervals", "rigid_run.py"),
