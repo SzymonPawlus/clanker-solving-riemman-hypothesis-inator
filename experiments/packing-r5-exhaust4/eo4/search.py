@@ -146,6 +146,43 @@ class Prover:
             yield child
 
     # ---- driver ----------------------------------------------------------
+    def run_enumerate(self, node_limit=None, time_limit=None, checkpoint=None):
+        """Do NOT stop at the first survivor: collect every max-level leaf that
+        no rule refutes.  This is the finite reduction AF asks for -- the set of
+        occupancy profiles that survive at resolution `max_level`."""
+        t0 = time.time()
+        root = ((geom.root_cell(), self.n),)
+        survivors = []
+        if self.node_refuted(root):
+            return {"outcome": "proved", "survivors": [], "nodes": 1,
+                    "seconds": round(time.time() - t0, 2)}
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            self.nodes += 1
+            if node_limit and self.nodes > node_limit:
+                return {"outcome": "nodelimit", "survivors": survivors,
+                        "nodes": self.nodes, "frontier": len(stack),
+                        "seconds": round(time.time() - t0, 2)}
+            if time_limit and (self.nodes & 1023) == 0 and time.time() - t0 > time_limit:
+                return {"outcome": "timeout", "survivors": survivors,
+                        "nodes": self.nodes, "frontier": len(stack),
+                        "seconds": round(time.time() - t0, 2)}
+            if min(c[0][0] for c in node) >= self.max_level:
+                survivors.append(node)
+                continue
+            for child in self.branch(node):
+                if not self.node_refuted(child):
+                    stack.append(child)
+            if checkpoint and (self.nodes & 65535) == 0:
+                with open(checkpoint, "w") as f:
+                    json.dump({"nodes": self.nodes, "frontier": len(stack),
+                               "survivors": len(survivors),
+                               "seconds": round(time.time() - t0, 1)}, f)
+        return {"outcome": ("proved" if not survivors else "survivors"),
+                "survivors": survivors, "nodes": self.nodes,
+                "seconds": round(time.time() - t0, 2)}
+
     def run(self, node_limit=None, time_limit=None, checkpoint=None):
         t0 = time.time()
         root = ((geom.root_cell(), self.n),)
