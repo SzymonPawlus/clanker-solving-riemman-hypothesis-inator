@@ -1,0 +1,9 @@
+{
+ "n": 28,
+ "side_a": 6,
+ "all_inside_closed_T6": true,
+ "min_pairwise_squared_distance": "1",
+ "separation_ok(>=1)": true,
+ "coordinate_type": "exact: x rational, y = Y*sqrt3 with Y rational",
+ "conclusion": "T(6) contains 28 points at pairwise distance >= 1, so ANY correct upper bound at a = 6 is >= 28.  A target of <= 26 at a = 6 is unreachable."
+}

@@ -72,3 +72,32 @@ if __name__ == "__main__":
             print(json.dumps(rows[-1]), flush=True)
         json.dump({"convention": "CAP-CEIL at a=6 (r5-eo7)", "rows": rows},
                   open("out/repro_r5eo7_delta.json", "w"), indent=1)
+
+
+def validate():
+    """Validate the relaxation on the cited cases k = 4,5,6 (and 3,7), CAP-CEIL at a = k-1."""
+    out = []
+    for k in (3, 4, 5, 6, 7):
+        a = float(k - 1)
+        tgt = k * (k + 1) // 2 - 2
+        b, arg = scan(a, 0.0, cap="ceil", hmax=a + 0.6)
+        out.append({"k": k, "a": a, "EO_target": tgt, "relaxation_max": b, "closes": b <= tgt,
+                    "arg_phi_deg": math.degrees(arg[0]), "arg_h": arg[1], "arg_theta": arg[2]})
+        print(json.dumps(out[-1]), flush=True)
+    json.dump(out, open("out/validate_one_family.json", "w"), indent=1)
+    return out
+
+
+def window(a, cap="floor", tgt=26, lo=0.0, hi=0.5, iters=26, **kw):
+    """Largest delta for which the scanned max is <= tgt (bisection; monotone in delta)."""
+    b0, _ = scan(a, lo, cap=cap, **kw)
+    if b0 > tgt:
+        return 0.0, b0
+    for _ in range(iters):
+        mid = 0.5 * (lo + hi)
+        b, _ = scan(a, mid, cap=cap, **kw)
+        if b <= tgt:
+            lo = mid
+        else:
+            hi = mid
+    return lo, b0
