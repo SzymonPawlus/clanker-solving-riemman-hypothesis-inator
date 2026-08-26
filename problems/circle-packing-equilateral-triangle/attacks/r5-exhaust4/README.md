@@ -24,13 +24,15 @@ Code: [`experiments/packing-r5-exhaust4/`](../../../../experiments/packing-r5-ex
 | 4 | $d(9) > 5.998$ ($a > 2.999$) — beyond the repo's previous best of 5.9 | `numerical` | 2 451 670 nodes, 497 s |
 | 5 | **No dyadic cell exhaustion with these rules can ever prove EO(4)** — an explicit node survives at *every* level | `sketch` + exact witness | §4, proved for all $L$ |
 | 6 | **The dyadic pigeonhole closes EO($k$) if and only if $k \le 3$** | `sketch` (mine) | §4.4, two lines |
-| 7 | The endgame on $(2.95, 3)$ is **not** reachable by this family; it reduces to a *partition-capacity* question that is not dyadic | `sketch` | §6 |
+| 7 | The endgame at $a \to 3$ is **not** reachable by this family; it reduces to a *partition-capacity* question that is not dyadic | `sketch` | §6 |
 
 **Kill-criterion verdict (see [`KILL-CRITERION.md`](KILL-CRITERION.md)): fired, in the
 informative direction.** AF pre-declared a ceiling at $k = 6$. The measured and then *proved*
-ceiling is $k = 3$. The "measured-cheap exhaustion to $a > 2.95$" half of AF is cheap and was
-delivered; the "near-lattice endgame on $(2.95,3)$" half is not merely expensive — it is
-unreachable by any amount of refinement, for a reason that is exhibited explicitly.
+ceiling is $k = 3$. AF's "measured-cheap exhaustion to $a > 2.95$" half is cheap and was
+over-delivered — $a > 2.999$, and the cost curve is mild enough that any $a<3$ looks affordable.
+AF's "near-lattice endgame on $(2.95,3)$" half is **not expensive at all; it is unreachable**, by
+Theorem 2, at any resolution and any budget. The whole difficulty of EO(4) sits at $a = 3$ exactly
+and is invisible to every $a < 3$.
 
 ---
 
