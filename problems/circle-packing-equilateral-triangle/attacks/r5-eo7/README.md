@@ -207,7 +207,7 @@ progress file and the final JSON records the stalled boxes.
 
 | $k$ | $a = k-1$ | $n = \Delta(k)-1$ | EO target $\le \Delta(k)-2$ | Lemma A (R1) | **best certified** | boxes | s |
 |---|---|---|---|---|---|---|---|
-| 3 | 2 | 5 | 4 | 4 | **fails** (stalls at 5) | 345 | 0.8 |
+| 3 | 2 | 5 | 4 | 4 | **fails** (1 box stalls at 5) | 345 | 5.8 |
 | 4 | 3 | 9 | 8 | 7 | **8** ✓ | 49 | 0.3 |
 | 5 | 4 | 14 | 13 | 11 | **13** ✓ | 67 | 0.8 |
 | 6 | 5 | 20 | 19 | 16 | **18** ✓ | 181 | 0.8 |
