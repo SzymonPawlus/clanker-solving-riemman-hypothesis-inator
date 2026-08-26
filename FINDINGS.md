@@ -106,6 +106,62 @@ of the hull. *Beating Oler needs a differently-shaped conclusion, not a cleverer
 usable filter on future proposals, and it is the first time this project has been able to say why
 a whole class fails rather than that it did.
 
+### The Jump Lemma: continuity, not affineness, is what blocks the Delta(k)-1 cases
+`issue #110` · `attacks/r6-interaction/` · `sketch` (elementary, possibly folklore)
+
+`r4-dual` proved that no bound **affine in (area, perimeter)** can beat Oler. Round 6 found the
+strictly larger statement, and it is embarrassingly short:
+
+> Every valid bound `B(a) >= N(a)` satisfies `B(k-1) >= Delta(k)`, because the triangular lattice in
+> `T(k-1)` is an explicit witness with `Delta(k)` points. Proving `EO(k)` requires
+> `B(a) < Delta(k) - 1` for `a < k-1`. So `B` must have a **left jump of size greater than 1** at
+> `a = k-1`. Any `B` that is left-continuous there — **whatever the shape of its conclusion** —
+> cannot prove `EO(k)`.
+
+It assumes nothing and does not presuppose `EO(k)`.
+
+**The dichotomy this exposes had been conflated by every round before it.** Verified against the
+`cited` `s(n)` table across the whole proven range: **every jump of the true counting function of
+size 2 sits at `a = k-1`; every other jump has size 1.** Therefore
+
+- at `n = 16, 17, 18, 19` (jump 1), continuity is **no obstruction at all** — continuous methods are
+  not doomed there, and five rounds of treating those cases as equally hopeless was wrong;
+- at `Delta(k) - 1` (jump 2) continuity is a **total** obstruction, and the "missing +1" the repo
+  has chased since round 4 is precisely *one half of a jump of two* — the half continuity cannot
+  supply.
+
+**Classification of the repo's own methods falls out.** Every *discontinuous* method it has built
+has its jump **mislocated**: the new C2 shape jumps at `sqrt8` instead of 3; `r5-cover4`'s covering
+refutation jumps at ~2.99999 instead of 3; `r5-eo7`'s delta-perturbation jumps the *wrong way*.
+Every continuous method has no jump at all. **Only rigidity/uniqueness arguments locate the jump
+exactly — and that is the one family the repo has never mechanised.**
+
+That is the first thing resembling a research direction, rather than another refutation, that this
+project has produced on the lower-bound side.
+
+### A measured ceiling for the whole (area, perimeter) conclusion class
+`issue #110` · `attacks/r6-interaction/` §4 · `numerical`
+
+The one candidate shape that survived screening — `n <= f*(A, M)` with `f*` the true max count at
+given hull area and perimeter, which is **not** affine — was pushed to its ceiling with explicitly
+constructed lattice families (separation and hull verified):
+
+| n | best the whole (A,M) class can give | Oler | best known construction |
+|---|---|---|---|
+| 16 | `d >= 8.4853` | 8.3578 | 9.2495 |
+| 9 | ceiling 2.8284 (target 3) | — | — |
+| 20 | ceiling 4.8990 (target 5) | — | — |
+
+So escaping affineness is **possible and worth a bounded amount** — about **14 %** of the `n = 16`
+gap — and **exactly zero at every triangular `n`**, where the ceiling equals Oler identically. It
+closes **neither** EO(4) nor EO(6). This is a ceiling on a method class, **not** an achieved bound:
+nothing here proves `d(16) >= 8.4853`.
+
+The lane also caught and reported its own error: its first version minimised over all integer
+`(r, M)` with `r + M = 2(n-1)`, which is unsound because such a pair need not be realisable, and it
+had indeed reported unrealisable pairs at `n = 23` and `n = 34`. Replaced by explicitly constructed
+configurations.
+
 ### Both counting routes to a reconstructible case are dead, for different reasons
 `issue #110` · `attacks/r5-cover4/`, `attacks/r5-exhaust4/` · direction closed
 
