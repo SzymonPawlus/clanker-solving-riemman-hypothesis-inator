@@ -1,0 +1,15 @@
+{
+ "outcome": "proved",
+ "n": 9,
+ "t": "20/59",
+ "strict": false,
+ "max_level": 8,
+ "use_oler": true,
+ "oler_refused": false,
+ "use_symmetry": true,
+ "max_cited": 8,
+ "nodes": 569301,
+ "frontier": 0,
+ "seconds": 107.98,
+ "witness_node": null
+}
