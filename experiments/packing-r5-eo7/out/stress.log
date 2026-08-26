@@ -1,0 +1,7 @@
+jitter 0.10 -> max sustained line defect 0.0000
+jitter 0.25 -> max sustained line defect 0.0000
+/home/user/r5-worktrees/eo7/experiments/packing-r5-eo7/probe_forcing.py:49: RuntimeWarning: divide by zero encountered in divide
+  w = np.clip(viol, 0, None) / d
+/home/user/r5-worktrees/eo7/experiments/packing-r5-eo7/probe_forcing.py:50: RuntimeWarning: invalid value encountered in multiply
+  step = (D * w[:, :, None]).sum(axis=1) * 0.35
+jitter 0.50 -> max sustained line defect 0.0000
