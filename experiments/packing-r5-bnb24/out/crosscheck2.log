@@ -1,0 +1,6 @@
+n=12 d=5/1 L=4: arbb=unsat (1 nodes)  reference=unsat (1 nodes)  AGREE
+n=12 d=55/10 L=4: arbb=unsat (766 nodes)  reference=unsat (3 nodes)  AGREE
+n=12 d=6/1 L=4: arbb=unsat (2256 nodes)  reference=unsat (2379 nodes)  AGREE
+n=12 d=62/10 L=4: arbb=unsat (7249 nodes)  reference=unsat (4229 nodes)  AGREE
+n=12 d=63/10 L=4: arbb=unsat (7249 nodes)  reference=unsat (4229 nodes)  AGREE
+n=12 d=65/10 L=4: arbb=sat (2035 nodes)  reference=sat (1307 nodes)  AGREE
