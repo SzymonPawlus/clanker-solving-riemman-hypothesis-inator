@@ -4,3 +4,4 @@ CLARABEL m=3 D=6 d=3.4641: lam=nan [solver-error:Solver 'CLARABEL' failed. Try a
 SCS m=3 D=6 d=3.4641: lam=715.04060 [optimal_inaccurate] 120.2s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}
 CLARABEL m=3 D=6 d=4.0: lam=nan [infeasible] 1.2s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}
 SCS m=3 D=6 d=4.0: lam=nan [infeasible] 8.3s sizes={'m': 3, 'D': 6, 'K': 10, 'sig0': 10, 'sig_i': 6, 'tau0': 35, 'tau_i': 15, 'tau_h': 15, 'eqs2': 28, 'eqs4': 210}
+CLARABEL m=3 D=8 d=3.4641: lam=4.91795 [optimal_inaccurate] 82.1s sizes={'m': 3, 'D': 8, 'K': 10, 'sig0': 15, 'sig_i': 10, 'tau0': 70, 'tau_i': 35, 'tau_h': 35, 'eqs2': 45, 'eqs4': 495}

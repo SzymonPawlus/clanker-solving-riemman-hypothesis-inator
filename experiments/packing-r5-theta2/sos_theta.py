@@ -126,7 +126,7 @@ def block_map(basis, g: dict, idx: dict, nmon: int):
     return sp.csr_matrix((vals, (rows, cols)), shape=(nmon, k * k))
 
 
-def build_sos(m: int, rho: float, lam_fixed: float | None = None, D: int | None = None):
+def build_sos(m: int, rho, lam_fixed: float | None = None, D: int | None = None):
     """Assemble the SDP.  Returns (problem, variables dict).
 
     `m`  : bidegree of the kernel Z (so rank Z <= C(m+2,2); see Lemma 4 of r4-theta).
@@ -138,6 +138,7 @@ def build_sos(m: int, rho: float, lam_fixed: float | None = None, D: int | None 
     """
     ONE2 = (0, 0)
     ONE4 = (0, 0, 0, 0)
+    param_rho = (rho is None)
     if D is None:
         D = 2 * m
     assert D >= 2 * m and D % 2 == 0
@@ -191,7 +192,6 @@ def build_sos(m: int, rho: float, lam_fixed: float | None = None, D: int | None 
 
     # ---- (P2) on Sigma, 4 variables --------------------------------------------------
     G = triangle_gs(4, 0) + triangle_gs(4, 2)
-    h = sep_h(rho)
     c0 = monomials(4, D // 2)
     c1 = monomials(4, (D - 1) // 2)
     c2 = monomials(4, (D - 2) // 2)
@@ -200,16 +200,29 @@ def build_sos(m: int, rho: float, lam_fixed: float | None = None, D: int | None 
     N0 = cp.Variable((len(c0), len(c0)), PSD=True)
     blocks["tau0"] = N0
     acc4 = block_map(c0, {ONE4: 1.0}, idx4, len(mon4)) @ cp.vec(N0, order="C")
-    for i, g in enumerate(G + [h]):
-        bas = c1 if i < len(G) else c2
-        Ni = cp.Variable((len(bas), len(bas)), PSD=True)
+    for i, g in enumerate(G):
+        Ni = cp.Variable((len(c1), len(c1)), PSD=True)
         blocks[f"tau{i+1}"] = Ni
-        acc4 = acc4 + block_map(bas, g, idx4, len(mon4)) @ cp.vec(Ni, order="C")
+        acc4 = acc4 + block_map(c1, g, idx4, len(mon4)) @ cp.vec(Ni, order="C")
+    # separation constraint h = ||u-v||^2 - rho^2: split off the rho-dependent part so
+    # rho^2 can be a cvxpy Parameter and ONE compiled problem serves every d in a
+    # bisection (DPP permits parameter-times-variable).
+    N7 = cp.Variable((len(c2), len(c2)), PSD=True)
+    blocks["tau7"] = N7
+    Sq = block_map(c2, sep_h(0.0), idx4, len(mon4))
+    Sc = block_map(c2, {ONE4: 1.0}, idx4, len(mon4))
+    rho2p = None
+    if param_rho:
+        rho2p = cp.Parameter(nonneg=True)
+        acc4 = acc4 + Sq @ cp.vec(N7, order="C") - rho2p * (Sc @ cp.vec(N7, order="C"))
+    else:
+        acc4 = acc4 + Sq @ cp.vec(N7, order="C") - (rho * rho) * (Sc @ cp.vec(N7, order="C"))
     cons.append(lhs4 == acc4)
 
     obj = cp.Minimize(lam if lam_fixed is None else cp.Constant(0.0))
     prob = cp.Problem(obj, cons)
     blocks["lam"] = lam
+    blocks["rho2p"] = rho2p
     blocks["sizes"] = {"m": m, "D": D, "K": K, "sig0": len(b0), "sig_i": len(b1),
                        "tau0": len(c0), "tau_i": len(c1), "tau_h": len(c2),
                        "eqs2": len(mon2), "eqs4": len(mon4)}
@@ -305,3 +318,34 @@ def repair_bound(C: np.ndarray, m: int, d: float, ngrid: int = 90, nsep: int = 4
     b = -worst
     return {"A": A, "max_offdiag": worst, "b": b,
             "lam_repaired": (A / b + 1.0) if b > 0 else float("inf")}
+
+
+# ------------------------------------------------------------------ cached driver
+_CACHE = {}
+
+
+def solve_lambda_cached(m: int, D: int, d: float, solver="CLARABEL", eps=1e-7,
+                        max_iters=400000, time_limit=None):
+    """Same SDP as `solve_lambda`, but the compiled problem is cached per (m, D) and only
+    rho^2 changes between solves -- so a bisection in d costs one compile, not many."""
+    key = (m, D)
+    if key not in _CACHE:
+        _CACHE[key] = build_sos(m, None, D=D)
+    prob, B = _CACHE[key]
+    rho = 2.0 / d
+    B["rho2p"].value = rho * rho
+    kw = {}
+    if solver == "SCS":
+        kw = dict(eps=eps, max_iters=max_iters)
+        if time_limit:
+            kw["time_limit_secs"] = float(time_limit)
+    try:
+        prob.solve(solver=solver, **kw)
+    except Exception as exc:
+        return {"m": m, "D": D, "d": d, "rho": rho, "lam": float("nan"),
+                "status": f"solver-error:{exc}", "sizes": B["sizes"], "C": None}
+    lam = B["lam"].value
+    return {"m": m, "D": D, "d": d, "rho": rho,
+            "lam": float(lam) if lam is not None else float("nan"),
+            "status": str(prob.status), "sizes": B["sizes"],
+            "C": None if B["C"].value is None else np.asarray(B["C"].value)}
