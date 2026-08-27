@@ -16,7 +16,7 @@ This note distinguishes two statements which must not be conflated:
 Only the first statement is addressed by the counterexample below.  Nothing
 here is a counterexample to the Square Peg Problem.
 
-## Configuration space and the collision boundary
+## Graceful-sector configuration space and the collision boundary
 
 Fix an oriented embedding `gamma : S^1 -> R^2`.  Write the compact cyclic-gap
 space as
@@ -27,8 +27,11 @@ K = {(t,a1,a2,a3,a4) : ai >= 0 and a1+a2+a3+a4 = 1},
 
 where the four parameters are `t`, `t+a1`, `t+a1+a2`, and
 `t+a1+a2+a3`, modulo one.  Its interior is the cyclically ordered
-configuration space.  For `pi = gamma(ti)`, one exact four-scalar square test
-is
+configuration space.  This is the **graceful/cyclic sector**: it requires the
+four vertices to occur in square order along the curve.  The classical Square
+Peg Problem does not require curve order, so this sector is sufficient for a
+classical square but does not exhaust all classical square configurations.
+For `pi = gamma(ti)`, one exact four-scalar square test is
 
 ```text
 p1+p3-p2-p4 = 0,                         (two scalars)
@@ -38,7 +41,7 @@ p1+p3-p2-p4 = 0,                         (two scalars)
 
 The first equation gives a parallelogram; the last two make its adjacent
 edges perpendicular and equal.  A nonzero solution is therefore an ordered
-square.
+graceful ordered square, and hence also a square in the classical sense.
 
 Suppose compatibly oriented parametrizations `gamma_n` converge uniformly to
 an embedding `gamma`, and `gamma_n` has ordered squares with side at least
@@ -295,7 +298,9 @@ bounds on the *lengths* of both boundary routes, not merely their diameters.
 
 ## Why a parametrization modulus still does not select a macroscopic square
 
-Asano--Ike's actual ambient class is broader than the two corollaries above.
+The following literature comparison remains `sketch` pending the required
+Claude or human review.  Asano--Ike's actual ambient class is broader than the
+two corollaries above.
 Their Theorem 1.1 assumes smooth embeddings `c_n -> c` in parametrized `C^0`
 and locally uniform convergence of primitives of `(c_n o e)^*lambda`; they
 call this a continuous Legendrian lift.  Proposition 5.8 verifies it for
@@ -322,6 +327,11 @@ parameter modulus.  It must instead retain the parity/cobordism class of the
 square family and prove that this class cannot be supported entirely near the
 total-collision face, or impose a genuinely local geometric obstruction (such
 as the finite-total-curvature `pi`-turning radius above).  At Hoelder exponent
-above `1/2`, primitive convergence may also follow from Young-integration
-estimates, so the genuinely uncovered regime to audit is at or below the
-critical exponent and outside Asano--Ike's continuous-Legendrian-lift class.
+above `1/2`, there is an additional caveat: uniform `alpha`-Hoelder bounds and
+uniform convergence imply convergence in every lower `beta`-Hoelder norm;
+choosing `1/2 < beta < alpha`, continuity of the Young integral should then
+give convergence of the Liouville primitives.  This Young-integral bridge is
+itself only a `sketch` here and must be checked against the exact smoothing
+and periodic-primitive normalization in Asano--Ike.  The genuinely uncovered
+regime to audit is therefore at or below the critical exponent and outside
+their continuous-Legendrian-lift class.
