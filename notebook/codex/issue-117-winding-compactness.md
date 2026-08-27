@@ -88,6 +88,11 @@ gives
 integral_L lambda_0 = integral_R2 wind(L,z) dz.
 ```
 
+This is the smooth-form specialization of the main theorem of J. Cufí and
+J. Verdera, *A general form of Green Formula and Cauchy Integral Theorem*,
+[arXiv:1306.6832](https://arxiv.org/abs/1306.6832), which applies to arbitrary
+closed rectifiable planar curves.
+
 This identity does **not** require the closing chord to meet the open arc only
 finitely many times.  In current language, the loop is an integral
 one-cycle and its index is the integer-valued multiplicity of the bounded
