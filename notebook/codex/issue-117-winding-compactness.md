@@ -188,8 +188,10 @@ integral_arm lambda_0
 ```
 
 Choosing `N` comparable to `r^(-2)` makes (5) order one while `r->0`.  A
-nearby return arm, traversed in reverse and separated by
-`h=r/(100N)`, makes a thin Jordan strip.  The two arm actions cancel up to
+nearby return arm, traversed in reverse and separated radially by
+`h=r/(100N)`, makes a thin Jordan strip.  The radial pitch per turn of the
+first arm is `r/(2N)`, so `h` is strictly below the pitch and the two arms are
+disjoint.  The two arm actions cancel up to
 
 ```text
 (3 pi/2) N r h - pi N h^2 = O(r^2),                         (6)
@@ -198,10 +200,13 @@ nearby return arm, traversed in reverse and separated by
 so the full Jordan domain can have vanishing local area even though the
 primitive makes an order-one excursion along one arm.
 
-Thus the winding hypothesis correctly rejects the critical action bubble:
-here `K` must grow like `N`.  Conversely, replacing the pointwise assumption
-by a bound only on the signed integral of the winding function is insufficient,
-because (6) exhibits cancellation between large opposite subarc actions.
+Thus (5) is the actual equicontinuity obstruction: an order-one primitive
+excursion occurs on an arm of diameter `O(r)`.  The winding hypothesis
+correctly rejects that critical action bubble because `K` must grow like `N`.
+Equation (6) has a different role: it shows why the vanishing area, or signed
+winding integral, of the completed Jordan strip does not detect the bad
+subarc.  Consequently, replacing the pointwise assumption by a global signed
+integral bound is insufficient.
 
 ## Scope and unresolved variants
 
