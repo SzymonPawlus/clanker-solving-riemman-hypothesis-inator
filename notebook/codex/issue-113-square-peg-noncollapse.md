@@ -351,3 +351,69 @@ itself only a `sketch` here and must be checked against the exact smoothing
 and periodic-primitive normalization in Asano--Ike.  The genuinely uncovered
 regime to audit is therefore at or below the critical exponent and outside
 their continuous-Legendrian-lift class.
+
+### Candidate coverage kill for all planar bounded-turning curves
+
+The following synthesis is `sketch` and verification-critical; it combines
+several cited results but is not stated verbatim in any one source.
+
+Let `Gamma` be a planar bounded-turning Jordan curve.  By the planar
+quasicircle criterion it is a quasicircle.  Herron--Meyer, *Quasicircles and
+Bounded Turning Circles Modulo bi-Lipschitz Maps*, Theorem (B), Corollary 4.6,
+and the first sentence of their proof of Theorem (C), give:
+
+1. its Assouad dimension `q` is strictly less than `2`; and
+2. for any `sigma > 2^(-1/q)` it is bi-Lipschitz equivalent to a dyadic
+   snowflake model `S_sigma`.
+
+Choose `q < p < 2` and
+
+```text
+2^(-1/q) < sigma < 2^(-1/p).
+```
+
+The natural dyadic parametrization sends an interval of length `2^(-n)` to
+an arc of diameter at most a constant times `sigma^n`.  It is therefore
+`alpha`-Hoelder for
+
+```text
+alpha = log(1/sigma)/log(2) > 1/p.
+```
+
+For every ordered partition `(t_i)`,
+
+```text
+sum |gamma(t_(i+1))-gamma(t_i)|^p
+    <= H^p sum |t_(i+1)-t_i|^(alpha p) <= H^p.
+```
+
+The bi-Lipschitz map transfers this finite `p`-variation parametrization to
+`Gamma`.
+
+It remains to match Asano--Ike's smooth-approximation hypothesis, rather than
+merely define the Young integral on `gamma`.  Boedihardjo--Geng, *Simple
+Piecewise Geodesic Interpolation of Simple and Jordan Curves with
+Applications*, Theorem 2.2, constructs arbitrarily fine partitions whose
+piecewise-linear interpolants `gamma^P` are Jordan curves.  Their Lemma 3.1(2)
+says that for every `r>p`,
+
+```text
+||gamma^P-gamma||_(r-var) -> 0.
+```
+
+Choose `p<r<2`.  Each finite Jordan polygon can be rounded inside pairwise
+disjoint vertex disks to a smooth Jordan curve.  For a fixed polygon, making
+the disks sufficiently small makes the sum of the variations of all rounding
+errors arbitrarily small; hence the rounding error tends to zero in
+`r`-variation.  The resulting smooth embeddings `c_n` converge to `gamma` in
+`r`-variation and thus uniformly.  Young's inequality, applied to the
+bilinear coordinate expression for the Liouville form, then makes the
+cumulative primitives converge uniformly on one period.  Their period
+increments converge as well, giving locally uniform convergence on `R`.
+
+This is exactly the approximation-and-primitive condition in Asano--Ike
+Theorem 1.1.  Subject to independent checking of the dyadic Hoelder estimate
+and the corner-rounding variation bound, **every planar bounded-turning curve
+is therefore already in the Asano--Ike class**.  If confirmed, no
+bounded-turning or planar-quasicircle subclass can furnish a new Square Peg
+existence theorem through this attack.
