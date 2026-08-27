@@ -359,32 +359,33 @@ several cited results but is not stated verbatim in any one source.
 
 Let `Gamma` be a planar bounded-turning Jordan curve.  By the planar
 quasicircle criterion it is a quasicircle.  Herron--Meyer, *Quasicircles and
-Bounded Turning Circles Modulo bi-Lipschitz Maps*, Theorem (B), Corollary 4.6,
-and the first sentence of their proof of Theorem (C), give:
+Bounded Turning Circles Modulo bi-Lipschitz Maps*, main Theorem (B), the
+dyadic diameter-function definition in Section 3.B, and the first sentence of
+their proof of Theorem (C), give:
 
-1. its Assouad dimension `q` is strictly less than `2`; and
-2. for any `sigma > 2^(-1/q)` it is bi-Lipschitz equivalent to a dyadic
+1. its Assouad dimension `d` is strictly less than `2`; and
+2. for any `sigma > 2^(-1/d)` it is bi-Lipschitz equivalent to a dyadic
    snowflake model `S_sigma`.
 
-Choose `q < p < 2` and
+Choose `d < p < 2` and
 
 ```text
-2^(-1/q) < sigma < 2^(-1/p).
+2^(-1/d) < sigma < 2^(-1/p).
 ```
 
 The natural dyadic parametrization sends an interval of length `2^(-n)` to
 an arc of diameter at most a constant times `sigma^n`.  It is therefore
-`alpha`-Hoelder for
+`a`-Hoelder for
 
 ```text
-alpha = log(1/sigma)/log(2) > 1/p.
+a = log(1/sigma)/log(2) > 1/p.
 ```
 
 For every ordered partition `(t_i)`,
 
 ```text
 sum |gamma(t_(i+1))-gamma(t_i)|^p
-    <= H^p sum |t_(i+1)-t_i|^(alpha p) <= H^p.
+    <= H^p sum |t_(i+1)-t_i|^(a p) <= H^p.
 ```
 
 The bi-Lipschitz map transfers this finite `p`-variation parametrization to
