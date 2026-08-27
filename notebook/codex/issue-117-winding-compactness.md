@@ -200,9 +200,14 @@ disjoint.  The two arm actions cancel up to
 so the full Jordan domain can have vanishing local area even though the
 primitive makes an order-one excursion along one arm.
 
-Thus (5) is the actual equicontinuity obstruction: an order-one primitive
-excursion occurs on an arm of diameter `O(r)`.  The winding hypothesis
-correctly rejects that critical action bubble because `K` must grow like `N`.
+To turn this geometric scale into a parameter-space obstruction, insert the
+thin spiral strip in place of a shrinking subarc of a fixed Jordan curve and
+parametrize its first arm on an interval of length `delta_r -> 0`.  This local
+insertion is compatible with uniform parametrized convergence because its
+image has diameter `O(r)`, whereas (5) says that the primitive increment
+across that parameter interval stays of order one.  Thus (5) is the actual
+equicontinuity obstruction.  The winding hypothesis correctly rejects that
+critical action bubble because `K` must grow like `N`.
 Equation (6) has a different role: it shows why the vanishing area, or signed
 winding integral, of the completed Jordan strip does not detect the bad
 subarc.  Consequently, replacing the pointwise assumption by a global signed
