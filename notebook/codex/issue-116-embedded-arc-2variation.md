@@ -177,8 +177,9 @@ The straight chord from $c_n(t)$ to $c_n(s)$ has action
        +{R\over2}\omega(\delta). \tag{7}
 \]
 
-In fact \(\omega\leq\nu\) is available from the two-point partition, so the
-right side may be replaced by
+Independently of the possibly nonminimal supplied modulus \(\omega\), the
+actual endpoint distance is at most \(\nu(\delta)\) by the two-point
+partition.  The right side may therefore be replaced directly by
 \(\pi\nu(\delta)^2/4+R\nu(\delta)/2\).
 
 Formula (7) is a common modulus of continuity.  Covering $[0,1]$ by a fixed
