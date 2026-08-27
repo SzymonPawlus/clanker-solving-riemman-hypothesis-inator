@@ -181,12 +181,21 @@ In fact \(\omega\leq\nu\) is available from the two-point partition, so the
 right side may be replaced by
 \(\pi\nu(\delta)^2/4+R\nu(\delta)/2\).
 
-Formula (7) is a common modulus of continuity.  Covering one period by a
-fixed finite number of sufficiently short intervals and using $F_n(0)=0$
-also gives a common uniform bound.  Arzelà--Ascoli then supplies a subsequence
-converging uniformly to a continuous primitive $F$.  Thus (5), rather than
-a pointwise bound on chord-closure indices, is sufficient for the primitive
-compactness step.
+Formula (7) is a common modulus of continuity.  Covering $[0,1]$ by a fixed
+finite number of sufficiently short intervals and using $F_n(0)=0$ also gives
+a common uniform bound there.  Arzelà--Ascoli supplies a subsequence converging
+uniformly on $[0,1]$ to a continuous function $F$.  In particular the period
+actions $A_n:=F_n(1)$ converge to $A:=F(1)$.  The primitives themselves live
+on the lifted real parameter and need not be periodic; their identity
+
+\[
+ F_n(k+r)=kA_n+F_n(r)\qquad(k\in\mathbb Z,\ 0\leq r<1)
+\]
+
+then promotes convergence on $[0,1]$ to local-uniform convergence on
+\(\mathbb R\), with the analogous identity for the limit.  Thus (5), rather
+than a pointwise bound on chord-closure indices, is sufficient for the
+primitive compactness step.
 
 This conclusion is only a compactness statement.  It does not assert that
 arbitrary uniformly convergent smooth Jordan approximations satisfy (5), nor
@@ -194,13 +203,6 @@ does it by itself prove the square-peg conjecture.
 
 ## References
 
-- T. F. Banchoff and W. F. Pohl, *A generalization of the isoperimetric
-  inequality*, J. Differential Geometry **6** (1971), 175--192.  Their
-  smooth-loop inequality is
-  \(4\pi\int\operatorname{Ind}(L,z)^2dz\leq\operatorname{len}(L)^2\).
-- A. Vogt, *The Isoperimetric Inequality for Curves with
-  Self-Intersections*, Canadian Math. Bulletin **24** (1981), 161--167,
-  DOI 10.4153/CMB-1981-026-8 (rectifiable extension).
 - J. Cufí and J. Verdera, *A general form of Green Formula and Cauchy
   Integral Theorem*, Proc. Amer. Math. Soc. **143** (2015), 1661--1669,
   arXiv:1306.6832 (generalized Green formula).
