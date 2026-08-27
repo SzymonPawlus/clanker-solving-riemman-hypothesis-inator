@@ -314,12 +314,28 @@ quasisymmetric parametrization modulus, does not by itself keep an
 *arbitrarily selected* square macroscopic.  Four cyclic square parameters may
 lie in a parameter interval tending to a point, while the complementary arc
 carries the entire macroscopic curve.  This is precisely the combinatorial
-pattern in the polygonal bump above.  The bump can be inserted at scale
-`epsilon` into a fixed bounded-turning or quasicircle model and assigned a
-parameter interval at the corresponding modulus scale; its four marked
-vertices still form an exact `epsilon`-square.  Similarities preserve the
-local metric ratios, so this localization is not ruled out by a uniform
-scale-independent distortion function.
+pattern in the exact polygonal family above; no generic surgery assertion is
+needed.  Parametrize `Gamma_e` at constant speed on `R/Z`, let `L_e=6+2e`,
+and give `R/Z` its shorter-arc metric `d`.  The `13`-chord-arc estimate and the
+trivial chord-versus-arclength bound give, for every pair `a,b`,
+
+```text
+(L_e/13) d(a,b) <= |gamma_e(a)-gamma_e(b)| <= L_e d(a,b).
+```
+
+Hence these parametrizations are uniformly bi-Lipschitz (since
+`6 <= L_e <= 13/2`) and uniformly quasisymmetric: for distinct `a,b,c`,
+
+```text
+|gamma_e(a)-gamma_e(b)| / |gamma_e(a)-gamma_e(c)|
+    <= 13 d(a,b)/d(a,c),
+```
+
+so one may take the common distortion function `eta(t)=13t`.  Nevertheless,
+the four marked bump vertices form an exact square of side `e` and occupy a
+parameter interval of length `3e/L_e -> 0`.  This rigorously shows that even
+a uniform scale-independent parametrization distortion does not prevent a
+selected square from localizing at total collision.
 
 Thus the next viable lemma cannot say that every square delivered on each
 approximant is uniformly nondegenerate under bounded turning plus a standard
