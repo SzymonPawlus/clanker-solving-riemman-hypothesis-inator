@@ -176,12 +176,13 @@ coordinates centered at `v_(N,0)=(r/2,0)`, let it follow the simple polygon
  ->(zeta/2,sigma_(N-1) zeta/4)->(zeta/2,0)->(zeta,0).        (11a)
 ```
 
-The sign places it opposite the last turn.  Round its interior corners in
-disjoint balls much smaller than `zeta`.  Smooth the last coil edge to arrive
-at `(r/2,0)` with inward radial tangent, matching the first hairpin segment.
-The last hairpin segment has outward radial tangent and joins the outward ray
-at `(r/2+zeta,0)`.  This continuation is a regular embedded arc.  Its image
-lies in a `C zeta` ball and its action is
+The sign places it opposite the last turn.  This polygonal hairpin is embedded;
+its corners and the last coil edge are included in the simultaneous smoothing
+of Section 7.  There the last coil edge is made to arrive at `(r/2,0)` with
+inward radial tangent, matching the first hairpin segment, while the last
+hairpin segment joins the outward ray at `(r/2+zeta,0)` with outward radial
+tangent.  Its image lies in a `C zeta` ball and its polygonal action, including
+the later rounding error, is budgeted as
 `O(r zeta+zeta^2)=o(r^2)`.
 
 Starting at `(r/2+zeta,0)`, travel outward on the positive ray.  Near every
@@ -278,6 +279,7 @@ bound.  Choose a rounding scale `tau_N>0` satisfying
 ```text
 tau_N<d_N/100,
 tau_N<min_k(epsilon_k)/100,
+tau_N<zeta_N/100,
 C(R K_N tau_N+tau_N L_N)<r^2/N.                            (15)
 ```
 
