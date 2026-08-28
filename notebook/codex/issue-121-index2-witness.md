@@ -7,14 +7,10 @@ Wiener--Yang class `C^(0,2-var)` which is nonrectifiable and has infinite
 `p`-variation for every `p<2`.  It is a regularity witness only and does not
 use frozen PRs #115, #118, or #119.
 
-The construction proves **analytic strictness only**: the critical class
-contains zero-image-area, nonrectifiable curves outside every finite
-`p`-variation class with `p<2`.  It does not prove that this curve lies
-outside Stromquist's or Asano--Ike's locally monotone class.  Its graph and
-polygonal-closing geometry may well be locally monotone after a harmless
-choice of closing arc; that separate classification is not audited here.
-A non-locally-monotone critical witness would require an additional
-construction, such as the spiral-strip program, and is not claimed.
+Besides proving analytic strictness beyond every finite `p<2` class, the
+specific vertical closing segment in this construction makes the witness
+fail local monotonicity at its accumulation point.  Section 6 proves that
+separation explicitly; changing the closing arc could destroy it.
 
 ## 1. Explicit triangular-wave graph
 
@@ -236,13 +232,42 @@ measure zero.  Hence
 Lebesgue_measure_2(c(S^1))=0.                              (22)
 ```
 
-Equations (20)--(22) give a zero-area, nonrectifiable Jordan embedding of
-variation index exactly two.
+The curve is also not locally monotone at `A=(0,0)`.  Write a candidate
+linear projection as
+
+```text
+P_(a,b)(x,y)=a x+b y.
+```
+
+If `b=0`, this projection is constant on the incoming vertical closing
+segment, so it is not strictly monotone in any parameter neighborhood of
+`A`.  If `b!=0`, the horizontal width of a half-tooth in block `k` is
+
+```text
+w_k=ell_k/(2N_k),
+w_k/r_k <= ell_k r_k/e_k = r_k/2 -> 0.                    (23)
+```
+
+Along a rising and a falling half-tooth, respectively, the projection
+increments are
+
+```text
+a w_k+b r_k,       a w_k-b r_k.                           (24)
+```
+
+For all sufficiently large `k`, `|a|w_k<|b|r_k`; the two quantities in
+(24) then have opposite signs.  Such teeth occur in every outgoing
+neighborhood of `A`, whereas the incoming vertical segment is also in every
+periodic neighborhood.  No projection is strictly monotone there.  Hence
+the witness lies outside the locally monotone class as well as outside the
+rectifiable and all finite-`p<2` classes.
+
+Equations (20)--(24) give a zero-area, nonrectifiable, non-locally-monotone
+Jordan embedding of variation index exactly two.
 
 ## 7. Scope
 
 This is an elementary construction, but it remains `sketch` pending an
 independent check of the global block-boundary refinement in (12), the exact
 Yang quantifiers in (14)--(17), and the four-seam periodic assembly in (19).
-It establishes no Square Peg existence claim by itself and no separation
-from the known locally monotone class.
+It establishes no Square Peg existence claim by itself.
