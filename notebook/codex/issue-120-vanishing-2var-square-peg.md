@@ -57,14 +57,21 @@ A useful consequence will be needed repeatedly.  If `I` is any lifted
 interval of length at most `delta<=1/2`, then
 
 ```text
-||c||_(2-var;I) <= w_2(c,delta).                             (4)
+||c||_(2-var;I) <= sqrt(2) w_2(c,delta).                     (4)
 ```
 
-Indeed, take any partition of `I`, reduce modulo one period if necessary, and
-extend it on the complementary parameter arc to a partition of the full
-period having mesh at most `delta`.  Its contribution on `I` is bounded by
-(2).  Taking the supremum proves (4).  Thus the mesh definition supplies the
-uniform local interval modulus needed below.
+For an interval not crossing an integer, take any partition of `I` and extend
+it on the complementary parameter arc to a partition of the full period
+having mesh at most `delta`; this even gives the bound without `sqrt(2)`.  If
+`I` crosses an integer, insert that seam into its partition.  The insertion
+may split one increment `u+v`, and
+`|u+v|^2<=2(|u|^2+|v|^2)`; all other increments are unchanged.  After reducing
+modulo one, extend the two seam pieces together to a full-period partition of
+mesh at most `delta`.  Its squared-increment sum is at most
+`w_2(c,delta)^2`, so the original sum is at most twice that quantity.  Taking
+the supremum proves (4).  Thus the fixed-base mesh definition supplies the
+uniform local lifted-interval modulus, with the harmless seam constant shown
+explicitly.
 
 ## 2. Simple polygonal interpolation in 2-variation
 
@@ -114,12 +121,13 @@ To prove it, choose around each of the finitely many vertices a closed ball
 which is disjoint from all other vertex balls and all nonincident edges.
 Shrink the balls so that the sum of the lengths of incident edge pieces
 inside them is as small as desired.  Within each ball replace the two radial
-edge pieces by a smooth embedded rounding lying in the wedge between them,
-matching the unchanged straight pieces to all orders at the exit points.
-Such a rounding is obtained, for example, by smoothing a convex monotone
-corner graph with a compactly supported bump in coordinates adapted to its
-two rays.  The replacements stay in disjoint balls and meet the old polygon
-only at their two exit points, so the result remains a Jordan embedding.
+edge pieces by a smooth embedded rounding lying in the local sector occupied
+by the polygonal arc, choosing the appropriate sector also at a reflex
+vertex, and matching the unchanged straight pieces to all orders at the exit
+points.  Such a rounding is obtained by smoothing the two-ray corner with a
+compactly supported bump in sector-adapted coordinates.  The replacements
+stay in disjoint balls and meet the old polygon only at their two exit
+points, so the result remains a Jordan embedding.
 
 Parametrize each replacement on the parameter interval occupied by the
 removed edge pieces and leave `P` unchanged elsewhere.  On one such interval,
@@ -164,13 +172,18 @@ Here is the quantifier proof.  Put
 Minkowski give
 
 ```text
-||c_n||_(2-var;I) <= ||c||_(2-var;I)+e_n
-                   <= w_2(c,|I|)+e_n.                      (11)
+||c_n||_(2-var;I)
+ <= ||c||_(2-var;I)+||c_n-c||_(2-var;I)
+ <= sqrt(2)(w_2(c,|I|)+e_n).                               (11)
 ```
 
-Given `epsilon>0`, first choose `N` so that `e_n<epsilon/2` for every `n>=N`,
-and then choose `delta` so that `w_2(c,delta)<epsilon/2`.  This controls the
-tail.  Each of the finitely many smooth maps `c_1,...,c_(N-1)` is Lipschitz,
+For a seam-crossing interval the restriction of the periodic difference
+`c_n-c` costs the same `sqrt(2)` insertion factor as in (4), which explains
+the second term in (11).  Given `epsilon>0`, first choose `N` so that
+`e_n<epsilon/(2sqrt(2))` for every `n>=N`,
+and then choose `delta` so that
+`w_2(c,delta)<epsilon/(2sqrt(2))`.  This controls the tail.  Each of the
+finitely many smooth maps `c_1,...,c_(N-1)` is Lipschitz,
 say with constant `L_j`, and for an interval of length `delta`,
 
 ```text
@@ -361,8 +374,10 @@ G_n(t)=-F_n(t)
 The first term converges locally uniformly by Section 6, and the endpoint
 term does so by uniform convergence `c_n->c` and periodicity.  Hence the
 exact primitive hypothesis of Asano--Ike Theorem 1.1 is satisfied.  The
-theorem supplies a rectangle of every diagonal angle.  At
-`theta=pi/2` its diagonals are perpendicular, so the rectangle is a square.
+theorem supplies an inscribed rectangle of every diagonal angle, with four
+distinct boundary vertices (equivalently, the intersection is off the
+diagonal rather than a degenerate rectangle).  At `theta=pi/2` its diagonals
+are perpendicular, so this is a classical positive-size inscribed square.
 
 ## 8. Dependency and scope audit
 
