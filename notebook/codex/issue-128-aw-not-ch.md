@@ -326,8 +326,8 @@ a positive smooth density `w_N(ell)` such that:
 2. its integral over the replacement arc is exactly `r`;
 3. on the retained exterior it agrees, up to a factor tending to one, with
    the density induced by `c_0`, and is bounded below there uniformly in `N`;
-4. every transition lies in an arbitrarily short end collar of the
-   replacement.
+4. every transition lies entirely inside an arbitrarily short end collar of
+   the replacement (and hence inside the interval later denoted `J_N`).
 
 To construct it, first fix the exterior density, put a small positive
 constant on the long coil, and join them by flat smooth cutoffs in the end
@@ -347,7 +347,10 @@ J_N=[t_*-r/2,t_*+r/2],                                     (16)
 ```
 
 and property 3 gives one uniform Lipschitz bound on every exterior
-restriction.
+restriction.  Because property 4 keeps the density transitions inside `J_N`,
+the exterior density is exactly the fixed base density times one global
+factor; its parametrization is therefore an affine reparametrization of the
+fixed exterior arc, as used in (17).
 
 The replacement image has diameter `O(r)` and replaces a base image segment
 of diameter `O(r)`.  The exterior densities converge to the base density, so
