@@ -9,7 +9,7 @@
   "sympy_present": "1.14.0",
   "dependencies_of_the_decider": "standard library only (fractions)"
  },
- "seconds": 4.57,
+ "seconds": 4.77,
  "n_fixtures": 190,
  "n_vertices_decided": 783,
  "n_nonvertex_points_decided": 1487,

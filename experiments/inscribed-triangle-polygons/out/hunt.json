@@ -1,13 +1,13 @@
 {
  "seed": 20260829,
  "requested": 20000,
- "generated_so_far": 20000,
- "polygons_tested": 20000,
- "vertices_decided": 87625,
- "seconds": 263.86,
+ "generated_so_far": 9000,
+ "polygons_tested": 9000,
+ "vertices_decided": 39482,
+ "seconds": 114.47,
  "histogram": {
-  "('lt60', False)": 30568,
-  "('ge60', True)": 57057
+  "('lt60', False)": 13756,
+  "('ge60', True)": 25726
  },
  "C1_violations": [],
  "C3_three_or_more_nongood": [],
