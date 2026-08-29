@@ -214,3 +214,76 @@ This is deliberately *not* an independent idea — it is the sibling's idea, rei
 that is the point: it supplies the non-convex coverage the fixture battery lacks, while the
 190-fixture agreement supplies the independent-idea check on the convex side.
 
+### 4. What the good-direction set looks like — and when it can contain an interval
+
+$G(O)$ is **always a finite union of closed arcs and isolated directions**. That is structural,
+not observed: the breakpoints $D$ are finite, on each open gap the pair of edge-sets met by $v$
+and $\rho v$ is constant, and for each of the finitely many ordered pairs the good set inside
+that gap is either the whole gap ($M=0$) or at most the two points $\pm M$. So an *interval*
+component requires $M=0$ for some pair.
+
+**Over a polygon with rational vertices and a rational $O$, $M$ is never zero, so $G(O)$ is
+finite.** Short argument: $k_e,k_f$ and $b-a$ are rational, and
+
+$$\rho^{-1}(w)=\Big(\tfrac{w_x}{2}+\tfrac{\sqrt3}{2}w_y,\ -\tfrac{\sqrt3}{2}w_x+\tfrac{w_y}{2}\Big),$$
+
+so the $\sqrt3$-parts of $M=k_e\rho^{-1}(w)-k_f(b-a)$ are $k_ew_y/2$ and $-k_ew_x/2$. Both
+vanish only if $k_e=0$ (excluded — the edge is transversal) or $w=d-c=0$ (excluded — no
+zero-length edge). **This is a `sketch`: my own argument, elementary but unreviewed, and per
+`../../RULES.md` §3 nothing here is built on it — it is stated so a reviewer can attack it, and
+the computation below is reported as the check, not as its consequence.**
+
+The computation (`run.py structure`, all 190 fixtures, 927 boundary points, every proposed
+direction re-decided by the independent checker):
+
+| | |
+|---|---|
+| arc components over all rational-vertex fixtures | **0** |
+| arc components over the whole battery | **1** |
+| where | `ctl-tri-30-30-120`, at the **midpoint of the base** |
+| components there | $\{0°\}\ \cup\ [30°,90°]\ \cup\ \{120°\}$ — 3 components, one an interval |
+
+That one is hand-checkable and worth stating, because it is a **one-parameter family of
+inscribed equilateral triangles at a single point** sitting inside the repo's own wedge-test
+control. At $O=(0,0)$, the midpoint of the base of the $30$-$30$-$120$ triangle
+$(\pm1,0),(0,\tfrac{\sqrt3}{3})$, the two upper edges lie on the lines $x+\sqrt3y=1$ and
+$-x+\sqrt3y=1$. Both are at distance $\tfrac12$ from $O$, and their normals are at $60°$ and
+$120°$ — so the left edge's line **is** the $+60°$ rotate of the right edge's line about $O$.
+Every $\theta\in[30°,90°]$ therefore gives an inscribed triangle; at $\theta=30°$ and $90°$ the
+side is $\tfrac{\sqrt3}{3}$ (side$^2=1/3$), at $\theta=60°$ it is $\tfrac12$ (side$^2=1/4$).
+The code produces exactly those, exactly.
+
+**How many components can $G(O)$ have?** No bound was found. Observed maxima:
+
+| population | points | max components |
+|---|---|---|
+| the 190 committed fixtures | 927 | **13** (`ncv-dart`) |
+| seeded non-convex polygons (`run.py explore`) | 2 353 | **29** |
+
+The component count grows with the number of edges, which is what the sweep predicts: the
+count is bounded by $O(n^3)$ (breakpoints $\times$ edge pairs) and nothing observed suggests a
+constant bound. **A convex vertex has very few**: 1 for every corner of a square or a
+rectangle, 1 at each vertex of the equilateral triangle, 3 at the $120°$ apex.
+
+### 5. Critically good points — good for exactly one direction
+
+A **critically good** point is one with $|G(O)|=1$: goodness holds, but only just. It is the
+non-convex analogue of the convex lane's exactly-$60°$ boundary case, and it is where a
+perturbation turns a good point exceptional.
+
+They are not rare, and the first examples are the controls themselves: **every vertex of the
+equilateral triangle and every corner of the unit square is critically good** (one direction
+each — $0°$ and $15°$ respectively). `critical.py` re-derives six more on seeded non-convex
+polygons and commits them to `out/critical_fixture.json`, each with:
+
+- the exact polygon and the exact $O$;
+- the exact good direction and scale in $K$, with $G(O)$ recomputed and asserted to have
+  exactly one component and no arc;
+- the exact triangle, accepted by `recheck_witness`;
+- confirmation from the independent `rotcheck` decider — and, since there is only one good
+  direction, that decider's witness is **the same triangle**, which it is in all six.
+
+Their interior angles are $78°$, $92°$, $119°$, $147°$, $195°$, $201°$ — including reflex ones.
+So being critically good is not a statement about the interior angle at $O$; it is a statement
+about the whole curve as seen from $O$.
+
