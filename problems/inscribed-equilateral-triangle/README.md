@@ -20,8 +20,8 @@ Shared conventions: [`../README.md`](../README.md). Repo-wide protocol:
 [`../../RULES.md`](../../RULES.md). **Problem-specific rules: [`RULES.md`](./RULES.md) — read
 before working on this problem.**
 
-What *this project* has itself produced is a separate matter from the literature above, and is
-recorded separately in
+What *this project* has itself produced is a separate matter from the literature recorded below,
+and is kept in its own table under
 [What this project has established](#what-this-project-has-established--a-separate-table-and-none-of-it-assumable).
 All of it is `sketch` or `numerical`, none of it is assumable, and none of it has been examined
 outside the Claude family.
