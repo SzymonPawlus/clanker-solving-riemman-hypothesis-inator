@@ -63,6 +63,10 @@ arithmetic under a decision procedure to be two screens of auditable code. sympy
 | non-convex: a sub-60° vertex can still be good | ✅ constructed, down to 0.286° |
 | convex: no polygon has 3 non-good vertices | ✅ max observed 2, over 20 182 convex polygons |
 
+(Counts: C1 was tested on 88 346 convex vertices — 721 in the battery, 87 625 in the seeded hunt
+over 20 000 pseudorandom convex polygons. 30 568 sub-60° vertices, all not good; 57 057 vertices
+at ≥ 60°, all good; no exceptions in either direction.)
+
 Nothing in the brief turned out to be wrong. The one thing I'd flag as *sharper than expected*:
 non-convexity by itself buys nothing. My `ncv-dart` fixture has a 11.42° vertex where the entire
 curve still lies inside an 11.42° cone, and it is **not** good — while the *wing tips* of the same
@@ -92,12 +96,44 @@ have an interior angle of exactly 60°**, since `tan θ = |s|/c` would be ration
 So the exactly-60 cases *require* `Q(√3)` coordinates; they cannot be reached at all by a rational
 fixture. Verified as check `C7` (740 rational vertices, 0 at exactly 60°).
 
-## Cross-check
+## Cross-check — the one genuinely surprising result of the day
 
 `crosscheck_sympy.py` re-decides every named fixture through a completely different code path:
 sympy `Rational`/`sqrt(3)` expressions instead of my pairs, and `sympy.geometry.Segment2D.intersection`
 — which I did not write — instead of my segment code. Only the reduction and the fixture list are
-shared. Agreement everywhere.
+shared.
+
+**It disagreed on 3 of 176 vertices.** All three were on the two 10^-14-degree boundary fixtures,
+and in all three sympy said *good* where I said *not good*. A disagreement means one of us is
+wrong, so I stopped and adjudicated it (`diagnose_disagreement.py`) rather than picking a side:
+
+1. An exact-rational **proof** that each disputed vertex is not good, trusting neither
+   implementation: each fixture is convex, so the polygon lies in the closed cone of the interior
+   angle at that vertex; the angle is `< 60°` (one comparison of `s²` against `3c²`); a sub-60°
+   cone rotated by ±60° meets itself only at the apex; therefore `ρ(J) ∩ J = {O}`. No segment
+   enumeration needed. All three: not good.
+2. Evaluating sympy's own witnesses at **60 decimal digits** shows each lies on one of the two
+   segments it was supposedly the intersection of and misses the other by `3e-17` to `1e-16`.
+   sympy contradicts itself.
+3. Converting each witness back to `Q(√3)` and testing the real condition — `X ∈ J` **and**
+   `ρ^{-1}(X) ∈ J` — fails for all three.
+
+So sympy was wrong three times and I was right three times. `Segment2D.intersection` starts
+returning false positives once coefficients reach ~16 significant digits; it was fine on every
+coarser fixture, including the `t = 5773502/10^7` pair.
+
+I want to note the trap I nearly fell into inside the adjudication itself. My first version of
+check (3) only tested `X ∈ J`. One of the three witnesses is a genuine polygon vertex — sympy
+returned the real point `(0,0)` — so that check *passed* and the diagnostic reported "unresolved".
+The thing that is off the curve there is `ρ^{-1}(X)`, not `X`. Checking half of a two-sided
+condition and getting a green light is precisely the §0 failure mode, and it took a second look to
+see it.
+
+The wider lesson for this repo: the brief offered sympy as a reasonable way to do the exact
+arithmetic. Had I taken it, this experiment would have returned wrong answers at exactly the
+boundary it was built to probe, silently, because a false witness is indistinguishable from a real
+one unless something separate checks it. ~90 lines of `Fraction` pairs that never leave `Q` do not
+have this failure mode. Both disputed fixtures are now pinned as regression tests.
 
 ## The caveat I want on the record
 

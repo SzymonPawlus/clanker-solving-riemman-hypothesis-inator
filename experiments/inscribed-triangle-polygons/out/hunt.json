@@ -4,7 +4,7 @@
  "generated_so_far": 20000,
  "polygons_tested": 20000,
  "vertices_decided": 87625,
- "seconds": 259.6,
+ "seconds": 263.86,
  "histogram": {
   "('lt60', False)": 30568,
   "('ge60', True)": 57057

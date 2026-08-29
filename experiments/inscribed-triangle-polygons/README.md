@@ -98,12 +98,14 @@ $\theta<60^\circ \iff c>0 \wedge s^2<3c^2$, and $\theta=60^\circ \iff c>0 \wedge
 Reflex vertices are detected by comparing the turn sign against the polygon orientation and have
 interior angle $>180^\circ>60^\circ$ unconditionally. No transcendental function is involved.
 
-### Independent cross-check
+### Independent cross-check, and what it caught
 
 `crosscheck_sympy.py` re-decides every named fixture through a different code path entirely:
 sympy `Rational`/`sqrt(3)` expressions instead of the coefficient pairs, and
 `sympy.geometry.Segment2D.intersection` — which this experiment did not write — instead of
-`seg_intersect`. Only the reduction and the fixture list are shared.
+`seg_intersect`. Only the reduction and the fixture list are shared. **It disagreed on three
+vertices**, all of them on the two tightest boundary fixtures; the disagreement is adjudicated in
+`diagnose_disagreement.py` and reported in the Result section below.
 
 ## Reproducing
 
@@ -114,10 +116,11 @@ sh run.sh
 Stages, individually:
 
 ```
-python3 run.py validate               # 67 hand-checked unit tests, then the three controls
+python3 run.py validate               # 77 hand-checked unit tests, then the three controls
 python3 run.py battery                # the full fixture battery -> out/
 python3 run.py hunt --count 20000     # seeded counterexample search -> out/hunt.json
 python3 crosscheck_sympy.py           # independent re-decision with sympy
+python3 diagnose_disagreement.py      # adjudicates the sympy disagreements
 ```
 
 **Pinned versions, as actually used:** CPython **3.11.15**; the decision procedure imports only
@@ -127,7 +130,7 @@ hunt generators are seeded (`20260829`) and the whole run is deterministic — u
 bounded search, re-running this reproduces the same output bit for bit on any machine.
 
 Wall clock on the machine of record: `validate` ~1 s, `battery` 5.5 s, `hunt --count 20000`
-4 min 20 s, sympy cross-check ~15 min. Nothing approaches the one-hour budget. Every stage
+4 min 20 s, sympy cross-check 4 min 6 s, adjudication ~2 s. Nothing approaches the one-hour budget. Every stage
 checkpoints: `out/fixtures/<name>.json` is written per fixture and `out/summary.json`,
 `out/hunt.json`, `out/crosscheck_sympy.json` are rewritten as the run proceeds.
 
@@ -262,10 +265,48 @@ so that is what `hunt` targets, with heavy rational squashing to manufacture nea
 convex shapes. 87 625 vertices later, no such vertex exists in the search. The argument is not
 refuted; it is also not proved by anything here.
 
-### 5. Cross-check
+### 5. Cross-check — sympy disagreed three times, and sympy was wrong all three times
 
-Every named fixture re-decided through sympy 1.14.0's own exact geometry: **no disagreements**
-(`out/crosscheck_sympy.json`).
+176 vertices were re-decided through sympy 1.14.0's own exact geometry. **Three disagreed**, all
+on the two tightest boundary fixtures, and in every case sympy said *good* where this code said
+*not good*:
+
+| fixture | vertex | interior angle | `geom.py` | sympy |
+|---|---|---|---|---|
+| `cvx-iso-t5773502691896257/10^16` | 0 (apex) | $59.999999999999992909^\circ$ | not good | good |
+| `cvx-iso-t5773502691896258/10^16` | 1 (base) | $59.999999999999996454^\circ$ | not good | good |
+| `cvx-iso-t5773502691896258/10^16` | 2 (base) | $59.999999999999996454^\circ$ | not good | good |
+
+A disagreement means at least one implementation is wrong, so `diagnose_disagreement.py` settles
+it three ways, the first of which trusts neither implementation
+(`out/disagreement_diagnosis.json`):
+
+1. **A proof, in exact rational arithmetic.** All three fixtures are convex, so the whole polygon
+   lies in the closed cone of the interior angle at the disputed vertex. That angle is $<60^\circ$
+   — the test reduces to comparing two explicit rationals, $s^2$ against $3c^2$ — and a cone of
+   angle $<60^\circ$ rotated by $\pm60^\circ$ meets itself only at its apex. Hence
+   $\rho_\sigma(J)\cap J=\{O\}$ and the vertex is **not good**, with no segment enumeration
+   involved at all. All three: not good.
+2. **sympy contradicts itself.** For each of sympy's three witnesses, evaluating at *60 decimal
+   digits* the collinearity of the witness with the two segments it was supposedly the
+   intersection of shows it lies on one and misses the other by $\approx 3\times10^{-17}$ to
+   $10^{-16}$. A genuine intersection point lies on both.
+3. **Exact re-test.** Converting each sympy witness $X$ back into $\mathbb{Q}(\sqrt3)$ and asking
+   whether $X\in J$ *and* $\rho_\sigma^{-1}(X)\in J$ — the actual condition — fails for all three.
+   (Instructively, one of the three has $X\in J$, because sympy happened to return a real polygon
+   vertex; it is $\rho_\sigma^{-1}(X)$ that is off the curve. Checking only $X$ would have missed
+   it.)
+
+Verdict: **all three resolved in favour of `geom.py`.** sympy's `Segment2D.intersection` returned
+false positives once the coefficients reached ~16 significant digits; it was correct on every
+coarser fixture, including the $t=5773502/10^7$ pair.
+
+This is worth stating plainly because the brief suggested sympy as an option for the exact
+arithmetic: **using sympy's geometry module here would have produced wrong answers at exactly the
+boundary the experiment was built to probe**, and would have produced them silently, since the
+false positives are indistinguishable from real witnesses without a separate check. The pair
+representation is ~90 lines and never leaves $\mathbb{Q}$, which is why it does not have this
+failure mode. The two cases are pinned as regression tests in `test_iet.py`.
 
 ## What would make this wrong
 
