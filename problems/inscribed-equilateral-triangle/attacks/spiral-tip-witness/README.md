@@ -31,7 +31,7 @@ see §5.4 — the construction dies at beta >= 60 degrees, sharply.
 | §5 | **Theorem 1.** For every $c>0$ and $\beta \in (0°,60°)$, $O = 0$ is an exceptional point of $J_{c,\beta}$. | `sketch` — mine; exact, four lines from Lemmas 1–2 |
 | §6 | **Theorem 2.** The direction set of $J_{c,\beta}$ at $O$ is **all of $S^1$ at every scale**, so no wedge obstruction — local or global — applies at $O$. | `sketch` — mine |
 | §7 | **Theorem 3.** $J_{c,\beta}$ is **rectifiable**, of total length $2\sqrt{1+c^2}/c + \beta$; and the unit-speed parametrisation is not differentiable at $O$, with chord/arc ratio the constant $c/\sqrt{1+c^2}$. | `sketch` — mine; the length is an elementary integral |
-| §5.5 | **Corollary (all rotations at once).** $J \cap \rho_{O,\alpha}(J) = \{O\}$ for every $\alpha$ with $\beta < |\alpha| < 360° - \beta$. | `sketch` — mine |
+| §5.5 | **Corollary (all rotations at once).** $J \cap \rho_{O,\alpha}(J) = \{O\}$ for every $\alpha$ whose residue mod $360°$ lies in $(\beta,\,360° - \beta)$. | `sketch` — mine |
 | §10 | **Corollary (all corner roles at once), hand-off to I3.** $O$ is a vertex of an inscribed triangle in the corner role (apex angle $\alpha$, adjacent-side ratio $\lambda$) **iff** $|\alpha + (\ln\lambda)/c| \le \beta \pmod{360°}$. | `sketch` — mine, and the least-checked statement in the file |
 | §8 | Numerical cross-checks: embeddedness, disjointness, exceptional-point census | `numerical` — float, cross-check only; **no decision in §2–§7 rests on it** |
 
@@ -45,7 +45,7 @@ or Proposition R from [`../convex-vertex-criterion/README.md`](../convex-vertex-
 both of which are `sketch` and therefore unassumable; Lemma 1 is re-derived from scratch in §2.1 and
 the agreement with those two lanes is reported in §2.2 as a *cross-check*, not as a dependency.
 Meyerson's theorem is used nowhere as an input; it appears only in §10 as an external consistency
-check **on** the conclusion, and [`../README.md`](../README.md) now marks it `cited`\* (provisional,
+check **on** the conclusion, and [`../../README.md`](../../README.md) now marks it `cited`\* (provisional,
 provenance P2, no source text read), which is another reason it must not be an input.
 
 ---
@@ -61,9 +61,16 @@ One mechanism, seen three times.
 
 The question this lane asks is whether that is the *only* mechanism. It is not.
 
-> **What is exhibited.** An explicit rectifiable Jordan curve with a point $O$ at which the
-> achieved direction set is **all of $S^1$ at every scale** — so the wedge obstruction says
-> nothing whatsoever — and which is nevertheless exceptional.
+> **What this appears to show.** There is an explicit rectifiable Jordan curve with a point $O$ at
+> which the achieved direction set is **all of $S^1$ at every scale** — so the wedge obstruction
+> says nothing whatsoever — and which is nevertheless exceptional.
+
+The hedge is deliberate ([`../../../../RULES.md`](../../../../RULES.md) §7, which applies
+proportionally to any claim of novelty). Everything below is `sketch`: I wrote it, I checked it,
+and by [`../../../../RULES.md`](../../../../RULES.md) §3 that is not enough for anyone — including
+me — to build on it. §13 names the steps where I think an error would actually be, and the step I
+am least sure of is §10's spiral-similarity corollary, not the main theorem. What would make this
+claim collapse is a mistake in **Lemma 3**; everything else is bookkeeping on top of it.
 
 The mechanism is different in a way that can be stated in one sentence: the wedge obstruction
 confines $J$ to a narrow cone *once and for all*; the spiral tip confines $J$ to a narrow cone
@@ -326,22 +333,28 @@ instead of running along a circle could relax this; it is not needed and is not 
 
 ### 5.5 Corollary: all rotations at once
 
-> **Corollary 5.** For $J = J_{c,\beta}$ and any angle $\alpha$,
-> $$J \cap \rho_{O,\alpha}(J) = \{O\} \iff \beta < |\alpha| < 360° - \beta ,$$
-> where $|\alpha|$ is the residue of $\alpha$ mod $360°$ taken in $[0°,180°]$.
+> **Corollary 5.** For $J = J_{c,\beta}$ and any angle $\alpha$, writing $\bar\alpha \in [0°,360°)$
+> for the residue of $\alpha$ mod $360°$,
+> $$J \cap \rho_{O,\alpha}(J) = \{O\} \iff \beta < \bar\alpha < 360° - \beta .$$
+> Equivalently, since $\rho_{O,\alpha}$ and $\rho_{O,-\alpha}$ produce the same triangles: **$O$ is
+> the apex of an inscribed isosceles triangle of apex angle $\theta \in (0°,180°)$ if and only if
+> $\theta \le \beta$.** Every apex angle above $\beta$ — including $60°$ and $90°$ — is blocked.
 
 *Proof.* $z \in J \cap \rho_{O,\alpha}(J)$, $z \ne O$, means $|z| = r \in (0,1]$ with some
 $\theta \in \Theta_J(r)$ equal to $\arg z$ and $\arg z - \alpha \in \Theta_J(r)$ (rotation about $O$
 preserves $|z|$). For $r<1$, $\Theta_J(r) = \{\tau, \tau+\beta\}$, so this needs
-$\alpha \in \{0, \pm\beta\}$. For $r = 1$, $\Theta_J(1) = [0,\beta]$, so it needs
-$([0,\beta] - \alpha) \cap [0,\beta] \ne \emptyset$, i.e. $|\alpha| \le \beta$. Conversely
-$|\alpha| \le \beta$ always gives such a $z$ on $B$. $\square$
+$\alpha \equiv 0$ or $\pm\beta$. For $r = 1$, $\Theta_J(1) = [0,\beta]$, so it needs
+$([0,\beta] - \alpha) \cap [0,\beta] \ne \emptyset$, which holds exactly when
+$\bar\alpha \le \beta$ or $\bar\alpha \ge 360°-\beta$; and that condition already contains
+$\alpha \equiv 0, \pm\beta$. Conversely each such $\alpha$ does give a $z$ on $B$, so the two
+sides match. $\square$
 
 Taking $\alpha = 60°$ recovers Theorem 1 in the language of
 [`../rotation-continuity/README.md`](../rotation-continuity/README.md). Taking $\alpha = 90°$ gives
 the statement used in the square test (§9.2). The corollary also says the exceptionality is *not*
-fragile in $\alpha$: for the reference parameters $O$ is the apex of no inscribed isosceles triangle
-whose apex angle exceeds $30°$.
+fragile in $\alpha$: for the reference parameters $O$ is the apex of **no** inscribed isosceles
+triangle whose apex angle exceeds $30°$ — the $60°$ case is one point of a whole blocked interval,
+not a coincidence at one angle. §8.1 item 5 measures the transition and finds it at $30.0°$.
 
 ---
 
@@ -407,7 +420,7 @@ under $z \mapsto e^{-2\pi c} z$, which is why numerics at one scale suffice (§8
 
 ## 8. Exact versus numerical — what rests on what
 
-[`../RULES.md`](../RULES.md) §5 requires exact arithmetic for decisions. Here is the ledger, and
+[`../../RULES.md`](../../RULES.md) §5 requires exact arithmetic for decisions. Here is the ledger, and
 kill-criterion **K5** is the reason it is explicit.
 
 **Exact, no arithmetic in $\mathbb{R}$ at all.** Every step of §2–§7. The decisions are:
@@ -439,31 +452,55 @@ tip — so these checks are corroboration of the *finite* part of the picture on
    $\cos\angle POQ = 1/2$ from $|OP|=|OQ|=|PQ|=s$. Lemma 1 survives (**K1** not met).
 2. **Embeddedness (K4).** Brute-force all-pairs non-adjacent segment-crossing test, own sign-test
    predicate, on discretisations with 950–15888 segments and $c \in \{0.3, 1, 2\}$,
-   $\beta \in \{30°,55°\}$, down to $r_{\min} = 10^{-9}$ (up to $7.3$ turns): **zero** non-adjacent
-   crossings in every run. Agrees with the exact injectivity proof of §4.3.
+   $\beta \in \{30°,55°\}$, down to $r_{\min} = 10^{-9}$ — up to 11 full turns of the spiral:
+   **zero** non-adjacent crossings in every run (seven runs). Agrees with the exact injectivity
+   proof of §4.3, which is the point of running it: two independent routes to the same answer.
 3. **Radial normal form (Lemma 3).** For every sampled vertex of modulus $r < 1$, the direction
    deviates from $\{\tau(r), \tau(r)+\beta\}$ by at most $9.8\times10^{-15}$ — machine noise.
 4. **The main claim.** No proper crossing of $J$ with $\rho_{O,60°}(J)$ in any run. Quantitatively,
    $\min_p \operatorname{dist}(\rho_{O,60°}(p), J)/|p|$ over vertices $p$ is
-   **$0.4117$** ($c=2,\beta=30°$), $0.1402$ ($c=0.3,\beta=30°$), $0.0613$ ($c=1,\beta=55°$) —
+   **$0.4115$** ($c=2,\beta=30°$; $0.4117$ at the finer resolution), $0.1401$ ($c=0.3,\beta=30°$),
+   $0.0604$ ($c=1,\beta=55°$) —
    scale-invariantly bounded away from $0$, as the self-similarity of §7 predicts, and shrinking as
    $\beta \to 60°$, as §5.4 predicts.
 5. **Corollary 5, as a falsifiable prediction.** The gap $J$ vs $\rho_{O,\alpha}(J)$ was measured
    across $\alpha$. It is bounded away from zero exactly for $\beta < |\alpha| < 360°-\beta$ and
-   zero for $|\alpha| \le \beta$ — the predicted transition, at the predicted place, in all three
-   parameter sets. **A discrepancy here was the one real surprise of the lane and is recorded in
+   zero for $|\alpha| \le \beta$ — the predicted transition, at the predicted place, in every
+   parameter set tried. **A discrepancy here was the one real surprise of the lane and is recorded in
    §11 under K5**: at $|\alpha| < \beta$ the intersection is a *tangential overlap of two arcs of
    the same circle*, which a strict crossing-counter reports as zero. The counter was not wrong; it
    was the wrong instrument, and the distance-based detector shows the predicted behaviour. Had I
    read the crossing counts as the answer I would have recorded a false refutation of my own
    Corollary 5.
-6. **Exceptional-point census (K6).** Over 150 vertices $X$ spread along $J$, the normalised gap
-   between $J$ and $\rho_{X,60°}(J)$ was computed. See §10 for the numbers and for why they are
-   evidence about $|E(J)|$ and not a proof of it.
+
+   The measured transition for the reference parameters ($c=2$, $\beta=30°$), gap normalised as in
+   item 6:
+
+   | $\alpha$ | $0.5°$ | $5°$ | $28°$ | $29.8°$ | **$30.2°$** | $32°$ | $45°$ | $60°$ | $90°$ | $180°$ | $332°$ | $359.5°$ |
+   |---|---|---|---|---|---|---|---|---|---|---|---|---|
+   | gap | $1.3\text{e-}6$ | $9.1\text{e-}6$ | $4.7\text{e-}6$ | $9.7\text{e-}6$ | $3.1\text{e-}3$ | $3.1\text{e-}2$ | $2.2\text{e-}1$ | $4.1\text{e-}1$ | $7.0\text{e-}1$ | $9.8\text{e-}1$ | $4.7\text{e-}6$ | $1.3\text{e-}6$ |
+
+   Zero to machine noise for $|\alpha| \le \beta = 30°$, and lifting off immediately past it —
+   the transition is at $30.0°$, not near it. The same table for $(c,\beta) = (0.3,30°)$ and
+   $(1,55°)$ breaks at $30°$ and $55°$ respectively.
+6. **Exceptional-point census (K6).** For each of 80 vertices $X$ along $J$, the *normalised gap*
+   $$g(X) \;=\; \min_{p}\ \frac{\operatorname{dist}\big(\rho_{X,60°}(p),\ J\big)}{|p - X|}$$
+   was computed over vertices $p$ of $J$, with $X$'s own neighbourhood excluded. $g(X) = 0$ means
+   $X$ is a good vertex; $g(X)$ bounded away from $0$ is the signature of exceptionality. Numbers
+   in §10.
+
+   **The exclusion window is the subtle part, and I got it wrong first.** My initial version
+   excluded $p$ within a fixed *metric* distance $10^{-3}\cdot\operatorname{diam}$ of $X$ — which,
+   for an $X$ deep in the spiral at radius $10^{-6}$, swallows the entire inner spiral and measures
+   only the far half of the curve. Every such $X$ then reported the same gap as $O$ itself, which
+   would have read as "the whole inner spiral is exceptional" — i.e. as an apparent violation of
+   Meyerson's bound produced entirely by my own instrument. The fix is an **index** window: the
+   spiral is sampled geometrically, so a fixed number of vertices either side of $X$ is a fixed
+   *relative* neighbourhood, which is what a self-similar tip requires. §11 (K6) records this.
 
 ---
 
-## 9. The three filters ([`../RULES.md`](../RULES.md) §3), all run
+## 9. The three filters ([`../../RULES.md`](../../RULES.md) §3), all run
 
 ### 9.1 Wedge test (§3.1)
 
@@ -478,7 +515,7 @@ that the §3.1 test certifies nothing about and that is exceptional anyway. The 
 Run the construction verbatim with $90°$ in place of $60°$. Since $\beta < 60° < 90°$, Lemma 2's
 argument goes through unchanged and gives: **$O$ is not a vertex of any square inscribed in $J$**
 either (two adjacent square vertices are equidistant from $O$ and subtend $90°$), and more generally
-Corollary 5 blocks every apex angle in $(\beta, 360°-\beta)$.
+Corollary 5 blocks every apex angle above $\beta$.
 
 This produces **no** statement about the square peg problem, for a reason of logical polarity that
 is worth stating rather than asserting:
@@ -495,7 +532,8 @@ is worth stating rather than asserting:
 - The converse worry — *does this construction disprove something known?* — is §10.
 
 **Pass.** A construction of counterexamples has the wrong polarity to prove an existence theorem,
-and the $90°$ version is checked (§8.1 item 4: zero crossings with $\rho_{O,90°}(J)$ as well).
+and the $90°$ version is checked numerically too (§8.1 item 5's table: the gap between $J$ and
+$\rho_{O,90°}(J)$ is $7.0\times10^{-1}$, i.e. they are nowhere near meeting).
 
 ### 9.3 Polygon control (§3.3) — honestly inapplicable, and why that itself is informative
 
@@ -510,7 +548,7 @@ this claim, and I did not pretend otherwise:
 
 So the mechanism of this lane is **invisible to polygons by construction**, and agreement with a
 polygon census would have been evidence about nothing. This also disposes of an approximation route
-([`../RULES.md`](../RULES.md) §4): truncating the spiral at any positive radius removes $O$ from the
+([`../../RULES.md`](../../RULES.md) §4): truncating the spiral at any positive radius removes $O$ from the
 curve entirely, so the exceptional point is *not* a limit of exceptional points of the truncations.
 The infinitude of the winding is load-bearing, not decorative.
 
@@ -521,7 +559,7 @@ exact statements, with its own limitations stated.
 
 ## 10. Consistency with the literature — Meyerson's bound, handled per §7 discipline
 
-[`../README.md`](../README.md) row 2 records **$|E(J)| \le 2$ for every Jordan curve** (Meyerson
+[`../../README.md`](../../README.md) row 2 records **$|E(J)| \le 2$ for every Jordan curve** (Meyerson
 1980), status `cited`\*, provenance P2 — no source text read, so provisional. Kill-criterion **K6**
 requires me to treat an apparent excess of exceptional points as evidence of my own error.
 
@@ -529,22 +567,47 @@ requires me to treat an apparent excess of exceptional points as evidence of my 
 compatible with the bound with room to spare, and no part of Theorem 1 is in tension with any row of
 that table.
 
-**What the numerics say about the rest of $E(J)$, as `numerical` evidence only.** Over 150 vertices
-$X$ sampled along $J$ (three parameter sets), the normalised gap between $J$ and $\rho_{X,60°}(J)$
-was measured; the results appear in §11 (K6 row). No sampled $X$ other than points very close to
-$O$ showed the signature of exceptionality. That is consistent with $E(J) = \{O\}$ and hence with
-Meyerson, but it is **not** a proof: a finite sample cannot certify a negative at every one of
-uncountably many points, and the discretisation is a different curve.
+**Where a second or third exceptional point could come from.** The only two points of $J$ with a
+corner are $P_0 = 1$ and $Q_0 = e^{i\beta}$. In the local coordinates of §4.3, expanding
+$\tau(1-u) = u/c + O(u^2)$, the interior angle of $\Omega$ is $\arctan c$ at $P_0$ and
+$90° + \arctan(1/c)$ at $Q_0$ (they sum to $180°$, a useful check). *(`sketch`, mine.)* So $Q_0$'s
+angle always exceeds $90°$, while $P_0$'s is below $60°$ exactly when $c < \sqrt3$. **This is why the
+reference pitch is $c = 2$**: it puts both corner angles above $60°$ ($63.43°$ and $116.57°$), so no
+corner is even a candidate.
 
-**Where a third exceptional point would have come from, had it existed.** The two corners
-$P_0 = 1$ and $Q_0 = e^{i\beta}$ are the only candidates with a small interior angle. A short
-computation (in the local coordinates of §4.3, expanding $\tau(1-u) = u/c + O(u^2)$) gives interior
-angles $\arctan c$ at $P_0$ and $90° + \arctan(1/c)$ at $Q_0$. For the reference pitch $c = 2$ these
-are $63.43°$ and $116.57°$, **both above $60°$**, which is why $c > \sqrt3$ was chosen. For $c < \sqrt3$
-the corner $P_0$ has interior angle below $60°$ and would be exceptional *if* the wedge extended
-globally — it does not, since $J$ wraps all the way around $O$, and the $c = 0.3$ and $c = 1$ runs
-(interior angle $16.7°$ and $45°$) find $P_0$ good, which is the outcome that keeps the count at one.
-*(`sketch` for the angle computation, `numerical` for the goodness.)*
+**What the numerics say, as `numerical` evidence only.** Normalised gaps $g(X)$ as defined in §8.1
+item 6, index window $k = 8$, 80 sampled vertices per parameter set. A value at the discretisation
+floor (a few times $10^{-2}$ here, set by the chord length) means "good"; a value an order of
+magnitude above the floor is the signature of exceptionality.
+
+| $(c,\beta)$ | $\arctan c$ | $g(O)$ | $g(P_0)$ | $g(Q_0)$ | census of 80: median / max | apparent $E(J)$ |
+|---|---|---|---|---|---|---|
+| **$(2, 30°)$ — reference** | $63.43°$ | **$4.12\times10^{-1}$** | $8.4\times10^{-4}$ | $2.5\times10^{-3}$ | $1.2\times10^{-2}$ / $3.5\times10^{-2}$ | $\{O\}$ |
+| $(0.3, 30°)$ | $16.70°$ | **$1.40\times10^{-1}$** | $2.7\times10^{-4}$ | $3.4\times10^{-3}$ | $5.5\times10^{-4}$ / $7.4\times10^{-3}$ | $\{O\}$ |
+| $(1, 30°)$ | $45°$ | **$3.23\times10^{-1}$** | **$2.77\times10^{-1}$** | $2.2\times10^{-3}$ | $9.0\times10^{-3}$ / $2.7\times10^{-2}$ | $\{O, P_0\}$ |
+| $(1, 55°)$ | $45°$ | **$6.0\times10^{-2}$** | **$5.3\times10^{-2}$** | $8.8\times10^{-4}$ | $2.1\times10^{-3}$ / $6.3\times10^{-2}$ | $\{O, P_0\}$ |
+
+Read this carefully, because it is the one place the lane touches the literature.
+
+- **For the reference parameters the count is one.** $g(O)$ is more than an order of magnitude above
+  every other sampled value, and both corners sit at the floor. Consistent with $E(J) = \{O\}$.
+- **At $c = 1$ a second point appears exceptional**, namely the corner $P_0$, whose interior angle
+  is then $45° < 60°$. That is $|E(J)| = 2$ — Meyerson's bound **attained**, and attained by a
+  *mixed* pair: one ordinary wedge-type corner and one spiral tip. If it holds up it is a mildly
+  interesting remark; it is `numerical` and I do not assert it.
+- **Nothing produced three.** In every parameter set exactly one or two values stand clear of the
+  floor, and $Q_0$ never does. Had a third appeared, **K6** required me to suspect my construction
+  first, and §8.1 item 6 records the instrument bug that would have manufactured exactly that
+  false positive if I had not caught it.
+- **The behaviour at $P_0$ is not monotone in $c$** ($c = 0.3$: good; $c = 1$: exceptional;
+  $c = 2$: good), which is what one expects when goodness at a sharp corner is decided by the
+  *global* position of the far side of the curve rather than by the local angle — the "do not
+  over-read the wedge test" warning of [`../../RULES.md`](../../RULES.md) §3.1, showing up on the
+  other side.
+
+None of this is a proof about $E(J)$: a finite sample cannot certify a negative at uncountably many
+points, and the discretisation truncates the tip and so is a different curve. Only **Theorem 1** —
+$O \in E(J)$, proved exactly in §5 — is claimed.
 
 **Corollary for other triangle shapes — offered to idea I3, not developed here.** The same
 bookkeeping with a spiral similarity $\sigma(z) = \lambda e^{i\alpha}z$ ($\lambda > 0$) in place of a
@@ -574,8 +637,8 @@ Against [`KILL-CRITERION.md`](./KILL-CRITERION.md), written before any computati
 | **K3** | global disjointness cannot be closed | **not met — this is the lane's substance.** Closed by Lemma 3: the closing arc is placed at the single radius $r=1$, so it meets only $P_0$ and $Q_0$ in the comparison. K3a and K3b do not arise; **K3c was the real obstacle** and is resolved, not dodged, in §4.1 — the closing arc genuinely cannot avoid spiralling into $O$, and the construction accepts that and makes it a second congruent arm. |
 | **K4** | not a Jordan curve | **not met.** Exact injectivity proof (§4.3) plus an independent brute-force all-pairs check on five discretisations (§8.1 item 2), agreeing. |
 | **K5** | a float decides something | **not met**, and the ledger is §8. The one place a float nearly misled me is recorded honestly: proper-crossing counts at $|\alpha| < \beta$ read as zero because the true intersection there is a *tangential* overlap along the unit circle, and the count was unstable under refinement ($5$ crossings at one resolution, $0$ at another). Had I let that decide anything I would have "refuted" my own Corollary 5. The decision instrument was replaced by a distance-based one; no §2–§7 statement ever depended on either. |
-| **K6** | three or more exceptional points | **not met.** One claimed, $O$. Numerics found no other candidate; §10 states why that is evidence and not proof, and reports the corner-angle computation that was the way a second or third could have appeared. |
-| **K7** | already someone else's example | **unresolved, and must stay so here.** No scholarly host is reachable from this session ([`../README.md`](../README.md) provenance warning), so I could not look. Spiral examples are natural enough that an expert may well know this one; the ideation entry guessed ~40% already known. Per [`../RULES.md`](../RULES.md) §6.1, **"not found" is not evidence of novelty**, and this file claims none. |
+| **K6** | three or more exceptional points | **not met**, but it came closest of any criterion, and by my own error. One point is claimed, $O$. The first census *appeared* to make the entire inner spiral exceptional — which would have been an apparent violation of Meyerson's bound — and the cause was my exclusion window, a fixed metric radius that swallowed the whole inner spiral for any $X$ near $O$ (§8.1 item 6). Fixed to an index window; the count is then one for the reference parameters and two at $c = 1$, where the sharp corner $P_0$ also appears exceptional. Two is Meyerson's bound, attained, not exceeded. §10 has the table and the caveats. **This is exactly the failure mode K6 exists to catch, and it was caught by the criterion rather than by luck.** |
+| **K7** | already someone else's example | **unresolved, and must stay so here.** No scholarly host is reachable from this session ([`../../README.md`](../../README.md) provenance warning), so I could not look. Spiral examples are natural enough that an expert may well know this one; the ideation entry guessed ~40% already known. Per [`../../RULES.md`](../../RULES.md) §6.1, **"not found" is not evidence of novelty**, and this file claims none. |
 
 **Verdict: the construction stands.** The witness exists, global disjointness closed, and it is
 rectifiable.
@@ -588,14 +651,20 @@ rectifiable.
 
 Nothing in §5 uses the logarithmic form. The same proof gives:
 
-> Let $\rho_1, \rho_2 : (0,1] \to$ directions be the direction functions of two arcs each meeting
-> every circle $\partial B(O,r)$, $0 < r \le 1$, in exactly one point, both accumulating only at
-> $O$, joined by a closing arc at $r = 1$. If $|\rho_1(r) - \rho_2(r)| < 60°$ for every $r$ and the
-> closing arc spans $< 60°$, the tip is exceptional. *(`sketch`, mine.)*
+> Let $\theta_1, \theta_2 : (0,1] \to \mathbb{R}/360°$ be continuous, and let the two arms be
+> $A_i = \{r e^{i\theta_i(r)} : 0 < r \le 1\}$ — so each arm meets each circle $\partial B(O,r)$,
+> $0 < r \le 1$, in **exactly one point**, and each accumulates only at $O$. Close them at $r=1$ by
+> an arc $B'$ of $\partial B(O,1)$ running from $e^{i\theta_1(1)}$ to $e^{i\theta_2(1)}$. If, for
+> every $r \in (0,1]$, the set $\{\theta_1(r), \theta_2(r)\}$ — together with the directions spanned
+> by $B'$ when $r = 1$ — lies in an arc of length $< 60°$, then the tip is exceptional. *(`sketch`,
+> mine; it is Lemma 2 with Lemma 3 replaced by the hypothesis.)*
 
-Rectifiability then holds iff $\int_0^1 \sqrt{1 + r^2 \rho_i'(r)^2}\,dr < \infty$, which fails for
-spirals that wind too fast — so **rectifiability is a property of the choice, not of the mechanism**,
-and a non-rectifiable version of this witness exists too.
+Taking $\theta_i$ monotone with $\theta_i(r) \to \infty$ as $r \downarrow 0$ makes the direction set
+full, which is the interesting case; $\theta_i(r) = -(\ln r)/c$ and $-(\ln r)/c + \beta$ is the
+witness above. Rectifiability holds iff $\int_0^1 \sqrt{1 + r^2\,\theta_i'(r)^2}\,dr < \infty$,
+which **fails** for spirals that wind fast enough (e.g. $\theta_i(r) = 1/r$). So **rectifiability is
+a property of the choice, not of the mechanism**: a non-rectifiable version of this witness exists
+too, and the rectifiable one was chosen deliberately because it is the one that bears on §12.2.
 
 ### 12.2 For the rectifiable lane (owned elsewhere — this is a note, not work in their file)
 
@@ -616,7 +685,8 @@ and none of which resolves their question:
 
 ### 12.3 The question this lane opens and does not answer
 
-Lemma 2 gives two sufficient mechanisms for exceptionality (wedge; rotating wedge). **Is every
+Lemma 2 subsumes the wedge test and certifies a strictly larger class of exceptional points (§3).
+**Is every
 exceptional point of every Jordan curve of rotating-wedge type?** — i.e. does $O \in E(J)$ imply
 that $\Theta_J(r)$ lies in an arc of length $< 60°$ for every $r$? It does **not**: $\Theta_J(r)$
 need only avoid $60°$-separated pairs, and e.g. $\Theta_J(r) = \{0°, 100°, 200°\}$ does that without
@@ -630,7 +700,7 @@ should be regarded with the suspicion of [`../../../../RULES.md`](../../../../RU
 ### 12.4 Lean
 
 Lemma 1 and Lemma 2 are plain plane geometry with no topology, in the same class that
-[`../RULES.md`](../RULES.md) §6.3 identifies as reachable (`Geometry.Euclidean.Angle.*`). Lemma 3 is
+[`../../RULES.md`](../../RULES.md) §6.3 identifies as reachable (`Geometry.Euclidean.Angle.*`). Lemma 3 is
 monotonicity of `Real.exp`. **Proposition 4 (Jordanness) is not** a Lean target: it needs the Jordan
 curve theorem for the interior, absent from Mathlib per that section. A worthwhile formalisation
 target is therefore "Lemma 1 + Lemma 2 + Lemma 3 $\Rightarrow$ no equilateral triangle inscribed in

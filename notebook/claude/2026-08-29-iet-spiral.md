@@ -18,7 +18,10 @@ in the lane README, with statuses; nothing here is assumable.
 4. Wrote `KILL-CRITERION.md`. **No code had been run at this point.** The file says so, and says
    the honest qualification: it precedes all computation but not all thought, so K1/K2 are bets
    made by someone who already expected them not to fire.
-5. Ran the numerics. Four scripts; the third was discarded (see "the instrument was wrong" below).
+5. Ran the numerics. Five scripts: `spiral.py` (embeddedness + main claim), `spiral2.py` (wider
+   parameter sweep), `spiral3.py` (killed — too slow, and superseded), `spiral4.py` (distance
+   detector), `spiral5.py` (census with the corrected exclusion window). Two of them were wrong in
+   instructive ways; see below.
 6. Wrote the lane README.
 
 ## The design, and the one moment it was in doubt
@@ -72,6 +75,32 @@ radius**, `r = c s / sqrt(1+c^2)`. So the chord/arc ratio at `O` is a constant i
 tangent fails to exist purely by winding. That is a sharper statement than "not differentiable" and
 I would not have found it if I had asserted finiteness instead of integrating.
 
+**(c') The census exclusion window was wrong, and the wrong version manufactured a violation of
+Meyerson's bound.** To ask "is `X` a good vertex?" numerically I measure how close `rho_X(J)` comes
+to `J`, excluding a neighbourhood of `X` (where the two curves meet trivially, since `rho_X(X) = X`).
+My first exclusion was a fixed *metric* radius, `1e-3` times the diameter. For an `X` deep in the
+spiral — radius `1e-6`, say — that radius swallows the entire inner spiral, so the measurement sees
+only the far half of the curve and returns the same gap as at `O` itself. Read literally, the output
+said **every point of the inner spiral is exceptional**, which contradicts `|E(J)| <= 2` outright.
+
+The kill-criterion (K6) says exactly what to do with that: suspect my own construction first. The
+construction was fine; the instrument was not. The fix is an **index** window — the spiral is
+sampled geometrically, so a fixed number of vertices either side of `X` is a fixed *relative*
+neighbourhood, which is the only scale-covariant choice for a self-similar tip. With that, the count
+is 1 for `c = 2` and 2 for `c = 1`.
+
+Worth stating plainly: had K6 not been pre-registered, the tempting reading of that output was
+"three or more exceptional points, so the provisional Meyerson citation is wrong" — a conclusion
+that is fluent, wrong, and would have been mine.
+
+**(c'') A second exceptional point at `c = 1`, and why it is not a problem.** With the corrected
+census, `c = 1` (interior angle `arctan 1 = 45 deg` at the outer corner `P0`) gives two points with
+gaps far above the discretisation floor: `O` and `P0`. That is `|E(J)| = 2`, Meyerson's bound
+attained by a *mixed* pair — one wedge-type corner, one spiral tip. `c = 0.3` (angle `16.7 deg`) and
+`c = 2` (angle `63.4 deg`) both give one. Non-monotone in `c`, which is what you expect when
+goodness at a sharp corner is settled by the far side of the curve rather than the local angle.
+`numerical` only; the lane claims only `O`.
+
 **(c) Almost picked a pitch that makes the corner count ambiguous.** The interior angle at the
 outer corner `P0` is `arctan(c)`, which is below 60 degrees for `c < sqrt 3`. That does not make
 `P0` exceptional — the wedge test needs the *whole* curve in the cone, and here the curve wraps all
@@ -118,7 +147,8 @@ Ran no git command; the dispatcher commits.
 segment predicates below are reimplemented from orientation sign tests. Written to the session
 scratchpad, reproduced here in full because this lane owns no `experiments/` directory.
 
-Run as `python3 spiral.py` (part A) and `python3 spiral4.py out.txt` (part B).
+Run as `python3 spiral.py` (part A), `python3 spiral4.py out.txt` (part B, rotation sweep) and
+`python3 spiral5.py out.txt` (part C, census with the index window).
 
 ### Part A — embeddedness, radial normal form, and the main claim
 
@@ -197,6 +227,29 @@ def gap(A, X, ang, sub=1, floor=1e-3):   # 0 <=> rho_X,ang(J) meets J away from 
 is self-similar under `z -> e^{-2 pi c} z` and an unnormalised distance would go to zero near `O`
 for trivial reasons.
 
+### Part C — the census, with the exclusion window that is actually correct
+
+The `floor=1e-3` metric exclusion above is **wrong for the census** (see (c') in the wrong turns).
+Replace it by an index window, and mask the same window out of the target polyline too:
+
+```python
+def seg_pt_dist_masked(A, P, badlo, badhi, chunk=256):
+    a=A[:-1]; b=A[1:]; ab=b-a; L2=(ab**2).sum(1); L2[L2==0]=1e-300
+    ok=np.ones(len(a),bool); ok[max(0,badlo):badhi+1]=False
+    a,b,ab,L2 = a[ok],b[ok],ab[ok],L2[ok]
+    ...                                   # as seg_pt_dist, on the masked segments
+
+def gap_idx(A, m, ang, k=8, sub=1):       # X = A[m]
+    X=A[m]; R=rot(A,X,ang)
+    sel=np.where(np.abs(np.arange(len(A))-m) > k)[0][::sub]
+    d=np.linalg.norm(R[sel]-X,axis=1); nz=d>0
+    return float(np.min(seg_pt_dist_masked(A, R[sel][nz], m-k, m+k)/d[nz]))
+```
+
+A fixed `k` is a fixed *relative* neighbourhood here precisely because the spiral is sampled
+geometrically — chord length at radius `r` is proportional to `r`. That is the property that makes
+the census scale-covariant, and it is the property the metric version destroyed.
+
 ## Results as run
 
 Parameter sets: `(c, beta) = (2, 30 deg)`, `(0.3, 30 deg)`, `(1, 55 deg)`; truncation radii
@@ -211,7 +264,11 @@ Parameter sets: `(c, beta) = (2, 30 deg)`, `(0.3, 30 deg)`, `(1, 55 deg)`; trunc
 | `min_p dist(rho_60(p), J)/|p|` | `0.4117` (c=2), `0.1402` (c=0.3), `0.0613` (c=1, beta=55) |
 | `J` vs `rho_(O,90)(J)` | **0** crossings — the square-test remark |
 | Corollary 5 transition | gap positive exactly for `beta < |alpha| < 360 - beta` |
-| exceptional census | see lane README §10 |
+| Corollary 5 transition, reference params | gap `1.3e-6 .. 9.7e-6` for `|alpha| <= 30 deg`; `3.1e-3` at `30.2`, `3.1e-2` at `32`, `4.1e-1` at `60`, `9.8e-1` at `180` |
+| census, `(c,beta) = (2,30)` | `g(O) = 4.12e-1`; `g(P0) = 8.4e-4`, `g(Q0) = 2.5e-3`; 80 vertices median `1.2e-2`, max `3.5e-2`. One standout |
+| census, `(0.3,30)` | `g(O) = 1.40e-1`; corners `2.7e-4` / `3.4e-3`; max elsewhere `7.4e-3`. One standout |
+| census, `(1,30)` | `g(O) = 3.23e-1`, **`g(P0) = 2.77e-1`**; `g(Q0) = 2.2e-3`; max elsewhere `2.7e-2`. Two standouts |
+| census, `(1,55)` | `g(O) = 6.0e-2`, **`g(P0) = 5.3e-2`**; `g(Q0) = 8.8e-4`. Two standouts |
 
 The `0.0613` for `beta = 55 deg` against `0.4117` for `beta = 30 deg` is the quantitative form of
 README §5.4: the construction degenerates as `beta -> 60 deg`, where the closing arc's own endpoints

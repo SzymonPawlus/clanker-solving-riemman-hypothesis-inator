@@ -43,7 +43,7 @@ disjoint. Both are first-class outcomes ([`../../../README.md`](../../../README.
 promotable past `sketch` by me.
 
 **What is *not* a success:** anything that reads as progress on the general theorem. The planar
-equilateral question is settled ([`../README.md`](../README.md)); this lane produces a *witness*,
+equilateral question is settled ([`../../README.md`](../../README.md)); this lane produces a *witness*,
 not a theorem about all curves.
 
 ---
@@ -108,26 +108,26 @@ $\sim 10^{-16}$. Predicates get reimplemented from sign tests.
 **Kill (of the claim, not necessarily the lane):** if the exceptionality of $O$ ends up resting on
 any floating-point comparison. A logarithmic spiral is transcendental, so I must say for each step
 whether it is exact algebra, interval arithmetic, or float, and the *decision* steps must be
-exact. Floats are for search, pictures, and cross-checks only ([`../RULES.md`](../RULES.md) §5).
+exact. Floats are for search, pictures, and cross-checks only ([`../../RULES.md`](../../RULES.md) §5).
 If the argument cannot be made exact, the claim is downgraded to `numerical` and stated as such.
 
 ### K6 — three or more exceptional points appear
 
-Meyerson's theorem ([`../README.md`](../README.md) row 2, `cited` but provisional, P2, no source
+Meyerson's theorem ([`../../README.md`](../../README.md) row 2, `cited` but provisional, P2, no source
 text read) says $|E(J)| \le 2$. **Kill / freeze:** if the construction appears to give $J$ three or
 more exceptional points, I do **not** announce a counterexample to the literature. Per
 [`../../../../RULES.md`](../../../../RULES.md) §7 the likeliest explanations, in order, are:
 (1) an error in my construction, (2) a misreading of the criterion, (3) a wrong provisional
 citation. I write "this appears to show", check it to destruction, and flag it. The same applies
-if the construction seems to prove anything about **squares** ([`../RULES.md`](../RULES.md) §3.2).
+if the construction seems to prove anything about **squares** ([`../../RULES.md`](../../RULES.md) §3.2).
 
 ### K7 — it is already someone else's example
 
 **Kill (rescope, not refute):** if a reachable source shows the spiral tip is Meyerson's or
 Schwartz's own second mechanism. The lane then becomes reconstruction and citation, not
-construction. Note the network restriction recorded in [`../README.md`](../README.md) makes this
+construction. Note the network restriction recorded in [`../../README.md`](../../README.md) makes this
 unlikely to be *settled* here; "not found" is not evidence of novelty
-([`../RULES.md`](../RULES.md) §6.1), and the write-up must say so.
+([`../../RULES.md`](../../RULES.md) §6.1), and the write-up must say so.
 
 ---
 
@@ -142,7 +142,7 @@ unlikely to be *settled* here; "not found" is not evidence of novelty
 - **The construction only produces one exceptional point.** One non-wedge exceptional point is the
   entire claim. Getting three is K6, i.e. a red flag, not a better result.
 - **The polygon enumerator has nothing to say.** A spiral tip is not a polygon feature, and
-  ([`../RULES.md`](../RULES.md) §3.3) agreement with polygons would be weak evidence anyway. If
+  ([`../../RULES.md`](../../RULES.md) §3.3) agreement with polygons would be weak evidence anyway. If
   the §3.3 control is inapplicable I say so explicitly rather than faking a check.
 
 ---

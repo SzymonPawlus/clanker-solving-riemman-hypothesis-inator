@@ -112,3 +112,68 @@ silently, at exactly the boundary it was built to probe. Both cases are now regr
 That is three separate occasions in one day — two in the convex lane, one here — where a checker
 produced a wrong answer about a true statement. The checkers were the unreliable component, not
 the mathematics, which is the opposite of the failure mode `RULES.md` §0 primes you for.
+
+---
+
+## Round 2 synthesis: two lanes that did not talk to each other now bracket the rectifiable case
+
+The `rectifiable-case` and `spiral-tip-witness` lanes ran concurrently, with disjoint files and no
+knowledge of each other's results. They landed on complementary halves of the same question, and
+checking them against each other is the most informative thing available at the end of this round.
+
+- **Rectifiable lane, Theorem T.** If the arclength parametrisation of a rectifiable Jordan curve
+  is differentiable at `t₀`, then `γ(t₀)` **is** a vertex of an inscribed equilateral triangle.
+  So on a rectifiable curve the exceptional set is `ℋ¹`-null.
+- **Spiral lane.** There is a **rectifiable** Jordan curve — two logarithmic-spiral arms winding
+  into the origin, offset by `β ∈ (0°, 60°)`, closed by the `β`-arc of the unit circle — whose
+  spiral tip `O` **is** exceptional. Total length `2√(1+c²)/c + β`, verified.
+
+Those look like they collide. They do not, and the reason is exactly the right one: at the spiral
+tip the arclength from the tip is proportional to the radius, so the chord/arc ratio is the
+**constant** `c/√(1+c²) < 1` (0.894 at the reference `c = 2`), never tending to 1. The tangent
+therefore fails to exist, purely by infinite winding, and `O` is precisely a **non-differentiability
+point of a rectifiable curve** — outside Theorem T's hypothesis. Dispatcher verified both the length
+formula and the ratio independently.
+
+Taken together they say something sharper than either alone:
+
+> On a rectifiable Jordan curve, every exceptional point is a point where the arclength
+> parametrisation fails to be differentiable — and such exceptional points genuinely exist.
+
+Theorem T supplies the "only", the spiral supplies the "and they exist". Neither lane could have
+stated that; it is a product of the two, and it is the first time in this problem that two
+independently dispatched lanes have combined into a statement stronger than their inputs rather
+than merely corroborating each other.
+
+### What this does to the wedge obstruction
+
+The spiral also kills the tempting belief that the wedge test is the whole story of `E(J)`. Its
+generalisable core is: if `J ∩ ∂B(O,r)` lies in an arc of width `< 60°` **for each `r`
+separately**, then `O` is exceptional. The wedge test is the special case where that arc does not
+depend on `r`. Letting the arc **rotate with the radius** makes the union of the arcs all of `S¹`,
+so the direction set at `O` is full at every scale and no wedge — global or local — sees anything.
+That also shows the convexity hypothesis in the convex lane's Theorem B is not removable.
+
+### Two lanes talked themselves down, which is the healthier signal
+
+Round 2's headline results are both *weaker* than the ideation round advertised, and in both cases
+the lane itself did the demoting:
+
+- The half-density criterion is **not** "strictly stronger than the sector criterion" as I1's
+  triage claimed — the two are **incomparable**, and the density criterion is **vacuous on every
+  convex curve**, i.e. adds nothing exactly where the repo already has an iff.
+- The spiral lane's first exceptional-point census appeared to show every point of the inner
+  spiral exceptional, which would have violated Meyerson's bound of 2. It suspected its own
+  instrument first, as `RULES.md` §7 and its own kill-criterion require, and found a fixed *metric*
+  exclusion radius swallowing the inner spiral; the fix is a scale-covariant index window. The
+  curve was fine; the checker was not. **That is the fourth checker failure this session against
+  zero mathematical errors of that kind.**
+
+### Against §8
+
+Both round-2 attacks came from the Fable ideation round, and both were materially qualified by the
+Opus lanes that executed them — one demoted from "strictly stronger" to "incomparable and vacuous
+on convex curves", one delivering more than advertised (a rectifiable witness with a clean
+generalisable lemma). That is the split working as §8 hypothesises: divergent generation, convergent
+filtering. It is one round and two ideas, which is not evidence enough to harden the section, but it
+is the first datum this repo has on its own model-selection hypothesis and it points the right way.
