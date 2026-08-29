@@ -1,0 +1,266 @@
+{
+ "name": "rand-convex-043",
+ "group": "random",
+ "note": "",
+ "n_vertices": 4,
+ "simple": true,
+ "simple_reason": "simple",
+ "convex": true,
+ "orientation": 1,
+ "vertices_exact": [
+  [
+   [
+    "-47/3",
+    "0"
+   ],
+   [
+    "-6",
+    "0"
+   ]
+  ],
+  [
+   [
+    "12",
+    "0"
+   ],
+   [
+    "-9/2",
+    "0"
+   ]
+  ],
+  [
+   [
+    "-3",
+    "0"
+   ],
+   [
+    "1",
+    "0"
+   ]
+  ],
+  [
+   [
+    "-13",
+    "0"
+   ],
+   [
+    "-1",
+    "0"
+   ]
+  ]
+ ],
+ "vertices_display": [
+  [
+   -15.666666666666666,
+   -6.0
+  ],
+  [
+   12.0,
+   -4.5
+  ],
+  [
+   -3.0,
+   1.0
+  ],
+  [
+   -13.0,
+   -1.0
+  ]
+ ],
+ "vertices": [
+  {
+   "index": 0,
+   "point_display": [
+    -15.666666666666666,
+    -6.0
+   ],
+   "interior_angle_display_deg": 58.824153742,
+   "reflex": false,
+   "cmp60": -1,
+   "good": false,
+   "witness": null,
+   "witness_verified": null,
+   "witness_detail": null,
+   "pairs_tested": 32,
+   "nonempty_pairs": 8,
+   "trivial_only_pairs": 8
+  },
+  {
+   "index": 1,
+   "point_display": [
+    12.0,
+    -4.5
+   ],
+   "interior_angle_display_deg": 23.23966275,
+   "reflex": false,
+   "cmp60": -1,
+   "good": false,
+   "witness": null,
+   "witness_verified": null,
+   "witness_detail": null,
+   "pairs_tested": 32,
+   "nonempty_pairs": 8,
+   "trivial_only_pairs": 8
+  },
+  {
+   "index": 2,
+   "point_display": [
+    -3.0,
+    1.0
+   ],
+   "interior_angle_display_deg": 148.553764098,
+   "reflex": false,
+   "cmp60": 1,
+   "good": true,
+   "witness": {
+    "sigma": 1,
+    "Q_exact": [
+     [
+      "-73479/27637",
+      "-173968/82911"
+     ],
+     [
+      "-146331/27637",
+      "-3144/27637"
+     ]
+    ],
+    "X_exact": [
+     [
+      "-73479/27637",
+      "173968/82911"
+     ],
+     [
+      "-146331/27637",
+      "3144/27637"
+     ]
+    ],
+    "Q_display": [
+     -6.292993871635156,
+     -5.491788824365762
+    ],
+    "X_display": [
+     0.9755571020870866,
+     -5.097710759525399
+    ]
+   },
+   "witness_verified": true,
+   "witness_detail": {
+    "O_on_J": true,
+    "Q_on_J": true,
+    "X_on_J": true,
+    "distinct": true,
+    "equilateral": true,
+    "side_squared": [
+     "4393216/82911",
+     "0"
+    ],
+    "side_display": 7.279225973878465,
+    "nondegenerate": true
+   },
+   "pairs_tested": 1,
+   "nonempty_pairs": 1,
+   "trivial_only_pairs": 0
+  },
+  {
+   "index": 3,
+   "point_display": [
+    -13.0,
+    -1.0
+   ],
+   "interior_angle_display_deg": 129.38241941,
+   "reflex": false,
+   "cmp60": 1,
+   "good": true,
+   "witness": {
+    "sigma": 1,
+    "Q_exact": [
+     [
+      "-352027/27637",
+      "-133796/82911"
+     ],
+     [
+      "-161433/27637",
+      "-2418/27637"
+     ]
+    ],
+    "X_exact": [
+     [
+      "-352027/27637",
+      "133796/82911"
+     ],
+     [
+      "-161433/27637",
+      "2418/27637"
+     ]
+    ],
+    "Q_display": [
+     -15.532588798223221,
+     -5.992730717975958
+    ],
+    "X_display": [
+     -9.94246276308951,
+     -5.68965159558919
+    ]
+   },
+   "witness_verified": true,
+   "witness_detail": {
+    "O_on_J": true,
+    "Q_on_J": true,
+    "X_on_J": true,
+    "distinct": true,
+    "equilateral": true,
+    "side_squared": [
+     "2598544/82911",
+     "0"
+    ],
+    "side_display": 5.598336006627904,
+    "nondegenerate": true
+   },
+   "pairs_tested": 1,
+   "nonempty_pairs": 1,
+   "trivial_only_pairs": 0
+  }
+ ],
+ "edge_samples": [
+  {
+   "edge": 0,
+   "t": "1/2",
+   "point_display": [
+    -1.8333333333333333,
+    -5.25
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 1,
+   "t": "1/2",
+   "point_display": [
+    4.5,
+    -1.75
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 2,
+   "t": "1/2",
+   "point_display": [
+    -8.0,
+    0.0
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 3,
+   "t": "1/2",
+   "point_display": [
+    -14.333333333333334,
+    -3.5
+   ],
+   "good": true,
+   "witness_verified": true
+  }
+ ]
+}

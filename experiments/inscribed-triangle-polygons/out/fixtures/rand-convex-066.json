@@ -1,0 +1,266 @@
+{
+ "name": "rand-convex-066",
+ "group": "random",
+ "note": "",
+ "n_vertices": 4,
+ "simple": true,
+ "simple_reason": "simple",
+ "convex": true,
+ "orientation": 1,
+ "vertices_exact": [
+  [
+   [
+    "-9",
+    "0"
+   ],
+   [
+    "-1/25",
+    "0"
+   ]
+  ],
+  [
+   [
+    "-20/3",
+    "0"
+   ],
+   [
+    "-52/75",
+    "0"
+   ]
+  ],
+  [
+   [
+    "16",
+    "0"
+   ],
+   [
+    "6/25",
+    "0"
+   ]
+  ],
+  [
+   [
+    "29/4",
+    "0"
+   ],
+   [
+    "9/20",
+    "0"
+   ]
+  ]
+ ],
+ "vertices_display": [
+  [
+   -9.0,
+   -0.04
+  ],
+  [
+   -6.666666666666667,
+   -0.6933333333333334
+  ],
+  [
+   16.0,
+   0.24
+  ],
+  [
+   7.25,
+   0.45
+  ]
+ ],
+ "vertices": [
+  {
+   "index": 0,
+   "point_display": [
+    -9.0,
+    -0.04
+   ],
+   "interior_angle_display_deg": 17.369411227,
+   "reflex": false,
+   "cmp60": -1,
+   "good": false,
+   "witness": null,
+   "witness_verified": null,
+   "witness_detail": null,
+   "pairs_tested": 32,
+   "nonempty_pairs": 8,
+   "trivial_only_pairs": 8
+  },
+  {
+   "index": 1,
+   "point_display": [
+    -6.666666666666667,
+    -0.6933333333333334
+   ],
+   "interior_angle_display_deg": 161.999847572,
+   "reflex": false,
+   "cmp60": 1,
+   "good": true,
+   "witness": {
+    "sigma": 1,
+    "Q_exact": [
+     [
+      "-765614726140/114750895461",
+      "18432157520/38250298487"
+     ],
+     [
+      "-1989642182324/2868772386525",
+      "758971192/38250298487"
+     ]
+    ],
+    "X_exact": [
+     [
+      "-768725718304/114750895461",
+      "9220256500/38250298487"
+     ],
+     [
+      "84288869176/2868772386525",
+      "278026196/38250298487"
+     ]
+    ],
+    "Q_display": [
+     -5.8373263537137055,
+     -0.6591840263293879
+    ],
+    "X_display": [
+     -6.281570677577237,
+     0.041971099568440244
+    ]
+   },
+   "witness_verified": true,
+   "witness_detail": {
+    "O_on_J": true,
+    "Q_on_J": true,
+    "X_on_J": true,
+    "distinct": true,
+    "equilateral": true,
+    "side_squared": [
+     "1021002650190574824192/1463085334344594489169",
+     "-7493145707969416320/1463085334344594489169"
+    ],
+    "side_display": 0.8300430891572829,
+    "nondegenerate": true
+   },
+   "pairs_tested": 8,
+   "nonempty_pairs": 5,
+   "trivial_only_pairs": 4
+  },
+  {
+   "index": 2,
+   "point_display": [
+    16.0,
+    0.24
+   ],
+   "interior_angle_display_deg": 3.732740751,
+   "reflex": false,
+   "cmp60": -1,
+   "good": false,
+   "witness": null,
+   "witness_verified": null,
+   "witness_detail": null,
+   "pairs_tested": 32,
+   "nonempty_pairs": 8,
+   "trivial_only_pairs": 8
+  },
+  {
+   "index": 3,
+   "point_display": [
+    7.25,
+    0.45
+   ],
+   "interior_angle_display_deg": 176.898000449,
+   "reflex": false,
+   "cmp60": 1,
+   "good": true,
+   "witness": {
+    "sigma": 1,
+    "Q_exact": [
+     [
+      "2105589/289490",
+      "-32963/173694"
+     ],
+     [
+      "-69089/578980",
+      "-13573/1736940"
+     ]
+    ],
+    "X_exact": [
+     [
+      "2105589/289490",
+      "32963/173694"
+     ],
+     [
+      "-69089/578980",
+      "13573/1736940"
+     ]
+    ],
+    "Q_display": [
+     6.9447408041159,
+     -0.1328636139481688
+    ],
+    "X_display": [
+     7.60214509867867,
+     -0.10579402534852535
+    ]
+   },
+   "witness_verified": true,
+   "witness_detail": {
+    "O_on_J": true,
+    "Q_on_J": true,
+    "X_on_J": true,
+    "distinct": true,
+    "equilateral": true,
+    "side_squared": [
+     "3759721/8684700",
+     "0"
+    ],
+    "side_display": 0.6579613735900668,
+    "nondegenerate": true
+   },
+   "pairs_tested": 6,
+   "nonempty_pairs": 1,
+   "trivial_only_pairs": 0
+  }
+ ],
+ "edge_samples": [
+  {
+   "edge": 0,
+   "t": "1/2",
+   "point_display": [
+    -7.833333333333333,
+    -0.36666666666666664
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 1,
+   "t": "1/2",
+   "point_display": [
+    4.666666666666667,
+    -0.22666666666666666
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 2,
+   "t": "1/2",
+   "point_display": [
+    11.625,
+    0.345
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 3,
+   "t": "1/2",
+   "point_display": [
+    -0.875,
+    0.205
+   ],
+   "good": true,
+   "witness_verified": true
+  }
+ ]
+}

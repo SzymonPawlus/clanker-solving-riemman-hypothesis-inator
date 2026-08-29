@@ -1,0 +1,5528 @@
+{
+ "partial": false,
+ "issue": 132,
+ "status": "numerical (RULES.md 3): exact arithmetic on finitely many fixtures; certain about each fixture, evidence only about the general conjectures",
+ "environment": {
+  "python": "3.11.15",
+  "implementation": "CPython",
+  "platform": "Linux-6.18.44-fc-v22-x86_64-with-glibc2.39",
+  "sympy_present": "1.14.0",
+  "dependencies_of_the_decider": "standard library only (fractions)"
+ },
+ "seconds": 5.46,
+ "n_fixtures": 190,
+ "n_vertices_decided": 783,
+ "n_nonvertex_points_decided": 1487,
+ "all_simple": true,
+ "verdicts": {
+  "C1_convex_vertex_good_iff_angle_ge_60": {
+   "tested": 721,
+   "violations": []
+  },
+  "C2_convex_nonvertex_points_all_good": {
+   "tested": 1177,
+   "violations": []
+  },
+  "C3_max_nongood_vertices_in_a_convex_polygon": {
+   "max": 2,
+   "argmax": "ctl-tri-30-30-120",
+   "three_or_more": []
+  },
+  "C4_nonconvex_sub60_vertex_that_is_good": {
+   "examples": [
+    {
+     "fixture": "ncv-dart",
+     "vertex": 1,
+     "angle_deg_display": 3.379683783,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "1798830/171383",
+        "-244000/171383"
+       ],
+       [
+        "179883/171383",
+        "-24400/171383"
+       ]
+      ],
+      "X_exact": [
+       [
+        "1792930/171383",
+        "-126250/171383"
+       ],
+       [
+        "-190367/171383",
+        "30300/171383"
+       ]
+      ],
+      "Q_display": [
+       8.030023998606595,
+       0.8030023998606594
+      ],
+      "X_display": [
+       9.185616925508533,
+       -0.8045480621220483
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-dart",
+     "vertex": 3,
+     "angle_deg_display": 7.785140143,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "1844170/171383",
+        "-132200/171383"
+       ],
+       [
+        "184417/171383",
+        "-13220/171383"
+       ]
+      ],
+      "X_exact": [
+       [
+        "1798830/171383",
+        "-244000/171383"
+       ],
+       [
+        "-191783/171383",
+        "58560/171383"
+       ]
+      ],
+      "Q_display": [
+       9.424463822195868,
+       0.9424463822195869
+      ],
+      "X_display": [
+       8.030023998606595,
+       -0.5272057596655826
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-star6",
+     "vertex": 0,
+     "angle_deg_display": 47.587953774,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "8/13",
+        "2/13"
+       ],
+       [
+        "-2/13",
+        "6/13"
+       ]
+      ],
+      "X_exact": [
+       [
+        "8/13",
+        "2/13"
+       ],
+       [
+        "2/13",
+        "-6/13"
+       ]
+      ],
+      "Q_display": [
+       0.881853970395212,
+       0.6455619111856357
+      ],
+      "X_display": [
+       0.881853970395212,
+       -0.6455619111856357
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-star6",
+     "vertex": 2,
+     "angle_deg_display": 47.587953774,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "-5/13",
+        "2/13"
+       ],
+       [
+        "2/13",
+        "7/13"
+       ]
+      ],
+      "X_exact": [
+       [
+        "1",
+        "0"
+       ],
+       [
+        "4/13",
+        "1/13"
+       ]
+      ],
+      "Q_display": [
+       -0.11814602960478815,
+       1.0864888963832415
+      ],
+      "X_display": [
+       1.0,
+       0.440926985197606
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-star6",
+     "vertex": 4,
+     "angle_deg_display": 47.587953774,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "-1",
+        "0"
+       ],
+       [
+        "4/13",
+        "1/13"
+       ]
+      ],
+      "X_exact": [
+       [
+        "5/13",
+        "-2/13"
+       ],
+       [
+        "2/13",
+        "7/13"
+       ]
+      ],
+      "Q_display": [
+       -1.0,
+       0.440926985197606
+      ],
+      "X_display": [
+       0.11814602960478815,
+       1.0864888963832415
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-star6",
+     "vertex": 6,
+     "angle_deg_display": 47.587953774,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "-8/13",
+        "-2/13"
+       ],
+       [
+        "2/13",
+        "-6/13"
+       ]
+      ],
+      "X_exact": [
+       [
+        "-8/13",
+        "-2/13"
+       ],
+       [
+        "-2/13",
+        "6/13"
+       ]
+      ],
+      "Q_display": [
+       -0.881853970395212,
+       -0.6455619111856357
+      ],
+      "X_display": [
+       -0.881853970395212,
+       0.6455619111856357
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-star6",
+     "vertex": 8,
+     "angle_deg_display": 47.587953774,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "2",
+        "0"
+       ],
+       [
+        "0",
+        "0"
+       ]
+      ],
+      "X_exact": [
+       [
+        "-1",
+        "0"
+       ],
+       [
+        "0",
+        "1"
+       ]
+      ],
+      "Q_display": [
+       2.0,
+       0.0
+      ],
+      "X_display": [
+       -1.0,
+       1.7320508075688772
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-star6",
+     "vertex": 10,
+     "angle_deg_display": 47.587953774,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "1",
+        "0"
+       ],
+       [
+        "4/13",
+        "1/13"
+       ]
+      ],
+      "X_exact": [
+       [
+        "-8/13",
+        "-2/13"
+       ],
+       [
+        "2/13",
+        "-6/13"
+       ]
+      ],
+      "Q_display": [
+       1.0,
+       0.440926985197606
+      ],
+      "X_display": [
+       -0.881853970395212,
+       -0.6455619111856357
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-cstrip-h2_1",
+     "vertex": 0,
+     "angle_deg_display": 11.309932474,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "0",
+        "8"
+       ],
+       [
+        "0",
+        "0"
+       ]
+      ],
+      "X_exact": [
+       [
+        "0",
+        "4"
+       ],
+       [
+        "12",
+        "0"
+       ]
+      ],
+      "Q_display": [
+       13.856406460551018,
+       0.0
+      ],
+      "X_display": [
+       6.928203230275509,
+       12.0
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-cstrip-h1_1",
+     "vertex": 0,
+     "angle_deg_display": 5.710593137,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "0",
+        "8"
+       ],
+       [
+        "0",
+        "0"
+       ]
+      ],
+      "X_exact": [
+       [
+        "0",
+        "4"
+       ],
+       [
+        "12",
+        "0"
+       ]
+      ],
+      "Q_display": [
+       13.856406460551018,
+       0.0
+      ],
+      "X_display": [
+       6.928203230275509,
+       12.0
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-cstrip-h1_2",
+     "vertex": 0,
+     "angle_deg_display": 2.862405226,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "0",
+        "8"
+       ],
+       [
+        "0",
+        "0"
+       ]
+      ],
+      "X_exact": [
+       [
+        "0",
+        "4"
+       ],
+       [
+        "12",
+        "0"
+       ]
+      ],
+      "Q_display": [
+       13.856406460551018,
+       0.0
+      ],
+      "X_display": [
+       6.928203230275509,
+       12.0
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-cstrip-h1_4",
+     "vertex": 0,
+     "angle_deg_display": 1.432096184,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "0",
+        "8"
+       ],
+       [
+        "0",
+        "0"
+       ]
+      ],
+      "X_exact": [
+       [
+        "0",
+        "4"
+       ],
+       [
+        "12",
+        "0"
+       ]
+      ],
+      "Q_display": [
+       13.856406460551018,
+       0.0
+      ],
+      "X_display": [
+       6.928203230275509,
+       12.0
+      ]
+     }
+    },
+    {
+     "fixture": "ncv-cstrip-h1_20",
+     "vertex": 0,
+     "angle_deg_display": 0.28647651,
+     "witness": {
+      "sigma": 1,
+      "Q_exact": [
+       [
+        "0",
+        "8"
+       ],
+       [
+        "0",
+        "0"
+       ]
+      ],
+      "X_exact": [
+       [
+        "0",
+        "4"
+       ],
+       [
+        "12",
+        "0"
+       ]
+      ],
+      "Q_display": [
+       13.856406460551018,
+       0.0
+      ],
+      "X_display": [
+       6.928203230275509,
+       12.0
+      ]
+     }
+    }
+   ]
+  },
+  "C5_nonconvex_nonvertex_points_all_good": {
+   "tested": 310,
+   "violations": []
+  },
+  "C6_nonconvex_vertex_angle_ge_60_but_not_good": {
+   "tested": 48,
+   "examples": []
+  },
+  "C7_rational_polygon_never_has_an_exactly_60_vertex": {
+   "tested": 740,
+   "violations": []
+  },
+  "witness_verification_failures": []
+ },
+ "per_fixture": [
+  {
+   "name": "ctl-equilateral",
+   "group": "controls",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    0,
+    0,
+    0
+   ],
+   "angles_deg_display": [
+    60.0,
+    60.0,
+    60.0
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ctl-tri-30-30-120",
+   "group": "controls",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    30.0,
+    30.0,
+    120.0
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ctl-unit-square",
+   "group": "controls",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    90.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "nonvertex_samples": 20,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-hexagon",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    120.0,
+    120.0,
+    120.0,
+    120.0,
+    120.0,
+    120.0
+   ],
+   "nonvertex_samples": 30,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-12gon",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 12,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0
+   ],
+   "nonvertex_samples": 60,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-60deg-scalene",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    0,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    60.0,
+    30.0,
+    90.0
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-60deg-kite",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    60.0,
+    63.434948823,
+    79.476388096,
+    157.088663081
+   ],
+   "nonvertex_samples": 20,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-square-10x1",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    90.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "nonvertex_samples": 20,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-square-1000x1",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    90.0,
+    90.0,
+    90.0,
+    90.0
+   ],
+   "nonvertex_samples": 20,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-right-tri-1-eps",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    90.0,
+    0.05729576,
+    89.94270424
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-sliver-tri",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    1.145762838,
+    1.145762838,
+    177.708474324
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-sliver-tri-thin",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    0.114591406,
+    0.114591406,
+    179.770817188
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-pentagon-irreg",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    95.906141114,
+    119.931511841,
+    99.162347046,
+    104.036243468,
+    120.963756532
+   ],
+   "nonvertex_samples": 25,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-obtuse-tri",
+   "group": "convex",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    6.340191746,
+    45.0,
+    128.659808254
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t1_2",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    53.130102354,
+    63.434948823,
+    63.434948823
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5_9",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    58.109208198,
+    60.945395901,
+    60.945395901
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t57_100",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.366280358,
+    60.316859821,
+    60.316859821
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t577_1000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.969892015,
+    60.015053993,
+    60.015053993
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5773_10000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.995679587,
+    60.002160206,
+    60.002160206
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t57735_100000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.999976865,
+    60.000011568,
+    60.000011568
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t577350_1000000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.999976865,
+    60.000011568,
+    60.000011568
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5773502_10000000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.999994054,
+    60.000002973,
+    60.000002973
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5773502691896257_10000000000000000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    60.0,
+    60.0,
+    60.0
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5773502691896258_10000000000000000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    60.0,
+    60.0,
+    60.0
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5773503_10000000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    60.000002648,
+    59.999998676,
+    59.999998676
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t577351_1000000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    60.000062809,
+    59.999968596,
+    59.999968596
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t57736_100000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    60.000836298,
+    59.999581851,
+    59.999581851
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t5774_10000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    60.004273956,
+    59.997863022,
+    59.997863022
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t578_1000",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    60.05582454,
+    59.97208773,
+    59.97208773
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t3_5",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    61.927513064,
+    59.036243468,
+    59.036243468
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t7_10",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    69.984040397,
+    55.007979801,
+    55.007979801
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "cvx-iso-t1",
+   "group": "convex-boundary",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    90.0,
+    45.0,
+    45.0
+   ],
+   "nonvertex_samples": 15,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-L",
+   "group": "nonconvex",
+   "convex": false,
+   "n_vertices": 6,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    90.0,
+    90.0,
+    90.0,
+    270.0,
+    90.0,
+    90.0
+   ],
+   "nonvertex_samples": 30,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-dart",
+   "group": "nonconvex",
+   "convex": false,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    11.421186275,
+    3.379683783,
+    337.413989798,
+    7.785140143
+   ],
+   "nonvertex_samples": 20,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-star6",
+   "group": "nonconvex",
+   "convex": false,
+   "n_vertices": 12,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    47.587953774,
+    252.412046226,
+    47.587953774,
+    252.412046226,
+    47.587953774,
+    252.412046226,
+    47.587953774,
+    252.412046226,
+    47.587953774,
+    252.412046226,
+    47.587953774,
+    252.412046226
+   ],
+   "nonvertex_samples": 60,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-cstrip-h2_1",
+   "group": "nonconvex-cstrip",
+   "convex": false,
+   "n_vertices": 8,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    11.309932474,
+    90.0,
+    90.0,
+    90.0,
+    90.0,
+    270.0,
+    270.0,
+    168.690067526
+   ],
+   "nonvertex_samples": 40,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-cstrip-h1_1",
+   "group": "nonconvex-cstrip",
+   "convex": false,
+   "n_vertices": 8,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    5.710593137,
+    90.0,
+    90.0,
+    90.0,
+    90.0,
+    270.0,
+    270.0,
+    174.289406863
+   ],
+   "nonvertex_samples": 40,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-cstrip-h1_2",
+   "group": "nonconvex-cstrip",
+   "convex": false,
+   "n_vertices": 8,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    2.862405226,
+    90.0,
+    90.0,
+    90.0,
+    90.0,
+    270.0,
+    270.0,
+    177.137594774
+   ],
+   "nonvertex_samples": 40,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-cstrip-h1_4",
+   "group": "nonconvex-cstrip",
+   "convex": false,
+   "n_vertices": 8,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    1.432096184,
+    90.0,
+    90.0,
+    90.0,
+    90.0,
+    270.0,
+    270.0,
+    178.567903816
+   ],
+   "nonvertex_samples": 40,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "ncv-cstrip-h1_20",
+   "group": "nonconvex-cstrip",
+   "convex": false,
+   "n_vertices": 8,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    0.28647651,
+    90.0,
+    90.0,
+    90.0,
+    90.0,
+    270.0,
+    270.0,
+    179.71352349
+   ],
+   "nonvertex_samples": 40,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-000",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    31.683898153,
+    133.951474897,
+    123.107404807,
+    71.257222143
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-001",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    87.045307134,
+    46.949463511,
+    70.480308322,
+    155.524921033
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-002",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    4.938225914,
+    170.423450484,
+    12.163529691,
+    172.474793911
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-003",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    40.886277946,
+    37.089862485,
+    102.023859569
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-004",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    18.511665124,
+    170.677546017,
+    171.801545809,
+    149.333895433,
+    29.675347618
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-005",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    7.671711175,
+    172.754271902,
+    21.167671869,
+    159.358390803,
+    179.047954252
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-006",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    5.859711945,
+    103.903150482,
+    71.827939406,
+    178.409198167
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-007",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    6.020065231,
+    175.181217598,
+    30.392217154,
+    148.406500017
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-008",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    45.188472279,
+    176.930363646,
+    99.649100869,
+    38.232063206
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-009",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    3.741120748,
+    179.840589612,
+    32.825088064,
+    145.155017953,
+    178.438183624
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-010",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    4.184159502,
+    7.923178511,
+    174.588916406,
+    176.795996115,
+    176.507749466
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-011",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    17.497264379,
+    163.803935475,
+    165.777283533,
+    152.30999134,
+    40.611525273
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-012",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    79.485757696,
+    45.902552508,
+    71.604348688,
+    163.007341109
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-013",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    7.639371986,
+    172.035622073,
+    14.448192862,
+    165.876813079
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-014",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    76.466106286,
+    19.96021568,
+    83.573678034
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-015",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    0.790048377,
+    1.448963125,
+    177.760988498
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-016",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    52.55538923,
+    36.882076576,
+    90.562534193
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-017",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    1.759889434,
+    152.391465228,
+    25.848645337
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-018",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    29.786599302,
+    79.409278852,
+    72.477557192,
+    178.326564654
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-019",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    3.319219736,
+    178.261980445,
+    1.691886771,
+    176.726913049
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-020",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    69.569492701,
+    116.596785197,
+    43.532502151,
+    130.301219951
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-021",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    40.017870423,
+    14.85519282,
+    125.126936758
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-022",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    44.993963464,
+    152.497375488,
+    74.854793592,
+    160.804078502,
+    106.849788954
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-023",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    10.417083513,
+    112.691796759,
+    56.891119727
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-024",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    true,
+    true,
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    139.594042697,
+    97.733891033,
+    46.966398168,
+    143.451664345,
+    148.439071178,
+    143.814932579
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-025",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    9.929232811,
+    166.264241161,
+    3.806526028
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-026",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    40.010986434,
+    77.023307536,
+    62.965706031
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-027",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    83.06257706,
+    14.100898868,
+    170.099367767,
+    92.737156305
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-028",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    13.341536229,
+    167.503988956,
+    160.806928209,
+    18.347546606
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-029",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    4.210206413,
+    3.93861873,
+    171.851174856
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-030",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    0.353242126,
+    177.604077512,
+    2.042680362
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-031",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    1.661602363,
+    167.306414907,
+    11.031982729
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-032",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    32.282180095,
+    136.110472589,
+    11.607347317
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-033",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    18.263813843,
+    161.695898609,
+    167.301839278,
+    12.73844827
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-034",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    5.636719896,
+    178.398484892,
+    173.79921731,
+    2.165577903
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-035",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    93.476312749,
+    106.329087092,
+    87.185423451,
+    73.009176708
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-036",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    4.917611403,
+    172.616941703,
+    2.465446893
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-037",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    15.69807168,
+    167.557242903,
+    12.183208342,
+    164.561477075
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-038",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    28.653793328,
+    171.936984071,
+    81.965168489,
+    77.444054112
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-039",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    7.302709717,
+    27.974869596,
+    144.722420687
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-040",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    32.398001801,
+    133.130290308,
+    14.471707891
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-041",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    37.066585243,
+    74.538292498,
+    68.395122259
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-042",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    105.265431118,
+    108.666245408,
+    124.053235888,
+    22.015087586
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-043",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    58.824153742,
+    23.23966275,
+    148.553764098,
+    129.38241941
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-044",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    80.441192708,
+    52.303768195,
+    47.255039097
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-045",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    5.405894498,
+    172.36884104,
+    4.208645049,
+    178.016619413
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-046",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    158.110242807,
+    7.649628791,
+    14.240128402
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-047",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    14.478765478,
+    61.276348636,
+    104.244885886
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-048",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    16.302267838,
+    6.682646152,
+    177.786966012,
+    159.228119998
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-049",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    48.254513702,
+    42.596048279,
+    156.541051166,
+    112.608386853
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-050",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    60.11672337,
+    30.556381981,
+    89.32689465
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-051",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    0.864394527,
+    13.270196359,
+    171.047272765,
+    175.261752806,
+    179.556383543
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-052",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    93.3691693,
+    58.127717456,
+    85.310660522,
+    123.192452723
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-053",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    62.46846966,
+    120.555830881,
+    100.34622925,
+    76.62947021
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-054",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    5.654705885,
+    8.781480312,
+    173.575603283,
+    178.76286153,
+    173.22534899
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-055",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    85.989375288,
+    156.493903927,
+    108.078587132,
+    39.675052705,
+    149.763080948
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-056",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    5.244739365,
+    138.90969,
+    35.845570635
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-057",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    19.660298142,
+    10.350892324,
+    149.988809534
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-058",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    1.58523939,
+    178.058813662,
+    0.355946948
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-059",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    18.099175589,
+    17.181005531,
+    144.71981888
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-060",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    13.363847904,
+    175.078662574,
+    4.280507254,
+    167.276982267
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-061",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    130.282919521,
+    83.392563095,
+    125.035708535,
+    21.28880885
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-062",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    115.659727158,
+    47.32153059,
+    168.1868553,
+    37.014268346,
+    171.817618606
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-063",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    102.72358624,
+    82.42397827,
+    115.270199485,
+    59.582236006
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-064",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    11.101252432,
+    2.950363702,
+    177.108535794,
+    168.839848072
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-065",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    2.245810139,
+    4.93954178,
+    172.81464808
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-066",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    17.369411227,
+    161.999847572,
+    3.732740751,
+    176.898000449
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-067",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    164.040392875,
+    84.000929936,
+    69.776290002,
+    121.554789507,
+    100.62759768
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-068",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    133.371908132,
+    117.225456369,
+    178.247841745,
+    71.496934906,
+    165.424418625,
+    54.233440223
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-069",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    5.944279664,
+    5.475596298,
+    173.692227575,
+    174.887896463
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-070",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    12.030596097,
+    1.293935165,
+    166.675468738
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-071",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    137.661144173,
+    75.416882595,
+    57.830872863,
+    89.091100369
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-072",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    27.985703496,
+    161.134018716,
+    23.390314669,
+    151.159948457,
+    176.330014662
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-073",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    13.622314957,
+    170.936412844,
+    177.732746122,
+    13.574653191,
+    164.133872887
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-074",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    30.591869973,
+    154.856240226,
+    160.135793397,
+    67.271620448,
+    127.144475957
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-075",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    1.102765513,
+    178.171071994,
+    1.671463969,
+    179.054698524
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-076",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    9.588564211,
+    161.092728789,
+    9.318707
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-077",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    14.960288821,
+    134.352106425,
+    36.837905919,
+    173.849698835
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-078",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    29.905953709,
+    107.58530327,
+    179.450546648,
+    43.058196374
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-079",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    166.33020441,
+    119.763913852,
+    63.030485005,
+    132.773805122,
+    58.101591611
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-080",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    9.730488984,
+    173.342330622,
+    171.90035672,
+    5.254220528,
+    179.772603147
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-081",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    90.763611808,
+    93.642834551,
+    89.226252508,
+    86.367301134
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-082",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    9.456461182,
+    168.541561059,
+    20.549338991,
+    161.452638768
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-083",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    85.99427119,
+    98.617322015,
+    179.890525995,
+    110.035756926,
+    68.204014662,
+    177.258109213
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-084",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    19.505642219,
+    29.203587479,
+    131.290770302
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-085",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    41.476873113,
+    35.325365576,
+    103.197761311
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-086",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    21.422275093,
+    102.013866313,
+    65.409347564,
+    171.15451103
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-087",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    1.227830754,
+    176.291350784,
+    5.838918925,
+    176.641899538
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-088",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    59.939324043,
+    75.453179323,
+    159.015957483,
+    179.470369269,
+    66.121169881
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-089",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    2.232772887,
+    179.827538105,
+    4.115671448,
+    175.216677155,
+    178.607340405
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-090",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    false,
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    48.438157168,
+    154.031758274,
+    148.396898182,
+    30.157269678,
+    163.472807588,
+    175.503109109
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-091",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    75.827268631,
+    58.176337639,
+    45.99639373
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-092",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    false,
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    54.074657584,
+    139.051516516,
+    167.446671609,
+    29.910413267,
+    177.04927797,
+    152.467463053
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-093",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    4.063747747,
+    168.15653161,
+    7.779720643
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-094",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    20.726994675,
+    172.93636997,
+    48.055274274,
+    158.660356792,
+    139.621004289
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-095",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    17.020851593,
+    51.864801062,
+    132.250055781,
+    158.864291563
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-096",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    0.632881613,
+    1.766963399,
+    177.600154988
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-097",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    31.212040611,
+    129.546081111,
+    71.565051177,
+    127.676827101
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-098",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    12.564621774,
+    165.895160889,
+    22.856711298,
+    158.683506039
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-099",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    40.693199112,
+    85.224549837,
+    96.895261363,
+    137.186989688
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-100",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    true,
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    98.048368059,
+    58.626018166,
+    166.175314879,
+    84.302256542,
+    175.003239335,
+    137.844803019
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-101",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    67.492813967,
+    141.364715548,
+    57.98482297,
+    93.157647515
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-102",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    6.695449114,
+    127.381853123,
+    62.799138179,
+    163.123559584
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-103",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    52.721119175,
+    118.433831645,
+    63.841901267,
+    140.083312408,
+    164.919835505
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-104",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    38.527992444,
+    133.955376657,
+    57.201585256,
+    130.315045643
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-105",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    15.471720335,
+    175.94961401,
+    6.98027306,
+    171.68570837,
+    169.912684224
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-106",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    68.735920471,
+    100.809197017,
+    34.383793784,
+    156.071088729
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-107",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    14.815282543,
+    179.238541092,
+    162.379678547,
+    80.748637758,
+    102.81786006
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-108",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    6.717586417,
+    25.739479393,
+    168.914494666,
+    158.628439524
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-109",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    31.999862852,
+    149.630847553,
+    92.164487216,
+    102.244745686,
+    163.960056694
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-110",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    43.213780919,
+    45.30476191,
+    167.005383208,
+    104.476073963
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-111",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    87.240110805,
+    82.633105612,
+    153.73482586,
+    36.391957724
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-112",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    113.013125434,
+    126.56040286,
+    97.516680616,
+    45.544968032,
+    157.364823059
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-113",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    39.996120306,
+    125.044835852,
+    59.595908156,
+    135.363135686
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-114",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    17.959186036,
+    175.264416965,
+    33.654358338,
+    133.122038661
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-115",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    27.034490727,
+    175.887477182,
+    16.896102131,
+    179.862142995,
+    140.319786965
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-116",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    51.065064067,
+    147.324318933,
+    81.809116625,
+    79.801500375
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-117",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    24.31269758,
+    27.994008103,
+    127.693294317
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-118",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    48.406993944,
+    86.167124031,
+    131.194219285,
+    94.231662739
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-119",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    6.012648812,
+    179.078293801,
+    179.595216335,
+    177.423215978,
+    2.676726388,
+    175.213898687
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-120",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    24.090921973,
+    162.958666786,
+    151.700042187,
+    21.250369054
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-121",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    70.488940197,
+    144.490446668,
+    117.360033237,
+    175.317504454,
+    32.343075444
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-122",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    19.963937796,
+    176.370640178,
+    53.560889571,
+    110.104532455
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-123",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    25.271172049,
+    40.080484235,
+    114.648343716
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-124",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    6.332780961,
+    9.537570788,
+    164.129648251
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-125",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    74.208433786,
+    29.250856943,
+    177.949542132,
+    159.426449749,
+    99.164717389
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-126",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 6,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    16.102997725,
+    169.587771674,
+    168.819418385,
+    179.837755817,
+    100.684077678,
+    84.967978721
+   ],
+   "nonvertex_samples": 6,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-127",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    7.417056637,
+    149.543759931,
+    110.565501471,
+    92.473681961
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-128",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    1.188690221,
+    179.399574718,
+    2.157829816,
+    177.253905246
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-129",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    9.963792118,
+    170.573916221,
+    179.786788894,
+    177.376942535,
+    2.298560232
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-130",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    43.387996011,
+    63.479451961,
+    73.132552027
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-131",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    2.019020819,
+    177.511620181,
+    177.889407709,
+    2.579951291
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-132",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    116.477843056,
+    157.273022437,
+    14.83213411,
+    177.561339177,
+    73.85566122
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-133",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    23.013112984,
+    144.754173996,
+    12.232713019
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-134",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    11.973917745,
+    157.593536517,
+    10.432545738
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-135",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    7.082597718,
+    161.632364593,
+    11.285037689
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-136",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    13.072617122,
+    158.68462421,
+    171.126285728,
+    22.81574852,
+    174.30072442
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-137",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    32.557165449,
+    178.720394132,
+    76.616879055,
+    148.685377805,
+    103.42018356
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-138",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    106.280080035,
+    67.948564822,
+    154.124755295,
+    31.646599848
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-139",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    61.775099649,
+    29.050130173,
+    89.174770178
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-140",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    true,
+    false
+   ],
+   "cmp60": [
+    -1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    13.293718236,
+    107.088719426,
+    59.617562338
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-141",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    106.348585571,
+    60.222137144,
+    153.773472385,
+    49.763641691,
+    169.892163209
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-142",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 7,
+   "good": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    93.471992583,
+    130.715355822,
+    178.788487368,
+    164.021183623,
+    88.126932488,
+    74.299289311,
+    170.576758805
+   ],
+   "nonvertex_samples": 7,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-143",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    false,
+    false
+   ],
+   "cmp60": [
+    1,
+    -1,
+    -1
+   ],
+   "angles_deg_display": [
+    76.599513654,
+    49.258846122,
+    54.141640224
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-144",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    false,
+    false,
+    true
+   ],
+   "cmp60": [
+    -1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    3.551759683,
+    27.134262544,
+    149.313977774
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-145",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 3,
+   "good": [
+    true,
+    true,
+    false
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1
+   ],
+   "angles_deg_display": [
+    65.488974499,
+    61.596368886,
+    52.914656614
+   ],
+   "nonvertex_samples": 3,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-146",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1
+   ],
+   "angles_deg_display": [
+    60.900820259,
+    133.751557866,
+    25.526855797,
+    139.820766078
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-147",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 5,
+   "good": [
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    151.067114709,
+    134.35504661,
+    55.304846469,
+    122.187451804,
+    77.085540408
+   ],
+   "nonvertex_samples": 5,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-148",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    true,
+    false,
+    true,
+    true
+   ],
+   "cmp60": [
+    1,
+    -1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    74.68609787,
+    3.066798807,
+    179.962205263,
+    102.28489806
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  },
+  {
+   "name": "rand-convex-149",
+   "group": "random",
+   "convex": true,
+   "n_vertices": 4,
+   "good": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "cmp60": [
+    -1,
+    1,
+    1,
+    1
+   ],
+   "angles_deg_display": [
+    36.71699123,
+    154.000885715,
+    78.101924199,
+    91.180198857
+   ],
+   "nonvertex_samples": 4,
+   "nonvertex_nongood": 0
+  }
+ ]
+}
