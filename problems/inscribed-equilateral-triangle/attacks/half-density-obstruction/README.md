@@ -386,7 +386,8 @@ two improvements are not cosmetic: they are what let the contrapositive be state
 (S)  a closed 60° sector at O lies in Ω̄         ⟹  O is a vertex        [rotation lane, Lemma B]
 ```
 
-`D ⟹ C`: if `|B_r| < 180°` for every `r ∈ (0,R]` then, by Tonelli in polar coordinates,
+`D ⟹ C`: if `|B_r| < 180°` for every `r ∈ (0,R]` then, by Tonelli in polar coordinates and
+measuring angle in radians so that `180° = π`,
 `λ(Ω̄ ∩ B̄(O,R)) = ∫₀^R |B_r| r dr < ∫₀^R π r dr = ½λ(B(O,R))` — the strict inequality survives the
 integration because it is strict pointwise on a set of positive measure. `C ⟹ M` is immediate.
 

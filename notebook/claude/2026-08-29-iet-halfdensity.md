@@ -174,7 +174,7 @@ Honest weight of B: star-shaped polygons cannot wrap around an external point, s
 entered the regime where Lemma A could plausibly fail. It is a consistency check, not an attack.
 The real attack was §4 above — trying to break the *proof* — and it failed to break it.
 
-Runtime for the whole reproduction script: ~90 s. Well inside the §6.6 budget. No background jobs
+Runtime for the whole reproduction script: ~90 s. Well inside the §6 item-6 compute budget. No background jobs
 started, nothing left running.
 
 ## 7. Lean
