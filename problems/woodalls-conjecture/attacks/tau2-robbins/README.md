@@ -169,9 +169,14 @@ confusing an arbitrary directed cut with a dicut would break the proof.
    <https://doi.org/10.1007/s00493-025-00159-x>.  Corollary 2 records the same
    \(\tau=2\) conclusion via Robbins's theorem; Proposition 1 contains the
    agreement/disagreement construction in the more general language of
-   cut-balanced orientations.  The proof of Theorem 9 works with
-   \(w\in\{0,1\}^A\), explicitly treats weight-zero arcs as structurally
-   relevant, and requires packed dijoins never to use them.
+   cut-balanced orientations.  The introductory discussion of the weighted
+   Edmonds--Giles conjecture explicitly says that weight-zero arcs cannot be
+   removed because they help determine which cuts are dicuts.  More
+   specifically, Lemma 2 and the proof of Theorem 10 work with
+   \(w\in\{0,1\}^A\), retain weight-zero arcs in the digraph, and require the
+   packed dijoins to respect the weights.  (Theorem 9 itself is instead a
+   cited, unproved reformulation of Woodall's conjecture in terms of
+   strengthenings.)
 3. A. Schrijver, “A counterexample to a conjecture of Edmonds and Giles,”
    *Discrete Mathematics* **32** (1980), 213--214,
    <https://ir.cwi.nl/pub/9906/9906D.pdf>.  The example is for \(k=2\): its
