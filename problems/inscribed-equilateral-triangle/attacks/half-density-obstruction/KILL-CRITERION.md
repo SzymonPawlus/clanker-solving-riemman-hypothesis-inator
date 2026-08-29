@@ -1,7 +1,7 @@
 # Kill-criterion — the half-density obstruction (idea I1)
 
 **Provenance, stated plainly.** This file was written **before any computation was run** in this
-lane, as [`../../RULES.md`](../../RULES.md) §6.2 and the lane brief require, and before the
+lane, as [`../../../../RULES.md`](../../../../RULES.md) §6.2 and the lane brief require, and before the
 polygon witness of [`README.md`](./README.md) §6 existed. It was **not** written before the
 *derivation*: by the time I wrote it I had already done the measure-theoretic core (§3 of the
 README) and the Lemma A re-derivation (§4) on paper. So it is honest as a pre-registration of the
@@ -63,7 +63,7 @@ ball centred at `O`, with no topology in the statement at all.
 
 ## 4. Compute budget
 
-Well under the one hour of [`../../../../RULES.md`](../../../../RULES.md) §6.6. Everything here
+Well under the one hour of [`../../../../RULES.md`](../../../../RULES.md) §6, item 6. Everything here
 is exact rational / `ℚ(√3)` arithmetic on polygons of at most a few hundred vertices, plus a
 seeded random hunt sized so it finishes in a couple of minutes. Nothing is compute-bound and no
 background job is started. Estimated total: **< 5 minutes** of wall clock.

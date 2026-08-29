@@ -22,6 +22,7 @@ from q3 import Q3, ZERO
 import angular as A
 import shapes
 import fixtures_io
+import rotcheck
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 os.makedirs(OUT, exist_ok=True)
@@ -375,16 +376,30 @@ def hunt(count):
             best["nonconvex"] += 1
         n = len(P)
         exc = []
-        for i, O in enumerate(P):
-            if not A.decide(O, P)[0]:
-                exc.append(["vertex", i, A.vfloat(O)])
-            best["boundary_points"] += 1
+        pts = [("vertex", i, P[i]) for i in range(n)]
         for ei in range(n):
             for t in (F(1, 4), F(1, 2), F(3, 4)):
-                O = A.vadd(P[ei], A.vscale(Q3(t), A.vsub(P[(ei + 1) % n], P[ei])))
-                if not A.decide(O, P)[0]:
-                    exc.append(["edge", ei, str(t), A.vfloat(O)])
-                best["boundary_points"] += 1
+                pts.append(("edge %d t=%s" % (ei, t), ei,
+                            A.vadd(P[ei], A.vscale(Q3(t), A.vsub(P[(ei + 1) % n], P[ei])))))
+        for (lab, idx, O) in pts:
+            g1 = A.decide(O, P)[0]
+            # EVERY decision is taken twice, by the sweep and by the independent rotation
+            # decider in rotcheck.py.  A disagreement is the finding, not an error to hide.
+            g2, X = rotcheck.decide_rot(O, P)
+            if g1 != g2:
+                best.setdefault("internal_disagreements", []).append(
+                    {"poly_exact": [A.vpair(p) for p in P], "label": lab,
+                     "O_exact": A.vpair(O), "O_display": A.vfloat(O),
+                     "sweep": g1, "rotation": g2})
+            if g2:
+                Qw, Xw = rotcheck.triangle_from(O, X)
+                wok, _wd = A.recheck_witness(P, O, Qw, Xw)
+                if not wok:
+                    best.setdefault("bad_witnesses", []).append(
+                        {"poly_exact": [A.vpair(p) for p in P], "O_exact": A.vpair(O)})
+            if not (g1 and g2):
+                exc.append([lab, idx, A.vfloat(O)])
+            best["boundary_points"] += 1
         hist[len(exc)] = hist.get(len(exc), 0) + 1
         if len(exc) > best["max_exceptional"]:
             best["max_exceptional"] = len(exc)
@@ -410,12 +425,81 @@ def hunt(count):
     return 0
 
 
+# -------------------------------------------------------------------- structure
+def structure():
+    """G(O) on the whole committed battery: how many components, and how many of them are
+    ARCS rather than isolated directions.
+
+    The point is a short exact argument that can then be checked.  For a polygon with
+    RATIONAL vertices and a rational boundary point O, write w = d - c for the second edge
+    of a pair and k_e = cross(a,b) in Q for the first.  Then
+
+        M = k_e * rho^{-1}(w) - k_f * (b - a),
+
+    and rho^{-1}(w) = (w_x/2 + (sqrt3/2) w_y,  -(sqrt3/2) w_x + w_y/2).  Since b - a, k_e,
+    k_f are all rational, the sqrt3-parts of M are k_e*w_y/2 and -k_e*w_x/2.  Both vanish
+    only if k_e = 0 (excluded: the edge is transversal) or w = 0 (excluded: no zero-length
+    edge).  So M is NEVER zero over a rational polygon, and G(O) is a FINITE SET of
+    isolated directions -- an arc component needs coordinates in K = Q(sqrt3) proper.
+    `shapes.rotated_pair()` is such a shape and does produce an arc.
+    """
+    fx = fixtures_io.load_all()
+    t0 = time.time()
+    rows = []
+    hist = {}
+    arcs_total = 0
+    rational_only = True
+    for fi, d in enumerate(fx):
+        P = d["_poly"]
+        rat = all(p[0].b == 0 and p[1].b == 0 for p in P)
+        n = len(P)
+        pts = [("vertex", i, P[i]) for i in range(n)]
+        if d["group"].startswith("nonconvex") or d["group"] == "controls":
+            for ei in range(n):
+                for t in (F(1, 3), F(1, 2)):
+                    pts.append(("edge", ei, A.vadd(P[ei], A.vscale(
+                        Q3(t), A.vsub(P[(ei + 1) % n], P[ei])))))
+        row = {"name": d["name"], "group": d["group"], "rational_vertices": rat,
+               "points": 0, "arc_components": 0, "max_components": 0, "components": []}
+        for (_lab, _i, O) in pts:
+            g = A.good_directions(O, P, verify=True)
+            row["points"] += 1
+            row["arc_components"] += g["n_arc_components"]
+            row["components"].append(g["n_components"])
+            row["max_components"] = max(row["max_components"], g["n_components"])
+            hist[g["n_components"]] = hist.get(g["n_components"], 0) + 1
+            arcs_total += g["n_arc_components"]
+            if g["n_arc_components"] and rat:
+                rational_only = False
+        rows.append(row)
+        if (fi + 1) % 20 == 0 or fi + 1 == len(fx):
+            save("structure.json", {"per_fixture": rows, "arc_components_total": arcs_total,
+                                    "component_histogram": {str(a): b for a, b in
+                                                            sorted(hist.items())},
+                                    "no_arc_on_a_rational_polygon": rational_only,
+                                    "done": fi + 1, "of": len(fx),
+                                    "seconds": round(time.time() - t0, 2)})
+            print("  %3d/%d %s" % (fi + 1, len(fx), d["name"]), flush=True)
+    summ = {"fixtures": len(fx),
+            "points": sum(r["points"] for r in rows),
+            "arc_components_total": arcs_total,
+            "no_arc_on_a_rational_polygon": rational_only,
+            "max_components": max(r["max_components"] for r in rows),
+            "component_histogram": {str(a): b for a, b in sorted(hist.items())},
+            "seconds": round(time.time() - t0, 2)}
+    save("structure.json", {"summary": summ, "per_fixture": rows})
+    print(json.dumps(summ, indent=1))
+    return 0
+
+
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "validate"
     if mode == "validate":
         sys.exit(validate())
     elif mode == "fixtures":
         sys.exit(fixtures())
+    elif mode == "structure":
+        sys.exit(structure())
     elif mode == "explore":
         sys.exit(explore())
     elif mode == "hunt":

@@ -215,7 +215,8 @@ nothing else). But see §7: it is **only half** of what a general proof needs.
 > **Lemma B.** Suppose there are $\varepsilon > 0$ and a **closed** arc $I \subseteq S^1$ of
 > angular length $\ge 60°$ with
 > $$S = \{\,O + t v : 0 < t < \varepsilon,\ v \in I\,\} \subseteq \overline{\Omega}.$$
-> Then $O$ is a vertex of an equilateral triangle inscribed in $J$, of side $\varepsilon/2$.
+> Then $O$ is a vertex of an equilateral triangle inscribed in $J$. **[Corrected: the side is
+> _not_ claimed to be $\varepsilon/2$ — see the correction note below.]**
 
 **regularity budget: Jordan + the sector hypothesis.** The sector hypothesis *is* the regularity;
 it is a local one-sided cone condition on $\overline\Omega$ at $O$ and nothing else about $J$ is
@@ -226,14 +227,18 @@ $I = [\alpha,\beta]$ with $\beta - \alpha \ge 60°$ then $\alpha + 60° \in I \c
 $v \in I \cap \rho(I)$ and set $x = O + \tfrac{\varepsilon}{2}v$. Then $x \in S \subseteq
 \overline\Omega$, and $x = \rho\!\left(O + \tfrac{\varepsilon}{2}\rho^{-1}v\right) \in \rho(S)
 \subseteq \rho(\overline\Omega)$ because $\rho^{-1}v \in I$. So $x \in \overline\Omega \cap
-\rho(\overline\Omega)$ and $x \ne O$. Apply Corollary A′ and Observation R; the triangle produced
-has side $|Ox| = \varepsilon/2$. $\square$
+\rho(\overline\Omega)$ and $x \ne O$. Apply Corollary A′ and Observation R, which give a triangle.
+**[Corrected: the original concluded "the triangle produced has side $|Ox| = \varepsilon/2$". That
+does not follow — Corollary A′ is a non-constructive contrapositive, so the point of $J \cap
+\rho(J)$ it yields need not be $x$ — and it is false; see the correction note below.]** $\square$
 
 **$60°$ is exactly the threshold, on both sides.**
 
 - $|I| \ge 60°$ suffices, including equality, and the equality case is the familiar construction:
   at a polygon vertex of interior angle exactly $60°$, one edge rotates onto the other and the two
-  points at distance $\varepsilon/2$ along the edges close the triangle. No topology needed.
+  points at equal distance along the edges close the triangle. No topology needed. (In this
+  equality case the construction *is* explicit and does control the side; the deleted claim was
+  about the general case.)
 - $|I| < 60°$ is genuinely insufficient: §3 is a convex curve whose *whole* interior sits inside a
   $30°$ sector at $O$, and there $O$ is exceptional.
 
@@ -271,7 +276,8 @@ is the cleanest hypothesis I can both state and discharge.
 >    $\partial B(O,\varepsilon) \cap D$.
 
 > **Theorem C.** If Hypothesis (C) holds at $O$, then $O$ is a vertex of an equilateral triangle
-> inscribed in $J$, of side exactly $\varepsilon/2$ for the $\varepsilon$ of (C).
+> inscribed in $J$. **[Corrected: "of side exactly $\varepsilon/2$" deleted — see the correction
+> note below.]**
 
 **regularity budget: Jordan + Hypothesis (C) at one point.** Hypothesis (C) *is* the regularity, and
 it is stated as a hypothesis rather than derived because deriving it is exactly where the argument
@@ -292,7 +298,7 @@ $\partial B(O,\varepsilon) \cap D$, $\alpha$ separates $S_+$ from $S_-$, so they
 components. Hence $W_+ \supseteq S_+$ or $W_+ \supseteq S_-$; either way $\Omega$ contains an open
 sector of aperture $180° - 2\eta > 120° > 60°$ and radius $\varepsilon$. Applying Lemma B to any
 closed sub-arc of those directions of angular length exactly $60°$, with the same $\varepsilon$,
-gives the triangle, of side $\varepsilon/2$. $\square$
+gives the triangle. **[Corrected: "of side $\varepsilon/2$" deleted.]** $\square$
 
 ### 6.3 What Hypothesis (C) covers
 
@@ -427,8 +433,10 @@ is what such an argument needs and where it dies.
 
 **Noncollapse, first, because it is free here and it is not free later.** The route as executed in
 §2–§6 takes **no limit and uses no compactness**. The triangle it outputs is
-$\{O, \rho^{-1}(q), q\}$ with side $|Oq| > 0$ *given* explicitly, and in Lemma B the side is
-$\varepsilon/2$ where $\varepsilon$ is the sector radius. There is no step at which three vertices
+$\{O, \rho^{-1}(q), q\}$ with side $|Oq| > 0$ *given* explicitly. **[Corrected: the clause "and in
+Lemma B the side is $\varepsilon/2$ where $\varepsilon$ is the sector radius" is deleted as false;
+see the correction note below. Noncollapse is unaffected — it needs only $|Oq| > 0$, which the
+explicit $q$ supplies.]** There is no step at which three vertices
 could merge. This is the route's single greatest virtue and it is why the equilateral case is
 tractable at all: [`../../RULES.md`](../../RULES.md) §2's degenerate solution $O$ is present in
 $J \cap \rho(J)$ from the start and is *excluded by hand*, not by an estimate.
@@ -601,3 +609,38 @@ $120°$ vertex whose three side lengths are exactly equal in $\mathbb{Q}(\sqrt3)
 problem's shared enumerator under `experiments/inscribed-triangle-polygons/` (another lane's file);
 a cross-check of these exact intersection sets against that enumerator is the obvious next
 verification step and has **not** been done here.
+
+---
+
+## Correction note (2026-08-29): the "side $\varepsilon/2$" clause was false and is deleted
+
+Found by the `rectifiable-case` lane while re-deriving Lemma B, and verified independently by the
+dispatcher before being applied here. The lane did not edit this file (not its lane); the edits
+above are the dispatcher's.
+
+**What was wrong.** Lemma B and Theorem C each concluded that the inscribed equilateral triangle
+has side $\varepsilon/2$. The proof produces a point $x \in \overline\Omega \cap
+\rho(\overline\Omega)$ with $|Ox| = \varepsilon/2$ and then invokes Corollary A′ — but Corollary
+A′ is a **non-constructive contrapositive**: from $\overline\Omega \cap \rho(\overline\Omega)
+\neq \emptyset$ it concludes $J \cap \rho(J) \neq \{O\}$, and the intersection point of the
+*curves* it yields is not $x$. So the side of the resulting triangle is uncontrolled.
+
+**And the claim is not merely unproved, it is false.** Take $J = \partial([0,1]^2)$ and
+$O = (\tfrac12, 0)$. The closed $60°$ sector at $O$ centred on the upward vertical, of radius
+$\varepsilon = 1$, lies in the square: its extreme rays reach $(1, \tfrac{\sqrt3}{2})$ and
+$(0, \tfrac{\sqrt3}{2})$, both on the boundary. So Lemma B applies with $\varepsilon = 1$ and
+would predict a triangle of side $\tfrac12$. But the only boundary points at distance $\tfrac12$
+from $O$ are $(0,0)$ and $(1,0)$, which subtend $180°$ at $O$, not $60°$ — so **no** inscribed
+equilateral triangle of side $\tfrac12$ has a vertex at $O$. Exact enumeration finds exactly one
+triangle at this $O$: $(\tfrac12, 0)$, $(0, \tfrac{\sqrt3}{2})$, $(1, \tfrac{\sqrt3}{2})$, of
+side exactly $1$.
+
+**What survives.** The *existence* conclusions of Lemma B and Theorem C are unaffected — only the
+side-length clause is deleted. Nothing else in this file, and nothing in any other attack, depended
+on the deleted clause; the dispatcher checked this before applying the edit.
+
+**Why it matters beyond the typo.** A quantitative clause riding along on a non-constructive step
+is exactly the kind of thing that survives review by looking like harmless bookkeeping, and it
+would have become load-bearing the moment anyone tried to use Lemma B for a lower bound on triangle
+size. It was caught only because a different lane re-derived the lemma from scratch rather than
+reading it.

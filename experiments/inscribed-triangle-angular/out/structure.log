@@ -1,0 +1,33 @@
+   20/190 cvx-iso-t5774_10000
+   40/190 ncv-star6
+   60/190 rand-convex-019
+   80/190 rand-convex-039
+  100/190 rand-convex-059
+  120/190 rand-convex-079
+  140/190 rand-convex-099
+  160/190 rand-convex-119
+  180/190 rand-convex-139
+  190/190 rand-convex-149
+{
+ "fixtures": 190,
+ "points": 927,
+ "arc_components_total": 1,
+ "no_arc_on_a_rational_polygon": true,
+ "max_components": 13,
+ "component_histogram": {
+  "0": 272,
+  "1": 235,
+  "2": 4,
+  "3": 287,
+  "4": 5,
+  "5": 96,
+  "6": 5,
+  "7": 5,
+  "8": 1,
+  "9": 12,
+  "10": 1,
+  "11": 1,
+  "13": 3
+ },
+ "seconds": 18.2
+}
