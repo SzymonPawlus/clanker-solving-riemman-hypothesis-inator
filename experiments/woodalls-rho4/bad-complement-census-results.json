@@ -1,0 +1,1213 @@
+{
+  "adversarial_count": 26,
+  "adversarial_family": "complete canonical one-switch mutation space of ID1009; retained records represent distinct census signatures, not isomorphism classes",
+  "adversarial_records": [
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 271,
+      "eligible_complement_count": 222,
+      "fixture": "ID1009-switch=0,5"
+    },
+    {
+      "bad_complement_count": 6,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 346,
+      "eligible_complement_count": 346,
+      "fixture": "ID1009-switch=0,17"
+    },
+    {
+      "bad_complement_count": 12,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          9,
+          11
+        ],
+        [
+          0,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          9,
+          11
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 447,
+      "eligible_complement_count": 447,
+      "fixture": "ID1009-switch=0,32"
+    },
+    {
+      "bad_complement_count": 9,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 389,
+      "eligible_complement_count": 383,
+      "fixture": "ID1009-switch=0,38"
+    },
+    {
+      "bad_complement_count": 12,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          9,
+          11
+        ],
+        [
+          0,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          9,
+          11
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 435,
+      "eligible_complement_count": 435,
+      "fixture": "ID1009-switch=0,41"
+    },
+    {
+      "bad_complement_count": 9,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 416,
+      "eligible_complement_count": 413,
+      "fixture": "ID1009-switch=0,44"
+    },
+    {
+      "bad_complement_count": 9,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 413,
+      "eligible_complement_count": 410,
+      "fixture": "ID1009-switch=0,45"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 222,
+      "eligible_complement_count": 222,
+      "fixture": "ID1009-switch=1,17"
+    },
+    {
+      "bad_complement_count": 9,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          9,
+          11
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 402,
+      "eligible_complement_count": 402,
+      "fixture": "ID1009-switch=1,32"
+    },
+    {
+      "bad_complement_count": 7,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 359,
+      "eligible_complement_count": 354,
+      "fixture": "ID1009-switch=1,38"
+    },
+    {
+      "bad_complement_count": 7,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 374,
+      "eligible_complement_count": 372,
+      "fixture": "ID1009-switch=1,44"
+    },
+    {
+      "bad_complement_count": 12,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          1,
+          9,
+          11
+        ],
+        [
+          0,
+          1,
+          10,
+          11
+        ],
+        [
+          0,
+          8,
+          9,
+          10
+        ],
+        [
+          0,
+          8,
+          9,
+          11
+        ],
+        [
+          0,
+          8,
+          10,
+          11
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          8,
+          9,
+          11
+        ],
+        [
+          1,
+          8,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 444,
+      "eligible_complement_count": 444,
+      "fixture": "ID1009-switch=6,41"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 323,
+      "eligible_complement_count": 240,
+      "fixture": "ID1009-switch=8,32"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 268,
+      "eligible_complement_count": 222,
+      "fixture": "ID1009-switch=8,38"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 293,
+      "eligible_complement_count": 201,
+      "fixture": "ID1009-switch=8,41"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 280,
+      "eligible_complement_count": 231,
+      "fixture": "ID1009-switch=8,44"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 339,
+      "eligible_complement_count": 240,
+      "fixture": "ID1009-switch=8,46"
+    },
+    {
+      "bad_complement_count": 5,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 321,
+      "eligible_complement_count": 321,
+      "fixture": "ID1009-switch=12,17"
+    },
+    {
+      "bad_complement_count": 5,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 358,
+      "eligible_complement_count": 342,
+      "fixture": "ID1009-switch=12,32"
+    },
+    {
+      "bad_complement_count": 5,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 331,
+      "eligible_complement_count": 321,
+      "fixture": "ID1009-switch=12,38"
+    },
+    {
+      "bad_complement_count": 5,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 322,
+      "eligible_complement_count": 289,
+      "fixture": "ID1009-switch=12,41"
+    },
+    {
+      "bad_complement_count": 5,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 346,
+      "eligible_complement_count": 330,
+      "fixture": "ID1009-switch=12,44"
+    },
+    {
+      "bad_complement_count": 5,
+      "bad_family": [
+        [
+          0,
+          1,
+          9,
+          10
+        ],
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          8,
+          9,
+          10
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 334,
+      "eligible_complement_count": 318,
+      "fixture": "ID1009-switch=12,45"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 283,
+      "eligible_complement_count": 231,
+      "fixture": "ID1009-switch=14,41"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 262,
+      "eligible_complement_count": 201,
+      "fixture": "ID1009-switch=26,45"
+    },
+    {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 292,
+      "eligible_complement_count": 240,
+      "fixture": "ID1009-switch=26,46"
+    }
+  ],
+  "adversarial_scan": {
+    "arc_position_pair_count": 1128,
+    "disjoint_bad_pair_mutation_count": 0,
+    "distinct_census_signature_count": 26,
+    "f_bad_retaining_mutation_count": 189,
+    "jobs": 1,
+    "kill_records": [],
+    "nondegenerate_arc_position_pair_count": 1016,
+    "tau3_mutation_count": 642,
+    "unique_canonical_mutation_count": 700
+  },
+  "committed_verified_corpus": {
+    "fixture_count": 104,
+    "fixtures": "seed 0 for source counts 13,14,15,16 and seeds 0,10,...,990 for source count 12, exactly records marked independently_verified in results*.json",
+    "maximum_bad_complement_count": 0,
+    "maximum_bad_matching_number": 0
+  },
+  "controls": {
+    "D27-rho3-control": {
+      "bad_complement_count": 1,
+      "bad_family": [
+        [
+          6,
+          7,
+          8
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 71,
+      "eligible_complement_count": 71
+    },
+    "ID1009-realization-control": {
+      "bad_complement_count": 3,
+      "bad_family": [
+        [
+          0,
+          9,
+          10,
+          11
+        ],
+        [
+          1,
+          9,
+          10,
+          11
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ],
+      "bad_matching_number": 1,
+      "base_count": 271,
+      "eligible_complement_count": 222
+    }
+  },
+  "definition": "F_bad consists of full M1 bases K whose eight-element complement splits into two bases and has a non-SBO restriction",
+  "maximum_bad_matching_number_observed": 1,
+  "status": "numerical-no-disjoint-bad-pair"
+}
