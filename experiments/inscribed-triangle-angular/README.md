@@ -287,3 +287,69 @@ Their interior angles are $78°$, $92°$, $119°$, $147°$, $195°$, $201°$ —
 So being critically good is not a statement about the interior angle at $O$; it is a statement
 about the whole curve as seen from $O$.
 
+### 6. How large is the exceptional set? — never 3, in 51 587 exactly-decided boundary points
+
+The problem README records, as `cited`\* (provisional — the source has not been read here),
+**Meyerson (1980): $\lvert E(J)\rvert\le2$ for every Jordan curve, and $2$ is attained.** Three
+exceptional points on a polygon would contradict that. Per `../../RULES.md` §7 the finding
+would be reported as "this appears to show", checked to destruction and flagged — so this run
+was set up to find one if it exists, and every decision in it is taken **twice**, by the sweep
+and by the independent `rotcheck` decider.
+
+| population | polygons | boundary points decided | max exceptional found |
+|---|---|---|---|
+| the 190 committed fixtures (`run.py structure`) | 190 | 927 | **2** |
+| seeded hunt (`run.py hunt 1500`, killed by its own timeout at 1450) | 1 450 | 50 660 | **2** |
+| **total** | **1 640** | **51 587** | **2** |
+
+Of the 1 450 hunted polygons, 1 394 were non-convex; the distribution of the exceptional count
+was $0\!:\!422$, $1\!:\!271$, $2\!:\!757$. Over the battery it was $0\!:\!21$, $1\!:\!66$,
+$2\!:\!103$. **Three was never found**, and the bound $2$ is not merely respected but routinely
+attained — including by the $30$-$30$-$120$ control, which is the standard sharpness example.
+
+Two further observations, both zero-exception across everything run here:
+
+- **Every exceptional point found was a vertex.** No sampled edge-interior point — 1 487 in the
+  battery cross-check, thousands more in the hunt and in `explore` — was ever exceptional. This
+  extends the sibling's C2/C5 to the non-convex hunt, and it is what one expects: at an
+  edge-interior point both along-edge rays see a whole interval of radii, which is a lot of
+  freedom to match.
+- **The sweep and `rotcheck` never disagreed** — 0 internal disagreements over 50 660 points —
+  and no witness was ever rejected by `recheck_witness`.
+
+So the run **confirms** the cited bound rather than contradicting it. That is a useful
+independent check on a citation this project has not been able to read, and nothing more: it
+tests polygons, and Meyerson's theorem is about all Jordan curves.
+
+## What would make this wrong
+
+Listed as blind spots, not as reassurances.
+
+1. **The exceptional set is sampled, not solved.** For each polygon I decide the vertices and
+   2–3 rational interior points per edge. The true exceptional set could contain an
+   edge-interior point I did not sample. Every exceptional point ever found here was a vertex,
+   but that is an observation, not a theorem, and **this lane does not decide, for a given
+   edge, the set of $O$ on it that are exceptional** — that is a one-parameter family and would
+   need a different computation. So "max exceptional found = 2" is a lower bound on a maximum,
+   over a sample.
+2. **Non-convex agreement rests on my own second decider.** The sibling battery is 182 convex
+   to 8 non-convex, so the 190/190 agreement is mostly a convex check. `rotcheck.py` supplies
+   the non-convex coverage, but it implements *the sibling's idea*, so it is coverage, not a
+   third independent opinion. A shared misconception about the rotation criterion would not be
+   caught by it. The criterion itself is re-derived in this README, which is the mitigation.
+3. **Polygons are the most regular curves there are.** Nothing here says anything about
+   non-polygonal Jordan curves, and per this problem's `RULES.md` §3.3 agreement on polygons is
+   weak evidence about the general case and none about the wild one.
+4. **The generators are not a sample of anything.** `random_star` and `random_spiky` are
+   seeded, deterministic and adversarially shaped toward thin spikes, but they are not uniform
+   over any natural family; $n\le12$ in the battery and $n\le15$ in the hunt. "No counterexample
+   found" is a statement about this search, not about polygons.
+5. **The finiteness-of-$G(O)$ argument is a `sketch`.** It is elementary and stated above so it
+   can be attacked, but it is my own and unreviewed, and per `../../RULES.md` §3 nothing here —
+   including this file — builds on it.
+6. **Meyerson's bound is `cited`\*, i.e. provisional in this repo.** This computation is
+   consistent with it. It cannot promote it, and if the citation turns out to say something
+   else, the computation stands and the framing does not.
+7. **The hunt did not finish.** It was launched for 1 500 polygons under a wall-clock timeout
+   and was cut off at 1 450, per the compute budget in `../../RULES.md` §6. The reported
+   numbers are the last checkpoint, which is why they are odd numbers.

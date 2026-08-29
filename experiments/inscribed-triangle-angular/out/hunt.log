@@ -8,3 +8,20 @@
   800/1500  max exceptional so far 2  (736.7s)
   900/1500  max exceptional so far 2  (820.4s)
   1000/1500  max exceptional so far 2  (918.0s)
+  1100/1500  max exceptional so far 2  (1004.9s)
+  1200/1500  max exceptional so far 2  (1092.1s)
+  1300/1500  max exceptional so far 2  (1182.9s)
+  1400/1500  max exceptional so far 2  (1280.0s)
+  1500/1500  max exceptional so far 2  (1377.0s)
+{
+ "polygons": 1450,
+ "nonconvex": 1394,
+ "boundary_points": 50660,
+ "max_exceptional": 2,
+ "histogram": {
+  "0": 422,
+  "1": 271,
+  "2": 757
+ },
+ "seconds": 1376.95
+}

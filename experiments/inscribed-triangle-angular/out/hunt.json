@@ -1,5 +1,5 @@
 {
- "boundary_points": 33624,
+ "boundary_points": 50660,
  "examples": [
   {
    "convex": true,
@@ -302,12 +302,12 @@
   }
  ],
  "histogram": {
-  "0": 279,
-  "1": 187,
-  "2": 501
+  "0": 422,
+  "1": 271,
+  "2": 757
  },
  "max_exceptional": 2,
- "nonconvex": 932,
- "polygons": 967,
- "seconds": 917.95
+ "nonconvex": 1394,
+ "polygons": 1450,
+ "seconds": 1376.95
 }
