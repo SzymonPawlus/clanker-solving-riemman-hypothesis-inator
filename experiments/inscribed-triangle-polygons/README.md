@@ -129,10 +129,24 @@ python3 diagnose_disagreement.py      # adjudicates the sympy disagreements
 hunt generators are seeded (`20260829`) and the whole run is deterministic — unlike a wall-clock
 bounded search, re-running this reproduces the same output bit for bit on any machine.
 
-Wall clock on the machine of record: `validate` ~1 s, `battery` 5.5 s, `hunt --count 20000`
-4 min 20 s, sympy cross-check 4 min 6 s, adjudication ~2 s. Nothing approaches the one-hour budget. Every stage
+Wall clock on the machine of record: `validate` ~2 s, `battery` ~5 s, `hunt --count 20000`
+~4.5 min, sympy cross-check ~4 min, adjudication ~2 s. Nothing approaches the one-hour budget. Every stage
 checkpoints: `out/fixtures/<name>.json` is written per fixture and `out/summary.json`,
-`out/hunt.json`, `out/crosscheck_sympy.json` are rewritten as the run proceeds.
+`out/hunt.json`, `out/crosscheck_sympy.json`, `out/disagreement_diagnosis.json` are
+rewritten as the run proceeds.
+
+### Files
+
+| file | what it is |
+|---|---|
+| `k3.py` | exact arithmetic in $\mathbb{Q}(\sqrt3)$ — standard library only |
+| `geom.py` | points, segments, polygons, and `decide_good` |
+| `fixtures.py` | the polygon battery and the seeded generators |
+| `run.py` | `validate` / `battery` / `hunt` drivers |
+| `test_iet.py` | 77 hand-checked assertions, each with its hand computation in the docstring |
+| `crosscheck_sympy.py` | independent re-decision through sympy's own geometry |
+| `diagnose_disagreement.py` | adjudicates the three sympy disagreements |
+| `out/` | all results, checkpointed per fixture |
 
 ## The battery
 
