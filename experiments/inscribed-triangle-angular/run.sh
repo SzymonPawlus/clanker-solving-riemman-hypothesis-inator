@@ -11,12 +11,14 @@
 # seeds in test_angular.py); the run is deterministic.
 #
 # Wall clock on the machine of record: unit tests ~45 s, validate ~2 s, fixtures ~23 s,
-# explore ~4 min, critical ~5 s, hunt 1500 ~23 min.  Every stage checkpoints into out/.
-# Drop the last line, or lower its count, for a short run.
+# structure ~20 s, explore ~4 min, critical ~5 s, hunt 1500 ~23 min.  The hunt is the only
+# long stage; it checkpoints every 100 polygons, so cutting it short still leaves a result
+# in out/hunt.json (the committed run was cut off at 1450 of 1500 by its wall-clock budget).
+# Lower the hunt count for a short run.  Every stage checkpoints into out/.
 set -e
 cd "$(dirname "$0")"
 
-echo "== 0. unit tests: the field, the direction order, collinear rays, the deciders =="
+echo "== 0. unit tests: the field, the direction order, collinear rays, both deciders =="
 python3 -m unittest -q test_angular
 
 echo
@@ -28,13 +30,17 @@ echo "== 2. re-decide the sibling's 190 committed fixtures -> out/fixtures.json 
 python3 run.py fixtures
 
 echo
-echo "== 3. structure of the good-direction set G(O) -> out/explore.json =="
+echo "== 3. component structure of G(O) over the battery -> out/structure.json =="
+python3 run.py structure
+
+echo
+echo "== 4. structure of G(O) on seeded non-convex polygons -> out/explore.json =="
 python3 run.py explore
 
 echo
-echo "== 4. the critically good points, re-derived -> out/critical_fixture.json =="
+echo "== 5. the critically good points, re-derived -> out/critical_fixture.json =="
 python3 critical.py
 
 echo
-echo "== 5. exceptional-set census -> out/hunt.json =="
+echo "== 6. exceptional-set census, every decision taken twice -> out/hunt.json =="
 python3 run.py hunt 1500

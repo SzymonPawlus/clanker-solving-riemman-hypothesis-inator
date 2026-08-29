@@ -293,8 +293,9 @@ The problem README records, as `cited`\* (provisional — the source has not bee
 **Meyerson (1980): $\lvert E(J)\rvert\le2$ for every Jordan curve, and $2$ is attained.** Three
 exceptional points on a polygon would contradict that. Per `../../RULES.md` §7 the finding
 would be reported as "this appears to show", checked to destruction and flagged — so this run
-was set up to find one if it exists, and every decision in it is taken **twice**, by the sweep
-and by the independent `rotcheck` decider.
+was set up to find one if it exists. Every decision in the **hunt** is taken **twice**, by the
+sweep and by the independent `rotcheck` decider; the battery row is instead covered by the
+190/190 agreement with the sibling in §2.
 
 | population | polygons | boundary points decided | max exceptional found |
 |---|---|---|---|

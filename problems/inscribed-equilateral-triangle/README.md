@@ -20,6 +20,12 @@ Shared conventions: [`../README.md`](../README.md). Repo-wide protocol:
 [`../../RULES.md`](../../RULES.md). **Problem-specific rules: [`RULES.md`](./RULES.md) — read
 before working on this problem.**
 
+What *this project* has itself produced is a separate matter from the literature above, and is
+recorded separately in
+[What this project has established](#what-this-project-has-established--a-separate-table-and-none-of-it-assumable).
+All of it is `sketch` or `numerical`, none of it is assumable, and none of it has been examined
+outside the Claude family.
+
 ---
 
 ## Provenance warning — read before relying on anything below
@@ -167,6 +173,94 @@ The logical shape matters, because it is easy to over-attribute.
 
 ---
 
+## What this project has established — a separate table, and none of it assumable
+
+Everything in this section was produced **inside this repository**, by `claude` workers, on
+2026-08-29. It is recorded here because [`../README.md`](../README.md) makes a problem's README the
+place its state lives. It is kept **apart from the known-results table above**, and it must stay
+apart: the two tables carry opposite kinds of risk, and merging them would destroy the only
+distinction that makes either useful.
+
+> **Status banner — it applies to every row below, without exception.** Every in-repo result here is
+> **`sketch`** (an argument a `claude` worker wrote and nobody else has certified) or **`numerical`**
+> (exact computation over finitely many fixtures). **Nothing below is `cited`, `verified:lean`, or
+> `verified:review`. Nothing below is assumable** in the sense of
+> [`../../RULES.md`](../../RULES.md) §3 — not by another lane, not by a later worker, and not by its
+> own author. That is why the same three or four lemmas recur across the lanes below, re-derived
+> from scratch each time rather than imported: a `sketch` may not rest on a `sketch`.
+>
+> **No agent outside the Claude family has examined any of it, and Codex has reviewed none of it.**
+> Exactly one lane carries any independent examination at all — `convex-vertex-criterion`, with one
+> same-family audit (Opus, which found and forced three corrections) and one same-family
+> cross-review (Sonnet). By [`../../RULES.md`](../../RULES.md) §5 and §8 both are decorrelation
+> passes only and confer **no** verification credit; every other lane below has had none. Read this
+> table as a record of what was tried and what currently appears to work, never as a premise.
+
+The contrast with the [known-results table](#known-results) is worth stating in one line. Those rows
+are *probably true and unread*; these rows are *read in full and unverified by anyone outside a
+single model family*. Neither is assumable, for opposite reasons, and no row of either table may be
+cited as settling anything.
+
+**Dependency hygiene, which is the one genuinely reassuring thing here.** No in-repo result below
+uses a `cited`\* row as an input. Every lane checked its conclusion *against* Meyerson afterwards as
+an external consistency test and said so explicitly. So the provisional citations and the in-repo
+arguments are independent of each other, and a failure of the verification debt would not propagate
+into this table.
+
+### Results
+
+| # | Result | Status | Regularity budget | Lane |
+|---|---|---|---|---|
+| A1 | **Observation R (the rotation criterion, as an iff).** $O$ is a vertex of an inscribed equilateral triangle $\iff J \cap \rho_{O,60°}(J) \supsetneq \{O\}$. The $\Rightarrow$ direction is what makes a single orientation sufficient, so a failed rotation test *proves* exceptionality rather than merely failing to find a triangle. | `sketch` | **none** — holds for any $S \subseteq \mathbb{R}^2$ with $O \in S$ | [`attacks/rotation-continuity/`](./attacks/rotation-continuity/README.md) §2; re-derived independently in three other lanes and both experiments |
+| A2 | **Lemma A / Lemma 3 (no nesting), and Criterion M.** $J \cap \rho(J) = \{O\} \Rightarrow \overline\Omega \cap \rho(\overline\Omega) = \{O\}$. With A1 this gives an iff: $O$ is a vertex $\iff \overline\Omega \cap \rho(\overline\Omega) \supsetneq \{O\}$ — a *region*-overlap test in place of a curve-intersection test. | `sketch` | **Jordan** (Jordan curve theorem twice, plus Lebesgue measure) | [`rotation-continuity`](./attacks/rotation-continuity/README.md) §4; re-derived from scratch in [`rectifiable-case`](./attacks/rectifiable-case/README.md) §6.1 and [`half-density-obstruction`](./attacks/half-density-obstruction/README.md) §4–§5 |
+| A3 | **The convex tangent-cone criterion.** For $K$ compact convex with $\operatorname{int}K \ne \emptyset$, $J = \partial K$, and $\alpha(O)$ the opening of the tangent cone at $O$: $\alpha(O) > 60° \Rightarrow O$ good (Thm B(i)); $\alpha(O) < 60° \Rightarrow O$ exceptional (Thm A); and at $\alpha(O) = 60°$ exactly, $O$ is good **iff** both extreme rays of the tangent cone meet $K$ in a segment of positive length (Thm B(ii)) — the boundary case is genuinely two-sided, not a formality. Counting (Thm C): at most two points have $\alpha < 60°$; at most three have $\alpha \le 60°$, and exactly three forces $K$ to *be* an equilateral triangle, all of whose vertices are then good. Hence (Cor E) all but at most two points of a convex $J$ are vertices, attained by the $30$–$30$–$120$ triangle (Prop D, exact witness). | `sketch` | **convex** ($K$ compact, $\operatorname{int}K \ne \emptyset$, $O \in \partial K$); Thm B additionally uses compactness and the IVT. Explicitly **not** used: smoothness, rectifiability, the Jordan curve theorem, any degree or winding argument | [`attacks/convex-vertex-criterion/`](./attacks/convex-vertex-criterion/README.md), with [`AUDIT.md`](./attacks/convex-vertex-criterion/AUDIT.md) and [`CROSS-REVIEW.md`](./attacks/convex-vertex-criterion/CROSS-REVIEW.md) — both same-family, see the banner |
+| A4 | **The sector (wedge) criterion, and $60°$ as the exact threshold.** A closed sector at $O$ of aperture $\ge 60°$ and some positive radius lying inside $\overline\Omega$ $\Rightarrow$ $O$ is a vertex; aperture $< 60°$ is genuinely insufficient. Corollary: a simple polygon's exceptional set is contained in its vertices of interior angle $< 60°$ — a containment that can be attained and can be strict. A local crosscut hypothesis (Thm C) discharges the sector hypothesis for $C^1$ and polygonal curves; the lane could **not** discharge it for merely rectifiable ones and says so. | `sketch` | **Jordan + the sector hypothesis** (a one-sided cone condition at one point — the hypothesis *is* the regularity); Thm C: Jordan + Hypothesis (C) at one point | [`rotation-continuity`](./attacks/rotation-continuity/README.md) §5–§6 |
+| A5 | **Theorem T (the rectifiable case).** If $\gamma$ is the arclength parametrisation of a rectifiable Jordan curve and $\gamma$ is differentiable at $t_0$ with $\lvert\gamma'(t_0)\rvert = 1$, then $\gamma(t_0)$ is a vertex of an inscribed equilateral triangle. Corollaries: $E(J)$ is $\mathcal{H}^1$-**null** for every rectifiable $J$ (T1); every point of a regular $C^1$ Jordan curve is a vertex (T2, which reproves A4's $C^1$ corollary without its unverifiable crosscut clause); and no rectifiable curve has an exceptional point at which $\gamma$ is differentiable with unit speed (T3). | `sketch` | **rectifiable Jordan + differentiability of $\gamma$ at the one point $t_0$.** Drop rectifiability and the hypothesis cannot be stated; drop differentiability and the conclusion is false (the $30°$ apexes of a $30$–$30$–$120$ triangle) | [`attacks/rectifiable-case/`](./attacks/rectifiable-case/README.md) §6 |
+| A6 | **The spiral-tip witness — the wedge obstruction is not the whole story.** An explicit **rectifiable** Jordan curve $J_{c,\beta}$ (two logarithmic-spiral arms plus a closing arc, total length $2\sqrt{1+c^2}/c + \beta$) whose tip $O$ is exceptional even though the directions of $J$ seen from $O$ fill **all of $S^1$ at every scale** — so no wedge argument, local or global, can see it. Generalisation: the obstruction is a **rotating** wedge — arcs of angular width $< 60°$ that are allowed to depend on the radius (Lemma 2). §12.3 is explicit that rotating-wedge is a *mechanism, not a classification* of $E(J)$. | `sketch` | **Jordan + rectifiable, both as *conclusions* rather than hypotheses** — the file is one explicit curve and proves its own Jordanness and rectifiability | [`attacks/spiral-tip-witness/`](./attacks/spiral-tip-witness/README.md) |
+| A7 | **The half-density obstruction, with the lane's own demotion attached.** If $O$ is exceptional then for every $r>0$ the angular section of $\overline\Omega$ on the circle of radius $r$ has measure $< 180°$, hence $\lambda(\overline\Omega \cap \bar B(O,R)) < \tfrac12\lambda(B(O,R))$ for **every** $R > 0$; the constant $\tfrac12$ is sharp and cannot be improved to $1/6$. The lane then demoted its own headline: the density statement is a *packaging* of Criterion M (A2) rather than an independent obstruction, it is **incomparable** to the sector criterion A4 rather than stronger, and it is **vacuous on every convex curve** (a supporting line already gives density $\le \tfrac12$). | `sketch` (core measure lemma), `numerical` (the exact pinwheel witness) | **none** for the measure core — an arbitrary measurable set and an arbitrary isometry fixing $O$; **Jordan** for the full chain | [`attacks/half-density-obstruction/`](./attacks/half-density-obstruction/README.md) |
+| A8 | **An exact $\mathbb{Q}(\sqrt3)$ decider for polygons**, with no floating point in any decision, plus a validated battery: $190$ fixtures and a seeded hunt over $88\,346$ convex vertices, with **zero** violations of "a convex polygon's vertex is good $\iff$ its interior angle is $\ge 60°$", the exactly-$60°$ case resolved on the *good* side, and non-convex vertices good at interior angles down to $0.29°$ — so the governing quantity is the angular spread of $J$ seen from $O$, not the interior angle. | `numerical` | **polygonal** (simple polygons over $\mathbb{Q}(\sqrt3)$) | [`../../experiments/inscribed-triangle-polygons/`](../../experiments/inscribed-triangle-polygons/README.md) |
+| A9 | **A second, structurally different exact decider** (angular sweep rather than segment intersection), agreeing with A8 on all $190$ fixtures and $2\,270$ boundary points, and used for an exceptional-set census: over $51\,587$ exactly-decided boundary points on $1\,640$ polygons the maximum exceptional count found was **2**, never $3$ — an independent check *on* the unread bound of row 2, and nothing more. | `numerical` | **polygonal** | [`../../experiments/inscribed-triangle-angular/`](../../experiments/inscribed-triangle-angular/README.md) |
+| A10 | **Ideation round 1** — thirteen candidate directions, each with a kill-criterion, a "is this already Meyerson?" guess and a square-transfer test, triaged into a ranked shortlist. Proves nothing; it is the map the lanes above were dispatched from. | speculation (nothing assumable, per its own budget line) | not applicable | [`attacks/ideation-round-1/`](./attacks/ideation-round-1/README.md) |
+
+### Refuted or corrected in-repo — kept, because these are what stop the work being redone
+
+| Statement | Verdict | Where |
+|---|---|---|
+| "Every point of every Jordan curve is a vertex of an inscribed equilateral triangle." | **`refuted`**, exact witness: both $30°$ apexes of the $30$–$30$–$120$ triangle, with $J \cap \rho_{O,\pm60°}(J) = \{O\}$ computed exactly in $\mathbb{Q}(\sqrt3)$ | [`rotation-continuity`](./attacks/rotation-continuity/README.md) §3 |
+| "For a convex body, $\alpha(O) \ge 60° \Rightarrow O$ is good." | **`refuted` as stated** — false at $\alpha(O) = 60°$ exactly, with an explicit convex witness $K^*$; replaced by the two-sided A3 Thm B(ii) | [`convex-vertex-criterion`](./attacks/convex-vertex-criterion/README.md) §4.1 |
+| The sector criterion's "…and the triangle produced has side $\varepsilon/2$". | **`refuted`** by an exact unit-square witness, and **deleted in place** with a correction note — Corollary A′ is a non-constructive contrapositive, so the point it returns need not be the one constructed | refuted in [`rectifiable-case`](./attacks/rectifiable-case/README.md) §7, corrected in [`rotation-continuity`](./attacks/rotation-continuity/README.md) §5, §6 and its correction note |
+| "The half-density criterion is strictly stronger than the sector criterion." | **wrong** — they are incomparable; recorded by the lane that inherited the claim | [`half-density-obstruction`](./attacks/half-density-obstruction/README.md) §5.4 |
+| Three arithmetic/attribution errors in the convex lane, including a `[ATTACK HERE]` marker pointing at the file's *safest* step. | found by the same-family audit and fixed in place | [`convex-vertex-criterion/AUDIT.md`](./attacks/convex-vertex-criterion/AUDIT.md) |
+
+### The one synthesis no single lane could state
+
+`rectifiable-case` and `spiral-tip-witness` ran concurrently, in disjoint files, without contact.
+Put together, and **only** together:
+
+> On a rectifiable Jordan curve, every exceptional point is a point where the arclength
+> parametrisation fails to be differentiable with unit speed — and such exceptional points
+> genuinely exist.
+
+Theorem T (A5) supplies the "only"; the spiral witness (A6) supplies the "they exist". They do not
+collide, and the reason is checkable in four lines: at the spiral tip the chord/arc ratio is the
+**constant** $c/\sqrt{1+c^2} < 1$, so the unit-speed parametrisation has no derivative there at all
+— the tangent fails by infinite winding, not by oscillation — and the tip falls outside Theorem T's
+hypothesis. The witness is therefore not a counterexample to Corollary T1 either: a single point is
+$\mathcal{H}^1$-null.
+
+**This synthesis is `sketch`, and weaker than either half.** It is capped at the weakest status of
+what it rests on ([`../../RULES.md`](../../RULES.md) §3), both halves are unreviewed outside the
+Claude family, and the "with unit speed" qualifier is load-bearing — Theorem T's hypothesis is
+differentiability *with $\lvert\gamma'\rvert = 1$*, and dropping those three words states something
+the lanes did not prove.
+
+**Snapshot date.** This section reflects the lanes present on 2026-08-29. Further lanes were in
+flight when it was written and land in their own PRs; a reader should treat
+[`attacks/`](./attacks/) and [`../../experiments/`](../../experiments/) as authoritative over this
+summary wherever they disagree, and any disagreement is a defect in this file.
+
+---
+
 ## What remains open
 
 Nothing in the planar equilateral question. The items below are the genuinely adjacent open or
@@ -303,4 +397,9 @@ Working journal for the search that produced this file, including what could not
 
 - [`RULES.md`](./RULES.md) — how work on this problem must be done. **Read it first.**
 - `attacks/` — one directory per approach.
-- `results/` — statements that reached `cited`, `verified:lean`, or `verified:review`.
+- `results/` — statements that reached `cited`, `verified:lean`, or `verified:review`. Still
+  **empty**, and correctly so: nothing this project has produced qualifies.
+- This problem's numerics live outside the directory, in
+  [`../../experiments/inscribed-triangle-polygons/`](../../experiments/inscribed-triangle-polygons/README.md)
+  and [`../../experiments/inscribed-triangle-angular/`](../../experiments/inscribed-triangle-angular/README.md);
+  both are `numerical` and neither is a proof step.
