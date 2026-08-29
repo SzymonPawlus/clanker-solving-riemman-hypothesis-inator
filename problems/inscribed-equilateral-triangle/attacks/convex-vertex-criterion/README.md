@@ -15,6 +15,14 @@ depends-on:
 - **No** Jordan curve theorem, **no** degree theory, **no** rectifiability, **no** smoothness.
   This is deliberate; see the regularity budget.
 
+> **Audited, and three items were corrected.** A separate worker re-derived this file's
+> claims from the definitions and recorded the result in [`AUDIT.md`](./AUDIT.md). All four
+> theorems survived, but three specific errors were found and are fixed in place below, each
+> marked: an arithmetic slip in §5.5, a wrong case attribution in Prop D, and — most
+> importantly — the `[ATTACK HERE]` marker in §8 points at the *safest* part of the file.
+> The audit is same-family (Opus auditing Opus), so per `RULES.md` §5 and §8 it is
+> decorrelation only and confers **no** verification credit whatsoever.
+>
 > **Provenance warning, read before anything else.** The Corollary below ("every convex Jordan
 > curve inscribes an equilateral triangle, and all but at most two of its points are vertices of
 > one") is, to the best of my *unverified recollection*, a special case of a known theorem —
@@ -247,7 +255,9 @@ arithmetic, see §5):
   O = (0, 0),  P = (0, 1/√3),  Q = (1/2, 1/(2√3)),  side = √3/3.
 
 `P` and `Q` both lie on the edge `BC`, at parameters `2/3` and `1/3` from `B`; all three pairwise
-distances equal `√3/3` exactly. This corresponds to Case C of Theorem B with `θ₀ = π/2`
+distances equal `√3/3` exactly. This corresponds to Case **A** of Theorem B, not Case C — `r(0) = 1 ≥ r(π/3) = 1/2`, so
+Case A fires and Case C is by definition its negation. (Correction from `AUDIT.md` item 4;
+Case A's own witness is `(0,0), (1/2,0), (1/4,√3/4)`, side `1/2`.) Formerly stated as Case C with `θ₀ = π/2`
 (measuring from the edge `OB`), since `r(π/2) = r(π/6) = 1/√3` by the reflection symmetry of the
 isoceles triangle about its axis `θ = π/3`.
 
@@ -419,7 +429,7 @@ only, and per the repo convention a checker must be independently *reimplemented
    evaluated `g(R)` at the roots. At `O = (0.777, 0)` the unique nondegenerate root has
    `g(R) = −0.145`, so there is **no** inscribed square with a corner at `O`. Sampling `399`
    points along the base, **zero** admitted an inscribed square with a corner there; the
-   classical inscribed square was recovered exactly at `O = (2−√3)/2 ≈ 0.267949` with the
+   classical inscribed square was recovered exactly at `O = 2−√3 ≈ 0.267949` with the
    expected side `√3/(2+√3) ≈ 0.464102`.
 
 ---
@@ -500,6 +510,14 @@ that true statement and the square is exactly the fourth corner. A triangle has
   and would be a real Mathlib exercise. I did not attempt either.
 
 ## 8. Least-certain steps, in order
+
+> **Correction from the audit (`AUDIT.md` item 2): the marker below is in the wrong place.**
+> `r` is in fact *continuous* on all of `[0,α]` — upper semicontinuity gives `limsup ≤ r(0)`, and
+> if `r(0) > 0` the inscribed triangle `conv{0, r(0)e^{i0}, r(ψ₂)e^{iψ₂}}` gives `liminf ≥ r(0)`,
+> while if `r(0) = 0` semicontinuity alone forces `r → 0`. Theorem B only ever uses upper
+> semicontinuity, so nothing breaks; but the mechanism behind `K*` is `Σ(0) = ∅`, **not** a jump
+> in `r`, and an examiner or a Lean attempt following this marker would chase the wrong lemma.
+> The genuinely load-bearing step is item 1 of `AUDIT.md`'s not-checked list, not this one.
 
 1. **F6 combined with the endpoint estimates in Case C of Theorem B.** The proof leans on `r`
    being *only* upper semicontinuous at `0` and at `α`, and on the inequalities pointing the
