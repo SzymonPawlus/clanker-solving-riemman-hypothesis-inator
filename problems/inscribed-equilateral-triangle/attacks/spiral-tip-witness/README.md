@@ -537,10 +537,32 @@ $\rho_{O,90°}(J)$ is $7.0\times10^{-1}$, i.e. they are nowhere near meeting).
 
 ### 9.3 Polygon control (§3.3) — honestly inapplicable, and why that itself is informative
 
+> **[Correction, dispatcher, 2026-08-29 — this sub-claim is `refuted`.]** The
+> `exceptional-set-polygons` lane exhibited an explicit **17-vertex rational simple polygon** whose
+> tip is exceptional and **not** wedge-type: a polygonal spiral channel of constant angular width
+> $w = \arcsin(3/5) \approx 36.87° < 60°$, wound through $221°$. Every circle about the tip meets
+> $J$ in an arc of width $w$, so the tip is exceptional; but the directions from the tip span
+> $258°$, so no cone of opening $< 60°$ contains $J$. Confirmed by the committed exact decider and
+> by a second decider that lane wrote from scratch (own $\mathbb{Q}(\sqrt3)$, Cramer's rule rather
+> than segment intersection): exactly one of the 17 vertices is exceptional.
+>
+> **The wrong step is "unboundedly many turns".** The rotating-wedge mechanism only needs the arc
+> to be *narrower than $60°$ at each radius separately* — **finite** rotation suffices, and a
+> polygon can supply it. So the mechanism this lane discovered is **not** exclusive to
+> non-polygonal curves, and the polygon control is not inapplicable after all: it applies, and it
+> refutes this sub-claim.
+>
+> This does not touch the lane's Theorems 1–3 or the spiral witness itself, which stand. What it
+> removes is the belief that the mechanism cannot be seen on a polygon — and that belief was the
+> stated reason for declaring the §3.3 control inapplicable. The witness also kills
+> "exceptional $\Rightarrow$ hull vertex": its tip is interior to $\operatorname{conv}(J)$.
+
+
 The problem's exact polygon enumerator (`experiments/inscribed-triangle-polygons/`) cannot check
 this claim, and I did not pretend otherwise:
 
-> **Every exceptional point of a simple polygon is wedge-type.** A polygon has finitely many
+> **~~Every exceptional point of a simple polygon is wedge-type.~~ REFUTED — see the correction
+> note immediately below.** A polygon has finitely many
 > vertices and straight edges, so at each boundary point the curve locally occupies a fixed pair of
 > directions; the rotating-wedge mechanism needs $I_r$ to rotate through unboundedly many turns as
 > $r \to 0$, which requires infinitely many direction changes in every neighbourhood. *(`sketch`,
