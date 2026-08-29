@@ -138,7 +138,18 @@ formula and the ratio independently.
 Taken together they say something sharper than either alone:
 
 > On a rectifiable Jordan curve, every exceptional point is a point where the arclength
-> parametrisation fails to be differentiable — and such exceptional points genuinely exist.
+> parametrisation fails to be differentiable **with unit speed** — and such exceptional points
+> genuinely exist.
+
+**[Correction, 2026-08-29, after the README-consolidation lane caught it.]** I first wrote this
+without the unit-speed qualifier, and so did the rectifiable lane's own prose (its Corollary T3
+had it right). The omission is not cosmetic: $\gamma$ is $1$-Lipschitz, so wherever it is
+differentiable $|\gamma'| \le 1$, and a point differentiable with $|\gamma'| < 1$ is
+"differentiable" yet outside Theorem T's hypothesis. Null set, but not vacuous. Both files are
+corrected. Worth noting the mechanism: I wrote the synthesis by combining two lanes' *summaries*
+rather than their theorem statements, which is exactly the step at which a hypothesis gets
+quietly dropped — the same failure mode as the "side $\varepsilon/2$" clause earlier today, and
+caught the same way, by a later worker reading the primary file instead of the summary.
 
 Theorem T supplies the "only", the spiral supplies the "and they exist". Neither lane could have
 stated that; it is a product of the two, and it is the first time in this problem that two

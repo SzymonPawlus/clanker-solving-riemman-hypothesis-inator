@@ -357,8 +357,18 @@ $\mathcal{H}^1$-full subset of $J$ (area formula, injectivity). $\square$
 
 That is the contrapositive of Theorem T and it closes option (B) of the lane brief. Any exceptional
 point of a rectifiable Jordan curve is a point where the arclength parametrisation fails to be
-differentiable — as at the $30°$ apexes of the $30$-$30$-$120$ triangle, where the two one-sided
-directions subtend $30°$ rather than $180°$ (§9, A2).
+differentiable **with unit speed** — as at the $30°$ apexes of the $30$-$30$-$120$ triangle, where
+the two one-sided directions subtend $30°$ rather than $180°$ (§9, A2).
+
+> **[Correction, dispatcher, 2026-08-29.]** This paragraph originally said "fails to be
+> differentiable", dropping the unit-speed qualifier that Corollary T3 two lines above states
+> correctly. The qualifier is load-bearing and the omission is not harmless: $\gamma$ is
+> $1$-Lipschitz, so wherever it is differentiable $|\gamma'| \le 1$, and a point where it is
+> differentiable with $|\gamma'| < 1$ satisfies "is differentiable" while falling outside
+> Theorem T's hypothesis. Such points are a null set but they are not vacuous — a curve that
+> doubles back at ever smaller scales while its direction converges has one. Found by the
+> README-consolidation lane; the same slip had propagated into the dispatcher's journal and is
+> corrected there too.
 
 **Coordination.** A concurrent lane (`attacks/spiral-tip-witness/`) is constructing an exceptional
 point and was asked whether its witness is rectifiable. I have not seen their result and will not
