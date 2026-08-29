@@ -1,118 +1,114 @@
-"""The angular decision procedure for the inscribed-equilateral-triangle vertex problem.
+"""The ANGULAR exact decision procedure for the inscribed-equilateral-triangle vertex
+problem, over K = Q(sqrt 3).
+
+Everything here is exact.  `float()` is called only inside `*_display` fields and inside
+`brute.py` (which decides nothing).  No library geometry predicate is used anywhere.
 
 THE CRITERION (R)
 =================
-Let J be a closed curve and O in J.  Call O *good* if some nondegenerate equilateral
-triangle has all three vertices on J, one of them equal to O.  Write rho for rotation by
-+60 degrees about O and u(t) for the unit vector at angle t.
+Let J be a closed curve, O in J, and rho the rotation by +60 degrees about O.  Call O
+*good* if some NONDEGENERATE equilateral triangle has all three vertices on J and one of
+them equal to O.
 
-    (R)   O is good  <=>  there exist an angle t and a radius r > 0 with
-                          O + r u(t) in J   AND   O + r u(t+60) in J.
+    (R)   O is good  <=>  there are an angle t and a radius r > 0 with
+                          O + r u(t) in J   AND   O + r u(t+60) in J,     u(t) = e^{it}.
 
-Proof.
-(<=)  Put A = O + r u(t), B = O + r u(t+60).  Then |OA| = |OB| = r > 0 and the angle AOB
-      is exactly 60 degrees.  A triangle that is isoceles with apex angle 60 has base
-      angles (180-60)/2 = 60, so OAB is equiangular, hence equilateral, with side r > 0.
-      It is nondegenerate: r > 0 gives A, B != O, and the 60-degree separation gives
-      A != B.  All three vertices lie on J.
-(=>)  Let O, A, B be equilateral, nondegenerate, all on J, side s > 0.  Then |OA| = |OB| = s
-      and the angle AOB is 60 degrees, so writing A = O + s u(alpha), B = O + s u(beta) we
-      have beta - alpha = +-60 (mod 360).  If beta = alpha + 60 take (t, r) = (alpha, s);
-      if beta = alpha - 60 take (t, r) = (beta, s).  Either way (R) holds.               []
+Proof (three lines, as advertised).
+(<=)  Put A = O + r u(t), B = O + r u(t+60).  Then |OA| = |OB| = r > 0 and angle AOB = 60.
+      An isoceles triangle with apex angle 60 has base angles (180-60)/2 = 60, so OAB is
+      equiangular, hence equilateral with side r > 0; A,B != O and A != B, so it is
+      nondegenerate, and all three vertices are on J.
+(=>)  Let O,A,B be a nondegenerate equilateral triangle on J with side s > 0.  Then
+      |OA| = |OB| = s and angle AOB = 60, so with A = O + s u(alpha), B = O + s u(beta) we
+      get beta - alpha = +-60 (mod 360).  Take (t,r) = (alpha,s) if beta = alpha+60 and
+      (t,r) = (beta,s) otherwise.                                                       []
 
-Two consequences worth stating, because both matter for the implementation:
+r > 0 IS THE WHOLE DEGENERACY QUESTION.  r = 0 is available at every O and every t and is
+the "triangle" O,O,O.  Every radial set below is built with s > 0 by construction; that is
+where this implementation pays the debt the rotation picture pays by discarding the fixed
+point O of the rotation.
 
-*  ONE ROTATION SIGN SUFFICES.  (R) quantifies over all t, and the pair {t, t+60} is the
-   same object whether it is read as "t rotated by +60" or "t+60 rotated by -60".  The
-   sigma = -1 branch of the rotation-based decider is therefore redundant *as a decision*
-   (it can still surface a different witness first).  This is checked empirically in
-   run.py --mode selftest.
-*  r > 0 IS THE WHOLE DEGENERACY QUESTION.  r = 0 gives the "triangle" O, O, O and is
-   available for every O and every t.  Every radial set built below excludes 0 by
-   construction, which is where this implementation pays the debt that the rotation
-   picture pays by discarding the fixed point O of the rotation.
+SCALE PARAMETRISATION (why no square roots appear)
+==================================================
+Fix a nonzero DIRECTION VECTOR v in K^2 -- not a unit vector; directions are taken up to
+positive scaling.  Since |rho v| = |v|, matching the radius r on the two rays is the same
+as matching the SCALE s in
 
-THE ALGORITHM
-=============
-Define the (multivalued) radial set of J at O in direction t:
+    S(v) = { s > 0 : O + s*v in J }.
 
-    R(t) = { r > 0 : O + r u(t) in J }.
+So (R) becomes:  O is good  <=>  S(v) meets S(rho v) for some nonzero v in K^2.
 
-For a simple polygon J = union of closed edges, R(t) is a finite union of points and closed
-intervals, and (R) reads:  O is good  <=>  R(t) meets R(t+60) for some t.
+That is worth stating because it removes the only place a square root could enter: a
+witness triangle is (O, O + s v, O + s rho v) with s in K, so its vertices are exactly
+representable.  `_edge_scales` computes S(v) edge by edge with one division.
 
-The set is assembled edge by edge.  Fix an edge e = [A, B] and put a = A - O, b = B - O and
-k = cross(a, b).
+THE SWEEP (why this is a different algorithm, not the same one twice)
+====================================================================
+The committed sibling `experiments/inscribed-triangle-polygons/` decides goodness by
+intersecting the polygon with its own 60-degree rotate: O(n^2) segment-segment
+intersections in the PLANE, solving for two segment parameters, then discarding the
+component equal to {O}.  This module never intersects two segments.  It works in DIRECTION
+space and computes the whole good-direction set
 
-  * k != 0 (O is NOT on the line of e).  The ray from O in direction v meets e iff v lies in
-    the closed arc Arc(e) from a to b, an arc of width < 180 degrees because the whole
-    segment is strictly on one side of O.  There the meet is a single point at parameter
-    s(v) = k / cross(v, b - a) > 0, i.e. at radius^2 = k^2 |v|^2 / cross(v, b-a)^2.
-    Call this a TRANSVERSAL contribution.
+    G(O) = { direction v : S(v) meets S(rho v) },
 
-  * k == 0 (O is on the line of e).  Then only the one or two directions along that line
-    see e at all, and each sees a whole closed interval of radii.  Call this a COLLINEAR
-    contribution.  This case is not exotic: if O is a vertex of the polygon, BOTH edges at
-    O are collinear contributions, and if O is interior to an edge, that edge contributes
-    two opposite directions.
+by a sweep:
 
-Now take an ordered pair of edges (e, f) and ask for the directions v with the ray at v
-meeting e and the ray at rho(v) meeting f, at a COMMON radius.  For two transversal
-contributions the common-radius equation is
+1.  BREAKPOINTS.  Let D be the directions of (V - O) for the vertices V != O, together
+    with their rho^{-1} images, together with the four axis directions.  D is finite.
+    Between two cyclically consecutive elements of D, both the set of edges met by the ray
+    at v and the set met by the ray at rho v are CONSTANT, and both consist only of edges
+    whose line misses O ("transversal" edges): an edge whose line contains O is met only in
+    the one or two directions along it, and those are vertex directions, hence in D.  (The
+    axis directions are thrown in only to force every gap below 180 degrees, so that
+    d_i + d_{i+1} is a valid representative of the open gap.)
 
-      k_e / cross(v, b - a)  =  k_f / cross(rho v, d - c)
+2.  ON AN OPEN GAP.  For a transversal edge e = [A,B], a = A-O, b = B-O, k = cross(a,b) != 0,
+    the ray at v meets e iff v is in the closed cone spanned by a and b, and then at the
+    single scale s_e(v) = k / cross(v, b-a) > 0.  For an ordered pair (e,f) of edges met
+    respectively by v and by rho v, equal scales means
 
-(the |v| factors cancel because |rho v| = |v|), and cross(rho v, m) = cross(v, rho^{-1} m)
-because a rotation preserves the cross product.  Cross-multiplying -- legitimate, since on
-the domain both denominators are nonzero -- and using bilinearity of the cross product:
+        k_e / cross(v, b-a)  =  k_f / cross(rho v, d-c),
 
-      cross( v ,  k_e * rho^{-1}(d - c) - k_f * (b - a) ) = 0,        (*)
+    and since a rotation preserves the cross product, cross(rho v, m) = cross(v, rho^{-1} m).
+    Both denominators are nonzero on the gap, so cross-multiplying is an equivalence and the
+    condition is the single LINEAR form
 
-a single LINEAR condition on the direction v.  Writing M for the vector in (*):
+        cross( v ,  M ) = 0,   M = k_e * rho^{-1}(d - c)  -  k_f * (b - a).      (*)
 
-      M != 0  ->  the only candidate directions are +-M, each then tested for membership
-                  in Arc(e) and rho^{-1} Arc(f);
-      M == 0  ->  the radii agree identically, and the entire arc Arc(e) & rho^{-1} Arc(f)
-                  consists of good directions.
+    M != 0  =>  at most the two directions +-M in this gap are good from the pair (e,f);
+    M == 0  =>  the ENTIRE gap is good from that pair.  (M = 0 says the line of f is the
+    60-degree rotate about O of the line of e -- the only way a one-parameter family of
+    inscribed triangles can sit at O.)
 
-M = 0 happens exactly when the line of f is the 60-degree rotation about O of the line of e
-(equal distance from O, direction rotated) -- the only way an inscribed triangle at O can
-come in a one-parameter family.  Mixed transversal/collinear and collinear/collinear pairs
-are finitely many direct checks (a fixed direction, then an exact comparison of squared
-radii).
+    Since there are finitely many pairs, a gap that is entirely good must have M = 0 for
+    some pair; so step 2 finds every component of G(O), not merely a witness.
 
-The output is therefore the exact GOOD-DIRECTION SET
+3.  AT A BREAKPOINT.  Decided directly and independently by `good_at_direction`, which
+    rebuilds S(v) and S(rho v) from scratch.  This is where collinear rays live -- a ray
+    running ALONG an edge through O sees a whole interval of scales, not a point -- and it
+    is the case a sampling cross-check steps over.
 
-    G(O) = { t : R(t) meets R(t+60) },
-
-a finite union of closed arcs and isolated directions, with exact endpoints in K^2.  O is
-good iff G(O) is nonempty.
-
-WHY THIS IS NOT THE ROTATION ALGORITHM
---------------------------------------
-The committed experiment `experiments/inscribed-triangle-polygons/` decides goodness by
-intersecting the polygon with its own 60-degree rotate, i.e. by O(n^2) segment-segment
-intersections in the plane, solving for two segment parameters and discarding components
-equal to {O}.  This module never intersects two segments.  It works in direction space:
-one linear form per ordered edge pair, membership tests in circular arcs, and comparisons
-of squared radii.  The degeneracies land in different places (there: collinear overlap of a
-rotated edge with an edge; here: M = 0), and the output is different in kind -- the whole
-set G(O), not one witness.  Agreement between the two is therefore worth something.
-
-Everything below is exact.  float() appears only in *_display fields.
+The output is exact: G(O) is a finite union of closed arcs and isolated directions with
+endpoints in K^2.  O is good iff G(O) is nonempty.  The degeneracies land in different
+places from the sibling's (there: collinear overlap of an edge with a rotated edge; here:
+M = 0 and the collinear-ray intervals), which is what makes agreement between the two
+informative.
 """
 
 from __future__ import annotations
 
+import functools
 from fractions import Fraction
 
 from q3 import Q3, ZERO, ONE, HALF, S60, C60
 
 __all__ = [
-    "V", "vsub", "vadd", "vscale", "cross", "dot", "norm2", "veq", "is_zero_vec",
-    "rot", "dir_canon", "dir_eq", "dir_cmp", "in_arc", "arc_inter", "arc_contains_arc",
+    "V", "vadd", "vsub", "vscale", "cross", "dot", "norm2", "veq", "is_zero_vec",
+    "rot", "rot_about", "dir_canon", "dir_key", "dir_eq", "dir_cmp", "in_arc",
     "edges", "point_on_segment", "point_on_polygon", "is_simple", "is_convex",
-    "signed_area2", "good_directions", "recheck_witness", "interior_angle_info",
+    "signed_area2", "interior_angle_info",
+    "ray_scales", "good_at_direction", "good_directions", "decide", "recheck_witness",
 ]
 
 
@@ -154,8 +150,16 @@ def is_zero_vec(p):
     return p[0].is_zero() and p[1].is_zero()
 
 
+def vfloat(p):
+    return [float(p[0]), float(p[1])]
+
+
+def vpair(p):
+    return [p[0].pair(), p[1].pair()]
+
+
 def rot(v, sign=1):
-    """Rotate the VECTOR v by sign*60 degrees (sign in {+1,-1}).  Exact in K."""
+    """Rotate the VECTOR v by sign*60 degrees, sign in {+1,-1}.  Exact in K."""
     s = S60 if sign == 1 else -S60
     return (C60 * v[0] - s * v[1], s * v[0] + C60 * v[1])
 
@@ -165,30 +169,26 @@ def rot_about(p, o, sign=1):
 
 
 # ------------------------------------------------------------------ directions
-# A direction is a nonzero vector taken up to POSITIVE scaling.
+# A direction is a nonzero vector of K^2 taken up to POSITIVE scaling.
 
 def dir_canon(v):
-    """Canonical representative of the direction of v under positive scaling.
-
-    Divides by |first nonzero coordinate|, which is a positive scalar, so the direction is
-    unchanged and the result is unique.  Used only for hashing / deduplication.
-    """
     c = v[0] if not v[0].is_zero() else v[1]
     m = abs(c)
     return (v[0] / m, v[1] / m)
 
 
 def dir_key(v):
-    return (dir_canon(v)[0]._ab, dir_canon(v)[1]._ab)
+    c = dir_canon(v)
+    return (c[0].pair()[0], c[0].pair()[1], c[1].pair()[0], c[1].pair()[1])
 
 
-def dir_eq(u, v):
+def dir_eq(u, w):
     """Same direction (not merely the same line)."""
-    return cross(u, v).is_zero() and dot(u, v).sgn() > 0
+    return cross(u, w).is_zero() and dot(u, w).sgn() > 0
 
 
 def _half(v):
-    """0 for angle in [0,180), 1 for angle in [180,360)."""
+    """0 for polar angle in [0,180), 1 for [180,360)."""
     sy = v[1].sgn()
     if sy > 0:
         return 0
@@ -197,12 +197,12 @@ def _half(v):
     return 0 if v[0].sgn() > 0 else 1
 
 
-def dir_cmp(u, v):
-    """Total order on directions by angle measured CCW from the +x axis, in [0,360)."""
-    hu, hv = _half(u), _half(v)
-    if hu != hv:
-        return -1 if hu < hv else 1
-    s = cross(u, v).sgn()
+def dir_cmp(u, w):
+    """Total order on directions by polar angle in [0,360), measured CCW from +x."""
+    hu, hw = _half(u), _half(w)
+    if hu != hw:
+        return -1 if hu < hw else 1
+    s = cross(u, w).sgn()
     if s > 0:
         return -1
     if s < 0:
@@ -211,54 +211,14 @@ def dir_cmp(u, v):
 
 
 def _rel(base, v):
-    """v expressed in the frame whose +x axis is `base`: a positive multiple of the
-    rotation of v by -angle(base).  Direction-preserving because |base|^2 > 0."""
+    """v rewritten in the frame whose +x axis is `base` (a positive multiple of the true
+    rotation, so direction-preserving)."""
     return (dot(base, v), cross(base, v))
 
 
 def in_arc(v, a, b):
-    """Is direction v in the closed arc running CCW from direction a to direction b?
-
-    Works for any arc of width < 360.  The degenerate a == b is the single direction a.
-    """
-    rv = _rel(a, v)
-    rb = _rel(a, b)
-    return dir_cmp(rv, rb) <= 0
-
-
-def arc_inter(a1, b1, a2, b2):
-    """Intersection of two closed CCW arcs [a1,b1], [a2,b2], each of width < 180 degrees.
-
-    Returns a list of (start, end) arcs (possibly empty; at most two components in
-    general, though widths < 180 make two impossible -- the code does not rely on that).
-    """
-    out = []
-    for s in (a1, a2):
-        if in_arc(s, a1, b1) and in_arc(s, a2, b2):
-            # the arc from s runs to whichever of b1, b2 comes first
-            e = b1 if dir_cmp(_rel(s, b1), _rel(s, b2)) <= 0 else b2
-            out.append((s, e))
-    # deduplicate / absorb
-    res = []
-    for (s, e) in out:
-        dup = False
-        for (s2, e2) in res:
-            if dir_cmp(s, s2) == 0 and dir_cmp(e, e2) == 0:
-                dup = True
-                break
-        if not dup:
-            res.append((s, e))
-    if len(res) == 2:
-        (s1, e1), (s2, e2) = res
-        if in_arc(s2, s1, e1) and in_arc(e2, s1, e1):
-            return [(s1, e1)]
-        if in_arc(s1, s2, e2) and in_arc(e1, s2, e2):
-            return [(s2, e2)]
-    return res
-
-
-def arc_contains_arc(a, b, s, e):
-    return in_arc(s, a, b) and in_arc(e, a, b) and dir_cmp(_rel(a, s), _rel(a, e)) <= 0
+    """Is direction v on the closed arc running CCW from a to b?  a == b means {a}."""
+    return dir_cmp(_rel(a, v), _rel(a, b)) <= 0
 
 
 # -------------------------------------------------------------------- polygons
@@ -289,8 +249,8 @@ def signed_area2(poly):
 
 
 def _seg_meets(a, b, c, d):
-    """Do the closed segments [a,b] and [c,d] share at least one point?  (Boolean only --
-    this is used for the simplicity check, never for a goodness decision.)"""
+    """Do closed segments [a,b] and [c,d] share a point?  Boolean only; used by the
+    simplicity check, never by a goodness decision."""
     r = vsub(b, a)
     s = vsub(d, c)
     den = cross(r, s)
@@ -326,8 +286,7 @@ def is_simple(poly):
             a, b = E[i]
             c, d = E[j]
             if adj:
-                shared = E[i][1] if j == i + 1 else E[i][0]
-                # adjacent edges must meet exactly in the shared vertex
+                shared = b if (veq(b, c) or veq(b, d)) else a
                 other_i = a if veq(b, shared) else b
                 other_j = c if veq(d, shared) else d
                 if point_on_segment(other_i, c, d) or point_on_segment(other_j, a, b):
@@ -352,12 +311,11 @@ def is_convex(poly):
 
 
 def interior_angle_info(poly, i):
-    """Interior-angle classification at vertex i.  cmp60 in {-1,0,+1}; display degrees."""
+    """Interior angle at vertex i: reflex flag, exact comparison with 60 degrees, and a
+    DISPLAY-ONLY degree value."""
     import math
     n = len(poly)
-    Vv = poly[i]
-    U = poly[(i - 1) % n]
-    W = poly[(i + 1) % n]
+    Vv, U, W = poly[i], poly[(i - 1) % n], poly[(i + 1) % n]
     u = vsub(U, Vv)
     w = vsub(W, Vv)
     orient = signed_area2(poly).sgn()
@@ -366,9 +324,9 @@ def interior_angle_info(poly, i):
     c = dot(u, w)
     s = cross(u, w)
     if reflex or c.sgn() <= 0:
-        cmp60 = 1
+        cmp60 = 1                       # angle >= 90 > 60 (or reflex)
     else:
-        d = (s * s) - Q3(3) * (c * c)
+        d = (s * s) - Q3(3) * (c * c)   # sin^2 vs 3 cos^2  <=>  tan vs sqrt3
         sg = d.sgn()
         cmp60 = -1 if sg < 0 else (0 if sg == 0 else 1)
     ang = math.degrees(math.atan2(abs(float(s)), float(c)))
@@ -377,330 +335,339 @@ def interior_angle_info(poly, i):
     return {"reflex": reflex, "cmp60": cmp60, "degrees_display": ang}
 
 
-# ------------------------------------------------------- radial contributions
-def edge_contribution(O, A, B):
-    """Radial data of the edge [A,B] as seen from O.
+# ------------------------------------------------- scale intervals on one ray
+# An interval is (lo, hi, lo_open, hi_open) with 0 <= lo <= hi, all scales > 0.
 
-    Returns ("T", a, b, k)  with k = cross(a,b) != 0, arc from a to b (width < 180); or
-            ("C", entries)  with entries a list of (direction, r2lo, r2hi, lo_open).
+def _edge_scales(O, A, B, v):
+    """{ s > 0 : O + s*v in [A,B] } as a list of at most one interval.
+
+    Two regimes, and the second is the one a sampling check never sees:
+      cross(a,b) != 0 -- O is off the line of the edge; the ray meets it in at most a point.
+      cross(a,b) == 0 -- O is ON the line of the edge; the ray either misses it entirely or
+                         runs along it and meets it in a whole closed interval of scales.
     """
     a = vsub(A, O)
     b = vsub(B, O)
     k = cross(a, b)
     if not k.is_zero():
-        return ("T", a, b, k)
-    # O lies on the line of the edge
-    za, zb = is_zero_vec(a), is_zero_vec(b)
-    if za and zb:
-        raise ValueError("zero-length edge")
-    if za:                       # O == A: radii (0, |b|]
-        return ("C", [(b, ZERO, norm2(b), True)])
-    if zb:                       # O == B
-        return ("C", [(a, ZERO, norm2(a), True)])
-    if dot(a, b).sgn() > 0:      # O outside the segment, on its line
-        na, nb = norm2(a), norm2(b)
-        lo, hi = (na, nb) if na <= nb else (nb, na)
-        return ("C", [(a, lo, hi, False)])
-    # O strictly inside the segment: two opposite directions, each a half-open interval
-    return ("C", [(a, ZERO, norm2(a), True), (b, ZERO, norm2(b), True)])
-
-
-def _r2_transversal(v, a, b, k):
-    """Squared radius at which the ray in direction v meets the transversal edge."""
-    den = cross(v, vsub(b, a))
-    assert not den.is_zero(), "ray parallel to a transversal edge inside its arc"
-    return (k * k) * norm2(v) / (den * den)
-
-
-def _interval_has(r2, lo, hi, lo_open):
-    if lo_open:
-        if (r2 - lo).sgn() <= 0:
-            return False
-    else:
-        if (r2 - lo).sgn() < 0:
-            return False
-    return (r2 - hi).sgn() <= 0
-
-
-def _intervals_meet(i1, i2):
-    lo1, hi1, o1 = i1
-    lo2, hi2, o2 = i2
-    lo, lo_open = (lo1, o1) if (lo1 - lo2).sgn() >= 0 else (lo2, o2)
-    if (lo1 - lo2).sgn() == 0:
-        lo_open = o1 or o2
-    hi = hi1 if (hi1 - hi2).sgn() <= 0 else hi2
-    c = (lo - hi).sgn()
-    if c > 0:
-        return False
-    if c == 0:
-        return not lo_open
-    return True
-
-
-# ------------------------------------------------------------- the decision
-def good_directions(poly, O, collect_all=True):
-    """Exact good-direction set G(O) for O on the boundary of `poly`.
-
-    Returns a dict with
-      good        : bool
-      arcs        : list of (start_dir, end_dir) exact K^2 arcs of good directions
-      points      : list of isolated good directions (not covered by any arc)
-      raw         : every (pair, kind, direction/arc) hit before merging, for diagnostics
-      witness     : an explicit inscribed triangle (P, Q) with O,P,Q equilateral, or None
-    Directions are exact vectors in K^2, taken up to positive scaling.
-    """
-    E = edges(poly)
-    contribs = [edge_contribution(O, A, B) for (A, B) in E]
-    n = len(E)
-
-    raw_points = []   # (dir, meta)
-    raw_arcs = []     # (start, end, meta)
-
-    for i in range(n):
-        ce = contribs[i]
-        for j in range(n):
-            cf = contribs[j]
-            meta = (i, j)
-            if ce[0] == "T" and cf[0] == "T":
-                _, a, b, k = ce
-                _, c, d, k2 = cf
-                # M = k * rho^{-1}(d - c) - k2 * (b - a)
-                M = vsub(vscale(k, rot(vsub(d, c), -1)), vscale(k2, vsub(b, a)))
-                arc_e = (a, b) if k.sgn() > 0 else (b, a)
-                cc, dd = rot(c, -1), rot(d, -1)
-                arc_f = (cc, dd) if k2.sgn() > 0 else (dd, cc)
-                if is_zero_vec(M):
-                    for (s, e) in arc_inter(arc_e[0], arc_e[1], arc_f[0], arc_f[1]):
-                        if dir_cmp(s, e) == 0:
-                            raw_points.append((s, meta + ("TT-M0-pt",)))
-                        else:
-                            raw_arcs.append((s, e, meta + ("TT-M0-arc",)))
-                else:
-                    for v in (M, (-M[0], -M[1])):
-                        if in_arc(v, arc_e[0], arc_e[1]) and in_arc(v, arc_f[0], arc_f[1]):
-                            raw_points.append((v, meta + ("TT",)))
-            elif ce[0] == "T" and cf[0] == "C":
-                _, a, b, k = ce
-                arc_e = (a, b) if k.sgn() > 0 else (b, a)
-                for (w, lo, hi, op) in cf[1]:
-                    v = rot(w, -1)
-                    if not in_arc(v, arc_e[0], arc_e[1]):
-                        continue
-                    r2 = _r2_transversal(v, a, b, k)
-                    if _interval_has(r2, lo, hi, op):
-                        raw_points.append((v, meta + ("TC",)))
-            elif ce[0] == "C" and cf[0] == "T":
-                _, c, d, k2 = cf
-                arc_f = (c, d) if k2.sgn() > 0 else (d, c)
-                for (w, lo, hi, op) in ce[1]:
-                    rv = rot(w, 1)
-                    if not in_arc(rv, arc_f[0], arc_f[1]):
-                        continue
-                    r2 = _r2_transversal(rv, c, d, k2)
-                    if _interval_has(r2, lo, hi, op):
-                        raw_points.append((w, meta + ("CT",)))
-            else:
-                for (w1, lo1, hi1, o1) in ce[1]:
-                    rv = rot(w1, 1)
-                    for (w2, lo2, hi2, o2) in cf[1]:
-                        if not dir_eq(rv, w2):
-                            continue
-                        if _intervals_meet((lo1, hi1, o1), (lo2, hi2, o2)):
-                            raw_points.append((w1, meta + ("CC",)))
-
-    arcs = _merge_arcs(raw_arcs)
-    pts = []
-    seen = set()
-    for (v, meta) in raw_points:
-        if any(in_arc(v, s, e) for (s, e) in arcs):
-            continue
-        kk = dir_key(v)
-        if kk in seen:
-            continue
-        seen.add(kk)
-        pts.append(v)
-    pts.sort(key=_sort_key)
-
-    out = {
-        "good": bool(arcs or pts),
-        "arcs": arcs,
-        "points": pts,
-        "n_raw_points": len(raw_points),
-        "n_raw_arcs": len(raw_arcs),
-    }
-    # an explicit witness, from the first arc start or first isolated direction
-    wdir = arcs[0][0] if arcs else (pts[0] if pts else None)
-    out["witness"] = _witness_for(poly, O, wdir) if wdir is not None else None
-    return out
-
-
-def _sort_key(v):
-    c = dir_canon(v)
-    return (_half(v), float(c[0]), float(c[1]))
-
-
-def _merge_arcs(raw):
-    """Union of closed CCW arcs, each of width < 180 degrees."""
-    arcs = [(s, e) for (s, e, _m) in raw]
-    changed = True
-    while changed and len(arcs) > 1:
-        changed = False
-        out = []
-        used = [False] * len(arcs)
-        for i in range(len(arcs)):
-            if used[i]:
-                continue
-            s, e = arcs[i]
-            for j in range(i + 1, len(arcs)):
-                if used[j]:
-                    continue
-                s2, e2 = arcs[j]
-                if arc_contains_arc(s, e, s2, e2):
-                    used[j] = True
-                    changed = True
-                elif arc_contains_arc(s2, e2, s, e):
-                    s, e = s2, e2
-                    used[j] = True
-                    changed = True
-                elif in_arc(s2, s, e):          # overlap: s..e..  s2..e2
-                    if not in_arc(e2, s, e):
-                        e = e2
-                        used[j] = True
-                        changed = True
-                elif in_arc(s, s2, e2):
-                    s = s2
-                    if not in_arc(e, s2, e2):
-                        pass
-                    else:
-                        e = e2
-                    used[j] = True
-                    changed = True
-            used[i] = True
-            out.append((s, e))
-        arcs = out
-    return arcs
-
-
-def _witness_for(poly, O, v):
-    """Rebuild the actual triangle (O, P, Q) for a good direction v, exactly.
-
-    Recomputes the radius from scratch: it takes the smallest squared radius that the ray
-    at v and the ray at rho(v) have in common, found by enumerating both radial sets.
-    """
-    E = edges(poly)
-    rv = rot(v, 1)
-    set1 = _radii_at(O, E, v)
-    set2 = _radii_at(O, E, rv)
-    best = None
-    for (lo1, hi1, o1) in set1:
-        for (lo2, hi2, o2) in set2:
-            if not _intervals_meet((lo1, hi1, o1), (lo2, hi2, o2)):
-                continue
-            lo = lo1 if (lo1 - lo2).sgn() >= 0 else lo2
-            if lo.sgn() == 0:
-                # both intervals open at 0 -> take a point strictly inside
-                hi = hi1 if (hi1 - hi2).sgn() <= 0 else hi2
-                lo = hi
-            if best is None or (lo - best).sgn() < 0:
-                best = lo
-    if best is None:
-        return None
-    # r^2 = best; the actual points are O + (r/|v|) v with r^2 = best
-    # scale^2 = best / |v|^2 ; we need the point exactly, so use the radial set's own
-    # parametrisation: find the point on the ray at squared distance `best`.
-    return _point_at(O, v, best), _point_at(O, rv, best), best
-
-
-def _radii_at(O, E, v):
-    """The radial set in direction v as a list of (lo2, hi2, lo_open) squared-radius
-    intervals (a single point is (r2, r2, False))."""
-    out = []
-    for (A, B) in E:
-        c = edge_contribution(O, A, B)
-        if c[0] == "T":
-            _, a, b, k = c
-            arc = (a, b) if k.sgn() > 0 else (b, a)
-            if in_arc(v, arc[0], arc[1]):
-                r2 = _r2_transversal(v, a, b, k)
-                out.append((r2, r2, False))
+        al = cross(v, b)          # alpha * k
+        be = cross(a, v)          # beta  * k
+        if k.sgn() > 0:
+            if al.sgn() < 0 or be.sgn() < 0:
+                return []
         else:
-            for (w, lo, hi, op) in c[1]:
-                if dir_eq(w, v):
-                    out.append((lo, hi, op))
+            if al.sgn() > 0 or be.sgn() > 0:
+                return []
+        den = cross(v, vsub(b, a))
+        if den.is_zero():
+            raise AssertionError("ray parallel to a transversal edge inside its own cone")
+        s = k / den
+        if s.sgn() <= 0:
+            raise AssertionError("non-positive scale on a transversal hit")
+        return [(s, s, False, False)]
+    # O is on the line of [A,B]: the ray must run along that line.
+    n2 = norm2(v)
+    ta = _ratio(a, v, n2)
+    tb = _ratio(b, v, n2)
+    if ta is None or tb is None:
+        return []
+    lo, hi = (ta, tb) if (ta - tb).sgn() <= 0 else (tb, ta)
+    if hi.sgn() <= 0:
+        return []
+    if lo.sgn() > 0:
+        return [(lo, hi, False, False)]
+    return [(ZERO, hi, True, False)]      # half-open: s = 0 is the degenerate triangle
+
+
+def _ratio(w, v, n2):
+    """t with w = t*v, or None if w is not a multiple of v.  (v != 0, n2 = |v|^2.)"""
+    if not cross(v, w).is_zero():
+        return None
+    return dot(w, v) / n2
+
+
+def ray_scales(O, poly, v):
+    """S(v) = { s > 0 : O + s*v on the polygon }, as a list of intervals."""
+    out = []
+    for (A, B) in edges(poly):
+        out.extend(_edge_scales(O, A, B, v))
     return out
 
 
-def _point_at(O, v, r2):
-    """The point O + r*v/|v| with r^2 = r2 -- exact when r2/|v|^2 is a square in K.
+def _interval_meet(i1, i2):
+    lo1, hi1, lo1o, hi1o = i1
+    lo2, hi2, lo2o, hi2o = i2
+    c = (lo1 - lo2).sgn()
+    if c > 0:
+        lo, loo = lo1, lo1o
+    elif c < 0:
+        lo, loo = lo2, lo2o
+    else:
+        lo, loo = lo1, (lo1o or lo2o)
+    c = (hi1 - hi2).sgn()
+    if c < 0:
+        hi, hio = hi1, hi1o
+    elif c > 0:
+        hi, hio = hi2, hi2o
+    else:
+        hi, hio = hi1, (hi1o or hi2o)
+    d = (lo - hi).sgn()
+    if d > 0:
+        return None
+    if d == 0:
+        return None if (loo or hio) else (lo, hi, False, False)
+    return (lo, hi, loo, hio)
 
-    Used only for witness reporting; if the scale is not exactly representable the caller
-    gets None and falls back to reporting the direction alone.
+
+def _interval_pick(iv):
+    """Some scale inside the interval, exactly in K."""
+    lo, hi, loo, hio = iv
+    if not loo:
+        return lo
+    if not hio:
+        return hi
+    return (lo + hi) * HALF
+
+
+def good_at_direction(O, poly, v):
+    """Exact: is the direction v good?  Returns (bool, s) with s in K a witness scale.
+
+    Rebuilt from scratch out of `ray_scales`; it knows nothing about how v was found, so
+    it doubles as the checker for every candidate the sweep proposes.
     """
-    lam2 = r2 / norm2(v)
-    lam = _sqrt_in_K(lam2)
-    if lam is None:
-        return None
-    return vadd(O, vscale(lam, v))
+    if is_zero_vec(v):
+        raise ValueError("zero direction")
+    S1 = ray_scales(O, poly, v)
+    S2 = ray_scales(O, poly, rot(v, 1))
+    best = None
+    for i1 in S1:
+        for i2 in S2:
+            m = _interval_meet(i1, i2)
+            if m is None:
+                continue
+            s = _interval_pick(m)
+            if s.sgn() <= 0:
+                continue
+            if best is None or (s - best).sgn() < 0:
+                best = s
+    return (best is not None), best
 
 
-def _sqrt_in_K(x):
-    """Exact square root in Q(sqrt 3) if one exists, else None.
+# ----------------------------------------------------------------- the sweep
+def _breakpoints(O, poly):
+    """The finite direction set outside which the combinatorics cannot change."""
+    D = []
+    for Vv in poly:
+        w = vsub(Vv, O)
+        if is_zero_vec(w):
+            continue                      # O itself is a vertex: it has no direction
+        D.append(w)
+        D.append(rot(w, -1))              # endpoint of rho^{-1}(arc of an edge)
+    D.extend([V(1, 0), V(0, 1), V(-1, 0), V(0, -1)])
+    seen = {}
+    for w in D:
+        seen.setdefault(dir_key(w), w)
+    out = list(seen.values())
+    out.sort(key=functools.cmp_to_key(dir_cmp))
+    return out
 
-    x = a + b sqrt3.  If b == 0 and a is a rational square, done.  Otherwise look for
-    y = p + q sqrt3 with p^2 + 3q^2 = a and 2pq = b; then p^2 is a root of
-    4 t^2 - 4 a t + b^2 * 3 ... solved directly below with rational square tests.
+
+def _transversals(O, poly):
+    """(a, b, k, arc_start, arc_end) for every edge whose line misses O."""
+    T = []
+    for idx, (A, B) in enumerate(edges(poly)):
+        a = vsub(A, O)
+        b = vsub(B, O)
+        k = cross(a, b)
+        if k.is_zero():
+            continue
+        arc = (a, b) if k.sgn() > 0 else (b, a)
+        T.append((idx, a, b, k, arc))
+    return T
+
+
+def _in_cone(v, a, b, k):
+    al = cross(v, b)
+    be = cross(a, v)
+    if k.sgn() > 0:
+        return al.sgn() >= 0 and be.sgn() >= 0
+    return al.sgn() <= 0 and be.sgn() <= 0
+
+
+def good_directions(O, poly, verify=True):
+    """The complete exact good-direction set G(O).
+
+    Returns a dict:
+      good        bool
+      atoms       the circular decomposition, in CCW order: alternating
+                  {"kind":"point", "dir":v, "good":bool} and
+                  {"kind":"gap", "a":u, "b":w, "full":bool, "points":[v,...]}
+      components  list of components of G(O), each
+                  {"type":"arc"|"point", "start":v, "end":v} (start == end for a point)
+      n_components, n_arc_components, n_point_components
+      witness     (P, Q, s, v) for one good direction, or None
     """
-    a, b = x.a, x.b
-    if x.sgn() < 0:
-        return None
-    if b == 0:
-        r = _rat_sqrt(a)
-        return Q3(r, 0) if r is not None else None
-    # p^2 + 3 q^2 = a, 2 p q = b  =>  p^2 = (a +- sqrt(a^2 - 3 b^2)) / 2
-    disc = a * a - 3 * b * b
-    if disc < 0:
-        return None
-    sd = _rat_sqrt(disc)
-    if sd is None:
-        return None
-    for sgn in (1, -1):
-        p2 = (a + sgn * sd) / 2
-        if p2 < 0:
-            continue
-        p = _rat_sqrt(p2)
-        if p is None or p == 0:
-            continue
-        q = b / (2 * p)
-        cand = Q3(p, q)
-        if (cand * cand) == x and cand.sgn() > 0:
-            return cand
-        cand = Q3(-p, -q)
-        if (cand * cand) == x and cand.sgn() > 0:
-            return cand
-    return None
+    D = _breakpoints(O, poly)
+    T = _transversals(O, poly)
+    m = len(D)
+
+    atoms = []
+    for i in range(m):
+        u = D[i]
+        w = D[(i + 1) % m]
+        gu, _ = good_at_direction(O, poly, u)
+        atoms.append({"kind": "point", "dir": u, "good": gu})
+        rep = vadd(u, w)
+        if is_zero_vec(rep):
+            raise AssertionError("gap of exactly 180 degrees: breakpoint set is wrong")
+        E1 = [t for t in T if _in_cone(rep, t[1], t[2], t[3])]
+        rr = rot(rep, 1)
+        E2 = [t for t in T if _in_cone(rr, t[1], t[2], t[3])]
+        full = False
+        pts = {}
+        for (_i, a, b, k, _arc) in E1:
+            for (_j, c, d, k2, _arc2) in E2:
+                M = vsub(vscale(k, rot(vsub(d, c), -1)), vscale(k2, vsub(b, a)))
+                if is_zero_vec(M):
+                    full = True
+                    continue
+                for cand in (M, (-M[0], -M[1])):
+                    if not in_arc(cand, u, w):
+                        continue
+                    if dir_cmp(cand, u) == 0 or dir_cmp(cand, w) == 0:
+                        continue          # an endpoint, decided as a breakpoint
+                    pts[dir_key(cand)] = cand
+        plist = sorted(pts.values(), key=functools.cmp_to_key(
+            lambda x, y: dir_cmp(_rel(u, x), _rel(u, y))))
+        if verify:
+            for v in plist:
+                ok, _ = good_at_direction(O, poly, v)
+                if not ok:
+                    raise AssertionError("sweep proposed a direction the checker rejects")
+            if full:
+                ok, _ = good_at_direction(O, poly, rep)
+                if not ok:
+                    raise AssertionError("M=0 gap is not good at its representative")
+        atoms.append({"kind": "gap", "a": u, "b": w, "full": full,
+                      "points": [] if full else plist})
+
+    comps = _components(atoms)
+    wdir = None
+    for c in comps:
+        wdir = c["start"]
+        break
+    wit = None
+    if wdir is not None:
+        ok, s = good_at_direction(O, poly, wdir)
+        if not ok:
+            raise AssertionError("component start is not good")
+        P = vadd(O, vscale(s, wdir))
+        Q = vadd(O, vscale(s, rot(wdir, 1)))
+        wit = (P, Q, s, wdir)
+    return {
+        "good": bool(comps),
+        "atoms": atoms,
+        "components": comps,
+        "n_components": len(comps),
+        "n_arc_components": sum(1 for c in comps if c["type"] == "arc"),
+        "n_point_components": sum(1 for c in comps if c["type"] == "point"),
+        "witness": wit,
+    }
 
 
-def _rat_sqrt(r: Fraction):
-    if r < 0:
-        return None
-    num, den = r.numerator, r.denominator
-    sn, sd = _isqrt_exact(num), _isqrt_exact(den)
-    if sn is None or sd is None:
-        return None
-    return Fraction(sn, sd)
+def _components(atoms):
+    """Maximal runs of consecutive fully-good atoms, plus isolated interior points."""
+    n = len(atoms)
+    full = []
+    for at in atoms:
+        full.append(at["good"] if at["kind"] == "point" else at["full"])
+    comps = []
+    if all(full):
+        comps.append({"type": "arc", "start": atoms[0]["dir"], "end": atoms[0]["dir"],
+                      "whole_circle": True})
+        return comps
+    if any(full):
+        start = next(i for i in range(n) if full[i] and not full[(i - 1) % n])
+        i = start
+        for _ in range(n):
+            if full[i]:
+                j = i
+                run = [i]
+                while full[(j + 1) % n]:
+                    j = (j + 1) % n
+                    run.append(j)
+                    if j == i:
+                        break
+                s_at = atoms[run[0]]
+                e_at = atoms[run[-1]]
+                # A full gap forces both its endpoints good (the two edges realising M = 0
+                # are met on the CLOSED cones), so a maximal run always begins and ends at
+                # a breakpoint atom, and a run of length 1 is a single direction.
+                assert s_at["kind"] == "point" and e_at["kind"] == "point", \
+                    "a maximal good run must start and end at a breakpoint"
+                sd, ed = s_at["dir"], e_at["dir"]
+                comps.append({"type": "point" if len(run) == 1 else "arc",
+                              "start": sd, "end": ed, "whole_circle": False})
+                i = (j + 1) % n
+                if i == start:
+                    break
+            else:
+                i = (i + 1) % n
+                if i == start:
+                    break
+    for at in atoms:
+        if at["kind"] == "gap" and not at["full"]:
+            for v in at["points"]:
+                comps.append({"type": "point", "start": v, "end": v,
+                              "whole_circle": False})
+    return comps
 
 
-def _isqrt_exact(n: int):
-    import math
-    if n < 0:
-        return None
-    r = math.isqrt(n)
-    return r if r * r == n else None
+def decide(O, poly):
+    """Just the boolean plus a witness triangle.  Stops at the first good direction.
+
+    Same sweep, short-circuited -- used for the bulk fixture comparison, where only the
+    boolean is compared.
+    """
+    D = _breakpoints(O, poly)
+    T = _transversals(O, poly)
+    m = len(D)
+    for i in range(m):
+        u = D[i]
+        ok, s = good_at_direction(O, poly, u)
+        if ok:
+            return True, _mk(O, u, s)
+    for i in range(m):
+        u = D[i]
+        w = D[(i + 1) % m]
+        rep = vadd(u, w)
+        E1 = [t for t in T if _in_cone(rep, t[1], t[2], t[3])]
+        rr = rot(rep, 1)
+        E2 = [t for t in T if _in_cone(rr, t[1], t[2], t[3])]
+        for (_i, a, b, k, _arc) in E1:
+            for (_j, c, d, k2, _arc2) in E2:
+                M = vsub(vscale(k, rot(vsub(d, c), -1)), vscale(k2, vsub(b, a)))
+                if is_zero_vec(M):
+                    ok, s = good_at_direction(O, poly, rep)
+                    if not ok:
+                        raise AssertionError("M=0 gap is not good")
+                    return True, _mk(O, rep, s)
+                for cand in (M, (-M[0], -M[1])):
+                    if not in_arc(cand, u, w):
+                        continue
+                    ok, s = good_at_direction(O, poly, cand)
+                    if ok:
+                        return True, _mk(O, cand, s)
+    return False, None
+
+
+def _mk(O, v, s):
+    return (vadd(O, vscale(s, v)), vadd(O, vscale(s, rot(v, 1))), s, v)
 
 
 def recheck_witness(poly, O, P, Q):
-    """Independent re-check of a reported triangle: all three on J, pairwise distinct,
-    pairwise equidistant.  Knows nothing about how the triangle was found."""
+    """Independent re-check of a reported triangle.  Knows nothing about how it was found:
+    all three on J, pairwise distinct, pairwise equidistant, positive side."""
     d = {
         "O_on_J": point_on_polygon(O, poly),
         "P_on_J": point_on_polygon(P, poly),

@@ -1,8 +1,15 @@
 # The inscribed equilateral triangle problem (the "triangle peg problem")
 
-**Status: SOLVED, and solved twice over.** Every Jordan curve inscribes an equilateral triangle,
-and the sharper vertex-wise question is settled too: at most two points of a Jordan curve fail to
-be a vertex of some inscribed equilateral triangle, and the bound of two is attained.
+**Status: SOLVED in the literature — on citations this project has not been able to read.**
+Every Jordan curve inscribes an equilateral triangle, and the sharper vertex-wise question is
+settled too: at most two points of a Jordan curve fail to be a vertex of some inscribed
+equilateral triangle, and the bound of two is attained.
+
+> **Read the [provenance warning](#provenance-warning--read-before-relying-on-anything-below)
+> before the results table.** No paper body and no abstract was read in situ for any row of it.
+> The `cited` labels are marked `cited`\* throughout and are **not assumable** in the sense of
+> [`../../RULES.md`](../../RULES.md) §3 until the verification debt below is discharged. A reader
+> who stops at this banner has the unhedged claim, which is exactly what the warning is for.
 
 > **This is not the square peg problem.** Toeplitz's square peg problem — does every Jordan curve
 > inscribe a *square*? — is **open**. The triangle case is not. Confusing the two is the single
@@ -117,15 +124,29 @@ saying what this project actually saw. The provenance codes are:
 
 | # | Result | Attribution | Status | Prov. |
 |---|---|---|---|---|
-| 1 | Every Jordan curve $J \subset \mathbb{R}^2$ contains the vertices of an equilateral triangle. | Meyerson (1980) | `cited` | P2 |
-| 2 | **Meyerson's theorem (vertex-wise form).** For every Jordan curve $J$, all but at most two points of $J$ are vertices of an equilateral triangle inscribed in $J$ — i.e. $\lvert E(J)\rvert \le 2$. | Meyerson (1980) | `cited` | P2 |
-| 3 | **Sharpness of the bound 2.** There is a Jordan curve with exactly two exceptional points; the reported example is the boundary of a suitable (obtuse) isosceles triangle, two of whose vertices are vertices of no inscribed equilateral triangle. | Reported as the standard sharpness example, restated in Schwartz (2019/2021); this project did not determine whether it originates with Meyerson | `cited` | P2 |
-| 4 | Every simple closed curve $J \subset \mathbb{R}^2$ contains the vertices of a triangle similar to any prescribed triangle $T$ — the existence statement for an arbitrary similarity class. | Meyerson (1980) and, independently, Kronheimer & Kronheimer (1981) | `cited` | P2 |
-| 5 | **Nielsen's theorem.** For any triangle $T$ and any simple closed curve $J \subset \mathbb{R}^2$ there are **infinitely many** triangles similar to $T$ with all vertices on $J$; in fact the set of such vertices is **dense** in $J$. | Nielsen (1992) | `cited` | P2 |
-| 6 | **Schwartz's enhancement.** A version of Meyerson's theorem carrying topological information, plus: for each Jordan loop $J$ there is an **uncountable** set $G(J)$ of triangle shapes for which the "all but at most two points" conclusion also holds; $G(J)$ meets every angle $\theta \in (0, \pi/2)$. | Schwartz, *On spaces of inscribed triangles* (arXiv 2019) | `cited` | P2 for the abstract-level statement; the $G(J)$-meets-every-angle detail is P3 |
-| 7 | **Higher dimensions, partial.** Nielsen's theorem generalises to Jordan curves embedded in $\mathbb{R}^n$ for a *restricted* set of triangles, together with a condition under which a given point of $J$ is a vertex of an inscribed equilateral triangle. | Gupta & Rubinstein-Salzedo, *Inscribed triangles of Jordan curves in $\mathbb{R}^n$* (arXiv:2102.03953, 2021) | `cited` | P2 |
-| 8 | **Square peg contrast.** Toeplitz's square peg problem — every Jordan curve inscribes a square — is **open** for general (merely continuous) Jordan curves. It is known for convex curves, piecewise analytic curves, $C^1$ curves, curves of bounded total curvature, and other regularity classes. | Toeplitz (1911); survey: Matschke (2014). Regularity-class attributions per that survey's summary | `cited` | P2 |
-| 9 | **Rectangle contrast.** Every continuous embedding $S^1 \to \mathbb{R}^2$ inscribes a rectangle (Vaughan's argument), and the *rectangular* peg problem for smooth curves saw major progress from Greene & Lobb. This is a different problem from both of the above. | Vaughan, via Matschke (2014); Greene & Lobb (2020–) | `cited` | P3 — included for orientation only; do not build on it without checking |
+| 1 | Every Jordan curve $J \subset \mathbb{R}^2$ contains the vertices of an equilateral triangle. | Meyerson (1980) | `cited`\* | P2 |
+| 2 | **Meyerson's theorem (vertex-wise form).** For every Jordan curve $J$, all but at most two points of $J$ are vertices of an equilateral triangle inscribed in $J$ — i.e. $\lvert E(J)\rvert \le 2$. | Meyerson (1980) | `cited`\* | P2 |
+| 3 | **Sharpness of the bound 2.** There is a Jordan curve with exactly two exceptional points; the reported example is the boundary of a suitable (obtuse) isosceles triangle, two of whose vertices are vertices of no inscribed equilateral triangle. | Reported as the standard sharpness example, restated in Schwartz (2019/2021); this project did not determine whether it originates with Meyerson | `cited`\* | P2 |
+| 4 | Every simple closed curve $J \subset \mathbb{R}^2$ contains the vertices of a triangle similar to any prescribed triangle $T$ — the existence statement for an arbitrary similarity class. | Meyerson (1980) and, independently, Kronheimer & Kronheimer (1981) | `cited`\* | P2 |
+| 5 | **Nielsen's theorem.** For any triangle $T$ and any simple closed curve $J \subset \mathbb{R}^2$ there are **infinitely many** triangles similar to $T$ with all vertices on $J$; in fact the set of such vertices is **dense** in $J$. | Nielsen (1992) | `cited`\* | P2 |
+| 6 | **Schwartz's enhancement.** A version of Meyerson's theorem carrying topological information, plus: for each Jordan loop $J$ there is an **uncountable** set $G(J)$ of triangle shapes for which the "all but at most two points" conclusion also holds; $G(J)$ meets every angle $\theta \in (0, \pi/2)$. | Schwartz, *On spaces of inscribed triangles* (arXiv 2019) | `cited`\* | P2 for the abstract-level statement; the $G(J)$-meets-every-angle detail is P3 |
+| 7 | **Higher dimensions, partial.** Nielsen's theorem generalises to Jordan curves embedded in $\mathbb{R}^n$ for a *restricted* set of triangles, together with a condition under which a given point of $J$ is a vertex of an inscribed equilateral triangle. | Gupta & Rubinstein-Salzedo, *Inscribed triangles of Jordan curves in $\mathbb{R}^n$* (arXiv:2102.03953, 2021) | `cited`\* | P2 |
+| 8 | **Square peg contrast.** Toeplitz's square peg problem — every Jordan curve inscribes a square — is **open** for general (merely continuous) Jordan curves. It is known for convex curves, piecewise analytic curves, $C^1$ curves, curves of bounded total curvature, and other regularity classes. | Toeplitz (1911); survey: Matschke (2014). Regularity-class attributions per that survey's summary | `cited`\* | P2 |
+| 9 | **Rectangle contrast.** Every continuous embedding $S^1 \to \mathbb{R}^2$ inscribes a rectangle (Vaughan's argument), and the *rectangular* peg problem for smooth curves saw major progress from Greene & Lobb. This is a different problem from both of the above. | Vaughan, via Matschke (2014); Greene & Lobb (2020–) | `cited`\* | P3 — included for orientation only; do not build on it without checking |
+
+> **\* `cited` is marked provisional throughout this table, and provisional `cited` is _not_
+> assumable.** `RULES.md` §3 defines `cited` as "established in the literature, with a specific
+> reference", and makes it assumable precisely so that a later worker need not re-check it. Every
+> row above rests on search-result snippets alone — no abstract read in situ, no paper body read
+> at all — so taking the status column at face value would be doing the exact thing the provenance
+> warning forbids. Until a reader with journal access discharges the
+> [verification debt](#verification-debt--what-a-reviewer-must-actually-do), treat these rows as
+> leads, not as premises, and do not build on them.
+>
+> The repo taxonomy has no tier for "a real reference exists but nobody here has read it", which
+> is why this is handled with an asterisk and a paragraph rather than a status. That gap is worth
+> a human's attention: it is not specific to this problem, and the same situation will arise
+> wherever an agent works without literature access.
 
 ### How rows 1, 2, 4 and 5 fit together
 

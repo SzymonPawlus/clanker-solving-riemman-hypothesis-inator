@@ -1,0 +1,17 @@
+{
+ "30-30-120": "both 30-degree apexes not good (wedge test); the 120-degree apex good in exactly 3 directions 210/240/270, two of them collinear with an edge; witness side^2 = 1/3",
+ "equilateral": "3 vertices good, each with exactly one good direction, side^2 = 1",
+ "failures": [
+  "along-edge ray from an edge-interior point: scales [(0, 1/2, True, False), (1/2, 1/2, False, False)]",
+  "opposite along-edge ray: scales [(0, 1/2, True, False), (1/2, 1/2, False, False)]",
+  "along-edge ray from a vertex: [(0, 1, True, False), (1, 1, False, False)]"
+ ],
+ "float_prescreen": "no float-good / exact-not-good vertex over the named shapes",
+ "ok": false,
+ "rhombus60": {
+  "arcs_deg": [],
+  "n_arc_components": 0,
+  "n_components": 1
+ },
+ "square": "4 corners good, one good direction each, side^2 = 8 - 4*sqrt3"
+}
