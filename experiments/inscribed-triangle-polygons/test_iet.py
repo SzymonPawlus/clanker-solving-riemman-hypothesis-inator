@@ -180,6 +180,40 @@ def test_trivial_exclusion():
         check(f"O is fixed by rho_{sigma}", peq(rot60(t[0], t[0], sigma), t[0]))
 
 
+# ---------------------------------------------------------------- 7. the 60-degree boundary
+def test_boundary_60():
+    """The two fixtures that straddle 60 degrees by 7e-15 of a degree.
+
+    Isoceles triangle O=(0,0), A=(1,0), B=((1-t^2)/(1+t^2), 2t/(1+t^2)); |OA| = |OB| = 1 and
+    the apex angle at O is exactly 2*arctan(t), so it is < 60 iff t < tan 30 = 1/sqrt3 iff
+    3t^2 < 1. For t = 5773502691896257/10^16, 3t^2 = 0.9999999999999997... < 1, so the apex is
+    just under 60 and (the polygon being inside a sub-60 cone at O) O is NOT good. For
+    t = 5773502691896258/10^16, 3t^2 > 1, the apex exceeds 60, and O IS good.
+
+    sympy's own geometry gets both of these wrong; see diagnose_disagreement.py.
+    """
+    from fixtures import _iso
+    print("60-degree boundary")
+    lo = F(5773502691896257, 10 ** 16)
+    hi = F(5773502691896258, 10 ** 16)
+    check("3t^2 < 1 for the low t", 3 * lo * lo < 1, 3 * lo * lo)
+    check("3t^2 > 1 for the high t", 3 * hi * hi > 1, 3 * hi * hi)
+    plo, phi = _iso(lo), _iso(hi)
+    check("low t: apex angle < 60", vertex_angle_class(plo, 0)["cmp60"] == -1)
+    check("high t: apex angle > 60", vertex_angle_class(phi, 0)["cmp60"] == 1)
+    check("low t: apex NOT good", not decide_good(plo, plo[0])["good"])
+    check("high t: apex IS good", decide_good(phi, phi[0])["good"])
+    # base angles are (180 - apex)/2, so they sit on the opposite side of 60 from the apex
+    check("low t: base angles > 60", vertex_angle_class(plo, 1)["cmp60"] == 1
+          and vertex_angle_class(plo, 2)["cmp60"] == 1)
+    check("high t: base angles < 60", vertex_angle_class(phi, 1)["cmp60"] == -1
+          and vertex_angle_class(phi, 2)["cmp60"] == -1)
+    check("low t: base vertices good", decide_good(plo, plo[1])["good"]
+          and decide_good(plo, plo[2])["good"])
+    check("high t: base vertices NOT good", (not decide_good(phi, phi[1])["good"])
+          and (not decide_good(phi, phi[2])["good"]))
+
+
 def main():
     test_field()
     test_rotation()
@@ -187,6 +221,7 @@ def main():
     test_polygons()
     test_controls()
     test_trivial_exclusion()
+    test_boundary_60()
     print()
     if FAILS:
         print(f"{len(FAILS)} FAILURES: {FAILS}")

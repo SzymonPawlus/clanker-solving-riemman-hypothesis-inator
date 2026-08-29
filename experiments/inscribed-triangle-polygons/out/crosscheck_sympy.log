@@ -19,3 +19,27 @@
   cvx-iso-t5773_10000                          3 vertices  ok  (128.3s)
   cvx-iso-t57735_100000                        3 vertices  ok  (132.3s)
   cvx-iso-t577350_1000000                      3 vertices  ok  (135.9s)
+  cvx-iso-t5773502_10000000                    3 vertices  ok  (139.8s)
+  DISAGREEMENT cvx-iso-t5773502691896257_10000000000000000 vertex 0: mine=False sympy=True
+  cvx-iso-t5773502691896257_10000000000000000  3 vertices  ok  (141.3s)
+  DISAGREEMENT cvx-iso-t5773502691896258_10000000000000000 vertex 1: mine=False sympy=True
+  DISAGREEMENT cvx-iso-t5773502691896258_10000000000000000 vertex 2: mine=False sympy=True
+  cvx-iso-t5773502691896258_10000000000000000  3 vertices  ok  (142.9s)
+  cvx-iso-t5773503_10000000                    3 vertices  ok  (147.2s)
+  cvx-iso-t577351_1000000                      3 vertices  ok  (151.7s)
+  cvx-iso-t57736_100000                        3 vertices  ok  (156.0s)
+  cvx-iso-t5774_10000                          3 vertices  ok  (160.4s)
+  cvx-iso-t578_1000                            3 vertices  ok  (165.0s)
+  cvx-iso-t3_5                                 3 vertices  ok  (169.3s)
+  cvx-iso-t7_10                                3 vertices  ok  (173.8s)
+  cvx-iso-t1                                   3 vertices  ok  (175.9s)
+  ncv-L                                        6 vertices  ok  (179.4s)
+  ncv-dart                                     4 vertices  ok  (187.6s)
+  ncv-star6                                    12 vertices  ok  (223.8s)
+  ncv-cstrip-h2_1                              8 vertices  ok  (228.4s)
+  ncv-cstrip-h1_1                              8 vertices  ok  (232.6s)
+  ncv-cstrip-h1_2                              8 vertices  ok  (237.1s)
+  ncv-cstrip-h1_4                              8 vertices  ok  (241.8s)
+  ncv-cstrip-h1_20                             8 vertices  ok  (246.4s)
+
+176 vertices re-decided with sympy 1.14.0; 3 disagreements (246.4s)

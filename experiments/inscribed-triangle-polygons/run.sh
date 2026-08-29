@@ -30,4 +30,8 @@ python3 run.py hunt --count 20000
 
 echo
 echo "== 4. independent re-decision of every named fixture with sympy -> out/crosscheck_sympy.json =="
-python3 crosscheck_sympy.py
+python3 crosscheck_sympy.py || true   # exits 1 on disagreement; stage 5 adjudicates
+
+echo
+echo "== 5. adjudicate the sympy disagreements -> out/disagreement_diagnosis.json =="
+python3 diagnose_disagreement.py

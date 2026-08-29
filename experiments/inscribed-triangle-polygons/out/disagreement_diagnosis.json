@@ -1,0 +1,186 @@
+{
+ "disagreements": 3,
+ "all_resolved_in_favour_of_geom_py": true,
+ "records": [
+  {
+   "fixture": "cvx-iso-t5773502691896257_10000000000000000",
+   "vertex": 0,
+   "interior_angle_display_deg": 59.99999999999999,
+   "my_verdict_good": false,
+   "proof_1_cone": {
+    "c_positive": true,
+    "s_squared": [
+     "13333333333333330353783380244019600000000000000000000000000000000/17777777777777775791411142384902011041292574021378486300259782401",
+     "0"
+    ],
+    "three_c_squared": [
+     "13333333333333336312883286422647233123877722064135458900779347203/17777777777777775791411142384902011041292574021378486300259782401",
+     "0"
+    ],
+    "s_squared_lt_3c_squared": true,
+    "therefore_interior_angle_lt_60": true,
+    "therefore_not_good": true
+   },
+   "sympy_claims_good": true,
+   "proof_2_sympy_self_contradiction": {
+    "witness_display": [
+     0.5,
+     0.8660254037844386
+    ],
+    "claimed_on_edge": 2,
+    "from_rotated_edge": 0,
+    "sigma": 1,
+    "cross_vs_original_edge_at_60_digits": "-0.0000000000000000967637231707529388863996541971950466985966467585873969134811",
+    "cross_vs_rotated_edge_at_60_digits": "0",
+    "on_original_edge_at_60_digits": false,
+    "on_rotated_edge_at_60_digits": true,
+    "sympy_self_consistent": false
+   },
+   "proof_3_exact_recheck": {
+    "witness_exact": [
+     [
+      "1/2",
+      "0"
+     ],
+     [
+      "0",
+      "1/2"
+     ]
+    ],
+    "X_on_polygon_exactly": false,
+    "Q_exact": [
+     [
+      "1",
+      "0"
+     ],
+     [
+      "0",
+      "0"
+     ]
+    ],
+    "Q_on_polygon_exactly": true,
+    "witness_is_genuine": false
+   }
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 1,
+   "interior_angle_display_deg": 60.00000000000001,
+   "my_verdict_good": false,
+   "proof_1_cone": {
+    "c_positive": true,
+    "s_squared": [
+     "833333333333333435786595860064100000000000000000000000000000000/1111111111111111179413286128931623271889322459343698118925610881",
+     "0"
+    ],
+    "three_c_squared": [
+     "833333333333333538239858386794879262671869512124377427107330572/1111111111111111179413286128931623271889322459343698118925610881",
+     "0"
+    ],
+    "s_squared_lt_3c_squared": true,
+    "therefore_interior_angle_lt_60": true,
+    "therefore_not_good": true
+   },
+   "sympy_claims_good": true,
+   "proof_2_sympy_self_contradiction": {
+    "witness_display": [
+     0.0,
+     0.0
+    ],
+    "claimed_on_edge": 0,
+    "from_rotated_edge": 1,
+    "sigma": 1,
+    "cross_vs_original_edge_at_60_digits": "0",
+    "cross_vs_rotated_edge_at_60_digits": "-0.0000000000000000266181384146235327263988355764318695055487067050526747781682",
+    "on_original_edge_at_60_digits": true,
+    "on_rotated_edge_at_60_digits": false,
+    "sympy_self_consistent": false
+   },
+   "proof_3_exact_recheck": {
+    "witness_exact": [
+     [
+      "0",
+      "0"
+     ],
+     [
+      "0",
+      "0"
+     ]
+    ],
+    "X_on_polygon_exactly": true,
+    "Q_exact": [
+     [
+      "1/2",
+      "0"
+     ],
+     [
+      "0",
+      "1/2"
+     ]
+    ],
+    "Q_on_polygon_exactly": false,
+    "witness_is_genuine": false
+   }
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 2,
+   "interior_angle_display_deg": 60.00000000000001,
+   "my_verdict_good": false,
+   "proof_1_cone": {
+    "c_positive": true,
+    "s_squared": [
+     "833333333333333435786595860064100000000000000000000000000000000/1111111111111111179413286128931623271889322459343698118925610881",
+     "0"
+    ],
+    "three_c_squared": [
+     "833333333333333538239858386794879262671869512124377427107330572/1111111111111111179413286128931623271889322459343698118925610881",
+     "0"
+    ],
+    "s_squared_lt_3c_squared": true,
+    "therefore_interior_angle_lt_60": true,
+    "therefore_not_good": true
+   },
+   "sympy_claims_good": true,
+   "proof_2_sympy_self_contradiction": {
+    "witness_display": [
+     1.0,
+     5.323627682924706e-17
+    ],
+    "claimed_on_edge": 1,
+    "from_rotated_edge": 2,
+    "sigma": 1,
+    "cross_vs_original_edge_at_60_digits": "-0.0000000000000000266181384146235327263988355764318695055487067050526747781682",
+    "cross_vs_rotated_edge_at_60_digits": "0",
+    "on_original_edge_at_60_digits": false,
+    "on_rotated_edge_at_60_digits": true,
+    "sympy_self_consistent": false
+   },
+   "proof_3_exact_recheck": {
+    "witness_exact": [
+     [
+      "1",
+      "0"
+     ],
+     [
+      "14433756729740645000000000000000/33333333333333334357865958600641",
+      "-16666666666666665642134041399359/66666666666666668715731917201282"
+     ]
+    ],
+    "X_on_polygon_exactly": false,
+    "Q_exact": [
+     [
+      "50000000000000003073597875801923/133333333333333337431463834402564",
+      "-7216878364870322500000000000000/33333333333333334357865958600641"
+     ],
+     [
+      "21650635094610967500000000000000/33333333333333334357865958600641",
+      "-50000000000000003073597875801923/133333333333333337431463834402564"
+     ]
+    ],
+    "Q_on_polygon_exactly": false,
+    "witness_is_genuine": false
+   }
+  }
+ ]
+}
