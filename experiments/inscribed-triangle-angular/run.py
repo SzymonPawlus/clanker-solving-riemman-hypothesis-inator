@@ -18,7 +18,7 @@ import sys
 import time
 from fractions import Fraction as F
 
-from q3 import Q3
+from q3 import Q3, ZERO
 import angular as A
 import shapes
 import fixtures_io
@@ -103,11 +103,15 @@ def validate():
     #     scales, not a point.  Take the midpoint of the bottom edge of the unit square.
     P = shapes.unit_square()
     O = (Q3(F(1, 2)), Q3(0))
+    # The along-edge ray sees a whole HALF-OPEN INTERVAL of scales (0, 1/2] from the edge
+    # it runs along -- degenerating from a finite set to an interval is exactly what a
+    # sampling cross-check steps over.  (It also picks up the far corner transversally at
+    # s = 1/2, which is why the interval is not the only hit.)
     S = A.ray_scales(O, P, A.V(1, 0))
-    _check(len(S) == 1 and S[0][0].is_zero() and S[0][2] is True and S[0][1] == Q3(F(1, 2)),
+    _check((ZERO, Q3(F(1, 2)), True, False) in S,
            "along-edge ray from an edge-interior point: scales %s" % (S,), fails)
     S = A.ray_scales(O, P, A.V(-1, 0))
-    _check(len(S) == 1 and S[0][0].is_zero() and S[0][2] is True and S[0][1] == Q3(F(1, 2)),
+    _check((ZERO, Q3(F(1, 2)), True, False) in S,
            "opposite along-edge ray: scales %s" % (S,), fails)
     _check(A.decide(O, P)[0], "edge midpoint of the unit square is not good", fails)
     # s = 0 must be excluded: the degenerate triangle O,O,O
@@ -118,7 +122,7 @@ def validate():
     P = shapes.equilateral()
     O = P[0]
     S = A.ray_scales(O, P, A.V(1, 0))
-    _check(len(S) == 1 and S[0][0].is_zero() and S[0][2] is True and S[0][1] == Q3(1),
+    _check((ZERO, Q3(1), True, False) in S,
            "along-edge ray from a vertex: %s" % (S,), fails)
 
     # (c) the degenerate-solution trap: at EVERY boundary point the direction sets are
@@ -134,17 +138,30 @@ def validate():
     #     case, where a whole arc of directions is good.  Kite with a 60-degree angle is
     #     impossible over Q; build it in K.  Take the equilateral triangle's own vertex,
     #     already covered, and a rhombus of two equilateral triangles.
-    r3 = Q3(0, 1)
-    P = [A.V(0, 0), A.V(1, 0), (Q3(F(3, 2)), r3 * Q3(F(1, 2))),
-         (Q3(F(1, 2)), r3 * Q3(F(1, 2)))]
+    P = shapes.rotated_pair()
     ok, why = A.is_simple(P)
-    _check(ok, "rhombus not simple: %s" % why, fails)
-    g = A.good_directions(P[0], P)
-    _check(g["good"], "rhombus 60-degree vertex not good", fails)
-    rec["rhombus60"] = {"n_components": g["n_components"],
-                        "n_arc_components": g["n_arc_components"],
-                        "arcs_deg": [[round(deg(c["start"]), 6), round(deg(c["end"]), 6)]
-                                     for c in g["components"] if c["type"] == "arc"]}
+    _check(ok, "rotated-pair shape not simple: %s" % why, fails)
+    O = P[0]
+    g = A.good_directions(O, P)
+    _check(g["good"] and g["n_arc_components"] == 1 and g["n_components"] == 1,
+           "rotated-pair O: expected exactly one ARC component, got %s"
+           % g["components"], fails)
+    c = g["components"][0]
+    _check(round(deg(c["start"]), 6) == 315.0 and round(deg(c["end"]), 6) == 0.0,
+           "rotated-pair arc %s..%s != 315..0"
+           % (round(deg(c["start"]), 6), round(deg(c["end"]), 6)), fails)
+    # every direction of that arc really is good: check the two ends and an interior one
+    for v in (c["start"], c["end"], A.vadd(c["start"], c["end"])):
+        okd, s = A.good_at_direction(O, P, v)
+        _check(okd, "a direction of the M=0 arc is not good", fails)
+        wok, _wd = A.recheck_witness(P, O, A.vadd(O, A.vscale(s, v)),
+                                     A.vadd(O, A.vscale(s, A.rot(v, 1))))
+        _check(wok, "witness on the M=0 arc rejected", fails)
+    rec["rotated_pair_M0"] = {
+        "note": "an edge and its own 60-degree rotate about O both on the curve: "
+                "a one-parameter family of inscribed triangles, i.e. an ARC of good "
+                "directions rather than isolated ones",
+        "arc_deg": [round(deg(c["start"]), 6), round(deg(c["end"]), 6)]}
 
     # -- 5. float pre-screen must not see a good direction we missed ----------
     import brute

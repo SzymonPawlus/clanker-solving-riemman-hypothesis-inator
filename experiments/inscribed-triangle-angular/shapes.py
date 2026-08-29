@@ -112,3 +112,20 @@ NAMED = {
     "star3-thin": lambda: spikes(3, 40, F(1, 200), 1),
     "rect-10x1": lambda: rectangle(10, 1),
 }
+
+
+def rotated_pair():
+    """A shape carrying an edge e AND its own 60-degree rotate about O = (0,0).
+
+    Then every direction meeting e has its 60-degree rotate meeting rho(e) at the SAME
+    radius, so a whole ARC of directions is good: this is the M = 0 branch of the sweep,
+    the only way a one-parameter family of inscribed triangles can sit at one vertex.
+    e = [(1,-1),(1,0)], rho(e) = [(1/2+r3/2, -1/2+r3/2), (1/2, r3/2)].
+    """
+    from angular import rot
+    e0, e1 = V(1, -1), V(1, 0)
+    f0, f1 = rot(e0, 1), rot(e1, 1)
+    return [V(0, 0), e0, e1, f0, f1]
+
+
+NAMED["rotated-pair"] = rotated_pair
