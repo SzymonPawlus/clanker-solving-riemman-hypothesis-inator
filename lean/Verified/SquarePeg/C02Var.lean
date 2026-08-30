@@ -57,6 +57,82 @@ noncomputable def fineEVariationSq {E : Type*} [SeminormedAddCommGroup E]
     (x : ℝ → E) (a b δ : ℝ) : ENNReal :=
   ⨆ (n : ℕ) (P : OrderedPartition a b n) (_h : P.IsMeshLE δ), partitionEnergy x P
 
+/-- Every admissible partition energy is bounded by the fine squared
+variation at the same mesh scale. -/
+lemma partitionEnergy_le_fineEVariationSq {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b δ : ℝ} {n : ℕ} (P : OrderedPartition a b n)
+    (hP : P.IsMeshLE δ) :
+    partitionEnergy x P ≤ fineEVariationSq x a b δ := by
+  unfold fineEVariationSq
+  exact le_iSup_of_le n <| le_iSup_of_le P <| le_iSup_of_le hP le_rfl
+
+/-- Allowing a larger mesh can only increase the fine squared variation. -/
+lemma fineEVariationSq_mono_mesh {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) (a b : ℝ) : Monotone (fineEVariationSq x a b) := by
+  intro δ ε hδε
+  unfold fineEVariationSq
+  refine iSup_le fun n ↦ iSup_le fun P ↦ iSup_le fun hP ↦ ?_
+  have hPε : P.IsMeshLE ε := fun i ↦ (hP i).trans hδε
+  exact le_iSup_of_le n <| le_iSup_of_le P <| le_iSup_of_le hPε le_rfl
+
+/-- The partition of `[a,b]` into `k` equal parameter intervals. -/
+noncomputable def equispacedPartition {a b : ℝ} (hab : a < b) (k : ℕ)
+    (hk : 0 < k) : OrderedPartition a b k where
+  points i := a + ((i : ℝ) / k) * (b - a)
+  strictMono := by
+    intro i j hij
+    have hijR : (i : ℝ) < (j : ℝ) := by exact_mod_cast hij
+    have hkR : (0 : ℝ) < k := by exact_mod_cast hk
+    simpa [add_comm] using add_lt_add_left
+      (mul_lt_mul_of_pos_right (div_lt_div_of_pos_right hijR hkR) (sub_pos.mpr hab)) a
+  left := by simp
+  right := by
+    simp only [Fin.last, Fin.val_mk]
+    have hkR : (k : ℝ) ≠ 0 := by exact_mod_cast (ne_of_gt hk)
+    field_simp
+    ring
+
+/-- Every gap of the equispaced partition is exactly `(b-a)/k`. -/
+lemma equispacedPartition_gap {a b : ℝ} (hab : a < b) (k : ℕ) (hk : 0 < k)
+    (i : Fin k) :
+    (equispacedPartition hab k hk).points i.succ -
+      (equispacedPartition hab k hk).points i.castSucc = (b - a) / k := by
+  simp only [equispacedPartition, Fin.val_succ, Fin.val_castSucc]
+  push_cast
+  have hkR : (k : ℝ) ≠ 0 := by exact_mod_cast (ne_of_gt hk)
+  field_simp
+  ring
+
+/-- Every nondegenerate real interval has an equispaced finite partition with
+mesh at most any prescribed positive `δ`. -/
+lemma exists_equispacedPartition_mesh_le {a b δ : ℝ} (hab : a < b) (hδ : 0 < δ) :
+    ∃ (k : ℕ) (_hk : 0 < k) (P : OrderedPartition a b k), P.IsMeshLE δ := by
+  obtain ⟨k, hkBig⟩ := exists_nat_gt ((b - a) / δ)
+  have hratio : 0 < (b - a) / δ := div_pos (sub_pos.mpr hab) hδ
+  have hkR : (0 : ℝ) < k := hratio.trans hkBig
+  have hk : 0 < k := by exact_mod_cast hkR
+  refine ⟨k, hk, equispacedPartition hab k hk, ?_⟩
+  intro i
+  rw [equispacedPartition_gap]
+  have hmul : b - a < (k : ℝ) * δ := (div_lt_iff₀ hδ).mp hkBig
+  exact le_of_lt ((div_lt_iff₀ hkR).2 (by nlinarith))
+
+/-- The unique one-point partition of a degenerate interval. -/
+def singletonPartition (a : ℝ) : OrderedPartition a a 0 where
+  points _ := a
+  strictMono := by intro i j hij; omega
+  left := rfl
+  right := rfl
+
+/-- Every nonempty interval admits a finite partition at every positive mesh
+scale, including the degenerate singleton case. -/
+lemma exists_partition_mesh_le {a b δ : ℝ} (hab : a ≤ b) (hδ : 0 < δ) :
+    ∃ (n : ℕ) (P : OrderedPartition a b n), P.IsMeshLE δ := by
+  rcases hab.eq_or_lt with rfl | hablt
+  · exact ⟨0, singletonPartition a, fun i ↦ Fin.elim0 i⟩
+  · obtain ⟨k, _hk, P, hP⟩ := exists_equispacedPartition_mesh_le hablt hδ
+    exact ⟨k, P, hP⟩
+
 /-- Faithful critical vanishing-variation data for a path on `[a,b]`.
 `finiteScale` makes real-valued square-root estimates legitimate at one scale;
 `vanishes` is the right-hand limit at mesh zero. -/
