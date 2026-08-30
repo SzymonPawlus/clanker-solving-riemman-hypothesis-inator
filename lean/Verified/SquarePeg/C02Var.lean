@@ -419,6 +419,87 @@ lemma partitionEnergy_prefix_add_suffix {E : Type*} [SeminormedAddCommGroup E]
     (sqIncrementSum_nonneg (fun i ↦ x ((P.prefix j).points i)))
     (sqIncrementSum_nonneg (fun i ↦ x ((P.suffix j).points i)))]
 
+/-- The ordered one-edge partition with endpoints `p < q`. -/
+def segmentPartition {p q : ℝ} (hpq : p < q) : OrderedPartition p q 1 where
+  points i := if i.val = 0 then p else q
+  strictMono := by
+    intro i k hik
+    have hi : i.val = 0 := by omega
+    have hk : k.val = 1 := by omega
+    simp [hi, hk, hpq]
+  left := by simp
+  right := by simp
+
+@[simp] lemma segmentPartition_zero {p q : ℝ} (hpq : p < q) :
+    (segmentPartition hpq).points 0 = p := by simp [segmentPartition]
+
+@[simp] lemma segmentPartition_last {p q : ℝ} (hpq : p < q) :
+    (segmentPartition hpq).points (Fin.last 1) = q := by simp [segmentPartition]
+
+/-- Transporting the edge count preserves a mesh bound. -/
+lemma OrderedPartition.cast_isMeshLE {a b δ : ℝ} {m n : ℕ}
+    {P : OrderedPartition a b m} (h : m = n) (hP : P.IsMeshLE δ) :
+    (P.cast h).IsMeshLE δ := by
+  subst n
+  exact hP
+
+/-- Insert `q` immediately before the existing node `j`, retaining the left
+part of the original partition. -/
+noncomputable def OrderedPartition.insertedLeft {a b q : ℝ} {n : ℕ}
+    (P : OrderedPartition a b n) (j : Fin (n + 1)) (hj : 0 < j.val)
+    (hleft : P.points ⟨j.val - 1, by omega⟩ < q) : OrderedPartition a q j.val :=
+  let jm1 : Fin (n + 1) := ⟨j.val - 1, by omega⟩
+  ((P.prefix jm1).concat (segmentPartition hleft)).cast (by
+    simp only [jm1]
+    omega)
+
+/-- Insert `q` immediately after the new left endpoint and retain the suffix
+starting at the existing node `j`. -/
+def OrderedPartition.insertedRight {a b q : ℝ} {n : ℕ}
+    (P : OrderedPartition a b n) (j : Fin (n + 1))
+    (hright : q < P.points j) : OrderedPartition q b (1 + (n - j.val)) :=
+  (segmentPartition hright).concat (P.suffix j)
+
+/-- The inserted left partition inherits the parent's mesh bound when the
+new left piece lies inside the crossed parent edge. -/
+lemma OrderedPartition.insertedLeft_isMeshLE {a b q δ : ℝ} {n : ℕ}
+    {P : OrderedPartition a b n} (j : Fin (n + 1)) (hj : 0 < j.val)
+    (hleft : P.points ⟨j.val - 1, by omega⟩ < q)
+    (hright : q < P.points j) (hP : P.IsMeshLE δ) :
+    (P.insertedLeft j hj hleft).IsMeshLE δ := by
+  apply OrderedPartition.cast_isMeshLE
+  apply OrderedPartition.concat_isMeshLE (P.prefix_isMeshLE hP _)
+  intro i
+  let e : Fin n := ⟨j.val - 1, by omega⟩
+  have hedge := hP e
+  have esucc : e.succ = j := by ext; simp [e]; omega
+  have ecast : e.castSucc = ⟨j.val - 1, by omega⟩ := by ext; rfl
+  rw [esucc, ecast] at hedge
+  fin_cases i
+  simp only [segmentPartition, Fin.val_succ, Fin.val_castSucc]
+  simp at hedge ⊢
+  linarith
+
+/-- The inserted right partition inherits the parent's mesh bound when the
+new right piece lies inside the crossed parent edge. -/
+lemma OrderedPartition.insertedRight_isMeshLE {a b q δ : ℝ} {n : ℕ}
+    {P : OrderedPartition a b n} (j : Fin (n + 1)) (hj : 0 < j.val)
+    (hleft : P.points ⟨j.val - 1, by omega⟩ < q)
+    (hright : q < P.points j) (hP : P.IsMeshLE δ) :
+    (P.insertedRight j hright).IsMeshLE δ := by
+  apply OrderedPartition.concat_isMeshLE
+  · intro i
+    let e : Fin n := ⟨j.val - 1, by omega⟩
+    have hedge := hP e
+    have esucc : e.succ = j := by ext; simp [e]; omega
+    have ecast : e.castSucc = ⟨j.val - 1, by omega⟩ := by ext; rfl
+    rw [esucc, ecast] at hedge
+    fin_cases i
+    simp only [segmentPartition, Fin.val_succ, Fin.val_castSucc]
+    simp at hedge ⊢
+    linarith
+  · exact P.suffix_isMeshLE hP j
+
 /-- Faithful critical vanishing-variation data for a path on `[a,b]`.
 `finiteScale` makes real-valued square-root estimates legitimate at one scale;
 `vanishes` is the right-hand limit at mesh zero. -/

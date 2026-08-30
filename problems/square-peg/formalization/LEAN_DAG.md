@@ -12,7 +12,7 @@ algebra only, and its path-level refinement/supremum lift remains pending.
 |---|---|---|
 | D1 | ordered partitions, mesh predicate, sampled squared increments | `OrderedPartition`, `.IsMeshLE`, `sqIncrementSum`, `partitionEnergy`, equispaced/singleton existence, exact joint-dropping concat with mesh/energy additivity, and mesh-controlled superinterval extension |
 | D2 | `w₂²` ENNReal supremum, nonempty interval, finite scale, vanishing | `fineEVariationSq`, `VanishingVariationData`, energy upper bound, mesh monotonicity, and subinterval-energy bound by global fine variation; square-root limit bridge pending |
-| L3 | seam and every-partition `√8` interpolation estimate | finite algebra plus mesh-preserving existing-node `prefix`/`suffix` infrastructure proved; exact prefix/suffix energy split is blocked on dependent edge-count transport, and inserted-node/path supremum lifts remain pending |
+| L3 | seam and every-partition `√8` interpolation estimate | finite algebra, mesh-preserving existing-node `prefix`/`suffix`, exact prefix/suffix energy splitting, and strict inserted-node constructors with inherited mesh bounds proved; the inserted-node factor-2 energy comparison and path supremum lifts remain pending |
 | H4 | mesh-fine simple parametrized PL interpolation | **External:** Boedihardjo--Geng Theorem 2.2; must be encoded with its concrete source-shaped statement |
 | L5 | periodic regular smoothing with small 1-variation error | convex-combination/error constants proved; convolution/global topology paper only |
 | L6 | whole-family local 2-variation modulus | **Paper only:** depends on D2/L3 path lift and finite smooth-prefix bounds |
