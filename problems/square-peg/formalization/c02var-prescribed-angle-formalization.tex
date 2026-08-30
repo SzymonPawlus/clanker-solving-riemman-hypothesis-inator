@@ -95,6 +95,11 @@ Thus every real-valued variation calculation below occurs in the finite
 regime $0<\delta\leq\delta_0$.
 \end{definition}
 
+In this document the repository shorthand $C^{0,2\text{-var}}$ means exactly
+the critical vanishing condition $V_0$ above.  The theorem is stated only
+under $V_0$ and makes no separate claim that the global $2$-variation is
+finite.
+
 \begin{lemma}[Lifted short-interval modulus]\label{lem:local-modulus}
 If $V_0(c)$ holds, $0<\delta\leq\tfrac12$, and $I\subset\R$ has
 $|I|\leq\delta$, then
@@ -167,8 +172,11 @@ and Jordan-interpolant clauses were independently checked.  In $\R^2$ the
 geodesics are affine chords}
 \end{hypothesis}
 
-Under Interface~\ref{hyp:bg}, choose $D_n$ with mesh tending to zero and
-put $P_n=c^{D_n}$.  The preceding proved lemma gives
+Under Interface~\ref{hyp:bg} and $V_0(c)$, fix
+$\delta_0>0$ with $w_2(c,\delta_0)<\infty$ as furnished by the definition,
+then choose $D_n$ with
+$\mesh(D_n)<\min(\delta_0,1/n)$ and put $P_n=c^{D_n}$.  The preceding proved
+lemma gives
 \[
  \|P_n-c\|_{2\text{-var}}\to0,
  \qquad P_n\to c\text{ uniformly},                       \tag{2.2}
@@ -182,7 +190,8 @@ For every parametrized simple polygon $P\colon\T\to\R^2$ and every
 $\varepsilon>0$, there is a $C^\infty$ \emph{regular} Jordan embedding
 $Q\colon\T\to\R^2$ such that
 \[
- \|Q-P\|_{1\text{-var}}<\varepsilon,                    \tag{3.1}
+ Q(0)=P(0),\qquad
+ \|Q-P\|_{1\text{-var}}<\varepsilon.                   \tag{3.1}
 \]
 Here regular means $Q'(t)\ne0$ at every parameter, including the periodic
 seam.
@@ -217,8 +226,9 @@ $\ell_i(Q_h')>0$ throughout the vertex neighborhood.  Therefore $Q_h'$ never
 vanishes.
 
 To keep the injectivity quantifiers uniform, first fix
-$h_0<\tfrac14\min_i(t_{i+1}-t_i)$ and a finite cover of $\T$ by vertex
-intervals of radius $2h_0$ and intervening edge-interior intervals.  Shrink
+$h_0<\tfrac14\min_i(t_{i+1}-t_i)$ and a finite cover of $\T$ by open vertex
+parameter intervals of radius $2h_0$ and open intervening edge-interior
+parameter intervals.  Shrink
 $h_0$ once, if necessary, so the positivity argument applies on each fixed
 vertex interval for every $0<h<h_0$; on the remaining pieces $Q_h'$ is an
 edge velocity.  Hence $Q_h$ is injective on every member of this one fixed
@@ -244,20 +254,48 @@ norm at most $M$ there.  Consequently
  \|Q_h-P\|_{1\text{-var}}
  =\int_0^1|Q_h'-P'|\leq4mMh.
 \]
-Taking also $h<\varepsilon/(4mM)$ proves (3.1).  If orientation is part of
+If orientation is part of
 the smooth-Jordan convention, it is preserved: choose a point in the bounded
 component of $\R^2\setminus P(\T)$ and
 then $h$ so small that the straight homotopy from $P$ to $Q_h$ avoids it;
 winding-number homotopy invariance fixes the sign.
+
+Now translate the mollification by setting
+\[
+ \widetilde Q_h(t)=Q_h(t)+P(0)-Q_h(0).
+\]
+It is periodic and $C^\infty$, and $\widetilde Q_h'=Q_h'$, so it is regular.
+Translation preserves injectivity, the Jordan property, and orientation, and
+$\widetilde Q_h(0)=P(0)$.  Moreover
+$(\widetilde Q_h-P)'=(Q_h-P)'$, whence
+\[
+ \|\widetilde Q_h-P\|_{1\text{-var}}
+ =\|Q_h-P\|_{1\text{-var}}\leq4mMh.                    \tag{3.3}
+\]
+Because $\widetilde Q_h-P$ vanishes at $0$, absolute continuity also gives,
+for every $t\in[0,1]$,
+\[
+ |\widetilde Q_h(t)-P(t)|
+ \leq\int_0^t|\widetilde Q_h'-P'|
+ \leq\|\widetilde Q_h-P\|_{1\text{-var}}.             \tag{3.4}
+\]
+Thus $\|\widetilde Q_h-P\|_\infty\leq
+\|\widetilde Q_h-P\|_{1\text{-var}}$, and taking also
+$h<\varepsilon/(4mM)$ proves the lemma with $Q=\widetilde Q_h$.
 \end{proof}
 
 Using Lemma~\ref{lem:smooth}, choose $c_n$ from $P_n$ with errors
-$\varepsilon_n\downarrow0$.  Since
+$\varepsilon_n\downarrow0$, anchored by $c_n(0)=P_n(0)=c(0)$.  Since
 $\|x\|_{2\text{-var}}\leq\|x\|_{1\text{-var}}$, (2.2) gives
 \[
- \|c_n-c\|_{2\text{-var}}\to0,
- \qquad c_n\to c\text{ uniformly}.                      \tag{3.2}
+ \|c_n-c\|_{2\text{-var}}\to0.                         \tag{3.5}
 \]
+The anchoring and the same variation estimate also give
+\[
+ \|c_n-P_n\|_\infty
+ \leq\|c_n-P_n\|_{1\text{-var}}<\varepsilon_n,
+\]
+so (2.2) and the triangle inequality show that $c_n\to c$ uniformly.
 
 \section{Uniform local variation}
 
@@ -270,7 +308,7 @@ Define, for $0<\delta\leq\tfrac12$,
 where intervals are interpreted on the lifted periodic parameter.
 
 \begin{lemma}[Whole-family local modulus]\label{lem:nu}
-Under (3.2), $\nu(\delta)\to0$ as $\delta\downarrow0$.
+Under (3.5), $\nu(\delta)\to0$ as $\delta\downarrow0$.
 \status{PROVED}
 \end{lemma}
 
@@ -362,10 +400,19 @@ so $\sum_j[E_j]$ converges absolutely in current mass.
 The difference $R=[L]-\sum_j[E_j]$ is a cycle supported on the chord line.
 The boundary is zero because boundary commutes with a mass-convergent sum
 when tested on differentials.
-Such a cycle vanishes: for a compactly supported smooth one-form, integrate
-its tangential coefficient along that line to obtain a smooth scalar
-primitive (with a transverse cutoff); the form minus its differential
-annihilates the tangent of $R$, while $R(dG)=\partial R(G)=0$.
+Such a cycle vanishes.  Indeed, write the chord line as $H=p_0+\R e$, where
+$e$ is a unit vector.  For a compactly supported smooth one-form $\omega$,
+put $g(s)=\omega_{p_0+se}(e)$ and
+$G_0(s)=\int_{-\infty}^s g(r)\,dr$.  Since $R$ has compact support, choose a
+longitudinal cutoff equal to one on a neighborhood of the projection of
+$\operatorname{spt}R$, and a transverse cutoff equal to one near $H$ over
+that projection.  Multiplying $G_0$ by these cutoffs produces
+$G\in C_c^\infty(\R^2)$ with $dG(e)=g$ on
+$\operatorname{spt}R\cap H$.  In the rectifiable representation of $R$, its
+approximate tangent is parallel to $e$ almost everywhere because $R$ is
+supported on $H$.  Hence $R(\omega-dG)=0$, while
+$R(dG)=\partial R(G)=0$.  Thus $R(\omega)=0$ for every test one-form, so
+$R=0$.
 
 By (5.2) and Bieberbach's planar isodiametric inequality
 (Jahresbericht DMV 24 (1915), 247--250),
@@ -426,7 +473,12 @@ Proposition~\ref{prop:arc}, Interfaces~\ref{hyp:index-current} and
 
 \begin{proof}
 Uniform convergence places all images in one ball $B(0,R)$.  For
-$0\leq t-s\leq\delta$, close $c_n|_{[s,t]}$ by its chord.  Equations
+$0<t-s\leq\delta\leq\tfrac12$, the lifted restriction
+$c_n|_{[s,t]}$ is injective: if $s\leq r<r'\leq t$ had
+$c_n(r)=c_n(r')$, injectivity of the induced map on $\R/\mathbb Z$ would give
+$r'-r\in\mathbb Z$, contrary to $0<r'-r\leq\tfrac12$.  Its endpoints are therefore
+distinct, so close this embedded arc by its chord.  (When $s=t$, the desired
+estimate is trivial.)  Equations
 (5.1)--(5.4) and direct chord parametrization yield
 \[
  |F_n(t)-F_n(s)|
@@ -442,6 +494,9 @@ because the pulled-back integrand is periodic.  This upgrades convergence
 to local uniform convergence on $\R$.
 \end{proof}
 
+Pass to this subsequence and relabel it again as $(c_n,F_n)$ for the
+remainder of the argument.
+
 For the alternative Liouville form $\lambda_{\mathrm{AI}}=y\,dx$,
 \[
  y\,dx=-\lambda_0+d(xy/2).                               \tag{5.6}
@@ -451,8 +506,12 @@ Thus its normalized primitive is
  G_n(t)=-F_n(t)
  +\frac{x_n(t)y_n(t)-x_n(0)y_n(0)}2.                     \tag{5.7}
 \]
-Equations (3.2), (5.6), and (5.7) prove local uniform convergence of $G_n$
-along the same subsequence.
+By (3.5), $c_n\to c$ uniformly, hence the coordinate products
+$x_ny_n\to xy$ uniformly on $[0,1]$ (and on $\R$ by periodicity), while
+$x_n(0)y_n(0)=x(0)y(0)$.  Equations (5.6)--(5.7) therefore show that the
+exact-form correction converges locally uniformly; together with the
+relabeled local uniform convergence of $F_n$, this proves local uniform
+convergence of $G_n$.
 \status{PROVED elementary exact-form conversion}
 
 \section{Prescribed-angle rectangle theorem}
@@ -508,10 +567,14 @@ Asano--Ike theorem.
 \begin{proof}
 Interface~\ref{hyp:bg} and the proved interpolation estimate produce the
 simple polygons $P_n$.  Lemma~\ref{lem:smooth} produces regular smooth
-Jordan $c_n$ satisfying (3.2).  Lemma~\ref{lem:nu} gives the common local
+Jordan $c_n$ satisfying (3.5).  In particular $c_n\to c$ parametrically in
+$C^0$, as required by Interface~\ref{hyp:ai}, and the common ball used in
+Proposition~\ref{prop:primitive} follows from this uniform convergence.
+Lemma~\ref{lem:nu} gives the common local
 variation modulus.  Proposition~\ref{prop:primitive}, Interface
-~\ref{hyp:green}, and (5.6)--(5.7) give the locally uniformly convergent
-lifted primitives.  These are precisely the data listed in Interface
+~\ref{hyp:green}, and the uniformly convergent $x_ny_n$ exact-form correction
+in (5.6)--(5.7) give the locally uniformly convergent lifted primitives.
+These are precisely the data listed in Interface
 ~\ref{hyp:ai}; therefore only the verified conclusion of that interface may
 be imported.
 \end{proof}
@@ -540,12 +603,14 @@ Component & Status & Exact interface used \\
 Fine-mesh/local modulus & PROVED & Definition $V_0$; seam factor $\sqrt2$ \\
 PL interpolation error & PROVED & Every partition; constant $\sqrt8$ \\
 Simple PL Jordan choice & CITED & BG theorem, parameter-mesh version \\
-Regular smoothing & PROVED & regular $C^\infty$ embedding; (3.1) \\
+Regular smoothing & PROVED & anchored regular $C^\infty$ embedding;
+$Q(0)=P(0)$ and $\|Q-P\|_\infty\leq\|Q-P\|_{1\text{-var}}$ in
+(3.1)--(3.4) \\
 Whole-family modulus & PROVED & tail-first then finite-prefix quantifiers \\
 Arc winding estimate & PROVED & cited index/Jordan facts + internal excursion proof \\
 Generalized Green & CITED & arbitrary closed rectifiable planar curve \\
 Primitive compactness & PROVED & cited index/Green interfaces,
-common modulus, Arzel\`a--Ascoli \\
+verified short lifted arcs, common modulus, Arzel\`a--Ascoli \\
 Liouville conversion & PROVED & equations (5.6)--(5.7) \\
 AI approximation criterion & CITED & arXiv:2412.21057v3, Thm.~1.1, p.~2 \\
 Four distinct vertices & CITED & pp.~2--3 and Thm.~4.1 proof, p.~19 \\
