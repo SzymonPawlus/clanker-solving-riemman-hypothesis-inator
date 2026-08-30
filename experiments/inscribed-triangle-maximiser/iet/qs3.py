@@ -199,7 +199,9 @@ class Q3:
 
     # ---------------------------------------------------------------- display only
     def __float__(self):
-        return (self.a + self.b * _SQRT3) / self.c
+        # via Fraction so that huge exact numerators (the LP certificates carry them)
+        # convert without OverflowError.
+        return float(Fraction(self.a, self.c)) + float(Fraction(self.b, self.c)) * _SQRT3
 
     def __repr__(self):
         return "Q3(%d,%d,%d)~%.12g" % (self.a, self.b, self.c, float(self))

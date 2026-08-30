@@ -123,9 +123,27 @@ def cw_support_bounds(n, eps=Fraction(1, 24)):
     return sqrt_lower(q) + tail, sqrt_upper(q) + tail
 
 
-def outer_halfplanes(J: int, scale: int = 10 ** 7, eps=Fraction(1, 24)):
+def _round_up(x: Fraction, den: int) -> Fraction:
+    """The smallest multiple of 1/den that is >= x.  Keeps certificate integers small."""
+    return Fraction(-((-x.numerator * den) // x.denominator), den)
+
+
+def _round_down(x: Fraction, den: int) -> Fraction:
+    return Fraction((x.numerator * den) // x.denominator, den)
+
+
+def outer_halfplanes(J: int, scale: int = 10 ** 6, eps=Fraction(1, 24),
+                     den: int = 10 ** 12):
     """J rational normals spread around the circle, with rational offsets that are UPPER
-    bounds on the body's support function.  Returns [(n, c_upper, c_lower, |n|_upper)]."""
+    bounds on the body's support function.  Returns [(n, c_upper, c_lower, |n|_upper)].
+
+    The offsets are rounded OUTWARD to multiples of 1/den, which keeps K subset Q0 (any
+    upper bound on the support function does) while keeping the exact integers small.
+    J must be even so that the normal set is antipodally closed, which the a priori side
+    bound in `cw.py` uses.
+    """
+    if J % 2:
+        raise ValueError("J must be even (antipodal closure)")
     out = []
     for j in range(J):
         a = 2 * math.pi * j / J
@@ -134,7 +152,8 @@ def outer_halfplanes(J: int, scale: int = 10 ** 7, eps=Fraction(1, 24)):
         if nx == 0 and ny == 0:
             raise AssertionError("degenerate sampled normal")
         lo, hi = cw_support_bounds((nx, ny), eps)
-        out.append(((nx, ny), hi, lo, sqrt_upper(nx * nx + ny * ny)))
+        out.append(((nx, ny), _round_up(hi, den), _round_down(lo, den),
+                    _round_up(sqrt_upper(nx * nx + ny * ny), den)))
     return out
 
 
@@ -178,7 +197,6 @@ def m_coefficients(u, hps):
 
 def dual_bound(hps, ms, i, j, k):
     """The exact weak-duality bound from the triple (i,j,k), or None if y >= 0 fails."""
-    ni, nj, nk = (Q3.of(hps[t][0][0]), Q3.of(hps[t][0][1])) if False else None, None, None
     def nv(t):
         return (Q3.of(hps[t][0][0]), Q3.of(hps[t][0][1]))
     a, b, c = nv(i), nv(j), nv(k)
@@ -237,24 +255,31 @@ def _best_t(N, C, M, levels=18, span=2.0):
     return t, float(f(t[None, :])[0])
 
 
-def lambda_upper_at(hps, u, cand=9):
+def lambda_upper_at(hps, u, cand=13):
     """EXACT upper bound on lambda*(u) for the half-plane body `hps`.
 
-    Floats propose the candidate active triples; every returned number is the exact
-    Q(sqrt 3) value of a weak-duality certificate that was checked exactly.
+    Floats PROPOSE the candidate active triple; every returned number is the exact
+    Q(sqrt 3) value of a weak-duality certificate checked exactly (`dual_bound`), so a bad
+    proposal can only make the bound loose, never wrong.
+
+    The candidates are the constraints with the smallest exact-form RESIDUAL
+    c_j - (<t,n_j> + lambda m_j) at the float optimum -- including the constraints with
+    m_j = 0, which are ordinary walls of the polytope in t and can perfectly well sit in
+    the optimal basis.  (The first version of this function ranked by (c-<t,n>)/m and so
+    could never propose them; it then found no valid triple at all on the very direction
+    that attains the maximum.  That was the bug this lane was warned to look for.)
     """
     import numpy as np
     ms = m_coefficients(u, hps)
     N, C, M = _float_tables(hps, ms)
     t, lam = _best_t(N, C, M)
-    with np.errstate(divide="ignore", invalid="ignore"):
-        slack = np.where(M > 1e-14, (C - N @ t) / np.maximum(M, 1e-300) - lam, np.inf)
-    idx = list(np.argsort(slack)[:cand])
+    res = C - (N @ t + lam * M)
+    idx = [int(i) for i in np.argsort(res)[:cand]]
     best = None
     for a in range(len(idx)):
         for b in range(a + 1, len(idx)):
             for c in range(b + 1, len(idx)):
-                v = dual_bound(hps, ms, int(idx[a]), int(idx[b]), int(idx[c]))
+                v = dual_bound(hps, ms, idx[a], idx[b], idx[c])
                 if v is None or v.sgn() <= 0:
                     continue
                 if best is None or (v - best).sgn() < 0:
@@ -295,7 +320,7 @@ def feasible_lambda_lower(hps, u, denom=10 ** 6):
 
 
 # ------------------------------------------------------------------ direction sampling
-def sample_directions(D: int, scale: int = 10 ** 7):
+def sample_directions(D: int, scale: int = 10 ** 6):
     """D rational direction vectors around the whole circle, in angular order."""
     out = []
     for k in range(D):
@@ -348,3 +373,29 @@ def upper_bound(hps, dirs, s_ub: Fraction, progress=None):
             print("      dir %d/%d  running max side <= %.9f"
                   % (i, len(dirs), float(best) ** 0.5), flush=True)
     return best, recs
+
+
+def halfplanes_from_convex_polygon(poly):
+    """[(n_j, c_j, c_j, |n_j|_upper)] for a convex RATIONAL polygon given counterclockwise.
+
+    Used to run the containment bound on a body whose answer is known independently.
+    """
+    n = len(poly)
+    out = []
+    for i in range(n):
+        (ax, ay), (bx, by) = poly[i], poly[(i + 1) % n]
+        ax, ay, bx, by = Fraction(ax), Fraction(ay), Fraction(bx), Fraction(by)
+        nx, ny = (by - ay), -(bx - ax)          # outward normal for ccw orientation
+        c = nx * ax + ny * ay
+        out.append(((nx, ny), c, c, sqrt_upper(nx * nx + ny * ny)))
+    # The bounding box, appended so that the family is antipodally closed and the a priori
+    # side bound of `cw.a_priori_side_bound` applies.  These half planes are implied by the
+    # edge ones, so Q0 is unchanged.
+    xs = [Fraction(p[0]) for p in poly]
+    ys = [Fraction(p[1]) for p in poly]
+    one = sqrt_upper(Fraction(1))
+    out.append((((Fraction(1), Fraction(0))), max(xs), max(xs), one))
+    out.append((((Fraction(-1), Fraction(0))), -min(xs), -min(xs), one))
+    out.append((((Fraction(0), Fraction(1))), max(ys), max(ys), one))
+    out.append((((Fraction(0), Fraction(-1))), -min(ys), -min(ys), one))
+    return out
