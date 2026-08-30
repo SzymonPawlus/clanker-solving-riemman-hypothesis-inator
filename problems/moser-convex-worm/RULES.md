@@ -33,16 +33,20 @@ The status of a combined claim is capped by the weakest item.
   worm.
 - Area means two-dimensional Lebesgue area of the convex hull of the union of
   the placed witnesses.
-- Strict improvement means a rigorously rounded lower endpoint greater than
-  `0.227498`, not an optimizer value that differs inside error bars.
+- A strict improvement over the historical baseline means a rigorously rounded
+  lower endpoint greater than `0.227498`; it is not a literature improvement.
+  A record improvement must rigorously exceed the independently checked current
+  published lower bound, presently `0.232239`.
 
 ## 3. Baseline gate
 
 No new-witness result may build on the published decimal until Issue #136 has
-independently reconstructed the source's finite search, analytic error bound,
-parameter coverage, and rounding direction. Record the paper version and the
-exact theorem used. If the reconstruction certifies a weaker decimal, that
-weaker value is the campaign baseline.
+independently reconstructed the source's symmetry and compact-domain
+reductions, minimal-position argument, geometric $f,g,h$ inequalities, and
+directed trigonometric rounding. The grid search and its flawed error estimate
+concern a separate numerical upper candidate and are not Theorem 1 premises.
+Record the paper version and exact theorem used. If reconstruction certifies a
+weaker decimal, that weaker value is the campaign baseline.
 
 ## 4. Certificates and independent checking
 
@@ -84,7 +88,8 @@ Failure of any filter is recorded under `attacks/` as `refuted` or
 ## 6. Realistic checkpoints
 
 1. Reproduce the source's `0.227498` theorem independently.
-2. Publish an exact schema and two independent baseline checkers.
+2. Publish an exact schema, a producer implementation, and one independently
+   written baseline checker (two implementations total).
 3. Search simple one-parameter polygonal families and preserve negative data.
 4. Certify one explicit four-witness lower bound.
 5. Claim a strict improvement only after literature review and independent

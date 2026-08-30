@@ -11,7 +11,10 @@ Repository protocol: [`../../RULES.md`](../../RULES.md). Shared problem layout:
 
 A **worm** is a continuous rectifiable planar arc of length $1$. A convex
 planar set $K$ is a **universal convex cover** if, for every worm $W$, some
-orientation-preserving rigid motion sends $W$ into $K$. Define
+orientation-preserving rigid motion sends $W$ into $K$. This is the repository
+certificate convention; the 2009 source says only "copy." Reflection is
+immaterial for its segment, equilateral-triangle hull, and square hull because
+each has a reflection symmetry. Define
 
 \[
   m_{\mathrm{conv}}
@@ -36,25 +39,27 @@ copies of all three of the following objects has area at least `0.227498`:
 
 Every universal convex cover contains a congruent copy of each witness, so the
 paper claims $m_{\mathrm{conv}}\ge 0.227498$. The first campaign gate is an
-independent reconstruction of its grid/error argument. The source archive has
-no checker or certificate, and preliminary inspection found decimal and
-second-order error bookkeeping that must be repaired before the printed value
-can be treated as independently verified. The publication claim itself is
-`cited`; its proof is not yet an assumable in-repository result.
+independent reconstruction of its symmetry, compact-domain and minimal-position
+reductions, geometric $f,g,h$ inequalities, and directed trigonometric bounds.
+The source archive has no checker or certificate. Its later grid-search error
+proposition explicitly drops second-order terms, but that proposition concerns
+only a numerical upper candidate and is not a dependency of Theorem 1. The
+source assertion is bibliographically identified here but is not yet entered
+under `results/` as a `cited` campaign dependency.
 
 Primary source: T. Khandhawit and S. Sriswasdi, *An Improved Lower Bound for
 Moser's Worm Problem*, arXiv:math/0701391v2 (2009), 12 pages,
 <https://arxiv.org/abs/math/0701391v2>.
 
 This requested reproduction is a historical baseline, **not the current
-published record**. Khandhawit, Pagonakis, and Sriswasdi later proved the
+published record**. Khandhawit, Pagonakis, and Sriswasdi later report the
 stronger convex-cover bound $m_{\mathrm{conv}}\ge 0.232239$ in *Lower Bound
 for Convex Hull Area and Universal Cover Problems*, arXiv:1101.5638v1,
 published in *International Journal of Computational Geometry and
 Applications* 23 (2013), 197--212,
 <https://arxiv.org/abs/1101.5638>. Its full argument and witness dimensions
-remain an independent literature-audit task; only the primary abstract is
-pinned here initially.
+remain an independent literature-audit task; the record statement is initially
+pinned to the primary abstract and journal metadata.
 
 ## Research target
 

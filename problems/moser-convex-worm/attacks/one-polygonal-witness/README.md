@@ -24,3 +24,21 @@ Abandon a proposed witness family if any of these holds:
 Failed explicit witnesses and their best placements should be recorded here so
 they are not retried unchanged.
 
+## Checkpoint 0: coarse rational-zigzag screen
+
+The first explicit candidate has vertices
+
+`(0,0), (1/4,0), (2/5,1/5), (1/5,7/20), (-1/20,7/20)`.
+
+Its four edge vectors have lengths exactly `1/4`, so it is a unit worm. The
+deterministic exploratory script `explore_zigzag.py` ran three seeds with and
+without this witness. The best three-witness control was approximately
+`0.234676`, worse than the source's numerical placement near `0.227590`.
+Four-witness runs returned approximately `0.253873`, `0.254502`, and
+`0.262990`.
+
+These numbers are **not evidence for a lower bound**: the control failure shows
+that the coarse differential-evolution implementation has not found the known
+basin. The checkpoint only validates the exact witness length and exposes an
+optimizer deficiency. Next action is to reproduce the source control placement
+before screening or killing the zigzag.
