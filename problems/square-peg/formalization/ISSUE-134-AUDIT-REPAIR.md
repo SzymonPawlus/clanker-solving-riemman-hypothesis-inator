@@ -27,6 +27,30 @@ merged without the cross-family or human review required by `RULES.md`.
    wording were synchronized; the generated PDF was rebuilt from the revised
    TeX.
 
+## Theorem-grade article checkpoint
+
+Revision `d0ba3dedde337e142502396eb7b6f924d508d85e` upgrades the repaired proof
+to a human-readable formal article without changing its conditional status:
+
+1. The front matter now states the exact `V₀` positive-square theorem, defines
+   Jordan parametrizations, partitions, variation, distinct vertices, and
+   positive size, and points to the numbered proof completed by the final
+   corollary.
+2. The Asano--Ike interface is source-shaped: it records the quotient map
+   `e : R -> R/2πZ`, primitives of `(c_n ∘ e)^*λ`, the diagonal-angle meaning
+   of a `θ`-rectangle, and the non-trivial intersection outside `Δ_C`.  In
+   particular, Asano--Ike Theorem 1.1 has **no area hypothesis**; area `π`
+   appears later in the source only as a proof-strategy normalization and is
+   not imposed by this article.
+3. The Green specialization now uses `f = χ conj(z)` with a compactly
+   supported smooth cutoff equal to one near both the curve trace and winding
+   support, so the cited theorem is applied to an admissible test function.
+4. Stable bibliography keys and full version/page/DOI/URL data replace the
+   former pinned-source list.
+5. Dependency/status, reproducibility, and limitations/governance material is
+   collected in appendices, leaving the numbered mathematical proof
+   uninterrupted.
+
 ## Dependency audit: `V₀` to Asano--Ike
 
 | Stage | Audit result | Dependency/status |
@@ -65,7 +89,9 @@ algebraic subset; its unformalized analytic interfaces remain documented in
   p. 158: Arzela--Ascoli on a compact domain.
 - **Asano--Ike**, arXiv:2412.21057v3, Theorem 1.1, PDF p. 2, together with
   the rectangle/nondegeneracy discussion on pp. 2--3 and the off-diagonal
-  conclusion in the proof of Theorem 4.1 on p. 19.
+  conclusion in the proof of Theorem 4.1 on p. 19. Theorem 1.1 itself has no
+  area hypothesis; the source's later area-`π` normalization is not part of
+  the imported interface.
 
 These checks were performed separately from the TeX repair. No external
 interface was promoted to a Lean theorem or hidden behind a new Lean axiom.
@@ -83,7 +109,13 @@ pdflatex -interaction=nonstopmode -halt-on-error \
   problems/square-peg/formalization/c02var-prescribed-angle-formalization.tex
 ```
 
-Final artifact hashes at the coherent repair checkpoint:
+Theorem-grade article revision:
+
+- Commit: `d0ba3dedde337e142502396eb7b6f924d508d85e`
+- TeX: `c6f3ef617d86bad515f4d987aad19a52e6c74bd4ca528a0589f3e997a470a1c5`
+- PDF: `c33242565ccb528a89a9a56449021f660a5a882b81d0dade1e80a321e9f47cff`
+
+Earlier coherent repair checkpoint hashes retained for provenance:
 
 - TeX: `6492e7da223d0afd17a4498230c08bd48bc6eb5a224c5dbc3a25b9a12dea2f88`
 - PDF: `32540d1f3eba87c064115e32878b67623eecda10f08952addda65934b2da65d8`
