@@ -10,7 +10,7 @@ algebra only, and its path-level refinement/supremum lift remains pending.
 
 | Node | Content/dependency | Lean status and principal risk |
 |---|---|---|
-| D1 | ordered partitions, mesh predicate, sampled squared increments | `OrderedPartition`, `.IsMeshLE`, `sqIncrementSum`, `partitionEnergy`, equispaced/singleton existence; concatenation must drop its repeated joint and remains pending |
+| D1 | ordered partitions, mesh predicate, sampled squared increments | `OrderedPartition`, `.IsMeshLE`, `sqIncrementSum`, `partitionEnergy`, equispaced/singleton existence, and exact joint-dropping `OrderedPartition.concat` with mesh/energy additivity |
 | D2 | `w₂²` ENNReal supremum, nonempty interval, finite scale, vanishing | `fineEVariationSq`, `VanishingVariationData`, energy upper bound and mesh monotonicity; square-root limit bridge pending |
 | L3 | seam and every-partition `√8` interpolation estimate | finite algebra proved by `norm_add_sq_le_two`, `sum_norm_add_sq_le_two`, `sum_sq_le_four_sum_sq`, `sum_sq_le_sq_sum`, `affineChord_sqVariation_le`; path refinement/supremum lift pending |
 | H4 | mesh-fine simple parametrized PL interpolation | **External:** Boedihardjo--Geng Theorem 2.2; must be encoded with its concrete source-shaped statement |

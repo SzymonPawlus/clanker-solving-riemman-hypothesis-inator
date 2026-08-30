@@ -133,6 +133,160 @@ lemma exists_partition_mesh_le {a b δ : ℝ} (hab : a ≤ b) (hδ : 0 < δ) :
   · obtain ⟨k, _hk, P, hP⟩ := exists_equispacedPartition_mesh_le hablt hδ
     exact ⟨k, P, hP⟩
 
+/-- Point array obtained by concatenating two partitions and dropping the
+second copy of their common endpoint. -/
+def concatPoints {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) :
+    Fin (m + n + 1) → ℝ :=
+  (Fin.append P.points (fun i : Fin n ↦ Q.points i.succ)) ∘ Fin.cast (by omega)
+
+/-- Evaluation of concatenated points on the left partition. -/
+@[simp] lemma concatPoints_left {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) (i : Fin (m + 1)) :
+    concatPoints P Q (Fin.castLE (by omega) i) = P.points i := by
+  simp [concatPoints, Function.comp_apply]
+
+/-- Evaluation of concatenated points on the right partition after its
+repeated initial endpoint has been removed. -/
+@[simp] lemma concatPoints_right {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) (i : Fin n) :
+    concatPoints P Q ⟨m + 1 + i, by omega⟩ = Q.points i.succ := by
+  simp [concatPoints, Function.comp_apply, Fin.append, Fin.addCases]
+  omega
+
+/-- Concatenated points are strictly increasing. -/
+lemma concatPoints_strictMono {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) :
+    StrictMono (concatPoints P Q) := by
+  rw [Fin.strictMono_iff_lt_succ]
+  intro i
+  by_cases hleft : i.val < m
+  · let pi : Fin (m + 1) := ⟨i.val, by omega⟩
+    let pj : Fin (m + 1) := ⟨i.val + 1, by omega⟩
+    rw [show i.castSucc = Fin.castLE (by omega) pi by ext; simp [pi],
+      show i.succ = Fin.castLE (by omega) pj by ext; simp [pj]]
+    simpa using P.strictMono (show pi < pj by simp [pi, pj])
+  · by_cases hjoint : i.val = m
+    · have hn : 0 < n := by omega
+      let q0 : Fin n := ⟨0, hn⟩
+      let pm : Fin (m + 1) := Fin.last m
+      rw [show i.castSucc = Fin.castLE (by omega) pm by ext; simp [pm, hjoint],
+        show i.succ = ⟨m + 1 + q0.val, by omega⟩ by ext; simp [q0, hjoint]]
+      rw [concatPoints_left, concatPoints_right, P.right]
+      calc
+        b = Q.points 0 := Q.left.symm
+        _ < Q.points q0.succ :=
+          Q.strictMono (by simpa [q0] using q0.castSucc_lt_succ)
+    · have hright : m < i.val := by omega
+      let qi : Fin n := ⟨i.val - (m + 1), by omega⟩
+      let qj : Fin n := ⟨i.val + 1 - (m + 1), by omega⟩
+      rw [show i.castSucc = ⟨m + 1 + qi.val, by omega⟩ by ext; simp [qi]; omega,
+        show i.succ = ⟨m + 1 + qj.val, by omega⟩ by ext; simp [qj]; omega]
+      rw [concatPoints_right, concatPoints_right]
+      exact Q.strictMono (show qi.succ < qj.succ by simp [qi, qj]; omega)
+
+/-- Concatenation of ordered partitions, with the repeated joint retained only
+once. -/
+def OrderedPartition.concat {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) :
+    OrderedPartition a c (m + n) where
+  points := concatPoints P Q
+  strictMono := concatPoints_strictMono P Q
+  left := by
+    exact (concatPoints_left P Q (0 : Fin (m + 1))).trans P.left
+  right := by
+    cases n with
+    | zero =>
+        have hbc : b = c := Q.left.symm.trans Q.right
+        calc
+          concatPoints P Q (Fin.last (m + 0)) = P.points (Fin.last m) := by
+            rw [show Fin.last (m + 0) = Fin.castLE (by omega) (Fin.last m) by ext; simp]
+            exact concatPoints_left P Q (Fin.last m)
+          _ = b := P.right
+          _ = c := hbc
+    | succ n =>
+        calc
+          concatPoints P Q (Fin.last (m + (n + 1))) = Q.points (Fin.last n).succ := by
+            rw [show Fin.last (m + (n + 1)) = ⟨m + 1 + (Fin.last n).val, by omega⟩ by
+              ext; simp; omega]
+            exact concatPoints_right P Q (Fin.last n)
+          _ = c := Q.right
+
+/-- Left-block edge endpoints of a concatenated partition. -/
+lemma concat_edge_left {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) (i : Fin m) :
+    (P.concat Q).points (Fin.castAdd n i).castSucc = P.points i.castSucc ∧
+      (P.concat Q).points (Fin.castAdd n i).succ = P.points i.succ := by
+  constructor
+  · rw [show (Fin.castAdd n i).castSucc = Fin.castLE (by omega) i.castSucc by ext; simp]
+    exact concatPoints_left P Q i.castSucc
+  · rw [show (Fin.castAdd n i).succ = Fin.castLE (by omega) i.succ by ext; simp]
+    exact concatPoints_left P Q i.succ
+
+/-- Right-block edge endpoints of a concatenated partition, including the
+joint as the initial endpoint of the first right edge. -/
+lemma concat_edge_right {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) (i : Fin n) :
+    (P.concat Q).points (Fin.natAdd m i).castSucc = Q.points i.castSucc ∧
+      (P.concat Q).points (Fin.natAdd m i).succ = Q.points i.succ := by
+  constructor
+  · by_cases hi : i.val = 0
+    · rw [show (Fin.natAdd m i).castSucc =
+          Fin.castLE (by omega) (Fin.last m) by ext; simp [hi]]
+      change concatPoints P Q _ = _
+      rw [concatPoints_left, P.right]
+      calc
+        b = Q.points 0 := Q.left.symm
+        _ = Q.points i.castSucc := by congr 1; ext; simpa using hi.symm
+    · let j : Fin n := ⟨i.val - 1, by omega⟩
+      rw [show (Fin.natAdd m i).castSucc =
+          ⟨m + 1 + j.val, by omega⟩ by ext; simp [j]; omega]
+      change concatPoints P Q _ = _
+      rw [show i.castSucc = j.succ by ext; simp [j]; omega]
+      exact concatPoints_right P Q j
+  · rw [show (Fin.natAdd m i).succ = ⟨m + 1 + i.val, by omega⟩ by ext; simp; omega]
+    exact concatPoints_right P Q i
+
+/-- Concatenation preserves a common mesh upper bound. -/
+lemma OrderedPartition.concat_isMeshLE {a b c δ : ℝ} {m n : ℕ}
+    {P : OrderedPartition a b m} {Q : OrderedPartition b c n}
+    (hP : P.IsMeshLE δ) (hQ : Q.IsMeshLE δ) : (P.concat Q).IsMeshLE δ := by
+  intro i
+  refine Fin.addCases (m := m) (n := n) (fun j ↦ ?_) (fun j ↦ ?_) i
+  · rw [(concat_edge_left P Q j).1, (concat_edge_left P Q j).2]
+    exact hP j
+  · rw [(concat_edge_right P Q j).1, (concat_edge_right P Q j).2]
+    exact hQ j
+
+/-- Squared increment sums add exactly under partition concatenation. -/
+lemma sqIncrementSum_concatPoints {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) :
+    sqIncrementSum (fun i ↦ x ((P.concat Q).points i)) =
+      sqIncrementSum (fun i ↦ x (P.points i)) +
+        sqIncrementSum (fun i ↦ x (Q.points i)) := by
+  unfold sqIncrementSum
+  rw [Fin.sum_univ_add]
+  congr 1
+  · apply Finset.sum_congr rfl
+    intro i _
+    simp only
+    rw [(concat_edge_left P Q i).1, (concat_edge_left P Q i).2]
+  · apply Finset.sum_congr rfl
+    intro i _
+    simp only
+    rw [(concat_edge_right P Q i).1, (concat_edge_right P Q i).2]
+
+/-- Partition energies add exactly under concatenation. -/
+lemma partitionEnergy_concat {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b c : ℝ} {m n : ℕ}
+    (P : OrderedPartition a b m) (Q : OrderedPartition b c n) :
+    partitionEnergy x (P.concat Q) = partitionEnergy x P + partitionEnergy x Q := by
+  unfold partitionEnergy
+  rw [sqIncrementSum_concatPoints]
+  rw [ENNReal.ofReal_add (sqIncrementSum_nonneg (fun i ↦ x (P.points i)))
+    (sqIncrementSum_nonneg (fun i ↦ x (Q.points i)))]
+
 /-- Faithful critical vanishing-variation data for a path on `[a,b]`.
 `finiteScale` makes real-valued square-root estimates legitimate at one scale;
 `vanishes` is the right-hand limit at mesh zero. -/
