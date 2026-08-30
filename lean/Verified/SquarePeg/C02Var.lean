@@ -95,6 +95,47 @@ lemma normSq_eq_of_perpendicular {u v : ℂ} (h : dot (u + v) (u - v) = 0) :
   rw [dot_add_sub] at h
   linarith
 
+/-- A strictly positive functional on both incident edge velocities stays
+positive on every convex combination. This is the finite algebraic core of
+the nonvanishing-derivative argument for a mollified polygonal corner. -/
+lemma dot_convexCombination_pos (n a b : ℂ) (α β : ℝ)
+    (hα : 0 ≤ α) (hβ : 0 ≤ β) (hsum : α + β = 1)
+    (ha : 0 < dot n a) (hb : 0 < dot n b) :
+    0 < dot n (α • a + β • b) := by
+  have hlinear : dot n (α • a + β • b) = α * dot n a + β * dot n b := by
+    simp only [dot, Complex.add_re, Complex.add_im, Complex.smul_re, Complex.smul_im,
+      smul_eq_mul]
+    ring
+  rw [hlinear]
+  rcases eq_or_lt_of_le hα with rfl | hαpos
+  · simp only [zero_add] at hsum ⊢
+    simpa [hsum] using hb
+  · have hleft : 0 < α * dot n a := mul_pos hαpos ha
+    have hright : 0 ≤ β * dot n b := mul_nonneg hβ (le_of_lt hb)
+    exact add_pos_of_pos_of_nonneg hleft hright
+
+/-- A convex combination of two vectors in a radius-`M` ball remains in that
+ball. This supplies the pointwise `‖Q'‖ ≤ M` part of the smoothing estimate. -/
+lemma norm_convexCombination_le {E : Type*} [SeminormedAddCommGroup E]
+    [NormedSpace ℝ E] (a b : E) (α β M : ℝ)
+    (hα : 0 ≤ α) (hβ : 0 ≤ β) (hsum : α + β = 1)
+    (ha : ‖a‖ ≤ M) (hb : ‖b‖ ≤ M) :
+    ‖α • a + β • b‖ ≤ M := by
+  calc
+    ‖α • a + β • b‖ ≤ ‖α • a‖ + ‖β • b‖ := norm_add_le _ _
+    _ = α * ‖a‖ + β * ‖b‖ := by rw [norm_smul, norm_smul, Real.norm_eq_abs,
+      Real.norm_eq_abs, abs_of_nonneg hα, abs_of_nonneg hβ]
+    _ ≤ α * M + β * M := add_le_add (mul_le_mul_of_nonneg_left ha hα)
+      (mul_le_mul_of_nonneg_left hb hβ)
+    _ = M := by rw [← add_mul, hsum, one_mul]
+
+/-- Scalar bookkeeping for the quantitative smoothing bound: a set of total
+parameter length at most `2*m*h` and pointwise error at most `2*M` contributes
+at most `4*m*M*h`. -/
+lemma smoothing_error_constant (m M h : ℝ) :
+    (2 * M) * (2 * m * h) = 4 * m * M * h := by
+  ring
+
 /-- Purely conditional dependency interface. `analyticCriterion` represents
 the exact Asano--Ike approximation theorem only after its primary statement is
 verified. `nondegeneracy` is deliberately separate: no four-distinct-vertices
