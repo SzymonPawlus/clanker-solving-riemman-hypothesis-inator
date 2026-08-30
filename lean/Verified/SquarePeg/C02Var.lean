@@ -394,6 +394,31 @@ lemma partitionEnergy_cast {E : Type*} [SeminormedAddCommGroup E]
   subst n
   rfl
 
+/-- Squared increment sums split exactly at an existing partition node. -/
+lemma sqIncrementSum_prefix_add_suffix {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b : ℝ} {n : ℕ} (P : OrderedPartition a b n)
+    (j : Fin (n + 1)) :
+    sqIncrementSum (fun i ↦ x (P.points i)) =
+      sqIncrementSum (fun i ↦ x ((P.prefix j).points i)) +
+        sqIncrementSum (fun i ↦ x ((P.suffix j).points i)) := by
+  unfold sqIncrementSum
+  let hN : j.val + (n - j.val) = n := Nat.add_sub_of_le (by omega)
+  let e : Fin (j.val + (n - j.val)) ≃ Fin n := finCongr hN
+  rw [← e.sum_comp, Fin.sum_univ_add]
+  congr 1
+
+/-- Partition energy splits exactly at an existing partition node. -/
+lemma partitionEnergy_prefix_add_suffix {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b : ℝ} {n : ℕ} (P : OrderedPartition a b n)
+    (j : Fin (n + 1)) :
+    partitionEnergy x P =
+      partitionEnergy x (P.prefix j) + partitionEnergy x (P.suffix j) := by
+  unfold partitionEnergy
+  rw [sqIncrementSum_prefix_add_suffix]
+  rw [ENNReal.ofReal_add
+    (sqIncrementSum_nonneg (fun i ↦ x ((P.prefix j).points i)))
+    (sqIncrementSum_nonneg (fun i ↦ x ((P.suffix j).points i)))]
+
 /-- Faithful critical vanishing-variation data for a path on `[a,b]`.
 `finiteScale` makes real-valued square-root estimates legitimate at one scale;
 `vanishes` is the right-hand limit at mesh zero. -/
