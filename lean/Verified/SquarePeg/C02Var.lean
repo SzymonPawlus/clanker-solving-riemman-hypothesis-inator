@@ -39,6 +39,15 @@ structure OrderedPartition (a b : ℝ) (n : ℕ) where
   left : points 0 = a
   right : points (Fin.last n) = b
 
+/-- Ordered partitions are determined by their point arrays; order and
+endpoint fields are propositions. -/
+@[ext] lemma OrderedPartition.ext {a b : ℝ} {n : ℕ}
+    {P Q : OrderedPartition a b n} (h : P.points = Q.points) : P = Q := by
+  cases P
+  cases Q
+  cases h
+  rfl
+
 /-- Every gap of the partition is at most `δ`. This predicate avoids choosing
 a junk value for the maximum of an empty family. -/
 def OrderedPartition.IsMeshLE {a b : ℝ} {n : ℕ}
@@ -335,6 +344,55 @@ lemma partitionEnergy_le_fineEVariationSq_superinterval
       partitionEnergy x L + partitionEnergy x P + partitionEnergy x R :=
     le_add_right (self_le_add_left _ _)
   exact hdrop.trans hglobal
+
+/-- Prefix of an ordered partition ending at an existing node. -/
+def OrderedPartition.prefix {a b : ℝ} {n : ℕ} (P : OrderedPartition a b n)
+    (j : Fin (n + 1)) : OrderedPartition a (P.points j) j.val where
+  points i := P.points ⟨i.val, lt_of_le_of_lt (Nat.le_of_lt_succ i.isLt) j.isLt⟩
+  strictMono := fun _ _ hij ↦ P.strictMono (by simp only [Fin.mk_lt_mk]; omega)
+  left := P.left
+  right := by congr 1
+
+/-- Suffix of an ordered partition beginning at an existing node. -/
+def OrderedPartition.suffix {a b : ℝ} {n : ℕ} (P : OrderedPartition a b n)
+    (j : Fin (n + 1)) : OrderedPartition (P.points j) b (n - j.val) where
+  points i := P.points ⟨j.val + i.val, by omega⟩
+  strictMono := fun _ _ hij ↦ P.strictMono (by simp only [Fin.mk_lt_mk]; omega)
+  left := by congr 1
+  right := by
+    calc
+      P.points ⟨j.val + (Fin.last (n - j.val)).val, by omega⟩ =
+          P.points (Fin.last n) := by congr 1; ext; simp; omega
+      _ = b := P.right
+
+/-- A prefix inherits every mesh bound from its parent partition. -/
+lemma OrderedPartition.prefix_isMeshLE {a b δ : ℝ} {n : ℕ}
+    {P : OrderedPartition a b n} (hP : P.IsMeshLE δ) (j : Fin (n + 1)) :
+    (P.prefix j).IsMeshLE δ := by
+  intro i
+  let oi : Fin n := ⟨i.val, by omega⟩
+  change P.points oi.succ - P.points oi.castSucc ≤ δ
+  exact hP oi
+
+/-- A suffix inherits every mesh bound from its parent partition. -/
+lemma OrderedPartition.suffix_isMeshLE {a b δ : ℝ} {n : ℕ}
+    {P : OrderedPartition a b n} (hP : P.IsMeshLE δ) (j : Fin (n + 1)) :
+    (P.suffix j).IsMeshLE δ := by
+  intro i
+  let oi : Fin n := ⟨j.val + i.val, by omega⟩
+  change P.points oi.succ - P.points oi.castSucc ≤ δ
+  exact hP oi
+
+/-- Transport a partition across an equality of its edge counts. -/
+def OrderedPartition.cast {a b : ℝ} {m n : ℕ} (h : m = n)
+    (P : OrderedPartition a b m) : OrderedPartition a b n := h ▸ P
+
+/-- Partition energy is invariant under transport of the edge count. -/
+lemma partitionEnergy_cast {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b : ℝ} {m n : ℕ} (h : m = n) (P : OrderedPartition a b m) :
+    partitionEnergy x (P.cast h) = partitionEnergy x P := by
+  subst n
+  rfl
 
 /-- Faithful critical vanishing-variation data for a path on `[a,b]`.
 `finiteScale` makes real-valued square-root estimates legitimate at one scale;
