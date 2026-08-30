@@ -287,6 +287,55 @@ lemma partitionEnergy_concat {E : Type*} [SeminormedAddCommGroup E]
   rw [ENNReal.ofReal_add (sqIncrementSum_nonneg (fun i ↦ x (P.points i)))
     (sqIncrementSum_nonneg (fun i ↦ x (Q.points i)))]
 
+/-- If the whole interval has length at most `δ`, every gap of any ordered
+partition of that interval has length at most `δ`. -/
+lemma OrderedPartition.isMeshLE_of_length_le {a b δ : ℝ} {n : ℕ}
+    (P : OrderedPartition a b n) (h : b - a ≤ δ) : P.IsMeshLE δ := by
+  intro i
+  have hlo : a ≤ P.points i.castSucc := by
+    calc
+      a = P.points 0 := P.left.symm
+      _ ≤ P.points i.castSucc := P.strictMono.monotone (Fin.zero_le _)
+  have hhi : P.points i.succ ≤ b := by
+    calc
+      P.points i.succ ≤ P.points (Fin.last n) :=
+        P.strictMono.monotone (Fin.le_last _)
+      _ = b := P.right
+  linarith
+
+/-- Extend a partition of `[s,t]` to `[a,b]` by mesh-controlled left and
+right fillers. The displayed energy equality retains both filler energies. -/
+lemma exists_superinterval_extension {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a s t b δ : ℝ} {n : ℕ} (P : OrderedPartition s t n)
+    (has : a ≤ s) (_hst : s ≤ t) (htb : t ≤ b) (hδ : 0 < δ)
+    (hP : P.IsMeshLE δ) :
+    ∃ (l r : ℕ) (L : OrderedPartition a s l) (R : OrderedPartition t b r),
+      ((L.concat P).concat R).IsMeshLE δ ∧
+      partitionEnergy x ((L.concat P).concat R) =
+        partitionEnergy x L + partitionEnergy x P + partitionEnergy x R := by
+  obtain ⟨l, L, hL⟩ := exists_partition_mesh_le has hδ
+  obtain ⟨r, R, hR⟩ := exists_partition_mesh_le htb hδ
+  refine ⟨l, r, L, R,
+    OrderedPartition.concat_isMeshLE (OrderedPartition.concat_isMeshLE hL hP) hR, ?_⟩
+  rw [partitionEnergy_concat, partitionEnergy_concat, add_assoc]
+
+/-- A mesh-admissible subinterval partition has energy bounded by the global
+fine squared variation after extension to the containing interval. -/
+lemma partitionEnergy_le_fineEVariationSq_superinterval
+    {E : Type*} [SeminormedAddCommGroup E] (x : ℝ → E)
+    {a s t b δ : ℝ} {n : ℕ} (P : OrderedPartition s t n)
+    (has : a ≤ s) (hst : s ≤ t) (htb : t ≤ b) (hδ : 0 < δ)
+    (hP : P.IsMeshLE δ) :
+    partitionEnergy x P ≤ fineEVariationSq x a b δ := by
+  obtain ⟨l, r, L, R, hmesh, henergy⟩ :=
+    exists_superinterval_extension x P has hst htb hδ hP
+  have hglobal := partitionEnergy_le_fineEVariationSq x ((L.concat P).concat R) hmesh
+  rw [henergy] at hglobal
+  have hdrop : partitionEnergy x P ≤
+      partitionEnergy x L + partitionEnergy x P + partitionEnergy x R :=
+    le_add_right (self_le_add_left _ _)
+  exact hdrop.trans hglobal
+
 /-- Faithful critical vanishing-variation data for a path on `[a,b]`.
 `finiteScale` makes real-valued square-root estimates legitimate at one scale;
 `vanishes` is the right-hand limit at mesh zero. -/
