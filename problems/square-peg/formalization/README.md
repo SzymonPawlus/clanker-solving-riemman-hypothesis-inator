@@ -9,6 +9,8 @@ unconditional proof of Square Peg.
 
 - `c02var-prescribed-angle-formalization.tex` gives the precise mathematical
   interfaces, elementary proofs, and dependency/status ledger.
+- `c02var-prescribed-angle-formalization.pdf` is the generated, reviewable
+  build of that source.
 - The executable Lean counterpart is
   `../../../lean/Verified/SquarePeg/C02Var.lean`. It must be reachable from
   `../../../lean/Verified.lean` to be checked by CI.

@@ -6,3 +6,4 @@ Everything that reaches `verified:lean` status is reachable from here, so that a
 -/
 import Verified.CirclePacking.Basic
 import Verified.RiemannHypothesis.Basic
+import Verified.SquarePeg.C02Var
