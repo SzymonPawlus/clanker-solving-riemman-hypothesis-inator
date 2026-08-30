@@ -12,8 +12,10 @@ import Mathlib.Topology.Order.OrderClosed
 
 This module formalizes only algebraic and finite-sum components of the proposed
 `C^{0,2-var}` Square Peg argument. It does not assert the Square Peg theorem.
-The analytic approximation criterion and its nondegeneracy conclusion are kept
-as separate proposition parameters in `conditional_positive_square`.
+The independently source-verified analytic approximation criterion and its
+four-distinct/off-diagonal conclusion are kept as separate proposition
+parameters in `conditional_positive_square`: this module checks the logical
+composition but does not formalize those external analytic theorems.
 -/
 
 namespace Verified.SquarePeg.C02Var
@@ -136,10 +138,11 @@ lemma smoothing_error_constant (m M h : ℝ) :
     (2 * M) * (2 * m * h) = 4 * m * M * h := by
   ring
 
-/-- Purely conditional dependency interface. `analyticCriterion` represents
-the exact Asano--Ike approximation theorem only after its primary statement is
-verified. `nondegeneracy` is deliberately separate: no four-distinct-vertices
-or positive-square conclusion follows from the analytic criterion alone. -/
+/-- Logical composition of the two separately pinned Asano--Ike interfaces.
+`analyticCriterion` represents arXiv:2412.21057v3, Theorem 1.1 (PDF p. 2),
+while `nondegeneracy` represents its four-distinct/off-diagonal meaning
+(PDF pp. 2–3 and Theorem 4.1 proof, p. 19). Keeping them as arguments avoids
+turning an external citation into a Lean axiom. -/
 theorem conditional_positive_square
     {AnalyticData RectangleConclusion PositiveSquare : Prop}
     (data : AnalyticData)

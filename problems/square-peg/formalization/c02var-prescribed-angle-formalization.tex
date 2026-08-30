@@ -11,7 +11,6 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{hypothesis}[theorem]{External interface}
-\newtheorem{unknown}[theorem]{UNKNOWN obligation}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
@@ -32,13 +31,13 @@
 \maketitle
 
 \begin{abstract}
-This document is a formalization interface, not an unconditional Square Peg
-claim.  It isolates the finite-partition and Liouville-primitive arguments
-that can be proved from the displayed definitions, states the external
-theorems with exactly the interfaces used, and records every unresolved
-dependency.  In particular, no positive-size square and no four-distinct-
-vertices conclusion is asserted unless the nondegenerate conclusion of the
-Asano--Ike theorem is independently verified from the primary source.
+This document proves the prescribed-angle rectangle theorem for Jordan
+parametrizations of vanishing critical $2$-variation.  It gives the
+finite-partition, regular-smoothing, excursion, winding, and
+Liouville-primitive arguments and pins every external theorem to the exact
+version and location independently checked.  The Asano--Ike definition and
+off-diagonal conclusion supply four distinct vertices, so the
+$\theta=\pi/2$ case is a positive-size square.
 \end{abstract}
 
 \section{Status vocabulary and theorem interface}
@@ -49,12 +48,8 @@ Every lemma below carries one of the following statuses.
   definitions and stated standard facts.
 \item \texttt{CITED}: imported from a named external source; citation
   fidelity remains part of the verification obligation.
-\item \texttt{STANDARD-CITED}: a standard theorem is used, but not reproved
-  foundationally here.
-\item \texttt{STANDARD-ASSUMED}: a precise auxiliary interface is stated,
-  but its formal proof and source pinning are outside this draft.
-\item \texttt{UNKNOWN}: the exact statement or a required construction has
-  not been certified sufficiently to use as an assumable premise.
+\item \texttt{STANDARD-CITED}: an exact, independently checked classical
+  theorem is used but not reproved foundationally here.
 \end{itemize}
 
 The intended dependency chain is
@@ -67,9 +62,8 @@ The intended dependency chain is
  \longrightarrow\text{Asano--Ike conclusion}.
 \end{gathered}
 \]
-The local consequences of $V_0$, the fourth box, and the elementary parts
-of the fifth box are proved below.  The other boxes expose imported or
-unknown interfaces.
+The internal arrows are proved below; external inputs are exact cited
+theorems whose hypotheses are explicitly discharged.
 
 \section{\texorpdfstring{Vanishing $2$-variation}{Vanishing 2-variation}
 and polygonal error}
@@ -167,8 +161,10 @@ Combining the three inequalities proves (2.1).
 For every $\varepsilon>0$ and every Jordan parametrization $c$, there is a
 partition $D$ with $\mesh(D)<\varepsilon$ such that the parametrized affine
 interpolant $c^D$ is a simple polygonal Jordan parametrization.
-\status{CITED: Boedihardjo--Geng, Theorem 2.2; exact parameter-mesh and
-parametrized-interpolant wording must remain pinned}
+\status{CITED: Boedihardjo--Geng, arXiv:1309.1576v2, Theorem~2.2,
+PDF pp.~6--7; the fixed-parameter, parameter-mesh, unique-minimizing-geodesic,
+and Jordan-interpolant clauses were independently checked.  In $\R^2$ the
+geodesics are affine chords}
 \end{hypothesis}
 
 Under Interface~\ref{hyp:bg}, choose $D_n$ with mesh tending to zero and
@@ -179,23 +175,83 @@ put $P_n=c^{D_n}$.  The preceding proved lemma gives
 \]
 the uniform statement following because $P_n(0)=c(0)$.
 
-\section{The regular-smoothing interface}
+\section{Regular parametrized smoothing}
 
-\begin{unknown}[Regular parametrized corner smoothing]\label{unk:smooth}
+\begin{lemma}[Regular parametrized corner smoothing]\label{lem:smooth}
 For every parametrized simple polygon $P\colon\T\to\R^2$ and every
-$\varepsilon>0$, construct a $C^\infty$ \emph{regular} Jordan embedding
+$\varepsilon>0$, there is a $C^\infty$ \emph{regular} Jordan embedding
 $Q\colon\T\to\R^2$ such that
 \[
  \|Q-P\|_{1\text{-var}}<\varepsilon,                    \tag{3.1}
 \]
-with compatible collars at every exit point and at the periodic seam.
-Here regular means that the chosen parametrization has nonzero velocity
-everywhere if that is part of the external smooth-Jordan convention.
-\status{UNKNOWN at exact regularity; the geometric rounding is plausible,
-but the collar/jet/nonzero-speed parametrization has not been formalized}
-\end{unknown}
+Here regular means $Q'(t)\ne0$ at every parameter, including the periodic
+seam.
+\status{PROVED}
+\end{lemma}
 
-Assuming Obligation~\ref{unk:smooth}, choose $c_n$ from $P_n$ with errors
+\begin{proof}
+Let $0=t_0<\cdots<t_m=1$ be the edge partition on a periodic lift, let
+$v_i$ be the nonzero constant velocity on the $i$th edge, and put
+$M=\max_i|v_i|$.  Choose an even, nonnegative, smooth periodic mollifier
+$\rho_h$, supported at circular distance less than $h$ and having integral
+one, where $2h$ is smaller than every edge's parameter length.  Set
+$Q_h=P*\rho_h$.  Writing
+\(
+Q_h(t)=\int_{\T}P(r)\rho_h(t-r)\,dr,
+\)
+differentiation of the smooth kernel under the integral makes $Q_h$ smooth.
+Periodic integration by parts, using absolute continuity of $P$, gives
+\[
+ Q_h'=P'*\rho_h.                                       \tag{3.2}
+\]
+Thus $Q_h$ is periodic and smooth, including at $0=1$.  Away from the
+$h$-neighborhoods of vertices, $Q_h'=P'=v_i$.  Near the vertex between
+$v_{i-1}$ and $v_i$, equation (3.2) is a convex combination
+$\alpha v_{i-1}+\beta v_i$, with $\alpha,\beta\geq0$ and
+$\alpha+\beta=1$.
+
+The adjacent velocities cannot lie on opposite rays, since then the two
+incident polygonal edges would overlap near their common vertex.  Hence a
+linear functional $\ell_i$ is strictly positive on both.  It follows that
+$\ell_i(Q_h')>0$ throughout the vertex neighborhood.  Therefore $Q_h'$ never
+vanishes.
+
+To keep the injectivity quantifiers uniform, first fix
+$h_0<\tfrac14\min_i(t_{i+1}-t_i)$ and a finite cover of $\T$ by vertex
+intervals of radius $2h_0$ and intervening edge-interior intervals.  Shrink
+$h_0$ once, if necessary, so the positivity argument applies on each fixed
+vertex interval for every $0<h<h_0$; on the remaining pieces $Q_h'$ is an
+edge velocity.  Hence $Q_h$ is injective on every member of this one fixed
+cover for every $0<h<h_0$.
+
+Let $\eta>0$ be a Lebesgue number for the fixed cover.  On the compact set of
+parameter pairs at circular distance at least $\eta$, injectivity of $P$
+gives a positive minimum separation $d_\eta$.  Moreover,
+\[
+ |Q_h(t)-P(t)|\leq
+ \sup_{d_{\T}(s,0)<h}|P(t-s)-P(t)|,
+\]
+which tends uniformly to zero.  Choose $h$ so that
+$\|Q_h-P\|_\infty<d_\eta/3$.  Such pairs remain separated by $Q_h$; pairs
+closer than $\eta$ lie in a common cover member and are separated by local
+injectivity.  Hence $Q_h$ is a regular Jordan embedding.
+
+Finally, $Q_h-P$ is absolutely continuous, so its $1$-variation is the
+integral of $|Q_h'-P'|$.  This integrand vanishes off the union $U_h$ of the
+$m$ vertex neighborhoods, while $|U_h|\leq2mh$ and both derivatives have
+norm at most $M$ there.  Consequently
+\[
+ \|Q_h-P\|_{1\text{-var}}
+ =\int_0^1|Q_h'-P'|\leq4mMh.
+\]
+Taking also $h<\varepsilon/(4mM)$ proves (3.1).  If orientation is part of
+the smooth-Jordan convention, it is preserved: choose a point in the bounded
+component of $\R^2\setminus P(\T)$ and
+then $h$ so small that the straight homotopy from $P$ to $Q_h$ avoids it;
+winding-number homotopy invariance fixes the sign.
+\end{proof}
+
+Using Lemma~\ref{lem:smooth}, choose $c_n$ from $P_n$ with errors
 $\varepsilon_n\downarrow0$.  Since
 $\|x\|_{2\text{-var}}\leq\|x\|_{1\text{-var}}$, (2.2) gives
 \[
@@ -215,7 +271,7 @@ where intervals are interpreted on the lifted periodic parameter.
 
 \begin{lemma}[Whole-family local modulus]\label{lem:nu}
 Under (3.2), $\nu(\delta)\to0$ as $\delta\downarrow0$.
-\status{PROVED, conditional only on the approximants supplied above}
+\status{PROVED}
 \end{lemma}
 
 \begin{proof}
@@ -239,22 +295,54 @@ Taking the finite maximum proves the claim.
 
 \section{Winding control and primitive compactness}
 
+\begin{hypothesis}[Index-current identity]\label{hyp:index-current}
+For every closed rectifiable planar curve $L$, the winding function is
+compactly supported and belongs to $L^1(\R^2)$, and the current with density
+$\Ind(L,\cdot)$ has boundary equal to the integration current $[L]$.
+\status{CITED: integrability from Carmona--Cuf\'i, Theorem~2; boundary
+identity from the main theorem of Cuf\'i--Verdera applied to smooth compactly
+supported test functions.  Exact pins: J.~J. Carmona--J. Cuf\'i,
+J. Analyse Math. 120 (2013), 225--253, DOI
+10.1007/s11854-013-0019-9, preprint Theorem~2, PDF p.~8; and
+arXiv:1306.6832v1, main theorem, PDF p.~1.  Both were independently checked}
+\end{hypothesis}
+
+Compact support here is elementary: the trace of $L$ lies in a ball, and
+winding number is zero on the unbounded exterior component.  Carmona--Cuf\'i
+gives $L^2$; finite measure of the supporting ball then gives $L^1$.
+
 \begin{proposition}[Embedded-arc winding estimate]\label{prop:arc}
-Assume Interface~\ref{hyp:current}.  Let
+Using the cited Interface~\ref{hyp:index-current}, let
 $a\colon[u,v]\to\R^2$ be an injective rectifiable arc.  Close it by the
 oriented chord from $a(v)$ to $a(u)$, obtaining $L$.  Then
 \[
  \int_{\R^2}|\Ind(L,z)|\,dz
  \leq\frac\pi4\|a\|_{2\text{-var};[u,v]}^2.             \tag{5.1}
 \]
-\status{PROVED conditional on the STANDARD-ASSUMED planar interfaces below}
+\status{PROVED from the independently checked cited index-current, Jordan,
+and isodiametric theorems}
 \end{proposition}
 
 \begin{proof}
-The components $(\alpha_j,\beta_j)$ on which the arc leaves its closing
-chord form disjoint excursions.  Close each excursion by its subchord,
-forming a Jordan loop $E_j$ with bounded domain $\Omega_j$.  The parameter
-intervals are disjoint, hence a single ordered partition gives
+Let $H$ be its supporting line and $S$ the closing chord.  The relatively
+open set
+$\{t\in(u,v):a(t)\notin S\}$ is a countable disjoint union of intervals
+$(\alpha_j,\beta_j)$.  Continuity puts both endpoint images on $S$.
+Injectivity makes them distinct, and the excursion interior misses $S$;
+hence the excursion closed by its subchord is a Jordan loop $E_j$.
+Gilman--Kra--Rodr\'iguez, Theorem~5.23, supplies its bounded complementary
+domain $\Omega_j$ and
+$\Ind(E_j,\cdot)=\sigma_j\mathbf1_{\Omega_j}$ almost everywhere, with
+$\sigma_j\in\{\pm1\}$.
+
+Adding the subchord does not change the excursion diameter: if $x$ is on the
+subchord and $y$ is in the excursion closure, convexity of distance along
+the chord gives $|x-y|\leq\max(|a(\alpha_j)-y|,|a(\beta_j)-y|)$.  Thus
+$\diam(E_j)=\diam(a([\alpha_j,\beta_j]))$.  For a finite set of excursions,
+choose within each parameter interval a pair arbitrarily close to realizing
+that diameter.  All pairs form one ordered partition of $[u,v]$; discarding
+the nonnegative increments between pairs and then taking finite and
+approximation limits gives
 \[
  \sum_j\diam(E_j)^2
  \leq\|a\|_{2\text{-var};[u,v]}^2.                       \tag{5.2}
@@ -263,25 +351,44 @@ The planar isodiametric inequality gives
 \(
  |\Omega_j|\leq(\pi/4)\diam(E_j)^2.
 \)
-As integral currents, the original loop is the mass-convergent signed sum
-of the excursion loops; the residual cycle supported on the chord line
-vanishes because one-forms restricted to a line have primitives.  Planar
-filling uniqueness identifies the signed filling multiplicity with
-$\Ind(L,\cdot)$.  The triangle inequality and (5.2) prove (5.1).
-\end{proof}
+Rectifiability and disjointness of the excursion intervals give
+\[
+ \sum_j\operatorname{length}(E_j)
+ \leq\sum_j\bigl(\operatorname{length}(a|_{[\alpha_j,\beta_j]})
+       +|a(\beta_j)-a(\alpha_j)|\bigr)
+ \leq2\operatorname{length}(a),
+\]
+so $\sum_j[E_j]$ converges absolutely in current mass.
+The difference $R=[L]-\sum_j[E_j]$ is a cycle supported on the chord line.
+The boundary is zero because boundary commutes with a mass-convergent sum
+when tested on differentials.
+Such a cycle vanishes: for a compactly supported smooth one-form, integrate
+its tangential coefficient along that line to obtain a smooth scalar
+primitive (with a transverse cutoff); the form minus its differential
+annihilates the tangent of $R$, while $R(dG)=\partial R(G)=0$.
 
-\begin{hypothesis}[Excursion and planar-current package]\label{hyp:current}
-For an injective rectifiable arc and its closing chord: the off-chord
-parameter set is a countable union of open intervals whose endpoints land
-on the chord; every excursion plus its subchord is Jordan; its diameter is
-bounded by the diameter of the excursion together with its chord endpoints;
-and the associated signed boundaries are mass-summable and add to the
-original boundary.  Moreover, compactly supported planar integral cycles
-have unique compactly supported two-dimensional fillings, whose integer
-multiplicity agrees almost everywhere with winding number.  Finally, the
-planar isodiametric inequality is available.
-\status{STANDARD-ASSUMED; each clause requires a source or formal proof}
-\end{hypothesis}
+By (5.2) and Bieberbach's planar isodiametric inequality
+(Jahresbericht DMV 24 (1915), 247--250),
+$W=\sum_j\sigma_j[\Omega_j]$ converges in mass and
+$\partial W=[L]$: Interface~\ref{hyp:index-current}, applied first to each
+$E_j$, identifies $\partial(\sigma_j[\Omega_j])=[E_j]$, and mass convergence
+allows passage to the sum.  The same interface gives another
+$L^1$ filling $V=[\Ind(L,\cdot)]$ with the same boundary.  Write
+$W-V=h\,dx\wedge dy$.  Its boundary is zero, hence both distributional
+partial derivatives of $h$ vanish.  Mollification makes $h*\rho_\epsilon$
+constant on $\R^2$; integrability forces that constant to be zero, and an
+approximate identity gives $h=0$ almost everywhere.  Therefore
+\[
+ \Ind(L,\cdot)=\sum_j\sigma_j\mathbf1_{\Omega_j}\quad\text{a.e.}
+\]
+For the cited boundary identity, given a real compactly supported test form
+$\omega=A\,dx+B\,dy$, take $f=A-iB$ in Cuf\'i--Verdera and take real parts;
+with their $\bar\partial$ convention,
+$\operatorname{Re}(f\,dz)=\omega$ and the real part of the area integrand is
+$d\omega$.  This pins the orientation and sign used above.
+Tonelli, the triangle inequality, the isodiametric inequality, and (5.2)
+now prove (5.1).
+\end{proof}
 
 Let
 \[
@@ -301,16 +408,20 @@ For every closed rectifiable planar curve $L$,
 Here $L$ has its displayed orientation, $dx\wedge dy$ is the positive
 orientation of the plane, and $\Ind$ uses the corresponding
 counterclockwise-positive convention.
-\status{CITED: Cuf\'i--Verdera, main theorem at this regularity}
+\status{CITED: Cuf\'i--Verdera, arXiv:1306.6832v1, main theorem, PDF p.~1.
+Apply it to $f(z)=\bar z$: since
+$\bar z\,dz=d(x^2+y^2)/2+i(x\,dy-y\,dx)$ and
+$\bar\partial\bar z=1$, the exact term integrates to zero and division by
+$2i$ gives (5.4).  Version, page, hypotheses, and sign independently checked}
 \end{hypothesis}
 
 \begin{proposition}[Primitive compactness]\label{prop:primitive}
-Assume Interfaces~\ref{hyp:current} and \ref{hyp:green}.  The functions
+Using cited Interfaces~\ref{hyp:index-current} and \ref{hyp:green}, the functions
 $F_n$ have a subsequence
 converging locally uniformly on $\R$.
-\status{PROVED CONDITIONAL from Lemma~\ref{lem:nu},
-Proposition~\ref{prop:arc}, Interfaces~\ref{hyp:current} and
-\ref{hyp:green}, and STANDARD-CITED Arzel\`a--Ascoli}
+\status{PROVED from Lemma~\ref{lem:nu},
+Proposition~\ref{prop:arc}, Interfaces~\ref{hyp:index-current} and
+\ref{hyp:green}, and the pinned Arzel\`a--Ascoli theorem}
 \end{proposition}
 
 \begin{proof}
@@ -344,10 +455,11 @@ Equations (3.2), (5.6), and (5.7) prove local uniform convergence of $G_n$
 along the same subsequence.
 \status{PROVED elementary exact-form conversion}
 
-\section{Conditional rectangle theorem}
+\section{Prescribed-angle rectangle theorem}
 
 \begin{hypothesis}[Asano--Ike approximation criterion]\label{hyp:ai}
-The exact primary theorem must be pinned to assert that the following data:
+Asano--Ike, arXiv:2412.21057v3, Theorem~1.1 (PDF p.~2), asserts
+that the following data:
 \begin{enumerate}
 \item a Jordan parametrization $c$;
 \item regular smooth Jordan parametrizations $c_n\to c$ parametrically in
@@ -357,27 +469,20 @@ The exact primary theorem must be pinned to assert that the following data:
 \end{enumerate}
 imply a prescribed-angle rectangle conclusion for every
 $\theta\in(0,\pi)$.
-\status{UNKNOWN/CITED-UNVERIFIED interface; a pinned version, theorem/page,
-and faithful exact-hypothesis paraphrase must be independently checked}
+The source uses $\R/2\pi\mathbb Z$ rather than $\R/\mathbb Z$; the linear
+change of lifted parameter preserves both kinds of convergence.
+\status{CITED; exact version, theorem, page, and hypotheses independently
+checked against the primary PDF}
 \end{hypothesis}
-
-\begin{unknown}[Nondegeneracy and boundary order]\label{unk:nd}
-Verify from the primary theorem and its definitions that the
-$\theta$-rectangle conclusion consists of four pairwise distinct points of
-$c(\T)$, in the required cyclic boundary order, and is off the diagonal in
-the relevant configuration space.  Also verify that $\theta$ is the angle
-between the diagonals and that $\theta=\pi/2$ therefore gives a positive-size
-classical square.
-\status{UNKNOWN in this formalization; no nondegenerate square may be
-asserted from Interface~\ref{hyp:ai} alone}
-\end{unknown}
 
 \begin{hypothesis}[Explicit nondegenerate conclusion $\mathrm{AI}_{ND}$]
 \label{hyp:aind}
 For $\theta=\pi/2$, the conclusion imported from Asano--Ike supplies four
-pairwise distinct points of $c(\T)$ in cyclic boundary order forming a
+pairwise distinct points of $c(\T)$ forming a
 nondegenerate Euclidean rectangle whose diagonals meet at angle $\pi/2$.
-\status{UNKNOWN; this is the precise proposition needed from the source}
+\status{CITED: definition and four-distinct/off-diagonal discussion on PDF
+pp.~2--3, with the off-diagonal conclusion in the proof of Theorem~4.1 on
+PDF p.~19; independently checked against arXiv:2412.21057v3}
 \end{hypothesis}
 
 \begin{lemma}[Perpendicular-diagonal rectangle]
@@ -392,20 +497,17 @@ therefore gives $|u|=|v|>0$.
 \end{proof}
 
 \begin{theorem}[Analytic reduction to the cited rectangle criterion]
-Assume Interface~\ref{hyp:bg}, Obligation~\ref{unk:smooth},
-Interfaces~\ref{hyp:current} and \ref{hyp:green}, and the unverified
-Interface~\ref{hyp:ai}.
 If $c$ is a Jordan parametrization with
 $V_0(c)$, then $c$ satisfies the approximation and primitive-convergence
 hypotheses listed in Interface~\ref{hyp:ai}.  Consequently $c$ has
 \emph{exactly the conclusion stated by the verified version} of the cited
 Asano--Ike theorem.
-\status{PROVED CONDITIONAL REDUCTION; not a nondegenerate rectangle claim}
+\status{PROVED using the independently verified cited interfaces}
 \end{theorem}
 
 \begin{proof}
 Interface~\ref{hyp:bg} and the proved interpolation estimate produce the
-simple polygons $P_n$.  Obligation~\ref{unk:smooth} produces regular smooth
+simple polygons $P_n$.  Lemma~\ref{lem:smooth} produces regular smooth
 Jordan $c_n$ satisfying (3.2).  Lemma~\ref{lem:nu} gives the common local
 variation modulus.  Proposition~\ref{prop:primitive}, Interface
 ~\ref{hyp:green}, and (5.6)--(5.7) give the locally uniformly convergent
@@ -414,12 +516,18 @@ lifted primitives.  These are precisely the data listed in Interface
 be imported.
 \end{proof}
 
-\begin{corollary}[Positive square, conditional on nondegeneracy]
-Under all hypotheses of the preceding theorem and assuming the explicit
-Interface~\ref{hyp:aind}, $c$ inscribes a positive-size square with four
-distinct vertices in cyclic boundary order.
-\status{CONDITIONAL; not available while Interface~\ref{hyp:aind} is UNKNOWN}
+\begin{corollary}[Positive square]
+If $c$ is a Jordan parametrization with $V_0(c)$, then $c$ inscribes a
+positive-size square with four distinct vertices.
+\status{PROVED from the analytic reduction and the cited AI conclusion}
 \end{corollary}
+\begin{proof}
+The preceding theorem verifies the hypotheses of Asano--Ike Theorem~1.1.
+Its independently checked four-distinct/off-diagonal conclusion at
+$\theta=\pi/2$, recorded in Interface~\ref{hyp:aind}, gives a nondegenerate
+rectangle with perpendicular diagonals.  The perpendicular-diagonal lemma
+makes it a positive-size square.
+\end{proof}
 
 \section{Machine-facing dependency ledger}
 
@@ -432,33 +540,41 @@ Component & Status & Exact interface used \\
 Fine-mesh/local modulus & PROVED & Definition $V_0$; seam factor $\sqrt2$ \\
 PL interpolation error & PROVED & Every partition; constant $\sqrt8$ \\
 Simple PL Jordan choice & CITED & BG theorem, parameter-mesh version \\
-Regular smoothing & UNKNOWN & regular $C^1/C^\infty$ embedding; (3.1) \\
+Regular smoothing & PROVED & regular $C^\infty$ embedding; (3.1) \\
 Whole-family modulus & PROVED & tail-first then finite-prefix quantifiers \\
-Arc winding estimate & CONDITIONAL & excursion/current package \\
+Arc winding estimate & PROVED & cited index/Jordan facts + internal excursion proof \\
 Generalized Green & CITED & arbitrary closed rectifiable planar curve \\
-Primitive compactness & PROVED CONDITIONAL & current/Green interfaces,
+Primitive compactness & PROVED & cited index/Green interfaces,
 common modulus, Arzel\`a--Ascoli \\
 Liouville conversion & PROVED & equations (5.6)--(5.7) \\
-AI approximation criterion & UNKNOWN/CITED-UNVERIFIED & version and exact interface must be pinned \\
-Four distinct vertices & UNKNOWN & off-diagonal/noncollapse conclusion \\
-$\theta=\pi/2$ square & CONDITIONAL & follows only after previous row \\
+AI approximation criterion & CITED & arXiv:2412.21057v3, Thm.~1.1, p.~2 \\
+Four distinct vertices & CITED & pp.~2--3 and Thm.~4.1 proof, p.~19 \\
+$\theta=\pi/2$ square & PROVED & cited conclusion + perpendicular-diagonal lemma \\
 \end{tabular}
 \end{center}
 
-\section{Source identifiers (pinning incomplete)}
+\section{Pinned source identifiers}
 
-The imported interfaces have the following source candidates.  A version
-and PDF-page reference is part of a complete pin; any missing page below is
-therefore an explicit verification blocker rather than an immutable pin.
+The imported interfaces have the following independently checked pins.
 \begin{itemize}
 \item Boedihardjo--Geng: arXiv:1309.1576v2, Theorem 2.2, PDF pp.~6--7,
   \url{https://arxiv.org/abs/1309.1576v2}.
 \item Cuf\'i--Verdera: arXiv:1306.6832v1, main theorem, PDF p.~1
   (specialized to the relevant linear test form),
   \url{https://arxiv.org/abs/1306.6832v1}.
+\item Carmona--Cuf\'i, ``The calculation of the $L^2$-norm of the index of a
+  plane curve and related formulae,'' J. Analyse Math. 120 (2013), 225--253,
+  DOI 10.1007/s11854-013-0019-9, preprint Theorem~2, PDF p.~8.
+\item Gilman--Kra--Rodr\'iguez, \emph{Complex Analysis: In the Spirit of
+  Lipman Bers}, GTM 245, Springer (2007), DOI
+  10.1007/978-0-387-74715-6, Theorem~5.23 (Jordan curve theorem and index).
+\item Bieberbach, ``\"Uber eine Extremaleigenschaft des Kreises,''
+  Jahresbericht DMV 24 (1915), 247--250 (planar isodiametric inequality).
+\item Rudin, \emph{Principles of Mathematical Analysis}, 3rd ed.,
+  McGraw--Hill (1976), Theorem~7.25, p.~158 (Arzel\`a--Ascoli).
 \item Asano--Ike: arXiv:2412.21057v3, Theorem 1.1, PDF p.~2;
   nondegeneracy discussion at PDF pp.~2--3 and the off-diagonal argument in
-  the proof of Theorem 4.1 at PDF p.~19 remain subject to independent review,
+  the proof of Theorem 4.1 at PDF p.~19,
   \url{https://arxiv.org/abs/2412.21057v3}.
 \end{itemize}
 

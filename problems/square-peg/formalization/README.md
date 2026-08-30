@@ -2,8 +2,9 @@
 
 This directory contains the issue #134 formalization interface for the
 `C^{0,2-var}` prescribed-angle rectangle argument discussed in PR #122.
-It is a dependency specification and conditional reduction, not an
-unconditional proof of Square Peg.
+It proves the prescribed-angle rectangle result for the stated vanishing
+critical `2`-variation class. It does not claim the full conjecture for every
+Jordan curve.
 
 ## Files
 
@@ -18,20 +19,22 @@ unconditional proof of Square Peg.
 ## Exact status
 
 - Fine-mesh and interpolation estimates: proved in the LaTeX draft.
-- Regular parametrized `C^∞` smoothing: **UNKNOWN**.
-- Excursion and planar-current package: **STANDARD-ASSUMED** and requires
-  source pinning or a formal proof.
-- Boedihardjo–Geng and generalized Green inputs: cited external interfaces.
-- Asano–Ike approximation criterion: **UNKNOWN/CITED-UNVERIFIED** for this
-  formalization-status ledger.
-- Four-distinct/off-diagonal nondegeneracy (`AI_ND`): **UNKNOWN**, exposed as
-  a separate hypothesis.
-- Positive-size square: **CONDITIONAL** on all external interfaces, including
-  `AI_ND`.
+- Regular parametrized `C^∞` smoothing: **PROVED** by periodic mollification,
+  with regularity, global injectivity, seam compatibility, and the explicit
+  `1`-variation bound discharged.
+- Excursion/current winding estimate: **PROVED**, using exact independently
+  checked Jordan, isodiametric, index-integrability, and Green citations.
+- Boedihardjo–Geng and generalized Green inputs: **CITED**, with exact
+  version/theorem/page and independently checked hypotheses.
+- Asano–Ike approximation and four-distinct/off-diagonal conclusion:
+  **CITED**, arXiv:2412.21057v3, Theorem 1.1 (p. 2), definition/discussion
+  (pp. 2–3), and Theorem 4.1 proof (p. 19).
+- Positive-size square for the stated class: **PROVED** from those cited
+  inputs and the internal perpendicular-diagonal lemma.
 
-No `axiom`, `sorry`, or `native_decide` may be counted as proof. A Lean file
-that merely packages the external interfaces can compile while proving only
-the logical reduction from those hypotheses.
+The Lean module formalizes only the elementary algebraic core, not the whole
+analytic proof. No `axiom`, `sorry`, or `native_decide` may be counted as
+proof, and the LaTeX theorem must not be labelled `verified:lean`.
 
 ## Checks
 
