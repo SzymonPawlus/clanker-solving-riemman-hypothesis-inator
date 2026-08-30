@@ -5,6 +5,7 @@ Authors: codex
 -/
 import Mathlib.Analysis.Complex.Basic
 import Mathlib.Data.ENNReal.Basic
+import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 import Mathlib.Topology.Order.OrderClosed
 
 /-!
@@ -20,14 +21,51 @@ composition but does not formalize those external analytic theorems.
 
 namespace Verified.SquarePeg.C02Var
 
-/-- Abstract fine-mesh squared-variation data. The extended nonnegative reals
-make possible infinite variation explicit rather than silently coercing it to a
-real number. `finiteScale` records the finiteness witness needed before real
-square-root estimates can be used. -/
-structure VanishingVariationData where
-  w2sq : ℝ → ENNReal
-  finiteScale : ∃ δ : ℝ, 0 < δ ∧ w2sq δ ≠ ⊤
-  vanishes : Filter.Tendsto w2sq (nhdsWithin 0 (Set.Ioi 0)) (nhds 0)
+/-- Squared increment sum of a finite sampled path. This is the finite object
+whose supremum defines 2-variation. -/
+def sqIncrementSum {E : Type*} [SeminormedAddCommGroup E] {n : ℕ}
+    (x : Fin (n + 1) → E) : ℝ :=
+  ∑ i : Fin n, ‖x i.succ - x i.castSucc‖ ^ 2
+
+/-- Every finite squared increment sum is nonnegative. -/
+lemma sqIncrementSum_nonneg {E : Type*} [SeminormedAddCommGroup E] {n : ℕ}
+    (x : Fin (n + 1) → E) : 0 ≤ sqIncrementSum x := by
+  exact Finset.sum_nonneg fun _ _ ↦ sq_nonneg _
+
+/-- A finite ordered partition of `[a,b]`, including both endpoints. -/
+structure OrderedPartition (a b : ℝ) (n : ℕ) where
+  points : Fin (n + 1) → ℝ
+  strictMono : StrictMono points
+  left : points 0 = a
+  right : points (Fin.last n) = b
+
+/-- Every gap of the partition is at most `δ`. This predicate avoids choosing
+a junk value for the maximum of an empty family. -/
+def OrderedPartition.IsMeshLE {a b : ℝ} {n : ℕ}
+    (P : OrderedPartition a b n) (δ : ℝ) : Prop :=
+  ∀ i : Fin n, P.points i.succ - P.points i.castSucc ≤ δ
+
+/-- Squared increment energy of a path sampled on an ordered partition. -/
+def partitionEnergy {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) {a b : ℝ} {n : ℕ} (P : OrderedPartition a b n) : ENNReal :=
+  ENNReal.ofReal (sqIncrementSum fun i ↦ x (P.points i))
+
+/-- Fine-mesh squared 2-variation as the supremum over all finite ordered
+partitions whose gaps are at most `δ`. This is the square of the paper's
+`w₂`; the codomain records possible infinity. -/
+noncomputable def fineEVariationSq {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) (a b δ : ℝ) : ENNReal :=
+  ⨆ (n : ℕ) (P : OrderedPartition a b n) (_h : P.IsMeshLE δ), partitionEnergy x P
+
+/-- Faithful critical vanishing-variation data for a path on `[a,b]`.
+`finiteScale` makes real-valued square-root estimates legitimate at one scale;
+`vanishes` is the right-hand limit at mesh zero. -/
+structure VanishingVariationData {E : Type*} [SeminormedAddCommGroup E]
+    (x : ℝ → E) (a b : ℝ) where
+  interval_nonempty : a ≤ b
+  finiteScale : ∃ δ : ℝ, 0 < δ ∧ fineEVariationSq x a b δ ≠ ⊤
+  vanishes : Filter.Tendsto (fineEVariationSq x a b)
+    (nhdsWithin 0 (Set.Ioi 0)) (nhds 0)
 
 /-- The scalar inequality responsible for the factor `sqrt 2` when an
 increment is split at a periodic seam. -/
@@ -42,6 +80,60 @@ lemma norm_add_sq_le_two {E : Type*} [SeminormedAddCommGroup E]
   have hv := norm_nonneg v
   have huv := norm_nonneg (u + v)
   nlinarith [sq_nonneg (‖u‖ - ‖v‖)]
+
+/-- Finite algebra used after a refinement has represented each old increment
+as a sum of two endpoint pieces. Refinement semantics are not asserted here. -/
+lemma sum_norm_add_sq_le_two {E ι : Type*} [SeminormedAddCommGroup E]
+    [Fintype ι] (u v : ι → E) :
+    (∑ i, ‖u i + v i‖ ^ 2) ≤
+      2 * ((∑ i, ‖u i‖ ^ 2) + ∑ i, ‖v i‖ ^ 2) := by
+  calc
+    (∑ i, ‖u i + v i‖ ^ 2) ≤ ∑ i, 2 * (‖u i‖ ^ 2 + ‖v i‖ ^ 2) :=
+      Finset.sum_le_sum fun i _ ↦ norm_add_sq_le_two (u i) (v i)
+    _ = 2 * ((∑ i, ‖u i‖ ^ 2) + ∑ i, ‖v i‖ ^ 2) := by
+      simp_rw [mul_add]
+      rw [Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum]
+
+/-- Pointwise local bounds by twice a comparison increment give the factor
+`4` after squaring and summing. -/
+lemma sum_sq_le_four_sum_sq {ι : Type*} [Fintype ι] (y c : ι → ℝ)
+    (hy : ∀ i, 0 ≤ y i) (hc : ∀ i, 0 ≤ c i)
+    (h : ∀ i, y i ≤ 2 * c i) :
+    (∑ i, y i ^ 2) ≤ 4 * ∑ i, c i ^ 2 := by
+  calc
+    (∑ i, y i ^ 2) ≤ ∑ i, 4 * c i ^ 2 := by
+      apply Finset.sum_le_sum
+      intro i _
+      have htwo : 0 ≤ 2 * c i := mul_nonneg (by norm_num) (hc i)
+      have hi := (sq_le_sq₀ (hy i) htwo).2 (h i)
+      nlinarith
+    _ = 4 * ∑ i, c i ^ 2 := by rw [Finset.mul_sum]
+
+/-- The sum of squared nonnegative subdivision lengths is at most the square
+of their total length. This is the finite core of the statement that an
+affine chord has 2-variation equal to its endpoint distance. -/
+lemma sum_sq_le_sq_sum {ι : Type*} [Fintype ι] (d : ι → ℝ)
+    (hd : ∀ i, 0 ≤ d i) :
+    (∑ i, d i ^ 2) ≤ (∑ i, d i) ^ 2 := by
+  exact Finset.sum_sq_le_sq_sum_of_nonneg fun i _ ↦ hd i
+
+/-- Normalized affine subdivision form of `sum_sq_le_sq_sum`: multiplying
+nonnegative weights of total mass one by a chord length does not increase its
+squared 2-variation beyond the squared chord length. -/
+lemma affineChord_sqVariation_le {ι : Type*} [Fintype ι] (d : ι → ℝ) (L : ℝ)
+    (hd : ∀ i, 0 ≤ d i) (hsum : ∑ i, d i = 1) :
+    (∑ i, (d i * L) ^ 2) ≤ L ^ 2 := by
+  have hsq : (∑ i, d i ^ 2) ≤ 1 := by
+    simpa [hsum] using sum_sq_le_sq_sum d hd
+  calc
+    (∑ i, (d i * L) ^ 2) = L ^ 2 * ∑ i, d i ^ 2 := by
+      simp only [mul_pow]
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
+    _ ≤ L ^ 2 * 1 := mul_le_mul_of_nonneg_left hsq (sq_nonneg L)
+    _ = L ^ 2 := mul_one _
 
 /-- Squared-error bookkeeping behind the explicit `sqrt 8` polygonal
 interpolation bound. The three hypotheses are precisely the analytic partition
