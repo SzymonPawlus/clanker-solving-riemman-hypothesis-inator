@@ -22,60 +22,53 @@
 \newcommand{\status}[1]{\par\smallskip\noindent\textbf{Status:}
   \begingroup\small\sffamily #1.\endgroup\par\smallskip}
 
-\title{Formal dependency draft for the vanishing critical
-  $2$-variation prescribed-angle rectangle claim}
-\author{Issue \#134; companion specification for PR \#122}
-\date{Draft of 30 August 2026}
+\title{Inscribed Squares for Jordan Curves of Vanishing Critical
+  $2$-Variation}
+\author{Clanker contributors\\
+\small Issue \#134; verification-critical article for PR \#135}
+\date{30 August 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-This document proves the prescribed-angle rectangle theorem for Jordan
-parametrizations of vanishing critical $2$-variation.  It gives the
-finite-partition, regular-smoothing, excursion, winding, and
-Liouville-primitive arguments and pins every external theorem to the exact
-version and location independently checked.  The Asano--Ike definition and
-off-diagonal conclusion supply four distinct vertices, so the
-$\theta=\pi/2$ case is a positive-size square.
+We prove that a Jordan parametrization satisfying the critical vanishing
+$2$-variation condition $V_0$ inscribes a positive-size square with four
+distinct vertices.  The proof combines finite-partition approximation,
+anchored regular smoothing, an excursion-current winding estimate, and
+compactness of Liouville primitives.  Its final implication is conditional
+on the precisely stated and version-pinned Boedihardjo--Geng and
+Asano--Ike interfaces, together with the cited index and Green identities.
+This is not a proof of the unrestricted Square Peg conjecture and is not an
+end-to-end \texttt{verified:lean} result.
 \end{abstract}
 
-\section{Status vocabulary and theorem interface}
+\begin{center}
+\fbox{\parbox{0.88\textwidth}{\centering
+\textbf{VERIFIED CONDITIONAL ON CITED INTERFACES}.  This audit verdict is
+neither a grant of \texttt{verified:review} nor an end-to-end
+\texttt{verified:lean} claim.}}
+\end{center}
 
-Every lemma below carries one of the following statuses.
-\begin{itemize}
-\item \texttt{PROVED}: proved in this document from earlier displayed
-  definitions and stated standard facts.
-\item \texttt{CITED}: imported from a named external source; citation
-  fidelity remains part of the verification obligation.
-\item \texttt{STANDARD-CITED}: an exact, independently checked classical
-  theorem is used but not reproved foundationally here.
-\end{itemize}
+\section{Main result and notation}
 
-The intended dependency chain is
-\[
-\begin{gathered}
- V_0\longrightarrow\text{polygonal approximation}
- \longrightarrow\text{regular smoothing}\\
- \longrightarrow\text{uniform local }2\text{-variation}
- \longrightarrow\text{primitive compactness}
- \longrightarrow\text{Asano--Ike conclusion}.
-\end{gathered}
-\]
-The internal arrows are proved below; external inputs are exact cited
-theorems whose hypotheses are explicitly discharged.
+\begin{definition}[Jordan parametrization]
+A Jordan parametrization is a continuous, $1$-periodic map
+$c\colon\R\to\R^2$ whose restriction to $[0,1)$ is injective.  Equivalently,
+it is an embedding $\T\to\R^2$ together with its periodic lift.  Four
+vertices are distinct when they are pairwise distinct image points, and a
+square has positive size when its side length is positive.
+\end{definition}
 
-\section{\texorpdfstring{Vanishing $2$-variation}{Vanishing 2-variation}
-and polygonal error}
-
-Let $c\colon\R\to\R^2$ be continuous, $1$-periodic, and injective on
-$[0,1)$.  For an interval $I=[a,b]$, define
+\begin{definition}[Partitions and variation]
+For an interval $I=[a,b]$, an ordered partition is a finite sequence
+$a=t_0<\cdots<t_m=b$.  For such partitions define
 \[
  \|x\|_{2\text{-var};I}^2
  :=\sup_{a=t_0<\cdots<t_m=b}
        \sum_{j=0}^{m-1}|x(t_{j+1})-x(t_j)|^2.
 \]
-For a partition $D=\{0=t_0<\cdots<t_m=1\}$ put
+For a partition $D=\{0=t_0<\cdots<t_m=1\}$, put
 \[
  \mesh(D)=\max_j(t_{j+1}-t_j),\qquad
 w_2(c,\delta)^2
@@ -83,6 +76,10 @@ w_2(c,\delta)^2
        \sum_j|c(t_{j+1})-c(t_j)|^2.
 \]
 Both suprema initially take values in $[0,\infty]$.
+Thus $w_2(c,\delta)$ is the nonnegative extended square root of the displayed
+supremum.  It is used as a real number only in the finite regime supplied by
+$V_0$ below.
+\end{definition}
 
 \begin{definition}[Critical vanishing-variation hypothesis]
 Write $V_0(c)$ for
@@ -99,6 +96,22 @@ In this document the repository shorthand $C^{0,2\text{-var}}$ means exactly
 the critical vanishing condition $V_0$ above.  The theorem is stated only
 under $V_0$ and makes no separate claim that the global $2$-variation is
 finite.
+
+\begin{theorem}[Main theorem]\label{thm:main}
+Let $c\colon\R\to\R^2$ be a $1$-periodic Jordan parametrization satisfying
+$V_0(c)$.  Then four pairwise distinct points of $c(\R)$ are the vertices of a
+positive-size Euclidean square.
+\status{PROVED from the internal reductions and the independently checked
+cited interfaces; conditional on those interfaces}
+\end{theorem}
+
+\begin{proof}
+This is Corollary~\ref{cor:positive-square}, proved after the
+approximation and primitive-compactness hypotheses of the cited
+Asano--Ike criterion have been discharged.
+\end{proof}
+
+\section{Polygonal approximation}
 
 \begin{lemma}[Lifted short-interval modulus]\label{lem:local-modulus}
 If $V_0(c)$ holds, $0<\delta\leq\tfrac12$, and $I\subset\R$ has
@@ -166,7 +179,7 @@ Combining the three inequalities proves (2.1).
 For every $\varepsilon>0$ and every Jordan parametrization $c$, there is a
 partition $D$ with $\mesh(D)<\varepsilon$ such that the parametrized affine
 interpolant $c^D$ is a simple polygonal Jordan parametrization.
-\status{CITED: Boedihardjo--Geng, arXiv:1309.1576v2, Theorem~2.2,
+\status{CITED: Boedihardjo--Geng~\cite{BG}, arXiv:1309.1576v2, Theorem~2.2,
 PDF pp.~6--7; the fixed-parameter, parameter-mesh, unique-minimizing-geodesic,
 and Jordan-interpolant clauses were independently checked.  In $\R^2$ the
 geodesics are affine chords}
@@ -337,8 +350,8 @@ Taking the finite maximum proves the claim.
 For every closed rectifiable planar curve $L$, the winding function is
 compactly supported and belongs to $L^1(\R^2)$, and the current with density
 $\Ind(L,\cdot)$ has boundary equal to the integration current $[L]$.
-\status{CITED: integrability from Carmona--Cuf\'i, Theorem~2; boundary
-identity from the main theorem of Cuf\'i--Verdera applied to smooth compactly
+\status{CITED: integrability from Carmona--Cuf\'i~\cite{CC}, Theorem~2; boundary
+identity from the main theorem of Cuf\'i--Verdera~\cite{CV} applied to smooth compactly
 supported test functions.  Exact pins: J.~J. Carmona--J. Cuf\'i,
 J. Analyse Math. 120 (2013), 225--253, DOI
 10.1007/s11854-013-0019-9, preprint Theorem~2, PDF p.~8; and
@@ -368,7 +381,7 @@ $\{t\in(u,v):a(t)\notin S\}$ is a countable disjoint union of intervals
 $(\alpha_j,\beta_j)$.  Continuity puts both endpoint images on $S$.
 Injectivity makes them distinct, and the excursion interior misses $S$;
 hence the excursion closed by its subchord is a Jordan loop $E_j$.
-Gilman--Kra--Rodr\'iguez, Theorem~5.23, supplies its bounded complementary
+Gilman--Kra--Rodr\'iguez~\cite{GKR}, Theorem~5.23, supplies its bounded complementary
 domain $\Omega_j$ and
 $\Ind(E_j,\cdot)=\sigma_j\mathbf1_{\Omega_j}$ almost everywhere, with
 $\sigma_j\in\{\pm1\}$.
@@ -414,7 +427,7 @@ supported on $H$.  Hence $R(\omega-dG)=0$, while
 $R(dG)=\partial R(G)=0$.  Thus $R(\omega)=0$ for every test one-form, so
 $R=0$.
 
-By (5.2) and Bieberbach's planar isodiametric inequality
+By (5.2) and Bieberbach's planar isodiametric inequality~\cite{Bieberbach}
 (Jahresbericht DMV 24 (1915), 247--250),
 $W=\sum_j\sigma_j[\Omega_j]$ converges in mass and
 $\partial W=[L]$: Interface~\ref{hyp:index-current}, applied first to each
@@ -455,10 +468,13 @@ For every closed rectifiable planar curve $L$,
 Here $L$ has its displayed orientation, $dx\wedge dy$ is the positive
 orientation of the plane, and $\Ind$ uses the corresponding
 counterclockwise-positive convention.
-\status{CITED: Cuf\'i--Verdera, arXiv:1306.6832v1, main theorem, PDF p.~1.
-Apply it to $f(z)=\bar z$: since
+\status{CITED: Cuf\'i--Verdera~\cite{CV}, arXiv:1306.6832v1, main theorem, PDF p.~1.
+Choose $\chi\in C_c^\infty(\R^2)$ equal to one on a neighborhood containing
+both the curve trace and the support of its winding function, and apply the
+cited theorem to $f(z)=\chi(z)\bar z$.  On those supports $\chi$ is constant,
+so all terms involving $d\chi$ vanish.  On that neighborhood,
 $\bar z\,dz=d(x^2+y^2)/2+i(x\,dy-y\,dx)$ and
-$\bar\partial\bar z=1$, the exact term integrates to zero and division by
+$\bar\partial\bar z=1$; the exact term integrates to zero and division by
 $2i$ gives (5.4).  Version, page, hypotheses, and sign independently checked}
 \end{hypothesis}
 
@@ -468,7 +484,7 @@ $F_n$ have a subsequence
 converging locally uniformly on $\R$.
 \status{PROVED from Lemma~\ref{lem:nu},
 Proposition~\ref{prop:arc}, Interfaces~\ref{hyp:index-current} and
-\ref{hyp:green}, and the pinned Arzel\`a--Ascoli theorem}
+\ref{hyp:green}, and the pinned Arzel\`a--Ascoli theorem~\cite{Rudin}}
 \end{proposition}
 
 \begin{proof}
@@ -517,34 +533,37 @@ convergence of $G_n$.
 \section{Prescribed-angle rectangle theorem}
 
 \begin{hypothesis}[Asano--Ike approximation criterion]\label{hyp:ai}
-Asano--Ike, arXiv:2412.21057v3, Theorem~1.1 (PDF p.~2), asserts
-that the following data:
+Asano--Ike~\cite{AI}, Theorem~1.1 (arXiv:2412.21057v3, PDF p.~2), uses
+$e\colon\R\to\R/2\pi\mathbb Z$ for the quotient map and assumes:
 \begin{enumerate}
-\item a Jordan parametrization $c$;
+\item a Jordan parametrization $c\colon\R/2\pi\mathbb Z\to\R^2$;
 \item regular smooth Jordan parametrizations $c_n\to c$ parametrically in
   $C^0$; and
 \item locally uniform convergence on $\R$ of normalized lifted primitives
-  of the required Liouville form,
+  of $(c_n\circ e)^*\lambda$, for the required Liouville form $\lambda$.
 \end{enumerate}
-imply a prescribed-angle rectangle conclusion for every
-$\theta\in(0,\pi)$.
-The source uses $\R/2\pi\mathbb Z$ rather than $\R/\mathbb Z$; the linear
-change of lifted parameter preserves both kinds of convergence.
+These hypotheses imply a $\theta$-rectangle for every $\theta\in(0,\pi)$:
+a Euclidean rectangle whose diagonals meet at angle $\theta$.  Replacing
+$\theta$ by $\pi-\theta$ gives the same unoriented diagonal angle.  Our
+$\R/\mathbb Z$ parametrization is transferred to the source convention by
+the linear change of parameter, which preserves both kinds of convergence.
 \status{CITED; exact version, theorem, page, and hypotheses independently
-checked against the primary PDF}
+checked against the primary PDF.  See
+\url{https://arxiv.org/abs/2412.21057v3}}
 \end{hypothesis}
 
 \begin{hypothesis}[Explicit nondegenerate conclusion $\mathrm{AI}_{ND}$]
 \label{hyp:aind}
-For $\theta=\pi/2$, the conclusion imported from Asano--Ike supplies four
-pairwise distinct points of $c(\T)$ forming a
-nondegenerate Euclidean rectangle whose diagonals meet at angle $\pi/2$.
-\status{CITED: definition and four-distinct/off-diagonal discussion on PDF
-pp.~2--3, with the off-diagonal conclusion in the proof of Theorem~4.1 on
-PDF p.~19; independently checked against arXiv:2412.21057v3}
+The non-trivial intersection supplied in the source lies outside its
+diagonal $\Delta_C$.  Under the source's rectangle correspondence this is a
+nondegenerate $\theta$-rectangle.  At $\theta=\pi/2$ its four rectangle
+vertices are pairwise distinct and its diagonals are perpendicular.
+\status{CITED: definition and non-trivial/off-diagonal discussion on PDF
+pp.~2--3; proof of Theorem~4.1, PDF p.~19.  Primary version:
+\url{https://arxiv.org/abs/2412.21057v3}}
 \end{hypothesis}
 
-\begin{lemma}[Perpendicular-diagonal rectangle]
+\begin{lemma}[Square criterion]
 A nondegenerate Euclidean rectangle whose diagonals are perpendicular is a
 positive-size square.
 \status{PROVED}
@@ -579,20 +598,44 @@ These are precisely the data listed in Interface
 be imported.
 \end{proof}
 
-\begin{corollary}[Positive square]
+\begin{corollary}[Positive square]\label{cor:positive-square}
 If $c$ is a Jordan parametrization with $V_0(c)$, then $c$ inscribes a
 positive-size square with four distinct vertices.
 \status{PROVED from the analytic reduction and the cited AI conclusion}
 \end{corollary}
 \begin{proof}
 The preceding theorem verifies the hypotheses of Asano--Ike Theorem~1.1.
-Its independently checked four-distinct/off-diagonal conclusion at
-$\theta=\pi/2$, recorded in Interface~\ref{hyp:aind}, gives a nondegenerate
-rectangle with perpendicular diagonals.  The perpendicular-diagonal lemma
-makes it a positive-size square.
+Interface~\ref{hyp:aind} at $\theta=\pi/2$ gives four distinct vertices of a
+nondegenerate rectangle on $c$ with perpendicular diagonals.  The square
+criterion makes it a positive-size square.
 \end{proof}
 
-\section{Machine-facing dependency ledger}
+\appendix
+
+\section{Dependency and verification status}
+
+Every assertion above carries one of the following audit statuses.
+\begin{itemize}
+\item \texttt{PROVED}: proved in this article from earlier displayed
+  definitions and stated standard facts.
+\item \texttt{CITED}: imported from a named external source; citation
+  fidelity remains part of the verification obligation.
+\item \texttt{STANDARD-CITED}: an exact, independently checked classical
+  theorem is used but not reproved foundationally here.
+\end{itemize}
+The dependency chain is
+\[
+\begin{gathered}
+ V_0\longrightarrow\text{polygonal approximation}
+ \longrightarrow\text{regular smoothing}\\
+ \longrightarrow\text{local variation}
+ \longrightarrow\text{primitive compactness}
+ \longrightarrow\text{Asano--Ike}.
+\end{gathered}
+\]
+The internal arrows are proved in the article; the final status remains
+conditional on the cited interfaces.  The following ledger makes the split
+explicit.
 
 \begin{center}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.25\textwidth}
@@ -618,38 +661,77 @@ $\theta=\pi/2$ square & PROVED & cited conclusion + perpendicular-diagonal lemma
 \end{tabular}
 \end{center}
 
-\section{Pinned source identifiers}
+\section{Reproducibility}
 
-The imported interfaces have the following independently checked pins.
-\begin{itemize}
-\item Boedihardjo--Geng: arXiv:1309.1576v2, Theorem 2.2, PDF pp.~6--7,
-  \url{https://arxiv.org/abs/1309.1576v2}.
-\item Cuf\'i--Verdera: arXiv:1306.6832v1, main theorem, PDF p.~1
-  (specialized to the relevant linear test form),
-  \url{https://arxiv.org/abs/1306.6832v1}.
-\item Carmona--Cuf\'i, ``The calculation of the $L^2$-norm of the index of a
-  plane curve and related formulae,'' J. Analyse Math. 120 (2013), 225--253,
-  DOI 10.1007/s11854-013-0019-9, preprint Theorem~2, PDF p.~8.
-\item Gilman--Kra--Rodr\'iguez, \emph{Complex Analysis: In the Spirit of
-  Lipman Bers}, GTM 245, Springer (2007), DOI
-  10.1007/978-0-387-74715-6, Theorem~5.23 (Jordan curve theorem and index).
-\item Bieberbach, ``\"Uber eine Extremaleigenschaft des Kreises,''
-  Jahresbericht DMV 24 (1915), 247--250 (planar isodiametric inequality).
-\item Rudin, \emph{Principles of Mathematical Analysis}, 3rd ed.,
-  McGraw--Hill (1976), Theorem~7.25, p.~158 (Arzel\`a--Ascoli).
-\item Asano--Ike: arXiv:2412.21057v3, Theorem 1.1, PDF p.~2;
-  nondegeneracy discussion at PDF pp.~2--3 and the off-diagonal argument in
-  the proof of Theorem 4.1 at PDF p.~19,
-  \url{https://arxiv.org/abs/2412.21057v3}.
-\end{itemize}
+From the repository root, compile twice to resolve cross-references:
+\begin{verbatim}
+cd problems/square-peg/formalization
+pdflatex -interaction=nonstopmode -halt-on-error \
+  c02var-prescribed-angle-formalization.tex
+pdflatex -interaction=nonstopmode -halt-on-error \
+  c02var-prescribed-angle-formalization.tex
+\end{verbatim}
+The reviewable artifacts are the source
+\texttt{c02var-prescribed-angle-formalization.tex}, its generated PDF, and
+\texttt{ISSUE-134-AUDIT-REPAIR.md}.  The companion Lean module formalizes
+only the finite and algebraic core described in \texttt{LEAN\_DAG.md}.
+For each committed review checkpoint, the exact article revision and hashes
+of the deliberately committed artifacts are recorded in
+\texttt{ISSUE-134-AUDIT-REPAIR.md}.
 
-\section{Scope}
+\section{Limitations and governance}
 
-This draft neither proves the full Square Peg conjecture nor promotes PR
-\#122 beyond \texttt{sketch}.  It does not use PRs \#115, \#118, or \#119 as
-premises.  There is currently no problem-specific
-\texttt{problems/square-peg/RULES.md}; consequently the root repository rules
-are the only status protocol available, and this missing problem-level
-protocol is itself a governance gap rather than permission to promote.
+This article neither proves the unrestricted Square Peg conjecture nor
+promotes PR~\#122 beyond \texttt{sketch}.  It does not use PRs \#115,
+\#118, or \#119 as premises.  The analytic theorem is not claimed as
+\texttt{verified:lean}; the Lean module covers only identified finite and
+algebraic subclaims.  The result remains conditional on the exact cited
+interfaces and requires the verification-critical review prescribed by the
+root \texttt{RULES.md}.  It is not a full solution of Toeplitz's conjecture.
+
+\begin{thebibliography}{99}
+
+\bibitem{AI}
+Y.~Asano and Y.~Ike,
+\emph{The rectifiable rectangular peg problem},
+arXiv:2412.21057v3 (2024), Theorem~1.1, PDF p.~2; definition and
+nondegeneracy discussion, pp.~2--3; proof of Theorem~4.1, p.~19.
+\url{https://arxiv.org/abs/2412.21057v3}
+
+\bibitem{Bieberbach}
+L.~Bieberbach,
+\emph{\"Uber eine Extremaleigenschaft des Kreises},
+Jahresbericht der Deutschen Mathematiker-Vereinigung 24 (1915), 247--250.
+
+\bibitem{BG}
+H.~Boedihardjo and X.~Geng,
+\emph{Simple Piecewise Geodesic Interpolation of Simple and Jordan Curves
+with Applications},
+arXiv:1309.1576v2 (2013), Theorem~2.2, PDF pp.~6--7.
+\url{https://arxiv.org/abs/1309.1576v2}
+
+\bibitem{CC}
+J.~J. Carmona and J.~Cuf\'i,
+\emph{The calculation of the $L^2$-norm of the index of a plane curve and
+related formulae}, J. Analyse Math. 120 (2013), 225--253,
+doi:10.1007/s11854-013-0019-9; preprint Theorem~2, PDF p.~8.
+
+\bibitem{CV}
+J.~Cuf\'i and J.~Verdera,
+\emph{A generalization of Green's formula},
+arXiv:1306.6832v1 (2013), main theorem, PDF p.~1.
+\url{https://arxiv.org/abs/1306.6832v1}
+
+\bibitem{GKR}
+J.~Gilman, I.~Kra, and R.~E. Rodr\'iguez,
+\emph{Complex Analysis: In the Spirit of Lipman Bers},
+Graduate Texts in Mathematics 245, Springer, 2007,
+doi:10.1007/978-0-387-74715-6, Theorem~5.23.
+
+\bibitem{Rudin}
+W.~Rudin, \emph{Principles of Mathematical Analysis}, 3rd ed.,
+McGraw--Hill, 1976, Theorem~7.25, p.~158.
+
+\end{thebibliography}
 
 \end{document}
