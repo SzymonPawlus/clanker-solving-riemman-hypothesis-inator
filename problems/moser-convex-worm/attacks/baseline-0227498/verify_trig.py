@@ -103,6 +103,11 @@ def main():
     h_lo_cut = scale(Q(1, 4), sin_deg(beta_lo + 30))
     h_hi_cut = scale(Q(1, 4), sin_deg(beta_hi - 30))
 
+    # Conservative integer-degree reduction from the symmetry domain to D.
+    g_domain = scale(Q(1, 6), mul(sqrt2, sin_deg(Q(78))))
+    h_domain_lo = scale(Q(1, 4), sin_deg(Q(83 + 30)))
+    h_domain_hi = scale(Q(1, 4), sin_deg(Q(97 - 30)))
+
     # Worst beta endpoint for alpha <= 75 is beta_hi.  At alpha_hi the
     # resulting positive cosine argument has magnitude beta_hi-15-alpha_hi.
     q_right = scale(
@@ -117,6 +122,9 @@ def main():
 
     for name, value in (
         ("pi", PI),
+        ("g(78)", g_domain),
+        ("h(83)", h_domain_lo),
+        ("h(97)", h_domain_hi),
         ("g(alpha_hi)", g_cut),
         ("h(beta_lo)", h_lo_cut),
         ("h(beta_hi)", h_hi_cut),
@@ -125,6 +133,9 @@ def main():
     ):
         show(name, value)
 
+    assert g_domain[0] > Q(23, 100)
+    assert h_domain_lo[0] > Q(23, 100)
+    assert h_domain_hi[0] > Q(23, 100)
     assert g_cut[0] > c
     assert h_lo_cut[0] > c
     assert h_hi_cut[0] > c

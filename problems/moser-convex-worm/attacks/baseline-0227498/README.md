@@ -1,9 +1,9 @@
 # Reconstruction of the `0.227498` baseline
 
 **Status:** sketch. The published theorem is `cited`, but this independent
-reconstruction is not yet an assumable result. In particular, the reduction to
-the paper's class \(\mathcal K_2\) and the strip case analysis need an
-independent geometric proof.
+reconstruction is not yet an assumable result. It replaces the defective
+\(\mathcal K_2\) reduction and strip cases by a global rectangle-width lemma;
+that replacement and the exact trigonometric audit still need cross-review.
 
 ## Source and scope
 
@@ -67,7 +67,21 @@ Write \(\mu(X)\) for the area of the convex hull of all three placed objects.
 
 ## Load-bearing analytic inequalities
 
-The source proves the following translation-independent height bounds:
+For completeness, if \(E,F,U,V\) are four points, then
+
+\[
+ \operatorname{area}(\operatorname{conv}\{E,F,U,V\})
+ \geq\frac12|EF|h_{EF}(UV). \tag{H4}
+\]
+
+Indeed, use signed distances to the line \(EF\). If \(U,V\) are on opposite
+sides, the two triangles on base \(EF\) have disjoint interiors and their
+heights add to \(h_{EF}(UV)\). If they are on the same side, the larger height
+is at least the difference of the two heights, which is
+\(h_{EF}(UV)\). This exhausts the cases and proves (H4).
+
+Apply (H4) to the square diagonal \(AC\), and then to the triangle sides
+\(PQ\) and \(PR\). This gives the translation-independent bounds
 
 \[
  g(\alpha)=\frac{\sqrt2}{6}\sin\alpha\leq\mu(X),
@@ -90,7 +104,9 @@ These bounds show directly that any placement outside
 \]
 
 has area greater than `0.23`. The integer-degree endpoints are conservative;
-this reduction does not depend on the later problematic decimal cutoffs.
+this reduction does not depend on the later problematic decimal cutoffs. The
+exact verifier checks the three endpoint inequalities used here; monotonicity
+of sine on the displayed subintervals completes the domain reduction.
 
 For a purported minimum in the source's reduced positional class
 \(\mathcal K_2\), Proposition 2 claims
@@ -106,10 +122,89 @@ Its proof divides the position of \(E,F\) relative to the two strips determined
 by opposite square sides. It charges disjoint exterior triangles to square
 sides, using the transverse heights of \(EF\) and the triangle side \(PR\).
 The difficult subcase uses the positional assertion that a triangle vertex
-\(R\) is left of \(x=1\).
+\(R\) is left of \(x=1\). The next section replaces this entire case split by
+a global argument, so \(\mathcal K_2\) is not actually needed for (1).
 
-Assuming (1) and valid coverage by \(\mathcal K_2\), the theorem reduces to the
-two-variable inequality
+## Global repair of Proposition 2
+
+Here is an elementary rectangle-width lemma. It is also the substance of a
+more general proposition in Khandhawit--Pagonakis--Sriswasdi, *Lower Bound for
+Convex Hull Area and Universal Cover Problems*, arXiv:1101.5638v1 (2011), but
+the proof below is independent and shorter for the rectangular case.
+
+**Rectangle-width lemma.** Let a compact convex body \(K\) of finite area
+contain a rectangle \(R\) whose side lengths parallel to orthogonal unit
+vectors \(e_1,e_2\) are respectively \(a,b\). If \(w_1,w_2\) are the widths
+of \(K\) in the directions \(e_1,e_2\), then
+
+\[
+  2\operatorname{area}(K)\geq b w_1+a w_2. \tag{RW}
+\]
+
+Translate so that the origin belongs to \(R\), hence to \(K\). Convexity gives
+
+\[
+ K+tR\subseteq K+tK=(1+t)K\qquad(t\geq0).
+\]
+
+Adding a segment of length \(s\) in direction \(e_1\) to a compact convex
+body adds exactly \(s\) times its width in direction \(e_2\) to its area. This
+follows directly by integrating horizontal slice lengths: every nonempty slice
+is an interval and its length increases by \(s\). Adding the two orthogonal
+sides of \(tR\) successively gives
+
+\[
+ \operatorname{area}(K+tR)
+ =\operatorname{area}(K)+t(a w_2+b w_1)+t^2ab.
+\]
+
+On the other hand,
+
+\[
+ \operatorname{area}(K+tR)
+ \leq(1+t)^2\operatorname{area}(K).
+\]
+
+Subtract \(\operatorname{area}(K)\), divide by \(t>0\), and let \(t\) tend to
+zero. This proves (RW).
+
+Now take \(K=\mathcal C(X)\), and take \(R\) to be the square, with
+\(a=b=1/3\). From the source vertex convention, the directed square sides
+\(AB\) and \(BC\) have angles \(\alpha+135^\circ\) and
+\(\alpha+225^\circ\), respectively. Hence the width normal to \(BC\) supplied
+by the horizontal unit segment is
+
+\[
+ h_{BC}(EF)=|\sin(\alpha+45^\circ)|
+ =\cos(\alpha-45^\circ).
+\]
+
+The chord from the triangle vertex at angle \(\beta\) to the vertex at
+\(\beta+240^\circ\) has length \(1/2\) and directed angle
+\(\beta+210^\circ\). Therefore the orthogonal width supplied by \(PR\) is
+
+\[
+ h_{AB}(PR)=\frac12|\sin(\beta-\alpha+75^\circ)|
+ =\frac12\cos(\alpha-\beta+15^\circ).
+\]
+
+The absolute-value identities reduce to the positive cosines only after using
+\((\alpha,\beta)\in D\).
+
+Substitution in (RW) gives
+
+\[
+ \operatorname{area}(K)\geq\frac16\left(
+ \cos(\alpha-45^\circ)+
+ \frac12\cos(\alpha-\beta+15^\circ)\right)=f(\alpha,\beta).
+\]
+
+This proves (1) for **every** translation of the three objects. It removes the
+source's \(\mathcal K_2\) reduction, all four strip cases, and especially the
+unsupported inference \(x_R\leq1\) from the load-bearing path.
+
+Together with the height bounds, the global inequality (1) reduces the theorem
+directly to the two-variable inequality
 
 \[
  \max\{f(\alpha,\beta),g(\alpha),h(\beta)\}\geq
@@ -185,7 +280,7 @@ values between consecutive alternating Taylor sums, checks a rational
 enclosure of \(\sqrt2\) by squaring, and accepts only exact rational
 comparisons. Binary floating point is used solely to print compact diagnostics.
 
-## The positional reduction requiring further proof
+## Audit of the now-non-load-bearing positional reduction
 
 The paper defines \(\mathcal K_2\) by:
 
@@ -205,15 +300,24 @@ non-contact placement "is not minimal." A complete proof must explicitly show
 the containment during translation and apply the operation to a chosen global
 minimum (or directly to a hypothetical area-\(<c\) configuration).
 
-Item 1 is the main unresolved gap in this reconstruction. The prose definition
+Item 1 is a genuine gap in the source proof as printed. The prose definition
 of "distance between any point ... and \(\mathcal L\)" is ambiguous. Its proof
 instead assumes a point \(p\) more than one unit from an endpoint, replaces
 \(EF\) by the radial unit segment from that endpoint toward \(p\), and notes
 only that the new hull is contained in the old hull. This does not by itself
 show that the replacement lies in all of \(\mathcal K_2\), nor that the
 containment is strict. Proposition 2 later uses item 1 to infer that a vertex
-\(R\) lies left of \(x=1\). This dependency must be repaired before the
-analytic reconstruction is `verified:review`.
+\(R\) lies left of \(x=1\). For a concrete failure of the printed inference,
+place a triangle vertex at \(p=(2,0)\). Then \(F=(1,0)\) already lies on
+\([E,p]\), so the old segment is redundant in
+\(\operatorname{conv}(E\cup\mathcal S\cup\mathcal T)\), and the proposed
+radial unit segment from \(E\) toward \(p\) is exactly the original \(EF\).
+The claimed new configuration is identical, not strictly smaller. This does
+not refute the existence of some minimum satisfying the lens condition, but it
+does refute the argument offered for it.
+
+The global rectangle-width proof above makes this defect non-load-bearing for
+Theorem 1.
 
 The source's compactness argument also needs cleanup. It invokes inscribed
 circles and bounded center disks, but prints a dimensionally suspicious term
@@ -230,13 +334,14 @@ infinity should provide a clean replacement.
 | C | The area objective attains a global minimum | N, coercivity | sketch; source proof needs repair |
 | H | Height bounds \(g,h\) | N | cited; independently readable |
 | D | Low-area angles lie in \(D\) | H | sketch |
-| K | A relevant minimum may be chosen in \(\mathcal K_2\) | C | sketch; unresolved item 1 |
-| F | Strip/case inequality (1) | D, K | cited; independent geometry incomplete |
+| RW | Rectangle-width lemma | convexity and slice integration | sketch; independent proof above |
+| F | Global inequality (1) | N, RW | sketch; no positional reduction |
 | T | Corrected rational trigonometric contradiction | F, H | sketch with exact replay artifact |
-| LB | Every placement has area at least `0.227498` | W--T | cited as a published theorem; reconstruction remains sketch |
+| LB | Every placement has area at least `0.227498` | W, N, H, D, RW, F, T | cited as a published theorem; reconstruction remains sketch pending review |
 
-The weakest dependencies \(K\) and \(F\) cap the reconstruction. The exact
-trigonometric repair does not promote the combined result by itself.
+The original \(K\) node has been removed from the load-bearing DAG. The new
+rectangle-width proof and exact trigonometric repair still require independent
+review before the reconstruction can be promoted.
 
 ## Source errors and transcription issues
 
