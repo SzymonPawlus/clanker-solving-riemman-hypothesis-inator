@@ -286,3 +286,66 @@ Repeated local minima above a target do not support a lower bound: the needed
 quantity is the global infimum, so local optimization points in the wrong
 logical direction.
 
+## Independent implementation checkpoint (2026-08-31)
+
+An implementation written without producer code now supplies exact rational
+intervals, a rational enclosure of `pi`, and Taylor enclosures with explicit
+Lagrange remainders. It also checks rational worm lengths, interval rigid
+motions, exact rational hull areas, and rejects uncertain orientation.
+
+It found that the printed cutoffs are inward:
+
+```text
+g(74.838 degrees)       = 0.2274975054... < 0.227498
+h_plus(84.496 degrees)  = 0.2274975549... < 0.227498
+h_minus(95.504 degrees) = 0.2274975549... < 0.227498
+```
+
+The outward rational boundaries `74.83846`, `84.495753`, and `95.504247`
+degrees pass. On the central rectangle, cosine symmetry and monotonicity reduce
+`f` to `beta=95.504247` degrees. The result is concave in `alpha`, so its two
+exact endpoints suffice. A machine-readable fixture passes independently;
+ten tests reject the printed cutoffs, non-unit traversal, and ambiguous
+orientation. Development files remain in `/tmp/moser-independent-checker`.
+
+## Stage-2 global width certificate
+
+The positional `K2` reduction is unnecessary for `f`. Let compact convex `K`
+contain `R=[0,a]x[0,b]`. For `t>=0`, `R subset K` gives
+`K+tR subset K+tK=(1+t)K`. Exact horizontal then vertical extrusion gives
+
+```text
+area(K+tR) = area(K) + t(a*w_y(K)+b*w_x(K)) + t^2*a*b.
+```
+
+Comparison, division by positive `t`, and `t -> 0` proves
+`2*area(K) >= a*w_y(K)+b*w_x(K)`. No differentiability is used. An unbounded
+convex `K` containing a positive-area rectangle has infinite area; otherwise
+closure gives the compact case. Coefficients are load-bearing: `a` multiplies
+the perpendicular width `w_y`, and `b` multiplies `w_x`. `K=R` checks equality.
+
+A `rectangle_width` leaf pins the rectangle gauge and exactly checks edge
+vectors `U,V`, orthogonality, squared lengths `a^2,b^2`, the fourth vertex, and
+membership in a forced witness hull. It supplies two signed selected point
+pairs. The checker evaluates
+
+```text
+X = sign_x * dot(p_x-q_x,U)/a
+Y = sign_y * dot(p_y-q_y,V)/b
+```
+
+and requires nonnegative interval lower endpoints and
+`(b*X.lo+a*Y.lo)/2 >= target`. This avoids floating normalized directions.
+For the baseline, segment endpoints and triangle-side endpoints yield `f`
+after exact angle/sign checks.
+
+Negative fixtures reject a nonorthogonal or wrongly sized rectangle, a missing
+fourth hull vertex, projection intervals crossing zero, swapped coefficients,
+uncertain trigonometry, and an uncleared target. This is a global area leaf,
+not an opaque `outside_K2` domain prune.
+
+For completeness, the source's `K2(i)` would require pairwise distances from
+each witness point to both segment endpoints, not ordinary point-to-segment
+distance. Only the former implies `0<=x<=1` and validates the later vertical
+translation as a convex combination with `(x,0) in L`. The ambiguity is not
+load-bearing under the width proof.
