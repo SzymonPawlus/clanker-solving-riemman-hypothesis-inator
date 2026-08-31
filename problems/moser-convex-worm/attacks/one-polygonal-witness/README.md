@@ -1,6 +1,6 @@
 # One additional polygonal witness
 
-**Status:** numerical setup; no result claimed.
+**Status:** first candidate `refuted`; search continues with a new family.
 
 ## Idea
 
@@ -42,3 +42,22 @@ that the coarse differential-evolution implementation has not found the known
 basin. The checkpoint only validates the exact witness length and exposes an
 optimizer deficiency. Next action is to reproduce the source control placement
 before screening or killing the zigzag.
+
+The paper's printed rounded parameters convert to this script's gauge with
+control hull area approximately `0.227624`; its figure coordinates (which use
+scale 10 and segment endpoints `(-5,0),(5,0)`) independently give approximately
+`0.227591`. The script now seeds this basin explicitly. These agreements test
+the objective and coordinate conventions, not global optimality.
+
+After adding local descent, seed 1 produced a joint placement of all four
+witnesses with numerical hull area `0.2276655451`. The separate
+`certify_zigzag_kill.py` rounds translations and rational half-angle rotation
+parameters, works exactly in `Q(sqrt(3))`, proves all witness vertices lie in a
+five-vertex convex polygon, and certifies its area is approximately
+`0.22766564457 < 0.232239`. Its smallest exact containment determinant has
+margin about `6.77e-7`.
+
+Therefore this zigzag cannot improve the current published lower bound. This
+is an explicit upper placement for the finite witness family, not a statement
+about the universal-cover optimum. The next candidate must be structurally
+different.
