@@ -225,6 +225,31 @@ be independently compared. The sound next predicate is a checker-recomputed
 five-cycle with strict interval orientation and shoelace guards; the cycle
 label alone is not evidence and is never accepted as a midpoint hull order.
 
+`check_five_cycle.py` implements that predicate independently from the nine
+decimal pose centres and half-angle charts. It reconstructs the corner-anchored
+square and second rational arc, computes every transformed selected point by
+exact rational interval arithmetic, and does not trust the supplied cycle
+label. For every directed cycle edge it requires **every other selected cycle
+vertex** to lie strictly to the left. This stronger all-edge guard proves both
+simplicity and convex cyclic order before an outward shoelace lower bound is
+accepted.
+
+On the `1e-5` box it independently obtains area lower
+`0.23500641941252148...`, matching the separately reported value. Radius
+`1/1700` still certifies `0.23311808957579225...`; radius `1/1650` is rejected
+because a convex-order determinant crosses zero. A changed cycle label and a
+global scope are adversarially rejected.
+
+Omitted witness vertices, including ones collinear with a selected cycle edge
+at the centre, do not invalidate this **lower** bound. The joint hull contains
+each selected vertex and therefore contains their certified convex polygon;
+an omitted point can enlarge that hull but cannot remove polygon area. It
+would be unsound to claim the selected cycle equals the full hull, or to use
+the same collinear guard for an upper bound, but neither claim is made here.
+Triangle containment is likewise unnecessary for this leaf's area inequality;
+the triangle pose remains in the nine-variable box ledger only so the leaf
+domain is explicit.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
