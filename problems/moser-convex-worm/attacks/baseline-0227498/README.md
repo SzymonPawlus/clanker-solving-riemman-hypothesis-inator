@@ -16,7 +16,11 @@ for Moser's Worm Problem*, arXiv:math/0701391v2 (5 June 2009), Theorem 1:
 
 The exact v2 source archive contains one TeX file, bundled AMS style files, and
 four EPS plots. It contains no search program, input data, dependency lockfile,
-or machine-checkable certificate.
+or machine-checkable certificate. Retrieved from the arXiv export endpoint,
+the compressed v2 archive has SHA-256
+`0a593e37477c3a3bfa2a58b44c3e1787ebf11638d5f601cfc2ff21f5c02b7064`;
+its `LowerBoundMoser_v5.tex` has SHA-256
+`e2c5fa66a54b46c83e1787645205ba105e386d0d5ff12d8af205b0dcca17b680`.
 
 This note separates the analytic proof in Section 2 from the heuristic search
 in Section 3. The grid search is not a dependency of Theorem 1.
@@ -62,6 +66,22 @@ half-turn about its midpoint, give the source's working angular gauge
  45^\circ\leq\alpha\leq90^\circ,
  \qquad60^\circ\leq\beta\leq120^\circ.
 \]
+
+Explicitly, after reducing modulo the square and triangle rotational
+symmetries, the half-turn fixes \(\alpha\) and sends
+\(\beta\mapsto\beta+60^\circ\pmod {120^\circ}\). Reflection in the
+perpendicular bisector sends
+\((\alpha,\beta)\mapsto(-\alpha,60^\circ-\beta)\) modulo
+\((90^\circ,120^\circ)\). First use the reflection, if needed, to put
+\(\alpha\) in \([45^\circ,90^\circ]\), and then use the half-turn, if
+needed, to put \(\beta\) in \([60^\circ,120^\circ]\). Thus the two angular
+restrictions are simultaneous, not independent uses of the same symmetry.
+Although reflection of the plane reverses orientation, it does not enlarge the
+placement class here: the segment, square, and equilateral triangle are each
+reflection-symmetric as unlabelled sets, so the reflected copy of each object
+is also obtainable from the original by a rotation and translation. The
+normalization is therefore valid under the repository's orientation-preserving
+motion convention.
 
 Write \(\mu(X)\) for the area of the convex hull of all three placed objects.
 
@@ -109,7 +129,7 @@ exact verifier checks the three endpoint inequalities used here; monotonicity
 of sine on the displayed subintervals completes the domain reduction.
 
 For a purported minimum in the source's reduced positional class
-\(\mathcal K_2\), Proposition 2 claims
+\(\mathcal K_2\), Proposition 7 claims
 
 \[
  f(\alpha,\beta)=\frac16\left(
@@ -125,12 +145,15 @@ The difficult subcase uses the positional assertion that a triangle vertex
 \(R\) is left of \(x=1\). The next section replaces this entire case split by
 a global argument, so \(\mathcal K_2\) is not actually needed for (1).
 
-## Global repair of Proposition 2
+## Global repair of Proposition 7
 
 Here is an elementary rectangle-width lemma. It is also the substance of a
 more general proposition in Khandhawit--Pagonakis--Sriswasdi, *Lower Bound for
 Convex Hull Area and Universal Cover Problems*, arXiv:1101.5638v1 (2011), but
-the proof below is independent and shorter for the rectangular case.
+the proof below is independent and shorter for the rectangular case. Their
+Section 2 proposition states the same resulting expression using four points
+whose two transverse heights exceed the rectangle side lengths; simplifying
+its displayed right-hand side gives \((b w_1+a w_2)/2\).
 
 **Rectangle-width lemma.** Let a compact convex body \(K\) of finite area
 contain a rectangle \(R\) whose side lengths parallel to orthogonal unit
@@ -141,7 +164,8 @@ of \(K\) in the directions \(e_1,e_2\), then
   2\operatorname{area}(K)\geq b w_1+a w_2. \tag{RW}
 \]
 
-Translate so that the origin belongs to \(R\), hence to \(K\). Convexity gives
+Translate so that a chosen vertex of \(R\) is the origin, hence the origin
+also belongs to \(K\). Convexity gives
 
 \[
  K+tR\subseteq K+tK=(1+t)K\qquad(t\geq0).
@@ -274,11 +298,80 @@ Equations (3)--(4) repair the final contradiction. Replay with
 python3 problems/moser-convex-worm/attacks/baseline-0227498/verify_trig.py
 ```
 
+[`certificate.json`](./certificate.json) exposes the exact target, symmetry
+domain, coarse domain, tight cutoffs, and seven exhaustive analytic branches.
+The first three branches prune the complement of \(D\) at the coarse target
+`0.23`; the next three prune the complement of the tight core at \(c\); the
+last branch applies concavity of \(q\). The verifier checks the rational
+ordering and quadrant conditions used for monotonicity and endpoint coverage,
+as well as every load-bearing trigonometric endpoint.
+
+This is an analytic certificate, not a box search over translations. The four
+center coordinates range over \(\mathbb R^4\), but (H4) and (RW) are uniform
+in them and eliminate them before the finite angular partition. Consequently
+no compact positional box, optimizer, grid spacing, or perturbation estimate
+is a dependency of the certified claim. The seven structured branch records
+cover the complete angular gauge; the verifier rejects changed or missing
+endpoints rather than trusting prose predicates in the JSON.
+
+The JSON and `verify_trig.py` machine-check T's rational endpoints and branch
+metadata, conditional on the displayed geometric and calculus inequalities.
+They do **not** machine-check witness forcing, symmetry normalization, H4, the
+derivation of \(g,h\), RW, the substitution producing \(f\), or the monotonicity
+and concavity implications. Those nodes are encoded explicitly as
+`review_required_nodes`; promoting the whole lower bound therefore requires
+independent mathematical review of them. The artifact deliberately lists the
+source's \(\mathcal K_2\), compactness, and grid proposition as
+`not_dependencies` rather than silently pretending to certify them.
+
+The branch cover includes all boundary cases. On the symmetry rectangle,
+\(\alpha\geq78^\circ\), \(\beta\leq83^\circ\), and
+\(\beta\geq97^\circ\) are closed coarse tails and have strict margin over
+`0.23`. Their complement is the open interior of \(D\). Inside \(D\), the
+closed tails \(\alpha\geq A\), \(\beta\leq B_-\), and
+\(\beta\geq B_+\) have strict margin over \(c\); the complement is contained
+in the recorded closed core. Assigning a shared endpoint to either neighboring
+branch is harmless because both endpoint predicates are strict. Monotonicity
+comes from cosine having fixed sign on the corresponding sine intervals:
+\(g\) increases on \([45^\circ,90^\circ]\), the `h_plus` branch decreases
+on \([60^\circ,90^\circ]\), and the `h_minus` branch increases on
+\([90^\circ,120^\circ]\).
+
+## Exact source map
+
+| Reconstruction item | `LowerBoundMoser_v5.tex` location | Role here |
+|---|---|---|
+| three-object lower bound | Theorem 1 (`main`), lines 49--51 | exact theorem reconstructed |
+| universal-cover corollary | Theorem 2, lines 54--56 | witness-family reduction |
+| \(g,h\) inequalities | Lemma 4 (`1stineq`), lines 98--108 | retained, with H4 proof supplied |
+| coarse angular box | paragraph after Lemma 4, line 128 | retained with exact endpoint checks |
+| printed \(f\) inequality | Proposition 7 (`2ndineq`), lines 158--279 | replaced globally by (RW) |
+| final decimal contradiction | proof of Theorem 1, lines 289--300 | outward cutoffs repair inward rounding |
+| grid error estimate | Proposition 8 (`stepbound`), lines 306--318 | non-load-bearing and not rigorous as printed |
+
+The numbering above is TeX counter numbering in v2: definitions, lemmas, and
+propositions share the theorem counter. In particular, the grid estimate is
+Proposition 8, not part of Theorem 1's analytic dependency chain.
+
 The verifier uses only Python's standard-library exact `Fraction` arithmetic.
 It derives an interval for \(\pi\) from Machin's formula, encloses trigonometric
 values between consecutive alternating Taylor sums, checks a rational
 enclosure of \(\sqrt2\) by squaring, and accepts only exact rational
 comparisons. Binary floating point is used solely to print compact diagnostics.
+The recorded replay environment is CPython 3.14.6 on Linux x86-64; because all
+accepted predicates are integer and `Fraction` operations, no platform
+floating-point rounding mode enters the result.
+
+The narrowest directed margin is the exact lower endpoint of \(g(A)-c\),
+printed approximately as \(4.3378560\times10^{-8}\). Its enclosing interval
+has width only about \(1.61\times10^{-40}\); the lower endpoint, not a rounded
+display value or midpoint, is what the verifier compares with zero. The
+\(h(B_\pm)-c\) and \(q(A)-c\) lower margins are approximately
+\(9.77\times10^{-8}\) and \(1.09\times10^{-7}\), with still narrower
+enclosures. Analytic monotonicity and concavity introduce no numerical error.
+Hence every approximation error is already included outward in the rational
+interval endpoints, and the smallest positive margin survives by more than
+\(10^{32}\) interval widths.
 
 ## Audit of the now-non-load-bearing positional reduction
 
@@ -306,7 +399,7 @@ instead assumes a point \(p\) more than one unit from an endpoint, replaces
 \(EF\) by the radial unit segment from that endpoint toward \(p\), and notes
 only that the new hull is contained in the old hull. This does not by itself
 show that the replacement lies in all of \(\mathcal K_2\), nor that the
-containment is strict. Proposition 2 later uses item 1 to infer that a vertex
+containment is strict. Proposition 7 later uses item 1 to infer that a vertex
 \(R\) lies left of \(x=1\). For a concrete failure of the printed inference,
 place a triangle vertex at \(p=(2,0)\). Then \(F=(1,0)\) already lies on
 \([E,p]\), so the old segment is redundant in
@@ -331,13 +424,15 @@ infinity should provide a clean replacement.
 |---|---|---|---|
 | W | The three open polygonal arcs have length one and force the three convex objects | definitions | sketch |
 | N | Six-variable rigid normalization and angular symmetry coverage | W | sketch |
-| C | The area objective attains a global minimum | N, coercivity | sketch; source proof needs repair |
-| H | Height bounds \(g,h\) | N | cited; independently readable |
+| Csrc | The source's area objective attains a global minimum | N, coercivity | source-only; not a dependency after the global repair |
+| H4 | Four-point transverse-height inequality | elementary signed-distance cases | sketch; proof supplied above |
+| H | Height bounds \(g,h\) | N, H4 | cited; independently readable |
 | D | Low-area angles lie in \(D\) | H | sketch |
 | RW | Rectangle-width lemma | convexity and slice integration | sketch; independent proof above |
 | F | Global inequality (1) | N, RW | sketch; no positional reduction |
-| T | Corrected rational trigonometric contradiction | F, H | sketch with exact replay artifact |
-| LB | Every placement has area at least `0.227498` | W, N, H, D, RW, F, T | cited as a published theorem; reconstruction remains sketch pending review |
+| M | Monotonicity, worst-beta endpoint, and concavity implications | D, F, H | sketch; quadrant side conditions replayed |
+| T | Directed rational endpoint inequalities | M | exact replay artifact, producer-checked only |
+| LB | Every placement has area at least `0.227498` | W, N, H, D, RW, F, M, T | cited as a published theorem; reconstruction remains sketch pending review |
 
 The original \(K\) node has been removed from the load-bearing DAG. The new
 rectangle-width proof and exact trigonometric repair still require independent
@@ -373,12 +468,70 @@ and cites
  |\mu(X')-\mu(X)|\leq\delta\,\operatorname{peri}(\mathcal C(X))+\pi\delta^2.
 \]
 
-After reporting the approximate perimeter cap `3.46364`, it claims the linear
-error `2.44916 d1 + 0.49993 d2` **"by ignoring second order terms."** Dropping
-the nonnegative \(\pi\delta^2\) term cannot prove an upper error bound. The
-source also gives no directed-rounding provenance for `3.46364` or the derived
-coefficients. Therefore Proposition 3, as printed, is refuted as a rigorous
-error estimate. It is irrelevant to Theorem 1, which precedes it.
+Here \(d_2\) is in radians: the paper bounds an angular displacement
+\(|\theta|\leq d_2/2\), and a vertex at circumradius \(r\) moves by
+\(2r\sin(|\theta|/2)\). The triangle radius \(\sqrt3/6\) therefore gives
+\(\sin(d_2/4)/\sqrt3\); its displacement dominates the square's
+\(\sqrt2\sin(d_2/4)/3\).
+The source accidentally says the triangle vertex is rotated about the square
+center \((x_1,y_1)\) and pairs its displacement with \(\theta_1\); the intended
+triangle center and angle are \((x_2,y_2),\theta_2\). This transcription error
+does not change the common worst-case \(\delta\), but it is another reason the
+printed paragraph cannot itself serve as executable provenance.
+
+The intended region \(\mathcal D\) used for the perimeter cap is the
+intersection of the strip \(|y|\leq0.46\) and the two unit disks centered at
+\(E,F\). Direct
+arc-and-segment calculation gives
+
+\[
+ \operatorname{peri}(\mathcal D)
+ =2\bigl(2\sqrt{1-0.46^2}-1\bigr)+4\arcsin(0.46)
+ \approx3.463656454943508.
+\]
+
+Thus the printed `3.46364` is already rounded **down**. Even before the
+quadratic term, the safe linear coefficients would have to exceed
+
+\[
+ P/\sqrt2\approx2.449174966991112,
+ \qquad P/(4\sqrt3)\approx0.499935746660505,
+\]
+
+whereas the paper prints `2.44916` and `0.49993`, also downward. Finally it
+drops the nonnegative \(\pi\delta^2\) term **"by ignoring second order
+terms."** For the reported coarse spacings \(d_1=d_2=0.01\), the displayed
+Lipschitz expression is about `0.02971885396`, while the claimed linear bound
+is `0.0294909`. For \((d_1,d_2)=(0.001,0.0001)\), the corresponding values are
+about `0.00250080412` and `0.002499153`. Proposition 8 is therefore refuted as
+a rigorous error estimate in three separately visible directions: perimeter
+rounding, coefficient rounding, and deletion of the quadratic remainder.
+It is irrelevant to Theorem 1, which precedes it and whose repaired proof uses
+no interpolation or grid error.
+
+Replay the exact-rational countercheck with
+
+```text
+python3 problems/moser-convex-worm/attacks/baseline-0227498/verify_grid_error.py
+```
+
+It encloses the square root and arcsine in the perimeter formula, the sine in
+\(\delta\), and \(\pi\) without using a floating-point value in any accepted
+predicate. Its conclusion is only that Proposition 8's displayed estimate is
+not established; it does not claim that Theorem 1 or the reported numerical
+placement is false.
+
+Nor does the source specify a finite search that can be replayed exhaustively.
+The first run gives spacings but no complete loop bounds, endpoint convention,
+sample count, or output. Later coordinate boxes are selected heuristically
+from plots, so the paper supplies no proof that discarded boxes cannot contain
+a better placement. The final two-angle run assumes the explicitly stated,
+unproved contact conjecture. Even a repaired Proposition 8 would bound error
+only from a covered continuous box to its grid; it would not certify these
+heuristic domain restrictions. Therefore the search has no reconstructible
+finite parameter coverage or conservative final rounding claim. It remains
+useful numerical evidence for the reported `0.22758966937711944`, but it is
+not a stage of the `0.227498` lower-bound proof.
 
 The final reported heuristic placement has area `0.22758966937711944` and
 parameters

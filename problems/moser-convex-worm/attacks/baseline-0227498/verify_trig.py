@@ -6,8 +6,10 @@ alternating Taylor partial sums enclose sin and cos.  No floating-point value
 is used in an accepted predicate.
 """
 
+import json
 from fractions import Fraction as Q
 from math import factorial
+from pathlib import Path
 
 
 def add(x, y):
@@ -30,6 +32,8 @@ def power(x, n):
 
 def atan_alt(x, n):
     """Enclose atan(x), 0<x<=1, between consecutive partial sums."""
+    assert Q(0) < x <= Q(1)
+    assert n >= 0
     terms = [(-1) ** k * x ** (2 * k + 1) / (2 * k + 1) for k in range(n + 2)]
     a, b = sum(terms[:-1]), sum(terms)
     return min(a, b), max(a, b)
@@ -87,10 +91,103 @@ def show(name, interval):
 
 
 def main():
-    c = Q(113749, 500000)  # 0.227498 exactly
-    alpha_hi = Q(748385, 10000)
-    beta_lo = Q(844957, 10000)
-    beta_hi = Q(955043, 10000)
+    if not __debug__:
+        raise RuntimeError("replay requires assertions; do not run Python with -O")
+    cert = json.loads(Path(__file__).with_name("certificate.json").read_text())
+    rat = lambda key: Q(*key)
+    c = rat(cert["target"])
+    coarse = rat(cert["coarse_target"])
+    symmetry = cert["symmetry_domain"]
+    domain = cert["low_area_domain"]
+    cut = cert["core_cutoffs"]
+    alpha_hi = rat(cut["alpha_upper"])
+    beta_lo = rat(cut["beta_lower"])
+    beta_hi = rat(cut["beta_upper"])
+
+    assert cert["schema"] == "moser-baseline-analytic-v1"
+    assert cert["angles"] == "degrees"
+    assert cert["rationals"] == "[numerator, denominator]"
+    assert cert["arithmetic"] == (
+        "fractions.Fraction exact rationals with outward Machin/Taylor intervals"
+    )
+    assert cert["tested_python"] == "CPython 3.14.6"
+    assert cert["replay"] == (
+        "python3 problems/moser-convex-worm/attacks/"
+        "baseline-0227498/verify_trig.py"
+    )
+    assert cert["source"] == {
+        "arxiv": "math/0701391v2",
+        "revision_date": "2009-06-05",
+        "theorem": 1,
+        "archive_sha256": (
+            "0a593e37477c3a3bfa2a58b44c3e1787ebf11638d5f601cfc2ff21f5c02b7064"
+        ),
+        "tex_file": "LowerBoundMoser_v5.tex",
+        "tex_sha256": (
+            "e2c5fa66a54b46c83e1787645205ba105e386d0d5ff12d8af205b0dcca17b680"
+        ),
+    }
+    assert cert["claim_scope"] == {
+        "conclusion": (
+            "max(f(alpha,beta),g(alpha),h(beta)) >= target "
+            "on the symmetry domain"
+        ),
+        "machine_checked_nodes": ["T_endpoints", "T_branch_metadata"],
+        "review_required_nodes": [
+            "W", "N", "H4", "H", "D", "RW", "F", "M"
+        ],
+        "dependency_order": [
+            "W", "N", "H4", "H", "D", "RW", "F", "M", "T", "LB"
+        ],
+        "translation_variables": (
+            "eliminated analytically by translation-invariant H4 and RW bounds"
+        ),
+        "not_dependencies": [
+            "source_K2",
+            "source_compactness",
+            "source_grid_proposition_8",
+        ],
+    }
+    assert list(map(rat, symmetry["alpha"])) == [45, 90]
+    assert list(map(rat, symmetry["beta"])) == [60, 120]
+    assert list(map(rat, domain["alpha"])) == [45, 78]
+    assert list(map(rat, domain["beta"])) == [83, 97]
+    assert c == Q(113749, 500000)
+    assert coarse == Q(23, 100)
+
+    # Exact side conditions behind all monotonicity and endpoint arguments.
+    assert 45 < alpha_hi < 75 < 78 < 90
+    assert 83 < beta_lo < 90 < beta_hi < 97
+    assert beta_lo + beta_hi == 180
+    assert beta_hi - 15 - 45 < 36
+    assert alpha_hi - 45 < 30
+
+    # Check the structured branch partition rather than accepting descriptive
+    # strings which could disagree with the endpoints evaluated below.
+    branches = cert["branches"]
+    assert len(branches) == 7
+    expected = [
+        ("alpha_lower_bound", [Q(78), Q(90)], "g", Q(78), "coarse_target"),
+        ("beta_lower_tail", [Q(60), Q(83)], "h_plus", Q(83), "coarse_target"),
+        ("beta_upper_tail", [Q(97), Q(120)], "h_minus", Q(97), "coarse_target"),
+        ("alpha_lower_bound", [alpha_hi, Q(78)], "g", alpha_hi, "target"),
+        ("beta_lower_tail", [Q(83), beta_lo], "h_plus", beta_lo, "target"),
+        ("beta_upper_tail", [beta_hi, Q(97)], "h_minus", beta_hi, "target"),
+    ]
+    for branch, (kind, interval, predicate, endpoint, threshold) in zip(
+        branches[:6], expected
+    ):
+        assert branch["kind"] == kind
+        assert list(map(rat, branch["interval"])) == interval
+        assert branch["predicate"] == predicate
+        assert rat(branch["endpoint"]) == endpoint
+        assert branch["threshold"] == threshold
+    core = branches[6]
+    assert core["kind"] == "concave_core"
+    assert list(map(rat, core["alpha"])) == [Q(45), alpha_hi]
+    assert list(map(rat, core["beta"])) == [beta_lo, beta_hi]
+    assert core["predicate"] == "q_endpoints"
+    assert core["threshold"] == "target"
 
     # sqrt(2) enclosure, with its validity checked exactly here.
     sqrt2 = (
@@ -133,9 +230,21 @@ def main():
     ):
         show(name, value)
 
-    assert g_domain[0] > Q(23, 100)
-    assert h_domain_lo[0] > Q(23, 100)
-    assert h_domain_hi[0] > Q(23, 100)
+    for name, value, threshold in (
+        ("g(78)-0.23", g_domain, coarse),
+        ("h(83)-0.23", h_domain_lo, coarse),
+        ("h(97)-0.23", h_domain_hi, coarse),
+        ("g(alpha_hi)-c", g_cut, c),
+        ("h(beta_lo)-c", h_lo_cut, c),
+        ("h(beta_hi)-c", h_hi_cut, c),
+        ("q(45)-c", q_left, c),
+        ("q(alpha_hi)-c", q_right, c),
+    ):
+        show(name, (value[0] - threshold, value[1] - threshold))
+
+    assert g_domain[0] > coarse
+    assert h_domain_lo[0] > coarse
+    assert h_domain_hi[0] > coarse
     assert g_cut[0] > c
     assert h_lo_cut[0] > c
     assert h_hi_cut[0] > c

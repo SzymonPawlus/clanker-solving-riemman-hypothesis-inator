@@ -1,0 +1,48 @@
+{
+  "schema": "moser-baseline-analytic-v1",
+  "angles": "degrees",
+  "rationals": "[numerator, denominator]",
+  "arithmetic": "fractions.Fraction exact rationals with outward Machin/Taylor intervals",
+  "tested_python": "CPython 3.14.6",
+  "replay": "python3 problems/moser-convex-worm/attacks/baseline-0227498/verify_trig.py",
+  "source": {
+    "arxiv": "math/0701391v2",
+    "revision_date": "2009-06-05",
+    "theorem": 1,
+    "archive_sha256": "0a593e37477c3a3bfa2a58b44c3e1787ebf11638d5f601cfc2ff21f5c02b7064",
+    "tex_file": "LowerBoundMoser_v5.tex",
+    "tex_sha256": "e2c5fa66a54b46c83e1787645205ba105e386d0d5ff12d8af205b0dcca17b680"
+  },
+  "claim_scope": {
+    "conclusion": "max(f(alpha,beta),g(alpha),h(beta)) >= target on the symmetry domain",
+    "machine_checked_nodes": ["T_endpoints", "T_branch_metadata"],
+    "review_required_nodes": ["W", "N", "H4", "H", "D", "RW", "F", "M"],
+    "dependency_order": ["W", "N", "H4", "H", "D", "RW", "F", "M", "T", "LB"],
+    "translation_variables": "eliminated analytically by translation-invariant H4 and RW bounds",
+    "not_dependencies": ["source_K2", "source_compactness", "source_grid_proposition_8"]
+  },
+  "target": [113749, 500000],
+  "coarse_target": [23, 100],
+  "symmetry_domain": {
+    "alpha": [[45, 1], [90, 1]],
+    "beta": [[60, 1], [120, 1]]
+  },
+  "low_area_domain": {
+    "alpha": [[45, 1], [78, 1]],
+    "beta": [[83, 1], [97, 1]]
+  },
+  "core_cutoffs": {
+    "alpha_upper": [748385, 10000],
+    "beta_lower": [844957, 10000],
+    "beta_upper": [955043, 10000]
+  },
+  "branches": [
+    {"kind": "alpha_lower_bound", "interval": [[78, 1], [90, 1]], "predicate": "g", "endpoint": [78, 1], "threshold": "coarse_target"},
+    {"kind": "beta_lower_tail", "interval": [[60, 1], [83, 1]], "predicate": "h_plus", "endpoint": [83, 1], "threshold": "coarse_target"},
+    {"kind": "beta_upper_tail", "interval": [[97, 1], [120, 1]], "predicate": "h_minus", "endpoint": [97, 1], "threshold": "coarse_target"},
+    {"kind": "alpha_lower_bound", "interval": [[748385, 10000], [78, 1]], "predicate": "g", "endpoint": [748385, 10000], "threshold": "target"},
+    {"kind": "beta_lower_tail", "interval": [[83, 1], [844957, 10000]], "predicate": "h_plus", "endpoint": [844957, 10000], "threshold": "target"},
+    {"kind": "beta_upper_tail", "interval": [[955043, 10000], [97, 1]], "predicate": "h_minus", "endpoint": [955043, 10000], "threshold": "target"},
+    {"kind": "concave_core", "alpha": [[45, 1], [748385, 10000]], "beta": [[844957, 10000], [955043, 10000]], "predicate": "q_endpoints", "threshold": "target"}
+  ]
+}
