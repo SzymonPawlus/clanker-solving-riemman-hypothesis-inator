@@ -1,9 +1,13 @@
 """Exact Q(sqrt(3)) placement certificate killing the first zigzag candidate."""
 from fractions import Fraction as F
 import math
+import sys
+
+def check(condition,message):
+    if not condition: raise RuntimeError(message)
 
 SQ3_LO=F(1732050807568877,10**15); SQ3_HI=F(1732050807568878,10**15)
-assert SQ3_LO*SQ3_LO < 3 < SQ3_HI*SQ3_HI
+check(SQ3_LO*SQ3_LO < 3 < SQ3_HI*SQ3_HI,'invalid sqrt(3) enclosure')
 class A:
     def __init__(self,a=0,b=0): self.a,self.b=F(a),F(b)
     def __add__(self,o): o=aa(o); return A(self.a+o.a,self.b+o.b)
@@ -22,7 +26,9 @@ def aa(x): return x if isinstance(x,A) else A(x)
 def q(x,d=10**7): return F(round(x*d),d)
 def ratrot(theta):
     t=q(math.tan(theta/2)); den=1+t*t
-    return (1-t*t)/den,2*t/den
+    c,s=(1-t*t)/den,2*t/den
+    check(c*c+s*s==1,'rotation is not exactly orthogonal')
+    return c,s
 def place(poly,tx,ty,theta):
     c,s=ratrot(theta); tx,ty=A(q(tx,10**6)),A(q(ty,10**6))
     return [(x*c-y*s+tx,x*s+y*c+ty) for x,y in poly]
@@ -36,6 +42,11 @@ POSE=[0.0001707773998844343,-0.00019926725184776821,5.273255169353027,
       0.09377463766064506,-0.1382205145751953,5.235896053073482,
       0.24224575773303902,-0.3870746355193751,0.37047446722614424]
 pts=SEG+place(TRI,*POSE[:3])+place(SQUARE,*POSE[3:6])+place(ZIG,*POSE[6:9])
+def norm2(p,q): return (p[0]-q[0])*(p[0]-q[0])+(p[1]-q[1])*(p[1]-q[1])
+check(norm2(SEG[0],SEG[1]).a==1 and norm2(SEG[0],SEG[1]).b==0,'bad segment')
+for poly,expected,count in ((TRI,F(1,4),2),(SQUARE,F(1,9),3),(ZIG,F(1,16),4)):
+    for i in range(count):
+        d=norm2(poly[i],poly[i+1]); check(d.a==expected and d.b==0,'bad worm edge')
 def approximate_hull(ids):
     ids=sorted(ids,key=lambda i:(pts[i][0].mid(),pts[i][1].mid())); lo=[]; hi=[]
     for i in ids:
@@ -46,14 +57,20 @@ def approximate_hull(ids):
         hi.append(i)
     return lo[:-1]+hi[:-1]
 h=approximate_hull(range(len(pts))); margin=None
+check(len(h)>=3 and len(set(h))==len(h) and all(0<=i<len(pts) for i in h),'bad hull index list')
 for k,i in enumerate(h):
     j=h[(k+1)%len(h)]
+    turn=cross(pts[i],pts[j],pts[h[(k+2)%len(h)]]).bounds()[0]
+    check(turn>0,'hull is not strictly counterclockwise')
     for p in range(len(pts)):
-        lo,_=cross(pts[i],pts[j],pts[p]).bounds(); assert lo>=0
+        lo,_=cross(pts[i],pts[j],pts[p]).bounds(); check(lo>=0,'point outside certified hull')
         if lo and (margin is None or lo<margin): margin=lo
 twice=A(0)
 for k,i in enumerate(h):
     j=h[(k+1)%len(h)]; twice+=pts[i][0]*pts[j][1]-pts[j][0]*pts[i][1]
-lo,hi=twice.bounds(); assert hi/2 < F(232239,10**6)
-print({'hull':h,'area_lower':float(lo/2),'area_upper':float(hi/2),
-       'containment_margin':float(margin),'record_threshold':0.232239})
+lo,hi=twice.bounds(); check(lo>0,'nonpositive area'); check(hi/2<F(232239,10**6),'threshold not cleared')
+print({'status':'PASS','python':sys.version.split()[0],'hull':h,
+       'area_lower_exact':str(lo/2),'area_upper_exact':str(hi/2),
+       'area_lower':float(lo/2),'area_upper':float(hi/2),
+       'containment_margin_exact':str(margin),'containment_margin':float(margin),
+       'record_threshold_exact':'232239/1000000'})
