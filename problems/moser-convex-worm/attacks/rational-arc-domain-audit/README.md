@@ -161,6 +161,25 @@ predicates involving triangle and square vertices, then selects the predicate
 with the largest certified margin. Finer uniform splitting alone is not a
 viable route.
 
+`probe_portfolio.py` lifts the same experiment to four dimensions by adding
+the square angle `alpha in [45,90]` and triangle angle
+`beta in [60,120]`. Its independent portfolio consists of the segment-square
+height bound `g`, the two segment-triangle height bounds combined as `h`, the
+global square rectangle-width bound `f`, and the segment-arc fan. At every
+leaf it computes all lower margins and selects the first predicate in a fixed
+incremental-coverage order only when that predicate's interval lower endpoint
+clears the target. No midpoint hull or combinatorial guess is an input.
+
+At depth 10, exact replay covers 711 nodes and 356 leaves. Incremental pruning
+is `square_g: 28`, `triangle_h: 28`, `rectangle_width_f: 36`, and
+`arc_fan: 12`, for 104 pruned and 252 unresolved leaves: `104/356 = 29.2%`.
+Splits are `alpha: 101`, `beta: 170`, `theta: 28`, and `ty: 56`.
+The baseline width predicates produce most of the gain, but more than 70% of
+this reduced tree remains unresolved. The next bottleneck is no longer raw
+trigonometric interval width: it is the absence of predicates coupling the
+arc to off-axis triangle/square vertices and the six translation variables
+omitted by this probe.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
