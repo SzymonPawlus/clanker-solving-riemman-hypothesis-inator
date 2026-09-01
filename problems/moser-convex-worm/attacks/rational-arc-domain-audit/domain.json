@@ -1,7 +1,7 @@
 {
   "schema_version": "moser-rational-arc-domain-v1",
   "claim_scope": "witness_and_compact_domain_only",
-  "motion_convention": "orientation_preserving_no_reflection_quotient",
+  "motion_convention": "orientation_preserving_rotational_gauge_no_reflection",
   "target_rational": "232239/1000000",
   "diameter_upper": "107267/100000",
   "pinned_segment": [["0", "0"], ["1", "0"]],
@@ -13,8 +13,8 @@
     ["91/625", "312/625"]
   ],
   "pose_domain": {
-    "triangle": {"tx": ["-107267/100000", "107267/100000"], "ty": ["-107267/100000", "107267/100000"], "theta_degrees": ["0", "360"]},
-    "square": {"tx": ["-107267/100000", "107267/100000"], "ty": ["-107267/100000", "107267/100000"], "theta_degrees": ["0", "360"]},
-    "rational_arc": {"tx": ["-107267/100000", "107267/100000"], "ty": ["-107267/100000", "107267/100000"], "theta_degrees": ["0", "360"]}
+    "triangle": {"tx": ["-107267/100000", "107267/100000"], "ty": ["-107267/100000", "107267/100000"], "theta_degrees": ["0", "120"]},
+    "square": {"tx": ["-107267/100000", "107267/100000"], "ty": ["-107267/100000", "107267/100000"], "theta_degrees": ["0", "90"]},
+    "rational_arc": {"tx": ["-107267/100000", "107267/100000"], "ty": ["-107267/100000", "107267/100000"], "theta_degrees": ["0", "180"]}
   }
 }

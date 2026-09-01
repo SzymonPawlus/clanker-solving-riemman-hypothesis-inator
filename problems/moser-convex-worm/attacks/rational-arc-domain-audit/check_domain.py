@@ -52,7 +52,7 @@ def check(path):
         raise Reject("unsupported schema")
     if doc["claim_scope"] != "witness_and_compact_domain_only":
         raise Reject("domain certificate must not claim an area lower bound")
-    if doc["motion_convention"] != "orientation_preserving_no_reflection_quotient":
+    if doc["motion_convention"] != "orientation_preserving_rotational_gauge_no_reflection":
         raise Reject("reflection or motion convention mismatch")
 
     target = rational(doc["target_rational"], "target_rational")
@@ -87,13 +87,15 @@ def check(path):
     if not isinstance(poses, dict) or set(poses) != {"triangle", "square", "rational_arc"}:
         raise Reject("pose ledger must contain exactly three unpinned witnesses")
     expected_xy = [str(-diameter), str(diameter)]
+    angle_domains = {"triangle": ["0", "120"], "square": ["0", "90"],
+                     "rational_arc": ["0", "180"]}
     for name, pose in poses.items():
         if not isinstance(pose, dict) or set(pose) != {"tx", "ty", "theta_degrees"}:
             raise Reject(f"incomplete pose variables for {name}")
         if pose["tx"] != expected_xy or pose["ty"] != expected_xy:
             raise Reject(f"translation box mismatch for {name}")
-        if pose["theta_degrees"] != ["0", "360"]:
-            raise Reject(f"full orientation domain missing for {name}")
+        if pose["theta_degrees"] != angle_domains[name]:
+            raise Reject(f"proved orientation gauge mismatch for {name}")
 
 
 def main():

@@ -61,8 +61,8 @@ class DomainTests(unittest.TestCase):
 
     def test_shortened_angle_domain_rejected(self):
         doc = copy.deepcopy(BASELINE)
-        doc["pose_domain"]["rational_arc"]["theta_degrees"] = ["0", "180"]
-        with self.assertRaisesRegex(check_domain.Reject, "full orientation"):
+        doc["pose_domain"]["rational_arc"]["theta_degrees"] = ["0", "90"]
+        with self.assertRaisesRegex(check_domain.Reject, "orientation gauge"):
             self.check_doc(doc)
 
     def test_translation_box_gap_rejected(self):

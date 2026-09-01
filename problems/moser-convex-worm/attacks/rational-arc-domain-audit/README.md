@@ -54,12 +54,17 @@ hence both coordinates lie in `[-D,D]` for any rational
 `D > 8T/sqrt(3)`. Squaring is safe for positive values, so the checker proves
 the outward condition exactly as `3*D^2 > 64*T^2`.
 
-Each unpinned witness retains one full orientation variable in `[0,360]`
-degrees. Endpoints are duplicated representations but leave no gap. No
-reflection quotient is taken. This matches the repository's
-orientation-preserving convention and is essential for the asymmetric new
-arc. Reversing its traversal does not reflect its image and does not remove
-this orientation degree of freedom.
+The square's own quarter-turn symmetry restricts its angle to `[0,90]`, and
+the equilateral triangle's third-turn symmetry restricts its angle to
+`[0,120]`. A global half-turn about the fixed segment's midpoint preserves the
+unlabelled segment and shifts the asymmetric arc angle by 180 degrees, so it
+restricts that angle to `[0,180]`. This does not break the translation box:
+after the half-turn the coordinate origin is the other segment endpoint, and
+every anchor is still within diameter `d` of that endpoint. Endpoints are
+duplicated representations but leave no gap. No reflection quotient is taken.
+This matches the repository's orientation-preserving convention and is
+essential for the asymmetric new arc. Reversing its traversal does not reflect
+its image and supplies no further angular reduction.
 
 The resulting closed box has nine variables:
 
@@ -86,9 +91,52 @@ python3 -m unittest discover \
 
 The checker recomputes all rational edge lengths, the exact outward diameter
 inequality, and the complete variable ledger. It rejects a global claim,
-reflection quotient, inward diameter bound, missing pose coordinate, shortened
-angle interval, altered pinned segment, unknown field, duplicate JSON key, or
-noncanonical rational.
+reflection quotient, inward diameter bound, missing pose coordinate, an
+unproved angular quotient, altered pinned segment, unknown field, duplicate
+JSON key, or noncanonical rational.
+
+## Hull-combinatorics-independent leaf predicate
+
+`check_fan_leaf.py` demonstrates a contained-fan predicate. A leaf chooses
+placed witness vertices and a finite family of nonoverlapping oriented
+triangles. The checker recomputes every selected point box from witness-local
+coordinates and the pose box, interval-evaluates each determinant, requires a
+strictly positive lower endpoint, and sums half those lower endpoints. The
+triangles lie in the convex hull of their selected vertices, hence in the full
+joint hull, regardless of which points are actual hull vertices or how the
+true hull combinatorics change across the box.
+
+The fixture is nontrivial in both translation coordinates: with the arc angle
+fixed at zero, `tx in [-1/10,1/10]` and `ty in [0,1/100]`, the triangle from
+the pinned segment and arc endpoint `P3` has certified area at least
+`(312/625)/2 = 156/625 = 0.2496`, clearing `0.232239`. Controls reject a
+vertical interval crossing the base line, a positive orientation with
+insufficient area, any midpoint-hull hint, and a global-coverage label.
+
+This fixture exercises a two-dimensional slice, not the trigonometric
+nine-dimensional implementation still required. A generic leaf must derive
+rotated point boxes with outward sine/cosine enclosures and either prove fan
+interiors disjoint or use a single contained polygon with a certified cyclic
+order; summing overlapping triangles would be unsound.
+
+## Subdivision feasibility
+
+Uniform subdivision is infeasible. Even 16 bins per variable produces
+`16^9 = 68,719,476,736` leaves. Translation resolution `0.01` on the current
+width-`2D` boxes gives about 215 bins in each of six translation variables;
+one-degree angular bins after the exact symmetry reductions give 120, 90, and
+180 bins. Their product exceeds `10^20` leaves. The fan predicate must
+therefore be combined with adaptive splitting, width/support leaves, symmetry
+canonicalization, and reuse of certificates over large boxes.
+
+The exact rotational gauges above reduce angular volume by a factor 24 from
+three naive `[0,360]` intervals. No safe continuous translation gauge remains
+after pinning the segment: translating or rotating an individual remaining
+witness changes the optimization, while global Euclidean freedom is already
+spent. The diameter lemma bounds anchors but does not identify a canonical
+contact. Any further translation reduction needs a proved containment or
+minimal-contact lemma, not a numerical observation that an optimum touches a
+particular hull edge.
 
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
