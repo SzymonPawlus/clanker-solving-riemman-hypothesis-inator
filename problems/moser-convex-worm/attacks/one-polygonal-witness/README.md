@@ -185,3 +185,48 @@ local simplex descent produced the lower `0.2341114908` placement recorded in
 the replay seed. Thus the active-support calculation was useful as an
 optimizer adversary, but it did not yield translation cancellation or a
 stationary weighted inequality. No analytic dimension reduction resulted.
+
+## Checkpoint 2: nearby exact turn family
+
+The weak support at the first rational candidate is almost collinear with the
+pinned segment. A scan of nearby Pythagorean turn directions found a stronger
+numerical candidate with half-angle parameter `10/13`. Its turn cosine and
+sine are exactly `69/269,260/269`, and its traversal vertices are
+
+`(0,0), (1/3,0), (338/807,260/807),
+(9361/72361,105820/217083)`.
+
+The three exact squared edge lengths are again `1/9`. A 240-member,
+2500-generation differential-evolution challenge found a second basin; local
+simplex descent there reached approximately `0.2350390775`. This is a stronger
+**numerical candidate**, not a certified lower bound or a global minimum.
+`explore_nearby_turn.py` preserves that basin and independently challenges it
+with three deterministic blockwise seeds:
+
+```text
+python problems/moser-convex-worm/attacks/one-polygonal-witness/explore_nearby_turn.py
+```
+
+The active hull cycle at this pose is
+`[segment0,square2,segment1,square0,worm2]`, with numerical consecutive turn
+determinants `0.0011845, 0.1744761, 0.1474239, 0.0268770, 0.1953662`.
+Removing the triangle leaves the area unchanged. Reinitializing its translation
+uniformly in `[-1.073,1.073]^2` and its angle uniformly on the full circle,
+then optimizing only those three variables, placed it inside this fixed hull
+in 19 of 20 deterministic trials; the remaining run missed by about `1.64e-6`.
+This is a basin stress test, not a containment proof.
+
+For this five-cycle, write the square placement origin as `S`, its rotation
+cosine/sine as `c_s,s_s`, and the placed second non-origin worm vertex as `W`.
+The shoelace formula simplifies symbolically to
+
+`A5 = (-(c_s+s_s)/3 + det(S,W))/2`.
+
+This identity is suitable for direct interval evaluation once the fan order is
+certified. A natural half-angle interval probe on a nine-variable box of
+half-width `0.001` gave lower endpoint `0.2317735`, versus `0.2310025` for the
+prior candidate's robust fan; linear interpolation puts the target crossing
+near half-width `0.00086` rather than `0.00058`. Conditioning therefore
+improves by roughly 48 percent, but naive uniform nine-dimensional subdivision
+remains infeasible. These are numerical engineering estimates, not certificate
+leaves.
