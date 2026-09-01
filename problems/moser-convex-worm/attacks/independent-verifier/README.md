@@ -305,8 +305,126 @@ The outward rational boundaries `74.83846`, `84.495753`, and `95.504247`
 degrees pass. On the central rectangle, cosine symmetry and monotonicity reduce
 `f` to `beta=95.504247` degrees. The result is concave in `alpha`, so its two
 exact endpoints suffice. A machine-readable fixture passes independently;
-ten tests reject the printed cutoffs, non-unit traversal, and ambiguous
-orientation. Development files remain in `/tmp/moser-independent-checker`.
+The initial development suite had ten negative checks for the printed cutoffs,
+non-unit traversal, and ambiguous orientation. The angular replay promoted
+below has its own checked-in adversarial suite; the more general pose-space
+prototype remains outside this branch pending a separate schema audit.
+
+The compact `moser-fgh-cutoff-v1` replay is now checked in beside this file:
+
+```sh
+python3 problems/moser-convex-worm/attacks/independent-verifier/check_fgh.py \
+  problems/moser-convex-worm/attacks/independent-verifier/baseline-fgh.json
+python3 -m unittest discover \
+  -s problems/moser-convex-worm/attacks/independent-verifier \
+  -p 'test_*.py' -v
+```
+
+Its exact accepted predicate is intentionally narrower than the general schema
+above. The required claim scope is the literal
+`conditional_angular_fgh_only`; labels such as `global`, `all_placements`, or
+`moser_lower_bound` are rejected. The root is the fixed closed box
+`alpha in [45,78], beta in [83,97]` degrees. Three ordered cutoffs must satisfy
+
+```text
+45 <= alpha_cut <= 78,
+83 <= beta_low <= beta_high <= 97.
+```
+
+They partition that box into the `g` leaf `alpha >= alpha_cut`, the `h_plus`
+leaf `beta <= beta_low`, the `h_minus` leaf `beta >= beta_high`, and the
+remaining closed rectangle. The checker derives a rational enclosure of pi
+from Machin's identity and alternating arctangent series, then derives every
+sine, cosine, and square-root enclosure using rational arithmetic. It accepts
+only if `g(alpha_cut)`, `h_plus(beta_low)`, `h_minus(beta_high)`, and both
+concavity endpoints of the reduced `f` expression have lower endpoints at
+least `113749/500000`. Duplicate JSON keys, unknown semantic fields,
+noncanonical rationals, non-finite values, unordered cutoffs, and cutoffs
+outside the compact root are rejected before acceptance.
+
+The endpoint reductions are checked as exact domain predicates too. In
+particular, `alpha_cut + 15 <= (beta_low + beta_high)/2` proves that
+`beta_high` is the farther endpoint from the symmetry centre of the first
+cosine in `f`; all its arguments remain in `[-90,90]`. The two cosine terms
+are then concave in `alpha`, so their sum is bounded below by its two alpha
+endpoints. The `g`, `h_plus`, and `h_minus` leaves similarly carry explicit
+increasing/decreasing sine ranges rather than trusting a certificate label.
+
+This replay proves only the conditional angular implication stated in Stage 1.
+It does not certify the placement reductions or the geometric hypotheses
+needed to turn `f`, `g`, and `h` into area bounds for every configuration.
+
+### Exact uncovered obligations after the Stage-1 replay
+
+Acceptance leaves all of the following outside the certificate:
+
+1. the geometric derivation of each of `f`, `g`, and both branches of `h` as
+   a lower bound for the joint convex-hull area;
+2. the orientation-preserving gauge reduction fixing the unit segment, and
+   every proved triangle/square rotational or reflection symmetry;
+3. coverage of orientations outside
+   `alpha in [45,78], beta in [83,97]`, including every boundary convention;
+4. all translation variables, an explicit compact translation domain, and a
+   proof that restricting to it preserves the global infimum;
+5. the source's `K2` minimal-position reduction, or a replacement that proves
+   every placement is covered by the angular hypotheses;
+6. exact unit-worm and convex-hull-containment checks connecting the three
+   abstract witnesses to an arbitrary universal convex cover; and
+7. a global branch tree whose leaves invoke only checked geometric predicates.
+
+Consequently this schema cannot be composed with an external assertion such
+as `outside_K2=true` to obtain a theorem: unknown fields are rejected and the
+scope field cannot be widened. A later global schema must encode and check the
+seven obligations rather than relabel this certificate.
+
+### Independent audit of the Issue #136 analytic artifact
+
+After freezing the predicates above, this lane inspected Issue #136's
+`certificate.json` and mathematical support note, but not its checker source.
+The artifact exposes a full angular gauge
+`alpha in [45,90], beta in [60,120]`, the coarse box `D`, six tail branches,
+and a concave core. Its machine-readable data do **not** expose witness
+coordinates, the symmetry maps, the quadrilateral-height lemma, or the
+rectangle-width hypotheses. Its predicate strings `g`, `h_plus`, `h_minus`,
+and `q_endpoints` therefore cannot by themselves establish a global theorem;
+they must be paired with independently checked mathematics.
+
+That mathematics was reconstructed without the producer checker as follows.
+
+- Square and triangle rotational symmetries first reduce their angles modulo
+  90 and 120 degrees. Reflection in the perpendicular bisector of the fixed
+  segment sends `(alpha,beta)` to `(-alpha,60-beta)` modulo those periods;
+  the half-turn about its midpoint fixes `alpha` and adds 60 degrees to
+  `beta` modulo 120. Reflection first places `alpha` in `[45,90]`, and the
+  half-turn then places `beta` in `[60,120]` without disturbing `alpha`.
+  Reflection introduces no new witness placement because each of the three
+  unlabelled witness sets has a reflection symmetry realizable by a rotation.
+- For a unit base `EF` and any chord `UV`, the hull of the four endpoints has
+  area at least half the perpendicular projection length of `UV`: opposite
+  signed heights add, while on one side the larger height dominates their
+  difference. The square diagonal and two triangle sides give `g` and the two
+  `h` branches for every translation.
+- If a convex body `K` contains an `a` by `b` rectangle, then
+  `K+tR subset (1+t)K`. Successive exact extrusion by its two side segments
+  gives `area(K+tR) = area(K) + t(a*w_y+b*w_x) + t^2*a*b`; comparison of the
+  linear terms proves `2*area(K) >= a*w_y+b*w_x`. For the side-`1/3` square,
+  the fixed segment supplies width `cos(alpha-45)` and the relevant
+  side-`1/2` triangle chord supplies width
+  `cos(alpha-beta+15)/2`, yielding exactly `f` for every translation. No
+  compact translation box or `K2` transformation is then needed.
+- On the full angular gauge, `g(78)`, `h_plus(83)`, and `h_minus(97)` clear
+  `0.23` with the appropriate sine monotonicity. Thus the complement of `D`
+  is covered before the checked-in Stage-1 certificate handles `D`.
+
+No contradiction was found in this geometric replacement. The precise
+machine-checking blocker is representational: the producer JSON names these
+lemmas but supplies none of their hypotheses or witness data, while the local
+schema intentionally rejects a global scope. Promoting the combined theorem
+would require a new schema that encodes the fixed three witnesses, the two
+explicit symmetry maps, the three coarse branches, and a trusted
+`rectangle_width` predicate. Until that exists and receives cross-family
+review, the reconstruction remains `sketch` even though its trigonometric
+subcertificate passes.
 
 ## Stage-2 global width certificate
 
