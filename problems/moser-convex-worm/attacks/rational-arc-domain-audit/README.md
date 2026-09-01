@@ -180,6 +180,51 @@ trigonometric interval width: it is the absence of predicates coupling the
 arc to off-axis triangle/square vertices and the six translation variables
 omitted by this probe.
 
+`probe_mixed.py` adds the square centre's vertical translation over `[-D,D]`
+while fixing its horizontal translation to zero, and adds a genuinely mixed
+contained-triangle predicate using the origin, one rotated square vertex, and
+rotated arc endpoint `P3`. A nontrivial box
+
+```text
+alpha in [88,90], arc theta in [130,140],
+arc ty and square ty in [D-1/100,D]
+```
+
+clears the target by an exact interval determinant; the full root is rejected
+as sign-uncertain. At feasible depth 7 the five-dimensional tree has 239 nodes
+and volume-weighted coverage `3/16` by `f`, `7/16` by `h`, and `3/8`
+unresolved. The mixed predicate adds no coarse-root prune at that depth even
+though its targeted fixture passes. Introducing one translation dimension
+therefore increases interval uncertainty and runtime without improving coarse
+coverage; mixed fans need candidate-informed boxes or a much better selection
+portfolio before more translation axes are introduced.
+
+## Second exact rational candidate checkpoint
+
+The later Issue #137 candidate
+
+```text
+(0,0), (1/3,0), (338/807,260/807),
+(9361/72361,105820/217083)
+```
+
+also passes an independent exact length calculation. Its normalized edge
+directions are
+
+```text
+(1,0), (69/269,260/269), (-62839/72361,35880/72361),
+```
+
+and `69^2+260^2=269^2` while
+`62839^2+35880^2=72361^2`; all three edges therefore have length `1/3`.
+The reported stable active cycle
+`segment0,square2,segment1,square0,worm2` suggests a five-vertex polygon leaf,
+not the current origin-square-`P3` triangle. Without the candidate placement
+coordinates and an interval neighborhood, its active-box prune margin cannot
+be independently compared. The sound next predicate is a checker-recomputed
+five-cycle with strict interval orientation and shoelace guards; the cycle
+label alone is not evidence and is never accepted as a midpoint hull order.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
