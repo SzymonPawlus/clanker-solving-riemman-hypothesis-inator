@@ -138,6 +138,29 @@ contact. Any further translation reduction needs a proved containment or
 minimal-contact lemma, not a numerical observation that an optimum touches a
 particular hull edge.
 
+## Deterministic adaptive subtree probe
+
+`probe_adaptive.py` exercises the contained-fan predicate on the full compact
+`ty in [-D,D]`, `theta in [0,180]` projection for the rational arc. It derives
+pi by exact alternating Machin bounds and evaluates sine/cosine with rational
+Taylor intervals. Every split is an exact midpoint split; a second traversal
+reconstructs the root from the children and rechecks every prune. Unresolved
+depth-limit leaves remain explicit and force `global_claim: false`.
+
+The deterministic policy compares direct `ty` width with the derivative bound
+`(|P3.x|+|P3.y|)*delta_theta` and splits the larger certified source of
+vertical-coordinate uncertainty. At depth 10 it reports 1,491 nodes, 492
+theta splits, 253 `ty` splits, 31 fan-pruned leaves, and 715 unresolved leaves:
+an acceptance rate of `31/746 = 4.16%`.
+
+The dominant split count is angular, but the deeper bottleneck is predicate
+strength: this fan can prune only placements putting `P3` more than `2*T`
+above the fixed segment. Refining the other 95.8% cannot make that geometric
+condition true. A full search needs a portfolio of fans or support-width
+predicates involving triangle and square vertices, then selects the predicate
+with the largest certified margin. Finer uniform splitting alone is not a
+viable route.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
