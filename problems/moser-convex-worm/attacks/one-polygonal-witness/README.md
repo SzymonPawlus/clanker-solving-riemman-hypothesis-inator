@@ -230,3 +230,43 @@ near half-width `0.00086` rather than `0.00058`. Conditioning therefore
 improves by roughly 48 percent, but naive uniform nine-dimensional subdivision
 remains infeasible. These are numerical engineering estimates, not certificate
 leaves.
+
+### Exact local fan box
+
+**Status:** `sketch` (producer-checked exact arithmetic; independent geometric
+checker/review pending).
+
+`certify_nearby_local_box.py` uses exact `Fraction` interval endpoints and the
+two-chart rational rotation formula; no floating-point operation participates
+in an accepted predicate. The triangle is first relocated, without changing
+the five-cycle, to the numerically more interior pose
+`(0.7482384613885471,0.43318521035405194,4.190525142978863)`. In the
+`epsilon=-1` chart its half-angle center is the rational decimal
+`0.5785074745087493`.
+
+On the common radius `1/100000` box in all nine translation/half-angle
+variables, the checker exactly certifies:
+
+- all rays from `segment0` lie in the strict `x>0` half-plane;
+- the three consecutive fan determinants have strictly positive lower bounds;
+- the fan area has exact rational lower endpoint approximately
+  `0.2350064194 > 0.232239`;
+- all three relocated triangle vertices are strictly inside the five-cycle.
+
+The local fan proof enlarges to radius `1/1700`, where its rational area lower
+endpoint is approximately `0.2331180896`. Radius `1/1650` fails first at the
+fan angular-order guard, not at the target comparison. This is only a local
+box certificate and has no global force.
+
+The fixed-cycle containment diagnostic cannot certify every omitted vertex on
+any positive-radius box: `square1` and `worm0,worm1,worm3` are numerically
+collinear with different cycle edges at the center, so their exact interval
+margins straddle zero even at radius `1/1000000000`. This is a documented
+failure of a fixed combinatorial-hull certificate, not a failure of the fan
+area bound, which uses only its listed vertices. Reproduce the requested box
+and the enlarged box with:
+
+```text
+python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_nearby_local_box.py --summary
+python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_nearby_local_box.py --radius 1/1700 --summary
+```
