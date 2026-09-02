@@ -47,14 +47,20 @@ cd lean && lake build Verified.Moser.SupportAllocation
 cd .. && python3 problems/moser-convex-worm/attacks/formal-support-allocation/check_slabs.py
 ```
 
-Remaining geometric boundary: the Lean first-variation lemma takes the
-quadratic Minkowski containment inequality as a premise.  A fully
-`verified:lean` geometric interpretation still needs a formal polygon area and
-Minkowski-sum identity, plus the lower-dimensional segment's direct
-two-triangle area argument.  Until then this remains a substantial exact audit,
+`Verified.Moser.PolygonBridge` now replaces the first-variation premise with a
+finite cyclic proof: common-fan surface symmetry is discrete summation by
+parts, self-surface is the shoelace sum, and containment support inequalities
+give the mixed-area bound termwise. It also proves repeated-vertex insertion
+invariance, convex-coordinate support monotonicity, exact unit-base triangle
+area, both triangle containments in a convex set, and an allocation theorem
+ending at the containing polygon's shoelace area.
+
+The remaining geometric boundary is existence of the common cyclic fan with
+the required active support vertices for arbitrary concrete convex polygons
+(and, for the direct segment route, shoelace additivity across the two caps).
+Until that existence layer compiles, this remains a substantial exact audit,
 not a verified global Moser improvement; the Issue #136 baseline gate also
 remains unresolved.
 
-`POLYGON-BRIDGE.md` gives the exact finite theorem signatures, a bounded
-common-normal-fan/summation-by-parts proof blueprint, and a kill criterion.  It
-is documentation of the missing proof, not a substitute for it.
+`POLYGON-BRIDGE.md` records the implemented signatures, construction blueprint,
+and the exact remaining existence-layer kill criterion.

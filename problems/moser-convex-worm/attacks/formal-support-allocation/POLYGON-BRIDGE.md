@@ -1,12 +1,11 @@
-# Finite-polygon mixed-area bridge: exact missing theorem
+# Finite-polygon mixed-area bridge
 
-This is the deliberately unhidden boundary of the current Lean development.
-Mathlib 4.33 has no planar convex-polygon volume/Minkowski API from which this
-can be discharged by a short import.  Adding a premise named “mixed area
-monotonicity” would merely rename the claim, so no such axiom or opaque
-definition is used.
+The finite algebra is implemented in `Verified.Moser.PolygonBridge`. Mathlib
+4.33 has no planar convex-polygon volume/Minkowski API, so this development uses
+cyclic shoelace sums instead. No axiom or opaque definition named “mixed area
+monotonicity” is introduced.
 
-## Sufficient theorem signature
+## Implemented theorem signature
 
 For nonempty counterclockwise convex polygons `P` and `K`, represented by
 cyclic vertex lists with duplicate consecutive vertices removed, define
@@ -20,7 +19,7 @@ surface(v,K)    = sum_i support(K,outward(edge(v,i)))
 ```
 
 Using the unnormalised outward vector is intentional: it already equals edge
-length times outward unit normal.  The precise missing Lean theorem is:
+length times outward unit normal. The mathematical core is:
 
 ```text
 theorem polygon_surface_symmetry
@@ -36,6 +35,12 @@ theorem polygon_support_mono
   forall edge of K,
     support(P,outward(edge)) <= support(K,outward(edge))
 ```
+
+It is implemented as `surface_symmetry_commonFan`,
+`self_surface_eq_twiceArea`, `support_le_of_convexCoordinates`, and
+`surface_le_twiceArea_of_commonFan`. The first two are unconditional cyclic
+identities. `allocation_chain_commonFan` connects the finite surface inequality
+to the previous allocation theorem and an exact slab premise.
 
 These three imply, by a finite sum inequality only,
 
@@ -81,14 +86,21 @@ maximum and minimum `y` at vertices `(x+,h+)` and `(x-,-h-)`.  Convexity puts
 both base-apex triangles in `K`; their interiors lie in opposite open
 half-planes and their determinant areas are `h+/2` and `h-/2`.  A finite
 polygon proof may triangulate `K` along the base line and show the two triangle
-shoelace areas sum to at most `area(K)`.  Lean already proves the determinant
-identity and the final implication from that finite additivity fact.
+shoelace areas sum to at most `area(K)`. Lean proves both triangle containments
+from convexity, the determinant identity, and the final implication from that
+finite additivity fact. The repeated-vertex common-fan theorem also permits a
+degenerate-polygon treatment without a limiting argument.
 
 ## Kill criterion
 
-Do not mark the bridge complete unless the common-fan insertion invariants,
-cyclic summation-by-parts identity, and vertex-containment support inequality
-all compile without `sorry`, `unsafe`, custom axioms, or an assumed theorem
-equivalent to `polygon_surface_symmetry`.  For the segment, assuming the sum of
-the two triangle areas is at most `area(K)` is still an exposed interface, not
-a completed geometric proof.
+The cyclic summation-by-parts identity, repeated-vertex insertion invariance,
+convex-coordinate support inequality, surface inequality, triangle containment,
+and allocation chain compile without `sorry`, `unsafe`, or custom axioms.
+
+The remaining kill criterion is the **existence layer**: do not call the global
+bridge complete until arbitrary concrete finite convex polygons are proved to
+admit a cyclic common-fan representation whose active vertices satisfy the
+support hypotheses and whose repeated-vertex shoelace sum is the original
+polygon's. For the direct segment route, the two triangle areas must also be
+connected to the containing polygon's shoelace area; assuming their sum is
+bounded remains an exposed interface.
