@@ -113,9 +113,13 @@ bridge complete until arbitrary concrete finite convex polygons are proved to
 admit a cyclic common-fan representation whose active vertices satisfy the
 support hypotheses and whose repeated-vertex shoelace sum is the original
 polygon's. The abstract sorted merge and active-vertex selection are complete;
-the remaining step is connecting a geometric outward ray to a linear-order key
-after a cyclic cut, and proving that the selected active-vertex changes across
-successive merged rays reproduce exactly the original polygon edges. For the
-direct segment route, the two triangle areas must also be
-connected to the containing polygon's shoelace area; assuming their sum is
-bounded remains an exposed interface.
+the concrete four-quadrant algebraic ray key is now defined and proved
+rescaling-invariant, and its within-sector order is proved equivalent to
+counterclockwise determinant order. The exact worm ledger is strictly ordered
+as `n₂,n₃,n₀,n₁` after the positive-horizontal cut. The remaining fan step is
+proving that selected active-vertex changes across successive merged rays
+reproduce exactly the original polygon edges. For the direct segment route,
+the two triangle areas must also be connected to the containing polygon's
+shoelace area. Their intersection is now proved null and product Lebesgue
+measure is additive on their union; identifying each triangle's measure with
+its determinant area remains an exposed interface.

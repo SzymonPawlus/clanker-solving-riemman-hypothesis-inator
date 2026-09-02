@@ -18,6 +18,167 @@ namespace Verified.Moser.PolygonBridge
 /-- A real planar vector, represented without introducing additional geometry APIs. -/
 abbrev RVec := ℝ × ℝ
 
+/-- Four-sector algebraic key for a nonzero oriented ray, cut at the positive
+horizontal ray. The rational coordinate increases from zero to one inside each
+closed quadrant. -/
+noncomputable def rayKey (v : RVec) : Fin 4 × ℝ :=
+  if 0 ≤ v.1 ∧ 0 ≤ v.2 then
+    (⟨0, by norm_num⟩, v.2 / (v.1 + v.2))
+  else if v.1 ≤ 0 ∧ 0 ≤ v.2 then
+    (⟨1, by norm_num⟩, (-v.1) / (v.2 - v.1))
+  else if v.1 ≤ 0 ∧ v.2 ≤ 0 then
+    (⟨2, by norm_num⟩, (-v.2) / (-v.1 - v.2))
+  else
+    (⟨3, by norm_num⟩, v.1 / (v.1 - v.2))
+
+/-- Lexicographically ordered form of `rayKey`, used by `fanMerge`. -/
+noncomputable def rayOrderKey (v : RVec) : Lex (Fin 4 × ℝ) := toLex (rayKey v)
+
+/-- Intrinsic rational worm normals, coerced to real vectors. -/
+def wormN0 : RVec := (0, -1)
+noncomputable def wormN1 : RVec := (260 / 269, -(69 / 269))
+noncomputable def wormN2 : RVec :=
+  (2 * (260 / 269) * (69 / 269), (260 / 269) ^ 2 - (69 / 269) ^ 2)
+noncomputable def wormN3 : RVec := (-(260 / 269), 69 / 269)
+
+/-- Exact rational worm hull vertices in cyclic order. -/
+noncomputable def wormVertex (i : ZMod 4) : RVec :=
+  if i = 0 then (0, 0)
+  else if i = 1 then (1 / 3, 0)
+  else if i = 2 then (338 / 807, 260 / 807)
+  else (9361 / 72361, 105820 / 217083)
+
+/-- Moving to a later quadrant strictly increases the ordered ray key. -/
+theorem rayOrderKey_lt_of_sector_lt (u v : RVec)
+    (h : (rayKey u).1 < (rayKey v).1) : rayOrderKey u < rayOrderKey v := by
+  change Prod.Lex (· < ·) (· < ·) (rayKey u) (rayKey v)
+  exact (Prod.lex_def.mpr (Or.inl h))
+
+/-- Inside one sector, ordering the rational coordinate orders the ray key. -/
+theorem rayOrderKey_le_of_sector_eq_of_coordinate_le (u v : RVec)
+    (hsector : (rayKey u).1 = (rayKey v).1)
+    (hcoordinate : (rayKey u).2 ≤ (rayKey v).2) :
+    rayOrderKey u ≤ rayOrderKey v := by
+  change Prod.Lex (· < ·) (· ≤ ·) (rayKey u) (rayKey v)
+  exact Prod.lex_def.mpr (Or.inr ⟨hsector, hcoordinate⟩)
+
+/-- Exact ray keys of the rational worm normals. They occur in cyclic order
+`n₂,n₃,n₀,n₁` after the positive-horizontal cut. -/
+theorem worm_normal_rayKeys :
+    rayKey (((2 * (260 / 269 : ℚ) * (69 / 269 : ℚ) : ℚ),
+      ((260 / 269 : ℚ) ^ 2 - (69 / 269 : ℚ) ^ 2 : ℚ)) : RVec) =
+        (⟨0, by norm_num⟩, (62839 / 98719 : ℝ)) ∧
+    rayKey (((-(260 / 269 : ℚ) : ℚ), (69 / 269 : ℚ)) : RVec) =
+        (⟨1, by norm_num⟩, (260 / 329 : ℝ)) ∧
+    rayKey (((0 : ℚ), (-1 : ℚ)) : RVec) =
+        (⟨2, by norm_num⟩, (1 : ℝ)) ∧
+    rayKey ((((260 / 269 : ℚ) : ℚ), (-(69 / 269 : ℚ) : ℚ)) : RVec) =
+        (⟨3, by norm_num⟩, (260 / 329 : ℝ)) := by
+  norm_num [rayKey]
+
+/-- The exact worm normal ledger is strictly sorted after its cyclic cut. -/
+theorem worm_normal_rayOrder :
+    rayOrderKey wormN2 < rayOrderKey wormN3 ∧
+      rayOrderKey wormN3 < rayOrderKey wormN0 ∧
+      rayOrderKey wormN0 < rayOrderKey wormN1 := by
+  constructor
+  · apply rayOrderKey_lt_of_sector_lt
+    norm_num [rayKey, wormN2, wormN3]
+  constructor
+  · apply rayOrderKey_lt_of_sector_lt
+    norm_num [rayKey, wormN3, wormN0]
+    decide
+  · apply rayOrderKey_lt_of_sector_lt
+    norm_num [rayKey, wormN0, wormN1]
+
+/-- The algebraic ray key is invariant under positive rescaling. -/
+theorem rayKey_pos_smul (a : ℝ) (v : RVec) (ha : 0 < a) :
+    rayKey (a * v.1, a * v.2) = rayKey v := by
+  simp only [rayKey]
+  simp only [mul_nonneg_iff_of_pos_left ha]
+  have hnonpos (x : ℝ) : a * x ≤ 0 ↔ x ≤ 0 := by
+    constructor
+    · intro h
+      exact le_of_mul_le_mul_left (by simpa using h) ha
+    · exact fun h ↦ mul_nonpos_of_nonneg_of_nonpos ha.le h
+  simp only [hnonpos]
+  split_ifs
+  · congr 1
+    convert mul_div_mul_left v.2 (v.1 + v.2) ha.ne' using 1
+    all_goals ring
+  · congr 1
+    convert mul_div_mul_left (-v.1) (v.2 - v.1) ha.ne' using 1
+    all_goals ring
+  · congr 1
+    convert mul_div_mul_left (-v.2) (-v.1 - v.2) ha.ne' using 1
+    all_goals ring
+  · congr 1
+    convert mul_div_mul_left v.1 (v.1 - v.2) ha.ne' using 1
+    all_goals ring
+
+/-- The ordered ray key is invariant under positive rescaling. -/
+theorem rayOrderKey_pos_smul (a : ℝ) (v : RVec) (ha : 0 < a) :
+    rayOrderKey (a * v.1, a * v.2) = rayOrderKey v := by
+  exact congrArg toLex (rayKey_pos_smul a v ha)
+
+/-- Within the first quadrant, ordering by the algebraic key is exactly
+counterclockwise determinant order. -/
+theorem rayKey_quadrant0_le_iff (u v : RVec)
+    (hu : 0 ≤ u.1 ∧ 0 ≤ u.2) (hv : 0 ≤ v.1 ∧ 0 ≤ v.2)
+    (hu0 : 0 < u.1 + u.2) (hv0 : 0 < v.1 + v.2) :
+    (rayKey u).2 ≤ (rayKey v).2 ↔ 0 ≤ u.1 * v.2 - u.2 * v.1 := by
+  simp only [rayKey, if_pos hu, if_pos hv]
+  rw [div_le_div_iff₀ hu0 hv0]
+  constructor <;> intro h <;> linarith
+
+/-- Within the second quadrant, key order is determinant order. -/
+theorem rayKey_quadrant1_le_iff (u v : RVec)
+    (hu : u.1 < 0 ∧ 0 ≤ u.2) (hv : v.1 < 0 ∧ 0 ≤ v.2) :
+    (rayKey u).2 ≤ (rayKey v).2 ↔ 0 ≤ u.1 * v.2 - u.2 * v.1 := by
+  have hu1 : ¬(0 ≤ u.1 ∧ 0 ≤ u.2) := fun h ↦ (not_le_of_gt hu.1) h.1
+  have hv1 : ¬(0 ≤ v.1 ∧ 0 ≤ v.2) := fun h ↦ (not_le_of_gt hv.1) h.1
+  have hu2 : u.1 ≤ 0 ∧ 0 ≤ u.2 := ⟨hu.1.le, hu.2⟩
+  have hv2 : v.1 ≤ 0 ∧ 0 ≤ v.2 := ⟨hv.1.le, hv.2⟩
+  have hdu : 0 < u.2 - u.1 := by linarith
+  have hdv : 0 < v.2 - v.1 := by linarith
+  simp only [rayKey, if_neg hu1, if_neg hv1, if_pos hu2, if_pos hv2]
+  rw [div_le_div_iff₀ hdu hdv]
+  constructor <;> intro h <;> linarith
+
+/-- Within the third quadrant, key order is determinant order. -/
+theorem rayKey_quadrant2_le_iff (u v : RVec)
+    (hu : u.1 ≤ 0 ∧ u.2 < 0) (hv : v.1 ≤ 0 ∧ v.2 < 0) :
+    (rayKey u).2 ≤ (rayKey v).2 ↔ 0 ≤ u.1 * v.2 - u.2 * v.1 := by
+  have hu1 : ¬(0 ≤ u.1 ∧ 0 ≤ u.2) := fun h ↦ (not_le_of_gt hu.2) h.2
+  have hv1 : ¬(0 ≤ v.1 ∧ 0 ≤ v.2) := fun h ↦ (not_le_of_gt hv.2) h.2
+  have hu2 : ¬(u.1 ≤ 0 ∧ 0 ≤ u.2) := fun h ↦ (not_le_of_gt hu.2) h.2
+  have hv2 : ¬(v.1 ≤ 0 ∧ 0 ≤ v.2) := fun h ↦ (not_le_of_gt hv.2) h.2
+  have hu3 : u.1 ≤ 0 ∧ u.2 ≤ 0 := ⟨hu.1, hu.2.le⟩
+  have hv3 : v.1 ≤ 0 ∧ v.2 ≤ 0 := ⟨hv.1, hv.2.le⟩
+  have hdu : 0 < -u.1 - u.2 := by linarith
+  have hdv : 0 < -v.1 - v.2 := by linarith
+  simp only [rayKey, if_neg hu1, if_neg hv1, if_neg hu2, if_neg hv2,
+    if_pos hu3, if_pos hv3]
+  rw [div_le_div_iff₀ hdu hdv]
+  constructor <;> intro h <;> linarith
+
+/-- Within the fourth quadrant, key order is determinant order. -/
+theorem rayKey_quadrant3_le_iff (u v : RVec)
+    (hu : 0 < u.1 ∧ u.2 < 0) (hv : 0 < v.1 ∧ v.2 < 0) :
+    (rayKey u).2 ≤ (rayKey v).2 ↔ 0 ≤ u.1 * v.2 - u.2 * v.1 := by
+  have hu1 : ¬(0 ≤ u.1 ∧ 0 ≤ u.2) := fun h ↦ (not_le_of_gt hu.2) h.2
+  have hv1 : ¬(0 ≤ v.1 ∧ 0 ≤ v.2) := fun h ↦ (not_le_of_gt hv.2) h.2
+  have hu2 : ¬(u.1 ≤ 0 ∧ 0 ≤ u.2) := fun h ↦ (not_le_of_gt hu.1) h.1
+  have hv2 : ¬(v.1 ≤ 0 ∧ 0 ≤ v.2) := fun h ↦ (not_le_of_gt hv.1) h.1
+  have hu3 : ¬(u.1 ≤ 0 ∧ u.2 ≤ 0) := fun h ↦ (not_le_of_gt hu.1) h.1
+  have hv3 : ¬(v.1 ≤ 0 ∧ v.2 ≤ 0) := fun h ↦ (not_le_of_gt hv.1) h.1
+  have hdu : 0 < u.1 - u.2 := by linarith
+  have hdv : 0 < v.1 - v.2 := by linarith
+  simp only [rayKey, if_neg hu1, if_neg hv1, if_neg hu2, if_neg hv2,
+    if_neg hu3, if_neg hv3]
+  rw [div_le_div_iff₀ hdu hdv]
+  constructor <;> intro h <;> linarith
+
 /-- Vector subtraction. -/
 def vsub (u v : RVec) : RVec := (u.1 - v.1, u.2 - v.2)
 
@@ -30,13 +191,56 @@ def dot (u v : RVec) : ℝ := u.1 * v.1 + u.2 * v.2
 /-- Clockwise rotation by a right angle. -/
 def cw (u : RVec) : RVec := (u.2, -u.1)
 
+/-- Algebraic planar rotation with cosine/sine parameters. -/
+def rotate (c s : ℝ) (u : RVec) : RVec :=
+  (c * u.1 - s * u.2, s * u.1 + c * u.2)
+
+/-- Unit algebraic rotations preserve oriented determinants. -/
+theorem det_rotate (c s : ℝ) (hunit : c ^ 2 + s ^ 2 = 1) (u v : RVec) :
+    det (rotate c s u) (rotate c s v) = det u v := by
+  calc
+    det (rotate c s u) (rotate c s v) = (c ^ 2 + s ^ 2) * det u v := by
+      simp only [det, rotate]
+      ring
+    _ = det u v := by rw [hunit]; ring
+
+/-- Clockwise right-angle rotation commutes with every planar rotation. -/
+theorem cw_rotate (c s : ℝ) (u : RVec) : cw (rotate c s u) = rotate c s (cw u) := by
+  apply Prod.ext <;> simp [cw, rotate] <;> ring
+
 /-- Unnormalised outward normal of a counterclockwise directed edge. -/
 def outward (u v : RVec) : RVec := cw (vsub v u)
+
+/-- Consequently outward edge vectors rotate equivariantly. -/
+theorem outward_rotate (c s : ℝ) (u v : RVec) :
+    outward (rotate c s u) (rotate c s v) = rotate c s (outward u v) := by
+  simp [outward, cw, rotate, vsub]
+  constructor <;> ring
 
 /-- The edge/support pairing equals the corresponding determinant. -/
 theorem dot_outward (x u v : RVec) : dot x (outward u v) = det x (vsub v u) := by
   simp [dot, outward, cw, det, vsub]
   ring
+
+/-- Both endpoints of an edge have the same support value in its outward direction. -/
+theorem edge_endpoint_support_eq (u v : RVec) :
+    dot u (outward u v) = dot v (outward u v) := by
+  simp [dot, outward, cw, vsub]
+  ring
+
+/-- Finite support formulation of counterclockwise polygon convexity: the
+initial endpoint of every directed edge maximizes its outward functional. -/
+def EdgeSupportsAll {n : ℕ} [NeZero n] (vertex : ZMod n → RVec) : Prop :=
+  ∀ i j, dot (vertex j) (outward (vertex i) (vertex (i + 1))) ≤
+    dot (vertex i) (outward (vertex i) (vertex (i + 1)))
+
+/-- Under `EdgeSupportsAll`, both endpoints are active on their edge ray. -/
+theorem edge_endpoints_active {n : ℕ} [NeZero n] (vertex : ZMod n → RVec)
+    (hconvex : EdgeSupportsAll vertex) (i j : ZMod n) :
+    dot (vertex j) (outward (vertex i) (vertex (i + 1))) ≤
+      dot (vertex (i + 1)) (outward (vertex i) (vertex (i + 1))) := by
+  rw [← edge_endpoint_support_eq (vertex i) (vertex (i + 1))]
+  exact hconvex i j
 
 /-- Scalar cyclic integration by parts. -/
 theorem cyclic_mul_sub {n : ℕ} [NeZero n] (a b : ZMod n → ℝ) :
@@ -220,6 +424,82 @@ theorem opposite_base_triangles_subset_convex
   · intro x hx
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
     rcases hx with (rfl | rfl | rfl) <;> assumption
+
+/-- A triangle whose three vertices have nonnegative second coordinate lies in
+the closed upper half-plane. -/
+theorem triangle_subset_upper_halfplane (a b c : RVec)
+    (ha : 0 ≤ a.2) (hb : 0 ≤ b.2) (hc : 0 ≤ c.2) :
+    convexHull ℝ ({a, b, c} : Set RVec) ⊆ {x | 0 ≤ x.2} := by
+  apply convexHull_min
+  · intro x hx
+    simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
+    rcases hx with (rfl | rfl | rfl) <;> assumption
+  · intro x hx y hy α β hα hβ hab
+    change 0 ≤ (α • x + β • y).2
+    simp only [Prod.smul_snd, Prod.snd_add]
+    exact add_nonneg (mul_nonneg hα hx) (mul_nonneg hβ hy)
+
+/-- The analogous lower-half-plane containment. -/
+theorem triangle_subset_lower_halfplane (a b c : RVec)
+    (ha : a.2 ≤ 0) (hb : b.2 ≤ 0) (hc : c.2 ≤ 0) :
+    convexHull ℝ ({a, b, c} : Set RVec) ⊆ {x | x.2 ≤ 0} := by
+  apply convexHull_min
+  · intro x hx
+    simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
+    rcases hx with (rfl | rfl | rfl) <;> assumption
+  · intro x hx y hy α β hα hβ hab
+    change (α • x + β • y).2 ≤ 0
+    simp only [Prod.smul_snd, Prod.snd_add]
+    exact add_nonpos (mul_nonpos_of_nonneg_of_nonpos hα hx)
+      (mul_nonpos_of_nonneg_of_nonpos hβ hy)
+
+/-- Opposite base-apex triangles meet only on the horizontal base line. -/
+theorem opposite_triangles_intersection_subset_baseLine
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower) :
+    convexHull ℝ ({(0, 0), (1, 0), (xUpper, hUpper)} : Set RVec) ∩
+        convexHull ℝ ({(0, 0), (1, 0), (xLower, -hLower)} : Set RVec) ⊆
+      {x | x.2 = 0} := by
+  intro x hx
+  have hnonneg := triangle_subset_upper_halfplane (0, 0) (1, 0)
+    (xUpper, hUpper) (by norm_num) (by norm_num) hup hx.1
+  have hnonpos := triangle_subset_lower_halfplane (0, 0) (1, 0)
+    (xLower, -hLower) (by norm_num) (by norm_num) (by linarith) hx.2
+  exact le_antisymm hnonpos hnonneg
+
+/-- The horizontal base line has zero product Lebesgue measure. -/
+theorem baseLine_prod_volume_zero :
+    (MeasureTheory.volume.prod MeasureTheory.volume) ({x : RVec | x.2 = 0}) = 0 := by
+  have hset : ({x : RVec | x.2 = 0}) = Set.univ ×ˢ ({0} : Set ℝ) := by
+    ext x
+    simp
+  rw [hset, MeasureTheory.Measure.prod_prod, Real.volume_singleton, mul_zero]
+
+/-- Hence the two opposite triangles overlap only in a null set. -/
+theorem opposite_triangles_intersection_null
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower) :
+    (MeasureTheory.volume.prod MeasureTheory.volume)
+      (convexHull ℝ ({(0, 0), (1, 0), (xUpper, hUpper)} : Set RVec) ∩
+        convexHull ℝ ({(0, 0), (1, 0), (xLower, -hLower)} : Set RVec)) = 0 := by
+  exact MeasureTheory.measure_mono_null
+    (opposite_triangles_intersection_subset_baseLine xUpper xLower hUpper hLower hup hlow)
+    baseLine_prod_volume_zero
+
+/-- Product Lebesgue area is additive on the union of the opposite triangles. -/
+theorem opposite_triangles_union_measure
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower) :
+    let upper := convexHull ℝ
+      ({(0, 0), (1, 0), (xUpper, hUpper)} : Set RVec)
+    let lower := convexHull ℝ
+      ({(0, 0), (1, 0), (xLower, -hLower)} : Set RVec)
+    (MeasureTheory.volume.prod MeasureTheory.volume) (upper ∪ lower) =
+      (MeasureTheory.volume.prod MeasureTheory.volume) upper +
+        (MeasureTheory.volume.prod MeasureTheory.volume) lower := by
+  dsimp only
+  apply MeasureTheory.measure_union₀
+  · have hfinite : ({(0, 0), (1, 0), (xLower, -hLower)} : Set RVec).Finite := by
+      simp
+    exact ((hfinite.isCompact_convexHull ℝ).isClosed.measurableSet).nullMeasurableSet
+  · exact opposite_triangles_intersection_null xUpper xLower hUpper hLower hup hlow
 
 /-- End-to-end finite-polygon chain from common-fan support containment and an
 allocation slab to the shoelace area of the containing polygon.  Edge lengths
