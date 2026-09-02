@@ -211,3 +211,24 @@ convention (`deltaOut` of a shore no arc enters) used throughout.
   soundness-of-B1's-claim item, not a faithfulness item.
 - `length_le_countP` / `countP_erase_of_mem`: read, argument is the obvious injection; not
   re-derived line by line.
+
+### Loop batch
+
+`n ≤ 3`, `≤ 4` arcs, multiplicity `≤ 2`, **loops allowed**: 678 digraphs
+(`results/loop_batch.txt`). Same picture: 0 disagreements under the survey reading on every
+field; 251 under the literal reading, which is exactly the number of disconnected digraphs in
+that batch. Loops never enter `deltaOut`/`deltaIn` on either side (H6 does not fire).
+
+## Summary for the issue
+
+- **One genuine divergence between B1's Lean and README.md's text: F1**, the nonempty-dicut
+  clause, affecting exactly the disconnected digraphs. It is the literature convention,
+  documented and witnessed in the Lean; the README should be amended to match, not the Lean.
+- Every other pre-registered drift (H1, H3–H10, H12–H14, H16, H18–H20) is absent, with the
+  line of source that rules it out named above, and the 13,615 + 678-digraph cross-sweep
+  finds no instance where the Lean and the survey-convention prose disagree on dicuts, τ,
+  packing number, the partition form of the conjecture, or the easy direction.
+- Minor: F2 (`tau?` unbridged), F3 (bounded `t ≤ 3`), F4 (no global conjecture Prop), F5
+  (`2 ≤ 2`).
+- Nothing is `verified:lean`; B1 says so. A green CI build is still required, and this audit
+  does not substitute for it.

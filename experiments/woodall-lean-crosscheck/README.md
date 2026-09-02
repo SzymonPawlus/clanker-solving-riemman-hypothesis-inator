@@ -31,5 +31,5 @@ python3 crosscheck.py                         # ~4 min; --max-n/--max-arcs/--max
 
 Search space, stated exactly: every labelled digraph on `1 ≤ n ≤ 4` vertices with at most 6
 arcs, each ordered pair of distinct vertices used with multiplicity 0–2 — 13,615 digraphs, not
-reduced up to isomorphism. A separate loop batch (`n ≤ 3`, `≤ 4` arcs, loops allowed) is in
+reduced up to isomorphism. A separate loop batch (`n ≤ 3`, `≤ 4` arcs, loops allowed; 678 digraphs) is in
 `results/loop_batch.txt`.
