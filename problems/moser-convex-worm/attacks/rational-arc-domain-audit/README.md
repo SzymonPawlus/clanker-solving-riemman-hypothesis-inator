@@ -283,22 +283,41 @@ checker rejects a maximum of separately optimized global minima, a missing
 inner pose cell, a nonuniform bound, an incorrect compact root, and any global
 scope escalation.
 
-The initial `composed_envelope.json` is intentionally weak but sound.  It uses
-one coarse cell around the recorded square scenario,
+The initial `composed_envelope.json` is deliberately local but sound.  It uses
+one small cell around the recorded square scenario,
 
 ```text
-square tx in [3/4,4/5], ty in [2/5,1/2], theta in [24,26] degrees,
+square tx in [3029/5000,303/500],
+square ty in [-13/10000,-11/10000],
+square theta in [2507/100,2509/100] degrees.
 ```
 
-and covers each full triangle/worm inner pose root with the universal
-nonnegative-area leaf.  Thus both certified inner bounds are exactly zero; the
-fixture tests composition and coverage only and proves no target lower bound.
-Its outer cell volume is `1/100` out of root volume
+For every triangle pose and every worm pose, the corresponding subfamily hull
+contains the four selected points `segment.P0, segment.P1, square.P2,
+square.P3`.  Outward rational trigonometric intervals prove these points remain
+in strict convex order throughout the outer cell and give area lower endpoint
+`0.2333312123...`.  The fixture conservatively records
+
+```text
+L_T = 2333/10000, L_W = 2333/10000,
+max(L_T,L_W) = 2333/10000 > 232239/1000000.
+```
+
+Each one-leaf inner tree covers its entire compact pose root, so unresolved
+triangle-inner and worm-inner volume is zero on this outer cell.  This is a
+genuine uniform prune, although both bounds come from the shared
+segment-square subfamily rather than from triangle- or worm-specific geometry.
+The translation anchor is the opposite square corner after reducing the
+recorded `epsilon=-1` chart angle modulo 180 degrees; retaining the old anchor
+would describe a different placed square.  Its outer cell volume is
+`1/1250000000`
+out of root volume
 `103555883601/250000000`, a covered fraction
-`2500000/103555883601` (about `0.002414%`).  The exact uncovered outer volume is
-`103553383601/250000000`.  Positive progress now requires independently checked
-uniform geometric leaves for the two inner problems, not reuse of the local
-five-cycle worm pose as though it minimized over all worm placements.
+`1/517779418005` (about `1.9313e-10%`).  The exact uncovered outer volume is
+`129444854501/312500000`.  Broader progress requires less dependency-prone
+interval formulas, subdivision of a larger outer neighborhood, and eventually
+triangle- or worm-specific leaves; the local five-cycle worm pose still cannot
+be reused as though it minimized over all worm placements.
 
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree

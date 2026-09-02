@@ -20,13 +20,17 @@ class ComposedEnvelopeTests(unittest.TestCase):
 
     def test_partial_common_cell_schema_passes_and_reports_uncovered_volume(self):
         report = self.check_doc(GOOD)
-        self.assertEqual(report["covered"], checker.Q(1, 100))
-        self.assertEqual(report["covered_fraction"], checker.Q(2500000, 103555883601))
+        self.assertEqual(report["covered"], checker.Q(1, 1250000000))
+        self.assertEqual(report["covered_fraction"], checker.Q(1, 517779418005))
+        self.assertEqual(report["cell_bounds"][0],
+                         {"triangle": checker.Q(2333, 10000),
+                          "worm": checker.Q(2333, 10000),
+                          "envelope": checker.Q(2333, 10000)})
         self.assertGreater(report["uncovered"], 0)
 
     def test_mismatched_outer_partitions_are_rejected(self):
         document = copy.deepcopy(GOOD)
-        document["outer_cells"][0]["worm_tree"]["outer_cell"]["square_tx"][0] = "7/10"
+        document["outer_cells"][0]["worm_tree"]["outer_cell"]["square_tx"][0] = "3/5"
         with self.assertRaisesRegex(checker.Reject, "mismatched outer partitions"):
             self.check_doc(document)
 
@@ -50,8 +54,16 @@ class ComposedEnvelopeTests(unittest.TestCase):
 
     def test_positive_bound_cannot_be_smuggled_through_nonnegativity(self):
         document = copy.deepcopy(GOOD)
+        document["outer_cells"][0]["worm_tree"]["leaves"][0]["proof"] = \
+            "convex_hull_area_nonnegative"
         document["outer_cells"][0]["worm_tree"]["leaves"][0]["lower_bound"] = "1/10"
         with self.assertRaisesRegex(checker.Reject, "proves only"):
+            self.check_doc(document)
+
+    def test_declared_geometric_bound_cannot_exceed_interval_result(self):
+        document = copy.deepcopy(GOOD)
+        document["outer_cells"][0]["triangle_tree"]["leaves"][0]["lower_bound"] = "1/4"
+        with self.assertRaisesRegex(checker.Reject, "exceeds interval proof"):
             self.check_doc(document)
 
     def test_wrong_compact_root_is_rejected(self):

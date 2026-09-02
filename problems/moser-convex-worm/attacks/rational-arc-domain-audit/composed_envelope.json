@@ -25,16 +25,16 @@
     {
       "id": "cell-0",
       "box": {
-        "square_tx": ["3/4", "4/5"],
-        "square_ty": ["2/5", "1/2"],
-        "square_theta_deg": ["24", "26"]
+        "square_tx": ["3029/5000", "303/500"],
+        "square_ty": ["-13/10000", "-11/10000"],
+        "square_theta_deg": ["2507/100", "2509/100"]
       },
       "triangle_tree": {
         "kind": "triangle",
         "outer_cell": {
-          "square_tx": ["3/4", "4/5"],
-          "square_ty": ["2/5", "1/2"],
-          "square_theta_deg": ["24", "26"]
+          "square_tx": ["3029/5000", "303/500"],
+          "square_ty": ["-13/10000", "-11/10000"],
+          "square_theta_deg": ["2507/100", "2509/100"]
         },
         "inner_root": {
           "tx": ["-107267/100000", "107267/100000"],
@@ -48,8 +48,8 @@
               "ty": ["-107267/100000", "107267/100000"],
               "theta_deg": ["0", "120"]
             },
-            "proof": "convex_hull_area_nonnegative",
-            "lower_bound": "0",
+            "proof": "segment_square_strict_convex_cycle",
+            "lower_bound": "2333/10000",
             "uniform_over_outer_cell": true
           }
         ]
@@ -57,9 +57,9 @@
       "worm_tree": {
         "kind": "worm",
         "outer_cell": {
-          "square_tx": ["3/4", "4/5"],
-          "square_ty": ["2/5", "1/2"],
-          "square_theta_deg": ["24", "26"]
+          "square_tx": ["3029/5000", "303/500"],
+          "square_ty": ["-13/10000", "-11/10000"],
+          "square_theta_deg": ["2507/100", "2509/100"]
         },
         "inner_root": {
           "tx": ["-107267/100000", "107267/100000"],
@@ -73,8 +73,8 @@
               "ty": ["-107267/100000", "107267/100000"],
               "theta_deg": ["0", "180"]
             },
-            "proof": "convex_hull_area_nonnegative",
-            "lower_bound": "0",
+            "proof": "segment_square_strict_convex_cycle",
+            "lower_bound": "2333/10000",
             "uniform_over_outer_cell": true
           }
         ]

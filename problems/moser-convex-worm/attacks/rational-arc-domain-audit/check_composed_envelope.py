@@ -11,6 +11,8 @@ import sys
 from fractions import Fraction as Q
 from pathlib import Path
 
+import probe_adaptive as trig
+
 
 class Reject(ValueError):
     pass
@@ -72,6 +74,40 @@ def interiors_overlap(left, right):
     return all(max(left[d][0], right[d][0]) < min(left[d][1], right[d][1]) for d in left)
 
 
+def cross(left, right):
+    return left[0] * right[1] - left[1] * right[0]
+
+
+def subtract(left, right):
+    return left[0] - right[0], left[1] - right[1]
+
+
+def segment_square_cycle_bound(outer_cell):
+    """Uniform area bound from segment P0,P1 and opposite square corners P2,P3."""
+    tx = trig.I(*outer_cell["square_tx"])
+    ty = trig.I(*outer_cell["square_ty"])
+    angle = trig.I(*outer_cell["square_theta_deg"])
+    cosine = trig.cos_range(angle)
+    sine = trig.sin_range(angle)
+    points = [(trig.I(0), trig.I(0)), (trig.I(1), trig.I(0))]
+    for x, y in ((Q(1, 3), Q(1, 3)), (Q(0), Q(1, 3))):
+        points.append((tx + cosine * x - sine * y, ty + sine * x + cosine * y))
+    for index in range(4):
+        edge = subtract(points[(index + 1) % 4], points[index])
+        for other in range(4):
+            if other in (index, (index + 1) % 4):
+                continue
+            turn = cross(edge, subtract(points[other], points[index]))
+            if turn.lo <= 0:
+                raise Reject("segment-square cycle is not uniformly convex")
+    twice_area = trig.I(0)
+    for index in range(4):
+        twice_area += cross(points[index], points[(index + 1) % 4])
+    if twice_area.lo <= 0:
+        raise Reject("segment-square area sign uncertain")
+    return twice_area.lo / 2
+
+
 def union_is_root(root, leaves):
     """Exact recursive-grid coverage check by endpoint atomization."""
     endpoints = {d: {root[d][0], root[d][1]} for d in root}
@@ -121,11 +157,16 @@ def check_inner(raw, expected_kind, outer_cell, compact_root):
             raise Reject("inner leaf fields")
         if leaf["uniform_over_outer_cell"] is not True:
             raise Reject("nonuniform bound")
-        if leaf["proof"] != "convex_hull_area_nonnegative":
-            raise Reject("unsupported inner proof")
         bound = rat(leaf["lower_bound"], f"{expected_kind}.leaf{index}.lower_bound")
-        if bound != 0:
-            raise Reject("nonnegativity proves only lower bound zero")
+        if leaf["proof"] == "convex_hull_area_nonnegative":
+            if bound != 0:
+                raise Reject("nonnegativity proves only lower bound zero")
+        elif leaf["proof"] == "segment_square_strict_convex_cycle":
+            proved = segment_square_cycle_bound(outer_cell)
+            if bound > proved:
+                raise Reject("declared segment-square bound exceeds interval proof")
+        else:
+            raise Reject("unsupported inner proof")
         leaf_boxes.append(box(leaf["box"], root.keys(), f"{expected_kind}.leaf{index}.box"))
         bounds.append(bound)
     if not union_is_root(root, leaf_boxes):
@@ -170,6 +211,7 @@ def check(path):
     if not isinstance(cells, list) or not cells:
         raise Reject("no outer cells")
     parsed_cells = []
+    certified_cells = []
     for index, cell in enumerate(cells):
         if not isinstance(cell, dict) or set(cell) != {"id", "box", "triangle_tree", "worm_tree"}:
             raise Reject("outer cell fields")
@@ -183,14 +225,16 @@ def check(path):
         parsed_cells.append(outer_cell)
         triangle_bound = check_inner(cell["triangle_tree"], "triangle", outer_cell, triangle_root)
         worm_bound = check_inner(cell["worm_tree"], "worm", outer_cell, worm_root)
-        if max(triangle_bound, worm_bound) > target:
-            raise Reject("v1 checker does not support positive geometric bounds")
+        if max(triangle_bound, worm_bound) < target:
+            raise Reject("outer cell does not clear target")
+        certified_cells.append({"triangle": triangle_bound, "worm": worm_bound,
+                                "envelope": max(triangle_bound, worm_bound)})
     covered = sum((volume(cell) for cell in parsed_cells), Q(0))
     root_volume = volume(outer_root)
     if covered >= root_volume:
         raise Reject("partial schema must not claim global outer coverage")
     return {"covered": covered, "root": root_volume, "uncovered": root_volume - covered,
-            "covered_fraction": covered / root_volume}
+            "covered_fraction": covered / root_volume, "cell_bounds": certified_cells}
 
 
 def main():
@@ -201,7 +245,8 @@ def main():
         return 1
     print("PASS common-cell envelope schema; "
           f"covered_volume={report['covered']}; root_volume={report['root']}; "
-          f"covered_fraction={report['covered_fraction']}; uncovered_volume={report['uncovered']}")
+          f"covered_fraction={report['covered_fraction']}; uncovered_volume={report['uncovered']}; "
+          f"cell_bounds={report['cell_bounds']}")
     return 0
 
 
