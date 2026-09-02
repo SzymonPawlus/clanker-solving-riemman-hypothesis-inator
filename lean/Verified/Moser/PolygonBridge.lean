@@ -242,6 +242,31 @@ theorem edge_endpoints_active {n : ℕ} [NeZero n] (vertex : ZMod n → RVec)
   rw [← edge_endpoint_support_eq (vertex i) (vertex (i + 1))]
   exact hconvex i j
 
+/-! ## The concrete four-edge witness ledger
+
+The common-fan existence problem has two logically distinct sides.  The
+following exact lemmas close the source-polygon side for the rational worm:
+its four outward edge vectors are positive multiples of the four advertised
+unit normals, and every directed edge is genuinely supporting.  Thus an
+active vertex can be advanced from `i` to `i+1` precisely at that edge ray;
+no arbitrary choice among the two tied endpoints is used.
+-/
+
+/-- Exact edge-vector ledger of the rational worm hull, including the closing
+edge.  Every displayed multiplier is strictly positive. -/
+theorem worm_outward_ledger :
+    outward (0, 0) (1 / 3, 0) = (1 / 3 : ℝ) • wormN0 ∧
+    outward (1 / 3, 0) (338 / 807, 260 / 807) = (1 / 3 : ℝ) • wormN1 ∧
+    outward (338 / 807, 260 / 807) (9361 / 72361, 105820 / 217083) =
+      (1 / 3 : ℝ) • wormN2 ∧
+    outward (9361 / 72361, 105820 / 217083) (0, 0) =
+      (407 / 807 : ℝ) • wormN3 := by
+  norm_num [outward, cw, vsub, wormN0, wormN1, wormN2, wormN3]
+
+theorem worm_outward_ledger_positive :
+    (0 : ℝ) < 1 / 3 ∧ (0 : ℝ) < 407 / 807 := by
+  norm_num
+
 /-- Scalar cyclic integration by parts. -/
 theorem cyclic_mul_sub {n : ℕ} [NeZero n] (a b : ZMod n → ℝ) :
     ∑ i, a i * (b (i + 1) - b i) = ∑ i, b i * (a (i - 1) - a i) := by
@@ -411,6 +436,153 @@ theorem unit_base_triangle_twiceArea (x h : ℝ) :
     det (0, 0) (1, 0) + det (1, 0) (x, h) + det (x, h) (0, 0) = h := by
   simp [det]
 
+/-! A direct measure computation starts with the standard right triangle. -/
+
+def standardTriangle : Set RVec :=
+  {p | 0 ≤ p.1 ∧ 0 ≤ p.2 ∧ p.1 + p.2 ≤ 1}
+
+theorem standardTriangle_eq_convexHull :
+    standardTriangle = convexHull ℝ ({(0, 0), (1, 0), (0, 1)} : Set RVec) := by
+  apply Set.Subset.antisymm
+  · intro p hp
+    let w : Fin 3 → ℝ := ![1 - p.1 - p.2, p.1, p.2]
+    let z : Fin 3 → RVec := ![(0, 0), (1, 0), (0, 1)]
+    have hw0 : ∀ i ∈ Finset.univ, 0 ≤ w i := by
+      intro i _
+      fin_cases i <;> simp [w] <;> linarith [hp.1, hp.2.1, hp.2.2]
+    have hw1 : ∑ i ∈ Finset.univ, w i = 1 := by
+      simp [w, Fin.sum_univ_three]
+      ring
+    have hz : ∀ i ∈ Finset.univ, z i ∈
+        convexHull ℝ ({(0, 0), (1, 0), (0, 1)} : Set RVec) := by
+      intro i _
+      apply subset_convexHull ℝ
+      fin_cases i <;> simp [z]
+    have hsum := (convex_convexHull ℝ
+      ({(0, 0), (1, 0), (0, 1)} : Set RVec)).sum_mem hw0 hw1 hz
+    simpa [w, z, Fin.sum_univ_three] using hsum
+  · apply convexHull_min
+    · intro p hp
+      simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hp
+      rcases hp with (rfl | rfl | rfl) <;> norm_num [standardTriangle]
+    · intro p hp q hq a b ha hb hab
+      rcases hp with ⟨hp1, hp2, hp3⟩
+      rcases hq with ⟨hq1, hq2, hq3⟩
+      change 0 ≤ (a • p + b • q).1 ∧ 0 ≤ (a • p + b • q).2 ∧
+        (a • p + b • q).1 + (a • p + b • q).2 ≤ 1
+      simp only [Prod.smul_fst, Prod.smul_snd, Prod.fst_add, Prod.snd_add]
+      constructor
+      · exact add_nonneg (mul_nonneg ha hp1) (mul_nonneg hb hq1)
+      constructor
+      · exact add_nonneg (mul_nonneg ha hp2) (mul_nonneg hb hq2)
+      · have hpa : a * (p.1 + p.2) ≤ a := by
+          simpa using mul_le_mul_of_nonneg_left hp3 ha
+        have hqb : b * (q.1 + q.2) ≤ b := by
+          simpa using mul_le_mul_of_nonneg_left hq3 hb
+        calc
+          a • p.1 + b • q.1 + (a • p.2 + b • q.2) =
+              a * (p.1 + p.2) + b * (q.1 + q.2) := by
+                simp only [smul_eq_mul]
+                ring
+          _ ≤ a + b := add_le_add hpa hqb
+          _ = 1 := hab
+
+theorem standardTriangle_ae_regionBetween :
+    ∀ᵐ z ∂(MeasureTheory.volume.prod MeasureTheory.volume),
+      z ∈ standardTriangle ↔
+        z ∈ regionBetween (fun _ : ℝ ↦ 0) (fun x ↦ 1 - x) (Set.Icc 0 1) := by
+  rw [MeasureTheory.Measure.ae_prod_iff_ae_ae]
+  · filter_upwards [] with x
+    by_cases hx : x ∈ Set.Icc (0 : ℝ) 1
+    · filter_upwards [(MeasureTheory.Ioo_ae_eq_Icc
+          (μ := MeasureTheory.volume) (a := 0) (b := 1 - x))] with y hy
+      change (0 ≤ x ∧ 0 ≤ y ∧ x + y ≤ 1) ↔
+        (x ∈ Set.Icc (0 : ℝ) 1 ∧ y ∈ Set.Ioo 0 (1 - x))
+      have hy' : y ∈ Set.Ioo (0 : ℝ) (1 - x) ↔ y ∈ Set.Icc 0 (1 - x) :=
+        iff_of_eq hy
+      rw [hy']
+      constructor
+      · intro h
+        exact ⟨hx, ⟨h.2.1, by linarith [h.2.2]⟩⟩
+      · rintro ⟨_, hy0, hy1⟩
+        exact ⟨hx.1, hy0, by linarith⟩
+    · filter_upwards [] with y
+      change (0 ≤ x ∧ 0 ≤ y ∧ x + y ≤ 1) ↔
+        (x ∈ Set.Icc (0 : ℝ) 1 ∧ y ∈ Set.Ioo 0 (1 - x))
+      simp only [hx, false_and, iff_false]
+      rintro ⟨hx0, _, hxy⟩
+      apply hx
+      exact ⟨hx0, by linarith⟩
+  · apply MeasurableSet.iff
+    · rw [standardTriangle]
+      exact (isClosed_le continuous_const continuous_fst).measurableSet.inter
+        ((isClosed_le continuous_const continuous_snd).measurableSet.inter
+          (isClosed_le (continuous_fst.add continuous_snd) continuous_const).measurableSet)
+    · exact measurableSet_regionBetween measurable_const
+        (measurable_const.sub measurable_id) measurableSet_Icc
+
+theorem standardTriangle_volume :
+    (MeasureTheory.volume.prod MeasureTheory.volume) standardTriangle =
+      ENNReal.ofReal (1 / 2 : ℝ) := by
+  have hmeasure : (MeasureTheory.volume.prod MeasureTheory.volume) standardTriangle =
+      (MeasureTheory.volume.prod MeasureTheory.volume)
+        (regionBetween (fun _ : ℝ ↦ 0) (fun x ↦ 1 - x) (Set.Icc 0 1)) := by
+    apply MeasureTheory.measure_congr
+    filter_upwards [standardTriangle_ae_regionBetween] with z hz
+    exact propext hz
+  rw [hmeasure]
+  rw [volume_regionBetween_eq_integral]
+  · congr 1
+    simp only [Pi.sub_apply, sub_zero]
+    rw [MeasureTheory.integral_Icc_eq_integral_Ioc,
+      ← intervalIntegral.integral_of_le (by norm_num)]
+    rw [intervalIntegral.integral_sub]
+    · rw [intervalIntegral.integral_const, integral_id]
+      norm_num
+    · exact intervalIntegrable_const
+    · exact (continuous_id : Continuous (fun x : ℝ ↦ x)).intervalIntegrable
+        (a := 0) (b := 1) (μ := MeasureTheory.volume)
+  · exact continuous_const.integrableOn_Icc
+  · exact (continuous_const.sub continuous_id).integrableOn_Icc
+  · exact measurableSet_Icc
+  · intro x hx
+    exact sub_nonneg.mpr hx.2
+
+/-- For the standard triangle, product Lebesgue measure is exactly one half
+of its determinant/shoelace twice-area. -/
+theorem standardTriangle_measure_eq_shoelace :
+    (MeasureTheory.volume.prod MeasureTheory.volume)
+        (convexHull ℝ ({(0, 0), (1, 0), (0, 1)} : Set RVec)) =
+      ENNReal.ofReal ((det (0, 0) (1, 0) + det (1, 0) (0, 1) +
+        det (0, 1) (0, 0)) / 2) := by
+  rw [← standardTriangle_eq_convexHull, standardTriangle_volume]
+  norm_num [det]
+
+/-- In coordinate space, an invertible linear map scales Lebesgue volume by
+the absolute determinant.  This is the transport lemma needed to pass from
+the standard triangle to an arbitrary nondegenerate triangle. -/
+theorem volume_image_linearEquiv_fin2 (e : (Fin 2 → ℝ) ≃ₗ[ℝ] (Fin 2 → ℝ))
+    (S : Set (Fin 2 → ℝ)) (hS : MeasurableSet S) :
+    MeasureTheory.volume (e '' S) =
+      ENNReal.ofReal |LinearMap.det (e : (Fin 2 → ℝ) →ₗ[ℝ] (Fin 2 → ℝ))| *
+        MeasureTheory.volume S := by
+  have hpre : ((e.symm : (Fin 2 → ℝ) →ₗ[ℝ] (Fin 2 → ℝ)) :
+      (Fin 2 → ℝ) → (Fin 2 → ℝ)) ⁻¹' S = e '' S := by
+    ext x
+    constructor
+    · intro hx
+      exact ⟨e.symm x, hx, e.apply_symm_apply x⟩
+    · rintro ⟨y, hy, rfl⟩
+      simpa using hy
+  have hdet : LinearMap.det (e.symm : (Fin 2 → ℝ) →ₗ[ℝ] (Fin 2 → ℝ)) ≠ 0 :=
+    (e.symm.isUnit_det').ne_zero
+  have hmap := Real.map_linearMap_volume_pi_eq_smul_volume_pi hdet
+  have happ := congrArg (fun μ : MeasureTheory.Measure (Fin 2 → ℝ) ↦ μ S) hmap
+  rw [MeasureTheory.Measure.map_apply
+    ((e.symm : (Fin 2 → ℝ) →ₗ[ℝ] (Fin 2 → ℝ)).continuous_on_pi.measurable) hS,
+    hpre] at happ
+  simpa [LinearEquiv.det_coe_symm, MeasureTheory.Measure.smul_apply] using happ
+
 /-- Each of the two base-apex triangles lies in a convex containing set. -/
 theorem opposite_base_triangles_subset_convex
     (K : Set RVec) (hK : Convex ℝ K) (a b upper lower : RVec)
@@ -500,6 +672,26 @@ theorem opposite_triangles_union_measure
       simp
     exact ((hfinite.isCompact_convexHull ℝ).isClosed.measurableSet).nullMeasurableSet
   · exact opposite_triangles_intersection_null xUpper xLower hUpper hLower hup hlow
+
+/-- Convex containment transfers the additive two-cap union area bound to the
+containing measurable set. -/
+theorem opposite_triangles_measure_sum_le_containing
+    (K : Set RVec) (hKconvex : Convex ℝ K)
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower)
+    (h0 : (0, 0) ∈ K) (h1 : (1, 0) ∈ K)
+    (hu : (xUpper, hUpper) ∈ K) (hl : (xLower, -hLower) ∈ K) :
+    let upper := convexHull ℝ
+      ({(0, 0), (1, 0), (xUpper, hUpper)} : Set RVec)
+    let lower := convexHull ℝ
+      ({(0, 0), (1, 0), (xLower, -hLower)} : Set RVec)
+    (MeasureTheory.volume.prod MeasureTheory.volume) upper +
+        (MeasureTheory.volume.prod MeasureTheory.volume) lower ≤
+      (MeasureTheory.volume.prod MeasureTheory.volume) K := by
+  dsimp only
+  have hsub := opposite_base_triangles_subset_convex K hKconvex
+    (0, 0) (1, 0) (xUpper, hUpper) (xLower, -hLower) h0 h1 hu hl
+  rw [← opposite_triangles_union_measure xUpper xLower hUpper hLower hup hlow]
+  exact MeasureTheory.measure_mono (Set.union_subset hsub.1 hsub.2)
 
 /-- End-to-end finite-polygon chain from common-fan support containment and an
 allocation slab to the shoelace area of the containing polygon.  Edge lengths
@@ -617,6 +809,64 @@ theorem exists_active_vertices_on_fan {ι : Type*} [Finite ι] [Nonempty ι]
   classical
   choose active hactive using fun i ↦ exists_active_vertex vertex (normal i)
   exact ⟨active, hactive⟩
+
+/-! Merely selecting a maximizer independently on every fan ray is not enough
+to build the repeated-vertex refinement.  At the right normal of the unit
+square, both right endpoints maximize the same functional but differ by a
+nonzero vertical edge.  This exact counterexample is why the final existence
+layer must impose a coherent tie-breaking rule (or construct the repeated
+vertices directly), rather than invoke `exists_active_vertices_on_fan` alone.
+-/
+
+theorem independent_active_selection_counterexample :
+    let square : Fin 4 → RVec := ![(0, 0), (1, 0), (1, 1), (0, 1)]
+    let normal : RVec := (1, 0)
+    (∀ j, dot (square j) normal ≤ dot (square 1) normal) ∧
+      (∀ j, dot (square j) normal ≤ dot (square 2) normal) ∧
+      vsub (square 2) (square 1) = (0, 1) ∧
+      vsub (square 2) (square 1) ≠ (0, 0) := by
+  dsimp
+  constructor
+  · intro j
+    fin_cases j <;> norm_num [dot]
+  constructor
+  · intro j
+    fin_cases j <;> norm_num [dot]
+  constructor <;> norm_num [vsub]
+
+/-- The complete exposed vertex face of a finite polygon in direction `normal`.
+Keeping this set, rather than an independently chosen representative, retains
+all tie information at edge normals. -/
+def exposedVertices {n : ℕ} [NeZero n] (vertex : ZMod n → RVec)
+    (normal : RVec) : Set (ZMod n) :=
+  {i | ∀ j, dot (vertex j) normal ≤ dot (vertex i) normal}
+
+theorem exposedVertices_nonempty {n : ℕ} [NeZero n]
+    (vertex : ZMod n → RVec) (normal : RVec) :
+    (exposedVertices vertex normal).Nonempty := by
+  obtain ⟨i, hi⟩ := exists_active_vertex vertex normal
+  exact ⟨i, hi⟩
+
+/-- Positive rescaling of a ray preserves its entire exposed vertex face. -/
+theorem exposedVertices_pos_smul {n : ℕ} [NeZero n]
+    (vertex : ZMod n → RVec) (normal : RVec) (a : ℝ) (ha : 0 < a) :
+    exposedVertices vertex (a * normal.1, a * normal.2) =
+      exposedVertices vertex normal := by
+  ext i
+  simp only [exposedVertices, Set.mem_ofPred_eq, dot]
+  constructor <;> intro h j
+  · have := h j
+    nlinarith
+  · have := h j
+    nlinarith
+
+/-- For a supporting directed edge, its whole endpoint pair belongs to the
+exposed face at the edge's outward ray. -/
+theorem edge_endpoints_mem_exposedVertices {n : ℕ} [NeZero n]
+    (vertex : ZMod n → RVec) (hconvex : EdgeSupportsAll vertex) (i : ZMod n) :
+    i ∈ exposedVertices vertex (outward (vertex i) (vertex (i + 1))) ∧
+      i + 1 ∈ exposedVertices vertex (outward (vertex i) (vertex (i + 1))) := by
+  exact ⟨hconvex i, edge_endpoints_active vertex hconvex i⟩
 
 /-- Merge two finite linearly ordered fan-ray ledgers into one sorted ledger. -/
 def fanMerge {α : Type*} [LinearOrder α] (a b : List α) : List α :=
