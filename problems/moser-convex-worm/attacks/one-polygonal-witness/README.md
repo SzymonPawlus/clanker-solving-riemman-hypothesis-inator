@@ -395,7 +395,7 @@ box in a proof.
 `certify_triangle_inner_tree.py` now implements that exact replay for the
 triangle side of the alternate square box.  The square translation and
 half-angle variables use the displayed finite decimals as exact rationals,
-each with radius `1/1500`.  Triangle translations range over
+each with radius `1/1000`.  Triangle translations range over
 `[1-D,D] x [-D,D]`, where `D=1073/1000`, and each of the two half-angle charts
 has `t in [-1,1]`.  Thus the two roots cover every orientation and every
 translation that could occur in a hull of diameter less than `D`.
@@ -413,9 +413,9 @@ The serialized leaf paths are prefix-free and record the split coordinate at
 every level.  Replay constructs a trie and requires every internal trie node
 to have both children with the same split coordinate, so the leaf boxes form
 a complete binary cover rather than a collection of successful samples.
-`triangle-inner-tree.json` contains 3,324 leaves in the `epsilon=+1` chart
-(162 diameter, 3,162 fan) and 4,210 in the `epsilon=-1` chart (128 diameter,
-4,082 fan).  On the development machine, exact replay takes about 3.6 seconds.
+`triangle-inner-tree.json` contains 3,703 leaves in the `epsilon=+1` chart
+(170 diameter, 3,533 fan) and 4,759 in the `epsilon=-1` chart (134 diameter,
+4,625 fan).  The smaller `1/1500` tree was therefore not retained.
 
 ```text
 python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_triangle_inner_tree.py \
@@ -428,6 +428,14 @@ a duplicate leaf, a prefix-overlap leaf, an inconsistent split axis, an inward
 change to the recorded diameter bound, and a changed target.  The certificate
 header binds both `D` and the target, so replay cannot silently apply the tree
 under different proof parameters.
+
+For common-refinement bookkeeping, the cheap single quadrilateral fan has a
+separate exact boundary bracket: it passes at common radius `1/1300` with area
+lower endpoint about `0.2324144214`, while at `1/1200` its exact interval area
+lower bound no longer exceeds the target.  This is only a failure of that one
+fan predicate.  The complete projected tree above still closes the larger
+`1/1000` square box, so adjacent-cell construction should start at the latter
+boundary rather than treating `1/1200` as failure of the triangle envelope.
 
 This is still a producer-side **sketch**, not `verified:review`.  Conditional
 on the compact-diameter reduction above, it supplies a complete projected
