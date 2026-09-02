@@ -35,3 +35,28 @@ Worktree `/home/user/wt/151-lean-audit`, branch `claude/151-lean-audit`. Model: 
 - H1, H3, H4, H7, H10, H12 checked against the source: none fire. `IsDicutSide` requires
   `S ≠ ∅ ∧ S ≠ univ ∧ inn S = ∅`; `HasPacking` has `i ≠ j → Disjoint`; the easy direction is
   stated against *every* dicut, which is the stronger, correct form.
+
+## B1's Lean (ad78d86, local commit 07:52, pushed shortly after)
+
+Read `Basic.lean`, `Instances.lean`, `Verified.lean` from the ref. Wrote `lean_model.py`
+literally, checked it reproduces every `Instances.lean` fact, ran `crosscheck.py`: 13,615
+digraphs, 214 s.
+
+Result: **0 disagreements** with the prose model under the survey convention on every field
+(dicuts, τ, max packing, Woodall in partition form, easy direction). **1,892 disagreements**
+with the literal-README reading — exactly the 1,892 disconnected digraphs in the sweep and
+nothing else. So the only place B1's Lean says something other than the README text is the
+`δ⁺(U) ≠ ∅` clause (F1 = pre-registered P1/H2), which B1 documents and exhibits. H1, H3–H10,
+H12–H14, H16, H18–H20 all fail to fire, each for a reason I can point at in the source.
+
+Secondary: `tau?` unbridged to `IsMinDicutSize` (F2); `cycle3_no_min_dicut_size` bounded at
+`t ≤ 3` (F3); no global conjecture Prop (F4); `diamond_two_le_tau` is `2 ≤ 2` (F5).
+
+Mechanical: my own grep finds no `sorry`/`axiom`/`native_decide`/`admit`; both modules are
+imported from `Verified.lean`; `Basic.lean` imports nothing. B1's `results/` note says
+nothing is `verified:lean` because `lake build` never ran — honest, and correct.
+
+Taken on trust: B1's local `lean` run and `#print axioms` output. Could not run Lean here.
+
+Coordinator's mid-task message (B1 pushed; verify multiplicity downstream, partition form,
+P1 witness, honesty of results note, import line, own grep) — all covered above.

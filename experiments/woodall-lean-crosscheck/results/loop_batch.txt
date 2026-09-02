@@ -1,0 +1,28 @@
+{
+ "space": "n<=3, <=4 arcs, mult<=2, loops allowed",
+ "scanned": 678,
+ "disagreements": {
+  "dicuts(literal) vs lean dicuts": {
+   "count": 251,
+   "first": [
+    [
+     2,
+     []
+    ],
+    "{frozenset()}",
+    "set()"
+   ]
+  },
+  "tau(literal) vs lean tau?": {
+   "count": 251,
+   "first": [
+    [
+     2,
+     []
+    ],
+    "0",
+    "None"
+   ]
+  }
+ }
+}
