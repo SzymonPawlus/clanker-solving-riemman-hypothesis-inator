@@ -62,14 +62,14 @@ def squared(value):
     return I(min(endpoints), max(endpoints))
 
 
-def rotation(t):
-    """epsilon=-1 half-angle chart, exactly over rational intervals."""
+def rotation(t, epsilon):
+    """Rational half-angle chart with epsilon in {+1,-1}."""
     denominator = 1 + squared(t)
-    return -(1 - squared(t)) / denominator, -(2 * t) / denominator
+    return epsilon * (1 - squared(t)) / denominator, epsilon * (2 * t) / denominator
 
 
-def place(poly, tx, ty, t):
-    c, s = rotation(t)
+def place(poly, tx, ty, t, epsilon):
+    c, s = rotation(t, epsilon)
     return [(tx + x * c - y * s, ty + x * s + y * c) for x, y in poly]
 
 
@@ -94,15 +94,29 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--radius", default="1/100000",
                     help="common rational half-width, such as 1/100000")
 parser.add_argument("--summary", action="store_true")
+parser.add_argument("--scenario", choices=("nearby", "square_only", "alternate"),
+                    default="nearby")
 args = parser.parse_args()
 RADIUS = F(args.radius)
-CENTERS = (
-    # Triangle was relocated inside the same fixed five-cycle to avoid the
-    # numerically tangent exploratory pose; the fan area is unchanged.
-    "0.7482384613885471", "0.43318521035405194", "0.5785074745087493",
-    "0.7665063578814811", "0.44201657861761084", "0.22243073361617452",
-    "0.9158463782906203", "-0.0002529366842701458", "-0.7683607472878539",
-)
+if args.scenario in ("nearby", "square_only"):
+    CENTERS = (
+        # Triangle was relocated inside the same fixed five-cycle to avoid the
+        # numerically tangent exploratory pose; the fan area is unchanged.
+        "0.7482384613885471", "0.43318521035405194", "0.5785074745087493",
+        "0.7665063578814811", "0.44201657861761084", "0.22243073361617452",
+        "0.9158463782906203", "-0.0002529366842701458", "-0.7683607472878539",
+    )
+    EPSILONS = (-1, -1, -1)
+    CYCLE = (0, 7, 1, 5, 11) if args.scenario == "nearby" else (0, 7, 1, 5, 6)
+else:
+    CENTERS = (
+        "0.4999823244180052", "-0.010082050034720789", "0.010473943685699136",
+        "0.5785139974844686", "-0.011665626530321464", "0.034819624673572754",
+        "0.9863540862243964", "-0.0003778635989069934", "-0.7554146049912825",
+    )
+    EPSILONS = (1, 1, -1)
+    # Robust subcycle segment0, segment1, square2, triangle2.
+    CYCLE = (0, 1, 7, 4)
 VARS = [box(x, RADIUS) for x in CENTERS]
 
 # sqrt(3) enclosure, checked exactly.
@@ -123,15 +137,13 @@ for p, q in zip(WORM_Q, WORM_Q[1:]):
         raise RuntimeError("non-unit witness")
 WORM = [(I(x), I(y)) for x, y in WORM_Q]
 
-triangle = place(TRI, *VARS[:3])
-square = place(SQUARE, *VARS[3:6])
-worm = place(WORM, *VARS[6:9])
+triangle = place(TRI, *VARS[:3], EPSILONS[0])
+square = place(SQUARE, *VARS[3:6], EPSILONS[1])
+worm = place(WORM, *VARS[6:9], EPSILONS[2])
 points = SEG + triangle + square + worm
 labels = (["segment0", "segment1"] + [f"triangle{i}" for i in range(3)]
           + [f"square{i}" for i in range(4)] + [f"worm{i}" for i in range(4)])
 
-# Counterclockwise midpoint cycle: segment0, square2, segment1, square0, worm2.
-CYCLE = (0, 7, 1, 5, 11)
 anchor = points[CYCLE[0]]
 rays = [sub(points[i], anchor) for i in CYCLE[1:]]
 
@@ -159,6 +171,7 @@ for index in omitted:
 
 result = {
     "status": "PASS_LOCAL_FAN_ONLY",
+    "scenario": args.scenario,
     "radius_exact": str(RADIUS),
     "cycle": [labels[i] for i in CYCLE],
     "ray_x_lower_exact": [str(x) for x in ray_x_lowers],
@@ -173,7 +186,8 @@ result = {
     ],
 }
 if args.summary:
-    print({"status": result["status"], "radius_exact": str(RADIUS),
+    print({"status": result["status"], "scenario": args.scenario,
+           "radius_exact": str(RADIUS),
            "minimum_ray_x": float(min(ray_x_lowers)),
            "minimum_fan_det": float(min(x.lo for x in fan_dets)),
            "area_lower": float(area.lo),

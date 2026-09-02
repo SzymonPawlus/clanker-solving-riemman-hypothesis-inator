@@ -270,3 +270,168 @@ and the enlarged box with:
 python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_nearby_local_box.py --summary
 python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_nearby_local_box.py --radius 1/1700 --summary
 ```
+
+## Checkpoint 3: complementary support portfolio
+
+**Status:** analytic reduction `sketch`; searches `numerical`; two local boxes
+producer-certified `sketch`. No global coverage claim.
+
+The tempting unconditional elimination of the triangle is false as a proof
+strategy. Eight six-variable searches over only the pinned segment, square,
+and new worm repeatedly found area about `0.22160134`. A representative square
+pose is `(0.589274839,-0.0355518989,0.0863435664)` and worm pose is
+`(0.999998650,0.0000002809,1.88963719)`. Depending on tiny collinearities, its
+reported hull cycles range from `[segment0,square0,square1,segment1,square2,
+square3]` to cycles additionally containing `worm0` or `worm2`. Thus a
+segment-square-worm fan cannot cover the whole domain. Restoring and optimizing
+the triangle while holding that pose fixed raised the best numerical area to
+about `0.24279616`.
+
+There is nevertheless a useful complementary decomposition. For a fixed
+square placement `s`, let
+
+- `m_T(s)` be the minimum segment-square-triangle hull area over triangle
+  placements;
+- `m_W(s)` be the minimum segment-square-worm hull area over new-worm
+  placements.
+
+Every four-witness hull contains both triple hulls, hence its area is at least
+`max(m_T(s),m_W(s))`. Consequently the global lower-bound task would follow
+from a certified three-dimensional outer bound
+
+`min_s max(m_T(s),m_W(s)) > T`.
+
+With quantifiers exposed, let `S,T,W` denote the complete compact placement
+domains for the square, triangle, and new worm after pinning the segment, and
+let `F(s,t,w)` be the full hull area. Define `G_T(s,t)` and `G_W(s,w)` as the
+two triple-hull areas and use infima (which are minima on these compact
+domains):
+
+`m_T(s)=inf_{t in T} G_T(s,t)`,
+`m_W(s)=inf_{w in W} G_W(s,w)`.
+
+For every `(s,t,w)`, monotonicity under adding points gives
+
+`F(s,t,w) >= G_T(s,t) >= m_T(s)` and
+`F(s,t,w) >= G_W(s,w) >= m_W(s)`.
+
+Therefore
+
+`inf_{s,t,w} F(s,t,w) >= inf_s max(m_T(s),m_W(s))`.
+
+For a square box `B`, a valid projected brancher must compute
+`L_T(B) <= inf_{s in B,t in T} G_T(s,t)` and independently
+`L_W(B) <= inf_{s in B,w in W} G_W(s,w)`. The outer box is pruned only if
+`max(L_T(B),L_W(B)) > T`. Sampling or certifying one inner optimizer
+neighborhood does not define either lower envelope.
+
+This separates the triangle and worm translations/orientations into two
+independent inner problems sharing only the square. It is presently a
+`sketch`, and neither inner minimum is globally certified. Numerical fixed-
+square challenges illustrate the complementarity:
+
+| square basin | `m_T(s)` numerical | `m_W(s)` numerical | maximum |
+|---|---:|---:|---:|
+| record-candidate square | 0.234172 | 0.235057 | 0.235057 |
+| alternate full basin | 0.240406 | 0.224765 | 0.240406 |
+| low three-object basin | 0.242797 | 0.221611 | 0.242797 |
+
+The exact local checker now contains two complementary fan scenarios. The
+default `nearby` five-cycle ignores triangle variables and passes through
+radius `1/1700`. The `alternate` robust quadrilateral
+`[segment0,segment1,square2,triangle2]` ignores all worm variables and passes
+through radius `1/1500`, with lower endpoint about `0.232707397`. Its symbolic
+fan area is
+
+`A4 = (square2_y + det(square2,triangle2))/2`.
+
+At the record-candidate square, an even cheaper `square_only` fan
+`[segment0,square2,segment1,square0,square1]` eliminates both other inner
+objects. It certifies a common square-variable radius `1/1750` with lower
+endpoint about `0.232574465`; this is currently the most direct outer-box
+prune in the portfolio.
+
+Reproduce the second portfolio cell with:
+
+```text
+python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_nearby_local_box.py --scenario alternate --radius 1/1500 --summary
+python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_nearby_local_box.py --scenario square_only --radius 1/1750 --summary
+```
+
+These two rational boxes form only a finite cover of two optimizer
+neighborhoods. They are widely separated and leave essentially the entire
+compact placement domain uncovered. A plausible global brancher should first
+try a segment-square-worm fan on six variables; only its unpruned square/worm
+cells should be crossed with triangle variables. Symmetrically, robust
+segment-square-triangle fans prune independently of the worm. Only cells where
+both projected fan portfolios fail require full nine-variable subdivision.
+No branch tree implementing that hierarchical cover exists yet.
+
+### Projected inner-tree feasibility
+
+An exploratory projected brancher fixed the alternate square box and covered
+the complete compact triangle translation/rotation domain separately in the
+two rational half-angle charts. Its first version used only a leftmost-`x`
+anchor and left 1,985 tiny boxes unresolved after 20,000 nodes even though
+their midpoint hulls were large; the failure was an anchor artifact near
+vertical support ties. Allowing eight rational support directions
+`(+-1,0),(0,+-1),(+-1,+-1)` removed that defect.
+
+At a common square-variable radius `1/1500`, the improved exploratory run
+exhausted the `epsilon=+1` triangle chart in 6,107 nodes and the `epsilon=-1`
+chart in 8,187 nodes, with no unresolved leaves. Fan pruning handled 2,914 and
+3,967 nodes; diameter pruning handled 140 and 127. This suggests that a
+projected three-dimensional inner certificate is computationally realistic.
+
+Those prototype counts are only **numerical feasibility evidence**. It uses
+binary64 initialization of decimal centers and does not serialize its branch
+tree. Until every rational/algebraic input is outward-enclosed from its exact
+value, target comparisons are exact-rational, and the complete tree is emitted
+for independent replay, it is not a lower envelope and cannot prune an outer
+box in a proof.
+
+### Exact projected triangle tree
+
+`certify_triangle_inner_tree.py` now implements that exact replay for the
+triangle side of the alternate square box.  The square translation and
+half-angle variables use the displayed finite decimals as exact rationals,
+each with radius `1/1500`.  Triangle translations range over
+`[1-D,D] x [-D,D]`, where `D=1073/1000`, and each of the two half-angle charts
+has `t in [-1,1]`.  Thus the two roots cover every orientation and every
+translation that could occur in a hull of diameter less than `D`.
+
+Every internal node is a rational midpoint split.  Every leaf stores either
+(i) a triangle vertex and pinned-segment endpoint whose squared-distance
+interval lies strictly above `D^2`, or (ii) an anchor, angularly ordered ray
+subsequence, and integer open-half-plane direction.  In case (ii), exact
+rational interval arithmetic proves every half-plane dot product and
+successive determinant positive and proves the sum of the disjoint fan
+triangle areas strictly above `232239/1000000`.  The midpoint hull used while
+producing the tree is only a search heuristic and is not replayed or trusted.
+
+The serialized leaf paths are prefix-free and record the split coordinate at
+every level.  Replay constructs a trie and requires every internal trie node
+to have both children with the same split coordinate, so the leaf boxes form
+a complete binary cover rather than a collection of successful samples.
+`triangle-inner-tree.json` contains 3,324 leaves in the `epsilon=+1` chart
+(162 diameter, 3,162 fan) and 4,210 in the `epsilon=-1` chart (128 diameter,
+4,082 fan).  On the development machine, exact replay takes about 3.6 seconds.
+
+```text
+python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_triangle_inner_tree.py \
+  --replay problems/moser-convex-worm/attacks/one-polygonal-witness/triangle-inner-tree.json \
+  --self-test
+```
+
+The self-test requires rejection of six adversarial mutations: a missing leaf,
+a duplicate leaf, a prefix-overlap leaf, an inconsistent split axis, an inward
+change to the recorded diameter bound, and a changed target.  The certificate
+header binds both `D` and the target, so replay cannot silently apply the tree
+under different proof parameters.
+
+This is still a producer-side **sketch**, not `verified:review`.  Conditional
+on the compact-diameter reduction above, it supplies a complete projected
+triangle lower envelope for only this one alternate square box.  It does not
+cover the outer square domain, does not certify the worm-side envelope, and
+does not use the unrestricted support-allocation statement under audit in
+Issue #165.
