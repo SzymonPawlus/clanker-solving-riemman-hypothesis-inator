@@ -395,7 +395,7 @@ box in a proof.
 `certify_triangle_inner_tree.py` now implements that exact replay for the
 triangle side of the alternate square box.  The square translation and
 half-angle variables use the displayed finite decimals as exact rationals,
-each with radius `1/500`.  Triangle translations range over
+each with radius `3/1000`.  Triangle translations range over
 `[1-D,D] x [-D,D]`, where `D=1073/1000`, and each of the two half-angle charts
 has `t in [-1,1]`.  Thus the two roots cover every orientation and every
 translation that could occur in a hull of diameter less than `D`.
@@ -413,10 +413,10 @@ The serialized leaf paths are prefix-free and record the split coordinate at
 every level.  Replay constructs a trie and requires every internal trie node
 to have both children with the same split coordinate, so the leaf boxes form
 a complete binary cover rather than a collection of successful samples.
-`triangle-inner-tree.json` contains 6,537 leaves in the `epsilon=+1` chart
-(192 diameter, 6,345 fan) and 8,819 in the `epsilon=-1` chart (157 diameter,
-8,662 fan).  The serialized file is about 1.1 MB; exact replay plus the six
-negative tests took about 6.6 seconds on the development machine.  Production
+`triangle-inner-tree.json` contains 14,094 leaves in the `epsilon=+1` chart
+(200 diameter, 13,894 fan) and 17,254 in the `epsilon=-1` chart (200 diameter,
+17,054 fan).  The serialized file is about 2.4 MB; exact replay plus the six
+negative tests took about 12.8 seconds on the development machine.  Production
 is intentionally slower because it searches fan candidates; replay trusts
 only the stored exact rejection witness.
 
@@ -437,12 +437,14 @@ separate exact boundary bracket: it passes at common radius `1/1300` with area
 lower endpoint about `0.2324144214`, while at `1/1200` its exact interval area
 lower bound no longer exceeds the target.  This is only a failure of that one
 fan predicate.  The complete projected tree above still closes the larger
-`1/500` square box, so adjacent-cell construction should start at the latter
+`3/1000` square box, so adjacent-cell construction should start at the latter
 boundary rather than treating `1/1200` as failure of the triangle envelope.
-A further numerical feasibility run at radius `3/1000` exhausted the positive
-chart in 25,133 nodes and the negative chart in 32,815 nodes, with zero
-unresolved leaves.  Those counts are not an exact certificate; `3/1000` is the
-next exactification checkpoint.
+A bounded numerical frontier probe at radius `1/250` also exhausted rather
+than merely reaching its cap: the positive chart used 51,699 nodes and the
+negative chart 71,679, with zero stack and zero unresolved leaves.  This is
+strictly **numerical** feasibility evidence; no `1/250` rational tree is
+serialized here.  Relative to the exact `3/1000` tree, it indicates rapid but
+still manageable leaf growth rather than a genuine predicate failure.
 
 This is still a producer-side **sketch**, not `verified:review`.  Conditional
 on the compact-diameter reduction above, it supplies a complete projected
@@ -450,3 +452,132 @@ triangle lower envelope for only this one alternate square box.  It does not
 cover the outer square domain, does not certify the worm-side envelope, and
 does not use the unrestricted support-allocation statement under audit in
 Issue #165.
+
+### Equal-turn rational slab search
+
+The reviewed support-allocation structure gives a placement-free way to vary
+the arc without consulting a local hull minimizer.  Let the three edge
+directions be separated by the same angle `theta`, put
+
+```text
+c = cos(theta),  s = sin(theta),  c^2+s^2=1,  c>=0,
+n_k.x = sin(gamma+k*theta).
+```
+
+The sum of the three unit edge directions is `(1+2c)(c,s)`, so the closing
+chord has exact length `(1+2c)/3`.  Repeating the two reviewed allocations with
+the actual surface lengths gives the closed forms
+
+```text
+F_width = sqrt(3)/24
+          + (|n_0.x|+|n_2.x|+2c|n_1.x|)/12,
+F_complement = (|n_0.x|+|n_2.x|)/12
+               + (1+c)|n_1.x|/6.
+```
+
+In particular, the closing-edge split is `2c/(1+2c)`, and multiplication by
+the chord length leaves the middle coefficient `2c/12`; allocating all four
+surface edges to the segment gives `(1/3+(1+2c)/3)/4=(1+c)/6`.
+
+At the two competing angular breakpoints, the candidate floor is controlled
+by
+
+```text
+sqrt(3)/24+s/6                 and   s(1+2c)/6.
+```
+
+Balancing them gives `cs=sqrt(3)/8`.  The algebraic optimizer has
+`c^2=(4-sqrt(13))/8` and half-angle parameter approximately
+`0.7978687768`.  This derivation is a **sketch** until the intervening angular
+cells are checked; it is used only to rank nearby rational parameters.
+
+`search_equal_turn_slabs.py` enumerates rational half-angle parameters and
+recomputes every arc edge, chord, allocation, and displayed coefficient in
+exact `Fraction` arithmetic.  Its angular minimization is explicitly
+**numerical**.  With denominator at most 100, the best candidate is `t=75/94`:
+
+```text
+c=3211/14461, s=14100/14461, chord=6961/14461,
+width middle coefficient=6422/14461,
+complement middle coefficient=8836/43383,
+sampled min max(F_width,F_complement)=0.2346735259...
+```
+
+Its exact vertices are
+
+```text
+(0,0), (1/3,0), (17672/43383,4700/14461),
+(22351771/209120521,98150100/209120521).
+```
+
+The checker verifies each of the three consecutive squared edge lengths is
+`1/9`; no closing edge is counted in worm length.  This candidate is preserved
+separately from the exact `t=10/13` certificate above.  Reproduce the numerical
+ranking with:
+
+```text
+python problems/moser-convex-worm/attacks/one-polygonal-witness/search_equal_turn_slabs.py \
+  --max-denominator 100 --samples 100000 --top 8
+```
+
+`check_equal_turn_slabs.py` then checks the `t=75/94` candidate without using
+that numerical ranking.  It reconstructs the four actual hull surface lengths
+
+```text
+1/3, 1/3, 1/3, 6961/14461
+```
+
+and their outward unit normals
+
+```text
+(0,-1), (s,-c), (2sc,-(c^2-s^2)), (-s,c).
+```
+
+It verifies exact surface-vector balance, the closing-edge allocation, and the
+two displayed coefficients.  In edge order, the two allocation tables
+`(segment,triangle)` are
+
+```text
+width:      (1,0), (0,1), (1,0),
+            (6422/20883,14461/20883)
+complement: (1,0), (1,0), (1,0), (1,0).
+```
+
+Every row is nonnegative with unit capacity.  The checker directly verifies
+the width table's triangle translation load vanishes and the complement table
+has no moving-template load.  The asymmetric arc angle uses the complete
+orientation-preserving domain `gamma in [0,180]`: the second half is obtained
+only by the global half-turn about the pinned segment midpoint, which reanchors
+translations within the same diameter box; no reflection quotient is used.
+
+For the angular minimum, the checker uses the closed cover
+
+```text
+complement: [0,77.2] and [128.5,180]
+width:      [77.1,128.5].
+```
+
+Each interval is divided into half-degree rational cells.  Unit-normal
+coordinates are enclosed with their one-radian Lipschitz bound; cells crossing
+a zero are bisected until direct absolute-value interval evaluation succeeds.
+On sign-fixed cells, each positive formula is `A cos(gamma)+B sin(gamma)` plus
+a nonnegative constant, so its second derivative is nonpositive and its
+minimum is at an endpoint.  Endpoint sine/cosine bounds use a Machin formula
+with an internally enclosed alternating series for pi and rational Taylor
+remainders.  The exact union proves the conservative endpoint
+
+```text
+1173/5000 = 0.2346 > 232239/1000000.
+```
+
+Replay took about 101 seconds on the development machine:
+
+```text
+python problems/moser-convex-worm/attacks/one-polygonal-witness/check_equal_turn_slabs.py
+```
+
+This is a producer-side **sketch** of the new rational witness and exact angular
+certificate.  Its interpretation as a universal-cover lower bound depends on
+the separately reviewed mixed-area/degenerate-segment bridge and remains capped
+by that dependency and the unresolved campaign baseline gate.  It does not
+modify PR #168 or claim independent review for this new arc.
