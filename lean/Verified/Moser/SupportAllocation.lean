@@ -49,6 +49,17 @@ theorem exact_closing_chord :
     chordLength = (1 + 2 * c) / 3 ∧ normSq closing = chordLength ^ 2 := by
   norm_num [chordLength, c, normSq, closing, sub, p0, p3]
 
+theorem witness_strictly_convex_orientation :
+    0 < cross e0 e1 ∧ 0 < cross e1 e2 ∧ 0 < cross e2 closing ∧
+      0 < cross closing e0 := by
+  norm_num [cross, e0, e1, e2, closing, sub, p0, p1, p2, p3]
+
+def twiceShoelaceArea : ℚ :=
+  cross p0 p1 + cross p1 p2 + cross p2 p3 + cross p3 p0
+
+theorem exact_witness_hull_area : twiceShoelaceArea / 2 = 87880 / 651249 := by
+  norm_num [twiceShoelaceArea, cross, p0, p1, p2, p3]
+
 def n0 : Vec := (0, -1)
 def n1 : Vec := (s, -c)
 def n2 : Vec := (2 * s * c, s ^ 2 - c ^ 2)
@@ -134,6 +145,18 @@ theorem segment_two_triangle_bound (areaK hp hm : ℝ)
     (containedDisjointTriangles : (hp + hm) / 2 ≤ areaK) :
     (hp + hm) / 2 ≤ areaK := containedDisjointTriangles
 
+/-! An assumption-auditable version of the two-triangle argument.  `area` is
+not axiomatized globally: the caller supplies exactly the three measure facts
+needed for its concrete convex hull `K`. -/
+theorem segment_bound_from_measure_facts
+    (areaK areaUpper areaLower hp hm : ℝ)
+    (upper_formula : areaUpper = hp / 2)
+    (lower_formula : areaLower = hm / 2)
+    (disjoint_union_inside : areaUpper + areaLower ≤ areaK) :
+    (hp + hm) / 2 ≤ areaK := by
+  rw [upper_formula, lower_formula] at disjoint_union_inside
+  linarith
+
 /-! Capacity/load cancellation as a standalone finite algebra theorem. -/
 theorem capacity_load_cancellation {E J : Type*} [Fintype E] [Fintype J]
     (length : E → ℝ) (translation : J → ℝ × ℝ)
@@ -199,6 +222,31 @@ theorem mixed_area_support_allocation_bound
     (allocated_support_le_template_support length hK placedSupport allocation
       length_nonneg allocation_nonneg capacity contained) (by norm_num : (0 : ℝ) ≤ 2))
   exact mixedArea
+
+/-! End-to-end logical chain.  The hypotheses intentionally expose the two
+remaining geometric interfaces: `minkowskiContainment` is the area inequality
+coming from `K+tP ⊆ (1+t)K`, and `slabCertificate` is the exact closed-form
+trigonometric result checked independently by `check_slabs.py`. -/
+theorem support_certificate_chain
+    {E J : Type*} [Fintype E] [Fintype J]
+    (target areaK areaP : ℝ) (length : E → ℝ) (hK : E → ℝ)
+    (placedSupport : J → E → ℝ) (allocation : E → J → ℝ)
+    (length_nonneg : ∀ e, 0 ≤ length e)
+    (allocation_nonneg : ∀ e j, 0 ≤ allocation e j)
+    (capacity : ∀ e, ∑ j, allocation e j = 1)
+    (containedSupports : ∀ e j, placedSupport j e ≤ hK e)
+    (minkowskiContainment : ∀ t : ℝ, 0 < t →
+      areaK + t * (∑ e, length e * hK e) + t ^ 2 * areaP ≤
+        (1 + t) ^ 2 * areaK)
+    (slabCertificate : target ≤
+      (∑ e, length e * ∑ j, allocation e j * placedSupport j e) / 2) :
+    target ≤ areaK := by
+  have firstVariation := quadratic_firstVariation_le_area areaK areaP
+    (∑ e, length e * hK e) minkowskiContainment
+  have mixed : (∑ e, length e * hK e) / 2 ≤ areaK := by linarith
+  exact slabCertificate.trans
+    (mixed_area_support_allocation_bound areaK length hK placedSupport allocation
+      length_nonneg allocation_nonneg capacity containedSupports mixed)
 
 theorem endpoint_union :
     Set.Icc (0 : ℚ) 80 ∪ Set.Icc 75 (269 / 2) ∪ Set.Icc (259 / 2) 180 =

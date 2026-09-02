@@ -10,11 +10,15 @@ proves:
 - the three rational worm edges have length exactly `1/3`, hence the open
   traversal has length exactly one;
 - the closing chord has length `407/807` (and is not counted in the worm);
+- the hull vertices are in strict convex orientation and their exact shoelace
+  area is `87880/651249`;
 - all four stated normals are unit, both surface-measure splits balance, the
   two allocation columns have unit capacity, and both translation loads vanish;
 - a purely ordered-field first-variation theorem deriving `first <= 2 areaK`
   from the quadratic Minkowski containment inequality;
 - finite support-allocation translation cancellation;
+- an explicit end-to-end implication from the Minkowski containment polynomial
+  and exact slab premise to `target <= area(K)`;
 - the full closed angular endpoint union and the strict rational comparison.
 
 The separate `check_slabs.py` is an independent exact rational checker for the
