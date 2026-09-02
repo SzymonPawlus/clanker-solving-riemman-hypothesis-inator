@@ -48,10 +48,12 @@ finite fan. `commonFan_support_of_coordinates` then derives the pointwise
 containment inequality from explicit convex coordinates and those active
 maximality facts.
 
-For fan construction, `fanMerge` sorts the union of two ray ledgers;
-`fanMerge_pairwise`, `mem_fanMerge_iff`, and the two `sublist_fanMerge`
-theorems prove that sorted input ledgers occur in order in the result. Cyclic
-reindexing invariance of both shoelace area and mixed surface is also formalized.
+For fan construction, the original `fanMerge` sorts the concatenation as a
+multiset. The theorem `fanMerge_shared_ray_is_duplicated` records the exact
+counterexample to treating it as a set union. The surface ledger instead uses
+`fanMergeDedup`; its membership, sortedness, `Nodup`, one-shared-ray, and
+duplicate-free input sublist properties are kernel checked. Cyclic reindexing
+invariance of both shoelace area and mixed surface is also formalized.
 
 These three imply, by a finite sum inequality only,
 
@@ -93,14 +95,15 @@ route above is shorter and avoids separately formalising area monotonicity.
 
 The segment must remain separate because it has no strictly convex cyclic
 edge list.  Pin its endpoints at `(0,0),(1,0)`.  Compact polygon `K` attains
-maximum and minimum `y` at vertices `(x+,h+)` and `(x-,-h-)`.  Convexity puts
+maximum and minimum `y` at vertices `(x+,h+)` and `(x-,-h-)`. Convexity puts
 both base-apex triangles in `K`; their interiors lie in opposite open
-half-planes and their determinant areas are `h+/2` and `h-/2`.  A finite
-polygon proof may triangulate `K` along the base line and show the two triangle
-shoelace areas sum to at most `area(K)`. Lean proves both triangle containments
-from convexity, the determinant identity, and the final implication from that
-finite additivity fact. The repeated-vertex common-fan theorem also permits a
-degenerate-polygon treatment without a limiting argument.
+half-planes and their determinant areas are `h+/2` and `h-/2`. Lean now proves
+the arbitrary unit-base triangle product-Lebesgue measure formula, including
+the degenerate case, by transporting the standard triangle through an exact
+determinant linear equivalence. Null overlap and convex containment therefore
+give the complete two-cap measure bound, including its finite real `toReal`
+form. The repeated-vertex common-fan theorem also permits a degenerate-polygon
+treatment without a limiting argument.
 
 ## Kill criterion
 
@@ -112,14 +115,14 @@ The remaining kill criterion is the **existence layer**: do not call the global
 bridge complete until arbitrary concrete finite convex polygons are proved to
 admit a cyclic common-fan representation whose active vertices satisfy the
 support hypotheses and whose repeated-vertex shoelace sum is the original
-polygon's. The abstract sorted merge and active-vertex selection are complete;
+polygon's. The deduplicated abstract sorted merge and exposed-face representation
+are complete;
 the concrete four-quadrant algebraic ray key is now defined and proved
 rescaling-invariant, and its within-sector order is proved equivalent to
 counterclockwise determinant order. The exact worm ledger is strictly ordered
 as `n₂,n₃,n₀,n₁` after the positive-horizontal cut. The remaining fan step is
-proving that selected active-vertex changes across successive merged rays
-reproduce exactly the original polygon edges. For the direct segment route,
-the two triangle areas must also be connected to the containing polygon's
-shoelace area. Their intersection is now proved null and product Lebesgue
-measure is additive on their union; identifying each triangle's measure with
-its determinant area remains an exposed interface.
+proving that coherently selected exposed-face endpoints across successive
+merged rays reproduce exactly the original polygon edges. The direct segment
+route's measure-theoretic triangle and union interfaces are fully discharged;
+connecting an arbitrary containing polygon's product volume to its cyclic
+shoelace expression remains part of the polygon existence layer.

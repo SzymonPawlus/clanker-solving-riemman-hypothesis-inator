@@ -21,10 +21,19 @@ not modify that branch.
   `regionBetween` and an interval integral as `1/2`, then identified with its
   determinant/shoelace area.
 - An invertible linear equivalence on `Fin 2 -> R` is proved to scale volume of
-  every measurable image by the absolute determinant.  This is the analytic
-  transport needed for arbitrary nondegenerate triangles.
-- The two opposite base-apex triangles' additive measure is proved at most the
-  measure of every convex set containing their four vertices.
+  every measurable image by the absolute determinant. Conjugating it through
+  the coordinate equivalence proves the arbitrary unit-base triangle formula,
+  with the degenerate case handled by null-line containment.
+- The two opposite base-apex triangles have null overlap, their exact additive
+  product measure is `(hUpper + hLower) / 2`, and convex containment proves the
+  full measure bound (also in finite real `toReal` form).
+- The original `fanMerge` is formally shown to duplicate a shared ray. The new
+  `fanMergeDedup` has exact membership, sortedness, `Nodup`, ordered sublist,
+  and shared-ray-once theorems, matching the surface-ledger convention.
+- A read-only audit of PR #175 found no sign/factor counterexample, but did find
+  this verification-boundary mismatch: its prose assumes unique shared rays,
+  while its checker does not implement the fan merge and Issue #170's original
+  merge duplicated them.
 
 `lake build` succeeds.  Searches find no `sorry`, `unsafe`, custom `axiom`, or
 `native_decide`.  `#print axioms` for all new principal theorems reports only
@@ -32,15 +41,10 @@ not modify that branch.
 
 ## Remaining work
 
-1. Conjugate the `Fin 2 -> R` determinant-scaling theorem through the
-   volume-preserving `finTwoArrow` equivalence and identify the image of the
-   standard triangle with the arbitrary base-apex convex hull.  Degenerate
-   height zero is then the existing null-line case.
-2. Combine those two triangle formulas with the proved union containment to
-   discharge `segment_bound_from_measure_facts` using actual product volume.
-3. For fan coherence, show adjacent normal cones of each concrete polygon
+1. For fan coherence, show adjacent normal cones of each concrete polygon
    share the correct exposed endpoint.  Duplicate merged rays must retain the
-   same endpoint; parallel edges require the full exposed-face representation.
-4. Connect the containing polygon's product volume with its cyclic shoelace
+   same endpoint; `fanMergeDedup` removes duplicate surface slots, while
+   parallel edges still require the full exposed-face representation.
+2. Connect the containing polygon's product volume with its cyclic shoelace
    expression, then feed the completed geometric facts into
    `allocation_chain_commonFan` / `support_certificate_chain`.

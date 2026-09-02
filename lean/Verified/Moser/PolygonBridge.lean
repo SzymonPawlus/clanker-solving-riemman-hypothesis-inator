@@ -267,6 +267,28 @@ theorem worm_outward_ledger_positive :
     (0 : ℝ) < 1 / 3 ∧ (0 : ℝ) < 407 / 807 := by
   norm_num
 
+/-- Finite-indexed form of the exact worm vertices, convenient for exhaustive
+support-face verification. -/
+noncomputable def wormVertexFin : Fin 4 → RVec :=
+  ![(0, 0), (1 / 3, 0), (338 / 807, 260 / 807),
+    (9361 / 72361, 105820 / 217083)]
+
+noncomputable def wormNormalFin : Fin 4 → RVec :=
+  ![wormN0, wormN1, wormN2, wormN3]
+
+def wormNextFin : Fin 4 → Fin 4 := ![1, 2, 3, 0]
+
+/-- Both cyclic endpoints are active on every exact worm normal, and every
+other worm vertex lies below their common support value. -/
+theorem worm_exposed_edge_faces (i j : Fin 4) :
+    dot (wormVertexFin j) (wormNormalFin i) ≤
+        dot (wormVertexFin i) (wormNormalFin i) ∧
+      dot (wormVertexFin j) (wormNormalFin i) ≤
+        dot (wormVertexFin (wormNextFin i)) (wormNormalFin i) := by
+  fin_cases i <;> fin_cases j <;>
+    simp [wormVertexFin, wormNormalFin, wormNextFin, wormN0, wormN1,
+      wormN2, wormN3, dot] <;> norm_num
+
 /-- Scalar cyclic integration by parts. -/
 theorem cyclic_mul_sub {n : ℕ} [NeZero n] (a b : ZMod n → ℝ) :
     ∑ i, a i * (b (i + 1) - b i) = ∑ i, b i * (a (i - 1) - a i) := by
@@ -583,6 +605,159 @@ theorem volume_image_linearEquiv_fin2 (e : (Fin 2 → ℝ) ≃ₗ[ℝ] (Fin 2 �
     hpre] at happ
   simpa [LinearEquiv.det_coe_symm, MeasureTheory.Measure.smul_apply] using happ
 
+/-- The canonical `Fin 2` coordinate equivalence identifies coordinate volume
+with product Lebesgue area. -/
+theorem volume_finTwoArrow_preimage (S : Set RVec) (hS : MeasurableSet S) :
+    MeasureTheory.volume (MeasurableEquiv.finTwoArrow ⁻¹' S) =
+      (MeasureTheory.volume.prod MeasureTheory.volume) S := by
+  exact (MeasureTheory.volume_preserving_finTwoArrow ℝ).measure_preimage
+    hS.nullMeasurableSet
+
+noncomputable def triangleMatrix (x h : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
+  !![1, x; 0, h]
+
+theorem triangleMatrix_det (x h : ℝ) : (triangleMatrix x h).det = h := by
+  simp [triangleMatrix, Matrix.det_fin_two]
+
+noncomputable def triangleLinearEquiv (x h : ℝ) (hh : h ≠ 0) :
+    (Fin 2 → ℝ) ≃ₗ[ℝ] (Fin 2 → ℝ) :=
+  Matrix.toLinearEquiv (Pi.basisFun ℝ (Fin 2)) (triangleMatrix x h)
+    (isUnit_iff_ne_zero.mpr (by simpa [triangleMatrix_det] using hh))
+
+theorem triangleLinearEquiv_apply (x h : ℝ) (hh : h ≠ 0) (v : Fin 2 → ℝ) :
+    triangleLinearEquiv x h hh v = ![v 0 + x * v 1, h * v 1] := by
+  funext i
+  change Matrix.toLin (Pi.basisFun ℝ (Fin 2)) (Pi.basisFun ℝ (Fin 2))
+    (triangleMatrix x h) v i = _
+  rw [Matrix.toLin_eq_toLin']
+  fin_cases i <;>
+    simp [triangleMatrix, Matrix.toLin'_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
+
+theorem triangleLinearEquiv_det (x h : ℝ) (hh : h ≠ 0) :
+    LinearMap.det (triangleLinearEquiv x h hh :
+      (Fin 2 → ℝ) →ₗ[ℝ] (Fin 2 → ℝ)) = h := by
+  change LinearMap.det (Matrix.toLin (Pi.basisFun ℝ (Fin 2))
+    (Pi.basisFun ℝ (Fin 2)) (triangleMatrix x h)) = h
+  rw [LinearMap.det_toLin, triangleMatrix_det]
+
+def triangleLinear (x h : ℝ) (p : RVec) : RVec :=
+  (p.1 + x * p.2, h * p.2)
+
+def triangleLinearMap (x h : ℝ) : RVec →ₗ[ℝ] RVec where
+  toFun := triangleLinear x h
+  map_add' p q := by
+    apply Prod.ext <;> simp [triangleLinear] <;> ring
+  map_smul' a p := by
+    apply Prod.ext <;> simp [triangleLinear] <;> ring
+
+theorem triangleLinear_commutes_finTwoArrow (x h : ℝ) (hh : h ≠ 0)
+    (v : Fin 2 → ℝ) :
+    MeasurableEquiv.finTwoArrow (triangleLinearEquiv x h hh v) =
+      triangleLinear x h (MeasurableEquiv.finTwoArrow v) := by
+  rw [triangleLinearEquiv_apply]
+  rfl
+
+theorem triangleLinear_image_preimage_finTwoArrow (x h : ℝ) (hh : h ≠ 0)
+    (S : Set RVec) :
+    MeasurableEquiv.finTwoArrow ⁻¹' (triangleLinear x h '' S) =
+      triangleLinearEquiv x h hh '' (MeasurableEquiv.finTwoArrow ⁻¹' S) := by
+  ext v
+  constructor
+  · rintro ⟨p, hp, hv⟩
+    let u : Fin 2 → ℝ := MeasurableEquiv.finTwoArrow.symm p
+    have hu : MeasurableEquiv.finTwoArrow u = p :=
+      MeasurableEquiv.finTwoArrow.apply_symm_apply p
+    refine ⟨u, ?_, ?_⟩
+    · change MeasurableEquiv.finTwoArrow u ∈ S
+      rw [hu]
+      exact hp
+    · apply MeasurableEquiv.finTwoArrow.injective
+      rw [triangleLinear_commutes_finTwoArrow x h hh, hu, hv]
+  · rintro ⟨u, hu, rfl⟩
+    refine ⟨MeasurableEquiv.finTwoArrow u, hu, ?_⟩
+    exact (triangleLinear_commutes_finTwoArrow x h hh u).symm
+
+theorem standardTriangle_isCompact : IsCompact standardTriangle := by
+  rw [standardTriangle_eq_convexHull]
+  exact (by simp : ({(0, 0), (1, 0), (0, 1)} : Set RVec).Finite).isCompact_convexHull ℝ
+
+theorem standardTriangle_measurable : MeasurableSet standardTriangle :=
+  standardTriangle_isCompact.isClosed.measurableSet
+
+theorem triangleLinear_continuous (x h : ℝ) : Continuous (triangleLinear x h) := by
+  unfold triangleLinear
+  fun_prop
+
+theorem triangleLinear_standard_image_measurable (x h : ℝ) :
+    MeasurableSet (triangleLinear x h '' standardTriangle) :=
+  (standardTriangle_isCompact.image (triangleLinear_continuous x h)).isClosed.measurableSet
+
+/-- Every nondegenerate image of the standard triangle has product Lebesgue
+area `|h|/2`, exactly its absolute determinant area. -/
+theorem triangleLinear_standard_image_volume (x h : ℝ) (hh : h ≠ 0) :
+    (MeasureTheory.volume.prod MeasureTheory.volume)
+        (triangleLinear x h '' standardTriangle) =
+      ENNReal.ofReal (|h| / 2) := by
+  rw [← volume_finTwoArrow_preimage _
+    (triangleLinear_standard_image_measurable x h)]
+  rw [triangleLinear_image_preimage_finTwoArrow x h hh]
+  rw [volume_image_linearEquiv_fin2 _ _]
+  · rw [triangleLinearEquiv_det]
+    rw [volume_finTwoArrow_preimage standardTriangle standardTriangle_measurable]
+    rw [standardTriangle_volume]
+    rw [← ENNReal.ofReal_mul (abs_nonneg h)]
+    congr 1
+    ring
+  · exact standardTriangle_measurable.preimage MeasurableEquiv.finTwoArrow.measurable
+
+theorem triangleLinear_standard_image_eq_convexHull (x h : ℝ) :
+    triangleLinear x h '' standardTriangle =
+      convexHull ℝ ({(0, 0), (1, 0), (x, h)} : Set RVec) := by
+  rw [standardTriangle_eq_convexHull]
+  change triangleLinearMap x h ''
+      convexHull ℝ ({(0, 0), (1, 0), (0, 1)} : Set RVec) = _
+  rw [LinearMap.image_convexHull]
+  congr 1
+  ext p
+  simp [triangleLinearMap, triangleLinear, eq_comm]
+
+/-- Product Lebesgue measure of an arbitrary nondegenerate unit-base triangle
+equals the absolute determinant/shoelace area. -/
+theorem unit_base_triangle_measure_eq_shoelace (x h : ℝ) (hh : h ≠ 0) :
+    (MeasureTheory.volume.prod MeasureTheory.volume)
+        (convexHull ℝ ({(0, 0), (1, 0), (x, h)} : Set RVec)) =
+      ENNReal.ofReal (|det (1, 0) (x, h)| / 2) := by
+  rw [← triangleLinear_standard_image_eq_convexHull x h,
+    triangleLinear_standard_image_volume x h hh]
+  simp [det]
+
+theorem unit_base_triangle_measure_eq_shoelace_all (x h : ℝ) :
+    (MeasureTheory.volume.prod MeasureTheory.volume)
+        (convexHull ℝ ({(0, 0), (1, 0), (x, h)} : Set RVec)) =
+      ENNReal.ofReal (|det (1, 0) (x, h)| / 2) := by
+  by_cases hh : h = 0
+  · subst h
+    have hsub : convexHull ℝ ({(0, 0), (1, 0), (x, 0)} : Set RVec) ⊆
+        {p : RVec | p.2 = 0} := by
+      apply convexHull_min
+      · intro p hp
+        simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hp
+        rcases hp with (rfl | rfl | rfl) <;> rfl
+      · intro p hp q hq a b ha hb hab
+        change p.2 = 0 at hp
+        change q.2 = 0 at hq
+        change (a • p + b • q).2 = 0
+        simp [hp, hq]
+    have hline : (MeasureTheory.volume.prod MeasureTheory.volume)
+        ({p : RVec | p.2 = 0}) = 0 := by
+      have hset : ({p : RVec | p.2 = 0}) = Set.univ ×ˢ ({0} : Set ℝ) := by
+        ext p
+        simp
+      rw [hset, MeasureTheory.Measure.prod_prod, Real.volume_singleton, mul_zero]
+    rw [MeasureTheory.measure_mono_null hsub hline]
+    norm_num [det]
+  · exact unit_base_triangle_measure_eq_shoelace x h hh
+
 /-- Each of the two base-apex triangles lies in a convex containing set. -/
 theorem opposite_base_triangles_subset_convex
     (K : Set RVec) (hK : Convex ℝ K) (a b upper lower : RVec)
@@ -692,6 +867,52 @@ theorem opposite_triangles_measure_sum_le_containing
     (0, 0) (1, 0) (xUpper, hUpper) (xLower, -hLower) h0 h1 hu hl
   rw [← opposite_triangles_union_measure xUpper xLower hUpper hLower hup hlow]
   exact MeasureTheory.measure_mono (Set.union_subset hsub.1 hsub.2)
+
+theorem opposite_triangles_measure_sum_formula
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower) :
+    (MeasureTheory.volume.prod MeasureTheory.volume)
+        (convexHull ℝ ({(0, 0), (1, 0), (xUpper, hUpper)} : Set RVec)) +
+      (MeasureTheory.volume.prod MeasureTheory.volume)
+        (convexHull ℝ ({(0, 0), (1, 0), (xLower, -hLower)} : Set RVec)) =
+      ENNReal.ofReal ((hUpper + hLower) / 2) := by
+  rw [unit_base_triangle_measure_eq_shoelace_all,
+    unit_base_triangle_measure_eq_shoelace_all]
+  simp only [det, one_mul, zero_mul, sub_zero]
+  rw [abs_of_nonneg hup, abs_of_nonpos (neg_nonpos.mpr hlow)]
+  simp only [neg_neg]
+  rw [← ENNReal.ofReal_add (div_nonneg hup (by norm_num))
+    (div_nonneg hlow (by norm_num))]
+  congr 1
+  ring
+
+/-- Fully discharged two-cap geometric bound: determinant triangle formulas,
+null-overlap additivity, and convex containment are all internal. -/
+theorem opposite_triangles_height_bound_from_convex_containment
+    (K : Set RVec) (hKconvex : Convex ℝ K)
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower)
+    (h0 : (0, 0) ∈ K) (h1 : (1, 0) ∈ K)
+    (hu : (xUpper, hUpper) ∈ K) (hl : (xLower, -hLower) ∈ K) :
+    ENNReal.ofReal ((hUpper + hLower) / 2) ≤
+      (MeasureTheory.volume.prod MeasureTheory.volume) K := by
+  rw [← opposite_triangles_measure_sum_formula xUpper xLower hUpper hLower hup hlow]
+  exact opposite_triangles_measure_sum_le_containing K hKconvex
+    xUpper xLower hUpper hLower hup hlow h0 h1 hu hl
+
+/-- Real-valued form consumed by `segment_bound_from_measure_facts` and the
+support-allocation chain. -/
+theorem opposite_triangles_height_bound_toReal
+    (K : Set RVec) (hKconvex : Convex ℝ K)
+    (xUpper xLower hUpper hLower : ℝ) (hup : 0 ≤ hUpper) (hlow : 0 ≤ hLower)
+    (h0 : (0, 0) ∈ K) (h1 : (1, 0) ∈ K)
+    (hu : (xUpper, hUpper) ∈ K) (hl : (xLower, -hLower) ∈ K)
+    (hfinite : (MeasureTheory.volume.prod MeasureTheory.volume) K ≠ ⊤) :
+    (hUpper + hLower) / 2 ≤
+      ((MeasureTheory.volume.prod MeasureTheory.volume) K).toReal := by
+  have h := opposite_triangles_height_bound_from_convex_containment K hKconvex
+    xUpper xLower hUpper hLower hup hlow h0 h1 hu hl
+  have hnonneg : 0 ≤ (hUpper + hLower) / 2 := by positivity
+  rw [← ENNReal.toReal_ofReal hnonneg]
+  exact (ENNReal.toReal_le_toReal ENNReal.ofReal_ne_top hfinite).mpr h
 
 /-- End-to-end finite-polygon chain from common-fan support containment and an
 allocation slab to the shoelace area of the containing polygon.  Edge lengths
@@ -899,5 +1120,61 @@ theorem right_sublist_fanMerge {α : Type*} [LinearOrder α] (a b : List α)
   have hp : b.Subperm (fanMerge a b) := by
     exact ((List.mergeSort_perm (a ++ b) fun x y ↦ decide (x ≤ y)).subperm_left).2 hp0
   exact List.sublist_of_subperm_of_sortedLE hp hb (fanMerge_pairwise a b).sortedLE
+
+/-- `fanMerge` is a multiset merge, not the deduplicating union described in
+the prose blueprint: a shared ray occurs twice.  Coherent face data makes this
+safe only if the inserted duplicate repeats the same boundary endpoint. -/
+theorem fanMerge_shared_ray_is_duplicated (x : ℕ) :
+    fanMerge [x] [x] = [x, x] := by
+  simp [fanMerge, List.mergeSort]
+
+/-- The surface-ledger merge: sort both fans and retain each ordered ray key
+exactly once.  Unlike `fanMerge`, this matches the unique-shared-ray convention
+used by the mixed-area common-fan calculation. -/
+def fanMergeDedup {α : Type*} [LinearOrder α] (a b : List α) : List α :=
+  (fanMerge a b).dedup
+
+/-- Deduplication does not change the set of fan rays. -/
+theorem mem_fanMergeDedup_iff {α : Type*} [LinearOrder α]
+    (a b : List α) (x : α) :
+    x ∈ fanMergeDedup a b ↔ x ∈ a ∨ x ∈ b := by
+  rw [fanMergeDedup, List.mem_dedup, mem_fanMerge_iff]
+
+/-- The surface-ledger merge contains no repeated ray keys. -/
+theorem fanMergeDedup_nodup {α : Type*} [LinearOrder α] (a b : List α) :
+    (fanMergeDedup a b).Nodup := by
+  exact List.nodup_dedup _
+
+/-- Removing duplicate ray keys preserves their cyclic linear order. -/
+theorem fanMergeDedup_pairwise {α : Type*} [LinearOrder α] (a b : List α) :
+    (fanMergeDedup a b).Pairwise (· ≤ ·) := by
+  exact (fanMerge_pairwise a b).sublist (List.dedup_sublist _)
+
+/-- A duplicate-free sorted left fan embeds, in order, in the deduplicated
+common fan. -/
+theorem left_sublist_fanMergeDedup {α : Type*} [LinearOrder α] (a b : List α)
+    (ha : a.SortedLE) (hna : a.Nodup) : a.Sublist (fanMergeDedup a b) := by
+  apply List.sublist_of_subperm_of_sortedLE
+  · apply hna.subperm
+    intro x hx
+    exact (mem_fanMergeDedup_iff a b x).2 (Or.inl hx)
+  · exact ha
+  · exact (fanMergeDedup_pairwise a b).sortedLE
+
+/-- A duplicate-free sorted right fan embeds, in order, in the deduplicated
+common fan. -/
+theorem right_sublist_fanMergeDedup {α : Type*} [LinearOrder α] (a b : List α)
+    (hb : b.SortedLE) (hnb : b.Nodup) : b.Sublist (fanMergeDedup a b) := by
+  apply List.sublist_of_subperm_of_sortedLE
+  · apply hnb.subperm
+    intro x hx
+    exact (mem_fanMergeDedup_iff a b x).2 (Or.inr hx)
+  · exact hb
+  · exact (fanMergeDedup_pairwise a b).sortedLE
+
+/-- In particular, one ray shared by the two input fans has one surface slot. -/
+theorem fanMergeDedup_shared_ray_once (x : ℕ) :
+    fanMergeDedup [x] [x] = [x] := by
+  simp [fanMergeDedup, fanMerge, List.mergeSort]
 
 end Verified.Moser.PolygonBridge
