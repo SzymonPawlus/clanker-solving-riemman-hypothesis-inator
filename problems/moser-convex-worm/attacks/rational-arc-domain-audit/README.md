@@ -319,6 +319,62 @@ interval formulas, subdivision of a larger outer neighborhood, and eventually
 triangle- or worm-specific leaves; the local five-cycle worm pose still cannot
 be reused as though it minimized over all worm placements.
 
+## Exact support-allocation polytope skeleton
+
+The mixed-area route removes translations before an angular branch tree.  If
+`P` is any one of the placed witness hulls and `P` is contained in the joint
+hull `K`, its actual edge lengths and outward normals satisfy
+
+```text
+area(K) >= V(K,P) = (1/2) sum_e length_e(P) h_K(n_e(P)).
+```
+
+For every template edge, distribute its support with nonnegative allocations
+whose sum is one.  The translation of moving witness `j` then has coefficient
+`(1/2) sum_e length_e lambda_(e,j) n_e`; requiring that vector to vanish gives
+a translation-free support lower bound.  The edge lengths here are the actual
+surface measure of the contained template, not arbitrary unit weights.
+
+The unit segment is lower-dimensional, so its template bound is proved
+directly rather than hidden in a continuity assertion.  Put the segment on a
+horizontal line, and let `h+` and `h-` be the greatest perpendicular distances
+of `K` above and below it.  The convex hull contains the two triangles formed
+by the unit base and points attaining those heights; their interiors are on
+opposite sides and their total area is `(h+ + h-)/2`.  This equals the
+two-atom support formula with normals `(0,1)` and `(0,-1)`.
+
+`check_support_bfs.py` constructs the capacity and two-coordinate load matrix
+for all four templates.  Gaussian elimination and sign tests are exact in
+`Q(sqrt(3))`; rational templates remain in the rational subfield.  It
+enumerates every distinct basic feasible allocation, reconstructs all
+coordinates from the recorded canonical bases, and rechecks nonnegativity,
+per-edge capacity, and all six moving-witness load equations.  The counts are
+
+```text
+segment: rank 5, 4 BFS       triangle: rank 9, 4 BFS
+square:  rank 10, 16 BFS     worm:     rank 10, 16 BFS.
+```
+
+The worm gauge `[0,180]` is accepted only with the explicit orientation-
+preserving half-turn about the pinned segment midpoint.  It preserves the
+unlabelled segment, shifts the asymmetric worm angle by 180 degrees, and
+reanchors all translations inside the already-proved diameter boxes.  A
+reflection flag, shortened domain, or altered action is rejected; without this
+action the checker instructs the caller to restore `[0,360]`.
+
+`probe_support_lipschitz.py` is the first angular prototype, still
+`numerical`.  At the coarse sweep's worst sampled basin
+`(triangle,square,worm)=(120,0,100)` degrees, exact worm-template BFS 13 with
+basis `[0,1,2,3,5,6,7,8,12,13]` has floating centre value
+`0.2395757346...`.  Centred support radii give per-radian Lipschitz constants
+`L_triangle=0.09622504...`, `L_square=0`, and `L_worm=0.30564264...`.
+Subtracting their sum times a `0.25`-degree half-width gives
+`0.2378222560...`, above the target on that one periodic angular cell.  This is
+not outward interval evaluation, and the rest of the common three-angle domain
+is explicitly uncovered.  A real certificate must replace the centre value
+and radii by exact outward bounds and attach one exact primal basis to every
+leaf of a complete common-domain tree.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
