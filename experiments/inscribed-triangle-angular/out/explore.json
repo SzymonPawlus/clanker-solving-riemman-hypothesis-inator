@@ -1,0 +1,6327 @@
+{
+ "component_histogram": {
+  "0": 466,
+  "1": 144,
+  "10": 87,
+  "11": 64,
+  "12": 69,
+  "13": 21,
+  "14": 23,
+  "15": 12,
+  "16": 16,
+  "17": 10,
+  "18": 7,
+  "19": 5,
+  "2": 55,
+  "20": 3,
+  "21": 4,
+  "22": 1,
+  "24": 1,
+  "25": 1,
+  "28": 1,
+  "29": 1,
+  "3": 448,
+  "4": 105,
+  "5": 328,
+  "6": 107,
+  "7": 169,
+  "8": 93,
+  "9": 112
+ },
+ "critical_examples": [
+  {
+   "O_display": [
+    3.54070897530227,
+    8.815519267304335
+   ],
+   "O_index": 0,
+   "convex": false,
+   "direction_deg": 238.96609473,
+   "poly_display": [
+    [
+     3.54070897530227,
+     8.815519267304335
+    ],
+    [
+     -0.5131280821004931,
+     12.823070771691324
+    ],
+    [
+     -7.487169019013181,
+     10.830669932734555
+    ],
+    [
+     -13.164583917567825,
+     4.325984100823752
+    ],
+    [
+     -20.493952604149595,
+     0.4979022583499951
+    ],
+    [
+     0.5999136124398087,
+     -24.99280103665072
+    ],
+    [
+     27.13041212166338,
+     -4.493410520829455
+    ]
+   ],
+   "poly_exact": [
+    [
+     [
+      "644841/182122",
+      "0"
+     ],
+     [
+      "802750/91061",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-3850/7503",
+      "0"
+     ],
+     [
+      "64141/5002",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-128375/17146",
+      "0"
+     ],
+     [
+      "278554/25719",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-8778500/666827",
+      "0"
+     ],
+     [
+      "2884683/666827",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-625250/30509",
+      "0"
+     ],
+     [
+      "30381/61018",
+      "0"
+     ]
+    ],
+    [
+     [
+      "37500/62509",
+      "0"
+     ],
+     [
+      "-1562275/62509",
+      "0"
+     ]
+    ],
+    [
+     [
+      "728750/26861",
+      "0"
+     ],
+     [
+      "-241395/53722",
+      "0"
+     ]
+    ]
+   ]
+  },
+  {
+   "O_display": [
+    -0.5131280821004931,
+    12.823070771691324
+   ],
+   "O_index": 1,
+   "convex": false,
+   "direction_deg": 262.280115968,
+   "poly_display": [
+    [
+     3.54070897530227,
+     8.815519267304335
+    ],
+    [
+     -0.5131280821004931,
+     12.823070771691324
+    ],
+    [
+     -7.487169019013181,
+     10.830669932734555
+    ],
+    [
+     -13.164583917567825,
+     4.325984100823752
+    ],
+    [
+     -20.493952604149595,
+     0.4979022583499951
+    ],
+    [
+     0.5999136124398087,
+     -24.99280103665072
+    ],
+    [
+     27.13041212166338,
+     -4.493410520829455
+    ]
+   ],
+   "poly_exact": [
+    [
+     [
+      "644841/182122",
+      "0"
+     ],
+     [
+      "802750/91061",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-3850/7503",
+      "0"
+     ],
+     [
+      "64141/5002",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-128375/17146",
+      "0"
+     ],
+     [
+      "278554/25719",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-8778500/666827",
+      "0"
+     ],
+     [
+      "2884683/666827",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-625250/30509",
+      "0"
+     ],
+     [
+      "30381/61018",
+      "0"
+     ]
+    ],
+    [
+     [
+      "37500/62509",
+      "0"
+     ],
+     [
+      "-1562275/62509",
+      "0"
+     ]
+    ],
+    [
+     [
+      "728750/26861",
+      "0"
+     ],
+     [
+      "-241395/53722",
+      "0"
+     ]
+    ]
+   ]
+  },
+  {
+   "O_display": [
+    -7.487169019013181,
+    10.830669932734555
+   ],
+   "O_index": 2,
+   "convex": false,
+   "direction_deg": 277.333785229,
+   "poly_display": [
+    [
+     3.54070897530227,
+     8.815519267304335
+    ],
+    [
+     -0.5131280821004931,
+     12.823070771691324
+    ],
+    [
+     -7.487169019013181,
+     10.830669932734555
+    ],
+    [
+     -13.164583917567825,
+     4.325984100823752
+    ],
+    [
+     -20.493952604149595,
+     0.4979022583499951
+    ],
+    [
+     0.5999136124398087,
+     -24.99280103665072
+    ],
+    [
+     27.13041212166338,
+     -4.493410520829455
+    ]
+   ],
+   "poly_exact": [
+    [
+     [
+      "644841/182122",
+      "0"
+     ],
+     [
+      "802750/91061",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-3850/7503",
+      "0"
+     ],
+     [
+      "64141/5002",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-128375/17146",
+      "0"
+     ],
+     [
+      "278554/25719",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-8778500/666827",
+      "0"
+     ],
+     [
+      "2884683/666827",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-625250/30509",
+      "0"
+     ],
+     [
+      "30381/61018",
+      "0"
+     ]
+    ],
+    [
+     [
+      "37500/62509",
+      "0"
+     ],
+     [
+      "-1562275/62509",
+      "0"
+     ]
+    ],
+    [
+     [
+      "728750/26861",
+      "0"
+     ],
+     [
+      "-241395/53722",
+      "0"
+     ]
+    ]
+   ]
+  },
+  {
+   "O_display": [
+    -13.164583917567825,
+    4.325984100823752
+   ],
+   "O_index": 3,
+   "convex": false,
+   "direction_deg": 294.134390385,
+   "poly_display": [
+    [
+     3.54070897530227,
+     8.815519267304335
+    ],
+    [
+     -0.5131280821004931,
+     12.823070771691324
+    ],
+    [
+     -7.487169019013181,
+     10.830669932734555
+    ],
+    [
+     -13.164583917567825,
+     4.325984100823752
+    ],
+    [
+     -20.493952604149595,
+     0.4979022583499951
+    ],
+    [
+     0.5999136124398087,
+     -24.99280103665072
+    ],
+    [
+     27.13041212166338,
+     -4.493410520829455
+    ]
+   ],
+   "poly_exact": [
+    [
+     [
+      "644841/182122",
+      "0"
+     ],
+     [
+      "802750/91061",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-3850/7503",
+      "0"
+     ],
+     [
+      "64141/5002",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-128375/17146",
+      "0"
+     ],
+     [
+      "278554/25719",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-8778500/666827",
+      "0"
+     ],
+     [
+      "2884683/666827",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-625250/30509",
+      "0"
+     ],
+     [
+      "30381/61018",
+      "0"
+     ]
+    ],
+    [
+     [
+      "37500/62509",
+      "0"
+     ],
+     [
+      "-1562275/62509",
+      "0"
+     ]
+    ],
+    [
+     [
+      "728750/26861",
+      "0"
+     ],
+     [
+      "-241395/53722",
+      "0"
+     ]
+    ]
+   ]
+  },
+  {
+   "O_display": [
+    -20.493952604149595,
+    0.4979022583499951
+   ],
+   "O_index": 4,
+   "convex": false,
+   "direction_deg": 309.608169179,
+   "poly_display": [
+    [
+     3.54070897530227,
+     8.815519267304335
+    ],
+    [
+     -0.5131280821004931,
+     12.823070771691324
+    ],
+    [
+     -7.487169019013181,
+     10.830669932734555
+    ],
+    [
+     -13.164583917567825,
+     4.325984100823752
+    ],
+    [
+     -20.493952604149595,
+     0.4979022583499951
+    ],
+    [
+     0.5999136124398087,
+     -24.99280103665072
+    ],
+    [
+     27.13041212166338,
+     -4.493410520829455
+    ]
+   ],
+   "poly_exact": [
+    [
+     [
+      "644841/182122",
+      "0"
+     ],
+     [
+      "802750/91061",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-3850/7503",
+      "0"
+     ],
+     [
+      "64141/5002",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-128375/17146",
+      "0"
+     ],
+     [
+      "278554/25719",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-8778500/666827",
+      "0"
+     ],
+     [
+      "2884683/666827",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-625250/30509",
+      "0"
+     ],
+     [
+      "30381/61018",
+      "0"
+     ]
+    ],
+    [
+     [
+      "37500/62509",
+      "0"
+     ],
+     [
+      "-1562275/62509",
+      "0"
+     ]
+    ],
+    [
+     [
+      "728750/26861",
+      "0"
+     ],
+     [
+      "-241395/53722",
+      "0"
+     ]
+    ]
+   ]
+  },
+  {
+   "O_display": [
+    0.5999136124398087,
+    -24.99280103665072
+   ],
+   "O_index": 5,
+   "convex": false,
+   "direction_deg": 69.608169179,
+   "poly_display": [
+    [
+     3.54070897530227,
+     8.815519267304335
+    ],
+    [
+     -0.5131280821004931,
+     12.823070771691324
+    ],
+    [
+     -7.487169019013181,
+     10.830669932734555
+    ],
+    [
+     -13.164583917567825,
+     4.325984100823752
+    ],
+    [
+     -20.493952604149595,
+     0.4979022583499951
+    ],
+    [
+     0.5999136124398087,
+     -24.99280103665072
+    ],
+    [
+     27.13041212166338,
+     -4.493410520829455
+    ]
+   ],
+   "poly_exact": [
+    [
+     [
+      "644841/182122",
+      "0"
+     ],
+     [
+      "802750/91061",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-3850/7503",
+      "0"
+     ],
+     [
+      "64141/5002",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-128375/17146",
+      "0"
+     ],
+     [
+      "278554/25719",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-8778500/666827",
+      "0"
+     ],
+     [
+      "2884683/666827",
+      "0"
+     ]
+    ],
+    [
+     [
+      "-625250/30509",
+      "0"
+     ],
+     [
+      "30381/61018",
+      "0"
+     ]
+    ],
+    [
+     [
+      "37500/62509",
+      "0"
+     ],
+     [
+      "-1562275/62509",
+      "0"
+     ]
+    ],
+    [
+     [
+      "728750/26861",
+      "0"
+     ],
+     [
+      "-241395/53722",
+      "0"
+     ]
+    ]
+   ]
+  }
+ ],
+ "max_components": 29,
+ "max_components_where": [
+  "random#134 vertex 6",
+  {
+   "components_deg": [
+    {
+     "end": 9.592881594,
+     "start": 9.592881594,
+     "type": "point"
+    },
+    {
+     "end": 124.360347662,
+     "start": 124.360347662,
+     "type": "point"
+    },
+    {
+     "end": 184.360347662,
+     "start": 184.360347662,
+     "type": "point"
+    },
+    {
+     "end": 309.592881594,
+     "start": 309.592881594,
+     "type": "point"
+    },
+    {
+     "end": 24.906580535,
+     "start": 24.906580535,
+     "type": "point"
+    },
+    {
+     "end": 25.077544467,
+     "start": 25.077544467,
+     "type": "point"
+    },
+    {
+     "end": 53.635986697,
+     "start": 53.635986697,
+     "type": "point"
+    },
+    {
+     "end": 53.754931116,
+     "start": 53.754931116,
+     "type": "point"
+    },
+    {
+     "end": 82.198028942,
+     "start": 82.198028942,
+     "type": "point"
+    },
+    {
+     "end": 104.692730192,
+     "start": 104.692730192,
+     "type": "point"
+    },
+    {
+     "end": 109.267224385,
+     "start": 109.267224385,
+     "type": "point"
+    },
+    {
+     "end": 110.150154978,
+     "start": 110.150154978,
+     "type": "point"
+    },
+    {
+     "end": 111.637162076,
+     "start": 111.637162076,
+     "type": "point"
+    },
+    {
+     "end": 124.455446232,
+     "start": 124.455446232,
+     "type": "point"
+    },
+    {
+     "end": 124.499686268,
+     "start": 124.499686268,
+     "type": "point"
+    },
+    {
+     "end": 145.469156121,
+     "start": 145.469156121,
+     "type": "point"
+    },
+    {
+     "end": 153.882643499,
+     "start": 153.882643499,
+     "type": "point"
+    },
+    {
+     "end": 172.870413342,
+     "start": 172.870413342,
+     "type": "point"
+    },
+    {
+     "end": 173.040456805,
+     "start": 173.040456805,
+     "type": "point"
+    },
+    {
+     "end": 173.123933012,
+     "start": 173.123933012,
+     "type": "point"
+    },
+    {
+     "end": 173.235759149,
+     "start": 173.235759149,
+     "type": "point"
+    },
+    {
+     "end": 187.823317667,
+     "start": 187.823317667,
+     "type": "point"
+    },
+    {
+     "end": 189.810300175,
+     "start": 189.810300175,
+     "type": "point"
+    },
+    {
+     "end": 244.292736132,
+     "start": 244.292736132,
+     "type": "point"
+    },
+    {
+     "end": 273.837466857,
+     "start": 273.837466857,
+     "type": "point"
+    },
+    {
+     "end": 321.400911881,
+     "start": 321.400911881,
+     "type": "point"
+    },
+    {
+     "end": 334.472292942,
+     "start": 334.472292942,
+     "type": "point"
+    },
+    {
+     "end": 337.978150959,
+     "start": 337.978150959,
+     "type": "point"
+    },
+    {
+     "end": 355.003566101,
+     "start": 355.003566101,
+     "type": "point"
+    }
+   ],
+   "critical": false,
+   "good": true,
+   "n_arc_components": 0,
+   "n_components": 29,
+   "n_point_components": 29
+  }
+ ],
+ "named": {
+  "cstrip-h1_20": {
+   "convex": false,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 119.71352349,
+       "start": 119.71352349,
+       "type": "point"
+      },
+      {
+       "end": 359.71352349,
+       "start": 359.71352349,
+       "type": "point"
+      },
+      {
+       "end": 51.847626273,
+       "start": 51.847626273,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      },
+      {
+       "end": 60.28647651,
+       "start": 60.28647651,
+       "type": "point"
+      },
+      {
+       "end": 132.92831836,
+       "start": 132.92831836,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 166.799841145,
+       "start": 166.799841145,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 248.372092845,
+       "start": 248.372092845,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 11,
+     "n_point_components": 11,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 119.71352349,
+       "start": 119.71352349,
+       "type": "point"
+      },
+      {
+       "end": 359.71352349,
+       "start": 359.71352349,
+       "type": "point"
+      },
+      {
+       "end": 60.28647651,
+       "start": 60.28647651,
+       "type": "point"
+      },
+      {
+       "end": 141.573056501,
+       "start": 141.573056501,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 158.097366841,
+       "start": 158.097366841,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 139.000315718,
+       "start": 139.000315718,
+       "type": "point"
+      },
+      {
+       "end": 160.672207208,
+       "start": 160.672207208,
+       "type": "point"
+      },
+      {
+       "end": 160.68902058,
+       "start": 160.68902058,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 132.92831836,
+       "start": 132.92831836,
+       "type": "point"
+      },
+      {
+       "end": 149.812395181,
+       "start": 149.812395181,
+       "type": "point"
+      },
+      {
+       "end": 149.856967299,
+       "start": 149.856967299,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 70.893394649,
+       "start": 70.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 14.855411829,
+       "start": 14.855411829,
+       "type": "point"
+      },
+      {
+       "end": 15.14191507,
+       "start": 15.14191507,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 13.818185954,
+       "start": 13.818185954,
+       "type": "point"
+      },
+      {
+       "end": 13.977191224,
+       "start": 13.977191224,
+       "type": "point"
+      },
+      {
+       "end": 340.893394649,
+       "start": 340.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.038285176,
+       "start": 0.038285176,
+       "type": "point"
+      },
+      {
+       "end": 299.961714824,
+       "start": 299.961714824,
+       "type": "point"
+      },
+      {
+       "end": 300.038477082,
+       "start": 300.038477082,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      },
+      {
+       "end": 359.961522918,
+       "start": 359.961522918,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      },
+      {
+       "end": 231.716659597,
+       "start": 231.716659597,
+       "type": "point"
+      },
+      {
+       "end": 231.759760716,
+       "start": 231.759760716,
+       "type": "point"
+      },
+      {
+       "end": 250.893394649,
+       "start": 250.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 284.85808493,
+       "start": 284.85808493,
+       "type": "point"
+      },
+      {
+       "end": 285.144588171,
+       "start": 285.144588171,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 160.975144568,
+       "start": 160.975144568,
+       "type": "point"
+      },
+      {
+       "end": 161.024022353,
+       "start": 161.024022353,
+       "type": "point"
+      },
+      {
+       "end": 176.354186215,
+       "start": 176.354186215,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 150.143032701,
+       "start": 150.143032701,
+       "type": "point"
+      },
+      {
+       "end": 150.187604819,
+       "start": 150.187604819,
+       "type": "point"
+      },
+      {
+       "end": 167.07168164,
+       "start": 167.07168164,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 180.28647651,
+       "start": 180.28647651,
+       "type": "point"
+      },
+      {
+       "end": 300.28647651,
+       "start": 300.28647651,
+       "type": "point"
+      },
+      {
+       "end": 148.193569701,
+       "start": 148.193569701,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 152.16366968,
+       "start": 152.16366968,
+       "type": "point"
+      },
+      {
+       "end": 239.71352349,
+       "start": 239.71352349,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 6,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 180.28647651,
+       "start": 180.28647651,
+       "type": "point"
+      },
+      {
+       "end": 300.28647651,
+       "start": 300.28647651,
+       "type": "point"
+      },
+      {
+       "end": 141.902633159,
+       "start": 141.902633159,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 158.426943499,
+       "start": 158.426943499,
+       "type": "point"
+      },
+      {
+       "end": 239.71352349,
+       "start": 239.71352349,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 6,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 359.427047,
+     "components_deg": [
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      },
+      {
+       "end": 105.0,
+       "start": 105.0,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 8,
+     "n_point_components": 8,
+     "vertex": 0
+    },
+    {
+     "angle_display": 90.286477,
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 119.71352349,
+       "start": 119.71352349,
+       "type": "point"
+      },
+      {
+       "end": 149.834601791,
+       "start": 149.834601791,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 1
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 105.0,
+       "start": 105.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 2
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      },
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      },
+      {
+       "end": 29.878569412,
+       "start": 29.878569412,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 3
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 270.121430588,
+       "start": 270.121430588,
+       "type": "point"
+      },
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 4
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 5
+    },
+    {
+     "angle_display": 90.286477,
+     "components_deg": [
+      {
+       "end": 180.28647651,
+       "start": 180.28647651,
+       "type": "point"
+      },
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 150.165398209,
+       "start": 150.165398209,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 6
+    }
+   ]
+  },
+  "cstrip-h1_4": {
+   "convex": false,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 118.567903816,
+       "start": 118.567903816,
+       "type": "point"
+      },
+      {
+       "end": 358.567903816,
+       "start": 358.567903816,
+       "type": "point"
+      },
+      {
+       "end": 52.280715839,
+       "start": 52.280715839,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      },
+      {
+       "end": 61.432096184,
+       "start": 61.432096184,
+       "type": "point"
+      },
+      {
+       "end": 132.38286754,
+       "start": 132.38286754,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 166.25798129,
+       "start": 166.25798129,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 248.818003276,
+       "start": 248.818003276,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 11,
+     "n_point_components": 11,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 118.567903816,
+       "start": 118.567903816,
+       "type": "point"
+      },
+      {
+       "end": 358.567903816,
+       "start": 358.567903816,
+       "type": "point"
+      },
+      {
+       "end": 61.432096184,
+       "start": 61.432096184,
+       "type": "point"
+      },
+      {
+       "end": 140.909397209,
+       "start": 140.909397209,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 157.442776551,
+       "start": 157.442776551,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 138.575929611,
+       "start": 138.575929611,
+       "type": "point"
+      },
+      {
+       "end": 159.777737125,
+       "start": 159.777737125,
+       "type": "point"
+      },
+      {
+       "end": 159.876652588,
+       "start": 159.876652588,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 132.38286754,
+       "start": 132.38286754,
+       "type": "point"
+      },
+      {
+       "end": 149.061254343,
+       "start": 149.061254343,
+       "type": "point"
+      },
+      {
+       "end": 149.288970932,
+       "start": 149.288970932,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 70.893394649,
+       "start": 70.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 14.248799829,
+       "start": 14.248799829,
+       "type": "point"
+      },
+      {
+       "end": 15.684242833,
+       "start": 15.684242833,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 13.495378251,
+       "start": 13.495378251,
+       "type": "point"
+      },
+      {
+       "end": 14.290510303,
+       "start": 14.290510303,
+       "type": "point"
+      },
+      {
+       "end": 340.893394649,
+       "start": 340.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.189534591,
+       "start": 0.189534591,
+       "type": "point"
+      },
+      {
+       "end": 299.810465409,
+       "start": 299.810465409,
+       "type": "point"
+      },
+      {
+       "end": 300.194332898,
+       "start": 300.194332898,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      },
+      {
+       "end": 359.805667102,
+       "start": 359.805667102,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      },
+      {
+       "end": 231.634523641,
+       "start": 231.634523641,
+       "type": "point"
+      },
+      {
+       "end": 231.85037594,
+       "start": 231.85037594,
+       "type": "point"
+      },
+      {
+       "end": 250.893394649,
+       "start": 250.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 284.315757167,
+       "start": 284.315757167,
+       "type": "point"
+      },
+      {
+       "end": 285.751200171,
+       "start": 285.751200171,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 161.300127336,
+       "start": 161.300127336,
+       "type": "point"
+      },
+      {
+       "end": 161.542977452,
+       "start": 161.542977452,
+       "type": "point"
+      },
+      {
+       "end": 176.734768991,
+       "start": 176.734768991,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 150.711029068,
+       "start": 150.711029068,
+       "type": "point"
+      },
+      {
+       "end": 150.938745657,
+       "start": 150.938745657,
+       "type": "point"
+      },
+      {
+       "end": 167.61713246,
+       "start": 167.61713246,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 181.432096184,
+       "start": 181.432096184,
+       "type": "point"
+      },
+      {
+       "end": 301.432096184,
+       "start": 301.432096184,
+       "type": "point"
+      },
+      {
+       "end": 148.900928756,
+       "start": 148.900928756,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 152.88524718,
+       "start": 152.88524718,
+       "type": "point"
+      },
+      {
+       "end": 238.567903816,
+       "start": 238.567903816,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 6,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 181.432096184,
+       "start": 181.432096184,
+       "type": "point"
+      },
+      {
+       "end": 301.432096184,
+       "start": 301.432096184,
+       "type": "point"
+      },
+      {
+       "end": 142.557223449,
+       "start": 142.557223449,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 159.090602791,
+       "start": 159.090602791,
+       "type": "point"
+      },
+      {
+       "end": 238.567903816,
+       "start": 238.567903816,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 6,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 357.135808,
+     "components_deg": [
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      },
+      {
+       "end": 105.0,
+       "start": 105.0,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 8,
+     "n_point_components": 8,
+     "vertex": 0
+    },
+    {
+     "angle_display": 91.432096,
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 118.567903816,
+       "start": 118.567903816,
+       "type": "point"
+      },
+      {
+       "end": 149.17306408,
+       "start": 149.17306408,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 1
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 105.0,
+       "start": 105.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 2
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      },
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      },
+      {
+       "end": 29.385756203,
+       "start": 29.385756203,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 3
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 270.614243797,
+       "start": 270.614243797,
+       "type": "point"
+      },
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 4
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 5
+    },
+    {
+     "angle_display": 91.432096,
+     "components_deg": [
+      {
+       "end": 181.432096184,
+       "start": 181.432096184,
+       "type": "point"
+      },
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 150.82693592,
+       "start": 150.82693592,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 6
+    }
+   ]
+  },
+  "ctl-30-30-120": {
+   "convex": true,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 90.0,
+       "start": 30.0,
+       "type": "arc"
+      },
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 1,
+     "n_components": 3,
+     "n_point_components": 2,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 310.893394649,
+       "start": 310.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 2,
+   "vertices": [
+    {
+     "angle_display": 30.0,
+     "components_deg": [],
+     "critical": false,
+     "good": false,
+     "n_arc_components": 0,
+     "n_components": 0,
+     "n_point_components": 0,
+     "vertex": 0
+    },
+    {
+     "angle_display": 30.0,
+     "components_deg": [],
+     "critical": false,
+     "good": false,
+     "n_arc_components": 0,
+     "n_components": 0,
+     "n_point_components": 0,
+     "vertex": 1
+    },
+    {
+     "angle_display": 120.0,
+     "components_deg": [
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 2
+    }
+   ]
+  },
+  "ctl-equilateral": {
+   "convex": true,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 60.0,
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 0
+    },
+    {
+     "angle_display": 60.0,
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 1
+    },
+    {
+     "angle_display": 60.0,
+     "components_deg": [
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 2
+    }
+   ]
+  },
+  "ctl-square": {
+   "convex": true,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 49.106605351,
+       "start": 49.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 139.106605351,
+       "start": 139.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 229.106605351,
+       "start": 229.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 319.106605351,
+       "start": 319.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 0
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 105.0,
+       "start": 105.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 1
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 2
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 3
+    }
+   ]
+  },
+  "ell": {
+   "convex": false,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      },
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 53.793976887,
+       "start": 53.793976887,
+       "type": "point"
+      },
+      {
+       "end": 109.106605351,
+       "start": 109.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 139.106605351,
+       "start": 139.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 124.715003954,
+       "start": 124.715003954,
+       "type": "point"
+      },
+      {
+       "end": 166.93568657,
+       "start": 166.93568657,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 248.2619662,
+       "start": 248.2619662,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 238.01524628,
+       "start": 238.01524628,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      },
+      {
+       "end": 276.586775554,
+       "start": 276.586775554,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 105.0,
+       "start": 105.0,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 229.106605351,
+       "start": 229.106605351,
+       "type": "point"
+      },
+      {
+       "end": 256.813214568,
+       "start": 256.813214568,
+       "type": "point"
+      },
+      {
+       "end": 259.106605351,
+       "start": 259.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      },
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      },
+      {
+       "end": 280.893394649,
+       "start": 280.893394649,
+       "type": "point"
+      },
+      {
+       "end": 336.206023113,
+       "start": 336.206023113,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      },
+      {
+       "end": 10.893394649,
+       "start": 10.893394649,
+       "type": "point"
+      },
+      {
+       "end": 15.0,
+       "start": 15.0,
+       "type": "point"
+      },
+      {
+       "end": 19.106605351,
+       "start": 19.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 0
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 1
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 139.106605351,
+       "start": 139.106605351,
+       "type": "point"
+      },
+      {
+       "end": 143.793976887,
+       "start": 143.793976887,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 2
+    },
+    {
+     "angle_display": 270.0,
+     "components_deg": [
+      {
+       "end": 90.0,
+       "start": 90.0,
+       "type": "point"
+      },
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      },
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 3
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 246.206023113,
+       "start": 246.206023113,
+       "type": "point"
+      },
+      {
+       "end": 250.893394649,
+       "start": 250.893394649,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 4
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 5
+    }
+   ]
+  },
+  "rect-10x1": {
+   "convex": true,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      },
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 60.0,
+       "start": 60.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 139.106605351,
+       "start": 139.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      },
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      },
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 319.106605351,
+       "start": 319.106605351,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 0.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 0
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 1
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 180.0,
+       "start": 180.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 2
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 300.0,
+       "start": 300.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 3
+    }
+   ]
+  },
+  "rotated-pair": {
+   "convex": false,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 315.0,
+       "start": 315.0,
+       "type": "point"
+      },
+      {
+       "end": 30.0,
+       "start": 30.0,
+       "type": "point"
+      },
+      {
+       "end": 327.626340873,
+       "start": 327.626340873,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 45.0,
+       "start": 45.0,
+       "type": "point"
+      },
+      {
+       "end": 315.0,
+       "start": 315.0,
+       "type": "point"
+      },
+      {
+       "end": 330.0,
+       "start": 330.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 86.309932474,
+       "start": 86.309932474,
+       "type": "point"
+      },
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 93.434948823,
+       "start": 93.434948823,
+       "type": "point"
+      },
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 150.0,
+       "start": 150.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      },
+      {
+       "end": 202.630740212,
+       "start": 202.630740212,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 165.0,
+       "start": 165.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      },
+      {
+       "end": 200.103909361,
+       "start": 200.103909361,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 206.309932474,
+       "start": 206.309932474,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 213.434948823,
+       "start": 213.434948823,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 270.0,
+       "start": 270.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 285.0,
+       "start": 285.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 105.0,
+     "components_deg": [
+      {
+       "end": 0.0,
+       "start": 315.0,
+       "type": "arc"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 1,
+     "n_components": 1,
+     "n_point_components": 0,
+     "vertex": 0
+    },
+    {
+     "angle_display": 45.0,
+     "components_deg": [
+      {
+       "end": 75.0,
+       "start": 75.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 1
+    },
+    {
+     "angle_display": 225.0,
+     "components_deg": [
+      {
+       "end": 120.0,
+       "start": 120.0,
+       "type": "point"
+      },
+      {
+       "end": 210.0,
+       "start": 210.0,
+       "type": "point"
+      },
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 3,
+     "n_point_components": 3,
+     "vertex": 2
+    },
+    {
+     "angle_display": 75.0,
+     "components_deg": [
+      {
+       "end": 195.0,
+       "start": 195.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 3
+    },
+    {
+     "angle_display": 90.0,
+     "components_deg": [
+      {
+       "end": 240.0,
+       "start": 240.0,
+       "type": "point"
+      }
+     ],
+     "critical": true,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 1,
+     "n_point_components": 1,
+     "vertex": 4
+    }
+   ]
+  },
+  "star3-thin": {
+   "convex": false,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 2.350265857,
+       "start": 2.350265857,
+       "type": "point"
+      },
+      {
+       "end": 122.350265857,
+       "start": 122.350265857,
+       "type": "point"
+      },
+      {
+       "end": 61.128821449,
+       "start": 61.128821449,
+       "type": "point"
+      },
+      {
+       "end": 156.616538796,
+       "start": 156.616538796,
+       "type": "point"
+      },
+      {
+       "end": 157.412006166,
+       "start": 157.412006166,
+       "type": "point"
+      },
+      {
+       "end": 157.484142223,
+       "start": 157.484142223,
+       "type": "point"
+      },
+      {
+       "end": 158.28034602,
+       "start": 158.28034602,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 2.350265857,
+       "start": 2.350265857,
+       "type": "point"
+      },
+      {
+       "end": 122.350265857,
+       "start": 122.350265857,
+       "type": "point"
+      },
+      {
+       "end": 61.128821449,
+       "start": 61.128821449,
+       "type": "point"
+      },
+      {
+       "end": 156.662985532,
+       "start": 156.662985532,
+       "type": "point"
+      },
+      {
+       "end": 157.052911897,
+       "start": 157.052911897,
+       "type": "point"
+      },
+      {
+       "end": 157.128150825,
+       "start": 157.128150825,
+       "type": "point"
+      },
+      {
+       "end": 157.517716718,
+       "start": 157.517716718,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 181.128821449,
+       "start": 181.128821449,
+       "type": "point"
+      },
+      {
+       "end": 301.128821449,
+       "start": 301.128821449,
+       "type": "point"
+      },
+      {
+       "end": 156.895939473,
+       "start": 156.895939473,
+       "type": "point"
+      },
+      {
+       "end": 157.095442922,
+       "start": 157.095442922,
+       "type": "point"
+      },
+      {
+       "end": 157.15729848,
+       "start": 157.15729848,
+       "type": "point"
+      },
+      {
+       "end": 157.355866245,
+       "start": 157.355866245,
+       "type": "point"
+      },
+      {
+       "end": 242.350265857,
+       "start": 242.350265857,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 181.128821449,
+       "start": 181.128821449,
+       "type": "point"
+      },
+      {
+       "end": 301.128821449,
+       "start": 301.128821449,
+       "type": "point"
+      },
+      {
+       "end": 157.082407322,
+       "start": 157.082407322,
+       "type": "point"
+      },
+      {
+       "end": 157.516099813,
+       "start": 157.516099813,
+       "type": "point"
+      },
+      {
+       "end": 157.568653126,
+       "start": 157.568653126,
+       "type": "point"
+      },
+      {
+       "end": 158.001859466,
+       "start": 158.001859466,
+       "type": "point"
+      },
+      {
+       "end": 242.350265857,
+       "start": 242.350265857,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 128.972580142,
+       "start": 128.972580142,
+       "type": "point"
+      },
+      {
+       "end": 248.972580142,
+       "start": 248.972580142,
+       "type": "point"
+      },
+      {
+       "end": 187.675758295,
+       "start": 187.675758295,
+       "type": "point"
+      },
+      {
+       "end": 276.62749797,
+       "start": 276.62749797,
+       "type": "point"
+      },
+      {
+       "end": 277.279875622,
+       "start": 277.279875622,
+       "type": "point"
+      },
+      {
+       "end": 277.328978955,
+       "start": 277.328978955,
+       "type": "point"
+      },
+      {
+       "end": 277.975695527,
+       "start": 277.975695527,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 128.972580142,
+       "start": 128.972580142,
+       "type": "point"
+      },
+      {
+       "end": 248.972580142,
+       "start": 248.972580142,
+       "type": "point"
+      },
+      {
+       "end": 187.675758295,
+       "start": 187.675758295,
+       "type": "point"
+      },
+      {
+       "end": 276.670431169,
+       "start": 276.670431169,
+       "type": "point"
+      },
+      {
+       "end": 276.981235676,
+       "start": 276.981235676,
+       "type": "point"
+      },
+      {
+       "end": 277.010829312,
+       "start": 277.010829312,
+       "type": "point"
+      },
+      {
+       "end": 277.320349715,
+       "start": 277.320349715,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 67.675758295,
+       "start": 67.675758295,
+       "type": "point"
+      },
+      {
+       "end": 307.675758295,
+       "start": 307.675758295,
+       "type": "point"
+      },
+      {
+       "end": 8.972580142,
+       "start": 8.972580142,
+       "type": "point"
+      },
+      {
+       "end": 276.91012891,
+       "start": 276.91012891,
+       "type": "point"
+      },
+      {
+       "end": 277.048138742,
+       "start": 277.048138742,
+       "type": "point"
+      },
+      {
+       "end": 277.081036796,
+       "start": 277.081036796,
+       "type": "point"
+      },
+      {
+       "end": 277.219078369,
+       "start": 277.219078369,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 67.675758295,
+       "start": 67.675758295,
+       "type": "point"
+      },
+      {
+       "end": 307.675758295,
+       "start": 307.675758295,
+       "type": "point"
+      },
+      {
+       "end": 8.972580142,
+       "start": 8.972580142,
+       "type": "point"
+      },
+      {
+       "end": 277.107256004,
+       "start": 277.107256004,
+       "type": "point"
+      },
+      {
+       "end": 277.436459252,
+       "start": 277.436459252,
+       "type": "point"
+      },
+      {
+       "end": 277.488039978,
+       "start": 277.488039978,
+       "type": "point"
+      },
+      {
+       "end": 277.815503359,
+       "start": 277.815503359,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 8.992480024,
+       "start": 8.992480024,
+       "type": "point"
+      },
+      {
+       "end": 248.992480024,
+       "start": 248.992480024,
+       "type": "point"
+      },
+      {
+       "end": 36.607877029,
+       "start": 36.607877029,
+       "type": "point"
+      },
+      {
+       "end": 37.42063989,
+       "start": 37.42063989,
+       "type": "point"
+      },
+      {
+       "end": 37.61417456,
+       "start": 37.61417456,
+       "type": "point"
+      },
+      {
+       "end": 38.420443729,
+       "start": 38.420443729,
+       "type": "point"
+      },
+      {
+       "end": 307.627482392,
+       "start": 307.627482392,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 8.992480024,
+       "start": 8.992480024,
+       "type": "point"
+      },
+      {
+       "end": 248.992480024,
+       "start": 248.992480024,
+       "type": "point"
+      },
+      {
+       "end": 36.657053877,
+       "start": 36.657053877,
+       "type": "point"
+      },
+      {
+       "end": 37.088985004,
+       "start": 37.088985004,
+       "type": "point"
+      },
+      {
+       "end": 37.198012354,
+       "start": 37.198012354,
+       "type": "point"
+      },
+      {
+       "end": 37.628257593,
+       "start": 37.628257593,
+       "type": "point"
+      },
+      {
+       "end": 307.627482392,
+       "start": 307.627482392,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 67.627482392,
+       "start": 67.627482392,
+       "type": "point"
+      },
+      {
+       "end": 187.627482392,
+       "start": 187.627482392,
+       "type": "point"
+      },
+      {
+       "end": 36.910529302,
+       "start": 36.910529302,
+       "type": "point"
+      },
+      {
+       "end": 37.148808744,
+       "start": 37.148808744,
+       "type": "point"
+      },
+      {
+       "end": 37.232712276,
+       "start": 37.232712276,
+       "type": "point"
+      },
+      {
+       "end": 37.470733762,
+       "start": 37.470733762,
+       "type": "point"
+      },
+      {
+       "end": 128.992480024,
+       "start": 128.992480024,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 67.627482392,
+       "start": 67.627482392,
+       "type": "point"
+      },
+      {
+       "end": 187.627482392,
+       "start": 187.627482392,
+       "type": "point"
+      },
+      {
+       "end": 37.114459352,
+       "start": 37.114459352,
+       "type": "point"
+      },
+      {
+       "end": 37.563870476,
+       "start": 37.563870476,
+       "type": "point"
+      },
+      {
+       "end": 37.705017519,
+       "start": 37.705017519,
+       "type": "point"
+      },
+      {
+       "end": 38.152243852,
+       "start": 38.152243852,
+       "type": "point"
+      },
+      {
+       "end": 128.992480024,
+       "start": 128.992480024,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 2,
+   "vertices": [
+    {
+     "angle_display": 245.277217,
+     "components_deg": [
+      {
+       "end": 2.350265857,
+       "start": 2.350265857,
+       "type": "point"
+      },
+      {
+       "end": 187.627482392,
+       "start": 187.627482392,
+       "type": "point"
+      },
+      {
+       "end": 61.128821449,
+       "start": 61.128821449,
+       "type": "point"
+      },
+      {
+       "end": 151.281891856,
+       "start": 151.281891856,
+       "type": "point"
+      },
+      {
+       "end": 167.30752791,
+       "start": 167.30752791,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 0
+    },
+    {
+     "angle_display": 1.221444,
+     "components_deg": [],
+     "critical": false,
+     "good": false,
+     "n_arc_components": 0,
+     "n_components": 0,
+     "n_point_components": 0,
+     "vertex": 1
+    },
+    {
+     "angle_display": 232.156241,
+     "components_deg": [
+      {
+       "end": 128.972580142,
+       "start": 128.972580142,
+       "type": "point"
+      },
+      {
+       "end": 301.128821449,
+       "start": 301.128821449,
+       "type": "point"
+      },
+      {
+       "end": 187.675758295,
+       "start": 187.675758295,
+       "type": "point"
+      },
+      {
+       "end": 274.882033717,
+       "start": 274.882033717,
+       "type": "point"
+      },
+      {
+       "end": 285.168193219,
+       "start": 285.168193219,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 2
+    },
+    {
+     "angle_display": 1.296822,
+     "components_deg": [],
+     "critical": false,
+     "good": false,
+     "n_arc_components": 0,
+     "n_components": 0,
+     "n_point_components": 0,
+     "vertex": 3
+    },
+    {
+     "angle_display": 238.683278,
+     "components_deg": [
+      {
+       "end": 67.675758295,
+       "start": 67.675758295,
+       "type": "point"
+      },
+      {
+       "end": 248.992480024,
+       "start": 248.992480024,
+       "type": "point"
+      },
+      {
+       "end": 32.419521119,
+       "start": 32.419521119,
+       "type": "point"
+      },
+      {
+       "end": 46.70559679,
+       "start": 46.70559679,
+       "type": "point"
+      },
+      {
+       "end": 307.627482392,
+       "start": 307.627482392,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 4
+    },
+    {
+     "angle_display": 1.364998,
+     "components_deg": [
+      {
+       "end": 36.708685137,
+       "start": 36.708685137,
+       "type": "point"
+      },
+      {
+       "end": 36.733007729,
+       "start": 36.733007729,
+       "type": "point"
+      },
+      {
+       "end": 36.771318014,
+       "start": 36.771318014,
+       "type": "point"
+      },
+      {
+       "end": 36.796303389,
+       "start": 36.796303389,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 4,
+     "n_point_components": 4,
+     "vertex": 5
+    }
+   ]
+  },
+  "star6": {
+   "convex": false,
+   "edge_points": [
+    {
+     "components_deg": [
+      {
+       "end": 26.660863428,
+       "start": 26.660863428,
+       "type": "point"
+      },
+      {
+       "end": 63.266403565,
+       "start": 63.266403565,
+       "type": "point"
+      },
+      {
+       "end": 164.655655572,
+       "start": 164.655655572,
+       "type": "point"
+      },
+      {
+       "end": 170.775249038,
+       "start": 170.775249038,
+       "type": "point"
+      },
+      {
+       "end": 175.301713081,
+       "start": 175.301713081,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 26.660863428,
+       "start": 26.660863428,
+       "type": "point"
+      },
+      {
+       "end": 146.660863428,
+       "start": 146.660863428,
+       "type": "point"
+      },
+      {
+       "end": 63.266403565,
+       "start": 63.266403565,
+       "type": "point"
+      },
+      {
+       "end": 159.204710612,
+       "start": 159.204710612,
+       "type": "point"
+      },
+      {
+       "end": 167.047620718,
+       "start": 167.047620718,
+       "type": "point"
+      },
+      {
+       "end": 167.457190087,
+       "start": 167.457190087,
+       "type": "point"
+      },
+      {
+       "end": 170.557983881,
+       "start": 170.557983881,
+       "type": "point"
+      },
+      {
+       "end": 170.703917647,
+       "start": 170.703917647,
+       "type": "point"
+      },
+      {
+       "end": 173.257892535,
+       "start": 173.257892535,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 0,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 183.266403565,
+       "start": 183.266403565,
+       "type": "point"
+      },
+      {
+       "end": 303.266403565,
+       "start": 303.266403565,
+       "type": "point"
+      },
+      {
+       "end": 168.792106378,
+       "start": 168.792106378,
+       "type": "point"
+      },
+      {
+       "end": 171.389748665,
+       "start": 171.389748665,
+       "type": "point"
+      },
+      {
+       "end": 172.898777385,
+       "start": 172.898777385,
+       "type": "point"
+      },
+      {
+       "end": 174.291559258,
+       "start": 174.291559258,
+       "type": "point"
+      },
+      {
+       "end": 175.383290172,
+       "start": 175.383290172,
+       "type": "point"
+      },
+      {
+       "end": 266.660863428,
+       "start": 266.660863428,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 8,
+     "n_point_components": 8,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 183.266403565,
+       "start": 183.266403565,
+       "type": "point"
+      },
+      {
+       "end": 303.266403565,
+       "start": 303.266403565,
+       "type": "point"
+      },
+      {
+       "end": 121.376602836,
+       "start": 121.376602836,
+       "type": "point"
+      },
+      {
+       "end": 124.146661029,
+       "start": 124.146661029,
+       "type": "point"
+      },
+      {
+       "end": 171.926332611,
+       "start": 171.926332611,
+       "type": "point"
+      },
+      {
+       "end": 174.657047101,
+       "start": 174.657047101,
+       "type": "point"
+      },
+      {
+       "end": 177.270154229,
+       "start": 177.270154229,
+       "type": "point"
+      },
+      {
+       "end": 178.741356278,
+       "start": 178.741356278,
+       "type": "point"
+      },
+      {
+       "end": 179.917982292,
+       "start": 179.917982292,
+       "type": "point"
+      },
+      {
+       "end": 266.660863428,
+       "start": 266.660863428,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 1,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 10,
+     "n_point_components": 10,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 84.749343653,
+       "start": 84.749343653,
+       "type": "point"
+      },
+      {
+       "end": 124.146661029,
+       "start": 124.146661029,
+       "type": "point"
+      },
+      {
+       "end": 224.031798162,
+       "start": 224.031798162,
+       "type": "point"
+      },
+      {
+       "end": 232.108647587,
+       "start": 232.108647587,
+       "type": "point"
+      },
+      {
+       "end": 237.518246023,
+       "start": 237.518246023,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 84.749343653,
+       "start": 84.749343653,
+       "type": "point"
+      },
+      {
+       "end": 204.749343653,
+       "start": 204.749343653,
+       "type": "point"
+      },
+      {
+       "end": 124.146661029,
+       "start": 124.146661029,
+       "type": "point"
+      },
+      {
+       "end": 223.66119153,
+       "start": 223.66119153,
+       "type": "point"
+      },
+      {
+       "end": 226.42815397,
+       "start": 226.42815397,
+       "type": "point"
+      },
+      {
+       "end": 227.47370408,
+       "start": 227.47370408,
+       "type": "point"
+      },
+      {
+       "end": 230.873709643,
+       "start": 230.873709643,
+       "type": "point"
+      },
+      {
+       "end": 231.666929172,
+       "start": 231.666929172,
+       "type": "point"
+      },
+      {
+       "end": 235.142745064,
+       "start": 235.142745064,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 2,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 4.146661029,
+       "start": 4.146661029,
+       "type": "point"
+      },
+      {
+       "end": 244.146661029,
+       "start": 244.146661029,
+       "type": "point"
+      },
+      {
+       "end": 230.38234232,
+       "start": 230.38234232,
+       "type": "point"
+      },
+      {
+       "end": 232.664332308,
+       "start": 232.664332308,
+       "type": "point"
+      },
+      {
+       "end": 233.108592621,
+       "start": 233.108592621,
+       "type": "point"
+      },
+      {
+       "end": 234.262141923,
+       "start": 234.262141923,
+       "type": "point"
+      },
+      {
+       "end": 236.531215814,
+       "start": 236.531215814,
+       "type": "point"
+      },
+      {
+       "end": 324.749343653,
+       "start": 324.749343653,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 8,
+     "n_point_components": 8,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 4.146661029,
+       "start": 4.146661029,
+       "type": "point"
+      },
+      {
+       "end": 244.146661029,
+       "start": 244.146661029,
+       "type": "point"
+      },
+      {
+       "end": 230.50605983,
+       "start": 230.50605983,
+       "type": "point"
+      },
+      {
+       "end": 234.791245427,
+       "start": 234.791245427,
+       "type": "point"
+      },
+      {
+       "end": 238.042286848,
+       "start": 238.042286848,
+       "type": "point"
+      },
+      {
+       "end": 240.904477087,
+       "start": 240.904477087,
+       "type": "point"
+      },
+      {
+       "end": 243.562957303,
+       "start": 243.562957303,
+       "type": "point"
+      },
+      {
+       "end": 279.302127903,
+       "start": 279.302127903,
+       "type": "point"
+      },
+      {
+       "end": 280.820988194,
+       "start": 280.820988194,
+       "type": "point"
+      },
+      {
+       "end": 324.749343653,
+       "start": 324.749343653,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 3,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 10,
+     "n_point_components": 10,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 149.858614448,
+       "start": 149.858614448,
+       "type": "point"
+      },
+      {
+       "end": 189.805571092,
+       "start": 189.805571092,
+       "type": "point"
+      },
+      {
+       "end": 285.021248469,
+       "start": 285.021248469,
+       "type": "point"
+      },
+      {
+       "end": 290.474252525,
+       "start": 290.474252525,
+       "type": "point"
+      },
+      {
+       "end": 296.677674297,
+       "start": 296.677674297,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 149.858614448,
+       "start": 149.858614448,
+       "type": "point"
+      },
+      {
+       "end": 269.858614448,
+       "start": 269.858614448,
+       "type": "point"
+      },
+      {
+       "end": 189.805571092,
+       "start": 189.805571092,
+       "type": "point"
+      },
+      {
+       "end": 287.138330938,
+       "start": 287.138330938,
+       "type": "point"
+      },
+      {
+       "end": 289.534056399,
+       "start": 289.534056399,
+       "type": "point"
+      },
+      {
+       "end": 290.381975922,
+       "start": 290.381975922,
+       "type": "point"
+      },
+      {
+       "end": 290.544967977,
+       "start": 290.544967977,
+       "type": "point"
+      },
+      {
+       "end": 292.404908429,
+       "start": 292.404908429,
+       "type": "point"
+      },
+      {
+       "end": 294.454210897,
+       "start": 294.454210897,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 4,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 69.805571092,
+       "start": 69.805571092,
+       "type": "point"
+      },
+      {
+       "end": 309.805571092,
+       "start": 309.805571092,
+       "type": "point"
+      },
+      {
+       "end": 29.858614448,
+       "start": 29.858614448,
+       "type": "point"
+      },
+      {
+       "end": 290.678661082,
+       "start": 290.678661082,
+       "type": "point"
+      },
+      {
+       "end": 291.976058794,
+       "start": 291.976058794,
+       "type": "point"
+      },
+      {
+       "end": 293.908094594,
+       "start": 293.908094594,
+       "type": "point"
+      },
+      {
+       "end": 294.52689141,
+       "start": 294.52689141,
+       "type": "point"
+      },
+      {
+       "end": 294.973328874,
+       "start": 294.973328874,
+       "type": "point"
+      },
+      {
+       "end": 295.880325521,
+       "start": 295.880325521,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 69.805571092,
+       "start": 69.805571092,
+       "type": "point"
+      },
+      {
+       "end": 309.805571092,
+       "start": 309.805571092,
+       "type": "point"
+      },
+      {
+       "end": 29.858614448,
+       "start": 29.858614448,
+       "type": "point"
+      },
+      {
+       "end": 240.805671807,
+       "start": 240.805671807,
+       "type": "point"
+      },
+      {
+       "end": 243.266403565,
+       "start": 243.266403565,
+       "type": "point"
+      },
+      {
+       "end": 290.754601525,
+       "start": 290.754601525,
+       "type": "point"
+      },
+      {
+       "end": 293.271639191,
+       "start": 293.271639191,
+       "type": "point"
+      },
+      {
+       "end": 293.581078532,
+       "start": 293.581078532,
+       "type": "point"
+      },
+      {
+       "end": 298.925732158,
+       "start": 298.925732158,
+       "type": "point"
+      },
+      {
+       "end": 299.195056586,
+       "start": 299.195056586,
+       "type": "point"
+      },
+      {
+       "end": 300.025039338,
+       "start": 300.025039338,
+       "type": "point"
+      },
+      {
+       "end": 339.37717652,
+       "start": 339.37717652,
+       "type": "point"
+      },
+      {
+       "end": 340.744304152,
+       "start": 340.744304152,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 5,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 13,
+     "n_point_components": 13,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 206.660863428,
+       "start": 206.660863428,
+       "type": "point"
+      },
+      {
+       "end": 243.266403565,
+       "start": 243.266403565,
+       "type": "point"
+      },
+      {
+       "end": 344.655655572,
+       "start": 344.655655572,
+       "type": "point"
+      },
+      {
+       "end": 350.775249038,
+       "start": 350.775249038,
+       "type": "point"
+      },
+      {
+       "end": 355.301713081,
+       "start": 355.301713081,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 6,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 206.660863428,
+       "start": 206.660863428,
+       "type": "point"
+      },
+      {
+       "end": 326.660863428,
+       "start": 326.660863428,
+       "type": "point"
+      },
+      {
+       "end": 243.266403565,
+       "start": 243.266403565,
+       "type": "point"
+      },
+      {
+       "end": 339.204710612,
+       "start": 339.204710612,
+       "type": "point"
+      },
+      {
+       "end": 347.047620718,
+       "start": 347.047620718,
+       "type": "point"
+      },
+      {
+       "end": 347.457190087,
+       "start": 347.457190087,
+       "type": "point"
+      },
+      {
+       "end": 350.557983881,
+       "start": 350.557983881,
+       "type": "point"
+      },
+      {
+       "end": 350.703917647,
+       "start": 350.703917647,
+       "type": "point"
+      },
+      {
+       "end": 353.257892535,
+       "start": 353.257892535,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 6,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 3.266403565,
+       "start": 3.266403565,
+       "type": "point"
+      },
+      {
+       "end": 123.266403565,
+       "start": 123.266403565,
+       "type": "point"
+      },
+      {
+       "end": 86.660863428,
+       "start": 86.660863428,
+       "type": "point"
+      },
+      {
+       "end": 348.792106378,
+       "start": 348.792106378,
+       "type": "point"
+      },
+      {
+       "end": 351.389748665,
+       "start": 351.389748665,
+       "type": "point"
+      },
+      {
+       "end": 352.898777385,
+       "start": 352.898777385,
+       "type": "point"
+      },
+      {
+       "end": 354.291559258,
+       "start": 354.291559258,
+       "type": "point"
+      },
+      {
+       "end": 355.383290172,
+       "start": 355.383290172,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 7,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 8,
+     "n_point_components": 8,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 3.266403565,
+       "start": 3.266403565,
+       "type": "point"
+      },
+      {
+       "end": 123.266403565,
+       "start": 123.266403565,
+       "type": "point"
+      },
+      {
+       "end": 86.660863428,
+       "start": 86.660863428,
+       "type": "point"
+      },
+      {
+       "end": 301.376602836,
+       "start": 301.376602836,
+       "type": "point"
+      },
+      {
+       "end": 304.146661029,
+       "start": 304.146661029,
+       "type": "point"
+      },
+      {
+       "end": 351.926332611,
+       "start": 351.926332611,
+       "type": "point"
+      },
+      {
+       "end": 354.657047101,
+       "start": 354.657047101,
+       "type": "point"
+      },
+      {
+       "end": 357.270154229,
+       "start": 357.270154229,
+       "type": "point"
+      },
+      {
+       "end": 358.741356278,
+       "start": 358.741356278,
+       "type": "point"
+      },
+      {
+       "end": 359.917982292,
+       "start": 359.917982292,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 7,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 10,
+     "n_point_components": 10,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 264.749343653,
+       "start": 264.749343653,
+       "type": "point"
+      },
+      {
+       "end": 44.031798162,
+       "start": 44.031798162,
+       "type": "point"
+      },
+      {
+       "end": 52.108647587,
+       "start": 52.108647587,
+       "type": "point"
+      },
+      {
+       "end": 57.518246023,
+       "start": 57.518246023,
+       "type": "point"
+      },
+      {
+       "end": 304.146661029,
+       "start": 304.146661029,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 8,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 24.749343653,
+       "start": 24.749343653,
+       "type": "point"
+      },
+      {
+       "end": 264.749343653,
+       "start": 264.749343653,
+       "type": "point"
+      },
+      {
+       "end": 43.66119153,
+       "start": 43.66119153,
+       "type": "point"
+      },
+      {
+       "end": 46.42815397,
+       "start": 46.42815397,
+       "type": "point"
+      },
+      {
+       "end": 47.47370408,
+       "start": 47.47370408,
+       "type": "point"
+      },
+      {
+       "end": 50.873709643,
+       "start": 50.873709643,
+       "type": "point"
+      },
+      {
+       "end": 51.666929172,
+       "start": 51.666929172,
+       "type": "point"
+      },
+      {
+       "end": 55.142745064,
+       "start": 55.142745064,
+       "type": "point"
+      },
+      {
+       "end": 304.146661029,
+       "start": 304.146661029,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 8,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 64.146661029,
+       "start": 64.146661029,
+       "type": "point"
+      },
+      {
+       "end": 184.146661029,
+       "start": 184.146661029,
+       "type": "point"
+      },
+      {
+       "end": 50.38234232,
+       "start": 50.38234232,
+       "type": "point"
+      },
+      {
+       "end": 52.664332308,
+       "start": 52.664332308,
+       "type": "point"
+      },
+      {
+       "end": 53.108592621,
+       "start": 53.108592621,
+       "type": "point"
+      },
+      {
+       "end": 54.262141923,
+       "start": 54.262141923,
+       "type": "point"
+      },
+      {
+       "end": 56.531215814,
+       "start": 56.531215814,
+       "type": "point"
+      },
+      {
+       "end": 144.749343653,
+       "start": 144.749343653,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 9,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 8,
+     "n_point_components": 8,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 64.146661029,
+       "start": 64.146661029,
+       "type": "point"
+      },
+      {
+       "end": 184.146661029,
+       "start": 184.146661029,
+       "type": "point"
+      },
+      {
+       "end": 50.50605983,
+       "start": 50.50605983,
+       "type": "point"
+      },
+      {
+       "end": 54.791245427,
+       "start": 54.791245427,
+       "type": "point"
+      },
+      {
+       "end": 58.042286848,
+       "start": 58.042286848,
+       "type": "point"
+      },
+      {
+       "end": 60.904477087,
+       "start": 60.904477087,
+       "type": "point"
+      },
+      {
+       "end": 63.562957303,
+       "start": 63.562957303,
+       "type": "point"
+      },
+      {
+       "end": 99.302127903,
+       "start": 99.302127903,
+       "type": "point"
+      },
+      {
+       "end": 100.820988194,
+       "start": 100.820988194,
+       "type": "point"
+      },
+      {
+       "end": 144.749343653,
+       "start": 144.749343653,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 9,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 10,
+     "n_point_components": 10,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 329.858614448,
+       "start": 329.858614448,
+       "type": "point"
+      },
+      {
+       "end": 9.805571092,
+       "start": 9.805571092,
+       "type": "point"
+      },
+      {
+       "end": 105.021248469,
+       "start": 105.021248469,
+       "type": "point"
+      },
+      {
+       "end": 110.474252525,
+       "start": 110.474252525,
+       "type": "point"
+      },
+      {
+       "end": 116.677674297,
+       "start": 116.677674297,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 10,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 89.858614448,
+       "start": 89.858614448,
+       "type": "point"
+      },
+      {
+       "end": 329.858614448,
+       "start": 329.858614448,
+       "type": "point"
+      },
+      {
+       "end": 9.805571092,
+       "start": 9.805571092,
+       "type": "point"
+      },
+      {
+       "end": 107.138330938,
+       "start": 107.138330938,
+       "type": "point"
+      },
+      {
+       "end": 109.534056399,
+       "start": 109.534056399,
+       "type": "point"
+      },
+      {
+       "end": 110.381975922,
+       "start": 110.381975922,
+       "type": "point"
+      },
+      {
+       "end": 110.544967977,
+       "start": 110.544967977,
+       "type": "point"
+      },
+      {
+       "end": 112.404908429,
+       "start": 112.404908429,
+       "type": "point"
+      },
+      {
+       "end": 114.454210897,
+       "start": 114.454210897,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 10,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/2"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 129.805571092,
+       "start": 129.805571092,
+       "type": "point"
+      },
+      {
+       "end": 249.805571092,
+       "start": 249.805571092,
+       "type": "point"
+      },
+      {
+       "end": 110.678661082,
+       "start": 110.678661082,
+       "type": "point"
+      },
+      {
+       "end": 111.976058794,
+       "start": 111.976058794,
+       "type": "point"
+      },
+      {
+       "end": 113.908094594,
+       "start": 113.908094594,
+       "type": "point"
+      },
+      {
+       "end": 114.52689141,
+       "start": 114.52689141,
+       "type": "point"
+      },
+      {
+       "end": 114.973328874,
+       "start": 114.973328874,
+       "type": "point"
+      },
+      {
+       "end": 115.880325521,
+       "start": 115.880325521,
+       "type": "point"
+      },
+      {
+       "end": 209.858614448,
+       "start": 209.858614448,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 11,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "t": "1/3"
+    },
+    {
+     "components_deg": [
+      {
+       "end": 129.805571092,
+       "start": 129.805571092,
+       "type": "point"
+      },
+      {
+       "end": 249.805571092,
+       "start": 249.805571092,
+       "type": "point"
+      },
+      {
+       "end": 60.805671807,
+       "start": 60.805671807,
+       "type": "point"
+      },
+      {
+       "end": 63.266403565,
+       "start": 63.266403565,
+       "type": "point"
+      },
+      {
+       "end": 110.754601525,
+       "start": 110.754601525,
+       "type": "point"
+      },
+      {
+       "end": 113.271639191,
+       "start": 113.271639191,
+       "type": "point"
+      },
+      {
+       "end": 113.581078532,
+       "start": 113.581078532,
+       "type": "point"
+      },
+      {
+       "end": 118.925732158,
+       "start": 118.925732158,
+       "type": "point"
+      },
+      {
+       "end": 119.195056586,
+       "start": 119.195056586,
+       "type": "point"
+      },
+      {
+       "end": 120.025039338,
+       "start": 120.025039338,
+       "type": "point"
+      },
+      {
+       "end": 159.37717652,
+       "start": 159.37717652,
+       "type": "point"
+      },
+      {
+       "end": 160.744304152,
+       "start": 160.744304152,
+       "type": "point"
+      },
+      {
+       "end": 209.858614448,
+       "start": 209.858614448,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "edge": 11,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 13,
+     "n_point_components": 13,
+     "t": "1/2"
+    }
+   ],
+   "n_exceptional_edge_points": 0,
+   "n_exceptional_vertices": 0,
+   "vertices": [
+    {
+     "angle_display": 283.144708,
+     "components_deg": [
+      {
+       "end": 26.660863428,
+       "start": 26.660863428,
+       "type": "point"
+      },
+      {
+       "end": 249.805571092,
+       "start": 249.805571092,
+       "type": "point"
+      },
+      {
+       "end": 63.266403565,
+       "start": 63.266403565,
+       "type": "point"
+      },
+      {
+       "end": 100.057898773,
+       "start": 100.057898773,
+       "type": "point"
+      },
+      {
+       "end": 121.632274544,
+       "start": 121.632274544,
+       "type": "point"
+      },
+      {
+       "end": 151.336031099,
+       "start": 151.336031099,
+       "type": "point"
+      },
+      {
+       "end": 171.028478841,
+       "start": 171.028478841,
+       "type": "point"
+      },
+      {
+       "end": 183.871912524,
+       "start": 183.871912524,
+       "type": "point"
+      },
+      {
+       "end": 243.833786955,
+       "start": 243.833786955,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "vertex": 0
+    },
+    {
+     "angle_display": 23.39446,
+     "components_deg": [
+      {
+       "end": 183.266403565,
+       "start": 183.266403565,
+       "type": "point"
+      },
+      {
+       "end": 157.195416313,
+       "start": 157.195416313,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 1
+    },
+    {
+     "angle_display": 278.51706,
+     "components_deg": [
+      {
+       "end": 84.749343653,
+       "start": 84.749343653,
+       "type": "point"
+      },
+      {
+       "end": 124.146661029,
+       "start": 124.146661029,
+       "type": "point"
+      },
+      {
+       "end": 161.889296039,
+       "start": 161.889296039,
+       "type": "point"
+      },
+      {
+       "end": 180.282649789,
+       "start": 180.282649789,
+       "type": "point"
+      },
+      {
+       "end": 212.541472844,
+       "start": 212.541472844,
+       "type": "point"
+      },
+      {
+       "end": 233.609591272,
+       "start": 233.609591272,
+       "type": "point"
+      },
+      {
+       "end": 246.445075478,
+       "start": 246.445075478,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "vertex": 2
+    },
+    {
+     "angle_display": 20.602683,
+     "components_deg": [
+      {
+       "end": 244.146661029,
+       "start": 244.146661029,
+       "type": "point"
+      },
+      {
+       "end": 217.262647188,
+       "start": 217.262647188,
+       "type": "point"
+      },
+      {
+       "end": 230.230346761,
+       "start": 230.230346761,
+       "type": "point"
+      },
+      {
+       "end": 230.603147353,
+       "start": 230.603147353,
+       "type": "point"
+      },
+      {
+       "end": 230.857083062,
+       "start": 230.857083062,
+       "type": "point"
+      },
+      {
+       "end": 231.085641717,
+       "start": 231.085641717,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 6,
+     "n_point_components": 6,
+     "vertex": 3
+    },
+    {
+     "angle_display": 274.288047,
+     "components_deg": [
+      {
+       "end": 149.858614448,
+       "start": 149.858614448,
+       "type": "point"
+      },
+      {
+       "end": 173.489465166,
+       "start": 173.489465166,
+       "type": "point"
+      },
+      {
+       "end": 276.289001057,
+       "start": 276.289001057,
+       "type": "point"
+      },
+      {
+       "end": 290.784582454,
+       "start": 290.784582454,
+       "type": "point"
+      },
+      {
+       "end": 305.149223445,
+       "start": 305.149223445,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 4
+    },
+    {
+     "angle_display": 20.053043,
+     "components_deg": [
+      {
+       "end": 288.32962582,
+       "start": 288.32962582,
+       "type": "point"
+      },
+      {
+       "end": 294.235290238,
+       "start": 294.235290238,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 5
+    },
+    {
+     "angle_display": 283.144708,
+     "components_deg": [
+      {
+       "end": 69.805571092,
+       "start": 69.805571092,
+       "type": "point"
+      },
+      {
+       "end": 206.660863428,
+       "start": 206.660863428,
+       "type": "point"
+      },
+      {
+       "end": 3.871912524,
+       "start": 3.871912524,
+       "type": "point"
+      },
+      {
+       "end": 63.833786955,
+       "start": 63.833786955,
+       "type": "point"
+      },
+      {
+       "end": 243.266403565,
+       "start": 243.266403565,
+       "type": "point"
+      },
+      {
+       "end": 280.057898773,
+       "start": 280.057898773,
+       "type": "point"
+      },
+      {
+       "end": 301.632274544,
+       "start": 301.632274544,
+       "type": "point"
+      },
+      {
+       "end": 331.336031099,
+       "start": 331.336031099,
+       "type": "point"
+      },
+      {
+       "end": 351.028478841,
+       "start": 351.028478841,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 9,
+     "n_point_components": 9,
+     "vertex": 6
+    },
+    {
+     "angle_display": 23.39446,
+     "components_deg": [
+      {
+       "end": 3.266403565,
+       "start": 3.266403565,
+       "type": "point"
+      },
+      {
+       "end": 337.195416313,
+       "start": 337.195416313,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 7
+    },
+    {
+     "angle_display": 278.51706,
+     "components_deg": [
+      {
+       "end": 264.749343653,
+       "start": 264.749343653,
+       "type": "point"
+      },
+      {
+       "end": 0.282649789,
+       "start": 0.282649789,
+       "type": "point"
+      },
+      {
+       "end": 32.541472844,
+       "start": 32.541472844,
+       "type": "point"
+      },
+      {
+       "end": 53.609591272,
+       "start": 53.609591272,
+       "type": "point"
+      },
+      {
+       "end": 66.445075478,
+       "start": 66.445075478,
+       "type": "point"
+      },
+      {
+       "end": 304.146661029,
+       "start": 304.146661029,
+       "type": "point"
+      },
+      {
+       "end": 341.889296039,
+       "start": 341.889296039,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 7,
+     "n_point_components": 7,
+     "vertex": 8
+    },
+    {
+     "angle_display": 20.602683,
+     "components_deg": [
+      {
+       "end": 64.146661029,
+       "start": 64.146661029,
+       "type": "point"
+      },
+      {
+       "end": 37.262647188,
+       "start": 37.262647188,
+       "type": "point"
+      },
+      {
+       "end": 50.230346761,
+       "start": 50.230346761,
+       "type": "point"
+      },
+      {
+       "end": 50.603147353,
+       "start": 50.603147353,
+       "type": "point"
+      },
+      {
+       "end": 50.857083062,
+       "start": 50.857083062,
+       "type": "point"
+      },
+      {
+       "end": 51.085641717,
+       "start": 51.085641717,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 6,
+     "n_point_components": 6,
+     "vertex": 9
+    },
+    {
+     "angle_display": 274.288047,
+     "components_deg": [
+      {
+       "end": 329.858614448,
+       "start": 329.858614448,
+       "type": "point"
+      },
+      {
+       "end": 96.289001057,
+       "start": 96.289001057,
+       "type": "point"
+      },
+      {
+       "end": 110.784582454,
+       "start": 110.784582454,
+       "type": "point"
+      },
+      {
+       "end": 125.149223445,
+       "start": 125.149223445,
+       "type": "point"
+      },
+      {
+       "end": 353.489465166,
+       "start": 353.489465166,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 5,
+     "n_point_components": 5,
+     "vertex": 10
+    },
+    {
+     "angle_display": 20.053043,
+     "components_deg": [
+      {
+       "end": 108.32962582,
+       "start": 108.32962582,
+       "type": "point"
+      },
+      {
+       "end": 114.235290238,
+       "start": 114.235290238,
+       "type": "point"
+      }
+     ],
+     "critical": false,
+     "good": true,
+     "n_arc_components": 0,
+     "n_components": 2,
+     "n_point_components": 2,
+     "vertex": 11
+    }
+   ]
+  }
+ },
+ "random": []
+}

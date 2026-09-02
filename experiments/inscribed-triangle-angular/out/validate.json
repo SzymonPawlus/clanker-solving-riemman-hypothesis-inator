@@ -1,0 +1,15 @@
+{
+ "30-30-120": "both 30-degree apexes not good (wedge test); the 120-degree apex good in exactly 3 directions 210/240/270, two of them collinear with an edge; witness side^2 = 1/3",
+ "equilateral": "3 vertices good, each with exactly one good direction, side^2 = 1",
+ "failures": [],
+ "float_prescreen": "no float-good / exact-not-good vertex over the named shapes",
+ "ok": true,
+ "rotated_pair_M0": {
+  "arc_deg": [
+   315.0,
+   0.0
+  ],
+  "note": "an edge and its own 60-degree rotate about O both on the curve: a one-parameter family of inscribed triangles, i.e. an ARC of good directions rather than isolated ones"
+ },
+ "square": "4 corners good, one good direction each, side^2 = 8 - 4*sqrt3"
+}

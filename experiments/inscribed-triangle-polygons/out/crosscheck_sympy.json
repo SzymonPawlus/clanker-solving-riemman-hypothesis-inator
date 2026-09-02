@@ -1,0 +1,1085 @@
+{
+ "sympy_version": "1.14.0",
+ "python": "3.11.15",
+ "fixtures_checked": 40,
+ "vertices_checked": 176,
+ "disagreements": [
+  {
+   "fixture": "cvx-iso-t5773502691896257_10000000000000000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": true
+  }
+ ],
+ "seconds": 245.14,
+ "rows": [
+  {
+   "fixture": "ctl-equilateral",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-equilateral",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-equilateral",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-tri-30-30-120",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "ctl-tri-30-30-120",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "ctl-tri-30-30-120",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-unit-square",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-unit-square",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-unit-square",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ctl-unit-square",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-hexagon",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-hexagon",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-hexagon",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-hexagon",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-hexagon",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-hexagon",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 8,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 9,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 10,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-12gon",
+   "vertex": 11,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-60deg-scalene",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-60deg-scalene",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-60deg-scalene",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-60deg-kite",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-60deg-kite",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-60deg-kite",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-60deg-kite",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-10x1",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-10x1",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-10x1",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-10x1",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-1000x1",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-1000x1",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-1000x1",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-square-1000x1",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-right-tri-1-eps",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-right-tri-1-eps",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-right-tri-1-eps",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-sliver-tri",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-sliver-tri",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-sliver-tri",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-sliver-tri-thin",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-sliver-tri-thin",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-sliver-tri-thin",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-pentagon-irreg",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-pentagon-irreg",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-pentagon-irreg",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-pentagon-irreg",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-pentagon-irreg",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-obtuse-tri",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-obtuse-tri",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-obtuse-tri",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t1_2",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t1_2",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t1_2",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5_9",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t5_9",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5_9",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t57_100",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t57_100",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t57_100",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t577_1000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t577_1000",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t577_1000",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773_10000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t5773_10000",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773_10000",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t57735_100000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t57735_100000",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t57735_100000",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t577350_1000000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t577350_1000000",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t577350_1000000",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502_10000000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t5773502_10000000",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502_10000000",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896257_10000000000000000",
+   "vertex": 0,
+   "mine": false,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896257_10000000000000000",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896257_10000000000000000",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773502691896258_10000000000000000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773503_10000000",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5773503_10000000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t5773503_10000000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t577351_1000000",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t577351_1000000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t577351_1000000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t57736_100000",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t57736_100000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t57736_100000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t5774_10000",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t5774_10000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t5774_10000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t578_1000",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t578_1000",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t578_1000",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t3_5",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t3_5",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t3_5",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t7_10",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t7_10",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t7_10",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t1",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "cvx-iso-t1",
+   "vertex": 1,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "cvx-iso-t1",
+   "vertex": 2,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "ncv-L",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-L",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-L",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-L",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-L",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-L",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-dart",
+   "vertex": 0,
+   "mine": false,
+   "sympy": false
+  },
+  {
+   "fixture": "ncv-dart",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-dart",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-dart",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 8,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 9,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 10,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-star6",
+   "vertex": 11,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h2_1",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_1",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_2",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_4",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 0,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 1,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 2,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 3,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 4,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 5,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 6,
+   "mine": true,
+   "sympy": true
+  },
+  {
+   "fixture": "ncv-cstrip-h1_20",
+   "vertex": 7,
+   "mine": true,
+   "sympy": true
+  }
+ ]
+}

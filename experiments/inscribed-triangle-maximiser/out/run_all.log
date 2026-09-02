@@ -1,0 +1,137 @@
+== tests (19) ===============================================
+----------------------------------------------------------------------
+Ran 19 tests in 12.393s
+
+OK
+== validate: the three hand-known answers ====================
+  equilateral-side-1     {'all_vertices_side2': True, 'expected': ['1', '0']}
+  unit-square            {'all_vertices_side2': True, 'expected': ['8', '-4']}
+  tri-30-30-120          {'per_vertex_side2': True, 'expected': [None, None, ['4/9', '0']]}
+  rect-2x1               (no hand value)
+  equilateral-side-2     {'all_vertices_side2': True, 'expected': ['4', '0']}
+failures: []
+STAGE validate OK
+== fixtures: 190 committed fixtures, 2270 boundary points ====
+  [  1/190] ctl-equilateral                          pts=18  0s
+  [ 11/190] cvx-iso-t5773502691896257_10000000000000000 pts=282  15s
+  [ 21/190] cvx-iso-t577_1000                        pts=462  17s
+  [ 31/190] cvx-square-1000x1                        pts=660  19s
+  [ 41/190] rand-convex-000                          pts=1064  45s
+  [ 51/190] rand-convex-010                          pts=1150  46s
+  [ 61/190] rand-convex-020                          pts=1224  48s
+  [ 71/190] rand-convex-030                          pts=1298  49s
+  [ 81/190] rand-convex-040                          pts=1368  50s
+  [ 91/190] rand-convex-050                          pts=1438  51s
+  [101/190] rand-convex-060                          pts=1516  52s
+  [111/190] rand-convex-070                          pts=1600  54s
+  [121/190] rand-convex-080                          pts=1688  56s
+  [131/190] rand-convex-090                          pts=1776  58s
+  [141/190] rand-convex-100                          pts=1860  60s
+  [151/190] rand-convex-110                          pts=1948  62s
+  [161/190] rand-convex-120                          pts=2034  64s
+  [171/190] rand-convex-130                          pts=2118  66s
+  [181/190] rand-convex-140                          pts=2194  67s
+  [190/190] rand-convex-149                          pts=2270  69s
+{
+ "n_fixtures": 190,
+ "n_points": 2270,
+ "n_vertices": 783,
+ "n_edge_samples": 1487,
+ "disagree_pairmax": 0,
+ "disagree_deciders": 0,
+ "verify_rejects": 0,
+ "disagree_recorded_good": 0,
+ "seed": 20260830
+}
+STAGE fixtures OK
+== global: vertices vs 8613 sampled edge points ==============
+  [  1/190] ctl-equilateral                          0s
+  [ 11/190] cvx-iso-t5773502691896257_10000000000000000 15s
+  [ 21/190] cvx-iso-t577_1000                        16s
+  [ 31/190] cvx-square-1000x1                        18s
+  [ 41/190] rand-convex-000                          50s
+  [ 51/190] rand-convex-010                          54s
+  [ 61/190] rand-convex-020                          56s
+  [ 71/190] rand-convex-030                          59s
+  [ 81/190] rand-convex-040                          61s
+  [ 91/190] rand-convex-050                          62s
+  [101/190] rand-convex-060                          65s
+  [111/190] rand-convex-070                          69s
+  [121/190] rand-convex-080                          73s
+  [131/190] rand-convex-090                          78s
+  [141/190] rand-convex-100                          82s
+  [151/190] rand-convex-110                          86s
+  [161/190] rand-convex-120                          90s
+  [171/190] rand-convex-130                          94s
+  [181/190] rand-convex-140                          97s
+  [190/190] rand-convex-149                          102s
+Lemma V violations: []  sampled points: 8613
+STAGE global OK
+== cw: exact upper bound for h = 1 + cos(5t)/24 ==============
+      dir     0/3600  running side_ub <= 1.709212791  (0s)
+      dir   100/3600  running side_ub <= 1.716571594  (2s)
+      dir   200/3600  running side_ub <= 1.716571594  (3s)
+      dir   300/3600  running side_ub <= 1.716571594  (5s)
+      dir   400/3600  running side_ub <= 1.716571594  (6s)
+      dir   500/3600  running side_ub <= 1.716571594  (8s)
+      dir   600/3600  running side_ub <= 1.716571597  (9s)
+      dir   700/3600  running side_ub <= 1.716571597  (11s)
+      dir   800/3600  running side_ub <= 1.716727242  (12s)
+      dir   900/3600  running side_ub <= 1.716727242  (14s)
+      dir  1000/3600  running side_ub <= 1.716727242  (15s)
+      dir  1100/3600  running side_ub <= 1.716727242  (16s)
+      dir  1200/3600  running side_ub <= 1.716727242  (18s)
+      dir  1300/3600  running side_ub <= 1.716727242  (19s)
+      dir  1400/3600  running side_ub <= 1.716727242  (21s)
+      dir  1500/3600  running side_ub <= 1.716727242  (22s)
+      dir  1600/3600  running side_ub <= 1.716727242  (24s)
+      dir  1700/3600  running side_ub <= 1.716727242  (25s)
+      dir  1800/3600  running side_ub <= 1.716727242  (27s)
+      dir  1900/3600  running side_ub <= 1.716727242  (28s)
+      dir  2000/3600  running side_ub <= 1.716727242  (30s)
+      dir  2100/3600  running side_ub <= 1.716727242  (31s)
+      dir  2200/3600  running side_ub <= 1.716727242  (33s)
+      dir  2300/3600  running side_ub <= 1.716727242  (34s)
+      dir  2400/3600  running side_ub <= 1.716727242  (36s)
+      dir  2500/3600  running side_ub <= 1.716727242  (38s)
+      dir  2600/3600  running side_ub <= 1.716727242  (39s)
+      dir  2700/3600  running side_ub <= 1.716727242  (41s)
+      dir  2800/3600  running side_ub <= 1.716727242  (42s)
+      dir  2900/3600  running side_ub <= 1.716727242  (44s)
+      dir  3000/3600  running side_ub <= 1.716727242  (45s)
+      dir  3100/3600  running side_ub <= 1.716727242  (46s)
+      dir  3200/3600  running side_ub <= 1.716727242  (48s)
+      dir  3300/3600  running side_ub <= 1.716727242  (49s)
+      dir  3400/3600  running side_ub <= 1.716727242  (51s)
+      dir  3500/3600  running side_ub <= 1.716727242  (52s)
+{
+ "J": 192,
+ "D": 3600,
+ "eps": "1/24",
+ "s_ub": "12/5",
+ "s_apriori_bound": "50000003407250000000000000000000000000000000000000/21650636569993443252296432497048539830658682081719",
+ "gamma_upper": "582134689/333332813958",
+ "gamma_upper_display": 0.001746406788121823,
+ "r_inflation": "291067344500000000000000/240562237335483417491061649",
+ "r_display": 0.0012099461150840692,
+ "side2_upper_bound": [
+  "7050341301341251818834601958148854705972106367513204919228228557002968084557614824219123167173547133650867849457114417782891360565148207327938960665777423/20502499620048605602271883630079586274168151747612152314762019376007929287908303868414237491803367630813521717715189603317458695630375781675000000000000",
+  "-16110301958010977581113389957574061014005918701685092807437855845544738153658839541057030331445658880714449040432521307823244219005268843034615188527053/81846305868457507394298936647024296503665276437573462334379318866299118913805604265126696574065339843566952964930896620029775232057388350000000000000"
+ ],
+ "side2_upper_rational": "368394053/125000000",
+ "side2_upper_rational_display": 2.947152424,
+ "side2_rational_lt_3": true,
+ "side2_upper_display": 2.94715242360229,
+ "side_upper_display": 1.7167272420516575,
+ "argmax_direction": 780,
+ "three_minus_side2": [
+  "-6988833802481106002027786307258615947149601912270368462283942498874944296693889912613880454698137030758427284303968848972938984478257079982913960665777423/20502499620048605602271883630079586274168151747612152314762019376007929287908303868414237491803367630813521717715189603317458695630375781675000000000000",
+  "16110301958010977581113389957574061014005918701685092807437855845544738153658839541057030331445658880714449040432521307823244219005268843034615188527053/81846305868457507394298936647024296503665276437573462334379318866299118913805604265126696574065339843566952964930896620029775232057388350000000000000"
+ ],
+ "three_minus_side2_display": 0.05284757639770987,
+ "m_over_w_upper_display": 0.8583636210258287,
+ "disk_ratio_display": 0.8660254037844386,
+ "proves_disk_not_extremal": true,
+ "seconds": 53.33173966407776
+}
+STAGE cw OK
