@@ -1,0 +1,12 @@
+{
+  "schema_version": "moser-support-complement-v1",
+  "claim_scope": "partial_complementary_worm_slabs_only",
+  "target": "232239/1000000",
+  "recorded_lower": "93/400",
+  "template": "worm",
+  "basis": [0,1,2,3,4,5,6,7,8,12],
+  "triangle_domain": ["0", "120"],
+  "square_domain": ["0", "90"],
+  "worm_intervals": [["0", "80"], ["259/2", "180"]],
+  "mesh_degrees": "1/2"
+}

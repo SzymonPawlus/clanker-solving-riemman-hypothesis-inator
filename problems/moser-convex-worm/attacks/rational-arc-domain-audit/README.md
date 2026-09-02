@@ -422,6 +422,31 @@ Thus this single exact primal certifies a full two-angle slab occupying
 worm-angle components, `[0,75]` and `[269/2,180]`, with total fraction
 `241/360`; complementary template primals are still required there.
 
+They are supplied by the all-segment allocation on the same worm template.
+Because all four template edges are allocated to the pinned segment, its
+translation load is the template's total surface-normal measure and vanishes.
+The resulting bound is
+
+```text
+(1/12)(|n0.x|+|n2.x|) + (169/807)|n1.x|.
+```
+
+`check_support_complement.py` proves the rational lower `93/400` on 261
+half-degree cells covering `[0,80]` and `[259/2,180]`, for every triangle and
+square angle.  These intervals overlap the triangle-width slab on `[75,80]`
+and `[259/2,269/2]`.  `check_support_union.py` reruns both exact source
+checkers and atomizes their endpoints, proving that their union is all of
+`[0,180]`; its conservative combined endpoint is `2323/10000`, strictly above
+`232239/1000000`.
+
+This closes the finite angular coverage of the support calculation, but the
+union artifact deliberately retains `global_claim: false` and status
+`complete_angular_coverage_pending_mixed_area_review`.  Promotion would require
+an independent verification-critical review of the mixed-area containment
+inequality, the degenerate-segment argument, the exact outward implementation,
+and the interaction with the campaign's unresolved baseline gate.  It is not
+presented as an independently verified new Moser bound here.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
