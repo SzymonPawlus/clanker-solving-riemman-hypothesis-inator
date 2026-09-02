@@ -95,9 +95,35 @@ theorem self_surface_eq_twiceArea {n : ℕ} [NeZero n] (p : ZMod n → RVec) :
   rw [diagonal]
   ring
 
+/-- Cyclic reindexing does not change shoelace twice-area. -/
+theorem twiceArea_addRight {n : ℕ} [NeZero n] (p : ZMod n → RVec) (a : ZMod n) :
+    twiceArea (fun i ↦ p (i + a)) = twiceArea p := by
+  simp only [twiceArea]
+  have shift := Equiv.sum_comp (Equiv.addRight a)
+    (fun i ↦ det (p i) (p (i + 1)))
+  rw [← shift]
+  apply Finset.sum_congr rfl
+  intro i _
+  congr 2
+  all_goals simp [Equiv.addRight]
+  all_goals ring
+
 /-- Mixed surface sum using the support vertex of `k` selected on each edge of `p`. -/
 def surface {n : ℕ} [NeZero n] (p k : ZMod n → RVec) : ℝ :=
   ∑ i, dot (k i) (outward (p i) (p (i + 1)))
+
+/-- Simultaneous cyclic reindexing does not change a common-fan surface sum. -/
+theorem surface_addRight {n : ℕ} [NeZero n] (p k : ZMod n → RVec) (a : ZMod n) :
+    surface (fun i ↦ p (i + a)) (fun i ↦ k (i + a)) = surface p k := by
+  simp only [surface]
+  have shift := Equiv.sum_comp (Equiv.addRight a)
+    (fun i ↦ dot (k i) (outward (p i) (p (i + 1))))
+  rw [← shift]
+  apply Finset.sum_congr rfl
+  intro i _
+  congr 3
+  simp [Equiv.addRight]
+  ring
 
 /-- Common-fan surface symmetry, with the dual support vertex indexed at the fan ray's end. -/
 theorem surface_symmetry_commonFan {n : ℕ} [NeZero n]
@@ -311,5 +337,37 @@ theorem exists_active_vertices_on_fan {ι : Type*} [Finite ι] [Nonempty ι]
   classical
   choose active hactive using fun i ↦ exists_active_vertex vertex (normal i)
   exact ⟨active, hactive⟩
+
+/-- Merge two finite linearly ordered fan-ray ledgers into one sorted ledger. -/
+def fanMerge {α : Type*} [LinearOrder α] (a b : List α) : List α :=
+  (a ++ b).mergeSort fun x y ↦ decide (x ≤ y)
+
+/-- The merged fan-ray ledger is sorted. -/
+theorem fanMerge_pairwise {α : Type*} [LinearOrder α] (a b : List α) :
+    (fanMerge a b).Pairwise (· ≤ ·) := by
+  exact List.pairwise_mergeSort' (· ≤ ·) (a ++ b)
+
+/-- The merged ledger contains exactly the rays from its two inputs. -/
+theorem mem_fanMerge_iff {α : Type*} [LinearOrder α] (a b : List α) (x : α) :
+    x ∈ fanMerge a b ↔ x ∈ a ∨ x ∈ b := by
+  change x ∈ (a ++ b).mergeSort (fun x y ↦ decide (x ≤ y)) ↔ _
+  rw [(List.mergeSort_perm (a ++ b) fun x y ↦ decide (x ≤ y)).mem_iff]
+  exact List.mem_append
+
+/-- A sorted input fan occurs in order inside the merged sorted fan. -/
+theorem left_sublist_fanMerge {α : Type*} [LinearOrder α] (a b : List α)
+    (ha : a.SortedLE) : a.Sublist (fanMerge a b) := by
+  have hp0 : a.Subperm (a ++ b) := (List.sublist_append_left a b).subperm
+  have hp : a.Subperm (fanMerge a b) := by
+    exact ((List.mergeSort_perm (a ++ b) fun x y ↦ decide (x ≤ y)).subperm_left).2 hp0
+  exact List.sublist_of_subperm_of_sortedLE hp ha (fanMerge_pairwise a b).sortedLE
+
+/-- The other sorted input fan also occurs in order inside the merged fan. -/
+theorem right_sublist_fanMerge {α : Type*} [LinearOrder α] (a b : List α)
+    (hb : b.SortedLE) : b.Sublist (fanMerge a b) := by
+  have hp0 : b.Subperm (a ++ b) := (List.sublist_append_right a b).subperm
+  have hp : b.Subperm (fanMerge a b) := by
+    exact ((List.mergeSort_perm (a ++ b) fun x y ↦ decide (x ≤ y)).subperm_left).2 hp0
+  exact List.sublist_of_subperm_of_sortedLE hp hb (fanMerge_pairwise a b).sortedLE
 
 end Verified.Moser.PolygonBridge

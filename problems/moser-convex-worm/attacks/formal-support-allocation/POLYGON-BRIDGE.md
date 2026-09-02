@@ -48,6 +48,11 @@ finite fan. `commonFan_support_of_coordinates` then derives the pointwise
 containment inequality from explicit convex coordinates and those active
 maximality facts.
 
+For fan construction, `fanMerge` sorts the union of two ray ledgers;
+`fanMerge_pairwise`, `mem_fanMerge_iff`, and the two `sublist_fanMerge`
+theorems prove that sorted input ledgers occur in order in the result. Cyclic
+reindexing invariance of both shoelace area and mixed surface is also formalized.
+
 These three imply, by a finite sum inequality only,
 
 ```text
@@ -107,8 +112,10 @@ The remaining kill criterion is the **existence layer**: do not call the global
 bridge complete until arbitrary concrete finite convex polygons are proved to
 admit a cyclic common-fan representation whose active vertices satisfy the
 support hypotheses and whose repeated-vertex shoelace sum is the original
-polygon's. Active-vertex existence on a supplied fan is complete; constructing
-the cyclic merge while preserving both polygons' edge order is the remaining
-step. For the direct segment route, the two triangle areas must also be
+polygon's. The abstract sorted merge and active-vertex selection are complete;
+the remaining step is connecting a geometric outward ray to a linear-order key
+after a cyclic cut, and proving that the selected active-vertex changes across
+successive merged rays reproduce exactly the original polygon edges. For the
+direct segment route, the two triangle areas must also be
 connected to the containing polygon's shoelace area; assuming their sum is
 bounded remains an exposed interface.
