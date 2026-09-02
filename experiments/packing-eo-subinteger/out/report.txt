@@ -1,0 +1,60 @@
+==============================================================================
+sub-integer corner-coordinate relaxation, run at 2026-08-21 15:56:12
+k=3  n=5  a=199/100 (1.990000)  thresholds=int (3 values)
+  floor(Oler(a)) = 5   [target: LP <= 4 decides Erdos-Oler at k=3]
+  cells=7  binding boxes=4  distinct shapes=9  build 0.4s
+  LP fractional-cover optimum = 4.000000   (0.0s)
+  EXACT certificate: covering=True, uncovered cells=0, exact cost=4 = 4.000000
+  ==> at most 4.000000 < 5 points fit: Erdos-Oler at k=3 DECIDED by this family
+  binding boxes in the certificate (lo | hi | cap | weight | source of cap):
+    lo=['0', '0', '0'] hi=['199/100', '199/100', '199/100'] cap=4 w=1 via grid(eta=199/200)
+
+k=3  n=5  a=1999/1000 (1.999000)  thresholds=int (3 values)
+  floor(Oler(a)) = 5   [target: LP <= 4 decides Erdos-Oler at k=3]
+  cells=7  binding boxes=4  distinct shapes=9  build 0.4s
+  LP fractional-cover optimum = 4.000000   (0.0s)
+  EXACT certificate: covering=True, uncovered cells=0, exact cost=4 = 4.000000
+  ==> at most 4.000000 < 5 points fit: Erdos-Oler at k=3 DECIDED by this family
+  binding boxes in the certificate (lo | hi | cap | weight | source of cap):
+    lo=['0', '0', '0'] hi=['1999/1000', '1999/1000', '1999/1000'] cap=4 w=1 via grid(eta=1999/2000)
+
+k=3  n=5  a=199/100 (1.990000)  thresholds=sub6 (7 values)
+  floor(Oler(a)) = 5   [target: LP <= 4 decides Erdos-Oler at k=3]
+  cells=36  binding boxes=55  distinct shapes=247  build 10.4s
+  LP fractional-cover optimum = 4.000000   (0.0s)
+  EXACT certificate: covering=True, uncovered cells=0, exact cost=4 = 4.000000
+  ==> at most 4.000000 < 5 points fit: Erdos-Oler at k=3 DECIDED by this family
+  binding boxes in the certificate (lo | hi | cap | weight | source of cap):
+    lo=['0', '0', '0'] hi=['199/100', '199/100', '199/100'] cap=4 w=1 via grid(eta=199/200)
+
+k=3  n=5  a=1999/1000 (1.999000)  thresholds=sub6 (7 values)
+  floor(Oler(a)) = 5   [target: LP <= 4 decides Erdos-Oler at k=3]
+  cells=36  binding boxes=55  distinct shapes=247  build 10.4s
+  LP fractional-cover optimum = 4.000000   (0.0s)
+  EXACT certificate: covering=True, uncovered cells=0, exact cost=4 = 4.000000
+  ==> at most 4.000000 < 5 points fit: Erdos-Oler at k=3 DECIDED by this family
+  binding boxes in the certificate (lo | hi | cap | weight | source of cap):
+    lo=['0', '0', '0'] hi=['1999/1000', '1999/1000', '1999/1000'] cap=4 w=1 via grid(eta=1999/2000)
+
+==============================================================================
+sub-integer corner-coordinate relaxation, run at 2026-08-21 15:56:42
+k=4  n=9  a=299/100 (2.990000)  thresholds=int (4 values)
+  floor(Oler(a)) = 9   [target: LP <= 8 decides Erdos-Oler at k=4]
+  cells=16  binding boxes=38  distinct shapes=44  build 4.5s
+  LP fractional-cover optimum = 9.000000   (0.0s)
+  ==> LP optimum 9.0000 >= 9: this family does NOT decide Erdos-Oler at k=4
+
+k=4  n=9  a=2999/1000 (2.999000)  thresholds=int (4 values)
+  floor(Oler(a)) = 9   [target: LP <= 8 decides Erdos-Oler at k=4]
+  cells=16  binding boxes=38  distinct shapes=44  build 4.9s
+  LP fractional-cover optimum = 9.000000   (0.0s)
+  ==> LP optimum 9.0000 >= 9: this family does NOT decide Erdos-Oler at k=4
+
+k=4  n=9  a=299/100 (2.990000)  thresholds=sub9 (10 values)
+  floor(Oler(a)) = 9   [target: LP <= 8 decides Erdos-Oler at k=4]
+  cells=81  binding boxes=607  distinct shapes=1050  build 102.5s
+  k=4 sub9 delta=1/100: FAILED RuntimeError: simplex iteration limit
+
+k=4  n=9  a=2999/1000 (2.999000)  thresholds=sub9 (10 values)
+  floor(Oler(a)) = 9   [target: LP <= 8 decides Erdos-Oler at k=4]
+  cells=81  binding boxes=607  distinct shapes=1050  build 110.4s

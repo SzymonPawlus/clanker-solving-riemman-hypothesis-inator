@@ -1,0 +1,204 @@
+[
+ {
+  "label": "full",
+  "m": 25,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 25
+ },
+ {
+  "label": "-0",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-1",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-2",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-3",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-4",
+  "m": 24,
+  "|Z_grid|": 1,
+  "edges": 0,
+  "chi_lb": 1,
+  "alpha_lb": 1,
+  "witness": null,
+  "floor": 25,
+  "separated_total": 25
+ },
+ {
+  "label": "-5",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-6",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-7",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-8",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-9",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-10",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-11",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-12",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-13",
+  "m": 24,
+  "|Z_grid|": 1,
+  "edges": 0,
+  "chi_lb": 1,
+  "alpha_lb": 1,
+  "witness": null,
+  "floor": 25,
+  "separated_total": 25
+ },
+ {
+  "label": "-14",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-15",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-16",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-17",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-18",
+  "m": 24,
+  "|Z_grid|": 2,
+  "edges": 0,
+  "chi_lb": 1,
+  "alpha_lb": 1,
+  "witness": null,
+  "floor": 25,
+  "separated_total": 25
+ },
+ {
+  "label": "-19",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-20",
+  "m": 24,
+  "|Z_grid|": 1,
+  "edges": 0,
+  "chi_lb": 1,
+  "alpha_lb": 1,
+  "witness": null,
+  "floor": 25,
+  "separated_total": 25
+ },
+ {
+  "label": "-21",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-22",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-23",
+  "m": 24,
+  "|Z_grid|": 0,
+  "chi_lb": 0,
+  "floor": 24
+ },
+ {
+  "label": "-24",
+  "m": 24,
+  "|Z_grid|": 1,
+  "edges": 0,
+  "chi_lb": 1,
+  "alpha_lb": 1,
+  "witness": null,
+  "floor": 25,
+  "separated_total": 25
+ }
+]

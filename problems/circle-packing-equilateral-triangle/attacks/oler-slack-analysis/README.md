@@ -295,6 +295,17 @@ the particular H of §2 — and the same family refutes H **at the triangular la
 $k = 3..7$, which kills the natural "H is fine for non-degenerate configurations" repair that §4's
 flat-arc witnesses leave open. See [`../eo-boundary-counting/`](../eo-boundary-counting/).
 
+**Correction to the witness family, from a second verification pass.** T1 is **true**, but the
+family as published does not prove it, and this file inherited the gap by repeating the claim.
+With the scale factor $\lambda$ held *fixed* at $101/100$, the hull side is
+$\lambda(k-1) - \sqrt3\varepsilon$ rather than tending to $k-1$, so the $k^2$ coefficient of the
+resulting bound is $(1-\lambda^2)/2 < 0$: the deficit peaks near $56.1$ at $k = 76$ and then falls
+to $-\infty$. A bound that is finite at every $b$ does not exclude a $\Phi$. The repair is to let
+the scale factor tend to 1 with $k$ — $\lambda_k = 1 + 1/k^3$, $\varepsilon_k = \delta_k/2$ — which
+keeps separation exactly 1, keeps $b = 3$, and drives the deficit to $(3k-3)/2$ as claimed;
+checked here against the target for $k$ up to 300. **The conclusion stands; the published witness
+did not establish it.**
+
 (All of this is *same-family* checking and grants no status — `RULES.md` §5.)
 
 ## 5. What the route was aiming at — a bare conjecture, not a target
