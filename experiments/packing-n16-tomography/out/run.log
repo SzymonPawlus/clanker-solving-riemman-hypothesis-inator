@@ -1,0 +1,26 @@
+=== threshold soundness (exact, Q(sqrt3)) ===
+R_NORMAL=223071/200000 <= 2t/sqrt3 and R_SIDE=1931851/1000000 <= 2t : PROVED exactly
+=== control: hex corner-cheat config must FAIL dod (I1's M3(4)<=3/2 cheat) ===
+cheat accepted? False (expect False; failing pair ('pair', (0, 3)))
+=== exact lattice witnesses at spacing s=96593/100000 (>= t proved exactly) ===
+T_1 lattice: n=3, a=96593/100000=0.965930, exact dod>=t: True  (vs a_3=1)
+T_2 lattice: n=6, a=96593/50000=1.931860, exact dod>=t: True  (vs a_6=2)
+T_3 lattice: n=10, a=289779/100000=2.897790, exact dod>=t: True  (vs a_10=3)
+T_4 lattice: n=15, a=96593/25000=3.863720, exact dod>=t: True  (vs a_15=4)
+==> M6(15) <= %s = %.6f < 4 = a_15 : the relaxation UNDERSHOOTS the
+    Euclidean value by ~cos15 on lattice configs (I1 early-check: YES).
+=== n=4 corners+centroid witness ===
+corners+centroid at a=16731/10000: exact dod>=t: True  => M6(4) <= 1.673100  (< a_4=sqrt3=1.732051)
+=== reverify I1's M6(16) <= 449/100 witness with THIS checker ===
+I1 16-point witness at a=449/100: exact dod>=t: True
+=== two-sided branch-and-cut controls, n=4 (target sqrt3*t=1.673033) ===
+n=4 a=167/100: INFEASIBLE (expected INFEASIBLE) nodes=3037 leaves=2784 5.73s
+n=4 a=837/500: FEASIBLE (expected FEASIBLE) nodes=5 leaves=1 0.01s
+=== two-sided branch-and-cut controls, n=5 (target 2t=1.931852) ===
+n=5 a=48/25: INFEASIBLE (expected INFEASIBLE) nodes=8821 leaves=8086 16.84s
+n=5 a=483/250: FEASIBLE (expected FEASIBLE) nodes=11857 leaves=10865 23.20s
+ALL CONTROLS PASSED
+=== growth gate: n=10 at a=361/125 (caps: 300000 nodes, 600s) ===
+n=10 a=361/125: TIME_CAP nodes=269741 certified_leaves=247254 max_depth=15 600.00s
+search n=16 a=4485/1000: best min dod = 0.966026 = 1.00010*t
+exact check at a=4485/1000: True  => M6(16) <= 4485/1000

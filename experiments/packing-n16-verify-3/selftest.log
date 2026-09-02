@@ -1,0 +1,27 @@
+==============================================================================
+V3 checker self-test: 10 corruptions + 1 control
+==============================================================================
+[ok  ] [control] unmodified certificate is ACCEPTED
+[ok  ] (1) piece 6 dilated 1.001x: squared diameter exceeds 1
+        -> C3: a piece has squared diameter 1.002001 > 1
+[ok  ] (2) interior piece translated: equal-area overlap + hole
+        -> C5: 58 uncovered part(s), e.g. near (1.002174,1.730406)
+[ok  ] (3) one vertex 1e-6 outside T_a
+        -> C1 face 14: vertex (4.464103,0.000000) outside T_a
+        -> C3: a piece has squared diameter 1.000002000001 > 1
+[ok  ] (4) piece 7 deleted (14 pieces)
+        -> C5: 554 uncovered part(s), e.g. near (1.502242,1.718560)
+[ok  ] (5) piece 10 shrunk 0.999x: sliver hole
+        -> C5: 2850 uncovered part(s), e.g. near (1.732312,1.731790)
+[ok  ] (6) piece 0 given a collinear extra vertex (not strictly convex)
+        -> C2 face 0: 5 listed vertices but hull has 4 (a listed vertex is redundant / not strictly convex)
+[ok  ] (7) decimal string '4.4641...' in an exact field is REJECTED
+[ok  ] (8) decimal string inside a Q(sqrt3) pair is REJECTED
+[ok  ] (9) checker refuses to call the a=1+2sqrt3 certificate strictly-sub-diameter-1
+[ok  ] (10) same pieces claimed to cover a larger T_a
+        -> C5: 2786 uncovered part(s), e.g. near (0.683354,3.781247)
+
+corruption (2) passed the area identity while failing coverage: True  <-- this is why the area shortcut is void
+
+ALL SELF-TESTS PASS
+EXIT 0

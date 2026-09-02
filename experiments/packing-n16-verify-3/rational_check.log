@@ -1,0 +1,22 @@
+=== ../packing-n16-covering-2/cert_rational.json : a = 4.464101615135990
+  name: ../packing-n16-covering-2/cert_rational.json
+  a: ('446410161513599/100000000000000', '0')
+  n_faces: 15
+  C1_all_vertices_in_T_a: True
+  C2_all_faces_strictly_convex: True
+  C2_listed_order_is_ccw_cyclic: True
+  C3_max_squared_diameter: 199282032302597545822661932801/199282032302598438642984960000 + 0 sqrt3  (= 0.999999999999996)
+  C3_strictly_below_1: True
+  C3_exactly_1: False
+  C4_pairwise_interior_disjoint: True
+  C4_overlaps: []
+  C5_nodes: 4436
+  C5_peak_stack: 17
+  C5_uncovered_parts: 0
+  C5_covered: True
+  C6_area_sum_equals_T_a: True
+  C6_areas_chart: ('199282032302597545822661932801/10000000000000000000000000000+0r3', '199282032302597545822661932801/10000000000000000000000000000+0r3')
+  errors: []
+  VERDICT: PASS
+PASS
+EXIT 0

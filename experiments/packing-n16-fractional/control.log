@@ -1,0 +1,32 @@
+== controls ==
+  N=111: rows=12321 pieces=5188 nnz=8868371 build=3.9s
+  N=111: LP value = 4.0000 (budget 4) [16.0s]
+  n4: N=111 -> lp-only lp=4.0
+  N=109: rows=11881 pieces=5096 nnz=8743459 build=2.2s
+  N=109: LP value = 4.0000 (budget 4) [14.4s]
+  n4: N=109 -> lp-only lp=3.999999999999997
+  N=108: rows=11664 pieces=5048 nnz=8450892 build=2.4s
+  N=108: LP value = 3.0000 (budget 4) [13.1s]
+  wrote /home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-n16-fractional/certs/cert_n4_N108.json
+  n4: N=108 VERIFIED bound 1.716178489196
+  N=129: rows=16641 pieces=5533 nnz=9404150 build=3.6s
+  N=129: LP value = 6.0000 (budget 6) [28.3s]
+  n6: N=129 -> lp-only lp=5.999999999999986
+  N=127: rows=16129 pieces=5423 nnz=9236146 build=3.0s
+  N=127: LP value = 6.0000 (budget 6) [18.2s]
+  n6: N=127 -> lp-only lp=6.0
+  N=126: rows=15876 pieces=5420 nnz=9110463 build=2.2s
+  N=126: LP value = 4.0000 (budget 6) [13.9s]
+  wrote /home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-n16-fractional/certs/cert_n6_N126.json
+  n6: N=126 VERIFIED bound 2.000000000000
+  N=192: rows=25072 pieces=8424 nnz=12697082 build=4.7s
+  N=192: LP value = 10.0000 (budget 10) [245.5s]
+  n10: N=192 -> lp-only lp=9.99999999999999
+  N=190: rows=24980 pieces=8249 nnz=12665814 build=3.7s
+  N=190: LP value = 10.0000 (budget 10) [180.8s]
+  n10: N=190 -> lp-only lp=9.999999999999977
+  N=189: rows=24793 pieces=8246 nnz=12577951 build=3.3s
+  N=189: LP value = 9.0000 (budget 10) [24.7s]
+  wrote /home/user/clanker-solving-riemman-hypothesis-inator/experiments/packing-n16-fractional/certs/cert_n10_N189.json
+  n10: N=189 VERIFIED bound 3.000000000000
+== controls PASS ==
