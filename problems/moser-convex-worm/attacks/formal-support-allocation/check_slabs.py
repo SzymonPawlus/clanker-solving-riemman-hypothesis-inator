@@ -127,6 +127,15 @@ def half_degree_cells(lo, hi):
 def main():
     assert PI[0] * 106 == 333 and PI[1] * 113 == 355
     assert Q(265, 153) ** 2 < 3
+    # Re-derive both displayed closed forms from actual edge lengths, the two
+    # allocations, and centred unit-segment support h(n)=|n.x|/2.
+    chord = Q(407, 807)
+    assert Q(1, 2) * Q(1, 3) * Q(1, 2) == Q(1, 12)
+    assert Q(1, 2) * chord * Q(138, 407) * Q(1, 2) == Q(138, 269) / 12
+    assert Q(1, 2) * (Q(1, 3) + chord) * Q(1, 2) == Q(169, 807)
+    # The triangle V has side 1/2, minimum width sqrt(3)/4; its antipodal
+    # support pair carries the outer coefficient 1/6.
+    assert Q(1, 6) * Q(1, 4) == Q(1, 24)
     ledgers = []
     for family, pieces in (
         ("width", ((Q(75), Q(269, 2)),)),

@@ -35,6 +35,10 @@ uses exact Taylor/Lagrange enclosures only at endpoints.  Once signs are fixed,
 the nonconstant expression is `A cos(gamma)+B sin(gamma)` and satisfies
 `f''=-f`; positivity gives concavity, so a cell minimum occurs at an endpoint.
 This is structurally different from adapting the producer's interval replay.
+Before checking angles it independently re-derives every rational coefficient
+in both closed forms from the actual `1/3,1/3,1/3,407/807` surface lengths,
+the `138/407` allocation, centred-segment support, and the triangle-width
+coefficient.
 
 Replay:
 
