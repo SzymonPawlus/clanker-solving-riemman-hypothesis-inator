@@ -250,6 +250,56 @@ Triangle containment is likewise unnecessary for this leaf's area inequality;
 the triangle pose remains in the nine-variable box ledger only so the leaf
 domain is explicit.
 
+## Common-outer-cell envelope schema
+
+There is a sound dimension reduction, but it is pointwise rather than a license
+to combine two unrelated global minima.  Fix a square pose `s`, and write
+
+```text
+m_T(s) = inf_t area hull(segment, square(s), triangle(t)),
+m_W(s) = inf_w area hull(segment, square(s), worm(w)).
+```
+
+For every joint placement `(s,t,w)`, the full hull contains both subfamily
+hulls.  Therefore its area is at least
+`max(m_T(s),m_W(s))`, and taking infima gives
+
+```text
+inf_(s,t,w) full_area >= inf_s max(m_T(s),m_W(s)).
+```
+
+The triangle and worm minimizers need not be correlated: the two containment
+bounds hold simultaneously for every `(t,w)`.  Compactness is needed only to
+replace `inf` by `min`.  The diameter argument above supplies the same closed
+translation boxes for all three moving witnesses, and the exact rotational
+gauges supply closed angle intervals, so the finite polygonal objectives are
+continuous on compact pose boxes.
+
+`check_composed_envelope.py` enforces the certificate consequence.  Each outer
+square cell must occur identically in a complete triangle inner tree and a
+complete worm inner tree.  Bounds must be uniform over that whole outer cell;
+trees using different outer partitions must first be common-refined.  The
+checker rejects a maximum of separately optimized global minima, a missing
+inner pose cell, a nonuniform bound, an incorrect compact root, and any global
+scope escalation.
+
+The initial `composed_envelope.json` is intentionally weak but sound.  It uses
+one coarse cell around the recorded square scenario,
+
+```text
+square tx in [3/4,4/5], ty in [2/5,1/2], theta in [24,26] degrees,
+```
+
+and covers each full triangle/worm inner pose root with the universal
+nonnegative-area leaf.  Thus both certified inner bounds are exactly zero; the
+fixture tests composition and coverage only and proves no target lower bound.
+Its outer cell volume is `1/100` out of root volume
+`103555883601/250000000`, a covered fraction
+`2500000/103555883601` (about `0.002414%`).  The exact uncovered outer volume is
+`103553383601/250000000`.  Positive progress now requires independently checked
+uniform geometric leaves for the two inner problems, not reuse of the local
+five-cycle worm pose as though it minimized over all worm placements.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive

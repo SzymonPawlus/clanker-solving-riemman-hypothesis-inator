@@ -1,0 +1,84 @@
+{
+  "schema_version": "moser-common-outer-envelope-v1",
+  "claim_scope": "partial_outer_coverage_schema_only",
+  "combination_rule": "pointwise_max_on_identical_outer_cell",
+  "target_rational": "232239/1000000",
+  "diameter_bound": "107267/100000",
+  "outer_root": {
+    "square_tx": ["-107267/100000", "107267/100000"],
+    "square_ty": ["-107267/100000", "107267/100000"],
+    "square_theta_deg": ["0", "90"]
+  },
+  "inner_compact_roots": {
+    "triangle": {
+      "tx": ["-107267/100000", "107267/100000"],
+      "ty": ["-107267/100000", "107267/100000"],
+      "theta_deg": ["0", "120"]
+    },
+    "worm": {
+      "tx": ["-107267/100000", "107267/100000"],
+      "ty": ["-107267/100000", "107267/100000"],
+      "theta_deg": ["0", "180"]
+    }
+  },
+  "outer_cells": [
+    {
+      "id": "cell-0",
+      "box": {
+        "square_tx": ["3/4", "4/5"],
+        "square_ty": ["2/5", "1/2"],
+        "square_theta_deg": ["24", "26"]
+      },
+      "triangle_tree": {
+        "kind": "triangle",
+        "outer_cell": {
+          "square_tx": ["3/4", "4/5"],
+          "square_ty": ["2/5", "1/2"],
+          "square_theta_deg": ["24", "26"]
+        },
+        "inner_root": {
+          "tx": ["-107267/100000", "107267/100000"],
+          "ty": ["-107267/100000", "107267/100000"],
+          "theta_deg": ["0", "120"]
+        },
+        "leaves": [
+          {
+            "box": {
+              "tx": ["-107267/100000", "107267/100000"],
+              "ty": ["-107267/100000", "107267/100000"],
+              "theta_deg": ["0", "120"]
+            },
+            "proof": "convex_hull_area_nonnegative",
+            "lower_bound": "0",
+            "uniform_over_outer_cell": true
+          }
+        ]
+      },
+      "worm_tree": {
+        "kind": "worm",
+        "outer_cell": {
+          "square_tx": ["3/4", "4/5"],
+          "square_ty": ["2/5", "1/2"],
+          "square_theta_deg": ["24", "26"]
+        },
+        "inner_root": {
+          "tx": ["-107267/100000", "107267/100000"],
+          "ty": ["-107267/100000", "107267/100000"],
+          "theta_deg": ["0", "180"]
+        },
+        "leaves": [
+          {
+            "box": {
+              "tx": ["-107267/100000", "107267/100000"],
+              "ty": ["-107267/100000", "107267/100000"],
+              "theta_deg": ["0", "180"]
+            },
+            "proof": "convex_hull_area_nonnegative",
+            "lower_bound": "0",
+            "uniform_over_outer_cell": true
+          }
+        ]
+      }
+    }
+  ]
+}
