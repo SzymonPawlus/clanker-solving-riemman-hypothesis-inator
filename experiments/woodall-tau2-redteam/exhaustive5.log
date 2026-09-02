@@ -1,0 +1,2 @@
+SPACE A: n=5 simple, all 1048576 digraphs; tau=2: 181070 (disconnected 4590); FAILURES: 0
+SPACE B: n=5 random multi, 300000 digraphs; tau=2: 22363 (disconnected 388); FAILURES: 0

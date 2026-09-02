@@ -1,0 +1,2 @@
+n=4 exhaustive weights: 194702 strictly-positive instances with tau_w=2, 0 with NO w-packing of 2 dijoins  [11s]
+n=5 random weights:     1410508 strictly-positive instances with tau_w=2, 0 with NO w-packing of 2 dijoins  [182s]
