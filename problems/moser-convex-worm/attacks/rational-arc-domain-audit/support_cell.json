@@ -1,0 +1,10 @@
+{
+  "schema_version": "moser-support-cell-v1",
+  "claim_scope": "single_periodic_angular_cell_only",
+  "target": "232239/1000000",
+  "template": "worm",
+  "basis": [0,1,2,3,5,6,7,8,12,13],
+  "center_degrees": {"triangle": "120", "square": "0", "worm": "100"},
+  "half_width_degrees": "1/4",
+  "periodic_triangle_cell": [["0", "1/4"], ["479/4", "120"]]
+}

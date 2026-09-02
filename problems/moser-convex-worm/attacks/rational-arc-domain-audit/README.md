@@ -375,6 +375,34 @@ is explicitly uncovered.  A real certificate must replace the centre value
 and radii by exact outward bounds and attach one exact primal basis to every
 leaf of a complete common-domain tree.
 
+`check_support_cell.py` replaces that one floating centre by an exact outward
+calculation.  The selected worm BFS allocates edges 0 and 2 to the segment,
+edge 1 to the triangle, and the closing edge in fractions `138/407` and
+`269/407`.  After inserting the actual edge lengths, the support functional is
+
+```text
+(1/6)(h_S(n0)+h_S(n2)+(138/269)h_S(n3)+h_T(n1)+h_T(n3)).
+```
+
+Machin/Taylor rational intervals evaluate the centre at triangle angle 120 and
+worm angle 100 degrees.  The exact triangle circumradius is bounded above by
+`289/1000`, giving per-radian constants `L_beta=289/3000` and
+`L_phi=82247/269000`; the square constant is zero.  Subtracting these constants
+times the exact `pi/720` outward upper bound proves the conservative rational
+lower endpoint `237/1000` on a quarter-degree-radius cell.  The triangle cell
+crosses its 120-degree quotient boundary, so the certificate explicitly stores
+both `[0,1/4]` and `[479/4,120]`; silently dropping either piece is rejected.
+
+`check_support_cells.py` expands the same exact primal into a 24-cell staircase
+with triangle centres from 118 through 120 degrees and worm centres from 98
+through 100.5 degrees where the bound remains at least `237/1000`.  The square
+angle is absent from this functional, so every accepted rectangle covers its
+full `[0,90]` gauge.  Exact prefix-free overlap checks and periodic splitting
+give covered angular volume `540` degree-cubed out of `1,944,000`, namely
+`1/3600`; uncovered fraction `3599/3600` remains explicit and forces partial
+scope.  This is rigorous local angular coverage, not yet the complete adaptive
+portfolio tree suggested by the numerical sweep.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
