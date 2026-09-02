@@ -53,3 +53,61 @@ Adversarial fixtures (all behave as derived by hand, see `adversarial.py`):
 ## Independent census (before seeing A1)
 
 (see `experiments/woodall-census-audit/census_out/summary.json` and `multisummary_M*.json`)
+
+Simple DAGs, isomorph-free (canonical form = colour refinement + minimum over in-cell
+permutations), weakly connected, tau >= 3, exact verdict on each (`census.py 7`, 61 s):
+
+| n | unlabelled DAGs (= A003087) | weakly connected | tau >= 3 | tau = 3 / 4 / 5 / 6 | verdict false | source–sink connected |
+|---|---|---|---|---|---|---|
+| 4 | 31 | 24 | 2 | 2 / 0 / 0 / 0 | 0 | 2 |
+| 5 | 302 | 267 | 44 | 38 / 6 / 0 / 0 | 0 | 44 |
+| 6 | 5984 | 5647 | 1519 | 1148 / 340 / 31 / 0 | 0 | 1519 |
+| 7 | 243668 | 237317 | 95072 | 63026 / 26152 / 5592 / 302 | 0 | 95072 |
+
+Multi-DAGs (parallel arcs, multiplicity <= M), isomorph-free, weakly connected, tau >= 3
+(`multicensus.py`):
+
+| M | n | classes | weakly connected | tau >= 3 | non-SSC among them | verdict false |
+|---|---|---|---|---|---|---|
+| 2 | 4 | 425 | 401 | 190 | 0 | 0 |
+| 2 | 5 | 26422 | 25961 | 17351 | 0 | 0 |
+| 3 | 4 | 2724 | 2666 | 1954 | 1 | 0 |
+| 3 | 5 | 586426 | 583558 | 514857 | 607 | 0 |
+
+Independent confirmations of my own enumeration:
+
+- Euler transform of the weakly-connected counts reproduces the total counts.
+- Weighting every class by (linear extensions)/|Aut| reproduces the labelled
+  upper-triangular counts-by-tau of the earlier `#73` sweep **exactly** (n = 6: 2706/674/64;
+  n = 7: 283267/81905/17334/1024), so two independent enumerators and two independent tau
+  implementations agree on all 95072 classes at n = 7 (`weighted_check.py`, 6 min).
+
+## The space claim: three findings
+
+**S1. For simple DAGs, tau >= 3 on <= 7 vertices forces source–sink connectivity.**
+If a source `s` cannot reach a sink `t`, put `R = reach(s)` and `W = V \ R`.  No arc leaves
+`R`, so `delta^-(W) = empty` and `delta^+(W)` (the arcs from `W` into `R`) is a dicut,
+hence has >= 3 arcs.  `s` and its >= 3 out-neighbours lie in `R`; `t` and its >= 3
+in-neighbours lie in `W` (arcs into `W` come only from `W`).  So `n >= 8` in a simple DAG.
+The census confirms it: all 95072 tau >= 3 classes on <= 7 vertices are SSC.  Consequently
+**every instance of a simple-DAG census up to 7 vertices is already settled by the `cited`
+Schrijver / Feofiloff–Younger theorem**; such a census is a test of the implementation, not
+of the conjecture.  The first non-SSC simple instance is on 8 vertices
+(`s->a,b,c; w1,w2,w3->a,b,c; w1,w2,w3->t`, tau = 3, packs).
+
+**S2. "Condensation licenses restricting to DAGs" licenses multi-DAGs, not simple DAGs.**
+Condensations of general digraphs carry parallel arcs (fixture K: a 5-vertex digraph whose
+condensation has a 4-fold arc).  Restricting to *simple* DAGs is an additional, unstated
+filter unless declared; I know of no reduction that removes parallel arcs while preserving
+the packing number in the needed direction (subdividing an arc `u->v` into `u->w->v` can
+only increase the number of disjoint dijoins: a packing of the original lifts, but a packing
+of the subdivision may use `u->w` and `w->v` in different dijoins).  Non-SSC tau >= 3
+instances appear at n = 4 once multiplicity 3 is allowed (`s->a x3, w->t x3, w->a x3`), and
+608 of them exist on <= 5 vertices with multiplicity <= 3 — these are the smallest instances
+that the cited theorem does **not** settle, and all of them pack.
+
+**S3. tau <= 2 exclusion is sound; the degree filter is not a shortcut.**  tau >= 3 forces
+every source to have out-degree >= 3 and every sink in-degree >= 3, but the converse fails
+(99 classes at n = 7 and 2 at n = 6 pass the degree filter with tau = 2, fixture C shows a
+bottleneck dicut of size 1 behind degree-3 sources and sinks), so a census must compute tau
+over all `2^n - 2` shores, not infer it from degrees.
