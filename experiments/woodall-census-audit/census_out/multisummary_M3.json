@@ -1,0 +1,86 @@
+{
+ "1": {
+  "unlabelled_multidags": 1,
+  "weakly_connected": 1,
+  "tau_hist": {
+   "null": 1
+  },
+  "tau>=3": 0,
+  "verdicts": {},
+  "elapsed_s": 0.0
+ },
+ "2": {
+  "unlabelled_multidags": 4,
+  "weakly_connected": 3,
+  "tau_hist": {
+   "1": 1,
+   "2": 1,
+   "3": 1
+  },
+  "tau>=3": 1,
+  "verdicts": {
+   "true": 1
+  },
+  "elapsed_s": 0.0
+ },
+ "3": {
+  "unlabelled_multidags": 52,
+  "weakly_connected": 48,
+  "tau_hist": {
+   "1": 11,
+   "2": 12,
+   "3": 11,
+   "4": 9,
+   "5": 4,
+   "6": 1
+  },
+  "tau>=3": 25,
+  "verdicts": {
+   "true": 25
+  },
+  "elapsed_s": 0.0
+ },
+ "4": {
+  "unlabelled_multidags": 2724,
+  "weakly_connected": 2666,
+  "tau_hist": {
+   "1": 274,
+   "2": 438,
+   "3": 550,
+   "4": 541,
+   "5": 432,
+   "6": 274,
+   "7": 122,
+   "8": 31,
+   "9": 4
+  },
+  "tau>=3": 1954,
+  "verdicts": {
+   "true": 1954
+  },
+  "elapsed_s": 0.3
+ },
+ "5": {
+  "unlabelled_multidags": 586426,
+  "weakly_connected": 583558,
+  "tau_hist": {
+   "1": 21260,
+   "2": 47441,
+   "3": 80264,
+   "4": 103595,
+   "5": 107963,
+   "6": 94124,
+   "7": 67823,
+   "8": 38863,
+   "9": 16670,
+   "10": 4731,
+   "11": 772,
+   "12": 52
+  },
+  "tau>=3": 514857,
+  "verdicts": {
+   "true": 514857
+  },
+  "elapsed_s": 110.4
+ }
+}
