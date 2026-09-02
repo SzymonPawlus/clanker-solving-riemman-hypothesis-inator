@@ -62,11 +62,14 @@ The motion convention does not obstruct this comparison. KPS says
 "congruent" without defining whether reflections are admitted. Its actual
 lower-bound witnesses and inequalities apply to orientation-preserving covers:
 the segment, V-worm, and U-worm are achiral as unlabelled arcs, while the only
-broadworm input is its reflection-invariant breadth. KPS's reflection in the
-angular normalization acts only on the achiral rectangle/triangle placement;
-it never requires the cover to contain a reflected broadworm. Thus the cited
+broadworm input is its reflection-invariant breadth. KPS's angular
+normalization may be understood as reflecting the whole already-placed
+configuration. This preserves hull area and breadth. The reflected broadworm
+need not itself be an admissible direct placement, because after normalization
+the proof uses no property of that set beyond its breadth. Thus the cited
 `0.232239` is a lower bound under the repo's direct-isometry convention as
-well.
+well; it does not assume that the cover independently contains a mirrored
+broadworm.
 
 By contrast, the two *definitions* are not automatically equivalent for all
 worms: a chiral arc and its mirror form distinct direct-isometry orbits. A
@@ -170,10 +173,12 @@ let `full` additionally allow reflection.
   y-axis reduces the rectangle/triangle angle domain. The U-shaped rectangle
   arc and equilateral V-arc are each direct-congruent to their mirrors, so
   this angular reduction is valid under `direct`.
-- KPS never reflects the broadworm in deriving Proposition 3.4. It uses only
-  the existence, in the placed broadworm, of two points with transverse
-  separation at least its minimum breadth. Breadth is invariant under either
-  convention.
+- If KPS's y-axis normalization is applied to the whole configuration, it also
+  reflects the already-placed broadworm. This is an area-preserving comparison
+  set, not a claim that the reflected broadworm is another allowed placement.
+  Proposition 3.4 uses only the existence, in that set, of two points with
+  transverse separation at least its minimum breadth. Breadth is invariant
+  under reflection, so admissibility of the mirrored broadworm is unnecessary.
 - Consequently every repo-universal cover supplies exactly the placements
   needed by the KPS inequalities. No claim that the broadworm itself is
   direct-achiral is needed.
