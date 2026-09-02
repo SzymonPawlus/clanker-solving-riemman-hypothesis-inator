@@ -10,6 +10,14 @@ floating-point certificate checker.
 
 namespace Verified.Moser
 
+theorem checker_pi_enclosure :
+    (333 / 106 : ℝ) < Real.pi ∧ Real.pi < (355 / 113 : ℝ) := by
+  constructor
+  · exact lt_trans (by norm_num : (333 / 106 : ℝ) < 3.14159265358979323846)
+      Real.pi_gt_d20
+  · exact lt_trans Real.pi_lt_d20
+      (by norm_num : (3.14159265358979323847 : ℝ) < 355 / 113)
+
 abbrev Vec := ℚ × ℚ
 
 def add (u v : Vec) : Vec := (u.1 + v.1, u.2 + v.2)

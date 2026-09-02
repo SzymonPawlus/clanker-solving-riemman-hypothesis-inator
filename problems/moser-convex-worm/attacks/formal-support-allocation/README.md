@@ -54,3 +54,7 @@ Minkowski-sum identity, plus the lower-dimensional segment's direct
 two-triangle area argument.  Until then this remains a substantial exact audit,
 not a verified global Moser improvement; the Issue #136 baseline gate also
 remains unresolved.
+
+`POLYGON-BRIDGE.md` gives the exact finite theorem signatures, a bounded
+common-normal-fan/summation-by-parts proof blueprint, and a kill criterion.  It
+is documentation of the missing proof, not a substitute for it.
