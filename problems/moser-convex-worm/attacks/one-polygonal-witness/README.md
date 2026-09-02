@@ -395,7 +395,7 @@ box in a proof.
 `certify_triangle_inner_tree.py` now implements that exact replay for the
 triangle side of the alternate square box.  The square translation and
 half-angle variables use the displayed finite decimals as exact rationals,
-each with radius `1/1000`.  Triangle translations range over
+each with radius `1/500`.  Triangle translations range over
 `[1-D,D] x [-D,D]`, where `D=1073/1000`, and each of the two half-angle charts
 has `t in [-1,1]`.  Thus the two roots cover every orientation and every
 translation that could occur in a hull of diameter less than `D`.
@@ -413,9 +413,12 @@ The serialized leaf paths are prefix-free and record the split coordinate at
 every level.  Replay constructs a trie and requires every internal trie node
 to have both children with the same split coordinate, so the leaf boxes form
 a complete binary cover rather than a collection of successful samples.
-`triangle-inner-tree.json` contains 3,703 leaves in the `epsilon=+1` chart
-(170 diameter, 3,533 fan) and 4,759 in the `epsilon=-1` chart (134 diameter,
-4,625 fan).  The smaller `1/1500` tree was therefore not retained.
+`triangle-inner-tree.json` contains 6,537 leaves in the `epsilon=+1` chart
+(192 diameter, 6,345 fan) and 8,819 in the `epsilon=-1` chart (157 diameter,
+8,662 fan).  The serialized file is about 1.1 MB; exact replay plus the six
+negative tests took about 6.6 seconds on the development machine.  Production
+is intentionally slower because it searches fan candidates; replay trusts
+only the stored exact rejection witness.
 
 ```text
 python problems/moser-convex-worm/attacks/one-polygonal-witness/certify_triangle_inner_tree.py \
@@ -434,8 +437,12 @@ separate exact boundary bracket: it passes at common radius `1/1300` with area
 lower endpoint about `0.2324144214`, while at `1/1200` its exact interval area
 lower bound no longer exceeds the target.  This is only a failure of that one
 fan predicate.  The complete projected tree above still closes the larger
-`1/1000` square box, so adjacent-cell construction should start at the latter
+`1/500` square box, so adjacent-cell construction should start at the latter
 boundary rather than treating `1/1200` as failure of the triangle envelope.
+A further numerical feasibility run at radius `3/1000` exhausted the positive
+chart in 25,133 nodes and the negative chart in 32,815 nodes, with zero
+unresolved leaves.  Those counts are not an exact certificate; `3/1000` is the
+next exactification checkpoint.
 
 This is still a producer-side **sketch**, not `verified:review`.  Conditional
 on the compact-diameter reduction above, it supplies a complete projected

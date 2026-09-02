@@ -364,7 +364,7 @@ def adversarial_tests(certificate, radius):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--radius", default="1/1000")
+    parser.add_argument("--radius", default="1/500")
     parser.add_argument("--write", help="produce certificate JSON")
     parser.add_argument("--replay", help="replay certificate JSON")
     parser.add_argument("--self-test", action="store_true",
