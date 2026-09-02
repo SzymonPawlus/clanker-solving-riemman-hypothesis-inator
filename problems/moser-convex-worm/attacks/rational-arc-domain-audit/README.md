@@ -1,6 +1,8 @@
 # Rational-arc compact-domain audit
 
-**Status:** exact witness and compact-domain certificate; no area lower bound.
+**Status:** `sketch` candidate strict improvement with complete self-checked
+angular certificate; verification-critical independent review required.  No
+verified area theorem is claimed.
 
 **Issue:** #140. Producer/search issue: #137.
 
@@ -446,6 +448,68 @@ an independent verification-critical review of the mixed-area containment
 inequality, the degenerate-segment argument, the exact outward implementation,
 and the interaction with the campaign's unresolved baseline gate.  It is not
 presented as an independently verified new Moser bound here.
+
+## Frozen candidate and dependency ledger
+
+The frozen self-checked candidate at commit `f7d5a29` (plus the ledger commit
+that adds this section) has conservative endpoint
+
+```text
+2323/10000 > 232239/1000000.
+```
+
+That inequality is exact.  Its interpretation as a Moser lower bound is capped
+by the weakest dependency below:
+
+1. **Exact fourth witness — self-checked exact.**  The `t=10/13` rational arc
+   has three edges of length `1/3`, proved by the Pythagorean identities in the
+   second-candidate checkpoint.  It is an open polygonal arc of total length
+   one; no closing chord is counted as worm length.
+2. **Orientation-preserving gauges — self-checked exact.**  The segment is
+   pinned; triangle and square use their rotational symmetries; the asymmetric
+   worm uses only the orientation-preserving half-turn about the segment
+   midpoint.  No reflection quotient occurs.  Adversarial tests restore the
+   360-degree worm domain if that action is altered.
+3. **Compact translations — self-checked exact.**  The diameter/triangle-width
+   argument proves `3 D^2 > 64 T^2` for the closed translation boxes.  The
+   support allocations then cancel all moving-witness translation
+   coefficients exactly, so the final support replay depends only on angles.
+4. **Mixed-area monotonicity — `sketch`, load-bearing.**  For an actual placed
+   witness hull `P subset K`, the argument uses
+   `V(K,P)=(1/2) sum l_e(P) h_K(n_e(P)) <= area(K)`.  The lengths and normals in
+   the certificate are the actual surface-area measure of `P`.  This step must
+   be independently checked; arbitrary template weights would be unsound.
+5. **Degenerate segment template — `sketch`, load-bearing.**  The direct
+   two-triangle proof above establishes the two-atom formula without assuming
+   an unjustified thickening.  It still needs verification-critical review.
+6. **Allocation polytopes — exact self-check, not independent.**  The checker
+   reconstructs every distinct BFS over `Q(sqrt(3))`, verifies nonnegativity,
+   per-edge capacities, and all translation loads.  The final union uses worm
+   BFS 0 and 13.
+7. **Outward angular replay — exact self-check, not independent.**  Rational
+   Machin/Taylor bounds for `pi`, sine and cosine, a rational enclosure of
+   `sqrt(3)`, exact Lipschitz constants, and conservative rational leaf
+   endpoints are recomputed.  Endpoint atomization proves the two slab families
+   cover the full `[0,180]` worm gauge, with nonempty overlaps.
+8. **Benchmark — cited target, baseline gate unresolved.**  The comparison is
+   against the exact rational reading `232239/1000000` of the published decimal
+   `0.232239`.  Issue #136 has not yet supplied the repository-required
+   independent reconstruction of that paper's proof.  Therefore this branch
+   cannot claim a campaign improvement even if its own support proof passes
+   review.
+
+Deterministic replay from repository root:
+
+```sh
+python3 -m unittest discover \
+  -s problems/moser-convex-worm/attacks/rational-arc-domain-audit \
+  -p 'test_*.py' -v
+python3 problems/moser-convex-worm/attacks/rational-arc-domain-audit/check_support_union.py \
+  problems/moser-convex-worm/attacks/rational-arc-domain-audit/support_union.json
+```
+
+The PR requesting review must remain `sketch`; it may not be merged or promoted
+by its author.
 
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
