@@ -42,6 +42,12 @@ It is implemented as `surface_symmetry_commonFan`,
 identities. `allocation_chain_commonFan` connects the finite surface inequality
 to the previous allocation theorem and an exact slab premise.
 
+`exists_active_vertex` and `exists_active_vertices_on_fan` prove that a
+maximizing source vertex can be selected on every ray of any already-given
+finite fan. `commonFan_support_of_coordinates` then derives the pointwise
+containment inequality from explicit convex coordinates and those active
+maximality facts.
+
 These three imply, by a finite sum inequality only,
 
 ```text
@@ -101,6 +107,8 @@ The remaining kill criterion is the **existence layer**: do not call the global
 bridge complete until arbitrary concrete finite convex polygons are proved to
 admit a cyclic common-fan representation whose active vertices satisfy the
 support hypotheses and whose repeated-vertex shoelace sum is the original
-polygon's. For the direct segment route, the two triangle areas must also be
+polygon's. Active-vertex existence on a supplied fan is complete; constructing
+the cyclic merge while preserving both polygons' edge order is the remaining
+step. For the direct segment route, the two triangle areas must also be
 connected to the containing polygon's shoelace area; assuming their sum is
 bounded remains an exposed interface.

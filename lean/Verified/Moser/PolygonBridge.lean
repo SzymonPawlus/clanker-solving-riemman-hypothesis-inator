@@ -263,4 +263,53 @@ theorem support_le_of_convexCoordinates {ι : Type*} [Fintype ι] [Nonempty ι]
   exact Finset.le_max' (Finset.univ.image fun i : ι ↦ dot (vertex i) normal) _
     (Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩)
 
+/-- Convex coordinates plus a named active maximizing vertex give the exact
+pointwise support comparison needed by a common fan. -/
+theorem dot_le_active_of_convexCoordinates {ι : Type*} [Fintype ι]
+    (weight : ι → ℝ) (vertex : ι → RVec) (point active normal : RVec)
+    (weight_nonneg : ∀ i, 0 ≤ weight i)
+    (weight_sum : ∑ i, weight i = 1)
+    (coordinates : point = ∑ i, (weight i * (vertex i).1, weight i * (vertex i).2))
+    (active_max : ∀ i, dot (vertex i) normal ≤ dot active normal) :
+    dot point normal ≤ dot active normal := by
+  subst point
+  rw [dot_convexCombination]
+  exact convexCombination_le weight (fun i ↦ dot (vertex i) normal)
+    (dot active normal) weight_nonneg weight_sum active_max
+
+/-- Convex coordinates for every support point and active-maximality of the
+common-fan vertex discharge the containment-support premise pointwise. -/
+theorem commonFan_support_of_coordinates {n : ℕ} [NeZero n]
+    (point vertex : ZMod n → RVec) (normal : ZMod n → RVec)
+    (weight : ZMod n → ZMod n → ℝ)
+    (weight_nonneg : ∀ i j, 0 ≤ weight i j)
+    (weight_sum : ∀ i, ∑ j, weight i j = 1)
+    (coordinates : ∀ i, point i =
+      ∑ j, (weight i j * (vertex j).1, weight i j * (vertex j).2))
+    (active_max : ∀ i j, dot (vertex j) (normal i) ≤ dot (vertex i) (normal i)) :
+    ∀ i, dot (point i) (normal i) ≤ dot (vertex i) (normal i) := by
+  intro i
+  exact dot_le_active_of_convexCoordinates (weight i) vertex (point i) (vertex i)
+    (normal i) (weight_nonneg i) (weight_sum i) (coordinates i) (active_max i)
+
+/-- Every linear functional on a nonempty finite vertex family has an active
+maximizing vertex. -/
+theorem exists_active_vertex {ι : Type*} [Finite ι] [Nonempty ι]
+    (vertex : ι → RVec) (normal : RVec) :
+    ∃ i, ∀ j, dot (vertex j) normal ≤ dot (vertex i) normal := by
+  classical
+  let _ := Fintype.ofFinite ι
+  obtain ⟨i, _, hi⟩ := Finset.exists_max_image Finset.univ
+    (fun j ↦ dot (vertex j) normal) Finset.univ_nonempty
+  exact ⟨i, fun j ↦ hi j (Finset.mem_univ j)⟩
+
+/-- Active maximizing vertices can be selected simultaneously on a finite fan. -/
+theorem exists_active_vertices_on_fan {ι : Type*} [Finite ι] [Nonempty ι]
+    {n : ℕ} [NeZero n] (vertex : ι → RVec) (normal : ZMod n → RVec) :
+    ∃ active : ZMod n → ι,
+      ∀ i j, dot (vertex j) (normal i) ≤ dot (vertex (active i)) (normal i) := by
+  classical
+  choose active hactive using fun i ↦ exists_active_vertex vertex (normal i)
+  exact ⟨active, hactive⟩
+
 end Verified.Moser.PolygonBridge
