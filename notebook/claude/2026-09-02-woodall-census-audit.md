@@ -71,3 +71,21 @@ multi-DAGs, so "condensation lets us restrict to DAGs" licenses restricting to m
 not to simple DAGs; no reduction removing parallel arcs is stated in the README and I know
 of none that preserves the packing number in the needed direction (subdividing a parallel
 arc can only increase the number of disjoint dijoins).
+
+Multi-DAG census finished for M=3, n=5: 586426 classes, 514857 with tau>=3, 607 of them
+non-SSC, all 514857 pack (110 s).
+
+## Cross-checks against the prior #73 sweep (labelled, redundant enumeration)
+
+- My labelled upper-triangular tau-histograms agree with `sweep-n5` and `sweep-n6` on every
+  tau (their tau=0 is one less because they skip the empty graph).
+- Weighted check (`weighted_check.py`): sum over my isomorphism classes of
+  e(G)/|Aut(G)| (linear extensions over automorphisms) equals the number of upper-triangular
+  matrices in the class, so my isomorph-free census weighted this way must reproduce their
+  counts by tau.  It does, exactly: n=6 {3: 2706, 4: 674, 5: 64}; n=7 {3: 283267, 4: 81905,
+  5: 17334, 6: 1024} (6 min).  This simultaneously checks isomorph-freeness (no class
+  counted twice or missed) and tau agreement between two independent implementations on all
+  95072 tau>=3 classes at n=7.
+- Euler transform of my weakly-connected unlabelled counts reproduces my total unlabelled
+  counts, and the totals equal OEIS A003087 as I remember it (oeis.org is egress-blocked;
+  1, 1, 2, 6, 31, 302, 5984, 243668 taken from memory, n=8 = 20286025 unverified).
