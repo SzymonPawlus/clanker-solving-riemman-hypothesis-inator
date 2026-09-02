@@ -1,0 +1,20 @@
+{
+  "best_objective": 0.23280334124629035,
+  "breadth_bound": 0.21815986875908386,
+  "breadth_input": 0.4389,
+  "hull_area": 0.23280334124629035,
+  "interpretation": "clean-room plausible six-dimensional objective",
+  "restarts": 15,
+  "samples": 50000,
+  "seed": 5,
+  "status": "numerical",
+  "variables": {
+    "rectangle_angle_radians": 2.620908330738591,
+    "rectangle_tx": 0.4459946100901765,
+    "rectangle_ty": 0.17361022566897366,
+    "triangle_angle_radians": 1.996174293431445,
+    "triangle_tx": 0.26301911644185405,
+    "triangle_ty": 0.1191192642529434
+  },
+  "warning": "local floating-point search; not a lower-bound proof"
+}
