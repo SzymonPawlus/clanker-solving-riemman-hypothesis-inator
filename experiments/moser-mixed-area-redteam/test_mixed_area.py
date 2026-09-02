@@ -52,6 +52,24 @@ class MixedAreaBridgeTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 bridge_check(bad, self.square)
 
+    def test_zero_and_collinear_edge_splitting_leave_surface_unchanged(self):
+        # The strict certificate parser rejects these, but the mathematical
+        # sum is invariant under deleting a zero edge and combining a
+        # codirected collinear run.  Check that claim directly and exactly.
+        canonical = self.square
+        split = [qpoint(0, 0), qpoint(0, 0), qpoint(2, 0), qpoint(4, 0),
+                 qpoint(4, 4), qpoint(0, 4)]
+
+        def raw_surface(boundary):
+            total = Q(0)
+            for i, a in enumerate(boundary):
+                b = boundary[(i + 1) % len(boundary)]
+                dx, dy = b[0] - a[0], b[1] - a[1]
+                total += max(x * dy - y * dx for x, y in self.square)
+            return total
+
+        self.assertEqual(raw_surface(split), raw_surface(canonical))
+
     def test_wrong_inward_normals_are_detected_by_translation(self):
         tri = [qpoint(1, 1), qpoint(3, 1), qpoint(2, 3)]
         asymmetric = [qpoint(0, 0), qpoint(7, 0), qpoint(0, 5)]
