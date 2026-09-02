@@ -403,6 +403,25 @@ give covered angular volume `540` degree-cubed out of `1,944,000`, namely
 scope.  This is rigorous local angular coverage, not yet the complete adaptive
 portfolio tree suggested by the numerical sweep.
 
+The same primal actually yields a much larger slab.  Its two triangle normals
+are antipodal, so the triangle contribution is one sixth of a width and is
+uniformly at least `sqrt(3)/24`, independent of the triangle angle.  The square
+angle was already absent.  The remaining segment term is
+
+```text
+(1/12)(|n0.x| + |n2.x| + (138/269)|n3.x|),
+```
+
+depending only on the worm angle.  `check_support_slab.py` evaluates this term
+on 119 adjacent half-degree worm cells covering `[75,269/2]`, using the exact
+segment Lipschitz constant `169/807` and outward `pi` and `sqrt(3)` bounds.
+Every cell proves the rational lower endpoint `2323/10000`, while the triangle
+and square domains are checked as the complete `[0,120]` and `[0,90]` gauges.
+Thus this single exact primal certifies a full two-angle slab occupying
+`119/360` of the common angular domain.  The unresolved complement has two
+worm-angle components, `[0,75]` and `[269/2,180]`, with total fraction
+`241/360`; complementary template primals are still required there.
+
 Acceptance certifies only the witness and compact search domain. It says
 nothing about the numerical minimum near `0.23645` and supplies no branch tree
 or sound area-pruning leaves. A global result still requires exhaustive
