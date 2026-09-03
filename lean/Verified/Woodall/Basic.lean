@@ -23,7 +23,10 @@ Following `problems/woodalls-conjecture/README.md`, for a digraph `D = (V, A)` a
 * `IsDicutShore D U` — `U` is a shore of a **dicut**: `δ⁻(U) = ∅` and `δ⁺(U) ≠ ∅`.
   The `δ⁻(U) = ∅` half is the one that is routinely dropped by mistake; problem `RULES.md` §4
   names exactly that error ("Confirm your code's notion of dicut requires `δ⁻(U) = ∅`, not
-  merely `δ⁺(U) ≠ ∅`").
+  merely `δ⁺(U) ≠ ∅`"). The `δ⁺(U) ≠ ∅` half was an addition to the README's text when this
+  file was written (audit finding F1 on issue #151); the README was amended on 2026-09-02 to
+  require it, so prose and code now agree and `IsDicutShoreAllowingEmpty` records the reading
+  that was dropped.
 * `IsDijoin D J` — `J` meets **every** dicut;
 * `IsMinDicutSize D t` — `t` is `τ`, the minimum size of a dicut.
 
@@ -49,7 +52,9 @@ so stating them costs nothing and removes a reading in which they were quietly d
 **`τ` is `Option`-valued when phrased computably** (`tau?`): a digraph with no dicut at all —
 the directed cycle, or any strongly connected digraph — has no minimum dicut size, and then
 *every* arc set is vacuously a dijoin and no bound on disjoint dijoins exists. `IsMinDicutSize`
-carries the existence of a dicut as a hypothesis for exactly this reason.
+carries the existence of a dicut as a hypothesis for exactly this reason. The two are **proved
+equal** by `tau?_eq_some_iff` and `tau?_eq_none_iff` below; before those existed, a fact about
+`tau?` was a fact about `min?` of a filtered enumeration and said nothing about `τ`.
 
 This file deliberately depends on Lean core only (no `Mathlib` import): the definitions need
 nothing beyond `List`, `Fin` and `Bool`, and keeping the import empty keeps kernel reduction
@@ -221,6 +226,86 @@ def tau? (D : Digraph n m) : Option Nat := (dicutSizes D).min?
 
 /-- The arc set given by a list of arc indices. -/
 def arcSetOf {m : Nat} (l : List Nat) : ArcSet m := fun a => l.contains a.val
+
+/-! ## Bridging the two definitions of `τ`
+
+`IsMinDicutSize` (relational) and `tau?` (computed) are two separate definitions of the same
+quantity, and until the theorems below existed nothing was entitled to read `tau?` as `τ`: a
+`decide`-checked fact about `tau?` said something about `min?` of a filtered enumeration, not
+about the minimum dicut size. `tau?_eq_some_iff` closes that gap, so the two may be used
+interchangeably from here on.
+
+The bridge is an `↔` at `some t`, not an equation between a `Nat` and a `Nat`, because `tau?` is
+`Option`-valued: `none` is the honest value for a digraph with no dicut, and `IsMinDicutSize`
+holds of no `t` there. `tau?_eq_none_iff` is the matching statement for that case, so the two
+definitions are related on the whole of their domains and not merely where both are defined. -/
+
+/-- The enumeration `dicutShores` lists exactly the dicut shores — no shore is missed and
+nothing else is included. This is where the completeness of `allVertexSets` enters. -/
+@[simp] theorem mem_dicutShores {D : Digraph n m} {U : VertexSet n} :
+    U ∈ dicutShores D ↔ IsDicutShore D U := by
+  simp [dicutShores, List.mem_filter, mem_allVertexSets]
+
+/-- Hence `dicutSizes` lists exactly the sizes of dicuts. -/
+theorem mem_dicutSizes {D : Digraph n m} {t : Nat} :
+    t ∈ dicutSizes D ↔ ∃ U : VertexSet n, IsDicutShore D U ∧ card (deltaOut D U) = t := by
+  simp [dicutSizes, List.mem_map, mem_dicutShores]
+
+/-- **The bridge: the computed `τ` is the relational `τ`.** `tau? D = some t` holds for exactly
+the `t` that `IsMinDicutSize D t` holds of.
+
+Both halves of `IsMinDicutSize` are needed and both are supplied by `min?`: membership of the
+minimum in the list gives the attaining shore, and its minimality gives the lower bound over
+*all* shores, which is a genuine quantification over every `U : VertexSet n` because
+`mem_allVertexSets` says the enumeration is complete. -/
+theorem tau?_eq_some_iff {D : Digraph n m} {t : Nat} :
+    tau? D = some t ↔ IsMinDicutSize D t := by
+  rw [tau?, List.min?_eq_some_iff]
+  constructor
+  · rintro ⟨hmem, hle⟩
+    exact ⟨mem_dicutSizes.1 hmem, fun U hU => hle _ (mem_dicutSizes.2 ⟨U, hU, rfl⟩)⟩
+  · rintro ⟨hex, hle⟩
+    refine ⟨mem_dicutSizes.2 hex, ?_⟩
+    rintro b hb
+    obtain ⟨U, hU, rfl⟩ := mem_dicutSizes.1 hb
+    exact hle U hU
+
+/-- The other half of the bridge: `tau?` is `none` exactly when the digraph has no dicut at all,
+which is exactly when no `t` satisfies `IsMinDicutSize`. -/
+theorem tau?_eq_none_iff {D : Digraph n m} :
+    tau? D = none ↔ ∀ U : VertexSet n, ¬ IsDicutShore D U := by
+  rw [tau?, List.min?_eq_none_iff]
+  constructor
+  · intro h U hU
+    have hmem : card (deltaOut D U) ∈ dicutSizes D := mem_dicutSizes.2 ⟨U, hU, rfl⟩
+    rw [h] at hmem
+    exact absurd hmem (by simp)
+  · intro h
+    rw [List.eq_nil_iff_forall_not_mem]
+    intro t ht
+    obtain ⟨U, hU, -⟩ := mem_dicutSizes.1 ht
+    exact h U hU
+
+/-- A digraph with no dicut has no minimum dicut size, for **every** natural number — the
+unbounded statement, with no `decide`-imposed range restriction. -/
+theorem not_isMinDicutSize_of_no_dicut {D : Digraph n m}
+    (h : ∀ U : VertexSet n, ¬ IsDicutShore D U) (t : Nat) : ¬ IsMinDicutSize D t := by
+  rintro ⟨⟨U, hU, -⟩, -⟩
+  exact h U hU
+
+/-- Consequently `tau? D = none` is equivalent to `τ` being undefined, stated directly on
+`IsMinDicutSize` rather than on the shores. -/
+theorem tau?_eq_none_iff_not_exists {D : Digraph n m} :
+    tau? D = none ↔ ¬ ∃ t : Nat, IsMinDicutSize D t := by
+  constructor
+  · rintro h ⟨t, ht⟩
+    have := tau?_eq_some_iff.2 ht
+    rw [h] at this
+    exact absurd this (by simp)
+  · intro h
+    cases hd : tau? D with
+    | none => rfl
+    | some t => exact absurd ⟨t, tau?_eq_some_iff.1 hd⟩ h
 
 /-! ## Counting
 

@@ -12,11 +12,75 @@ before working on this problem.**
 Let $D = (V, A)$ be a digraph. For nonempty proper $U \subsetneq V$ write $\delta^+(U)$ for the
 arcs leaving $U$ and $\delta^-(U)$ for those entering.
 
-- A **dicut** is a set $\delta^+(U)$ where $\delta^-(U) = \emptyset$ — a cut with all arcs
-  pointing the same way.
+- A **dicut** is a **nonempty** set $\delta^+(U)$ where $\delta^-(U) = \emptyset$ — a cut with
+  all arcs pointing the same way. Nonemptiness is part of the definition; it was added on
+  2026-09-02 and it changes what earlier work in this directory says, so read *Convention:
+  dicuts are nonempty* below before relying on any statement about disconnected digraphs.
 - A **dijoin** is a set of arcs meeting *every* dicut at least once.
 - A **$k$-dijoin** meets every dicut at least $k$ times.
 - $\tau$ denotes the minimum size of a dicut.
+
+### Convention: dicuts are nonempty
+
+**Amended 2026-09-02, issue #158, acting on finding F1 of the independent Lean audit on issue
+#151 (branch `claude/151-lean-audit`, `attacks/lean-foundations-audit/`, not yet on `main` when
+this was written).** Until then
+this file required only $\delta^-(U) = \emptyset$, which admits $\delta^+(U) = \emptyset$ as a
+dicut. That permissive reading and this one differ on **exactly** the digraphs whose underlying
+graph is disconnected, and never on a weakly connected one: if $D$ is weakly connected and $U$
+is nonempty proper, some edge of the underlying graph crosses, and $\delta^-(U) = \emptyset$
+forces its arc to leave $U$; conversely, in a disconnected $D$ a union of components has
+$\delta^+(U) = \delta^-(U) = \emptyset$. The audit's sweep found the two readings disagreeing
+on 1,892 of 13,615 digraphs, all of them disconnected.
+
+Why the nonempty reading is the intended one (elementary, `sketch`-tier — check it, do not take
+it on trust):
+
+1. **The permissive reading refutes the conjecture on four vertices.** For $D$ with arcs
+   $0\to1$ and $2\to3$, the set $U=\{0,1\}$ has $\delta^+(U)=\delta^-(U)=\emptyset$, so
+   $\emptyset$ is a dicut and $\tau=0$. No arc set meets $\emptyset$, so $D$ has **no dijoin at
+   all**, and $A\ne\emptyset$ cannot be partitioned into $0$ dijoins. A reading on which a
+   50-year-old open problem is settled by a four-vertex example is a misreading, not a
+   counterexample.
+2. **It is the literature convention.** Schrijver and Feofiloff–Younger, cited below, treat a
+   directed cut as a cut, i.e. as a set of arcs that exists.
+3. **The disconnected case then reduces to the connected one** in the usual way rather than
+   being degenerate: dicuts of a disjoint union are the dicuts of the parts, so
+   $\tau(D_1\sqcup D_2)=\min(\tau(D_1),\tau(D_2))$ and a dijoin of the union is exactly a
+   union of dijoins of the parts. The same reduction is stated as item 3 of
+   [`attacks/zero-weight-frontier/`](./attacks/zero-weight-frontier/README.md).
+
+**This does not change the cited source–sink-connected theorem below.** Its hypothesis implies
+weak connectivity — a finite nonempty DAG has a source and a sink, so two weak components would
+give a source with no directed path to a sink in the other component — and on weakly connected
+digraphs the two readings agree, so $\tau(D,c)$ and the theorem's conclusion are unaffected.
+
+**What it does change, and where that has already bitten.** Statements about disconnected
+digraphs written against the permissive reading are not automatically true here:
+
+- [`attacks/tau2-robbins/`](./attacks/tau2-robbins/README.md), **Lemma A** — the red team on
+  issue #153 (PR #160) reports that the lemma mixes the two conventions and that under the
+  nonempty convention its conclusion "$G$ is connected" is **false**, with 636 weakly
+  disconnected $\tau\ge2$ digraphs as witnesses. Recorded here, not repaired here; that file
+  belongs to #153/#160. Its main $\tau=2$ argument treats components separately and is not
+  obviously affected, but that is for #160 to settle, not for this note to assert.
+- [`attacks/dijoin-exact-ip-search/`](./attacks/dijoin-exact-ip-search/README.md) — its
+  exclusion of $\tau\le1$ from the $n=7$ run is justified by "if $\tau=0$ some dicut is empty",
+  which is a permissive-reading argument, and its code prunes disconnected DAGs by computing
+  $\tau=0$ for them. Under this convention $\tau=0$ never occurs, and a disconnected DAG can
+  have $\tau\ge2$ (two disjoint diamonds), so those instances are inside the stated search
+  space and were not searched. The gap is closable by the disjoint-union reduction in point 3
+  above rather than by more computing, but the write-up's coverage statement needs that
+  substitution to be made explicit. Not repaired here; that file belongs to #73.
+
+Several attacks — [`tau-saturation`](./attacks/tau-saturation/README.md),
+[`balanced-dicut-hypergraph`](./attacks/balanced-dicut-hypergraph/README.md),
+[`tau3-saturated-source-sink`](./attacks/tau3-saturated-source-sink/README.md) — already state
+the nonempty convention, and so does the Lean: `IsDicutShore` in
+[`../../lean/Verified/Woodall/Basic.lean`](../../lean/Verified/Woodall/Basic.lean) requires
+$\delta^+(U)\ne\emptyset$, with `IsDicutShoreAllowingEmpty` naming the permissive alternative
+and a `decide`-checked digraph where they disagree. This amendment brings the prose into line
+with the code, not the other way round.
 
 Equivalently, a dijoin is a set of arcs whose **contraction** makes $D$ strongly connected. Arc
 sets whose reversal makes $D$ strongly connected (called *strengthenings*) are dijoins, but the
