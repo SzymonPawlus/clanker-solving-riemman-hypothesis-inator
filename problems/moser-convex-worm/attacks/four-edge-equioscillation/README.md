@@ -4,6 +4,68 @@
 cover lower-bound claim.  This directory is separate from the frozen Issue
 #178 certificate and the Issue #182 candidate-specific analytic proof.
 
+## New exact support floor
+
+The analytic machinery below produces a stronger rational four-edge witness.
+Take the half-angle direction parameters
+
+```text
+-19999/25000, -3/200, 3/200, 19999/25000
+```
+
+and traversed lengths
+
+```text
+683/2000, 317/2000, 317/2000, 683/2000.
+```
+
+Every direction is a rational unit vector, every length is positive, and the
+four lengths sum exactly to one.  Symmetry makes the resultant horizontal, so
+the untraversed closing hull edge has rational length
+
+\[
+ 2\left({683\over2000}c_\beta+{317\over2000}c_\alpha\right).
+\]
+
+All five consecutive tangent cross products are strictly positive, and their
+unwrapped directions make one turn around the circle, proving that the five
+traversal vertices are the strict convex hull boundary.  The closing edge is
+not traversed and is not counted in worm length.
+
+Let `C,A,S,B` denote respectively the inner three-ray circuit, one crossed
+circuit, the all-segment allocation, and the outer three-ray circuit.  On
+`0<=phi<=pi/2`, put `u=tan(phi/2)`.  The four exact intervals
+
+\[
+\begin{array}{c|c}
+C &[0,9/40]\\
+A &[9/40,1/3]\\
+S &[1/3,1493/2000]\\
+B &[1493/2000,1]
+\end{array}
+\]
+
+are projection-sign cells for the named bound (or unions of cells whose
+loaded residual removes the intervening zero).  Each bound is a constant plus
+a nonnegative sine combination and is concave.  Exact `Q(sqrt(3))` evaluation
+proves both endpoints of every row strictly greater than
+
+\[
+ \boxed{{11759\over50000}=0.23518}. \tag{R}
+\]
+
+The data and allocations are invariant under index reversal
+`i -> 3-i` (with the closing edge fixed); this algebraically takes
+`phi -> pi-phi` and pairs the two crossed circuits.  It covers the second half
+of the direct-rotation domain without allowing a reflected placement.
+Therefore the support envelope has global floor at least (R).  This improves
+the Issue #182 exact support floor `0.2350682` by `0.0001118`.
+
+This is a support-envelope theorem at `status:sketch`.  Its interpretation as
+a convex universal-cover area bound remains conditional on the finite-polygon
+mixed-area/common-fan bridge under review in Issues #170/#176.  No status or
+literature-record promotion is claimed.
+
 ## 1. Setup and direct-motion domain
 
 Let a convex four-edge open arc have traversed hull-edge tangent directions
