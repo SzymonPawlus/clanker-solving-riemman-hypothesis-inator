@@ -1,0 +1,101 @@
+{
+ "space": {
+  "max_n": 4,
+  "max_arcs": 6,
+  "max_mult": 2
+ },
+ "scanned": 13615,
+ "multigraphs_with_tau_both_sides": 10419,
+ "disagreements": {
+  "dicuts_as_pair_sets(survey)[multi]": {
+   "count": 1619,
+   "first": {
+    "n": 3,
+    "arcs": [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "prose": "{frozenset({(0, 1)})}",
+    "lean": "{frozenset(), frozenset({(0, 1)})}"
+   }
+  },
+  "dicuts_as_pair_sets(survey)[simple]": {
+   "count": 273,
+   "first": {
+    "n": 2,
+    "arcs": [],
+    "prose": "set()",
+    "lean": "{frozenset()}"
+   }
+  },
+  "max_disjoint_dijoins(literal)[multi]": {
+   "count": 2086,
+   "first": {
+    "n": 2,
+    "arcs": [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "prose": "2",
+    "lean": "1"
+   }
+  },
+  "tau(literal)[multi]": {
+   "count": 2086,
+   "first": {
+    "n": 2,
+    "arcs": [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "prose": "2",
+    "lean": "1"
+   }
+  },
+  "tau(survey)[multi]": {
+   "count": 3705,
+   "first": {
+    "n": 2,
+    "arcs": [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    "prose": "2",
+    "lean": "1"
+   }
+  },
+  "tau(survey)[simple]": {
+   "count": 273,
+   "first": {
+    "n": 2,
+    "arcs": [],
+    "prose": "None",
+    "lean": "0"
+   }
+  }
+ }
+}
