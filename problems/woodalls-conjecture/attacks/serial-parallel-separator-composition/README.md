@@ -7,6 +7,11 @@ self-contained and does not modify the frozen PR #211. The theorem applies to
 arbitrary finite unweighted digraph pieces already known to satisfy Woodall,
 not only to source--sink-connected pieces.
 
+**Reference status (checked 2026-09-04).** PR #211 is **open and unmerged**, so
+its content is not on `main` and cannot be checked from this file. Nothing below
+depends on it: #211 is named only to say which earlier line of work this attack
+declines to modify.
+
 ## Definitions and elementary restriction lemma
 
 For `U subseteq V(D)`, a nonempty dicut is `delta+(U)` where `U` is nonempty
