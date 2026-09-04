@@ -21,6 +21,16 @@ reconstructed atomic-sparsity conclusion $m\le3n-4$. Then:
 4. a source among these has outdegree $3$, $4$, or $5$, a sink has the
    corresponding indegree, and an internal vertex has one of
    $(d^-,d^+)=(1,2),(2,1),(1,3),(2,2),(3,1),(1,4),(2,3),(3,2),(4,1)$.
+5. more sharply, if $n_d$ denotes the number of vertices of total degree
+   $d$, then
+   $$
+   3n_3+2n_4+n_5
+   \;\ge\;
+   8+\sum_{d\ge7}(d-6)n_d.
+   $$
+   Consequently there are at least three distinct vertices of degree at most
+   five; if there is no degree-three vertex there are at least four, and if
+   every low-degree vertex has degree five there are at least eight.
 
 ### Proof
 
@@ -49,7 +59,14 @@ components is a dicut shore of $D$, contradicting $\tau(D)=3$.
 
 Therefore every vertex has total degree at least three. But
 $2m\le6n-8<6n$, so some vertex has degree at most five. DAG acyclicity gives
-the listed source, sink, and internal orientation signatures. QED.
+the listed source, sink, and internal orientation signatures.  Finally,
+$$
+\sum_v(6-d(v))=6n-2m\ge8.
+$$
+Separating the terms of degrees $3,4,5,6$ and at least $7$ gives item 5.
+Each low-degree vertex contributes at most three to the left side, proving
+the first count; excluding degree three lowers that maximum contribution to
+two, and allowing only degree five lowers it to one. QED.
 
 The deletion lemma is therefore not unconditional arc-criticality.  Every one
 of the at most five incident arcs at the forced vertex is instead certified
