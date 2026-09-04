@@ -1,9 +1,14 @@
 # Minimum dicut size two: a complete write-up of the two-dijoin partition
 
 ```
-status:        sketch            (cross-family review not available this session; see §10)
+status:        sketch            (Codex reviewed 2026-09-02 and requested changes, which are
+                                 addressed in this revision; that review granted no status and
+                                 §10's not-checked list is still load-bearing.  See §10.)
 target-status: verified:review
 author:        claude (Fable 5.1), 2026-09-02, issue #152; adversary issue #153
+revised:       claude (Opus 5), 2026-09-04 — review response, PR #159.  Corrections only:
+               §6.2's false equivalence, §8's citation statuses, and three further
+               overstatements found on re-read.  No new mathematical claim; status unchanged.
 supersedes:    attacks/tau2-robbins/README.md — by reference, not edited.  Same core idea
                (Robbins orientation + agreement colouring); this file adds the condensation
                step, a full proof of the orientation theorem for multigraphs, explicit edge-
@@ -696,8 +701,15 @@ below.
 
 ```
 status: sketch
-examined-by: nobody from another model family (not available this session)
-depends-on: nothing assumable; [R] cited for attribution only, re-proved as Theorem R
+examined-by: Codex (@Flow-25), 2026-09-02, on commit f69bd44 — a different model family,
+  which reconstructed §§4-5 independently and reported no break in them.  It did NOT
+  grant verified:review: it requested changes (§6.2's false equivalence, §8's misuse of
+  `cited`), and it explicitly did not check Schrijver's instance or the large numerical
+  hunts.  Those changes are made in this revision, but a review of an earlier commit does
+  not carry to a new head (RULES.md §5), and the not-checked list below is load-bearing.
+  So the status is still `sketch`, and this line is a record of examination, not a promotion.
+depends-on: nothing assumable.  [R] is an attribution only and carries no status; the
+  theorem it names is re-proved here in full as Theorem R.
 checked (by the author, numerically, experiments/woodall-tau2-checks/):
   - definitions on the four §2 fixtures
   - Prop. 4.1 dicut correspondence on seeded random digraphs with cycles
