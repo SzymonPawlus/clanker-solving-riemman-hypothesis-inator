@@ -213,7 +213,34 @@ progress file and the final JSON records the stalled boxes.
 | 6 | 5 | 20 | 19 | 16 | **18** ✓ | 181 | 0.8 |
 | **7** | **6** | **27** | **26** | **22** | **25** ✓ | **175** | **0.6** |
 
-Reproduce with `python3 run_all.py` (about 3 minutes; `out/run_all.json`).
+Reproduce with:
+
+```
+cd experiments/packing-r5-eo7
+python3 run_all.py                    # about 3 minutes; writes out/run_all.json
+```
+
+**Dependency (required, not optional).** `mpmath >= 1.3.0`, declared in
+`experiments/packing-r5-eo7/pyproject.toml`. Every accept/reject decision in `certify.py` is an
+outward-rounded interval comparison at `iv.dps = 30`, and that rounding *is* the soundness of the
+lane — so mpmath cannot be skipped, and must not be reimplemented: hand-rolled interval arithmetic
+is the one substitution whose errors are both invisible and fatal, since a single wrong rounding
+direction turns a non-proof into an apparent proof. On an interpreter without it the command now
+exits **2** with an install line rather than a raw `ModuleNotFoundError` traceback:
+
+```
+python3 -m venv .venv
+.venv/bin/pip install 'mpmath>=1.3.0'
+.venv/bin/python run_all.py
+```
+
+`numpy` is **not** needed for this command. It is an optional extra (`[measurements]`) used only
+by the float measurement scripts `scan_lattice.py` and `probe_forcing.py`, which now carry their
+own preflight.
+
+Re-run under mpmath 1.3.0 / CPython 3.14.5 (the committed JSON was produced under mpmath 1.3.0 /
+CPython 3.11.15): every mathematical field reproduced bit-for-bit — `best_certified`, `boxes` and
+`closes_EO_lattice_case` all identical — with only the wall-clock `seconds` differing.
 
 **The $k = 7$ row is the deliverable**: over the whole 3-parameter space, certified
 $\le 25 < 26$, in 175 boxes and under a second. The cost is trivial — this is not a
