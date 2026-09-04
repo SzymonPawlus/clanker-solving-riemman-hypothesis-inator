@@ -1,0 +1,50 @@
+[
+ {
+  "n": 12,
+  "p": 71,
+  "q": 10,
+  "L": 5,
+  "d": 7.1,
+  "verdict": "unsat",
+  "nodes": 4386939,
+  "forced": 1756189,
+  "props": 12701687,
+  "killed": 495062888,
+  "bound_prunes": 0,
+  "count_prunes": 531538,
+  "prop_rounds": 2547728,
+  "build_s": 0.28,
+  "solve_s": 53.54
+ },
+ {
+  "n": 12,
+  "p": 72,
+  "q": 10,
+  "L": 5,
+  "d": 7.2,
+  "verdict": "sat",
+  "nodes": 63158,
+  "forced": 28926,
+  "props": 243509,
+  "killed": 8463248,
+  "bound_prunes": 0,
+  "count_prunes": 6657,
+  "prop_rounds": 40829,
+  "build_s": 0.26,
+  "solve_s": 0.87,
+  "witness": [
+   0,
+   8,
+   163,
+   23,
+   31,
+   343,
+   228,
+   251,
+   491,
+   527,
+   483,
+   351
+  ]
+ }
+]

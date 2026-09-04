@@ -1,0 +1,22 @@
+{
+  "k3_medial_T2": {
+    "ok": true,
+    "ms": 11.171579360961914
+  },
+  "k3_medial_T199_100_strict": {
+    "ok": true,
+    "ms": 12.48931884765625
+  },
+  "k3_kites_T2_should_fail_diam": {
+    "ok": false,
+    "ms": 10.82754135131836
+  },
+  "k3_medial_minus_one_should_fail_cover": {
+    "ok": false,
+    "ms": 6.391286849975586
+  },
+  "kites_T3_2_strict": {
+    "ok": true,
+    "ms": 11.234283447265625
+  }
+}

@@ -1,0 +1,90 @@
+rhombus60  m= 2 delta=1.73205081 a=0.57735027
+rhombus60  m= 3 delta=1.00000000 a=1.00000000
+rhombus60  m= 4 delta=1.00000000 a=1.00000000
+rhombus60  m= 5 delta=0.63397460 a=1.57735027
+rhombus60  m= 6 delta=0.63397460 a=1.57735027
+rhombus60  m= 7 delta=0.52540038 a=1.90331037
+rhombus60  m= 8 delta=0.50000000 a=2.00000000
+rhombus60  m= 9 delta=0.50000000 a=2.00000000
+rhombus60  m=10 delta=0.41014355 a=2.43817073
+# rhombus60 done in 11s
+hexagon    m= 2 delta=2.00000000 a=0.50000000
+hexagon    m= 3 delta=1.73205081 a=0.57735027
+hexagon    m= 4 delta=1.32287566 a=0.75592895
+hexagon    m= 5 delta=1.08421366 a=0.92232743
+hexagon    m= 6 delta=1.00000000 a=1.00000000
+hexagon    m= 7 delta=1.00000000 a=1.00000000
+hexagon    m= 8 delta=0.78287092 a=1.27734978
+hexagon    m= 9 delta=0.70000000 a=1.42857143
+hexagon    m=10 delta=0.67461438 a=1.48232832
+# hexagon done in 16s
+halfdisc   m= 2 delta=2.00000000 a=0.50000000
+halfdisc   m= 3 delta=1.41421356 a=0.70710678
+halfdisc   m= 4 delta=1.00000000 a=1.00000000
+halfdisc   m= 5 delta=1.00000000 a=1.00000000
+halfdisc   m= 6 delta=0.76536686 a=1.30656296
+halfdisc   m= 7 delta=0.68586635 a=1.45801000
+halfdisc   m= 8 delta=0.61803399 a=1.61803399
+halfdisc   m= 9 delta=0.60010449 a=1.66637648
+halfdisc   m=10 delta=0.53451466 a=1.87085607
+# halfdisc done in 7s
+sector60   m= 2 delta=1.00000000 a=1.00000000
+sector60   m= 3 delta=1.00000000 a=1.00000000
+sector60   m= 4 delta=0.57735027 a=1.73205081
+sector60   m= 5 delta=0.51763809 a=1.93185165
+sector60   m= 6 delta=0.50008240 a=1.99967047
+sector60   m= 7 delta=0.39099513 a=2.55757658
+sector60   m= 8 delta=0.37796447 a=2.64575131
+sector60   m= 9 delta=0.34729636 a=2.87938524
+sector60   m=10 delta=0.33389343 a=2.99496755
+# sector60 done in 50s
+sector90   m= 2 delta=1.41421356 a=0.70710678
+sector90   m= 3 delta=1.00000000 a=1.00000000
+sector90   m= 4 delta=0.76536686 a=1.30656296
+sector90   m= 5 delta=0.60010449 a=1.66637648
+sector90   m= 6 delta=0.53118970 a=1.88256663
+sector90   m= 7 delta=0.51763809 a=1.93185165
+sector90   m= 8 delta=0.45433421 a=2.20102290
+sector90   m= 9 delta=0.40315826 a=2.48041552
+sector90   m=10 delta=0.38234362 a=2.61544838
+# sector90 done in 51s
+sector120  m= 2 delta=1.73205081 a=0.57735027
+sector120  m= 3 delta=1.00000000 a=1.00000000
+sector120  m= 4 delta=1.00000000 a=1.00000000
+sector120  m= 5 delta=0.69281388 a=1.44338909
+sector120  m= 6 delta=0.63612669 a=1.57201389
+sector120  m= 7 delta=0.54681828 a=1.82876111
+sector120  m= 8 delta=0.51763809 a=1.93185165
+sector120  m= 9 delta=0.50019174 a=1.99923333
+sector120  m=10 delta=0.43441587 a=2.30194168
+# sector120 done in 34s
+slab3      m= 2 delta=1.05409255 a=0.94868330
+slab3      m= 3 delta=0.60092521 a=1.66410059
+slab3      m= 4 delta=0.47140452 a=2.12132034
+slab3      m= 5 delta=0.41666667 a=2.40000000
+slab3      m= 6 delta=0.38873013 a=2.57247878
+slab3      m= 7 delta=0.34277072 a=2.91740204
+slab3      m= 8 delta=0.33333333 a=3.00000000
+slab3      m= 9 delta=0.27898617 a=3.58440706
+slab3      m=10 delta=0.26041667 a=3.84000000
+# slab3 done in 18s
+slab6      m= 2 delta=1.01379376 a=0.98639392
+slab6      m= 3 delta=0.52704628 a=1.89736660
+slab6      m= 4 delta=0.37267800 a=2.68328157
+slab6      m= 5 delta=0.30046261 a=3.32820118
+slab6      m= 6 delta=0.26034166 a=3.84110640
+slab6      m= 7 delta=0.23570226 a=4.24264069
+slab6      m= 8 delta=0.21951296 a=4.55553961
+slab6      m= 9 delta=0.20833333 a=4.80000000
+slab6      m=10 delta=0.20030840 a=4.99230177
+# slab6 done in 24s
+halftri    m= 2 delta=1.00000000 a=1.00000000
+halftri    m= 3 delta=0.57735027 a=1.73205081
+halftri    m= 4 delta=0.50000000 a=2.00000000
+halftri    m= 5 delta=0.36602540 a=2.73205081
+halftri    m= 6 delta=0.33333333 a=3.00000000
+halftri    m= 7 delta=0.28867513 a=3.46410162
+halftri    m= 8 delta=0.25898619 a=3.86120972
+halftri    m= 9 delta=0.25000000 a=4.00000000
+halftri    m=10 delta=0.21930785 a=4.55980026
+# halftri done in 31s

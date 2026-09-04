@@ -1,0 +1,123 @@
+==============================================================================
+STEP A -- grain lemmas as symbolic identities (stdlib exact linear forms)
+   BL  r >= 0           slack = p                       IDENTITY
+   BL  x - r >= 0       slack = +2*q                    IDENTITY
+   BL  x + r <= 2U      slack = +2*U -2*p -2*q          IDENTITY
+   BL  r <= U           slack = U - p                   IDENTITY
+   BR  r >= 0           slack = p                       IDENTITY
+   BR  x - r >= 2M      slack = +2*q                    IDENTITY
+   BR  x + r <= 2j      slack = +2*U -2*p -2*q          IDENTITY
+   BR  r <= U           slack = U - p                   IDENTITY
+   C   r >= par         slack = p                       IDENTITY
+   C   x + r >= 2U      slack = +2*q                    IDENTITY
+   C   x - r <= 2M      slack = +2*p -2*q               IDENTITY
+   C   x - r >= 0       slack = +2*M -2*p +2*q          IDENTITY
+   C   x + r <= 2j      slack = +2*M -2*q               IDENTITY
+   C   r <= U           slack = M - p                   IDENTITY
+   T   r >= U           slack = p                       IDENTITY
+   T   x - r >= 0       slack = +2*q                    IDENTITY
+   T   x + r <= 2j      slack = +2*M -2*p -2*q          IDENTITY
+   all 17 grain lemmas are identities in (U,M,p,q); the parameter ranges
+   0<=p, 0<=q and the range tops make every right-hand side >= 0.
+
+STEP A cross-check -- SKIPPED: sympy is not installed.
+   This is an OPTIONAL second opinion only.  Step A above already decided
+   every grain lemma exactly with the stdlib linear-form engine, so nothing
+   load-bearing was skipped and the theorem check below is unaffected.
+
+STEP A guard -- the same lemmas re-checked on the generated site lists, j = 0..40
+   OK -- and x = r (mod 2) holds for every site of every grain.
+
+==============================================================================
+STEP B -- forbidden difference vectors (finite, j-free); see forbidden.py
+   INTRA-GRAIN: F(g,g) is EMPTY for all four grains -- the separation-2
+   triangular lattice has minimum distance exactly 2, so intra-grain pairs
+   are never violating.  (dx^2 + 3 dr^2 >= 4 whenever dx = dr mod 2, not both 0.)
+   |F(BL,BR)| = 4
+   |F(BL,C)| = 3
+   |F(BL,T)| = 4
+   |F(BR,BL)| = 4
+   |F(BR,C)| = 3
+   |F(BR,T)| = 4
+   |F(C,BL)| = 3
+   |F(C,BR)| = 3
+   |F(C,T)| = 3
+   |F(T,BL)| = 4
+   |F(T,BR)| = 4
+   |F(T,C)| = 3
+
+==============================================================================
+STEP C -- separating functionals, and the finite check L(f) > 0
+   BL - C   L =  1*dx +  1*dr   |F| = 3   L(F) = [2, 2, 4]          CLOSED
+            because  BL: x+r <= 2U ;  C: x+r >= 2U
+   BL - T   L =  0*dx +  1*dr   |F| = 4   L(F) = [2, 1, 2, 1]       CLOSED
+            because  BL: r <= U ;  T: r >= U
+   BR - C   L = -1*dx +  1*dr   |F| = 3   L(F) = [4, 2, 2]          CLOSED
+            because  same pair, reversed
+   BR - T   L =  0*dx +  1*dr   |F| = 4   L(F) = [1, 2, 1, 2]       CLOSED
+            because  BR: r <= U ;  T: r >= U
+   C  - BL  L = -1*dx + -1*dr   |F| = 3   L(F) = [4, 2, 2]          CLOSED
+            because  same pair, reversed
+   C  - BR  L =  1*dx + -1*dr   |F| = 3   L(F) = [2, 2, 4]          CLOSED
+            because  C: x-r <= 2M ;  BR: x-r >= 2M
+   C  - T   L =  0*dx +  1*dr   |F| = 3   L(F) = [1, 2, 1]          CLOSED
+            because  C: r <= par+M = U ;  T: r >= U
+   T  - BL  L =  0*dx + -1*dr   |F| = 4   L(F) = [1, 2, 1, 2]       CLOSED
+            because  same pair, reversed
+   T  - BR  L =  0*dx + -1*dr   |F| = 4   L(F) = [2, 1, 2, 1]       CLOSED
+            because  same pair, reversed
+   T  - C   L =  0*dx + -1*dr   |F| = 3   L(F) = [1, 2, 1]          CLOSED
+            because  same pair, reversed
+
+STEP C' -- BL vs BR, the pair with no separating functional
+   F(BL,BR) = [(2, 0), (3, -1), (3, 1), (4, 0)] ;  dx values = [2, 3, 4]
+   j EVEN (par=0):  (*) gives dx <= -r1-r2 <= 0, and every f in F has dx > 0 -> CLOSED
+   j ODD  (par=1):  (*) gives dx + r1 + r2 <= 2.
+       f with dx >= 3 need r1+r2 <= -1  -> impossible (r1,r2 >= 0).  Killed: [(3, -1), (3, 1), (4, 0)]
+       surviving f: [(2, 0)]
+       f = (2,0) forces r1 = r2 = 0 AND equality in both step-A bounds,
+       i.e. x1 = 2U and x2 = 2M, i.e. the BR site (r,x) = (0, 2M).
+       That site is REMOVED from BR exactly when j is odd -> CLOSED.
+   mechanical confirmation for odd j = 1,3,...,41: BL row 0 max x = 2U,
+   BR row 0 min x = 2M+2, so dx = x1-x2 <= 2U-2M-2 = 0 in row 0.  CLOSED.
+
+==============================================================================
+STEP D -- containment and tightness
+   grain   (a,b)   AC const 3a-b   BC const 6-3a-b   enclosing sqrt3-part (a+b/3)
+     BL    (0,0)          0                 6              0
+     BR    (2,0)          6                 0              2*sqrt(3)
+     C     (1,1)          2                 2              4/3*sqrt(3)
+     T     (1,3)          0                 0              2*sqrt(3)
+
+   AB: b >= 0 and r >= 0 in every grain (step A)  ->  y >= 0.                  OK
+   AC: sqrt3*(x-r) + (3a-b) >= 0.  Step A gives x-r >= 0 for ALL FOUR grains,
+       and the constant 3a-b is >= 0 for all four (table above), so AC holds
+       with room to spare.  Worst case is x-r = 0:
+        BL  at x-r = 0 :  sqrt3*0 + 0 = 0           >= 0 ? True
+        BR  at x-r = 0 :  sqrt3*0 + 6 = 6           >= 0 ? True
+        C   at x-r = 0 :  sqrt3*0 + 2 = 2           >= 0 ? True
+        T   at x-r = 0 :  sqrt3*0 + 0 = 0           >= 0 ? True
+   BC: sqrt3*(2j-x-r) + (6-3a-b) >= 0.  Step A gives 2j-x-r >= 0 for all four
+       grains (BL via x+r <= 2U <= 2j), and 6-3a-b >= 0 for all four.  Worst case:
+        BL  at 2j-x-r = 0 :  6 = 6      >= 0 ? True
+        BR  at 2j-x-r = 0 :  0 = 0      >= 0 ? True
+        C   at 2j-x-r = 0 :  2 = 2      >= 0 ? True
+        T   at 2j-x-r = 0 :  0 = 0      >= 0 ? True
+
+   TIGHTNESS.  x_p + y_p sqrt3/3 = (x+r) + (a + b/3) sqrt3, and step A gives
+   x+r <= 2j for BR, C, T and x+r <= 2U <= 2j for BL.  So the value is at most
+   2j + max_g (a + b/3) sqrt3 = 2j + 2 sqrt3 = d, attained by BR (and T):
+        BL   max (x+r) + (a+b/3)sqrt3  <=  2j + 0
+        BR   max (x+r) + (a+b/3)sqrt3  <=  2j + 2*sqrt(3)
+        C    max (x+r) + (a+b/3)sqrt3  <=  2j + 4/3*sqrt(3)
+        T    max (x+r) + (a+b/3)sqrt3  <=  2j + 2*sqrt(3)
+   BR contains (r,x) = (0, 2j) for every j (2j != 2M unless par=0 and U=0, i.e. j=0,
+   where nothing is dropped), so the maximum 2j + 2 sqrt3 = d is ATTAINED.
+   mechanically confirmed for j = 0..40:  (0,2j) in BR and max(x+r) = 2j.   OK
+
+==============================================================================
+THEOREM VERIFIED (construction / upper bound only):
+  for every j >= 0, P(j) is feasible, contained, and tight, hence
+  s(n(j)) <= 2j + 4 sqrt(3)  with  n(j) = Delta(j+2) + floor(j/2) + 1.
+  Status: sketch (agent prose) + numerical (the finite exact checks).
+  NO OPTIMALITY IS CLAIMED.

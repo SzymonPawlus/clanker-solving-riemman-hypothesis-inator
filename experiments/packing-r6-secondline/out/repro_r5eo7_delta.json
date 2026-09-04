@@ -1,0 +1,33 @@
+{
+ "convention": "CAP-CEIL at a=6 (r5-eo7)",
+ "rows": [
+  {
+   "delta": 0.0,
+   "max_bound": 24,
+   "arg_phi_deg": 0.3333333333333333,
+   "arg_h": 0.8660254037844386,
+   "arg_theta": 0.016574585635359115
+  },
+  {
+   "delta": 1e-09,
+   "max_bound": 27,
+   "arg_phi_deg": 0.0,
+   "arg_h": 0.8660254037844386,
+   "arg_theta": 0.0
+  },
+  {
+   "delta": 1e-06,
+   "max_bound": 28,
+   "arg_phi_deg": 0.0,
+   "arg_h": 0.8660254037844386,
+   "arg_theta": 0.0
+  },
+  {
+   "delta": 0.0001,
+   "max_bound": 28,
+   "arg_phi_deg": 0.0,
+   "arg_h": 0.8660254037844386,
+   "arg_theta": 0.0
+  }
+ ]
+}

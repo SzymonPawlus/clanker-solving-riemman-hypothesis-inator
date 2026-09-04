@@ -1,0 +1,13 @@
+[project]
+name = "packing-r4-krawczyk"
+version = "0.1.0"
+description = "Krawczyk-certified contact-system enclosures and exact witness packings for circle packing in an equilateral triangle"
+requires-python = ">=3.11"
+dependencies = []
+
+# The certified path (iv.py, witness.py, emit.py, the exact checks in run_all.py) is
+# stdlib-only: fractions.Fraction and int.  mpmath is used ONLY to propose a midpoint and a
+# preconditioner, and numpy/scipy ONLY inside the optional front-end search_extra.py; none of
+# them takes part in any accept/reject decision.
+[project.optional-dependencies]
+frontend = ["mpmath>=1.3", "numpy", "scipy"]

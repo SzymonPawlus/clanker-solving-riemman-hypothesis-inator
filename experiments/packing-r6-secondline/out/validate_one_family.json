@@ -1,0 +1,52 @@
+[
+ {
+  "k": 3,
+  "a": 2.0,
+  "EO_target": 4,
+  "relaxation_max": 4,
+  "closes": true,
+  "arg_phi_deg": 0.0,
+  "arg_h": 0.8660254037844386,
+  "arg_theta": 0.0
+ },
+ {
+  "k": 4,
+  "a": 3.0,
+  "EO_target": 8,
+  "relaxation_max": 8,
+  "closes": true,
+  "arg_phi_deg": 0.6666666666666666,
+  "arg_h": 0.8660254037844386,
+  "arg_theta": 0.016574585635359115
+ },
+ {
+  "k": 5,
+  "a": 4.0,
+  "EO_target": 13,
+  "relaxation_max": 12,
+  "closes": true,
+  "arg_phi_deg": 0.3333333333333333,
+  "arg_h": 0.8660254037844386,
+  "arg_theta": 0.011049723756906077
+ },
+ {
+  "k": 6,
+  "a": 5.0,
+  "EO_target": 19,
+  "relaxation_max": 18,
+  "closes": true,
+  "arg_phi_deg": 0.3333333333333333,
+  "arg_h": 0.8660254037844386,
+  "arg_theta": 0.016574585635359115
+ },
+ {
+  "k": 7,
+  "a": 6.0,
+  "EO_target": 26,
+  "relaxation_max": 24,
+  "closes": true,
+  "arg_phi_deg": 0.3333333333333333,
+  "arg_h": 0.8660254037844386,
+  "arg_theta": 0.016574585635359115
+ }
+]

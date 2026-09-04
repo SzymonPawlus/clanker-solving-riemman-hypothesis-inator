@@ -1,0 +1,2 @@
+{"n": 4, "mode": "none", "extra": 0, "f": 0.88888912, "d": 2.12132006, "d_true": 3.46410162, "rel_gap": 0.38762765, "status": "optimal"}
+{"n": 4, "mode": "corner", "extra": 12, "f": 0.69136309, "d": 2.40534237, "d_true": 3.46410162, "rel_gap": 0.30563747, "status": "optimal"}

@@ -1,0 +1,48 @@
+{
+  "n": 12,
+  "ok": true,
+  "seconds": 0.3,
+  "candidate_source": "experiments/circle-packing-search/out/n12.json",
+  "krawczyk": {
+    "attempted": true,
+    "newton_residual": "1.68675e-80",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 25,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "74641016151377545870548926830117447338856105076207/10000000000000000000000000000000000000000000000000",
+      "746410161513775458705489268301174473388561050762083/100000000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 1.3e-49,
+    "max_row_magnitude_I_minus_CJ": 1.0095041722813603e-28,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 30,
+    "variables": 25,
+    "rank_of_tight_jacobian": 25,
+    "frozen_variables": 0,
+    "dropped_tight_equations": 5,
+    "d_is_determined": true,
+    "isostatic": false
+  },
+  "witness": {
+    "d": "4665063509461096616909307926882340458678514153802687704967135702840250161020951630569/625000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "d_float": 7.464101615137754,
+    "feasible": true,
+    "tight": true,
+    "contacts_exactly_2": 0,
+    "boundary_points": 9,
+    "lambda_minus_1": 3.034e-42
+  },
+  "interval_certificate_checks": {
+    "separation_ok": true,
+    "containment_ok": true
+  },
+  "comparison": {
+    "exact_d": "4 + 2*sqrt(3)",
+    "witness_ge_exact": true,
+    "enclosure_contains_exact": true
+  },
+  "beats_record": "unknown"
+}

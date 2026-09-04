@@ -1,0 +1,95 @@
+==============================================================================
+close pair := squared distance <= 4  (distance <= 2.0000)
+j   n     #types  par       types(j) == types(j-2) ?
+0   4     3       even      -
+1   7     3       odd       -
+2   12    3       even      True
+3   17    3       odd       True
+4   24    3       even      True
+5   31    3       odd       True
+6   40    3       even      True
+7   49    3       odd       True
+8   60    3       even      True
+9   71    3       odd       True
+10  84    3       even      True
+11  97    3       odd       True
+12  112   3       even      True
+13  127   3       odd       True
+  -> 2-periodic (set equality) from j = 2 ; counts even [3], odd [3]
+
+==============================================================================
+close pair := squared distance <= 8  (distance <= 2.8284)
+j   n     #types  par       types(j) == types(j-2) ?
+0   4     3       even      -
+1   7     4       odd       -
+2   12    9       even      False
+3   17    9       odd       False
+4   24    9       even      True
+5   31    9       odd       True
+6   40    9       even      True
+7   49    9       odd       True
+8   60    9       even      True
+9   71    9       odd       True
+10  84    9       even      True
+11  97    9       odd       True
+12  112   9       even      True
+13  127   9       odd       True
+  -> 2-periodic (set equality) from j = 4 ; counts even [9], odd [9]
+
+==============================================================================
+close pair := squared distance <= 12  (distance <= 3.4641)
+j   n     #types  par       types(j) == types(j-2) ?
+0   4     6       even      -
+1   7     8       odd       -
+2   12    12      even      False
+3   17    13      odd       False
+4   24    12      even      True
+5   31    13      odd       True
+6   40    12      even      True
+7   49    13      odd       True
+8   60    12      even      True
+9   71    13      odd       True
+10  84    12      even      True
+11  97    13      odd       True
+12  112   12      even      True
+13  127   13      odd       True
+  -> 2-periodic (set equality) from j = 4 ; counts even [12], odd [13]
+
+==============================================================================
+close pair := squared distance <= 16  (distance <= 4.0000)
+j   n     #types  par       types(j) == types(j-2) ?
+0   4     6       even      -
+1   7     10      odd       -
+2   12    18      even      False
+3   17    19      odd       False
+4   24    18      even      True
+5   31    19      odd       True
+6   40    18      even      True
+7   49    19      odd       True
+8   60    18      even      True
+9   71    19      odd       True
+10  84    18      even      True
+11  97    19      odd       True
+12  112   18      even      True
+13  127   19      odd       True
+  -> 2-periodic (set equality) from j = 4 ; counts even [18], odd [19]
+
+==============================================================================
+ORDERED cross-grain types, close pair := squared distance <= 16 (distance <= 4)
+  j=0   n=4    #types=12   even   types(j)==types(j-2): -
+  j=1   n=7    #types=20   odd    types(j)==types(j-2): -
+  j=2   n=12   #types=36   even   types(j)==types(j-2): False
+  j=3   n=17   #types=38   odd    types(j)==types(j-2): False
+  j=4   n=24   #types=36   even   types(j)==types(j-2): True
+  j=5   n=31   #types=38   odd    types(j)==types(j-2): True
+  j=6   n=40   #types=36   even   types(j)==types(j-2): True
+  j=7   n=49   #types=38   odd    types(j)==types(j-2): True
+  j=8   n=60   #types=36   even   types(j)==types(j-2): True
+  j=9   n=71   #types=38   odd    types(j)==types(j-2): True
+  j=10  n=84   #types=36   even   types(j)==types(j-2): True
+  j=11  n=97   #types=38   odd    types(j)==types(j-2): True
+  j=12  n=112  #types=36   even   types(j)==types(j-2): True
+  j=13  n=127  #types=38   odd    types(j)==types(j-2): True
+  -> exact set equality types(j) == types(j-2) for all j >= 4 ; even [36], odd [38]
+  PILOT CLAIM was: 2-periodic from j = 4, 36 even / 38 odd, through j = 12.
+  REPRODUCED: True

@@ -1,0 +1,27 @@
+{
+ "stats": {
+  "a": 2,
+  "target": 4,
+  "boxes_processed": 345,
+  "stalled": 1,
+  "worst_certified_R2": 5,
+  "R1_lemmaA": 4,
+  "certified_overall": null
+ },
+ "stalled_boxes": [
+  {
+   "phi": [
+    0.0,
+    1.2190983993892999e-10
+   ],
+   "kappa": [
+    1.0,
+    1.0000000009313226
+   ],
+   "rho": [
+    0.49999999976716936,
+    0.5
+   ]
+  }
+ ]
+}

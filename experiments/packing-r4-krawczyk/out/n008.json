@@ -1,0 +1,55 @@
+{
+  "n": 8,
+  "ok": true,
+  "seconds": 0.07,
+  "candidate_source": "experiments/circle-packing-ls/candidates/n008-ls.json",
+  "krawczyk": {
+    "attempted": true,
+    "newton_residual": "8.43376e-81",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 17,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "582970843102535243990040764547928621214684297198847/100000000000000000000000000000000000000000000000000",
+      "291485421551267621995020382273964310607342148599429/50000000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 1.1e-49,
+    "max_row_magnitude_I_minus_CJ": 4.9385693812375755e-29,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 18,
+    "variables": 17,
+    "rank_of_tight_jacobian": 17,
+    "frozen_variables": 0,
+    "dropped_tight_equations": 1,
+    "d_is_determined": true,
+    "isostatic": false
+  },
+  "witness": {
+    "d": "2914854215512676219950203822739643106073487605943447233483790603375892439973553036037/500000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "d_float": 5.829708431025352,
+    "feasible": true,
+    "tight": true,
+    "contacts_exactly_2": 0,
+    "boundary_points": 6,
+    "lambda_minus_1": 3.0055e-41
+  },
+  "interval_certificate_checks": {
+    "separation_ok": true,
+    "containment_ok": true
+  },
+  "comparison": {
+    "exact_d": "2 + 2/3*sqrt(33)",
+    "witness_ge_exact": true,
+    "enclosure_contains_exact": true,
+    "gl_D_band": [
+      5.829708431025336,
+      5.829708431025354
+    ],
+    "gl_D_band_width": 1.6992750195383998e-14,
+    "vs_record": "within_table_rounding",
+    "witness_minus_gl_midpoint": 7.094790521823141e-15
+  },
+  "beats_record": "no. This reproduces the published Graham-Lubachevsky value; it does not improve it. Published record: Graham & Lubachevsky, Electron. J. Combin. 2 (1995) #A1, as tabulated in experiments/circle-packing-search/reference.py."
+}

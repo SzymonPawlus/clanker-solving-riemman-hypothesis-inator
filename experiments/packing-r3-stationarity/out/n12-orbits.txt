@@ -1,0 +1,7 @@
+# d = 4 + 2*sqrt(3), wall capacity = 4, corners can be adjacent = False
+m=2 mode=orbits geng=1 graphs=1 supports=4 complete=True secs=0.0
+m=3 mode=orbits geng=2 graphs=2 supports=20 complete=True secs=0.0
+m=4 mode=orbits geng=6 graphs=6 supports=157 complete=True secs=0.1
+m=5 mode=orbits geng=18 graphs=15 supports=1404 complete=True secs=0.9
+m=6 mode=orbits geng=81 graphs=61 supports=16243 complete=True secs=20.7
+m=7 mode=orbits geng=515 graphs=265 supports=216405 complete=True secs=210.4

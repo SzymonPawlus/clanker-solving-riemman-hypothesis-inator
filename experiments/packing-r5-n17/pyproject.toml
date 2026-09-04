@@ -1,0 +1,24 @@
+[project]
+name = "packing-r5-n17"
+version = "0.1.0"
+description = "Exact audit of the two distinct tight n = 17 packings, and the r4-famcert Gate-1/Gate-2 re-run"
+requires-python = ">=3.11"
+
+# sympy is a REAL, load-bearing dependency here, not an optional diagnostic.
+#
+# parse_exact.py is deliberately an INDEPENDENT parser: it uses a different
+# engine (sympy) from the hand-written Q(sqrt3) parser in
+# ../packing-r3-qsqrt3/run_all.py, so that a bug in one is not a bug in both.
+# Reimplementing it on stdlib would destroy exactly the decorrelation that
+# makes it worth having (repo RULES.md §5 treats parsers and certificate
+# acceptance as soundness-sensitive).  So it is declared, not skipped.
+#
+# audit.py, diffs.py, rigid_run.py, stab.py and n31_seg.py all consume it.
+dependencies = [
+    "sympy>=1.12",
+]
+
+[tool.packing-r5-n17]
+tested-with = ["sympy==1.14.0", "CPython 3.14.5"]
+# Deterministic and exact: no seeds, no network, no floating-point search.
+status = "numerical"

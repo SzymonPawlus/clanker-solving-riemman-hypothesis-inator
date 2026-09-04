@@ -1,0 +1,36 @@
+==============================================================================
+n = 17   |A\B| = 5   |B\A| = 5
+  in r3-qsqrt3 cert only:
+    (4 + sqrt(3), 1)                   contacts=4 walls=- free_r~0.0
+    (5 + sqrt(3), 1 + sqrt(3))         contacts=4 walls=- free_r~0.0
+    (3 + sqrt(3), 3 + sqrt(3))         contacts=4 walls=- free_r~0.0
+    (5 + sqrt(3), 3 + sqrt(3))         contacts=3 walls=['BC'] free_r~0.0
+    (5/2, 4)                           contacts=0 walls=- free_r~0.16506350946019666
+  in r4-famcert generator only:
+    (3 + 2*sqrt(3), sqrt(3))           grain=BR  contacts=4 walls=- free_r~0.0
+    (2, 2*sqrt(3))                     grain=BL  contacts=3 walls=['AC'] free_r~0.0
+    (4 + 2*sqrt(3), 2*sqrt(3))         grain=BR  contacts=3 walls=['BC'] free_r~0.0
+    (2 + sqrt(3), 1 + 2*sqrt(3))       grain=C   contacts=4 walls=- free_r~0.0
+    (4 + sqrt(3), 1 + 2*sqrt(3))       grain=C   contacts=4 walls=- free_r~0.0
+  cert: points with ZERO contacts: 1
+     idx 13  (5/2, 4)                       wall-contacts=- free_radius in [0.165063509, 0.165063509]
+  gen: points with ZERO contacts: 0
+  cert degree histogram: [(0, 1), (2, 3), (3, 6), (4, 7)]   contacts=26  boundary=11
+  gen degree histogram: [(2, 4), (3, 5), (4, 7), (5, 1)]   contacts=28  boundary=12
+==============================================================================
+n = 24   |A\B| = 0   |B\A| = 0
+  cert: points with ZERO contacts: 0
+  gen: points with ZERO contacts: 0
+  cert degree histogram: [(2, 3), (3, 6), (4, 9), (5, 6)]   contacts=45  boundary=15
+  gen degree histogram: [(2, 3), (3, 6), (4, 9), (5, 6)]   contacts=45  boundary=15
+==============================================================================
+n = 31   |A\B| = 1   |B\A| = 1
+  in r3-qsqrt3 cert only:
+    (7, 0)                             contacts=0 walls=['AB'] free_r~0.0
+  in r4-famcert generator only:
+    (6, 0)                             grain=BL  contacts=2 walls=['AB'] free_r~0.0
+  cert: points with ZERO contacts: 1
+     idx 13  (7, 0)                         wall-contacts=['AB'] free_radius in [0.000000000, 0.000000000]
+  gen: points with ZERO contacts: 0
+  cert degree histogram: [(0, 1), (2, 3), (3, 6), (4, 13), (5, 6), (6, 2)]   contacts=59  boundary=18
+  gen degree histogram: [(2, 4), (3, 5), (4, 13), (5, 7), (6, 2)]   contacts=61  boundary=18

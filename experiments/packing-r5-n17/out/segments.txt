@@ -1,0 +1,12 @@
+n=31: candidate exact endpoints of the bottom-edge free segment
+   x = 6                      feasible=True
+   x = 4+2*sqrt(3)            feasible=True
+   x = 6 - 1/1000             feasible=False
+   x = 4+2sqrt3 + 1/1000      feasible=False
+   so the free segment is exactly  {(x,0) : 6 <= x <= 4+2*sqrt(3)}, length 2*sqrt(3)-2 = 1.4641016151377545870
+   generator's differing point (6,0) is the LEFT endpoint: True  cert's (7,0) is strictly interior.
+
+n=17: rattler at (5/2, 4)
+   wall slacks: {'AB': '4', 'AC': '-2 + 5/4*sqrt(3)', 'BC': '1 + 7/4*sqrt(3)'}
+   min neighbour squared distance: 77/4 + -8*sqrt(3)   (=5.393593539448981652)
+   free-disc radius = 5/4*sqrt(3) - 2 = 0.1650635094610966169 (wall AC binds; the nearest neighbour allows sqrt(77/4 - 8*sqrt(3)) - 2)

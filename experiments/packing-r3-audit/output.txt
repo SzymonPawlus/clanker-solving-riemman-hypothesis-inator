@@ -1,0 +1,106 @@
+==============================================================================
+1. OLER  ->  d(n) >= sqrt(8n+1) - 3   [triage s0.1]
+==============================================================================
+  Oler RHS for side-d triangle, separation 2:  n <= d**2/8 + 3*d/4 + 1
+  [OK ] Oler RHS equals d^2/8 + 3d/4 + 1: d**2/8 + 3*d/4 + 1  ==  d**2/8 + 3*d/4 + 1
+  solve(n = RHS, d), positive root:  d = sqrt(8*n + 1) - 3
+  [OK ] closed form is sqrt(8n+1)-3: sqrt(8*n + 1) - 3  ==  sqrt(8*n + 1) - 3
+
+  Tightness at triangular numbers (Oler's own equality case):
+  [OK ] RHS at d=2(k-1) equals k(k+1)/2 identically in k: k**2/2 + k/2  ==  k**2/2 + k/2
+    [OK ] k=2: d=2, RHS=3, Delta(k)=3
+    [OK ] k=3: d=4, RHS=6, Delta(k)=6
+    [OK ] k=4: d=6, RHS=10, Delta(k)=10
+    [OK ] k=5: d=8, RHS=15, Delta(k)=15
+    [OK ] k=6: d=10, RHS=21, Delta(k)=21
+    [OK ] k=7: d=12, RHS=28, Delta(k)=28
+
+  [OK ] d(16) >= sqrt(129)-3: 8.357816691600547  vs triage 8.357817  (tol 5e-7)
+  [OK ] s(16) >= 2sqrt3+sqrt129-3: 11.82191830673830  vs triage 11.821918  (tol 5e-7)
+
+==============================================================================
+2. DENSITY <-> SIDE DICTIONARY and the Gaspar-Tarnai threshold [triage Z.1]
+==============================================================================
+  [OK ] dictionary round-trips (side -> density -> side): 0  ==  0
+
+  repo sketch bound      s(16) >= 2+6sqrt3   = 12.39230484541326
+  equivalent density     D = 64pi/(sqrt3(2+6sqrt3)^2) = -24*pi/169 + 112*sqrt(3)*pi/507
+  [OK ] THRESHOLD: G-T beat the repo iff their D(16) <=: 0.7559012136572625  vs triage 0.7559  (tol 5e-5)
+  exact threshold        = 8*pi*(-9 + 14*sqrt(3))/507
+  to 10 places           = 0.755901213657
+
+==============================================================================
+3. BASELINES: plain Oler and plain Groemer at n=16 in the triangle
+==============================================================================
+  [OK ] plain Oler density bound at n=16: 0.8306026483327154  vs triage 0.8306  (tol 5e-5)
+  kappa = 0.1339745962, lambda = 1.164296176
+  Groemer => s(16) >= 11.66796538914874
+  [OK ] plain Groemer density bound at n=16: 0.8526660177834013  vs triage 0.8527  (tol 5e-5)
+
+  >>> Both triage baselines reproduce under this density convention, from
+      the two primary inequalities. That is the evidence that the
+      convention (n*pi / area of the side-s triangle) is the right one.
+
+  Ladder at n=16 (density; SMALLER = sharper upper bound):
+    Groemer 1960 (rigorous)                  D = 0.85266602   s = 11.66796539
+    Oler 1961 (rigorous)                     D = 0.83060265   s = 11.82191831
+    THRESHOLD to beat repo sketch            D = 0.75590121   s = 12.39230485
+    best-known packing (truth is <= this)    D = 0.71817481   s = 12.71362877
+
+    Groemer -> Oler sharpening actually achieved : 2.59%
+    Oler -> threshold sharpening G-T would need  : 8.99%
+    threshold -> truth, headroom still left      : 4.99%
+
+==============================================================================
+4. Q(sqrt3) CLOSED FORMS among OPEN n   [triage s0.2]
+==============================================================================
+  best-known table read from: /home/user/r3-worktrees/audit/experiments/circle-packing-search/reference.py
+  [OK ] n=17: GL d=0.211324865405187 -> s=12.9282032302755  vs  6 + 4*sqrt(3) = 12.9282032302755
+  [OK ] n=24: GL d=0.174457630187010 -> s=14.9282032302755  vs  4*sqrt(3) + 8 = 14.9282032302755
+  [OK ] n=31: GL d=0.148543145110506 -> s=16.9282032302755  vs  4*sqrt(3) + 10 = 16.9282032302755
+
+  Spacing / recurrence claims of s0.2:
+  [OK ] s(24) - s(17) == 2 exactly: 2  ==  2
+  [OK ] s(31) - s(24) == 2 exactly: 2  ==  2
+  [OK ] s(17) == s(12)+2 with s(12)=4+4sqrt3: 6 + 4*sqrt(3)  ==  6 + 4*sqrt(3)
+    index spacing: 24-17 = 7, 31-24 = 7
+
+  Open n in 16..34 with a GL entry: [16, 17, 18, 19, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33, 34]
+  (21 and 28 dropped as triangular/proven, 20 dropped as Payan-proven)
+
+  Scan for s(n) = a + b*sqrt3, a,b integers in -40..40, |err| <= 2e-11:
+    n=16  s=12.7136287741505   -- none --
+    n=17  s=12.9282032302755   6+4sqrt3
+    n=18  s=13.2937904342234   -- none --
+    n=19  s=13.4480544584791   -- none --
+    n=22  s=14.6125657412788   -- none --
+    n=23  s=14.8826697796299   -- none --
+    n=24  s=14.9282032302755   8+4sqrt3
+    n=25  s=15.2938100461631   -- none --
+    n=26  s=15.4589390806144   -- none --
+    n=27  s=15.4641016151377   12+2sqrt3
+    n=29  s=16.6056028426912   -- none --
+    n=30  s=16.7300879388486   -- none --
+    n=31  s=16.9282032302755   10+4sqrt3
+    n=32  s=17.2474930781967   -- none --
+    n=33  s=17.4064936228384   -- none --
+    n=34  s=17.4628763404421   -- none --
+
+  triage s0.2 claims the Q(sqrt3) open cases are exactly [17, 24, 31]
+  this audit finds                                        [17, 24, 27, 31]
+
+  >>> DISAGREEMENT: triage s0.2 MISSES n = [27].
+      n=27: GL prints d(27) = 0.166666666666667, giving s(27) = 12+2sqrt3 = 15.4641016151378
+
+  n=27 detail (the consequential one):
+    Delta(7) = 28, so 27 = Delta(7)-1: the first OPEN Erdos-Oler case (k=7).
+    GL print d(27) = d(28) = 0.166666666666667 = 1/6 to the digits printed;
+    1/6 exactly gives s = 2*6 + 2sqrt3 = 2*sqrt(3) + 12 = 15.4641016151378
+    err vs GL's printed decimal for n=27: 2.4000E-14
+    => an exact tight certificate for n=27 is the 28-point side-2 triangular
+       lattice minus one point. It is the CHEAPEST open case in the range,
+       cheaper than n=17, and triage s0.2/proposal Y both miss it.
+
+==============================================================================
+FAILURES: ['s0.2 exclusivity claim is FALSE']
+==============================================================================

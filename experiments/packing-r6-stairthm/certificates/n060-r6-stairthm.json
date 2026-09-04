@@ -1,0 +1,257 @@
+{
+  "n": 60,
+  "claim": "construction",
+  "side_length": "16 + 4*sqrt(3)",
+  "coordinates": [
+    [
+      "0",
+      "0"
+    ],
+    [
+      "2",
+      "0"
+    ],
+    [
+      "4",
+      "0"
+    ],
+    [
+      "6",
+      "0"
+    ],
+    [
+      "8",
+      "0"
+    ],
+    [
+      "1",
+      "sqrt(3)"
+    ],
+    [
+      "3",
+      "sqrt(3)"
+    ],
+    [
+      "5",
+      "sqrt(3)"
+    ],
+    [
+      "7",
+      "sqrt(3)"
+    ],
+    [
+      "2",
+      "2*sqrt(3)"
+    ],
+    [
+      "4",
+      "2*sqrt(3)"
+    ],
+    [
+      "6",
+      "2*sqrt(3)"
+    ],
+    [
+      "3",
+      "3*sqrt(3)"
+    ],
+    [
+      "5",
+      "3*sqrt(3)"
+    ],
+    [
+      "4",
+      "4*sqrt(3)"
+    ],
+    [
+      "8 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "10 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "12 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "14 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "16 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "9 + 2*sqrt(3)",
+      "sqrt(3)"
+    ],
+    [
+      "11 + 2*sqrt(3)",
+      "sqrt(3)"
+    ],
+    [
+      "13 + 2*sqrt(3)",
+      "sqrt(3)"
+    ],
+    [
+      "15 + 2*sqrt(3)",
+      "sqrt(3)"
+    ],
+    [
+      "10 + 2*sqrt(3)",
+      "2*sqrt(3)"
+    ],
+    [
+      "12 + 2*sqrt(3)",
+      "2*sqrt(3)"
+    ],
+    [
+      "14 + 2*sqrt(3)",
+      "2*sqrt(3)"
+    ],
+    [
+      "11 + 2*sqrt(3)",
+      "3*sqrt(3)"
+    ],
+    [
+      "13 + 2*sqrt(3)",
+      "3*sqrt(3)"
+    ],
+    [
+      "12 + 2*sqrt(3)",
+      "4*sqrt(3)"
+    ],
+    [
+      "8 + sqrt(3)",
+      "1"
+    ],
+    [
+      "7 + sqrt(3)",
+      "1 + sqrt(3)"
+    ],
+    [
+      "9 + sqrt(3)",
+      "1 + sqrt(3)"
+    ],
+    [
+      "6 + sqrt(3)",
+      "1 + 2*sqrt(3)"
+    ],
+    [
+      "8 + sqrt(3)",
+      "1 + 2*sqrt(3)"
+    ],
+    [
+      "10 + sqrt(3)",
+      "1 + 2*sqrt(3)"
+    ],
+    [
+      "5 + sqrt(3)",
+      "1 + 3*sqrt(3)"
+    ],
+    [
+      "7 + sqrt(3)",
+      "1 + 3*sqrt(3)"
+    ],
+    [
+      "9 + sqrt(3)",
+      "1 + 3*sqrt(3)"
+    ],
+    [
+      "11 + sqrt(3)",
+      "1 + 3*sqrt(3)"
+    ],
+    [
+      "4 + sqrt(3)",
+      "1 + 4*sqrt(3)"
+    ],
+    [
+      "6 + sqrt(3)",
+      "1 + 4*sqrt(3)"
+    ],
+    [
+      "8 + sqrt(3)",
+      "1 + 4*sqrt(3)"
+    ],
+    [
+      "10 + sqrt(3)",
+      "1 + 4*sqrt(3)"
+    ],
+    [
+      "12 + sqrt(3)",
+      "1 + 4*sqrt(3)"
+    ],
+    [
+      "4 + sqrt(3)",
+      "3 + 4*sqrt(3)"
+    ],
+    [
+      "6 + sqrt(3)",
+      "3 + 4*sqrt(3)"
+    ],
+    [
+      "8 + sqrt(3)",
+      "3 + 4*sqrt(3)"
+    ],
+    [
+      "10 + sqrt(3)",
+      "3 + 4*sqrt(3)"
+    ],
+    [
+      "12 + sqrt(3)",
+      "3 + 4*sqrt(3)"
+    ],
+    [
+      "5 + sqrt(3)",
+      "3 + 5*sqrt(3)"
+    ],
+    [
+      "7 + sqrt(3)",
+      "3 + 5*sqrt(3)"
+    ],
+    [
+      "9 + sqrt(3)",
+      "3 + 5*sqrt(3)"
+    ],
+    [
+      "11 + sqrt(3)",
+      "3 + 5*sqrt(3)"
+    ],
+    [
+      "6 + sqrt(3)",
+      "3 + 6*sqrt(3)"
+    ],
+    [
+      "8 + sqrt(3)",
+      "3 + 6*sqrt(3)"
+    ],
+    [
+      "10 + sqrt(3)",
+      "3 + 6*sqrt(3)"
+    ],
+    [
+      "7 + sqrt(3)",
+      "3 + 7*sqrt(3)"
+    ],
+    [
+      "9 + sqrt(3)",
+      "3 + 7*sqrt(3)"
+    ],
+    [
+      "8 + sqrt(3)",
+      "3 + 8*sqrt(3)"
+    ]
+  ],
+  "coordinate_type": "algebraic",
+  "verified_by": "experiments/packing-r6-stairthm/checker.py (and theorem.py for all j)",
+  "status": "numerical",
+  "beats_record": "no -- no record is claimed. The published Graham-Lubachevsky table stops at n = 34; Amore (2022, arXiv:2212.12287) reports triangle numerics to N = 400 and is behind this environment's egress block, so no comparison is possible from here. This is an exact upper bound only.",
+  "family": "four-grain staircase, j = 8, n(j) = Delta(j+2) + floor(j/2) + 1",
+  "tight": true,
+  "d_min_exact": "16 + 2*sqrt(3)",
+  "min_sq_distance": "4",
+  "contacts_at_distance_exactly_2": 135,
+  "points_on_boundary": 27
+}

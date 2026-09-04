@@ -1,0 +1,38 @@
+==============================================================================
+0. CHECKER VALIDATION (before any new claim is checked)
+  POSITIVE n=3   d=2          -> ok=True tight=True minsq=4
+  POSITIVE n=4   d=2*sqrt(3)  -> ok=True tight=True minsq=4
+  POSITIVE n=3   d=2          -> ok=True tight=True minsq=4
+  POSITIVE n=6   d=4          -> ok=True tight=True minsq=4
+  POSITIVE n=10  d=6          -> ok=True tight=True minsq=4
+  POSITIVE n=15  d=8          -> ok=True tight=True minsq=4
+  NEGATIVE duplicate          -> ok=False tight=False  (expected ok=False tight=None) PASS
+  NEGATIVE s deflated         -> ok=False tight=False  (expected ok=False tight=None) PASS
+  NEGATIVE s inflated         -> ok=True tight=False  (expected ok=True tight=False) PASS
+  NEGATIVE outside            -> ok=False tight=False  (expected ok=False tight=None) PASS
+  NEGATIVE overlap 1999/1000  -> ok=False tight=False  (expected ok=False tight=None) PASS
+checker selftest OK
+
+==============================================================================
+1. Brute-force exact check of every family member, j = 0..14
+j   n     s                pairs    feas   tight  min sq dist            contacts  bdry   sec
+0   4     4*sqrt(3)        6        True   True   4                      3         3      0.0
+1   7     2 + 4*sqrt(3)    21       True   True   4                      7         6      0.0
+2   12    4 + 4*sqrt(3)    66       True   True   4                      18        9      0.0
+3   17    6 + 4*sqrt(3)    136      True   True   4                      28        12     0.0
+4   24    8 + 4*sqrt(3)    276      True   True   4                      45        15     0.0
+5   31    10 + 4*sqrt(3)   465      True   True   4                      61        18     0.0
+6   40    12 + 4*sqrt(3)   780      True   True   4                      84        21     0.0
+7   49    14 + 4*sqrt(3)   1176     True   True   4                      106       24     0.1
+8   60    16 + 4*sqrt(3)   1770     True   True   4                      135       27     0.1
+      -> certificate written: certificates/n060-r6-stairthm.json
+9   71    18 + 4*sqrt(3)   2485     True   True   4                      163       30     0.1
+10  84    20 + 4*sqrt(3)   3486     True   True   4                      198       33     0.2
+11  97    22 + 4*sqrt(3)   4656     True   True   4                      232       36     0.2
+12  112   24 + 4*sqrt(3)   6216     True   True   4                      273       39     0.3
+13  127   26 + 4*sqrt(3)   8001     True   True   4                      313       42     0.3
+14  144   28 + 4*sqrt(3)   10296    True   True   4                      360       45     0.5
+
+All 15 members feasible, contained and TIGHT in exact Q(sqrt3).
+This is a brute-force CONFIRMATION of theorem.py, not a substitute for it:
+theorem.py covers every j, this covers j = 0..14 pair by pair.

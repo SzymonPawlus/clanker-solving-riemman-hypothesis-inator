@@ -1,0 +1,7 @@
+[n=4] level 3, cap t<=1.0
+    moment vars M = 5,005; PSD blocks: 1 of 220, 20 of 55
+/home/user/r3-worktrees/sdpgate/experiments/packing-r3-sdpgate/moment_gate.py:214: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=solver, verbose=False, **kw)
+    {"n": 4, "level": 3, "status": "optimal_inaccurate", "f_relax": 0.6532113488210924, "f_true": 0.33333333333333337, "d_true": 3.4641016151377544, "d_relax": 2.47458932382023, "abs_gap": 0.9895122913175243, "rel_gap": 0.28564759387930805, "cap_active": false, "solve_s": 241.98137211799622, "M": 5005, "block": 220}
+[n=5] level 3, cap t<=1.0
+    moment vars M = 12,376; PSD blocks: 1 of 364, 27 of 78

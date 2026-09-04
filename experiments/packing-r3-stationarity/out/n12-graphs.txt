@@ -1,0 +1,2 @@
+# d = 4 + 2*sqrt(3), wall capacity = 4, corners can be adjacent = False
+m=8 mode=graphs geng=4507 graphs=1612 supports=0 complete=True secs=78.0

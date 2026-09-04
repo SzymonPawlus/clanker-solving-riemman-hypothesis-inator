@@ -1,0 +1,16 @@
+{
+ "a": 6.0,
+ "target": 26,
+ "rows": [
+  {
+   "delta": 0.0,
+   "max_bound": 24,
+   "ok": true
+  },
+  {
+   "delta": 0.001,
+   "max_bound": 28,
+   "ok": false
+  }
+ ]
+}

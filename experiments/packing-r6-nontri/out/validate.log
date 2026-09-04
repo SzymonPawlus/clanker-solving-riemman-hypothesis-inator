@@ -1,0 +1,28 @@
+triangle  m= 2 known=1.000000 found=1.000000 err=+0.00e+00
+triangle  m= 3 known=1.000000 found=1.000000 err=+0.00e+00
+triangle  m= 4 known=0.577350 found=0.577350 err=-3.33e-16
+triangle  m= 5 known=0.500000 found=0.500000 err=-1.67e-16
+triangle  m= 6 known=0.500000 found=0.500000 err=-1.11e-16
+triangle  m= 7 known=0.366025 found=0.366025 err=-1.11e-16
+triangle  m= 8 known=0.343070 found=0.343070 err=-2.22e-16
+triangle  m= 9 known=0.333333 found=0.333333 err=-2.22e-16
+triangle  m=10 known=0.333333 found=0.333333 err=-2.78e-16
+triangle  m=11 known=0.275255 found=0.275255 err=-1.67e-16
+triangle  m=12 known=0.267949 found=0.267949 err=-3.89e-16
+disc      m= 2 known=2.000000 found=2.000000 err=+0.00e+00
+disc      m= 3 known=1.732051 found=1.732051 err=+2.22e-16
+disc      m= 4 known=1.414214 found=1.414214 err=+0.00e+00
+disc      m= 5 known=1.175571 found=1.175571 err=-2.22e-16
+disc      m= 6 known=1.000000 found=1.000000 err=-1.11e-16
+disc      m= 7 known=1.000000 found=1.000000 err=-2.22e-16
+disc      m= 8 known=0.867767 found=0.867767 err=-1.11e-16
+disc      m= 9 known=0.765367 found=0.754684 err=-1.07e-02
+square    m= 2 known=1.414214 found=1.414214 err=+0.00e+00
+square    m= 3 known=1.035276 found=1.035276 err=+2.22e-16
+square    m= 4 known=1.000000 found=1.000000 err=+0.00e+00
+square    m= 5 known=0.707107 found=0.707107 err=-2.22e-16
+square    m= 6 known=0.600925 found=0.600925 err=-2.22e-16
+square    m= 7 known=0.535898 found=0.535898 err=-3.33e-16
+square    m= 8 known=0.517638 found=0.517638 err=-2.22e-16
+square    m= 9 known=0.500000 found=0.500000 err=-1.67e-16
+elapsed 62.07169961929321

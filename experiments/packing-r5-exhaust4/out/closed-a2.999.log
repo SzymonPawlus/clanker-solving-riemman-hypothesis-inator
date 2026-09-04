@@ -1,0 +1,2 @@
+{"outcome": "timeout", "n": 9, "t": "1000/2999", "strict": false, "max_level": 15, "use_oler": true, "oler_refused": false, "use_symmetry": true, "max_cited": 8, "nodes": 2412544, "frontier": 26, "seconds": 600.11}
+NOTHING IS PROVED by this run (timeout).

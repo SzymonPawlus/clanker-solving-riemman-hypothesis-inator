@@ -1,0 +1,56 @@
+{
+ "target": 26,
+ "cap": "floor(L/sqrt(1-4d^2))+1",
+ "grid_coarse": {
+  "nphi": 91,
+  "nh": 61,
+  "nth": 91
+ },
+ "grid_fine": {
+  "nphi": 181,
+  "nh": 121,
+  "nth": 181
+ },
+ "rows": [
+  {
+   "eta": 0.1,
+   "a": 5.9,
+   "bound_delta0": 23,
+   "loss_at_delta0": 0,
+   "delta_window": 0.058154296875,
+   "delta_window_over_eta": 0.5815429687499999,
+   "fine_bound_at_window": 27,
+   "fine_bound_at_1.25x_window": 27
+  },
+  {
+   "eta": 0.03,
+   "a": 5.97,
+   "bound_delta0": 24,
+   "loss_at_delta0": 0,
+   "delta_window": 0.0259765625,
+   "delta_window_over_eta": 0.8658854166666667,
+   "fine_bound_at_window": 27,
+   "fine_bound_at_1.25x_window": 27
+  },
+  {
+   "eta": 0.01,
+   "a": 5.99,
+   "bound_delta0": 24,
+   "loss_at_delta0": 0,
+   "delta_window": 0.008642578125000001,
+   "delta_window_over_eta": 0.8642578125000001,
+   "fine_bound_at_window": 26,
+   "fine_bound_at_1.25x_window": 27
+  },
+  {
+   "eta": 0.003,
+   "a": 5.997,
+   "bound_delta0": 24,
+   "loss_at_delta0": 0,
+   "delta_window": 0.0025878906250000003,
+   "delta_window_over_eta": 0.8626302083333335,
+   "fine_bound_at_window": 26,
+   "fine_bound_at_1.25x_window": 27
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+[project]
+name = "packing-r6-secondline"
+version = "0.1.0"
+description = "Two-family counting scans for EO(7): W_scan (measured) and W_cont (provable) delta-windows"
+requires-python = ">=3.11"
+
+# numpy is a REAL, load-bearing dependency here.  This lane is a floating-point
+# scan over line-family orientations, offsets and rotations; there is no exact
+# fallback and it is declared rather than advertised as stdlib-only.
+dependencies = [
+    "numpy>=1.26",
+]
+
+[tool.packing-r6-secondline]
+tested-with = ["numpy==2.5.2", "CPython 3.14.5"]
+status = "numerical"   # float scans; the comparative reading in the write-up is `refuted`
+# NOTE: out/delta_window_one_family.json is an INCOMPLETE run -- 4 of the 7 rows
+# in delta_window.py's ETAS list.  See attacks/r6-secondline/README.md §4.4.

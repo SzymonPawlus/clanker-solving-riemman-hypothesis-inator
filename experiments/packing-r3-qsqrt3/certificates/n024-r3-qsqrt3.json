@@ -1,0 +1,116 @@
+{
+  "n": 24,
+  "claim": "construction",
+  "side_length": "8 + 4*sqrt(3)",
+  "coordinates": [
+    [
+      "5 + sqrt(3)",
+      "3 + 3*sqrt(3)"
+    ],
+    [
+      "4 + sqrt(3)",
+      "1 + 2*sqrt(3)"
+    ],
+    [
+      "6 + sqrt(3)",
+      "1 + 2*sqrt(3)"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "4 + sqrt(3)",
+      "3 + 2*sqrt(3)"
+    ],
+    [
+      "4 + sqrt(3)",
+      "3 + 4*sqrt(3)"
+    ],
+    [
+      "3",
+      "sqrt(3)"
+    ],
+    [
+      "5 + sqrt(3)",
+      "1 + sqrt(3)"
+    ],
+    [
+      "1",
+      "sqrt(3)"
+    ],
+    [
+      "5 + 2*sqrt(3)",
+      "sqrt(3)"
+    ],
+    [
+      "4 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "6 + 2*sqrt(3)",
+      "2*sqrt(3)"
+    ],
+    [
+      "2 + sqrt(3)",
+      "3 + 2*sqrt(3)"
+    ],
+    [
+      "3 + sqrt(3)",
+      "3 + 3*sqrt(3)"
+    ],
+    [
+      "2",
+      "2*sqrt(3)"
+    ],
+    [
+      "4",
+      "0"
+    ],
+    [
+      "3 + sqrt(3)",
+      "1 + sqrt(3)"
+    ],
+    [
+      "4 + sqrt(3)",
+      "1"
+    ],
+    [
+      "8 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "2 + sqrt(3)",
+      "1 + 2*sqrt(3)"
+    ],
+    [
+      "6 + 2*sqrt(3)",
+      "0"
+    ],
+    [
+      "6 + sqrt(3)",
+      "3 + 2*sqrt(3)"
+    ],
+    [
+      "2",
+      "0"
+    ],
+    [
+      "7 + 2*sqrt(3)",
+      "sqrt(3)"
+    ]
+  ],
+  "coordinate_type": "algebraic",
+  "verified_by": "experiments/packing-r3-qsqrt3/check.py (exact Q(sqrt 3) arithmetic, stdlib Fraction only, no floats in any decision). SELF-CHECKED ONLY. Under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 this earns verified:review only from an independently written checker by an agent of a different model family; that has not happened.",
+  "status": "numerical",
+  "beats_record": "no. This exactly reproduces the published best-known value; it does not improve it. Published record: Graham-Lubachevsky, Electron. J. Combin. 2 (1995) #A1, as tabulated in experiments/circle-packing-search/reference.py: m(24) = 0.174457630187010, i.e. s(24) = 14.928203230275472",
+  "_field_semantics": "side_length is s = d + 2*sqrt(3); coordinates are in the point formulation, triangle A=(0,0), B=(d,0), C=(d/2, d*sqrt(3)/2), pairwise distances >= 2.",
+  "_d": "8 + 2*sqrt(3)",
+  "_claim_precise": "s(24) <= 8 + 4*sqrt(3). This is an UPPER BOUND (a construction). It is NOT a claim that 8 + 4*sqrt(3) is optimal; n = 24 is open.",
+  "_tight": true,
+  "_tightness_witness": "the exact minimal enclosing side for this point set in this fixed placement is d_min = max_i (x_i + y_i*sqrt(3)/3) = 8 + 2*sqrt(3), equal to the declared d.",
+  "_min_squared_distance": "4",
+  "_contacts_at_distance_exactly_2": 45,
+  "_points_on_the_boundary": 15,
+  "_provenance": "float configuration from experiments/circle-packing-ls/out/n24.json (LS billiard + SLSQP, seed 20260818), snapped to Q(sqrt 3) by experiments/packing-r3-qsqrt3/snap.py; rattlers placed by rattler.py. Only the exact check in check.py is load-bearing."
+}

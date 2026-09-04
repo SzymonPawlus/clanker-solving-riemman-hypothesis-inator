@@ -1,0 +1,4 @@
+# DRAT proofs and CNFs are large (100s of MB) and fully regenerable by proofs.py / run.py.
+# The drat-trim verification transcripts are kept in proofs.log, which IS committed.
+*.cnf
+*.drat

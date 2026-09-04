@@ -1,0 +1,1 @@
+{"n": 9, "t": "1/3", "strict": true, "level": 6, "outcome": "survivors", "nodes": 1072335, "survivors": 35637, "seconds": 183.8, "cells_total": 4096, "cells_supportable": 101, "supportable_area_fraction": 0.02466, "every_survivor_occupies_all_3_corner_cells": false, "min_corner_cells_occupied": 0}

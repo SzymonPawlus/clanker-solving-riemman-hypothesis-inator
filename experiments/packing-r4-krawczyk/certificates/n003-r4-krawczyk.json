@@ -1,0 +1,56 @@
+{
+  "n": 3,
+  "claim": "construction",
+  "side_length": "2*sqrt(3) + 2",
+  "coordinates": [
+    [
+      "1",
+      "1*sqrt(3)"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "2",
+      "0"
+    ]
+  ],
+  "coordinate_type": "algebraic",
+  "verified_by": "experiments/packing-r4-krawczyk/witness.py verify_exact() -- exact rational arithmetic in the sheared coordinates (x, u) with y = sqrt(3)*u, stdlib Fraction only, no float in any accept/reject decision. SELF-CHECKED ONLY: under problems/circle-packing-equilateral-triangle/RULES.md \u00a73 this earns verified:review only from a checker written independently by an agent of a different model family. That has not happened.",
+  "status": "numerical",
+  "beats_record": "unknown",
+  "_claim_is_upper_bound_only": "This certifies s(n) <= the stated side length. It says nothing about optimality.",
+  "_tight": true,
+  "_min_squared_distance": "4",
+  "_contacts_at_distance_exactly_2": 3,
+  "_points_on_the_boundary": 3,
+  "_repair_factor_lambda_minus_1": "0",
+  "_provenance": {
+    "candidate": "experiments/circle-packing-ls/candidates/n003-ls.json",
+    "method": "LS/SLSQP float candidate -> tight-structure identification -> Newton at 80 digits on a nonsingular square subsystem -> snap to denominator 10**40 -> exact rational homothety repair -> exact verification. See README.md."
+  },
+  "_krawczyk": {
+    "attempted": true,
+    "newton_residual": "3.21252e-82",
+    "tolerance": "1e-7",
+    "succeeded": true,
+    "square_system_size": 7,
+    "box_radius": "1/1000000000000000000000000000000",
+    "d_enclosure": [
+      "199999999999999999999999999999999999999999999999999/100000000000000000000000000000000000000000000000000",
+      "200000000000000000000000000000000000000000000000001/100000000000000000000000000000000000000000000000000"
+    ],
+    "d_enclosure_width_float": 2e-50,
+    "max_row_magnitude_I_minus_CJ": 1.8666666666666667e-29,
+    "nontight_constraints_strict_over_box": true,
+    "nontight_violations": [],
+    "tight_constraints": 9,
+    "variables": 7,
+    "rank_of_tight_jacobian": 7,
+    "frozen_variables": 0,
+    "dropped_tight_equations": 2,
+    "d_is_determined": true,
+    "isostatic": false
+  }
+}

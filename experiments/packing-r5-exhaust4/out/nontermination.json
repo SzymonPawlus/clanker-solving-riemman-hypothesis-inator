@@ -1,0 +1,226 @@
+{
+ "min_sq_distance_target": "1/9",
+ "rows": [
+  {
+   "dropped": "corner",
+   "level": 2,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 3,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 4,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 5,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 6,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 7,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 8,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 9,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "corner",
+   "level": 10,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 2,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 3,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 4,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 5,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 6,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 7,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 8,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 9,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "edge",
+   "level": 10,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 2,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 3,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 4,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 5,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 6,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 7,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 8,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 9,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  },
+  {
+   "dropped": "centre",
+   "level": 10,
+   "distinct_cells": 9,
+   "min_sq_distance_exact": "1/9",
+   "refuted": false,
+   "rules_firing": []
+  }
+ ],
+ "survives_at_every_tested_level": {
+  "corner": true,
+  "edge": true,
+  "centre": true
+ }
+}

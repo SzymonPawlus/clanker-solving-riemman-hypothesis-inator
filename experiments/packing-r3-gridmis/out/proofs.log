@@ -1,0 +1,64 @@
+{"n": 12, "g": "1/4", "d": "62/10", "V": 351, "E": 18960, "result": "UNSAT", "nv": 2236, "nclauses": 29513, "proof_lines": 63481, "drat_verified": true, "secs": 2.7, "tag": "n12_g1-4_d62-10"}
+c parsing input formula with 2236 variables and 29513 clauses
+
+c finished parsing
+
+c detected empty clause; start verification via backward checking
+
+c 16837 of 29513 clauses in core
+
+c 16478 of 34664 lemmas in core using 752118 resolution steps
+
+c 0 RAT lemmas in core; 11133 redundant literals in core lemmas
+
+s VERIFIED
+
+c verification time: 1.115 seconds
+{"n": 12, "g": "1/6", "d": "68/10", "V": 903, "E": 129090, "result": "UNSAT", "nv": 6331, "nclauses": 172805, "proof_lines": 560380, "drat_verified": true, "secs": 64.5, "tag": "n12_g1-6_d68-10"}
+c parsing input formula with 6331 variables and 172805 clauses
+
+c finished parsing
+
+c detected empty clause; start verification via backward checking
+
+c 114640 of 172805 clauses in core
+
+c 145512 of 313471 lemmas in core using 10621456 resolution steps
+
+c 0 RAT lemmas in core; 144994 redundant literals in core lemmas
+
+s VERIFIED
+
+c verification time: 33.377 seconds
+{"n": 12, "g": "1/8", "d": "7", "V": 1653, "E": 438324, "result": "UNSAT", "nv": 12268, "nclauses": 541252, "proof_lines": 1734314, "drat_verified": true, "secs": 227.9, "tag": "n12_g1-8_d7"}
+c parsing input formula with 12268 variables and 541252 clauses
+
+c finished parsing
+
+c detected empty clause; start verification via backward checking
+
+c 369463 of 541252 clauses in core
+
+c 369175 of 927875 lemmas in core using 29078443 resolution steps
+
+c 0 RAT lemmas in core; 396674 redundant literals in core lemmas
+
+s VERIFIED
+
+c verification time: 101.007 seconds
+{"n": 16, "g": "1/4", "d": "8", "V": 561, "E": 33177, "result": "UNSAT", "nv": 3727, "nclauses": 54288, "proof_lines": 503079, "drat_verified": true, "secs": 33.3, "tag": "n16_g1-4_d8"}
+c parsing input formula with 3727 variables and 54288 clauses
+
+c finished parsing
+
+c detected empty clause; start verification via backward checking
+
+c 34333 of 54288 clauses in core
+
+c 127707 of 263409 lemmas in core using 6506131 resolution steps
+
+c 0 RAT lemmas in core; 88702 redundant literals in core lemmas
+
+s VERIFIED
+
+c verification time: 18.695 seconds
