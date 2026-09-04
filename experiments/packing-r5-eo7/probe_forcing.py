@@ -11,7 +11,14 @@ on 27-point 1-separated configurations in T(6) -- which exist, unlike at a < 6, 
 hypothesis has non-vacuous content there.  Large observed defects REFUTE (H3) for small
 delta.  Floats; STATUS: numerical, evidence only.
 """
-import numpy as np, math, json, sys
+import math, json, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require_numpy("probe_forcing.py")   # float measurement; needs numpy, not mpmath
+
+import numpy as np
 
 SQ3 = math.sqrt(3.0)
 rng = np.random.default_rng(20260824)

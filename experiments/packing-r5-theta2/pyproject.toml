@@ -1,0 +1,37 @@
+[project]
+name = "packing-r5-theta2"
+version = "0.1.0"
+description = "FLOAT theta' (Lovasz theta-prime) ceiling instrument and witness-family sweep for the r4-theta one-sided test (uncertified; status `numerical` only)"
+requires-python = ">=3.11"
+
+# These are REAL, load-bearing dependencies, not optional diagnostics.
+#
+# theta_prime_repaired() is a cvxpy SDP solved by CLARABEL/SCS over numpy
+# matrices; alpha_exact() is a scipy MILP; chi_bar_f() is a scipy linprog over
+# networkx cliques; mpmath at 60 dps decides the exact distance-2 ties that
+# define the conflict graph's edges.  None of that has a stdlib fallback, and
+# hand-rolling a substitute SDP solver or tie test would be a soundness hazard
+# rather than a convenience.  Contrast ../packing-r3-qsqrt3 and
+# ../packing-r6-stairthm, which are genuinely stdlib-only and declare
+# `dependencies = []`.
+#
+# `analyse_p1.py` is deliberately outside this: it regenerates the write-up
+# tables from the committed results_p1.json with the stdlib alone, so it still
+# runs on a bare interpreter.
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "cvxpy>=1.4",
+    "networkx>=3.0",
+    "mpmath>=1.3.0",
+]
+
+[tool.packing-r5-theta2]
+# The exact versions `theta2_core.py --selftest` was re-run green under.
+tested-with = [
+    "numpy==2.5.2", "scipy==1.18.1", "cvxpy==1.9.2", "networkx==3.6.1",
+    "mpmath==1.3.0", "clarabel==0.11.1", "scs==3.2.11", "CPython 3.14.5",
+]
+# Seeds are pinned in the scripts: selftest() uses numpy.random.default_rng(20260824);
+# the sweep scripts pin their own (attack README §5).
+status = "numerical"   # float SDP output; a relaxation value is not a bound

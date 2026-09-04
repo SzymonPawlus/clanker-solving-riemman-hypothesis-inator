@@ -1,0 +1,25 @@
+[project]
+name = "packing-r4-delaunay"
+version = "0.1.0"
+description = "FLOAT LP test of the Euler-localised Delaunay scoring family against Oler (uncertified; status `numerical` only)"
+requires-python = ">=3.11"
+
+# These are REAL, load-bearing dependencies, not optional diagnostics.
+#
+# STEP 0 of run.py is exact and stdlib-only (framework.py uses fractions.Fraction
+# and math.isqrt).  But STEPS 1-4 -- the Oler control, the reduced LP, the full
+# per-shape LP and the verdict -- are all decided by scipy.optimize.linprog.
+# The finding of this lane IS the LP optimum, so there is nothing honest to skip:
+# without scipy the pipeline has no result, only self-checks.  Contrast
+# ../packing-r3-qsqrt3 and ../packing-r6-stairthm, which are genuinely stdlib-only
+# and declare `dependencies = []`.
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+]
+
+[tool.packing-r4-delaunay]
+# The exact versions the committed out/report.txt was re-verified under.
+tested-with = ["numpy==2.5.2", "scipy==1.18.1", "CPython 3.14.5"]
+# Deterministic: no seeds, no randomness, no network (attack README §6).
+status = "numerical"   # a float LP optimum is not a bound; never promotable as-is

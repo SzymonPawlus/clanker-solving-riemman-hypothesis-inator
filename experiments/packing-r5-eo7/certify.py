@@ -39,8 +39,14 @@ Regimes:  R1 = no line at level <= d1  -> Lemma A gives  <= a(a+1)/2 + 1, no com
 
 STATUS: numerical (the branch-and-bound), sketch (the reduction and F1-F4).  Not assumable.
 """
-import json, math, sys
+import json, math, os, sys
 from fractions import Fraction
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require("certify.py")   # fail fast, before the mpmath import below
+
 from mpmath import iv, mp, mpf
 
 iv.dps = 30
