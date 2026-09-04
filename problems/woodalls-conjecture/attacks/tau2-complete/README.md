@@ -11,7 +11,8 @@ supersedes:    attacks/tau2-robbins/README.md — by reference, not edited.  Sam
 kill-criterion: KILL-CRITERION.md (stated first, accounted for in §9)
 checks:        experiments/woodall-tau2-checks/  (all `numerical`; evidence, never a step)
 depends-on:    nothing external is load-bearing.  Robbins's theorem is re-proved in full
-               (Theorem R); it is cited for attribution only (§8, gap G1).
+               (Theorem R); [R] is an attribution only and carries no assumable status
+               (§8).  No claim in this file rests on any reference.
 ```
 
 **What this is.** A self-contained proof that a finite digraph whose dicuts all have at least
@@ -359,8 +360,10 @@ arc multiplicity $\le 2$. Zero failures. `numerical`; evidence only.
 Let $w:A\to\mathbb Z_{\ge0}$. Put $\tau_w=\min\{w(C): C\text{ a dicut}\}$. A **$w$-packing** of
 dijoins is a family $J_1,\dots,J_k$ of dijoins such that every arc $a$ lies in at most $w(a)$
 of them. The Edmonds–Giles conjecture asserted that a $w$-packing of size $\tau_w$ always
-exists [EG]; Schrijver [S80] gave a counterexample with $w\in\{0,1\}^A$ and $\tau_w=2$. (Locator
-status: §8, G2/G4.)
+exists [EG]; Schrijver [S80] gave a counterexample with $w\in\{0,1\}^A$, at $\tau_w=2$. (The
+[EG] and [S80] locators are verified in §8; that Schrijver's instance sits at $\tau_w=2$ is
+*inferred* from [CLR]'s translation of it, not read from [S80] — see §8 and gap G2. Its use of
+weight-0 arcs is argued below and does not depend on that inference.)
 
 Two standard reductions, both proved here so they are not dependencies:
 
@@ -371,10 +374,28 @@ Two standard reductions, both proved here so they are not dependencies:
   dijoins in the expansion in which each copy is used at most once (spread the $\le w(a)$
   dijoins containing $a$ over its copies) and conversely (collapse copies). So for
   **strictly positive** weights the weighted statement at $\tau_w=2$ is exactly the Theorem
-  for multidigraphs, which §5 proves. **The proof above is a correct proof of Edmonds–Giles
-  for strictly positive weights at $\tau_w\ge2$.** That is not in tension with anything known:
-  Schrijver's example needs weight-0 arcs (Cornuéjols–Liu–Ravi make this remark in their §1
-  per `attacks/tau2-robbins`, and it is forced by the argument just given).
+  for multidigraphs, which §5 proves. Precisely: **for strictly positive $w$ with
+  $\tau_w\ge2$, the proof above yields a $w$-packing of size 2.** (A copy of $a$ lies in one
+  colour class only, so $a$ lies in at most $\min(2,w(a))\le w(a)$ of the two dijoins.)
+
+  **Do not read that as more than it is.** Edmonds–Giles asserts a packing of size
+  $\tau_w$, so what is proved here is the **$k=2$ case** of Edmonds–Giles for strictly
+  positive weights. For $\tau_w\ge3$ it delivers 2 dijoins where Edmonds–Giles demands
+  $\tau_w$, and it therefore does **not** prove Edmonds–Giles at $\tau_w\ge3$. (An earlier
+  revision of this file said "a correct proof of Edmonds–Giles for strictly positive weights
+  at $\tau_w\ge2$", which overstates it in exactly that way; corrected here.)
+
+  A consequence, which is the fact the whole filter turns on: **Schrijver's counterexample
+  must contain a weight-0 arc.** Cornuéjols–Liu–Ravi state Edmonds–Giles (their Conjecture 1)
+  for $w\in\{0,1\}^A$ and record that Schrijver disproved it, while the *unweighted*
+  version (Woodall, their Conjecture 2) is still open; an instance with all weights 1 would
+  refute Woodall, so Schrijver's cannot be one. Independently, if Schrijver's instance has
+  $\tau_w=2$ — which is what Cornuéjols–Liu–Ravi's translation of it at $\tau=2$ indicates
+  (§8, [CLR] Fig. 2) — then the positive-weight reduction just given forces a weight-0 arc
+  directly. What Cornuéjols–Liu–Ravi actually write in their §1 is the related but distinct
+  remark that "the weight 0 arcs cannot be removed because they, together with the weight 1
+  arcs, determine the dicuts"; an earlier revision of this file attributed the sharper
+  statement about *Schrijver's instance* to that sentence, which over-reads it.
 * **So the only genuinely weighted regime is $w(a)=0$**, and WLOG $w\in\{0,1\}^A$. Write
   $S=w^{-1}(1)$ (the usable arcs) and $Z=w^{-1}(0)$. A $w$-packing of size 2 is a pair of
   disjoint dijoins **both contained in $S$**. In colouring language: a 2-colouring of $S$ (not
@@ -421,16 +442,34 @@ Run the proof on a $\{0,1\}$-weighted instance $(D,w)$ with $\tau_w=2$, step by 
      removed.
    * *Contract $Z$.* Contracting $a=(x,y)$ destroys every dicut whose shore separates $x$ from
      $y$; a dijoin of $D/a$ can miss such a dicut of $D$. So dijoins do not transfer back.
-   * *Choose $O$ cleverly.* The construction would work under weights iff $G$ has a strongly
-     connected orientation $O$ such that **for every dicut shore $U$, some $S$-arc agrees with
-     $O$ across $U$ and some $S$-arc disagrees** — call this an *$S$-witnessed* strong
-     orientation. Its existence for all $\{0,1\}$-instances with $\tau_w=2$ is *equivalent* to
-     the weighted statement at $\tau_w=2$ (given such $O$, colour $S$ by agreement; given a
-     packing $J_1\sqcup J_2\subseteq S$, one still has to produce $O$ — this direction is not
-     needed for the point being made). Schrijver's example shows no such $O$ exists in
-     general. So there is no repair inside this proof strategy: the very *object* the proof
-     builds (a strong orientation of the weight-blind multigraph $G$) does not carry enough
-     information.
+   * *Choose $O$ cleverly.* Call a strongly connected orientation $O$ of $G$ *$S$-witnessed*
+     if **for every dicut shore $U$, some arc of $\delta^+(U)\cap S$ agrees with $O$ and some
+     arc of $\delta^+(U)\cap S$ disagrees with $O$.** For a *fixed* $O$ this is, by
+     construction, precisely the condition that §5.4's colouring restricted to $S$ is a
+     $w$-packing — that much is definitional. What is **proved** about existence is one
+     direction only:
+
+     > **(⇒, proved.)** If an $S$-witnessed strong orientation $O$ of $G$ exists, then
+     > colouring $S$ by agreement with $O$ yields two disjoint dijoins inside $S$, i.e. a
+     > $w$-packing of size 2.
+
+     The converse — that a $w$-packing $J_1\sqcup J_2\subseteq S$ can be turned back into an
+     $S$-witnessed strong orientation — is **not proved here, and I do not claim it.** A
+     packing colours only the usable arcs and says nothing about how the arcs of $Z$ must be
+     oriented, so there is no evident way to extend it to a strong orientation of *every*
+     edge of $G$ meeting the agreement constraints. Existence of an $S$-witnessed $O$ is
+     therefore a **sufficient** condition for the weighted statement at $\tau_w=2$, not a
+     known equivalent of it.
+
+     The one-directional implication is still enough for the filter, via its contrapositive:
+     since Schrijver's instance admits no $w$-packing of size 2, and since (⇒) says an
+     $S$-witnessed $O$ would produce one, **Schrijver's instance admits no $S$-witnessed
+     strong orientation.** (This is a consequence of Schrijver's theorem, not an independent
+     verification of it; see G2.) So choosing $O$ cleverly cannot repair the proof in
+     general: the very *object* the proof builds — a strong orientation of the weight-blind
+     multigraph $G$ — does not carry enough information. Note what this does **not** say: it
+     leaves open whether some *other* proof strategy, not routed through a single strong
+     orientation of $G$, could work.
 
    **Mechanical demonstration that the step, as written, fails under weights**
    (`test_tau2.py::test_schrijver_filter_step_fails`, `numerical`). Take the diamond plus one
@@ -445,17 +484,37 @@ Run the proof on a $\{0,1\}$-weighted instance $(D,w)$ with $\tau_w=2$, step by 
    *statement*. The statement fails on Schrijver's instance, where every $O$ fails.)
 
    **Walking the proof against Schrijver's own instance — stated gap G2.** The issue asks for
-   Schrijver's counterexample to be reconstructed and the proof walked against it. I could not
-   do this honestly this session: every host carrying the paper or a figure of it
-   (`ir.cwi.nl`, `dl.acm.org`, `ime.usp.br`, `arxiv.org`, `en.wikipedia.org`,
-   `lemon.cs.elte.hu`, `openproblemgarden.org`, `researchgate.net`, `andrew.cmu.edu`,
-   `uwaterloo.ca`) is blocked by the egress proxy; only search-result snippets were
-   reachable. Those snippets (unverified against any paper) say: weight-1 ("solid") arcs and
-   weight-0 ("dashed") arcs, minimum dicut weight 2, no packing of two dijoins inside the solid
-   arcs, solid arcs labelled $1,1',1'',2,\dots$ with six minimal dicuts of weight 2 such as
-   $D_1\supseteq\{1,1'\}$, $D_2\supseteq\{1,1''\}$, a chordless cycle of length 6 in the
-   underlying graph, and Younger's generalisation to "a ring of length $4k+2$ with $2k+1$ solid
-   paths". Rather than write down a digraph from memory and call it Schrijver's, I searched
+   Schrijver's counterexample to be reconstructed and the proof walked against it. **That is
+   still not done, and G2 stays open** — but the reason has changed, and the previous
+   revision's reason is no longer true, so it is corrected here rather than left standing.
+
+   *Egress status, 2026-09-04.* Network access in this environment varies between sessions.
+   When this file was first written every host was blocked and only search snippets were
+   reachable. On re-testing (rather than assuming), **arXiv, Crossref, zbMATH, Wikipedia and
+   `homepages.cwi.nl` are reachable this session**; JSTOR and Taylor & Francis still are not.
+   That let me verify all four bibliographic locators against primary or publisher-deposited
+   records (§8), and read Cornuéjols–Liu–Ravi in full (arXiv:2311.04337v2) and Schrijver's own
+   discussion notes *Observations on Woodall's conjecture*. Everything §8 previously flagged as
+   "from memory" or "inherited" has been checked or downgraded accordingly.
+
+   *What is still missing.* Schrijver's instance itself. Cornuéjols–Liu–Ravi reproduce it as
+   their **Figure 2** — a picture, in a translated form (solid arcs of weight 1, dashed arcs of
+   weight 2, reversed dashed arcs of weight 0, a $2$-SCO that does not decompose into two
+   SCOs), described in their caption as an inner and an outer hexagon joined by three solid
+   $a_i$–$b_i$ paths. This matches the snippet description below. I did **not** transcribe it:
+   it is a figure, I did not render it, and writing down a digraph I have not actually read and
+   labelling it Schrijver's is the precise error this file exists to avoid. Transcribing Fig. 2
+   and running `tau2lib.two_packing_within` on it is now a *reachable* task rather than a
+   blocked one, and is left as follow-up work; it is deliberately not done in this revision,
+   which is a review-response and adds no new mathematics.
+
+   The earlier snippet description, still unverified against any paper, was: weight-1 ("solid")
+   arcs and weight-0 ("dashed") arcs, minimum dicut weight 2, no packing of two dijoins inside
+   the solid arcs, solid arcs labelled $1,1',1'',2,\dots$ with six minimal dicuts of weight 2
+   such as $D_1\supseteq\{1,1'\}$, $D_2\supseteq\{1,1''\}$, a chordless cycle of length 6 in
+   the underlying graph, and Younger's generalisation to "a ring of length $4k+2$ with $2k+1$
+   solid paths". Rather than write down a digraph from memory and call it Schrijver's, I
+   searched
    for **a** $\{0,1\}$-weighted counterexample with my own checker (`numerical`, all in
    `experiments/woodall-tau2-checks/`): a seeded random hunt over DAGs on 7–8 vertices
    (410 237 instances with $\tau_w=2$) and on 9–11 vertices (1 059 705 instances), an
@@ -519,7 +578,9 @@ In decreasing order of my own uncertainty:
   short argument and I believe it; the claim that the three "repairs" fail is argued but the
   third one relies on Schrijver's theorem, whose instance I could not verify (G2). I do **not**
   claim that no other proof strategy could be repaired — only that *this* proof's step 5.4
-  fails and that the failure is structural.
+  fails and that the failure is structural. In particular the third repair bullet establishes
+  only the **sufficient** direction (an $S$-witnessed orientation gives a packing); the
+  converse is unproved and is not claimed.
 
 Things I am *not* worried about but which are load-bearing: Lemma B (two lines), Lemma A
 (the bridge case split).
@@ -531,34 +592,95 @@ Things I am *not* worried about but which are load-bearing: Lemma B (two lines),
 Nothing external is load-bearing: Proposition 4.1, Lemmas A and B and Theorem R are proved in
 full above. Attributions and locators, with their verification status this session:
 
-* **[R]** H. E. Robbins, "A theorem on graphs, with an application to a problem of traffic
-  control", *Amer. Math. Monthly* 46 (1939), 281–283. Statement: a connected graph has a
-  strongly connected orientation iff it has no bridge. **Gap G1:** locator taken from
-  `attacks/tau2-robbins` and memory; the paper was not reachable this session, so I did not
-  confirm the page numbers or that Robbins states the multigraph form. This is why Theorem R
-  is proved here rather than cited. Status of [R] in this file: `cited` for attribution only.
+**A note on what `cited` may mean here.** `RULES.md` §3 makes `cited` an *assumable* status,
+so it cannot be used for an attribution recalled from memory. The previous revision labelled
+[R] `cited` while conceding in the same sentence that the paper was unreachable; that was a
+misuse of the status and Codex was right to block on it. Below, each entry separates the
+**locator** (does this paper exist, with these authors, journal, volume, year, pages?) from the
+**content attribution** (does that paper contain the statement ascribed to it?), because this
+session could verify the first far better than the second. **Nothing in this list is
+load-bearing:** §§4–5 are proved in full above, so no step of the proof depends on any status
+below.
+
+* **[R]** H. E. Robbins, "A Theorem on Graphs, with an Application to a Problem of Traffic
+  Control", *Amer. Math. Monthly* **46** (5) (May 1939), 281–283. DOI `10.2307/2303897`,
+  JSTOR 2303897, Zbl 0021.35703.
+  *Locator:* **verified** this session against three independent records — Crossref
+  publisher-deposited metadata (exact title, author, vol. 46, issue 5, May 1939, start page
+  281, ISSN 0002-9890), zbMATH (Zbl 0021.35703, same DOI and volume), and the bibliography of
+  [CLR] (ref. 24: "*The American Mathematical Monthly*, 46(5):281–283, 1939"). The end page 283
+  comes from [CLR] and Wikipedia, not from Crossref, which deposits only the start page.
+  *Content attribution:* **provisional.** JSTOR and Taylor & Francis are blocked here, so I
+  have **not** read Robbins's paper. Two secondary sources, and only the weaker of the two
+  directions between them: [CLR], in the proof of their Corollary 2, write "*By the classical
+  result of Robbins [24], every 2-edge-connected graph has a strongly connected orientation*" —
+  that is the ⇐ direction alone. The biconditional form ("a connected graph has a strongly
+  connected orientation iff it has no bridge") I have only from Wikipedia's article on Robbins'
+  theorem. I do not assert a section number for the [CLR] passage; it sits in the proof of
+  Corollary 2, and the previous draft of this entry guessed "§7", which was not checked and is
+  withdrawn. That Robbins states the **multigraph** form is **not** attributed to him at all —
+  the multigraph form is what this file needs, and it is proved here as Theorem R.
+  *Status in this file:* **attribution only, not assumable.** Formerly labelled `cited`; that
+  label is withdrawn. Gap G1 is accordingly narrowed to "primary text unread", not "locator
+  unknown".
 * **[S80]** A. Schrijver, "A counterexample to a conjecture of Edmonds and Giles", *Discrete
-  Math.* 32 (1980), 213–214 (the problem README says 213–215). **Gap G2:** not reachable; the
-  instance was not transcribed; the only content I have is the search snippets quoted in §6.2.
-  Everything said about the instance is flagged as unverified.
-* **[EG]** J. Edmonds and R. Giles, "A min-max relation for submodular functions on graphs",
-  *Annals of Discrete Math.* 1 (1977), 185–204. **Gap G4:** from memory; not reachable; used
-  only to name the conjecture, not in any step.
-* **[CLR]** G. Cornuéjols, S. Liu, R. Ravi, "Approximately packing dijoins via nowhere-zero
-  flows", *Combinatorica* 45 (2025), art. 32. `attacks/tau2-robbins` cites its Corollary 2 for
-  the $\tau=2$ folklore and its Proposition 1 for the agreement-colouring idea, and its §1 for
-  the weight-0 remark. **Gap G3:** I could not open the paper; these locators are inherited,
-  not re-verified. The result here is folklore (search snippets confirm the phrase "folklore"
-  but not the attribution chain), and I claim no novelty.
+  Math.* **32** (1980), 213–214. DOI `10.1016/0012-365X(80)90057-6`.
+  *Locator:* **verified** — Crossref (vol. 32, 1980, pages 213–214) and [CLR] ref. 26 agree.
+  The page range **213–214** is confirmed; the problem-level `README.md` says 213–215 and is
+  wrong on that point (not fixed here — that file is outside this attack's ownership).
+  *Content attribution:* **provisional**; the paper itself is behind Elsevier and was not read.
+  That it disproves Edmonds–Giles is stated by [CLR] §1.
+  **Gap G2 (unchanged, still the largest gap):** the instance was not transcribed and the proof
+  was not walked against it. See §6.2 for what is now reachable and what is not.
+* **[EG]** J. Edmonds and R. Giles, "A Min-Max Relation for Submodular Functions on Graphs",
+  *Annals of Discrete Math.* **1** (*Studies in Integer Programming*), Elsevier, 1977, 185–204.
+  DOI `10.1016/S0167-5060(08)70734-9`.
+  *Locator:* **verified** — Crossref and [CLR] ref. 10 agree on title, authors, volume 1, 1977,
+  pages 185–204. Gap G4 ("from memory") is closed.
+  *Content attribution:* **provisional**; not read. [CLR] states the conjecture as their
+  Conjecture 1, for $w\in\{0,1\}^A$, in the form used in §6.1. Used only to name the
+  conjecture; no step depends on it.
+* **[CLR]** G. Cornuéjols, S. Liu, R. Ravi, "Approximately Packing Dijoins via Nowhere-Zero
+  Flows", *Combinatorica* **45** (2025). DOI `10.1007/s00493-025-00159-x`; full version read
+  as arXiv:2311.04337v2 (22 May 2025).
+  *Locator:* **verified** — Crossref (Combinatorica, vol. 45, 2025) and the arXiv record agree.
+  The article number "art. 32" quoted by the previous revision was **not** confirmed and is
+  dropped in favour of the DOI.
+  *Content attribution:* **verified against the full text this session** (the arXiv v2 PDF).
+  Specifically: their §1 states Edmonds–Giles as Conjecture 1 for $w\in\{0,1\}^A$, notes
+  Schrijver disproved it, and remarks that "the weight 0 arcs cannot be removed because they,
+  together with the weight 1 arcs, determine the dicuts"; their Proposition 1 is the
+  agreement/complement split against an orientation ("the two subdigraphs of $D$ consisting of
+  the arcs that are in the same orientation as $E^+$ and its complement"); their **Corollary 2**
+  reads verbatim "Woodall's conjecture is true for $\tau=2$" and is proved exactly as here, via
+  Robbins applied to the 2-edge-connected underlying graph and the decomposition
+  $\mathbf 1=\chi^{O}+\chi^{O^{-1}}$; and their Figure 2 carries Schrijver's counterexample in
+  translated form. Gap G3 ("locators inherited, not re-verified") is closed.
+  **Attribution correction.** The previous revision called the $\tau=2$ result "folklore".
+  [CLR] attribute it specifically: *"A direct consequence of Theorem 11 is the following, which
+  has been noted by A. Frank (see e.g. [28] Theorem 56.3)"*, where their [28] is Schrijver,
+  *Combinatorial Optimization: Polyhedra and Efficiency* (Springer, 2003). Schrijver's own
+  notes [SW] say the same independently: *"It was observed by András Frank that Woodall's
+  conjecture is true for $k=2$ (see Theorem 56.3 in [1])."* So the correct attribution is
+  **András Frank**, cf. Schrijver's book, Theorem 56.3 — not "folklore". I claim no novelty for
+  the theorem of §3; this file's contribution is a self-contained proof and the filter analysis.
+  I have not read Theorem 56.3 itself (the book was not fetched).
+* **[SW]** A. Schrijver, *Observations on Woodall's conjecture*, discussion notes,
+  `https://homepages.cwi.nl/~lex/files/woodall.pdf`. **Read this session.** Undated notes, so
+  no year is asserted. Source of the A. Frank attribution quoted above; it treats the
+  unweighted conjecture and does **not** contain the Edmonds–Giles counterexample, so it does
+  not close G2. Not used in any step.
 * **[F]** P. Feofiloff, *Woodall's conjecture on packing dijoins: a survey* (2005). Not
-  reachable; not used.
+  fetched; not used. Locator unverified.
 
 ---
 
 ## 9. Kill-criterion accounting (`KILL-CRITERION.md`)
 
 * **K1 (Schrijver):** discharged in §6.2 — the failing step is §5.4, and Lemma A explicitly is
-  *not* it. Not met.
+  *not* it. Not met. The discharge remains **contingent** on Schrijver's theorem, whose instance
+  is still not reconstructed (G2); if that instance turned out not to need weight-0 arcs, this
+  proof would be refuted outright. §6.1 now argues from [CLR]'s own text that it must.
 * **K2 (LY):** discharged in §6.3. Not met.
 * **K3 (easy direction):** discharged in §6.4. Not met.
 * **K4 (an elementary step fails on a machine-checked instance):** did not fire; all tests in
@@ -584,9 +706,16 @@ checked (by the author, numerically, experiments/woodall-tau2-checks/):
   - the §5.4 colouring meets every dicut in both colours: all simple digraphs on <= 4 vertices,
     all 3-vertex multidigraphs with multiplicity <= 2, 3000 seeded random multidigraphs
   - the §6.2 mechanical failure of step 5.4 under a weight-0 arc
+  - the four bibliographic locators [R], [S80], [EG], [CLR], against Crossref /
+    zbMATH / the [CLR] bibliography (§8); this closes former gaps G3 and G4 and
+    narrows G1 to "primary text unread"
 not-checked:
-  - any step by an independent reader (this is what verified:review requires)
-  - Schrijver's actual instance (G2); the locators [R], [S80], [EG], [CLR] (G1, G3, G4)
+  - any step by an independent reader; Codex (@Flow-25) reconstructed §§4-5 on
+    2026-09-02 and found no break, but that is same-file review of a claim whose
+    status is unchanged, and §5 of the repo RULES governs what would promote it
+  - Schrijver's actual instance (G2) — still the largest gap; see §6.2
+  - the primary texts of [R], [S80], [EG] (locators verified, content taken from
+    secondary sources); Theorem 56.3 of Schrijver's book, for the Frank attribution
 ```
 
 Nothing in this file may be built on. Its author will not build on it either.
@@ -597,10 +726,14 @@ Nothing in this file may be built on. Its author will not build on it either.
 
 See §8 for verification status of each.
 
-1. H. E. Robbins, *Amer. Math. Monthly* 46 (1939), 281–283.
-2. A. Schrijver, *Discrete Math.* 32 (1980), 213–214/215.
-3. J. Edmonds, R. Giles, *Annals of Discrete Math.* 1 (1977), 185–204.
-4. G. Cornuéjols, S. Liu, R. Ravi, *Combinatorica* 45 (2025), art. 32, arXiv:2311.04337.
+1. H. E. Robbins, *Amer. Math. Monthly* **46**(5) (1939), 281–283. DOI `10.2307/2303897`.
+2. A. Schrijver, *Discrete Math.* **32** (1980), 213–214. DOI `10.1016/0012-365X(80)90057-6`.
+3. J. Edmonds, R. Giles, *Annals of Discrete Math.* **1** (1977), 185–204.
+   DOI `10.1016/S0167-5060(08)70734-9`.
+4. G. Cornuéjols, S. Liu, R. Ravi, *Combinatorica* **45** (2025),
+   DOI `10.1007/s00493-025-00159-x`; arXiv:2311.04337v2.
+4b. A. Schrijver, *Observations on Woodall's conjecture*, discussion notes,
+   `https://homepages.cwi.nl/~lex/files/woodall.pdf`.
 5. `attacks/tau2-robbins/README.md` (this repo) — the sketch this file supersedes.
 6. `attacks/zero-weight-frontier/README.md` and `experiments/woodall-zeroweight-census/` (this
    repo) — the census cited in §6.2, `numerical`.
