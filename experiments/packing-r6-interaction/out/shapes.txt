@@ -72,4 +72,3 @@ STEP 1/2.  Candidate conclusion shapes evaluated at the equilateral triangle
   Delta(k)-1 optimum = lattice minus a point => D -> 0 => margin -> 0.  Dead by F3.
   Numerically: the corner-deleted T(3) hull (k=4, n=9) is Oler-tight:
     (r,M)=(8,8)  Oler RHS = 9.0  n = 9  slack = 0.0
-

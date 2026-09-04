@@ -116,8 +116,9 @@ was infeasible. Round 6 closed it:
 > For **every** `j >= 0`, `P(j)` is feasible, contained and **tight**, hence
 > `s(n(j)) <= 2j + 4*sqrt(3)` with `n(j) = Delta(j+2) + floor(j/2) + 1`.
 
-What makes it finite: the 17 grain range-lemmas are verified by `sympy` to be **identities** in
-`(U, M, p, q)`, so they hold for all `j`; intra-grain violations are impossible because the
+What makes it finite: the 17 grain range-lemmas are verified to be **identities** in `(U, M, p, q)`
+by an exact stdlib linear-form engine (and re-decided by `sympy` as an optional second opinion when
+it happens to be installed), so they hold for all `j`; intra-grain violations are impossible because the
 separation-2 triangular lattice has minimum distance exactly 2; and the cross-grain forbidden
 difference vectors are **`j`-free**, 42 in total, checked once. Containment and tightness follow from
 explicit wall inequalities, tightness attained by one grain.
@@ -145,24 +146,44 @@ not been tested against known answers is not evidence — in either direction.**
 an untested checker that *accepts* is caught by negative controls, but one that *rejects* looks like
 a finding, and this project rewards findings.
 
-### Two-family counting opens a delta-window where there was none
-`issue #110` · `attacks/r6-secondline/` · `numerical`, CONDITIONAL
+### The two-family delta-window claim is REFUTED by this lane's own scripts
+`issue #110` · `attacks/r6-secondline/` §4 · `numerical` (the counts), `refuted` (the comparison)
 
-`r5-eo7` refuted the usable form of its own bridging hypothesis: its one-family counting bound is
-**discontinuous at `delta = 0`** (24 on-lines, 27 at `1e-9`), so the conditional tolerated no
-perturbation at all and was vacuous for real packings. Its named next step — use the second line
-family, which the relaxation threw away — was executed.
+An earlier version of this entry claimed two-family counting "opens a delta-window where there was
+none". **That claim is withdrawn.** Running the lane's two disagreeing scripts against each other,
+as the reviewer asked, resolved the discrepancy against the claim rather than for it.
 
-Reproducing r5-eo7's table exactly as a control, the two-family count then gains **2 units** just
-below `a = 6` (24 -> 22), and the delta scan at `a = 5.99` holds the bound at **22 <= 26 across every
-delta the scan reached, out to `delta = 0.43*eta`**. The one-family window was exactly zero. That is
-a qualitative change, not a better constant: a forcing theorem supplying `delta <~ 0.4*eta` would now
-be usable, where before nothing would have been.
+Two different quantities were both being called "the delta-window":
 
-Two honest limits, both recorded in the lane: the hypothesis (H) itself is **unproved** and this is
-only its robustness half; and the worker's own final commit message quotes a *smaller* two-family
-window (`0.19-0.23*eta`) than the committed scan shows, a discrepancy it died before reconciling and
-which the write-up flags rather than guesses at.
+- **`W_scan`** — the largest `delta` at which a *numerically evaluated* counting scan, on a finite
+  grid of orientations/offsets/rotations, still returns a bound `<=` target. It is an observed
+  property of one cap formula on one grid and **controls nothing**.
+- **`W_cont` = `eta / Gamma`** — the *provable* containment window: if every point is within `delta`
+  of the assumed families then `|P| <= M(a + Gamma*delta)`, so `Gamma*delta <= eta` is what keeps the
+  inflated side below 6. **This is the load-bearing quantity** — the budget a forcing theorem must
+  supply `delta` below.
+
+On `W_cont` the ordering is the **opposite** of the withdrawn claim: one family gives
+`0.866*eta` (`Gamma = 2/sqrt3`), two families at best `0.232*eta` (`Gamma >= 2*sqrt3`, minimum
+`4.3094` over all direction pairs). Two families give a **strictly smaller** provable window, and not
+by accident — `delta`-slack along two independent normals inflates the containing triangle in more
+directions than slack along one, so `Gamma` can only grow. The second family buys a better count and
+a worse `delta`-budget; the earlier write-up reported only the flattering half.
+
+And the "one-family window was exactly zero" premise was itself an artifact. `delta_window.py`
+diagnoses it: `r5-eo7` ran its scan at `a = 6` with a cap whose `1` fixes the separation at exactly
+`1`, but that cap is only valid for separation strictly `> 1`, which is what `a < 6` buys. The
+`delta = 0` and `delta > 0` rows used **different separations**; the 24 -> 27 jump was that
+inconsistency. Measured consistently, the one-family window is **positive**, about `0.86*eta`.
+
+Two further cautions found while reconciling. `W_scan` is unreliable in the *unsafe* direction — at
+`eta = 0.1` and `0.03` the coarse-grid window endpoint gives a fine-grid bound of **27 > 26**, so the
+coarse grid overestimates it. And `delta = 0.43*eta` was where the two-family scan **stopped**, not
+where it broke: comparing a truncation point against a measured breakpoint is exactly the
+failed-search-as-evidence error, and no two-family breakpoint has been measured at all.
+
+What survives is the count itself: two-family `M = 22` against one-family `B = 24` at `a = 5.99`,
+`numerical`, with the hypothesis (H) still **unproved** and this being only its robustness half.
 
 **It also hit the Jump Lemma independently.** At `a = 6.0` the two-family count returns 28 — the
 `Delta(7)` lattice witness — so no correct bound can be below 26 there, and the "2-unit target at

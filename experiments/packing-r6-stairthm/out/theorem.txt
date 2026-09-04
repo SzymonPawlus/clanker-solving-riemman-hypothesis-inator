@@ -1,24 +1,29 @@
 ==============================================================================
-STEP A -- grain lemmas as symbolic identities (sympy)
+STEP A -- grain lemmas as symbolic identities (stdlib exact linear forms)
    BL  r >= 0           slack = p                       IDENTITY
-   BL  x - r >= 0       slack = 2*q                     IDENTITY
-   BL  x + r <= 2U      slack = 2*U - 2*p - 2*q         IDENTITY
+   BL  x - r >= 0       slack = +2*q                    IDENTITY
+   BL  x + r <= 2U      slack = +2*U -2*p -2*q          IDENTITY
    BL  r <= U           slack = U - p                   IDENTITY
    BR  r >= 0           slack = p                       IDENTITY
-   BR  x - r >= 2M      slack = 2*q                     IDENTITY
-   BR  x + r <= 2j      slack = 2*U - 2*p - 2*q         IDENTITY
+   BR  x - r >= 2M      slack = +2*q                    IDENTITY
+   BR  x + r <= 2j      slack = +2*U -2*p -2*q          IDENTITY
    BR  r <= U           slack = U - p                   IDENTITY
    C   r >= par         slack = p                       IDENTITY
-   C   x + r >= 2U      slack = 2*q                     IDENTITY
-   C   x - r <= 2M      slack = 2*p - 2*q               IDENTITY
-   C   x - r >= 0       slack = 2*M - 2*p + 2*q         IDENTITY
-   C   x + r <= 2j      slack = 2*M - 2*q               IDENTITY
+   C   x + r >= 2U      slack = +2*q                    IDENTITY
+   C   x - r <= 2M      slack = +2*p -2*q               IDENTITY
+   C   x - r >= 0       slack = +2*M -2*p +2*q          IDENTITY
+   C   x + r <= 2j      slack = +2*M -2*q               IDENTITY
    C   r <= U           slack = M - p                   IDENTITY
    T   r >= U           slack = p                       IDENTITY
-   T   x - r >= 0       slack = 2*q                     IDENTITY
-   T   x + r <= 2j      slack = 2*M - 2*p - 2*q         IDENTITY
+   T   x - r >= 0       slack = +2*q                    IDENTITY
+   T   x + r <= 2j      slack = +2*M -2*p -2*q          IDENTITY
    all 17 grain lemmas are identities in (U,M,p,q); the parameter ranges
    0<=p, 0<=q and the range tops make every right-hand side >= 0.
+
+STEP A cross-check -- SKIPPED: sympy is not installed.
+   This is an OPTIONAL second opinion only.  Step A above already decided
+   every grain lemma exactly with the stdlib linear-form engine, so nothing
+   load-bearing was skipped and the theorem check below is unaffected.
 
 STEP A guard -- the same lemmas re-checked on the generated site lists, j = 0..40
    OK -- and x = r (mod 2) holds for every site of every grain.
@@ -102,10 +107,10 @@ STEP D -- containment and tightness
    TIGHTNESS.  x_p + y_p sqrt3/3 = (x+r) + (a + b/3) sqrt3, and step A gives
    x+r <= 2j for BR, C, T and x+r <= 2U <= 2j for BL.  So the value is at most
    2j + max_g (a + b/3) sqrt3 = 2j + 2 sqrt3 = d, attained by BR (and T):
-        BL   max (x+r) + (a+b/3)sqrt3  <=  2j + 0           
-        BR   max (x+r) + (a+b/3)sqrt3  <=  2j + 2*sqrt(3)   
-        C    max (x+r) + (a+b/3)sqrt3  <=  2j + 4/3*sqrt(3) 
-        T    max (x+r) + (a+b/3)sqrt3  <=  2j + 2*sqrt(3)   
+        BL   max (x+r) + (a+b/3)sqrt3  <=  2j + 0
+        BR   max (x+r) + (a+b/3)sqrt3  <=  2j + 2*sqrt(3)
+        C    max (x+r) + (a+b/3)sqrt3  <=  2j + 4/3*sqrt(3)
+        T    max (x+r) + (a+b/3)sqrt3  <=  2j + 2*sqrt(3)
    BR contains (r,x) = (0, 2j) for every j (2j != 2M unless par=0 and U=0, i.e. j=0,
    where nothing is dropped), so the maximum 2j + 2 sqrt3 = d is ATTAINED.
    mechanically confirmed for j = 0..40:  (0,2j) in BR and max(x+r) = 2j.   OK

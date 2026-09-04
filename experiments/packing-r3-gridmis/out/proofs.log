@@ -5,7 +5,7 @@ c finished parsing
 
 c detected empty clause; start verification via backward checking
 
-c 16837 of 29513 clauses in core                            
+c 16837 of 29513 clauses in core
 
 c 16478 of 34664 lemmas in core using 752118 resolution steps
 
@@ -21,7 +21,7 @@ c finished parsing
 
 c detected empty clause; start verification via backward checking
 
-c 114640 of 172805 clauses in core                            
+c 114640 of 172805 clauses in core
 
 c 145512 of 313471 lemmas in core using 10621456 resolution steps
 
@@ -37,7 +37,7 @@ c finished parsing
 
 c detected empty clause; start verification via backward checking
 
-c 369463 of 541252 clauses in core                            
+c 369463 of 541252 clauses in core
 
 c 369175 of 927875 lemmas in core using 29078443 resolution steps
 
@@ -53,7 +53,7 @@ c finished parsing
 
 c detected empty clause; start verification via backward checking
 
-c 34333 of 54288 clauses in core                            
+c 34333 of 54288 clauses in core
 
 c 127707 of 263409 lemmas in core using 6506131 resolution steps
 

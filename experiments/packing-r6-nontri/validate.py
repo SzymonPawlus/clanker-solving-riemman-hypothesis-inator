@@ -1,4 +1,5 @@
 """Validation ladder: reproduce KNOWN maximin values before trusting anything else."""
+import _deps; _deps.require()   # numpy/scipy are REAL deps here (see pyproject.toml)
 import json, time, numpy as np, shapes
 
 SQ3 = np.sqrt(3.0); SQ2 = np.sqrt(2.0); SQ6 = np.sqrt(6.0); SQ33 = np.sqrt(33.0)

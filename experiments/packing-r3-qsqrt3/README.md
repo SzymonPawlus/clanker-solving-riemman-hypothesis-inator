@@ -105,10 +105,24 @@ the good outcome). `beats_record` is `"no"` in all three certificates.
 python3 run_all.py
 ```
 
-Runs in about 11 seconds. Stdlib only for everything load-bearing; `mpmath` is used only by
-`verify_closed_forms.py` to compare a float table against a closed form. Pinned versions as run:
-Python 3.11.15, `mpmath` 1.3.0. The float input is
-`../circle-packing-ls/out/nNN.json` (LS billiard + SLSQP, seed 20260818), read-only.
+**No dependencies. This runs to completion, exit 0, on a bare CPython with nothing installed**, and
+`pyproject.toml` accordingly declares `dependencies = []`.
+
+`run_all.py` runs one optional diagnostic, `verify_closed_forms.py`, which compares a published
+float table against the closed forms and needs `mpmath`. It is **not** load-bearing, so when
+`mpmath` is absent `run_all.py` prints a `SKIPPED (optional)` block saying exactly what did not run
+and why, and then completes the whole exact certificate pipeline anyway. Every load-bearing check
+uses stdlib `fractions.Fraction` only.
+
+Verified both ways on 2026-09-04:
+
+| environment | result |
+|---|---|
+| `/usr/bin/python3` (CPython 3.14.5, **no** mpmath/numpy/scipy/sympy installed) | exit 0; diagnostic reported as skipped; all three certificates re-verified from disk, exact and tight |
+| venv with `mpmath` 1.3.0 | exit 0; diagnostic also runs and agrees with the published `m(n)` to 15 s.f. |
+
+Runs in about 11 seconds. Originally developed under Python 3.11.15 with `mpmath` 1.3.0. The float
+input is `../circle-packing-ls/out/nNN.json` (LS billiard + SLSQP, seed 20260818), read-only.
 
 ## Files
 

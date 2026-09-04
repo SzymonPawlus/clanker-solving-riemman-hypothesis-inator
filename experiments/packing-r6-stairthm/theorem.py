@@ -17,8 +17,12 @@ This file checks every ingredient mechanically.
  STEP A  parametric normal form of the four grains, and the four "grain lemmas".
          Each grain is swept by nonnegative integer parameters, and each grain
          lemma is an IDENTITY expressing the claimed slack as 2*(a nonnegative
-         parameter combination).  sympy verifies the identities symbolically in
-         (j, U, M, par) with U+M = j, U-M = par.
+         parameter combination).  The identities are verified symbolically in
+         (j, U, M, par) with U+M = j, U-M = par, by the stdlib exact linear-form
+         engine `Lin` below.  Every expression involved is linear with integer
+         coefficients, so `Lin` decides identity exactly -- it is not sampling.
+         If `sympy` happens to be installed it re-decides the same identities as
+         an independent cross-check; it is NOT required and NOT load-bearing.
 
  STEP B  the forbidden difference vectors F(g1,g2) (forbidden.py): finite, j-free.
 
@@ -30,7 +34,6 @@ This file checks every ingredient mechanically.
 
  STEP D  containment and tightness, again from the step-A functionals.
 """
-import sympy as sp
 from fractions import Fraction as F
 from q3 import E, SQ3
 from gen import GRAINS, OFFSET, lattice_sites, n_of, d_of, s_of, UMp
@@ -59,28 +62,100 @@ PARAM = {
 PRANGE = {"BL": ("U", "U - p"), "BR": ("U", "U - p"), "C": ("M", "p"), "T": ("M", "M - p")}
 
 
-def step_A():
-    j, U, M, par, p, q = sp.symbols("j U M par p q", integer=True)
-    sub = {j: U + M, par: U - M}
-    # claimed grain lemmas: (grain, functional name, expression, claimed slack identity)
-    # slack must simplify to 2*(nonneg param combination) or a nonneg param.
+class Lin:
+    """Exact linear form  c0 + sum_v c_v * v  over integer symbols. Stdlib only.
+
+    Every grain-lemma expression below is linear with integer coefficients in
+    (U, M, p, q), so equality of two such forms is decided EXACTLY by comparing
+    coefficient dictionaries.  This is a symbolic identity decision, not a
+    numeric sample over finitely many parameter values.
+    """
+    __slots__ = ("c",)
+    CONST = ""
+
+    def __init__(self, c=None):
+        self.c = {k: v for k, v in (c or {}).items() if v != 0}
+
+    @staticmethod
+    def sym(name):
+        return Lin({name: 1})
+
+    @classmethod
+    def _coerce(cls, o):
+        return o if isinstance(o, Lin) else Lin({cls.CONST: o})
+
+    def __add__(self, o):
+        o = Lin._coerce(o)
+        d = dict(self.c)
+        for k, v in o.c.items():
+            d[k] = d.get(k, 0) + v
+        return Lin(d)
+
+    __radd__ = __add__
+
+    def __neg__(self):
+        return Lin({k: -v for k, v in self.c.items()})
+
+    def __sub__(self, o):
+        return self + (-Lin._coerce(o))
+
+    def __rsub__(self, o):
+        return Lin._coerce(o) + (-self)
+
+    def __mul__(self, k):
+        if isinstance(k, Lin):
+            raise TypeError("grain lemmas must stay linear; refusing a product of two forms")
+        return Lin({a: v * k for a, v in self.c.items()})
+
+    __rmul__ = __mul__
+
+    def is_zero(self):
+        return not self.c
+
+    def __str__(self):
+        if not self.c:
+            return "0"
+        parts = []
+        for k in sorted(self.c, key=lambda s: (s == Lin.CONST, s)):
+            v = self.c[k]
+            if k == Lin.CONST:
+                parts.append("%+d" % v)
+            elif v == 1:
+                parts.append("+ %s" % k)
+            elif v == -1:
+                parts.append("- %s" % k)
+            else:
+                parts.append("%+d*%s" % (v, k))
+        s = " ".join(parts)
+        return s[2:] if s.startswith("+ ") else s
+
+
+def _grain_claims(sym):
+    """Build the grain lemmas over any symbolic engine providing `sym(name)`.
+
+    Returns a list of (grain, lemma name, slack expression, claimed identity).
+    The claim is that slack - expect is identically zero as a form in (U,M,p,q).
+    """
+    U, M, p, q = sym("U"), sym("M"), sym("p"), sym("q")
+    j, par = U + M, U - M
     claims = []
+
     def add(g, name, slack, expect):
         claims.append((g, name, slack, expect))
 
-    r_, x_ = PARAM["BL"](U, M, U + M, U - M, p, q)
+    r_, x_ = PARAM["BL"](U, M, j, par, p, q)
     add("BL", "r >= 0",        r_,                 p)
     add("BL", "x - r >= 0",    x_ - r_,            2 * q)
     add("BL", "x + r <= 2U",   2 * U - (x_ + r_),  2 * (U - p - q))
     add("BL", "r <= U",        U - r_,             U - p)
 
-    r_, x_ = PARAM["BR"](U, M, U + M, U - M, p, q)
+    r_, x_ = PARAM["BR"](U, M, j, par, p, q)
     add("BR", "r >= 0",        r_,                 p)
     add("BR", "x - r >= 2M",   (x_ - r_) - 2 * M,  2 * q)
     add("BR", "x + r <= 2j",   2 * (U + M) - (x_ + r_), 2 * (U - p - q))
     add("BR", "r <= U",        U - r_,             U - p)
 
-    r_, x_ = PARAM["C"](U, M, U + M, U - M, p, q)
+    r_, x_ = PARAM["C"](U, M, j, par, p, q)
     add("C",  "r >= par",      r_ - (U - M),       p)
     add("C",  "x + r >= 2U",   (x_ + r_) - 2 * U,  2 * q)
     add("C",  "x - r <= 2M",   2 * M - (x_ - r_),  2 * (p - q))
@@ -88,21 +163,51 @@ def step_A():
     add("C",  "x + r <= 2j",   2 * (U + M) - (x_ + r_), 2 * (M - q))
     add("C",  "r <= U",        U - r_,             M - p)
 
-    r_, x_ = PARAM["T"](U, M, U + M, U - M, p, q)
+    r_, x_ = PARAM["T"](U, M, j, par, p, q)
     add("T",  "r >= U",        r_ - U,             p)
     add("T",  "x - r >= 0",    x_ - r_,            2 * q)
     add("T",  "x + r <= 2j",   2 * (U + M) - (x_ + r_), 2 * (M - p - q))
+    return claims
 
-    print("STEP A -- grain lemmas as symbolic identities (sympy)")
+
+def step_A():
+    """Decide the grain lemmas as exact symbolic identities, stdlib only."""
+    claims = _grain_claims(Lin.sym)
+    print("STEP A -- grain lemmas as symbolic identities (stdlib exact linear forms)")
+    ok = True
+    for g, name, slack, expect in claims:
+        good = (slack - expect).is_zero()
+        ok &= good
+        print("   %-2s  %-14s   slack = %-22s  %s" % (g, name, str(expect),
+                                                      "IDENTITY" if good else "*** FAILS ***"))
+        assert good, (g, name, str(slack), str(expect))
+    print("   all %d grain lemmas are identities in (U,M,p,q); the parameter ranges" % len(claims))
+    print("   0<=p, 0<=q and the range tops make every right-hand side >= 0.")
+    return ok
+
+
+def step_A_sympy_crosscheck():
+    """OPTIONAL, NOT load-bearing: re-decide the same identities with sympy.
+
+    Skipped silently-but-loudly when sympy is absent.  Step A above has already
+    decided them exactly; this only buys a second, independently written engine.
+    """
+    try:
+        import sympy as sp
+    except ImportError:
+        print("STEP A cross-check -- SKIPPED: sympy is not installed.")
+        print("   This is an OPTIONAL second opinion only.  Step A above already decided")
+        print("   every grain lemma exactly with the stdlib linear-form engine, so nothing")
+        print("   load-bearing was skipped and the theorem check below is unaffected.")
+        return None
+    claims = _grain_claims(lambda nm: sp.Symbol(nm, integer=True))
+    print("STEP A cross-check -- the same identities re-decided by sympy %s" % sp.__version__)
     ok = True
     for g, name, slack, expect in claims:
         good = sp.simplify(sp.expand(slack - expect)) == 0
         ok &= good
-        print("   %-2s  %-14s   slack = %-22s  %s" % (g, name, str(sp.expand(expect)),
-                                                      "IDENTITY" if good else "*** FAILS ***"))
         assert good, (g, name, sp.expand(slack), sp.expand(expect))
-    print("   all %d grain lemmas are identities in (U,M,p,q); the parameter ranges" % len(claims))
-    print("   0<=p, 0<=q and the range tops make every right-hand side >= 0.")
+    print("   sympy agrees on all %d grain lemmas." % len(claims))
     return ok
 
 
@@ -249,7 +354,7 @@ def step_D():
     print("   2j + max_g (a + b/3) sqrt3 = 2j + 2 sqrt3 = d, attained by BR (and T):")
     for g, a, b, ac, bc, enc in rows:
         cap = E(0) + enc
-        print("        %-3s  max (x+r) + (a+b/3)sqrt3  <=  2j + %-12s" % (g, cap.s()))
+        print("        %-3s  max (x+r) + (a+b/3)sqrt3  <=  2j + %s" % (g, cap.s()))
     print("   BR contains (r,x) = (0, 2j) for every j (2j != 2M unless par=0 and U=0, i.e. j=0,")
     print("   where nothing is dropped), so the maximum 2j + 2 sqrt3 = d is ATTAINED.")
     for j in range(0, 41):
@@ -265,6 +370,8 @@ def main():
     Fsets = all_forbidden()
     print("=" * 78)
     step_A()
+    print()
+    step_A_sympy_crosscheck()
     print()
     step_A_numeric_guard()
     print()

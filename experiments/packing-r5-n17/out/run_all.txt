@@ -76,7 +76,7 @@ n = 31   (famcert j = 5)
   related by a triangle symmetry: NO (all 6 tested)
   rattlers  cert: 0   generator: 0
 
-wrote /home/user/r5-worktrees/n17/experiments/packing-r5-n17/out/audit.json
+wrote /home/szymonp/Projects/clanker-solving-riemman-hypothesis-inator/.claude/worktrees/agent-a8b882ddb2e535ae8/experiments/packing-r5-n17/out/audit.json
 
 ##############################################################################
 # 3. structural diff (which points differ, mobility, degree histograms)
@@ -166,12 +166,12 @@ n=17: rattler at (5/2, 4)
 ##############################################################################
 # 7. independent re-run of the famcert Gate-1/Gate-2 table, j = 0..7
 ##############################################################################
-j   n    s                feas   tight  minsq=4  contacts  bdry  
-0   4    4*sqrt(3)        True   True   True     3         3     
-1   7    2 + 4*sqrt(3)    True   True   True     7         6     
-2   12   4 + 4*sqrt(3)    True   True   True     18        9     
-3   17   6 + 4*sqrt(3)    True   True   True     28        12    
-4   24   8 + 4*sqrt(3)    True   True   True     45        15    
-5   31   10 + 4*sqrt(3)   True   True   True     61        18    
-6   40   12 + 4*sqrt(3)   True   True   True     84        21    
-7   49   14 + 4*sqrt(3)   True   True   True     106       24    
+j   n    s                feas   tight  minsq=4  contacts  bdry
+0   4    4*sqrt(3)        True   True   True     3         3
+1   7    2 + 4*sqrt(3)    True   True   True     7         6
+2   12   4 + 4*sqrt(3)    True   True   True     18        9
+3   17   6 + 4*sqrt(3)    True   True   True     28        12
+4   24   8 + 4*sqrt(3)    True   True   True     45        15
+5   31   10 + 4*sqrt(3)   True   True   True     61        18
+6   40   12 + 4*sqrt(3)   True   True   True     84        21
+7   49   14 + 4*sqrt(3)   True   True   True     106       24

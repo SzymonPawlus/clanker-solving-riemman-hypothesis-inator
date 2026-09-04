@@ -1,0 +1,22 @@
+[project]
+name = "packing-r6-nontri"
+version = "0.1.0"
+description = "FLOAT maximin spectra for non-triangular containers (uncertified; status `numerical` only)"
+requires-python = ">=3.11"
+
+# These are REAL, load-bearing dependencies, not optional diagnostics.  This
+# directory is a floating-point optimiser with no exact fallback, so it is
+# declared honestly rather than advertised as stdlib-only.  Contrast
+# ../packing-r3-qsqrt3 and ../packing-r6-stairthm, which are genuinely
+# stdlib-only and declare `dependencies = []`.
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+]
+
+[tool.packing-r6-nontri]
+# The exact versions this lane's committed out/ logs were produced under.
+tested-with = ["numpy==2.5.2", "scipy==1.18.1", "CPython 3.14.5"]
+# Seeds are pinned in the scripts: validate.py uses seed = 1234 + m,
+# spectrum.py and mobility.py pin their own; see README.md §Reproduce.
+status = "numerical"   # float optimiser output; never promotable as-is

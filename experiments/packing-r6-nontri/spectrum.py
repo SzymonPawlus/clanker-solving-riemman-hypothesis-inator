@@ -3,6 +3,7 @@
 Capacity m is SKIPPED by the scaled family {lambda*S} iff a_S(m) == a_S(m+1).
 Everything here is `numerical` (search only); the exact statements are in the write-up.
 """
+import _deps; _deps.require()   # numpy/scipy are REAL deps here (see pyproject.toml)
 import json, sys, time, numpy as np, shapes
 
 MS = list(range(2, 11))

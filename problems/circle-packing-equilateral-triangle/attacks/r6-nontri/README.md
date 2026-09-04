@@ -62,6 +62,17 @@ spectrum run (`out/validate.log`): agreement to `~1e-16` on 14 of 15 rows. **One
 `disc, m = 9`, found `0.754684` against the known `0.765367` (`err = -1.07e-2`) — the optimiser
 lands in a wrong basin there. So the table above is **not certified**; see §3.
 
+**Re-run 2026-09-04** under the now-declared versions (`numpy` 2.5.2, `scipy` 1.18.1, CPython
+3.14.5), 8.9 s, all 27 control rows: **26 agree to `<= 3.4e-16` and the single known miss reproduces
+exactly** — `disc, m = 9`, `0.7546844271212091` against `0.7653668647301796`, `err = -1.068e-2`. The
+documented failure is stable and was not a transient of one run.
+
+The last-place digits of the passing rows **moved** between the original run and this one (e.g.
+`triangle, m = 6`: `0.4999999999999999` -> `0.49999999999999983`), because the library versions
+differ. Nothing about the conclusions changes at `1e-16`, but it is a concrete demonstration of why
+`RULES.md` §4 requires pinned versions: `out/validate.json` now holds the re-run, and the versions
+that produced it are declared in `experiments/packing-r6-nontri/pyproject.toml`.
+
 ## 3. What is NOT established — read before using the table
 
 - **These are float optimiser outputs.** A skip is detected as `a(m) = a(m+1)` at `1e-9` tolerance.
@@ -98,6 +109,11 @@ of `T(3⁻)` from half-triangles or slabs, which is the branch `attacks/r5-cover
 
 ```
 cd experiments/packing-r6-nontri
-python3 validate.py    # optimiser against cited disc/square values
-python3 spectrum.py    # the capacity spectra
+# REQUIRES numpy + scipy (declared in experiments/packing-r6-nontri/pyproject.toml).
+# This lane is a FLOAT optimiser with no exact fallback, so the dependency is real,
+# not an optional diagnostic.  Run with numpy 2.5.2 / scipy 1.18.1, CPython 3.14.5.
+python3 -m venv .venv && .venv/bin/pip install 'numpy>=1.26' 'scipy>=1.11'
+
+.venv/bin/python validate.py    # optimiser against cited disc/square values
+.venv/bin/python spectrum.py    # the capacity spectra
 ```

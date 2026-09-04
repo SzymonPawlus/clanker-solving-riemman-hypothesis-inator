@@ -8,7 +8,7 @@ Q(sqrt 3) snap is shown, then the certificates are emitted, then the emitted JSO
 files are re-parsed from disk and re-verified independently of the in-memory
 configuration.
 """
-import json, os, re, subprocess, sys
+import importlib.util, json, os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -17,9 +17,36 @@ def run(script):
     print("\n" + "=" * 72)
     print("$ python3 %s" % script)
     print("=" * 72)
+    sys.stdout.flush()   # parent stdout is block-buffered when redirected; the
+                         # child writes straight to the fd, so flush or the
+                         # section headers land after the output they label.
     rc = subprocess.call([sys.executable, os.path.join(HERE, script)], cwd=HERE)
     if rc != 0:
         raise SystemExit("%s failed with exit code %d" % (script, rc))
+
+
+def run_optional(script, module, what):
+    """Run a NON-load-bearing diagnostic, skipping it if its dependency is absent.
+
+    The exact certificate pipeline is stdlib-only.  `pyproject.toml` therefore
+    declares `dependencies = []`, and this function is what makes that honest:
+    a missing optional dependency must not stop the pipeline that does the real
+    work.  Returns True if it ran, False if it was skipped.
+    """
+    print("\n" + "=" * 72)
+    if importlib.util.find_spec(module) is None:
+        print("SKIPPED (optional): python3 %s" % script)
+        print("=" * 72)
+        print("  `%s` is not installed, so this diagnostic did not run." % module)
+        print("  What was skipped: %s" % what)
+        print("  It is NOT load-bearing -- it compares a published FLOAT table against")
+        print("  the closed forms.  Every exact check below runs on stdlib")
+        print("  fractions.Fraction alone and is unaffected.")
+        print("  To run it too:  pip install mpmath>=1.3.0  (tested with 1.3.0)")
+        sys.stdout.flush()
+        return False
+    run(script)
+    return True
 
 
 def parse_q3(s):
@@ -74,9 +101,16 @@ def reverify_from_disk():
 
 
 if __name__ == "__main__":
-    run("verify_closed_forms.py")
+    ran_closed_forms = run_optional(
+        "verify_closed_forms.py", "mpmath",
+        "agreement of the published Graham-Lubachevsky m(n) floats with "
+        "6+4sqrt3, 8+4sqrt3, 10+4sqrt3 to 15 s.f.")
     run("validate.py")
     run("snap.py")
     run("rattler.py")
     run("emit.py")
     reverify_from_disk()
+    if not ran_closed_forms:
+        print("\nNOTE: the optional mpmath diagnostic was skipped (see the top of this")
+        print("log). Nothing above depended on it: the certificates are exact and were")
+        print("checked with stdlib Fraction arithmetic only.")

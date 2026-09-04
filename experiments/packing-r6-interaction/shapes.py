@@ -106,7 +106,6 @@ def report():
     print("  Numerically: the corner-deleted T(3) hull (k=4, n=9) is Oler-tight:")
     r_, M_ = 8, 8   # trapezoid: area 2*sqrt3 -> r = 8; perimeter 8
     print(f"    (r,M)=({r_},{M_})  Oler RHS = {(r_+M_)/2+1}  n = 9  slack = {(r_+M_)/2+1-9}")
-    print()
 
 if __name__ == "__main__":
     report()

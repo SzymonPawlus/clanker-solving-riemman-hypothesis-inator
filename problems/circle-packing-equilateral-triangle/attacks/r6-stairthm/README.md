@@ -44,7 +44,7 @@ inverted centre, a top grain — at offsets `(0,0)`, `(√3,1)`, `(√3,3)`, `(2
 indexed by `(r, x)` with `x ≡ r (mod 2)`, parameterised by `U = ⌈j/2⌉`, `M = ⌊j/2⌋`.
 
 - **Step A — grain lemmas as symbolic identities.** All **17** range lemmas (`r ≥ 0`, `x − r ≥ 0`,
-  `x + r ≤ 2U`, `r ≤ U`, and their per-grain analogues) are verified by `sympy` to be *identities*
+  `x + r ≤ 2U`, `r ≤ U`, and their per-grain analogues) are verified to be *identities*
   in `(U, M, p, q)` — each slack is an explicit nonnegative expression such as `2U − 2p − 2q`. Being
   identities, they hold for **every** `j`, which is what makes the argument finite rather than
   per-member. Re-checked mechanically against the generated site lists for `j = 0..40`, including
@@ -111,7 +111,7 @@ either direction.
 
 ```
 cd experiments/packing-r6-stairthm
-python3 theorem.py      # Steps A-C, the general-j argument
+python3 theorem.py      # Steps A-C, the general-j argument  (STDLIB ONLY, no deps)
 python3 validate.py     # brute-force exact check, j = 0..14, emits the n=60 certificate
 python3 periodicity.py  # the 2-periodicity of cross-grain types
 python3 seamdepth.py    # uniqueness of the seam offsets
