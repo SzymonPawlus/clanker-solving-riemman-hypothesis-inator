@@ -1,0 +1,13 @@
+{
+  "schema_version": "moser-fgh-cutoff-v1",
+  "claim_scope": "conditional_angular_fgh_only",
+  "target_rational": "113749/500000",
+  "angle_unit": "degree",
+  "root_domain": {"alpha": ["45", "78"], "beta": ["83", "97"]},
+  "cutoffs": {
+    "alpha": "3741923/50000",
+    "beta_low": "84495753/1000000",
+    "beta_high": "95504247/1000000"
+  },
+  "proof_partition": ["g", "h_plus", "h_minus", "f_reduced_concave"]
+}

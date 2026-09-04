@@ -1,0 +1,14 @@
+    [  20.7s] nodes=4434 covered=True
+  running: (1) piece 6 dilated 1.001x: squared diameter exceeds 1
+    [  20.8s] nodes=4434 covered=True
+  running: (2) interior piece translated: equal-area overlap + hole
+    [  21.2s] nodes=4534 covered=False
+  running: (3) one vertex 1e-6 outside T_a
+    [  20.8s] nodes=4434 covered=True
+  running: (4) piece 7 deleted (14 pieces)
+    [  15.5s] nodes=3452 covered=False
+  running: (5) piece 10 shrunk 0.999x: sliver hole
+    [  29.7s] nodes=7754 covered=False
+  running: (6) piece 0 given a collinear extra vertex (not strictly convex)
+    [  20.8s] nodes=4434 covered=True
+    [  31.0s] nodes=7220 covered=False

@@ -1,0 +1,1918 @@
+{
+ "bad_witnesses": [],
+ "disagreements": [],
+ "meta_mismatch": [],
+ "per_fixture": [
+  {
+   "agree": true,
+   "group": "controls",
+   "n": 3,
+   "name": "ctl-equilateral",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "controls",
+   "n": 3,
+   "name": "ctl-tri-30-30-120",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "controls",
+   "n": 4,
+   "name": "ctl-unit-square",
+   "sample_disagree": 0,
+   "samples": 20,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 12,
+   "name": "cvx-12gon",
+   "sample_disagree": 0,
+   "samples": 60,
+   "vertex_disagree": 0,
+   "vertices": 12
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 4,
+   "name": "cvx-60deg-kite",
+   "sample_disagree": 0,
+   "samples": 20,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 3,
+   "name": "cvx-60deg-scalene",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 6,
+   "name": "cvx-hexagon",
+   "sample_disagree": 0,
+   "samples": 30,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t1",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t1_2",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t3_5",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5773502691896257_10000000000000000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5773502691896258_10000000000000000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5773502_10000000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5773503_10000000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t577350_1000000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t577351_1000000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t57735_100000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t57736_100000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5773_10000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5774_10000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t577_1000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t578_1000",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t57_100",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t5_9",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex-boundary",
+   "n": 3,
+   "name": "cvx-iso-t7_10",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 3,
+   "name": "cvx-obtuse-tri",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 5,
+   "name": "cvx-pentagon-irreg",
+   "sample_disagree": 0,
+   "samples": 25,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 3,
+   "name": "cvx-right-tri-1-eps",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 3,
+   "name": "cvx-sliver-tri-thin",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 3,
+   "name": "cvx-sliver-tri",
+   "sample_disagree": 0,
+   "samples": 15,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 4,
+   "name": "cvx-square-1000x1",
+   "sample_disagree": 0,
+   "samples": 20,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "convex",
+   "n": 4,
+   "name": "cvx-square-10x1",
+   "sample_disagree": 0,
+   "samples": 20,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "nonconvex",
+   "n": 6,
+   "name": "ncv-L",
+   "sample_disagree": 0,
+   "samples": 30,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "nonconvex-cstrip",
+   "n": 8,
+   "name": "ncv-cstrip-h1_1",
+   "sample_disagree": 0,
+   "samples": 40,
+   "vertex_disagree": 0,
+   "vertices": 8
+  },
+  {
+   "agree": true,
+   "group": "nonconvex-cstrip",
+   "n": 8,
+   "name": "ncv-cstrip-h1_2",
+   "sample_disagree": 0,
+   "samples": 40,
+   "vertex_disagree": 0,
+   "vertices": 8
+  },
+  {
+   "agree": true,
+   "group": "nonconvex-cstrip",
+   "n": 8,
+   "name": "ncv-cstrip-h1_20",
+   "sample_disagree": 0,
+   "samples": 40,
+   "vertex_disagree": 0,
+   "vertices": 8
+  },
+  {
+   "agree": true,
+   "group": "nonconvex-cstrip",
+   "n": 8,
+   "name": "ncv-cstrip-h1_4",
+   "sample_disagree": 0,
+   "samples": 40,
+   "vertex_disagree": 0,
+   "vertices": 8
+  },
+  {
+   "agree": true,
+   "group": "nonconvex-cstrip",
+   "n": 8,
+   "name": "ncv-cstrip-h2_1",
+   "sample_disagree": 0,
+   "samples": 40,
+   "vertex_disagree": 0,
+   "vertices": 8
+  },
+  {
+   "agree": true,
+   "group": "nonconvex",
+   "n": 4,
+   "name": "ncv-dart",
+   "sample_disagree": 0,
+   "samples": 20,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "nonconvex",
+   "n": 12,
+   "name": "ncv-star6",
+   "sample_disagree": 0,
+   "samples": 60,
+   "vertex_disagree": 0,
+   "vertices": 12
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-000",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-001",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-002",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-003",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-004",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-005",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-006",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-007",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-008",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-009",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-010",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-011",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-012",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-013",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-014",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-015",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-016",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-017",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-018",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-019",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-020",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-021",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-022",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-023",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-024",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-025",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-026",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-027",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-028",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-029",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-030",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-031",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-032",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-033",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-034",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-035",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-036",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-037",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-038",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-039",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-040",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-041",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-042",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-043",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-044",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-045",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-046",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-047",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-048",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-049",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-050",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-051",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-052",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-053",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-054",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-055",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-056",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-057",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-058",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-059",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-060",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-061",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-062",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-063",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-064",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-065",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-066",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-067",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-068",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-069",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-070",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-071",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-072",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-073",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-074",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-075",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-076",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-077",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-078",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-079",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-080",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-081",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-082",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-083",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-084",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-085",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-086",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-087",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-088",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-089",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-090",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-091",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-092",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-093",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-094",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-095",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-096",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-097",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-098",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-099",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-100",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-101",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-102",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-103",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-104",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-105",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-106",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-107",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-108",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-109",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-110",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-111",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-112",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-113",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-114",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-115",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-116",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-117",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-118",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-119",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-120",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-121",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-122",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-123",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-124",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-125",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 6,
+   "name": "rand-convex-126",
+   "sample_disagree": 0,
+   "samples": 6,
+   "vertex_disagree": 0,
+   "vertices": 6
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-127",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-128",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-129",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-130",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-131",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-132",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-133",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-134",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-135",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-136",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-137",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-138",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-139",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-140",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-141",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 7,
+   "name": "rand-convex-142",
+   "sample_disagree": 0,
+   "samples": 7,
+   "vertex_disagree": 0,
+   "vertices": 7
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-143",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-144",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 3,
+   "name": "rand-convex-145",
+   "sample_disagree": 0,
+   "samples": 3,
+   "vertex_disagree": 0,
+   "vertices": 3
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-146",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 5,
+   "name": "rand-convex-147",
+   "sample_disagree": 0,
+   "samples": 5,
+   "vertex_disagree": 0,
+   "vertices": 5
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-148",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  },
+  {
+   "agree": true,
+   "group": "random",
+   "n": 4,
+   "name": "rand-convex-149",
+   "sample_disagree": 0,
+   "samples": 4,
+   "vertex_disagree": 0,
+   "vertices": 4
+  }
+ ],
+ "summary": {
+  "bad_witnesses": 0,
+  "disagreements": 0,
+  "edge_samples_compared": 1487,
+  "fixtures": 190,
+  "fixtures_agreeing": 190,
+  "meta_mismatch": [],
+  "points_compared": 2270,
+  "seconds": 19.8,
+  "vertices_compared": 783
+ }
+}

@@ -1,0 +1,4 @@
+a = 4.465: best min dod = 0.961718 (= 0.99564 * t) -> infeasible
+a = 4.470: best min dod = 0.962795 (= 0.99676 * t) -> infeasible
+a = 4.480: best min dod = 0.964949 (= 0.99899 * t) -> infeasible
+a = 4.490: best min dod = 0.967102 (= 1.00122 * t) -> FEASIBLE; exact: True

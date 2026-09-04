@@ -1,0 +1,183 @@
+{
+ "name": "rand-convex-117",
+ "group": "random",
+ "note": "",
+ "n_vertices": 3,
+ "simple": true,
+ "simple_reason": "simple",
+ "convex": true,
+ "orientation": 1,
+ "vertices_exact": [
+  [
+   [
+    "-30",
+    "0"
+   ],
+   [
+    "1/2",
+    "0"
+   ]
+  ],
+  [
+   [
+    "51/2",
+    "0"
+   ],
+   [
+    "-7",
+    "0"
+   ]
+  ],
+  [
+   [
+    "11/6",
+    "0"
+   ],
+   [
+    "10",
+    "0"
+   ]
+  ]
+ ],
+ "vertices_display": [
+  [
+   -30.0,
+   0.5
+  ],
+  [
+   25.5,
+   -7.0
+  ],
+  [
+   1.8333333333333333,
+   10.0
+  ]
+ ],
+ "vertices": [
+  {
+   "index": 0,
+   "point_display": [
+    -30.0,
+    0.5
+   ],
+   "interior_angle_display_deg": 24.31269758,
+   "reflex": false,
+   "cmp60": -1,
+   "good": false,
+   "witness": null,
+   "witness_verified": null,
+   "witness_detail": null,
+   "pairs_tested": 18,
+   "nonempty_pairs": 8,
+   "trivial_only_pairs": 8
+  },
+  {
+   "index": 1,
+   "point_display": [
+    25.5,
+    -7.0
+   ],
+   "interior_angle_display_deg": 27.994008103,
+   "reflex": false,
+   "cmp60": -1,
+   "good": false,
+   "witness": null,
+   "witness_verified": null,
+   "witness_detail": null,
+   "pairs_tested": 18,
+   "nonempty_pairs": 8,
+   "trivial_only_pairs": 8
+  },
+  {
+   "index": 2,
+   "point_display": [
+    1.8333333333333333,
+    10.0
+   ],
+   "interior_angle_display_deg": 127.693294317,
+   "reflex": false,
+   "cmp60": 1,
+   "good": true,
+   "witness": {
+    "sigma": 1,
+    "Q_exact": [
+     [
+      "7/4182",
+      "-28342/6273"
+     ],
+     [
+      "-7432/2091",
+      "3830/6273"
+     ]
+    ],
+    "X_exact": [
+     [
+      "7/4182",
+      "28342/6273"
+     ],
+     [
+      "-7432/2091",
+      "-3830/6273"
+     ]
+    ],
+    "Q_display": [
+     -7.823893509982004,
+     -2.4967711472997287
+    ],
+    "X_display": [
+     7.827241190517634,
+     -4.611789350069951
+    ]
+   },
+   "witness_verified": true,
+   "witness_detail": {
+    "O_on_J": true,
+    "Q_on_J": true,
+    "X_on_J": true,
+    "distinct": true,
+    "equilateral": true,
+    "side_squared": [
+     "4694048/18819",
+     "0"
+    ],
+    "side_display": 15.793394803247125,
+    "nondegenerate": true
+   },
+   "pairs_tested": 1,
+   "nonempty_pairs": 1,
+   "trivial_only_pairs": 0
+  }
+ ],
+ "edge_samples": [
+  {
+   "edge": 0,
+   "t": "1/2",
+   "point_display": [
+    -2.25,
+    -3.25
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 1,
+   "t": "1/2",
+   "point_display": [
+    13.666666666666666,
+    1.5
+   ],
+   "good": true,
+   "witness_verified": true
+  },
+  {
+   "edge": 2,
+   "t": "1/2",
+   "point_display": [
+    -14.083333333333334,
+    5.25
+   ],
+   "good": true,
+   "witness_verified": true
+  }
+ ]
+}

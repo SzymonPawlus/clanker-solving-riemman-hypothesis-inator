@@ -1,0 +1,202 @@
+{
+ "space": {
+  "max_n": 4,
+  "max_arcs": 6,
+  "max_mult": 2,
+  "loops": false
+ },
+ "scanned": 13615,
+ "seconds": 214.3,
+ "n_disagreements": 1892,
+ "note": "Full record list omitted from the repo (676 KB); regenerate with crosscheck.py. All 1892 disagreeing digraphs are exactly the 1892 with a disconnected underlying graph; the only differing fields are the two compared against the literal-README reading.",
+ "first_10": [
+  {
+   "n": 2,
+   "arcs": [],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset()}",
+     "set()"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "None"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset()}",
+     "set()"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "None"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     0,
+     1
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0})}",
+     "{frozenset({0})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     0,
+     2
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0})}",
+     "{frozenset({0})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     1,
+     0
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0})}",
+     "{frozenset({0})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     1,
+     2
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0})}",
+     "{frozenset({0})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     2,
+     0
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0})}",
+     "{frozenset({0})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     2,
+     1
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0})}",
+     "{frozenset({0})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset(), frozenset({0, 1})}",
+     "{frozenset({0, 1})}"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "2"
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "arcs": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "diffs": {
+    "dicuts(literal) vs lean dicuts": [
+     "{frozenset()}",
+     "set()"
+    ],
+    "tau(literal) vs lean tau?": [
+     "0",
+     "None"
+    ]
+   }
+  }
+ ]
+}

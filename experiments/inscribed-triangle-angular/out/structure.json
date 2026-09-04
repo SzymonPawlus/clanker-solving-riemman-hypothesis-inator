@@ -1,0 +1,2854 @@
+{
+ "per_fixture": [
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "group": "controls",
+   "max_components": 3,
+   "name": "ctl-equilateral",
+   "points": 9,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 1,
+   "components": [
+    0,
+    0,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "group": "controls",
+   "max_components": 3,
+   "name": "ctl-tri-30-30-120",
+   "points": 9,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "controls",
+   "max_components": 1,
+   "name": "ctl-unit-square",
+   "points": 12,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "convex",
+   "max_components": 1,
+   "name": "cvx-12gon",
+   "points": 12,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    2
+   ],
+   "group": "convex",
+   "max_components": 2,
+   "name": "cvx-60deg-kite",
+   "points": 4,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    2
+   ],
+   "group": "convex",
+   "max_components": 2,
+   "name": "cvx-60deg-scalene",
+   "points": 3,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "convex",
+   "max_components": 1,
+   "name": "cvx-hexagon",
+   "points": 6,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t1",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t1_2",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t3_5",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t5773502691896257_10000000000000000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t5773502691896258_10000000000000000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t5773502_10000000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t5773503_10000000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t577350_1000000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t577351_1000000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t57735_100000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t57736_100000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t5773_10000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t5774_10000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t577_1000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t578_1000",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t57_100",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "convex-boundary",
+   "max_components": 1,
+   "name": "cvx-iso-t5_9",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "convex-boundary",
+   "max_components": 3,
+   "name": "cvx-iso-t7_10",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "convex",
+   "max_components": 3,
+   "name": "cvx-obtuse-tri",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "convex",
+   "max_components": 1,
+   "name": "cvx-pentagon-irreg",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    1
+   ],
+   "group": "convex",
+   "max_components": 1,
+   "name": "cvx-right-tri-1-eps",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "convex",
+   "max_components": 3,
+   "name": "cvx-sliver-tri-thin",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "convex",
+   "max_components": 3,
+   "name": "cvx-sliver-tri",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "convex",
+   "max_components": 1,
+   "name": "cvx-square-1000x1",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "convex",
+   "max_components": 1,
+   "name": "cvx-square-10x1",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    1,
+    1,
+    5,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    5,
+    3,
+    3,
+    3,
+    1,
+    3
+   ],
+   "group": "nonconvex",
+   "max_components": 5,
+   "name": "ncv-L",
+   "points": 18,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    4,
+    3,
+    3,
+    5,
+    5,
+    3,
+    5,
+    5,
+    5,
+    7,
+    6,
+    3,
+    3,
+    5,
+    5,
+    5,
+    5,
+    9,
+    5,
+    3,
+    3,
+    5,
+    5
+   ],
+   "group": "nonconvex-cstrip",
+   "max_components": 9,
+   "name": "ncv-cstrip-h1_1",
+   "points": 24,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    4,
+    3,
+    3,
+    5,
+    5,
+    3,
+    5,
+    5,
+    5,
+    7,
+    6,
+    3,
+    3,
+    5,
+    5,
+    5,
+    5,
+    9,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "group": "nonconvex-cstrip",
+   "max_components": 9,
+   "name": "ncv-cstrip-h1_2",
+   "points": 24,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    4,
+    3,
+    3,
+    5,
+    5,
+    3,
+    5,
+    5,
+    5,
+    7,
+    6,
+    3,
+    3,
+    5,
+    5,
+    5,
+    5,
+    9,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "group": "nonconvex-cstrip",
+   "max_components": 9,
+   "name": "ncv-cstrip-h1_20",
+   "points": 24,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    4,
+    3,
+    3,
+    5,
+    5,
+    3,
+    5,
+    5,
+    5,
+    7,
+    6,
+    3,
+    3,
+    5,
+    5,
+    5,
+    5,
+    9,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "group": "nonconvex-cstrip",
+   "max_components": 9,
+   "name": "ncv-cstrip-h1_4",
+   "points": 24,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    4,
+    5,
+    3,
+    5,
+    5,
+    5,
+    3,
+    5,
+    5,
+    7,
+    6,
+    3,
+    3,
+    5,
+    5,
+    5,
+    5,
+    9,
+    9,
+    5,
+    5,
+    5,
+    5
+   ],
+   "group": "nonconvex-cstrip",
+   "max_components": 9,
+   "name": "ncv-cstrip-h2_1",
+   "points": 24,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    2,
+    8,
+    2,
+    3,
+    5,
+    10,
+    13,
+    13,
+    13,
+    11,
+    5
+   ],
+   "group": "nonconvex",
+   "max_components": 13,
+   "name": "ncv-dart",
+   "points": 12,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    9,
+    1,
+    9,
+    1,
+    9,
+    1,
+    9,
+    1,
+    9,
+    1,
+    9,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "group": "nonconvex",
+   "max_components": 9,
+   "name": "ncv-star6",
+   "points": 36,
+   "rational_vertices": false
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-000",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-001",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-002",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-003",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-004",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-005",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-006",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-007",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-008",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-009",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-010",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-011",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-012",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-013",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-014",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-015",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-016",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-017",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-018",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-019",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    3,
+    0,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-020",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-021",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-022",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-023",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    3,
+    0,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-024",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-025",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-026",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    3,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-027",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-028",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-029",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-030",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-031",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-032",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-033",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-034",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-035",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-036",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-037",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-038",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-039",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-040",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-041",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    0
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-042",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-043",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-044",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-045",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-046",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-047",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-048",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-049",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-050",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-051",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    3,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-052",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-053",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-054",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    3,
+    0,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-055",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-056",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-057",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-058",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-059",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-060",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-061",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-062",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    1,
+    1,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-063",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-064",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-065",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-066",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-067",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-068",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-069",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-070",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-071",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-072",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-073",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-074",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-075",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-076",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-077",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-078",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    1,
+    1,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-079",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-080",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-081",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-082",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    3,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-083",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-084",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-085",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-086",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-087",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-088",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-089",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-090",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-091",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-092",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-093",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-094",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-095",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-096",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-097",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-098",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-099",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-100",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-101",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-102",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-103",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-104",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-105",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-106",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-107",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-108",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-109",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-110",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-111",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-112",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-113",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-114",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-115",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-116",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-117",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-118",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-119",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-120",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-121",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-122",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-123",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-124",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    3,
+    3,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-125",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    3,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-126",
+   "points": 6,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-127",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-128",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-129",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-130",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-131",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    3,
+    0,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-132",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-133",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-134",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-135",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-136",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-137",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-138",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    1
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-139",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-140",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    3,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-141",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-142",
+   "points": 7,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    3,
+    0,
+    0
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-143",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-144",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    0
+   ],
+   "group": "random",
+   "max_components": 1,
+   "name": "rand-convex-145",
+   "points": 3,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    1,
+    0,
+    3
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-146",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    3,
+    0,
+    3,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-147",
+   "points": 5,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    1,
+    0,
+    3,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-148",
+   "points": 4,
+   "rational_vertices": true
+  },
+  {
+   "arc_components": 0,
+   "components": [
+    0,
+    3,
+    1,
+    1
+   ],
+   "group": "random",
+   "max_components": 3,
+   "name": "rand-convex-149",
+   "points": 4,
+   "rational_vertices": true
+  }
+ ],
+ "summary": {
+  "arc_components_total": 1,
+  "component_histogram": {
+   "0": 272,
+   "1": 235,
+   "10": 1,
+   "11": 1,
+   "13": 3,
+   "2": 4,
+   "3": 287,
+   "4": 5,
+   "5": 96,
+   "6": 5,
+   "7": 5,
+   "8": 1,
+   "9": 12
+  },
+  "fixtures": 190,
+  "max_components": 13,
+  "no_arc_on_a_rational_polygon": true,
+  "points": 927,
+  "seconds": 18.2
+ }
+}

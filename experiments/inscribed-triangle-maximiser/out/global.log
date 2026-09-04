@@ -1,0 +1,22 @@
+  [  1/190] ctl-equilateral                          0s
+  [ 11/190] cvx-iso-t5773502691896257_10000000000000000 15s
+  [ 21/190] cvx-iso-t577_1000                        16s
+  [ 31/190] cvx-square-1000x1                        17s
+  [ 41/190] rand-convex-000                          50s
+  [ 51/190] rand-convex-010                          54s
+  [ 61/190] rand-convex-020                          56s
+  [ 71/190] rand-convex-030                          59s
+  [ 81/190] rand-convex-040                          61s
+  [ 91/190] rand-convex-050                          62s
+  [101/190] rand-convex-060                          66s
+  [111/190] rand-convex-070                          69s
+  [121/190] rand-convex-080                          74s
+  [131/190] rand-convex-090                          79s
+  [141/190] rand-convex-100                          83s
+  [151/190] rand-convex-110                          87s
+  [161/190] rand-convex-120                          91s
+  [171/190] rand-convex-130                          95s
+  [181/190] rand-convex-140                          97s
+  [190/190] rand-convex-149                          101s
+Lemma V violations: []  sampled points: 8613
+STAGE global OK

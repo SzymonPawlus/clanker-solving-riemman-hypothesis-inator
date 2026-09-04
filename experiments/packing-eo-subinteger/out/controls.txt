@@ -1,0 +1,23 @@
+K3(a): repo certificates
+  n003-lean-corners.json: n=3 a=1 separation violations=0
+    boxes tested=4472  capacity violations=0
+  n006-lean-t3-lattice.json: n=6 a=2 separation violations=0
+    boxes tested=4472  capacity violations=0
+K3(b): triangular lattices T(k) at side k-1
+  k=2 n=3 a=1 sepviol=0 boxes=4472 capviol=0
+  k=3 n=6 a=2 sepviol=0 boxes=4472 capviol=0
+  k=4 n=10 a=3 sepviol=0 boxes=4472 capviol=0
+  k=5 n=15 a=4 sepviol=0 boxes=4472 capviol=0
+  k=6 n=21 a=5 sepviol=0 boxes=1181 capviol=0
+  k=7 n=28 a=6 sepviol=0 boxes=1181 capviol=0
+K3(c): Lemma P re-verified (k, bound 2k-2, equality at a=k-1, min slack)
+    (3, 4, True, 0.0)
+    (4, 6, True, 0.0)
+    (5, 8, True, 0.0)
+    (6, 10, True, 0.0)
+    (7, 12, True, 0.0)
+    (8, 14, True, 0.0)
+    (9, 16, True, 0.0)
+    (10, 18, True, 0.0)
+    (11, 20, True, 0.0)
+    (12, 22, True, 0.0)

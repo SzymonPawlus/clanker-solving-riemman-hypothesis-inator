@@ -1,0 +1,4 @@
+  n=23 trial 0: a=5.743657 mind=1.002000000
+  n=23 trial 1: a=5.743544 mind=1.002000000
+  n=23 trial 2: a=5.743526 mind=1.002000000
+n=23: best a = 5.743526   (min pairwise distance 1.002000000)

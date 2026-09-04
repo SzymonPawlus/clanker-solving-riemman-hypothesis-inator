@@ -1,0 +1,1 @@
+{"a": "61/20", "a_float": 3.05, "n": 10, "N_pieces": 10, "cap_max_index": 9, "max_piece_diam2": 0.9795918367346939, "label": "control n=10 hex", "patterns_total": 1, "patterns": [{"status": "budget", "nodes": 171008, "depth": 86, "pattern": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}], "patterns_refuted": 0, "elapsed_s": 90.13196539878845, "all_refuted": false}

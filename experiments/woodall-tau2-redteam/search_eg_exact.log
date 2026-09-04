@@ -1,0 +1,3 @@
+n=4: 57 DAGs with at least one dicut, 22 minimal admissible supports tested, 0 counterexamples
+n=5: 1013 DAGs with at least one dicut, 1021 minimal admissible supports tested, 0 counterexamples
+n=6: 32752 DAGs with at least one dicut, 118166 minimal admissible supports tested, 0 counterexamples

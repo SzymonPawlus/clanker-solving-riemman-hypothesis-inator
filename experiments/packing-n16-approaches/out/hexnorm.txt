@@ -1,0 +1,14 @@
+control n=3 at a=1.0 (Euclid a_3 = 1):
+  best min-hex = 1.000000  => M(3) <~ 1.000000
+control n=4 at a=1.5 (Euclid a_4 = sqrt3 = 1.732; hand cheat says M(4)<=1.5):
+  best min-hex = 1.000000  => M(4) <~ 1.500000
+  exact:  M(4) <= 3/2 = 1.500000000
+n=15 at a=4.0 (Euclid a_15 = 4, cited):
+  best min-hex = 1.000000  => M(15) <~ 4.000000
+  exact:  M(15) <= 4 = 4.000000000
+n=16 at a=4.5:
+  best min-hex = 1.058824  => M(16) <~ 4.250000
+  exact certificate:  M(16) <= 17/4 = 4.250000000
+  M(16) < 1+2sqrt3 (record)?  True   (exact)
+  M(16) < Oler?               False   (exact)
+  KILL-CRITERION FIRED: hexnorm relaxation can never beat the record.
