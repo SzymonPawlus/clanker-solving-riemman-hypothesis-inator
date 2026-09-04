@@ -23,8 +23,9 @@ arcs leaving $U$ and $\delta^-(U)$ for those entering.
 ### Convention: dicuts are nonempty
 
 **Amended 2026-09-02, issue #158, acting on finding F1 of the independent Lean audit on issue
-#151 (branch `claude/151-lean-audit`, `attacks/lean-foundations-audit/`, not yet on `main` when
-this was written).** Until then
+#151 (branch `claude/151-lean-audit`, now on `main` as
+[`attacks/lean-foundations-audit/`](./attacks/lean-foundations-audit/) — merged 2026-09-03 in
+PR #157, merge commit `8ebfa6f`).** Until then
 this file required only $\delta^-(U) = \emptyset$, which admits $\delta^+(U) = \emptyset$ as a
 dicut. That permissive reading and this one differ on **exactly** the digraphs whose underlying
 graph is disconnected, and never on a weakly connected one: if $D$ is weakly connected and $U$

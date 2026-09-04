@@ -21,10 +21,44 @@ Thus individual fixed-trace minima do not imply local chain linkage.  The
 precise missing data are mixed-trace cut capacities in the transshipment
 network.
 
+## Reference status of PR #255 (checked 2026-09-04)
+
+PR #255 is **open and unmerged**, so nothing it contains is on `main` and a
+reader here cannot check it.  It is named twice in this file and is a hypothesis
+of nothing:
+
+- the opening sentence reports that the local existence hypothesis isolated in
+  #255 is false.  What that hypothesis says is not reproducible from `main`; the
+  self-contained content of that sentence is the four-arc obstruction below,
+  which refutes the local exact-depth linkage statement *as formulated in this
+  file*;
+- the remark after (4) observes that a reduced linkage would be a sufficient
+  local object for #255's chain-colouring theorem.  That is a forward pointer,
+  not a step.
+
+**Theorem 1 does not depend on #255.**  Its statement uses only the layers (1),
+the depth data (2)--(3), and the reduced linkages defined here; its proof uses
+only the auxiliary network of this file and integral max-flow/min-cut, which is
+`cited` to Ford--Fulkerson in the final section.  Removing every mention of #255
+would leave Theorem 1 and the four-arc obstruction intact.
+
 ## Directed setup
 
 For a finite digraph `D=(V,A)`, a **dicut** is a nonempty outgoing boundary
 `delta+(X)` with `delta-(X)=empty`.  A **dijoin** meets every dicut.
+
+A **separator** is the shared vertex set `S=V(D_1) intersection V(D_2)` of a
+decomposition of `D` into two pieces with disjoint arc sets, in the sense of
+`attacks/serial-parallel-separator-composition`.  No separating property of `S`
+is used anywhere in this file: every statement below holds verbatim for an
+arbitrary vertex subset `S subseteq V`, and the reader may take it that way.
+
+The **trace** of a shore `X` is `X intersection S`.  A trace `R subseteq S` is
+**realizable** when at least one incoming-closed shore `X` satisfies
+`X intersection S=R`.  That is exactly what the layer-ordering argument below
+uses.  For `mu_t` in (2) to be a minimum over a nonempty set, a trace also needs
+some incoming-closed shore of that trace with *nonempty* outgoing boundary;
+where `mu_t` appears, assume that.
 
 Let a separator carry realizable comparable traces
 
