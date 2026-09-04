@@ -13,6 +13,14 @@ is valid for every eta >= 0 and is what a 1-separated set in T(6-eta) actually o
 STATUS: numerical (float scan; evidence only).  Nothing here is assumable.
 """
 import json, math
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import _deps
+
+_deps.require('delta_window.py')   # fail fast, before the numpy import below
+
 import numpy as np
 import one_family as OF
 

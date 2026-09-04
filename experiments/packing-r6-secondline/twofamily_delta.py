@@ -23,6 +23,14 @@ against the one-family window of (sqrt3/2) * eta = 0.8660 * eta.
 STATUS: sketch (the derivation) + numerical (the constants).
 """
 import json, math
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import _deps
+
+_deps.require('twofamily_delta.py')   # fail fast, before the numpy import below
+
 import numpy as np
 
 SQRT3 = math.sqrt(3.0)

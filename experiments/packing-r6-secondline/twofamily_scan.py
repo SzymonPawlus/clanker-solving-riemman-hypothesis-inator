@@ -13,6 +13,14 @@ many points and is discarded; the cap is reported).
 STATUS: numerical (float grid measurement).
 """
 import json, math, sys
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import _deps
+
+_deps.require('twofamily_scan.py')   # fail fast, before the numpy import below
+
 import numpy as np
 
 SQRT3 = math.sqrt(3.0)
