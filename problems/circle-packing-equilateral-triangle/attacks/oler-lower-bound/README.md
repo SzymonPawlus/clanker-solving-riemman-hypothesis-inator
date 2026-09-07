@@ -115,7 +115,9 @@ every application below takes $\pi = H$ and therefore satisfies (i) outright.
 as "the following corollary to our theorem on the packing of convex disks", citing Oler, *An
 inequality in the geometry of numbers*, Acta Math. — a paper that had not yet appeared. **The proof
 lives in the Acta paper, now read in full for issue #44.** Its proof does not supply the equality
-characterisation needed below; see §5.2.
+characterisation needed below; see §5.2 — where a correction (issue #96) records that **Groemer 1960
+does** supply one, for the convex-hull case, though turning it into (R2) still needs two `sketch`
+steps.
 
 ### 1.3 Independent restatement (consistency check)
 
@@ -605,6 +607,29 @@ One clean sufficient condition is:
 > read in full. The negative source audit below meets issue #44's kill-criterion: stop rather than
 > reconstructing the missing characterisation and laundering it into a citation.
 
+> ### Correction (issue #96): the characterisation is missing from *Oler*, not from the literature
+>
+> The source audit below is about **Oler's Acta paper** and is unchanged — that paper really does
+> not state an equality characterisation. What was wrong was the wider reading this section
+> invited, that no such theorem exists to be cited.
+>
+> **Groemer, Math. Z. 73 (1960) 285–294, states and proves one**, a year before Oler. His Satz is
+> equality-characterised (p. 285, three cases a/b/c, proved in both directions on p. 294), and
+> applied to $K = H \oplus B_1$ it becomes exactly Oler's inequality **at $\pi = \mathrm{conv}(E)$**
+> — which is the only case any application in this file uses (§1.2). All ten pages have now been
+> read from the primary scan.
+>
+> **This does not by itself discharge (R2) below**, and (R2) is *not* being promoted here. Groemer's
+> case a) says the hull decomposes into unit equilateral triangles all of whose vertices are points
+> of $E$; two short inferences still separate that from "$E$ lies in a triangular lattice", and both
+> are agent `sketch`, not read from Groemer. They are isolated, unmerged with anything else, in
+> [`../groemer-oler-equivalence/`](../groemer-oler-equivalence/README.md) §4.3, which is also where
+> the scope limit (convex hull only, not a general Jordan polygon) is recorded.
+>
+> So: (R2) is **no longer "absent from the literature"** — it is a short, checkable step from a
+> `cited` source — but it remains **unsupported as an assumable claim** until that step is written
+> out and cross-examined. Everything below stands as written.
+
 #### Issue #44 source audit — `cited` negative result
 
 **Source:** N. Oler, *An inequality in the geometry of numbers*, Acta Math. **105** (1961), 19–48,
@@ -657,7 +682,11 @@ forces equality at every step. The two ingredients are:
   only boundary points, so $H \supseteq \operatorname{int} T$ and closedness gives $H = T$.
 - **(R2)** equality in Oler's inequality for $(H, E)$ forces $E \subseteq \Lambda$ for some
   triangular lattice $\Lambda$ of minimal distance exactly $1$. **This remains an unsupported
-  assumption.** The Acta paper does not supply it; a later source would have to do so.
+  assumption.** The Acta paper does not supply it. An *earlier* source — Groemer 1960 — supplies
+  the equality characterisation it would follow from, but two `sketch` inferences still stand
+  between the two statements; see the correction note above and
+  [`../groemer-oler-equivalence/`](../groemer-oler-equivalence/README.md) §4.3. Until those are
+  cross-examined, (R2) is not assumable and nothing in this file may rest on it.
 
 **Given (R1) and (R2), $n$ is triangular.** By (R1), $H = T$; by hypothesis (i) of §1.1 the vertices
 of $H$ lie in $E \subseteq \Lambda$, so $T$ is a **lattice polygon** for $\Lambda$. Pick's theorem is

@@ -217,10 +217,12 @@ Friedman co-credits "Oler/Groemer" for $n = 6, 10$ and "Erdős/Groemer" for $n =
 checked against the paper itself and the co-credit does **not** stand.
 
 Groemer, *Über die Einlagerung von Kreisen in einen konvexen Bereich*, Math. Z. **73** (1960)
-285–294, is freely readable as a scan via GDZ Göttingen
-([GDZPPN002389444](http://gdz.sub.uni-goettingen.de/dms/resolveppn/?PPN=GDZPPN002389444)).
-**Pages 285 and 294 — the statement page and the final page — were read directly from that scan.**
-The paper contains exactly one theorem, a sharpening of Fejes Tóth's $n\sqrt{12} \le F$:
+285–294, is freely readable as a scan via GDZ Göttingen. **All ten pages, 285–294, have now been
+read directly from that scan** (issue #96; the working locators are recorded in
+[`attacks/groemer-oler-equivalence/`](attacks/groemer-oler-equivalence/README.md) §1 — the old
+`GDZPPN002389444` resolver no longer reaches the article, the route is the volume PPN
+`PPN266833020_0073` plus its IIIF manifest). The paper contains exactly one theorem, a sharpening
+of Fejes Tóth's $n\sqrt{12} \le F$:
 
 > **Satz.** Sind in einem konvexen Bereich vom Flächeninhalt $F$ und Umfang $U$ $n$ Einheitskreise
 > eingelagert, so ist
@@ -230,11 +232,36 @@ The paper contains exactly one theorem, a sharpening of Fejes Tóth's $n\sqrt{12
 >
 > — Groemer, Math. Z. 73 (1960), p. 285.
 
-with equality iff the region is the convex hull of the circles *and* the hull $H$ of the centres
-decomposes into equilateral triangles of side 2 whose vertices are all centres (or degenerates to a
-segment or a point). Page 294 ends "Dies ergibt Teil a) des Satzes", followed immediately by a
-two-item bibliography: **the whole body is the proof of that one inequality. There is no
-application to the equilateral triangle and no statement about any particular $n$.**
+The equality clause is printed on the same page, immediately below, and is transcribed here in full
+because an earlier one-sentence paraphrase of it was loose (see the correction note below):
+
+> *Das Gleichheitszeichen steht in* (2) *genau dann, wenn $B$ die konvexe Hülle aller eingelagerten
+> Kreise ist und, wenn die konvexe Hülle $H$ aller Kreismittelpunkte eine der folgenden Bedingungen
+> erfüllt:*
+>
+> *a) $H$ kann in gleichseitige Dreiecke der Seitenlänge 2 zerlegt werden und jeder Eckpunkt dieser
+> Dreiecke ist Mittelpunkt eines Kreises.*
+> *b) $H$ kann in geradlinige Strecken der Länge 2 zerlegt werden, und jeder Endpunkt dieser
+> Strecken ist Mittelpunkt eines Kreises.*
+> *c) $H$ ist ein Punkt.*
+>
+> — Groemer, Math. Z. 73 (1960), p. 285.
+
+That is: equality iff the region is the convex hull of the circles *and* the hull $H$ of the centres
+either decomposes into equilateral triangles of side 2 all of whose vertices are centres, or
+decomposes into segments of length 2 all of whose endpoints are centres, or is a single point.
+
+> **Correction (issue #96).** This section previously paraphrased case b) as "$H$ degenerates to a
+> segment". That is **weaker than what Groemer prints**: a segment hull is not by itself an equality
+> case — the centres must also be spaced exactly 2 apart along it (centres at $0, 2, 5$ give strict
+> inequality). Case a) was transcribed faithfully, so nothing built on it is affected.
+
+Page 294 ends "Dies ergibt Teil a) des Satzes", followed immediately by a two-item bibliography.
+**"Teil a)" is case a) of that equality clause, not an unread part of the paper** — cases b) and c)
+are settled in the preceding sentences. The whole body is the proof of that one inequality, together
+with its equality analysis. Now that every page has been read: **there is no application to the
+equilateral triangle and no statement about any particular $n$** — previously inferred from the
+first and last pages, now confirmed outright.
 
 Two consequences, and the second is the decisive one:
 
@@ -256,10 +283,24 @@ Two consequences, and the second is the decisive one:
    (Equality in Groemer's Satz requires the region to *be* the convex hull of the circles, which a
    containing triangle never is, so strictness here is expected rather than surprising.)
 
+   > **Which region this table evaluates — read this before citing it (issue #96).** The rows above
+   > apply Groemer to the **containing equilateral triangle**. On that region he is slack, and the
+   > conclusion drawn from it — that Groemer's paper credits no particular $n$ — is correct and
+   > unaffected. But that is not the only region he can be applied to, and the slack is an artefact
+   > of the choice. Applied instead to $K = H \oplus B_1$, the **outer-parallel body of the hull $H$
+   > of the centres**, Steiner's formulas make every $\pi$ cancel and the Satz becomes
+   > $n \le \tfrac{\sqrt3}{6}A(H) + \tfrac14 M(H) + 1$ — which, rescaled from Groemer's separation 2
+   > to separation 1, is **exactly Oler's inequality at $\pi = \mathrm{conv}(E)$**, tight at every
+   > triangular $n$. Do not read this table as saying Groemer's Satz is weaker than Oler's
+   > inequality; on the right region they are equivalent. Derivation, scope and the
+   > equality-characterisation consequences:
+   > [`attacks/groemer-oler-equivalence/`](attacks/groemer-oler-equivalence/README.md).
+
    **Status of this table: `sketch`** — it is arithmetic done here, from Groemer's inequality as
    printed on p. 285, not something Groemer or anyone else states. It is offered as a consistency
    check on the rejection, not as its foundation. The foundation is simply that the paper contains
-   no result about triangles.
+   no result about triangles. (The five rows are reproduced exactly by
+   `attacks/groemer-oler-equivalence/derive.py`, which recomputes them in exact symbolic arithmetic.)
 
 The tables above therefore continue to credit **Oler alone**, now as a checked conclusion rather
 than a flagged guess. Graham & Lubachevsky ("it was first shown by Oler in 1961") agree; Friedman's
@@ -269,7 +310,7 @@ co-credit appears to be an attribution of the *underlying tool* rather than of t
 
 | Source | How it was used |
 |---|---|
-| **Groemer, Math. Z. 73 (1960) 285–294.** | **Primary, partially read.** Pp. 285 (statement) and 294 (end of proof + bibliography) read directly from the GDZ scan. Pp. 286–293 not read — they are the proof of the Satz on p. 285, which the last page confirms. |
+| **Groemer, Math. Z. 73 (1960) 285–294.** | **Primary, READ IN FULL** (all ten pages, from the GDZ scan; issue #96). Supersedes the earlier partial reading of pp. 285 and 294 only. Confirms the Satz, its full three-case equality clause, and that the paper contains no application to the triangle. Locators in [`attacks/groemer-oler-equivalence/`](attacks/groemer-oler-equivalence/README.md) §1. |
 | **Payan, Discrete Math. 165–166 (1997) 555–565.** | **Primary abstract only.** French *Résumé* and English *Abstract* transcribed verbatim from the publisher's own article page. **Body NOT obtained.** |
 | **Melissen, Amer. Math. Monthly 100 (1993) 916–925.** | **NOT read** (JSTOR, paywalled). Contents established from the zbMATH review Zbl 0814.52006, quoted above — a review *of* the primary, i.e. still secondary. |
 | **Melissen, Acta Math. Hungar. 65 (1994) 389–393.** | **NOT read** (Springer, paywalled). Its scope is taken from its title plus the 1993 review's "the case $n = 11$ is announced". |
