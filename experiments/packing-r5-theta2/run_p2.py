@@ -14,6 +14,13 @@ import math
 import os
 import time
 
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require("run_p2.py")   # fail fast, before sos_theta pulls in numpy/scipy/cvxpy
+
 import sos_theta as S
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_p2.json")

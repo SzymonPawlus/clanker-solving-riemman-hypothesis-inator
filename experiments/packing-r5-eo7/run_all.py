@@ -2,7 +2,13 @@
 
   python3 run_all.py          (about 3 minutes)
 """
-import json, sys, time
+import json, os, sys, time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require("run_all.py")   # fail fast, before certify.py imports mpmath
+
 from certify import bnb
 
 # a = k-1 is the Erdos-Oler threshold side; the target is Delta(k) - 2, i.e. one less
@@ -29,4 +35,8 @@ for a, k in CASES:
            "boxes": (best or {}).get("boxes_processed"), "seconds": (best or {}).get("seconds")}
     print(json.dumps(row), flush=True)
     res.append(row)
-json.dump(res, open("out/run_all.json", "w"), indent=1)
+# Anchor the output to THIS directory, not the caller's cwd, so the command works
+# whether it is run from here or from the repo root.
+_out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
+os.makedirs(_out, exist_ok=True)
+json.dump(res, open(os.path.join(_out, "run_all.json"), "w"), indent=1)

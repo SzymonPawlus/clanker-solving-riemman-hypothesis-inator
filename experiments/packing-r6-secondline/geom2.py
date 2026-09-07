@@ -17,6 +17,14 @@ the area sqrt3 a^2 / 4 = Lstar*w/2, hence
   Lstar = sqrt3 a / (2 cos(p - pi/6)).
 STATUS: numerical / sketch.  Nothing here is assumable.
 """
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import _deps
+
+_deps.require('geom2.py')   # fail fast, before the numpy import below
+
 import numpy as np
 
 SQRT3 = np.sqrt(3.0)

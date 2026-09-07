@@ -22,7 +22,18 @@ Order of business, and the order is the point:
 
 import io
 import math
+import os
 import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+# Importable when run as `python3 experiments/packing-r4-delaunay/run.py` from the
+# repo root (the documented command), where cwd is NOT this directory.
+sys.path.insert(0, HERE)
+
+import _deps
+
+_deps.require()   # fail fast with an actionable message, before `import lp` pulls
+                  # in numpy/scipy and raises a bare ModuleNotFoundError traceback
 
 import framework as fw
 import lp as LP
@@ -216,10 +227,15 @@ def main():
     rows = step2()
     step3()
     step4(rows)
-    with open("out/report.txt", "w") as fh:
+    # Anchor the transcript to THIS directory, not to the caller's cwd.  The
+    # documented command is run from the repo root, where a relative "out/..."
+    # raised FileNotFoundError after every LP had already been solved.
+    out_dir = os.path.join(HERE, "out")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "report.txt"), "w") as fh:
         fh.write(OUT.getvalue())
     say("")
-    say("transcript written to out/report.txt")
+    say("transcript written to %s" % os.path.join(out_dir, "report.txt"))
 
 
 if __name__ == "__main__":

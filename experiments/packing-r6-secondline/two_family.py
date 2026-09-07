@@ -15,6 +15,14 @@ Written independently of experiments/packing-r5-eo7/scan_lattice.py.
 STATUS: numerical (float grid measurement).  Nothing here is assumable.
 """
 import json, math, sys, time
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import _deps
+
+_deps.require('two_family.py')   # fail fast, before the numpy import below
+
 import numpy as np
 from geom2 import SQRT3, in_triangle
 

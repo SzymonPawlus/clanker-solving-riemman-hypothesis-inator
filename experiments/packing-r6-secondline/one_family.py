@@ -19,6 +19,14 @@ sep -> sqrt(sep^2 - 4 delta^2).
 STATUS: numerical (float scan; evidence only).  Nothing here is assumable.
 """
 import json, math, sys
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import _deps
+
+_deps.require('one_family.py')   # fail fast, before the numpy import below
+
 import numpy as np
 from geom2 import profile, chord_sup, SQRT3
 

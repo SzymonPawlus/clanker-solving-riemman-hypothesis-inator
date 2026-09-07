@@ -115,5 +115,27 @@ python3 analyse_p1.py                 # the tables above; committed at out_analy
 python3 run_p2.py                     # prong-2 SOS at m = 2
 ```
 
+**Dependencies (required, not optional).** `numpy >= 1.26`, `scipy >= 1.11`, `cvxpy >= 1.4`,
+`networkx >= 3.0`, `mpmath >= 1.3.0`, declared in `experiments/packing-r5-theta2/pyproject.toml`.
+$\theta'$ is a cvxpy SDP solved by CLARABEL/SCS, $\alpha$ is a scipy MILP, $\bar\chi_f$ is a scipy
+LP over networkx cliques, and mpmath at 60 dps decides the exact distance-2 ties defining the
+conflict graph. None of that has a stdlib fallback, and hand-rolling a substitute SDP solver or
+tie test would be a soundness hazard rather than a convenience. The first, second and fourth
+commands above now exit **2** with an install line on an interpreter that lacks them, instead of
+a raw `ModuleNotFoundError` traceback:
+
+```
+python3 -m venv .venv
+.venv/bin/pip install 'numpy>=1.26' 'scipy>=1.11' 'cvxpy>=1.4' 'networkx>=3.0' 'mpmath>=1.3.0'
+.venv/bin/python theta2_core.py --selftest
+```
+
+**`python3 analyse_p1.py` is the exception and needs none of them** — it regenerates the tables
+in §1–§2 above from the committed `results_p1.json` with the stdlib alone, and runs green on a
+bare interpreter.
+
+Self-test re-run green under numpy 2.5.2, scipy 1.18.1, cvxpy 1.9.2, networkx 3.6.1, mpmath 1.3.0,
+CPython 3.14.5. `selftest()` pins `numpy.random.default_rng(20260824)`.
+
 Float SDP output throughout, hence `numerical`: **a relaxation value is a hypothesis about a
 bound, never a bound.**

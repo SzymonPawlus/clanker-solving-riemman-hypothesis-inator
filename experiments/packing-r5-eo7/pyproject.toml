@@ -1,0 +1,39 @@
+[project]
+name = "packing-r5-eo7"
+version = "0.1.0"
+description = "Interval + exact branch-and-bound for the Erdos-Oler lattice case at k = 3..7 (status `numerical` / `sketch`; not assumable)"
+requires-python = ">=3.11"
+
+# mpmath is a REAL, load-bearing dependency, not an optional diagnostic.
+#
+# certify.py decides every branch-and-bound accept/reject with an mpmath
+# interval comparison at iv.dps = 30 (mp.dps = 50 for scalar work).  The lane's
+# soundness IS that outward rounding, so mpmath cannot be skipped -- and must
+# not be reimplemented: hand-rolled interval arithmetic is the one substitution
+# whose errors are both invisible and fatal, since a single wrong rounding
+# direction turns a non-proof into an apparent proof.  Contrast
+# ../packing-r6-stairthm, whose stdlib `Lin` class replaced only exact linear-form
+# arithmetic over Fractions.
+dependencies = [
+    "mpmath>=1.3.0",
+]
+
+[project.optional-dependencies]
+# numpy is used ONLY by the float MEASUREMENT scripts scan_lattice.py and
+# probe_forcing.py.  The certificate (certify.py, run_all.py, exact_check.py)
+# never touches it, and the advertised `python3 run_all.py` runs without it.
+measurements = [
+    "numpy>=1.26",
+]
+
+[tool.packing-r5-eo7]
+# The exact versions run_all.py was re-run under for this reproduction contract.
+# The originally committed out/run_all.json was produced under CPython 3.11.15 /
+# mpmath 1.3.0 / numpy 2.4.6 (see README.md); the re-run reproduced every
+# mathematical field bit-for-bit, differing only in the wall-clock `seconds`.
+tested-with = ["mpmath==1.3.0", "CPython 3.14.5"]
+tested-with-original = ["mpmath==1.3.0", "numpy==2.4.6", "CPython 3.11.15"]
+# Deterministic: certify.py, run_all.py, exact_check.py, scan_line.py and
+# delta_scan.py have no randomness.  probe_forcing.py is the only randomised
+# script and pins numpy.random.default_rng(20260824).
+status = "numerical"   # branch-and-bound; the reduction and F1-F4 are `sketch`

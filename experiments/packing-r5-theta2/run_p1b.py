@@ -11,6 +11,13 @@ Checkpoints to results_p1b.json.
 from __future__ import annotations
 
 import argparse, json, math, os, time
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require("run_p1b.py")   # fail fast, before the numeric imports below
+
 import numpy as np
 import mpmath as mp
 import theta2_core as T

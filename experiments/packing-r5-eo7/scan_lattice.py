@@ -5,7 +5,14 @@ This is the quantity AE reports as "22" at k = 7.  Reproduced here from scratch.
 Floats are used for the SEARCH only; the reported optimum is re-checked in exact
 rational arithmetic by `exact_check.py`.  STATUS: numerical.
 """
-import numpy as np, math, json, sys
+import math, json, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require_numpy("scan_lattice.py")   # float measurement; needs numpy, not mpmath
+
+import numpy as np
 
 SQ3 = math.sqrt(3.0)
 

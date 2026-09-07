@@ -42,6 +42,14 @@ from __future__ import annotations
 
 import itertools
 import math
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require()   # fail fast with an actionable message, instead of a bare
+                  # ModuleNotFoundError traceback from the import just below
 
 import numpy as np
 

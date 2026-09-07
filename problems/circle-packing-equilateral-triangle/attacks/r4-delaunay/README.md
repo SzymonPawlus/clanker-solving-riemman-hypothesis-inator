@@ -146,3 +146,21 @@ python3 experiments/packing-r4-delaunay/run.py
 
 Deterministic, no seeds, no network. Regenerates `out/report.txt` in full, including the step-0
 exact self-checks, the control, both LPs and the verdict.
+
+**Dependencies (required, not optional).** `numpy >= 1.26` and `scipy >= 1.11`, declared in
+`experiments/packing-r4-delaunay/pyproject.toml`. STEP 0 is exact and stdlib-only, but STEPS 1–4
+— the Oler control, both LPs and the verdict — are decided by `scipy.optimize.linprog` and have
+no exact fallback, so there is nothing honest to skip. On an interpreter without them the command
+now exits **2** with an install line rather than a raw `ModuleNotFoundError` traceback:
+
+```
+python3 -m venv .venv
+.venv/bin/pip install 'numpy>=1.26' 'scipy>=1.11'
+.venv/bin/python experiments/packing-r4-delaunay/run.py
+```
+
+Re-run and re-verified under numpy 2.5.2, scipy 1.18.1, CPython 3.14.5; the regenerated
+`out/report.txt` was byte-identical to the committed one.
+
+Every number this produces remains `numerical`: an LP optimum from a float solver is a hypothesis
+about the family, not a bound.

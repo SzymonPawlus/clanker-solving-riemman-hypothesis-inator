@@ -15,6 +15,13 @@ import math
 import os
 import time
 
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _deps
+
+_deps.require("run_p1.py")   # fail fast, before the numeric imports below
+
 import numpy as np
 import mpmath as mp
 
