@@ -13,9 +13,13 @@ Sanity fixtures for the definitions in `Verified/Woodall/Basic.lean`, of exactly
 directed path, a directed cycle (which has *no* dicuts), a DAG with two sources", and "Test any
 implementation against the `τ = 2` case").
 
-Every theorem here is closed by `decide`, i.e. by kernel evaluation of the `Decidable` instances
-in `Basic.lean`, which are themselves *proved* to agree with the quantified statements. The
-kernel checks these, not the compiler: no compiler-trusting evaluation tactic is used anywhere.
+Almost every theorem here is closed by `decide`, i.e. by kernel evaluation of the `Decidable`
+instances in `Basic.lean`, which are themselves *proved* to agree with the quantified
+statements. The kernel checks these, not the compiler: no compiler-trusting evaluation tactic
+is used anywhere. The exceptions are `cycle3_no_min_dicut_size` and `cycle3_all_isDijoin`,
+whose statements quantify over an infinite type (`Nat`) or over all arc sets uniformly; they
+are short term-mode proofs from `cycle3_no_dicut` instead, since `decide` would force a
+finite range and so a weaker statement than the prose intends.
 
 **None of this is evidence for Woodall's conjecture.** A conjecture quantified over all digraphs
 is not supported by any finite number of instances (problem `RULES.md` §0). These fixtures test
@@ -36,14 +40,24 @@ def cycle3 : Digraph 3 3 := Digraph.ofArcList [(0, 1), (1, 2), (2, 0)]
 /-- **The directed cycle has no dicut at all.** -/
 theorem cycle3_no_dicut : ∀ U : VertexSet 3, ¬ IsDicutShore cycle3 U := by decide
 
-/-- Consequently `τ` is undefined for it: no natural number is the minimum dicut size. -/
-theorem cycle3_no_min_dicut_size : ∀ t : Nat, t ≤ 3 → ¬ IsMinDicutSize cycle3 t := by decide
+/-- Consequently `τ` is undefined for it: no natural number, however large, is the minimum
+dicut size. Unbounded in `t`, so it is not closed by `decide` — kernel evaluation could only
+ever cover a finite range — but by `not_isMinDicutSize_of_no_dicut` applied to
+`cycle3_no_dicut`: the first conjunct of `IsMinDicutSize` demands a dicut shore, and there is
+none. -/
+theorem cycle3_no_min_dicut_size : ∀ t : Nat, ¬ IsMinDicutSize cycle3 t :=
+  not_isMinDicutSize_of_no_dicut cycle3_no_dicut
 
 /-- The computed `τ` agrees: `none`, meaning "no dicut". -/
 theorem cycle3_tau : tau? cycle3 = none := by decide
 
-/-- Every arc set — including the empty one — is vacuously a dijoin of the directed cycle. -/
-theorem cycle3_empty_isDijoin : IsDijoin cycle3 (fun _ => false) := by decide
+/-- Every arc set — including the empty one — is vacuously a dijoin of the directed cycle:
+`IsDijoin` quantifies over dicut shores, and `cycle3_no_dicut` says there are none, so the
+hypothesis of that quantifier is never met. Stated for every `J : ArcSet 3`, which is what
+makes it the sanity check it is meant to be; the empty arc set `fun _ => false` is one
+instance of it. -/
+theorem cycle3_all_isDijoin : ∀ J : ArcSet 3, IsDijoin cycle3 J :=
+  fun _ U hU => absurd hU (cycle3_no_dicut U)
 
 /-! ## The directed path and its dicuts -/
 
