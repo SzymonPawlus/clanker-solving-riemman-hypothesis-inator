@@ -1,0 +1,13 @@
+{
+  "schema_version": "moser-five-cycle-box-v1",
+  "claim_scope": "single_pose_box_area_prune_only",
+  "target_rational": "232239/1000000",
+  "box_radius": "1/100000",
+  "half_angle_epsilon": "-1",
+  "pose_centers": {
+    "triangle": ["0.7537508572601075", "0.435600524430752", "0.5704007455104756"],
+    "square": ["0.7665063578814811", "0.44201657861761084", "0.22243073361617452"],
+    "rational_arc_v2": ["0.9158463782906203", "-0.0002529366842701458", "-0.7683607472878539"]
+  },
+  "selected_cycle": ["segment.P0", "square.P2", "segment.P1", "square.P0", "rational_arc_v2.P2"]
+}

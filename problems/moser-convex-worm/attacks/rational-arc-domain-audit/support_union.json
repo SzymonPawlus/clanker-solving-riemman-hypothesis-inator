@@ -1,0 +1,12 @@
+{
+  "schema_version": "moser-support-union-v1",
+  "claim_scope": "complete_angular_coverage_pending_mixed_area_review",
+  "global_claim": false,
+  "target": "232239/1000000",
+  "slabs": [
+    {"source": "support_complement.json", "worm_intervals": [["0", "80"], ["259/2", "180"]]},
+    {"source": "support_slab.json", "worm_intervals": [["75", "269/2"]]}
+  ],
+  "triangle_domain": ["0", "120"],
+  "square_domain": ["0", "90"]
+}

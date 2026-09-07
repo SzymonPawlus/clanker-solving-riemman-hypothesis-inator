@@ -1,0 +1,12 @@
+{
+  "schema_version": "moser-support-slab-v1",
+  "claim_scope": "single_partial_worm_angle_slab_only",
+  "target": "232239/1000000",
+  "recorded_lower": "2323/10000",
+  "template": "worm",
+  "basis": [0,1,2,3,5,6,7,8,12,13],
+  "triangle_domain": ["0", "120"],
+  "square_domain": ["0", "90"],
+  "worm_interval": ["75", "269/2"],
+  "mesh_degrees": "1/2"
+}

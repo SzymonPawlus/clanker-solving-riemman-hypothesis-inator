@@ -1,0 +1,13 @@
+{
+  "schema_version": "moser-rational-arc-fan-leaf-v1",
+  "claim_scope": "single_leaf_area_prune_only",
+  "target_rational": "232239/1000000",
+  "arc_pose": {
+    "tx": ["-1/10", "1/10"],
+    "ty": ["0", "1/100"],
+    "theta_degrees": ["0", "0"]
+  },
+  "fan_triangles": [
+    ["segment.E", "segment.F", "rational_arc.P3"]
+  ]
+}
