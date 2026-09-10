@@ -2,7 +2,7 @@
 
 **Issue:** #244. **Status:** `sketch`, targeting `verified:review`.
 
-This solves the cross-piece pairing problem for two relevant optional traces.
+This solves the **abstract profile-pairing problem** for two trace families.
 Each local slot has one of four profiles--covers both traces, only the first,
 only the second, or neither.  Although the slot compatibility graph has nine
 possible edges, Hall's condition collapses exactly to four integer
@@ -13,21 +13,89 @@ from PR #243: a first-only slot on one side pairs with a second-only slot on
 the other.  It also gives a finite forbidden-profile list when pairing is
 impossible.  No computation is used.
 
-## Directed setup
+The profile theorem is an exact `if and only if`.  Its application to digraphs
+is also exact under the explicit separator hypotheses below.  The important
+extra fact is Cartesian closure: any two incoming-closed local shores with the
+same trace unite to a global shore.  Consequently, if neither local arc set
+covers a trace, two locally missed boundaries can be combined into one
+globally missed dicut.
+
+## Directed setup and the exact transfer lemma
 
 For a finite digraph, a **dicut** is a nonempty outgoing boundary
 `delta+(U)` with no arc entering `U`; a **dijoin** meets every dicut.
 
-Let `D=D1 union D2`, with disjoint arc sets and common vertex separator `S`.
-Assume the only relevant global separator traces are two traces `R_0,R_1`,
-both optional: in each piece every realizable local boundary at either trace
-is nonempty.  Assume there are no relevant forced traces.
+Here is the precise separator setup used later.  Let `V=V1 union V2`, let
+`S=V1 intersection V2`, and partition the indexed arc set as
+`A=A1 disjoint-union A2`, with both ends of each arc in `A_i` belonging to
+`V_i`.  Write `D_i=(V_i,A_i)`.  This is what **separator sum** means below.
+For a global shore `U`, its **trace** is `U intersection S` and its restriction
+to piece `i` is `U_i=U intersection V_i`.
 
-Incoming-closed local shores with equal trace unite to an incoming-closed
-global shore, and their boundaries unite disjointly.  Conversely every global
-dicut restricts this way.  Hence a union of two local arc sets is a global
-dijoin exactly when, for each of `R_0,R_1`, at least one local set covers that
-trace.
+Fix two distinct traces `R_0,R_1`.  They are **exactly the relevant traces**
+when each occurs as the trace of a global dicut shore and every global dicut
+shore has one of these two traces.  For `i in {1,2}` and `r in {0,1}`, define
+the local family
+
+```text
+F_i(r) = { delta+_{D_i}(W) : W subseteq V_i is incoming-closed
+                              and W intersection S = R_r }.
+```
+
+Assume every member of every `F_i(r)` is nonempty.  This explicit condition
+is what the earlier sketches called both traces **optional** on both pieces;
+it also excludes a **forced** trace, meaning a trace with an empty-boundary
+local realization on some piece.  Relevance guarantees the local families
+needed by a global dicut are inhabited, but the argument below does not need
+to assign a minimum to an uninhabited family.
+
+A local arc set `X_i subseteq A_i` **covers trace `r`** when it meets every
+member of `F_i(r)`.
+
+**Lemma (exact directed transfer).**  The union `X_1 union X_2` is a global
+dijoin if and only if, for each `r in {0,1}`, at least one of `X_1,X_2`
+covers trace `r`.
+
+**Proof.**  Let `U` be a global dicut shore and put `U_i=U intersection V_i`.
+No arc of `D_i` enters `U_i`, since such an arc would enter `U` in `D`.
+The restrictions have the same trace `U intersection S`, which by hypothesis
+is `R_r` for some `r`.  Moreover
+
+```text
+delta+_D(U) = delta+_{D_1}(U_1) disjoint-union delta+_{D_2}(U_2),
+```
+
+because the arc sets partition `A` and every arc of `A_i` has both ends in
+`V_i`.  Each restricted boundary is therefore in `F_i(r)` (and is nonempty
+by the explicit hypothesis).  If `X_i` covers `r`, it meets the corresponding
+summand and hence `X_1 union X_2` meets `delta+_D(U)`.  This holds for every
+global dicut.  This proves sufficiency.
+
+Conversely, suppose `X_1 union X_2` is a dijoin but neither local set covers
+some trace `r`.  For each `i`, choose an incoming-closed local shore `W_i`
+with trace `R_r` whose nonempty boundary is missed by `X_i`.  Equal traces
+make `W=W_1 union W_2` well-defined on `S`.  An arc entering `W` belongs to
+some `A_i` and would enter `W_i`, so none exists.  Its boundary is the
+disjoint union of the two chosen nonempty local boundaries, hence is nonempty
+and is missed by `X_1 union X_2`.  Thus `W` is a global dicut shore missed by
+the alleged dijoin, a contradiction.  QED
+
+This Cartesian argument explains why “the two pieces might split the local
+boundaries between them” is not a counterexample: independently missed local
+boundaries can always be paired into one missed global boundary.  Without
+equal-trace gluing or without the nonempty-boundary hypothesis, the necessity
+direction would indeed be unjustified.
+
+The nonempty-boundary hypothesis is load-bearing.  For example, take
+`S={s,t}`, let piece 1 add a private vertex `x` and the sole arc `s->x`, and
+let piece 2 add a private vertex `y` and the sole arc `s->y`.  At trace `{s}`,
+piece 1 has local shores `{s}` (boundary `{s->x}`) and `{s,x}` (empty
+boundary), and symmetrically for piece 2.  Hence no local arc set covers this
+trace under the definition above.  Nevertheless the union of the two arcs is
+a global dijoin: the only nonempty global boundaries are `{s->x,s->y}`,
+`{s->x}`, and `{s->y}`.  The locally empty shores unite to a globally empty
+boundary, which is not a dicut.  Thus dropping hypothesis 3 would make the
+necessity direction false.
 
 This uses the actual dicut definition.  A directed path has prefix dicuts, a
 directed cycle has no dicut, and
@@ -61,10 +129,11 @@ types in the bipartite compatibility graph are
 | second only | both, first only |
 | neither | both only |
 
-## Exact profile-intersection theorem
+## Exact abstract profile-intersection theorem
 
-**Theorem 1.**  The two local triples can be bijectively paired into three
-pairwise arc-disjoint global dijoins if and only if all four inequalities hold:
+**Theorem 1 (profile matching).**  The two local triples can be bijectively
+paired so that the union of the two profiles in every pair is `{0,1}` if and
+only if all four inequalities hold:
 
 ```text
 e_1 <= b_2,                                              (E1)
@@ -96,9 +165,15 @@ harder to avoid.  The distinct neighborhood unions reduce as follows:
 
 Subsets omitting the neither type give weaker inequalities with the same
 neighborhoods.  Thus `(E1),(E2),(T0),(T1)` imply every left Hall inequality.
-Hall supplies a perfect matching.  Every matched pair is a global dijoin by
-the directed restriction argument, and distinct pairs use distinct
-arc-disjoint slots in each arc-disjoint piece.  QED
+Hall supplies a perfect matching.  This proves the abstract profile theorem.
+In the directed setup above, the transfer lemma makes every matched union a
+global dijoin; distinct pairs use distinct arc-disjoint slots in the two
+arc-disjoint pieces.  QED
+
+Because the transfer lemma is an equivalence, Theorem 1 is also an exact
+criterion for whether these **prescribed** local slots admit a pairing into
+three global dijoins.  It does not claim that failure of these particular
+slots prevents some different choice of arc sets from forming three dijoins.
 
 The proof also shows the four inequalities are the complete obstruction
 list, not merely sufficient tests.
@@ -147,17 +222,36 @@ vectors are coverage-rank profiles; the first two inequalities absorb the
 rank-zero slots using joint rank, and the last two intersect the two
 single-trace covering requirements.
 
-For each trace separately, the fixed-trace max-flow theorem of PR #239 shows
-that its local minimum boundary is the maximum number of disjoint covers.
-For adjacent traces, PR #243 similarly supplies the maximum possible number
-of both-covers from one interval flow.  Theorem 1 states exactly what a
+For motivation, the fixed-trace max-flow sketch of PR #239 proposes that a
+local minimum boundary is the maximum number of disjoint covers, and the
+interval-flow sketch of PR #243 proposes a source of both-covers.  Neither
+unmerged sketch is assumed here: the directed result below takes the local
+triples as an explicit hypothesis.  Theorem 1 states exactly what a
 simultaneously realized choice of those local resources must satisfy to glue.
-It does not assume that independently chosen maximum flows are automatically
-compatible.
 
-**Corollary 2.**  A `tau=3` two-piece separator sum with exactly two relevant
-optional traces and no forced trace satisfies Woodall whenever its pieces
-admit local arc-disjoint triples whose rank profiles satisfy (3).
+**Corollary 2 (explicit directed sufficient condition).**  Consider a
+separator sum satisfying all of the following numbered hypotheses:
+
+1. `V=V1 union V2`, `S=V1 intersection V2`, and
+   `A=A1 disjoint-union A2`, with both endpoints of every `A_i` arc in `V_i`;
+2. each of `R_0,R_1` occurs, and every global dicut shore has one of those
+   two traces;
+3. every incoming-closed local shore with either trace has nonempty local
+   outgoing boundary;
+4. each piece has three pairwise arc-disjoint local slots, and the resulting
+   profile counts satisfy (3).
+
+Then the digraph has three pairwise arc-disjoint dijoins.  If additionally
+`tau(D)=3`, it satisfies Woodall's conjecture: assign every arc outside the
+three dijoins to one of them (arbitrarily, for instance all to the first).
+The enlarged first set remains a dijoin, the three sets then partition `A`,
+and disjointness is preserved.
+
+**Proof.**  Theorem 1 pairs the profiles.  Each paired profile union is
+`{0,1}`, so the directed transfer lemma makes the corresponding arc-set union
+a global dijoin.  Slot disjointness and `A1 disjoint A2` make the three unions
+pairwise arc-disjoint.  The final partition extension uses only the fact that
+a superset of a dijoin is again a dijoin.  QED
 
 This includes several useful subfamilies:
 
@@ -217,7 +311,15 @@ the four forbidden count profiles above.  This is a much smaller target than
 an arbitrary `3 by 3` compatibility graph and is the exact finite obstruction
 to attack with flow exchange or a polymatroid intersection theorem.
 
-## Mandatory filters
+## Dependencies and mandatory filters
+
+**Depends-on:** none.  The profile theorem uses only finite Hall matching,
+and the directed corollary is proved above directly from its four explicit
+hypotheses.  PRs #239 and #243 are unmerged `sketch` motivation for how local
+slots might be produced; no assertion from either is a premise.  The sole
+standard external input is Hall's marriage theorem: P. Hall, “On
+Representatives of Subsets,” *Journal of the London Mathematical Society*
+**s1-10** (1935), 26–30, <https://doi.org/10.1112/jlms/s1-10.37.26>.
 
 1. **Schrijver filter: passed.**  The theorem begins with actual disjoint
    slots made of unit-capacity arcs.  Weighted minimum dicut values do not
