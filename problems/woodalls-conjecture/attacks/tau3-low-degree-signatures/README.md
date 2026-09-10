@@ -328,6 +328,19 @@ two-block union exposes an exact four-cut.  This does not yet eliminate the
 three-distinct-head signature, but it replaces arbitrary crossing minimum
 shores by separated rooted blocks.
 
+Let $P_i$ be the canonical maximal shore of each nonempty block.  More
+generally, for every set $I$ of active signatures,
+$$
+ d_R^+\left(\bigcup_{i\in I}P_i\right)=2|I|.
+$$
+Indeed the $P_i$ are pairwise disjoint, no arc runs between two of them, and
+each has two outgoing arcs, so the displayed boundary is their disjoint
+union.  It is a genuine cut: for two blocks the unused third head lies
+outside, while if all three blocks are active their union cannot be all of
+$R$, since three nonempty parts with no arcs between them would contradict
+weak connectivity.  Thus two active signature blocks expose a four-arc
+interface and three expose a six-arc interface to the remaining residual.
+
 It also shows that minimum-cut demands themselves never cause a colour
 collision between different heads.  For every nonempty signature block
 $\mathcal L_i$, choose any transversal $T_i$ of its boundary clutter (for
