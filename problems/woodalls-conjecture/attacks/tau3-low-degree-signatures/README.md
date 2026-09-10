@@ -284,6 +284,69 @@ $\delta_R^+(X)$. Consequently either every residual two-cut contains exactly
 one source-arc head, or $D$ has this adjacent degree-three source--sink
 configuration.
 
+Retain here all standing hypotheses: $D$ is a weakly connected DAG with
+$\tau(D)=3$, $v$ is a source whose entire outgoing boundary consists of the
+three displayed arc copies, $R=D-v$ is weakly connected with $\tau(R)=2$.
+There is an additional exact separation when those source arcs have three
+distinct heads $p_1,p_2,p_3$ and the adjacent-sink alternative is absent.
+For a minimum $R$-dicut shore $X$, the preceding inequality says that the
+number $k$ of heads in $X$ is one or two; the excluded alternative is exactly
+$k=2$.  Thus every minimum $R$-dicut shore contains exactly one $p_i$.
+For each $i$, the family of two-cut shores containing $p_i$ and excluding
+the other two heads is closed under union and intersection: both operations
+preserve that membership signature, and dicut submodularity together with
+$\tau(R)=2$ forces both resulting boundaries to have size two.  In
+particular this family has canonical minimal and maximal shores.
+
+Moreover shores with different singleton-head signatures are disjoint.  If
+$X$ contains only $p_i$ and $Y$ only $p_j$, with $i\ne j$, then $X\cup Y$
+is proper because it excludes the third head; both intersection and union
+remain incoming-closed in $R$.  Were $X\cap Y$ nonempty, it would be a
+proper $R$-ideal containing no source-arc head.  It receives no arc from
+$v$, so it is also a $D$-dicut shore; weak connectivity makes its outgoing
+boundary nonempty, and $\tau(D)=3$ makes its size at least three.  Meanwhile
+$X\cup Y$ is a nonempty proper $R$-dicut shore and $\tau(R)=2$ makes its
+boundary size at least two.  This contradicts submodularity:
+$$
+ |\delta_R^+(X\cap Y)|+|\delta_R^+(X\cup Y)|
+ \le |\delta_R^+(X)|+|\delta_R^+(Y)|=4.
+$$
+Thus $X\cap Y=\varnothing$.  The exact directed-cut identity is
+$$
+d^+(X)+d^+(Y)=d^+(X\cap Y)+d^+(X\cup Y)
+ +|A(X\setminus Y,Y\setminus X)|+|A(Y\setminus X,X\setminus Y)|.
+$$
+Incoming-closedness of $X$ and $Y$ makes both cross terms zero (indeed it
+forbids arcs in either direction between the now-disjoint shores).  Since
+$d^+(\varnothing)=0$, equality rather than merely submodularity gives
+$$
+ |\delta_R^+(X\cup Y)|=4.
+$$
+Hence the minimum shores split into at most three lattice blocks; distinct
+blocks occupy disjoint vertex regions and any
+two-block union exposes an exact four-cut.  This does not yet eliminate the
+three-distinct-head signature, but it replaces arbitrary crossing minimum
+shores by separated rooted blocks.
+
+It also shows that minimum-cut demands themselves never cause a colour
+collision between different heads.  For every nonempty signature block
+$\mathcal L_i$, choose any transversal $T_i$ of its boundary clutter (for
+example the union of all those boundaries).  Every arc in $T_i$ has its tail
+in a shore from $\mathcal L_i$.  Distinct blocks have disjoint shores and no
+arcs between them, so $T_1,T_2,T_3$ are pairwise disjoint.  Assigning colour
+$i$ to $T_i$ simultaneously supplies the colour demanded by every residual
+two-cut.  Therefore any failed lift in this signature must arise when these
+choices are extended to the larger rooted cuts, not from incompatibility
+among the minimum two-cuts.
+
+The mandatory filters remain passed for this refinement.  Its $k=1,2$
+signature calculation counts three literal unit-capacity source arcs, so it
+does not extend to the weighted Edmonds--Giles setting.  It uses no
+Lucchesi--Younger duality.  Finally, it does not confuse the trivial packing
+upper bound with existence: the transversal observation settles only the
+minimum-cut demands and explicitly leaves the larger-cut extension problem
+open.
+
 ### The irreducible `2+1` residual
 
 In the branch $\tau(R)=2$, suppose two arcs go from $v$ to $p$, one goes to
