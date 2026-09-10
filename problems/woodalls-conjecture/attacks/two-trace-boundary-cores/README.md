@@ -15,15 +15,32 @@ class with arbitrarily many shores per trace.  Its exact residual obstruction
 is coreless cut variation: a trace family whose common intersection is
 strictly smaller than its minimum member.
 
+The directed-diamond example in
+[`../coreless-trace-uncrossing/`](../coreless-trace-uncrossing/) shows that this
+residual case cannot in general be removed by laminarizing minimum shores:
+minimum shores uncross, but their boundary arc sets need not have a common
+core.
+
 ## Directed setup and conventions
 
 For a finite digraph, a **dicut** is a nonempty outgoing boundary
 `delta+(U)` with no arc entering `U`.  A **dijoin** meets every dicut.
 
-Let `D=D1 union D2`, with disjoint arc sets and common vertex separator `S`.
-Assume exactly two global traces `R_0,R_1` are relevant, both are optional in
-both pieces (all their realizable local boundaries are nonempty), and there
-are no relevant forced traces.
+Let `D_i=(V_i,A_i)` for `i=1,2`, where `V(D)=V_1 union V_2`, every arc of `D`
+belongs to exactly one of the disjoint sets `A_1,A_2`, and both endpoints of an
+arc in `A_i` lie in `V_i`.  Put `S=V_1 intersection V_2`.  Fix two traces
+`R_0,R_1 subseteq S` and assume:
+
+1. every incoming-closed shore `U subseteq V(D)` with nonempty boundary has
+   trace `U intersection S` equal to `R_0` or `R_1`;
+2. for each `i,t`, at least one incoming-closed local shore of trace `R_t`
+   exists, and every such local shore has nonempty boundary in `D_i`.
+
+These are the precise hypotheses needed below in place of the former
+shorthand “exactly two relevant optional traces and no forced traces”.  In
+particular, condition 2 ensures that every restriction of a global dicut is a
+member of the local boundary family, rather than an empty boundary omitted by
+the dicut convention.
 
 For piece `i` and trace `R_t`, let `B_it` be its family of local boundaries
 and set
@@ -33,9 +50,20 @@ mu_it = min{|B| : B in B_it},
 C_it  = intersection of all B in B_it.                    (1)
 ```
 
-Incoming-closed local shores with the same trace unite to a global
-incoming-closed shore, with boundary the disjoint union of the two local
-boundaries.  Conversely every global dicut restricts this way.
+**Restriction/gluing lemma.**  Incoming-closed local shores `X_i subseteq V_i`
+with the same trace unite to a global incoming-closed shore, with boundary the
+disjoint union of their two local boundaries.  Conversely, a global
+incoming-closed shore restricts to two incoming-closed local shores of equal
+trace, and its boundary is their disjoint union.
+
+**Proof.**  Inspect an arc in `A_i`.  If it entered `X_1 union X_2`, its head
+would lie in `X_i` (membership agrees on `S`) and its tail would lie outside
+`X_i`, contradicting local incoming-closure.  The same arc leaves the union
+exactly when it leaves `X_i`, proving the boundary identity; disjointness
+follows from `A_1 intersection A_2=empty`.  Conversely, an arc entering a
+restriction of a global incoming-closed shore would enter the global shore,
+and the two restrictions both meet `S` in the global trace.  The same
+arc-by-arc test gives the boundary identity.  QED
 
 The no-entering hypothesis is essential.  A directed path has prefix
 dicuts, a directed cycle has no dicut, and
@@ -79,12 +107,15 @@ give them distinct colours `1,...,a`.  If some chosen element also lies in
 `b-r` further elements of `B-A'`; enough exist because
 `|B-A'|=|B|-r>=b-r`.  Assign them the still-missing colours among
 `1,...,b`.  Put equally coloured elements in one slot and leave unchosen
-elements unused.  Then `A` uses colours `1,...,a` and `B` uses
-`1,...,b`.  The case `b<=a` is symmetric.  No element is assigned twice.
+elements unused.  Then `B` uses colours `1,...,b`.  Also `A` uses exactly
+`1,...,a`: if `a<b`, then `a<=2`, so `a=min(3,|A|)` forces `|A|=a` and hence
+`A'=A`; the later elements from `B-A'` cannot lie in `A`.  If `a=b`, no
+colour outside `1,...,a` is used at all.  The case `b<=a` is symmetric.  No
+element is assigned twice.
 QED
 
 Applied to `A=C_i0` and `B=C_i1`, every nonempty slot is a singleton or a
-two-arc set and covers precisely the indicated trace or traces.  Additional
+two-arc set and covers at least the indicated trace or traces.  Additional
 accidental coverage only strengthens the resulting profile.
 
 ## Joint realization theorem at `tau=3`
@@ -95,14 +126,13 @@ For each piece define capped local ranks
 a_it = min(3,mu_it).
 ```
 
-Lemma 1 constructs three pairwise arc-disjoint slots whose trace-coverage
-counts are at least
+Lemma 1 constructs three pairwise arc-disjoint slots for which
 
 ```text
-both traces: min(a_i0,a_i1),
-trace 0:     a_i0,
-trace 1:     a_i1,
-neither:     3-max(a_i0,a_i1).                           (3)
+both traces: at least min(a_i0,a_i1),
+trace 0:     at least a_i0,
+trace 1:     at least a_i1,
+neither:     at most 3-max(a_i0,a_i1).                   (3)
 ```
 
 **Theorem 2.**  If `tau(D)=3` and all four local trace families are
@@ -149,8 +179,12 @@ be reduced to one of: neither slots alone, neither plus trace-0-only, neither
 plus trace-1-only, or all non-both slots.  The four inequalities rule out
 those cases.  Hence the slot graph has a perfect matching.
 
-Pair the slots along that matching.  Each pair covers both relevant traces,
-so its arc-set union meets every global dicut.  The three unions are
+Pair the slots along that matching.  For each of the two traces, at least one
+member of each pair covers the complete local boundary family.  By the
+restriction/gluing lemma and conditions 1--2, its arc-set union therefore
+meets every global dicut.  Only this sufficient implication is claimed: a
+global dijoin might split the members of one trace family between its two
+local parts without either part covering that family alone.  The three unions are
 arc-disjoint because the local slots and the two piece arc sets are disjoint.
 They are the required three global dijoins.  QED
 
@@ -237,3 +271,9 @@ independently reviewed.  The highest-risk points are the colour-support lemma
 when the two cores overlap, the derivation of the empty-versus-both Hall
 inequalities from (5), and the claim that accidental extra trace coverage can
 only help the compatibility matching.
+
+**Depends on:** Hall's marriage theorem (`cited`): Philip Hall, “On
+Representatives of Subsets,” *Journal of the London Mathematical Society*
+**s1-10** (1935), 26--30, <https://doi.org/10.1112/jlms/s1-10.37.26>.
+No unmerged attack or `sketch` is used as a premise; PRs #243 and #246 are
+motivational pointers only.
