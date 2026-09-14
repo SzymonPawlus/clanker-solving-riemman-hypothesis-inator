@@ -1,0 +1,21 @@
+{
+  "status": "numerical; no unbounded conclusion",
+  "source_sha256": "37dea784292f1a2000968dcd315cc511b6185917e5f45458307d3c3f9c487288",
+  "range": [
+    31,
+    240
+  ],
+  "complete_anchors": 202,
+  "incomplete_anchors": [
+    180,
+    198,
+    200,
+    216,
+    220,
+    225,
+    234,
+    240
+  ],
+  "covers_found": 0,
+  "nodes": 516139
+}
