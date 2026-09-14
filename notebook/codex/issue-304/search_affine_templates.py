@@ -20,7 +20,7 @@ def mask_at(z,rows):
                     (-15*a*z.numerator-b*z.denominator)%den)<z.denominator)
                  for a,b in rows)
 
-def search(x,K,seconds,allow_isolated=False):
+def search(x,K,seconds,allow_isolated=False,prime_condition=True):
     rows=[(a,-(a*x.numerator//x.denominator)) for a in range(-K,K+1) if a]
     edges=sorted({F(0),F(1)}|{F(15*k-b+s,15*a)%1 for a,b in rows
                            for k in range(abs(a)) for s in (-1,1)})
@@ -36,7 +36,7 @@ def search(x,K,seconds,allow_isolated=False):
     A=np.array(sorted(masks),dtype=np.float64)
     A=np.vstack([A,np.ones(len(rows))]);lower=np.r_[np.ones(len(masks)),0]
     upper=np.r_[np.full(len(masks),np.inf),8]
-    if allow_isolated:
+    if allow_isolated and prime_condition:
         # At least one fifteenth-grid point must be bad, to choose the sampled
         # grid's compulsory fifteenth-grid point away from isolated witnesses.
         eligible=[int(any(any(mask_at(F(k,15),[row])) for k in range(15))) for row in rows]
@@ -55,7 +55,8 @@ def search(x,K,seconds,allow_isolated=False):
       isolated_safe_points=[str(z) for z in edges if not any(mask_at(z,chosen))],
       bad_fifteenths=[k for k in range(15) if any(mask_at(F(k,15),chosen))])
     if allow_isolated:
-        result['physical']=materialize(x,chosen,result['bad_fifteenths'])
+        result['physical']=(materialize(x,chosen,result['bad_fifteenths']) if result['bad_fifteenths']
+                            else materialize_composite(x,chosen))
     return result
 
 
@@ -81,11 +82,34 @@ def materialize(x,rows,bad_fifteenths):
                     'private_endpoint':private,'grid_fifteenth':r}
         M=10*M+1
 
+
+def materialize_composite(x,rows):
+    from math import gcd
+    for prime in (1009,100003):
+        for factor in (15,3,5,6,10,30):
+            M=factor*prime
+            for residue in range(15):
+                q=round(float(x)*M)
+                q+=((residue-q+7)%15)-7
+                P=[a*q+b*M for a,b in rows]
+                if not(0<q<M and gcd(q,M)==1 and all(0<w<M for w in P)):continue
+                if len(set(P))!=8 or gcd(M,*P)!=1:continue
+                j=np.arange(M,dtype=np.int64)
+                s=np.array(P,dtype=np.int64)[:,None]*(15*j[None,:]+1)%(15*M)
+                masks=np.minimum(s,15*M-s)<M
+                if not np.all(masks.any(axis=0)):continue
+                multiplicity=masks.sum(axis=0)
+                private={str(w):int(np.flatnonzero(masks[i]&(multiplicity==1))[0]) for i,w in enumerate(P)}
+                return {'M':M,'q':q,'pattern':sorted(P)+[M],
+                        'minimum_period':min(M//gcd(M,w) for w in P),'private_endpoint':private}
+    return None
+
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('--slopes',type=int,default=24)
     ap.add_argument('--seconds',type=float,default=2);ap.add_argument('--limit',type=int,default=0)
     ap.add_argument('--output',default='affine-template-discovery.json')
     ap.add_argument('--allow-isolated',action='store_true');ap.add_argument('--stride',type=int,default=1)
+    ap.add_argument('--composite-cells',action='store_true')
     ar=ap.parse_args()
     cuts=sorted({F(a,b) for b in range(1,ar.slopes+1) for a in range(b+1)})
     xs=[(a+b)/2 for a,b in zip(cuts,cuts[1:])]
@@ -93,7 +117,7 @@ if __name__=='__main__':
     if ar.limit:xs=xs[:ar.limit]
     reports=[]
     for i,x in enumerate(xs):
-        r=search(x,ar.slopes,ar.seconds,ar.allow_isolated);reports.append(r)
+        r=search(x,ar.slopes,ar.seconds,ar.allow_isolated or ar.composite_cells,not ar.composite_cells);reports.append(r)
         print(i+1,'/',len(xs),str(x),r['status'],r.get('chosen'),flush=True)
         (HERE/ar.output).write_text(json.dumps({'status':'bounded structured discovery; no global exclusion',
           'slopes':ar.slopes,'chambers_planned':len(xs),'reports':reports},indent=2)+'\n')

@@ -1,0 +1,44 @@
+{
+  "status": "incomplete exact exploration; no root exclusion and no cover claimed",
+  "checkpoint_utc": "2026-09-14 22:15",
+  "semantics": "14 moving/15 total, strict bad arcs; minimum row period exactly p; eight rows including root",
+  "runs": [
+    {
+      "minimum_period": 4,
+      "wall_caps_seconds": [
+        300,
+        600
+      ],
+      "states": 2577,
+      "kinds": {
+        "branch": 2204,
+        "open": 373
+      },
+      "closed_subgraphs": 2202,
+      "roots": 1,
+      "closed_roots": 0,
+      "cover": null,
+      "manifest_sha256": "1d2c43dd81a3c0f9095a5a5029d40da74d0c1a3c1e14829c481112c4c23f77d5"
+    },
+    {
+      "minimum_period": 7,
+      "wall_caps_seconds": [
+        300
+      ],
+      "states": 1047,
+      "kinds": {
+        "branch": 799,
+        "open": 248
+      },
+      "closed_subgraphs": 796,
+      "roots": 1,
+      "closed_roots": 0,
+      "cover": null,
+      "manifest_sha256": "5de264321b08adc880a6453eab084e039defa1084ed2540a08085108208a8efd"
+    }
+  ],
+  "sources": {
+    "eight_period_states.py": "fee77001e87a92e1f798e4729fdceabf09f8999265b27aeaa1fe216124e0c685",
+    "eight_period_states_fast.py": "a0b6e6883405ac1576dd115f6ba7d031d43a36cc29092b0895173ae2394fb459"
+  }
+}
