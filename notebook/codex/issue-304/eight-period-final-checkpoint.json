@@ -1,0 +1,123 @@
+{
+  "status": "incomplete exact exploration; no p4..9 root exclusion; no cover encountered",
+  "fixed_cover_rows": 8,
+  "runs": [
+    {
+      "minimum_period": 4,
+      "wall_caps_seconds": [
+        300,
+        600
+      ],
+      "residual_period_cap": 20000,
+      "states": 2577,
+      "edges": 3780,
+      "kinds": {
+        "branch": 2204,
+        "open": 373
+      },
+      "roots": 1,
+      "closed_roots": 0,
+      "closed_subgraphs": 2202,
+      "maximum_residual_period": 4284,
+      "sha256": "1d2c43dd81a3c0f9095a5a5029d40da74d0c1a3c1e14829c481112c4c23f77d5"
+    },
+    {
+      "minimum_period": 5,
+      "wall_caps_seconds": [
+        300,
+        240
+      ],
+      "residual_period_cap": 20000,
+      "states": 2759,
+      "edges": 3931,
+      "kinds": {
+        "branch": 2408,
+        "open": 351
+      },
+      "roots": 1,
+      "closed_roots": 0,
+      "closed_subgraphs": 2405,
+      "maximum_residual_period": 5355,
+      "sha256": "6f9ee68a96b17be1357416ba2c9db638caccc5d6f09bafc4ae8c1431a4b6628b"
+    },
+    {
+      "minimum_period": 6,
+      "wall_caps_seconds": [
+        300,
+        240
+      ],
+      "residual_period_cap": 20000,
+      "states": 3569,
+      "edges": 4283,
+      "kinds": {
+        "branch": 3271,
+        "open": 298
+      },
+      "roots": 1,
+      "closed_roots": 0,
+      "closed_subgraphs": 3268,
+      "maximum_residual_period": 4590,
+      "sha256": "a5baac2176a6a2e5d509c77f528f35879e5a764674b69a7398d0b3cf70afc97f"
+    },
+    {
+      "minimum_period": 7,
+      "wall_caps_seconds": [
+        300
+      ],
+      "residual_period_cap": 50000,
+      "states": 1047,
+      "edges": 1211,
+      "kinds": {
+        "branch": 799,
+        "open": 248
+      },
+      "roots": 1,
+      "closed_roots": 0,
+      "closed_subgraphs": 796,
+      "maximum_residual_period": 8330,
+      "sha256": "5de264321b08adc880a6453eab084e039defa1084ed2540a08085108208a8efd"
+    },
+    {
+      "minimum_period": 8,
+      "wall_caps_seconds": [
+        300
+      ],
+      "residual_period_cap": 50000,
+      "states": 2503,
+      "edges": 2780,
+      "kinds": {
+        "branch": 2095,
+        "open": 408
+      },
+      "roots": 1,
+      "closed_roots": 0,
+      "closed_subgraphs": 2092,
+      "maximum_residual_period": 6120,
+      "sha256": "b3100ccf74092b462c587e499e49f91d0d163c205202b05b6e2ffaf2faa1ea65"
+    },
+    {
+      "minimum_period": 9,
+      "wall_caps_seconds": [
+        300
+      ],
+      "residual_period_cap": 50000,
+      "states": 1076,
+      "edges": 1101,
+      "kinds": {
+        "branch": 763,
+        "open": 313
+      },
+      "roots": 3,
+      "closed_roots": 0,
+      "closed_subgraphs": 760,
+      "maximum_residual_period": 10710,
+      "sha256": "dd6b99b5d66c973975dca467d13c0bcf7367fe9ae9d8fa74708e4080f26a42dc"
+    }
+  ],
+  "sources": {
+    "eight_period_states.py": "fee77001e87a92e1f798e4729fdceabf09f8999265b27aeaa1fe216124e0c685",
+    "eight_period_states_fast.py": "a0b6e6883405ac1576dd115f6ba7d031d43a36cc29092b0895173ae2394fb459"
+  },
+  "total_states": 13531,
+  "total_open_nodes": 1991
+}
