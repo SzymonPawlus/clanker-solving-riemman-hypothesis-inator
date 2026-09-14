@@ -1,0 +1,14 @@
+{
+  "status": "exact arithmetic passed; analytic proof requires review",
+  "N": 1500,
+  "D": 2998,
+  "epsilon": "7/300",
+  "alpha": "11/100",
+  "product_error_upper": "1/490",
+  "beta": "4929/490000",
+  "tree_union_upper": "628885787/629790000",
+  "tree_slack": "904213/629790000",
+  "affine_P_Q_bound": 8988004,
+  "affine_R_strict_bound": 35952016,
+  "checker_sha256": "3fcc938ae1297783d3fa81dc249f4d6b97f9e5c909e0323090eb688e0cdda83d"
+}
