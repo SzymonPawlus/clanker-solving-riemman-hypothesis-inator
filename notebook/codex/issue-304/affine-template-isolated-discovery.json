@@ -1,0 +1,1627 @@
+{
+  "status": "bounded structured discovery; no global exclusion",
+  "slopes": 24,
+  "chambers_planned": 180,
+  "reports": [
+    {
+      "x": "1/48",
+      "K": 24,
+      "rows": 48,
+      "points": 950,
+      "distinct_constraints": 891,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/1104",
+      "K": 24,
+      "rows": 48,
+      "points": 939,
+      "distinct_constraints": 882,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "45/1012",
+      "K": 24,
+      "rows": 48,
+      "points": 939,
+      "distinct_constraints": 887,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "43/924",
+      "K": 24,
+      "rows": 48,
+      "points": 939,
+      "distinct_constraints": 888,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "41/840",
+      "K": 24,
+      "rows": 48,
+      "points": 933,
+      "distinct_constraints": 881,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "39/760",
+      "K": 24,
+      "rows": 48,
+      "points": 933,
+      "distinct_constraints": 881,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "37/684",
+      "K": 24,
+      "rows": 48,
+      "points": 933,
+      "distinct_constraints": 875,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "35/612",
+      "K": 24,
+      "rows": 48,
+      "points": 918,
+      "distinct_constraints": 861,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "33/544",
+      "K": 24,
+      "rows": 48,
+      "points": 918,
+      "distinct_constraints": 862,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "31/480",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "29/420",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "27/364",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "25/312",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 856,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/552",
+      "K": 24,
+      "rows": 48,
+      "points": 908,
+      "distinct_constraints": 851,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "45/506",
+      "K": 24,
+      "rows": 48,
+      "points": 908,
+      "distinct_constraints": 847,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "43/462",
+      "K": 24,
+      "rows": 48,
+      "points": 908,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "41/420",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 849,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "39/380",
+      "K": 24,
+      "rows": 48,
+      "points": 922,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "37/342",
+      "K": 24,
+      "rows": 48,
+      "points": 922,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "35/306",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "33/272",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/368",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 858,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "91/690",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "89/660",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 874,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "43/308",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 873,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "41/280",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 871,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "79/520",
+      "K": 24,
+      "rows": 48,
+      "points": 913,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "77/494",
+      "K": 24,
+      "rows": 48,
+      "points": 913,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "37/228",
+      "K": 24,
+      "rows": 48,
+      "points": 913,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/276",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "137/782",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "67/374",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "65/352",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "127/672",
+      "K": 24,
+      "rows": 48,
+      "points": 912,
+      "distinct_constraints": 851,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "41/210",
+      "K": 24,
+      "rows": 48,
+      "points": 906,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "49/240",
+      "K": 24,
+      "rows": 48,
+      "points": 896,
+      "distinct_constraints": 836,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "191/912",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "113/532",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "139/644",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 845,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "91/414",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 843,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "89/396",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 844,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "131/572",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "103/442",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "169/714",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "41/168",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/184",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "229/874",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "151/570",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "89/330",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "109/396",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 852,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "71/252",
+      "K": 24,
+      "rows": 48,
+      "points": 926,
+      "distinct_constraints": 866,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "97/336",
+      "K": 24,
+      "rows": 48,
+      "points": 926,
+      "distinct_constraints": 870,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/816",
+      "K": 24,
+      "rows": 48,
+      "points": 915,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "101/340",
+      "K": 24,
+      "rows": 48,
+      "points": 915,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "139/460",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "183/598",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "129/416",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "191/608",
+      "K": 24,
+      "rows": 48,
+      "points": 903,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "265/836",
+      "K": 24,
+      "rows": 48,
+      "points": 903,
+      "distinct_constraints": 845,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "43/132",
+      "K": 24,
+      "rows": 48,
+      "points": 903,
+      "distinct_constraints": 844,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/138",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 845,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "321/920",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/680",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 864,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "169/476",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "111/308",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 858,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "153/418",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "113/304",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "127/336",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 866,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "209/546",
+      "K": 24,
+      "rows": 48,
+      "points": 929,
+      "distinct_constraints": 873,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "181/468",
+      "K": 24,
+      "rows": 48,
+      "points": 929,
+      "distinct_constraints": 872,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "323/828",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "91/230",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "89/220",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "307/748",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 861,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "169/408",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 862,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "191/456",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 864,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "113/266",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "139/322",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 862,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "321/736",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "127/288",
+      "K": 24,
+      "rows": 48,
+      "points": 919,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "161/360",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "199/440",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "241/528",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 857,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/624",
+      "K": 24,
+      "rows": 48,
+      "points": 927,
+      "distinct_constraints": 869,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "181/390",
+      "K": 24,
+      "rows": 48,
+      "points": 927,
+      "distinct_constraints": 869,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/510",
+      "K": 24,
+      "rows": 48,
+      "points": 937,
+      "distinct_constraints": 878,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "305/646",
+      "K": 24,
+      "rows": 48,
+      "points": 937,
+      "distinct_constraints": 879,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "379/798",
+      "K": 24,
+      "rows": 48,
+      "points": 937,
+      "distinct_constraints": 878,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "461/966",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 870,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "45/92",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/92",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "505/966",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 870,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "419/798",
+      "K": 24,
+      "rows": 48,
+      "points": 937,
+      "distinct_constraints": 878,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "341/646",
+      "K": 24,
+      "rows": 48,
+      "points": 937,
+      "distinct_constraints": 879,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "271/510",
+      "K": 24,
+      "rows": 48,
+      "points": 937,
+      "distinct_constraints": 878,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "209/390",
+      "K": 24,
+      "rows": 48,
+      "points": 927,
+      "distinct_constraints": 869,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "337/624",
+      "K": 24,
+      "rows": 48,
+      "points": 927,
+      "distinct_constraints": 869,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/528",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 857,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "241/440",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "199/360",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "161/288",
+      "K": 24,
+      "rows": 48,
+      "points": 919,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "415/736",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "183/322",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 862,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "153/266",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "265/456",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 864,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/408",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 862,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "441/748",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 861,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "131/220",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "139/230",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "505/828",
+      "K": 24,
+      "rows": 48,
+      "points": 917,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/468",
+      "K": 24,
+      "rows": 48,
+      "points": 929,
+      "distinct_constraints": 872,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "337/546",
+      "K": 24,
+      "rows": 48,
+      "points": 929,
+      "distinct_constraints": 873,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "209/336",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 866,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "191/304",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "265/418",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "197/308",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 858,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "307/476",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "441/680",
+      "K": 24,
+      "rows": 48,
+      "points": 923,
+      "distinct_constraints": 864,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "599/920",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "91/138",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 845,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "89/132",
+      "K": 24,
+      "rows": 48,
+      "points": 903,
+      "distinct_constraints": 844,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "571/836",
+      "K": 24,
+      "rows": 48,
+      "points": 903,
+      "distinct_constraints": 845,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "417/608",
+      "K": 24,
+      "rows": 48,
+      "points": 903,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/416",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "415/598",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "321/460",
+      "K": 24,
+      "rows": 48,
+      "points": 905,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/340",
+      "K": 24,
+      "rows": 48,
+      "points": 915,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "577/816",
+      "K": 24,
+      "rows": 48,
+      "points": 915,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/336",
+      "K": 24,
+      "rows": 48,
+      "points": 926,
+      "distinct_constraints": 870,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "181/252",
+      "K": 24,
+      "rows": 48,
+      "points": 926,
+      "distinct_constraints": 866,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/396",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 852,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "241/330",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "419/570",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "645/874",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 863,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "137/184",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "127/168",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "545/714",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "339/442",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "441/572",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "307/396",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 844,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "323/414",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 843,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "505/644",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 845,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "419/532",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "721/912",
+      "K": 24,
+      "rows": 48,
+      "points": 907,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "191/240",
+      "K": 24,
+      "rows": 48,
+      "points": 896,
+      "distinct_constraints": 836,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "169/210",
+      "K": 24,
+      "rows": 48,
+      "points": 906,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "545/672",
+      "K": 24,
+      "rows": 48,
+      "points": 912,
+      "distinct_constraints": 851,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/352",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 848,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "307/374",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "645/782",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "229/276",
+      "K": 24,
+      "rows": 48,
+      "points": 910,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "191/228",
+      "K": 24,
+      "rows": 48,
+      "points": 913,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "417/494",
+      "K": 24,
+      "rows": 48,
+      "points": 913,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "441/520",
+      "K": 24,
+      "rows": 48,
+      "points": 913,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/280",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 871,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "265/308",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 873,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "571/660",
+      "K": 24,
+      "rows": 48,
+      "points": 931,
+      "distinct_constraints": 874,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "599/690",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 860,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "321/368",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 858,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "239/272",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 853,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "271/306",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 850,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "305/342",
+      "K": 24,
+      "rows": 48,
+      "points": 922,
+      "distinct_constraints": 854,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "341/380",
+      "K": 24,
+      "rows": 48,
+      "points": 922,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "379/420",
+      "K": 24,
+      "rows": 48,
+      "points": 914,
+      "distinct_constraints": 849,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "419/462",
+      "K": 24,
+      "rows": 48,
+      "points": 908,
+      "distinct_constraints": 846,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "461/506",
+      "K": 24,
+      "rows": 48,
+      "points": 908,
+      "distinct_constraints": 847,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "505/552",
+      "K": 24,
+      "rows": 48,
+      "points": 908,
+      "distinct_constraints": 851,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "287/312",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 856,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "337/364",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "391/420",
+      "K": 24,
+      "rows": 48,
+      "points": 911,
+      "distinct_constraints": 855,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "449/480",
+      "K": 24,
+      "rows": 48,
+      "points": 916,
+      "distinct_constraints": 859,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "511/544",
+      "K": 24,
+      "rows": 48,
+      "points": 918,
+      "distinct_constraints": 862,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "577/612",
+      "K": 24,
+      "rows": 48,
+      "points": 918,
+      "distinct_constraints": 861,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "647/684",
+      "K": 24,
+      "rows": 48,
+      "points": 933,
+      "distinct_constraints": 875,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "721/760",
+      "K": 24,
+      "rows": 48,
+      "points": 933,
+      "distinct_constraints": 881,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "799/840",
+      "K": 24,
+      "rows": 48,
+      "points": 933,
+      "distinct_constraints": 881,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "881/924",
+      "K": 24,
+      "rows": 48,
+      "points": 939,
+      "distinct_constraints": 888,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "967/1012",
+      "K": 24,
+      "rows": 48,
+      "points": 939,
+      "distinct_constraints": 887,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "1057/1104",
+      "K": 24,
+      "rows": 48,
+      "points": 939,
+      "distinct_constraints": 882,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    },
+    {
+      "x": "47/48",
+      "K": 24,
+      "rows": 48,
+      "points": 950,
+      "distinct_constraints": 891,
+      "status": "no candidate; bounded optimization is not an exact exclusion",
+      "solver_status": 2
+    }
+  ]
+}
