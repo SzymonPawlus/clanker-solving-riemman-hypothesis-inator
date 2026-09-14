@@ -1,0 +1,17 @@
+{
+  "status": "refuted exploratory pair-overlap bound",
+  "proposed_bound": "intersection>=floor((M-1)/105) when 0<u<M/14 and u<w<M",
+  "maximum": 316,
+  "speeds": [
+    2,
+    24
+  ],
+  "intersection_indices": [
+    0,
+    158
+  ],
+  "intersection_count": 2,
+  "proposed_minimum": 3,
+  "scope": "not a Lonely Runner counterexample",
+  "code_sha256": "35202abd50cd190791d1f119b74200eb1127912f45b01fe42e1882a714114b81"
+}

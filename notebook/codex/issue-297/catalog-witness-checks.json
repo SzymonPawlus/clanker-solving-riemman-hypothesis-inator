@@ -1,0 +1,28 @@
+{
+  "status": "all direct rational-output checks passed",
+  "recognized_family_fixtures": 204,
+  "total_trials": 415,
+  "scales": [
+    "97",
+    "10^1000+239"
+  ],
+  "threshold": "1/15",
+  "extra_fixtures": [
+    "endpoint equality",
+    "unrecognized distinct spectrum",
+    "forced sampling cap",
+    "zero rejection",
+    "length rejection",
+    "Boolean rejection",
+    "float rejection",
+    "signs and repetitions",
+    "catalog hash corruption"
+  ],
+  "checker_sha256": "d6d9989643155fb7b56f26e69d7d46b331f329f05ab085e189bb2e4d30c15abc",
+  "interface_sha256": "7509a8f46940e6118a6ce185357ffa25683970c1b9db61de0e2e3a19a918e18f",
+  "sampler_sha256": "9a0891e63605eff760f06021d78f2e4b32281a0b08fb771b6dfb091234377839",
+  "source_manifest_sha256": {
+    "all-forty-four-cores.json": "e8c26ff9ca2b405666ec33a4872f94a8b2897c8164dfa4d462ad3a51a56d23e6",
+    "eight-core-phase-to30.json": "5598c63635bf372fbac906943da45ede93c7e5a9b827d49787132a8b9cf676ec"
+  }
+}
