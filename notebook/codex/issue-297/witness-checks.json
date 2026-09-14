@@ -1,0 +1,68 @@
+{
+  "floor_sum_fixtures": 10000,
+  "interval_fixtures": 20000,
+  "primitive_completions": 210,
+  "endpoint_fixture": {
+    "scale": 1,
+    "core": [
+      1,
+      5,
+      6,
+      7,
+      9,
+      11,
+      13,
+      18
+    ],
+    "extras": [
+      3,
+      4,
+      8,
+      10,
+      14,
+      15
+    ],
+    "fiber": [
+      5,
+      2
+    ],
+    "lift_index": 0,
+    "initial_signed_score": 1,
+    "time": "31/75",
+    "minimum_distance": "1/15",
+    "splits": 0,
+    "modular_interval_counts": 18
+  },
+  "benchmarks": [
+    {
+      "scale_decimal_digits": 7,
+      "trials": 5,
+      "elapsed_seconds": 0.003823,
+      "max_modular_interval_counts": 126,
+      "max_splits": 20
+    },
+    {
+      "scale_decimal_digits": 31,
+      "trials": 5,
+      "elapsed_seconds": 0.10291,
+      "max_modular_interval_counts": 606,
+      "max_splits": 100
+    },
+    {
+      "scale_decimal_digits": 101,
+      "trials": 2,
+      "elapsed_seconds": 0.699057,
+      "max_modular_interval_counts": 1998,
+      "max_splits": 332
+    }
+  ],
+  "status": "exact diagnostic checks; theorem remains sketch pending cross-family review",
+  "seed": 304297,
+  "generic_rational_interval_fixtures": 20000,
+  "code_sha256": {
+    "witness_bisection.py": "429f1f6830eaf63a7cd536878ab0e1f1a770e399f7ab4be9bdc37f9ecce64c74",
+    "rational_witness.py": "a966994aef43d78bf9cd20af27ce7341b0b1440ee0a13ef8c304602f16329491",
+    "check_witness_bisection.py": "70954d76b17de8720be5cc53c85142e338e9145f07a80ca2e344041b9084ed8f",
+    "check_rational_witness.py": "8fb479ebbc5933fba1aab8a21f5c92a1d8db1cd6731750ddebfa022f8b63052b"
+  }
+}
