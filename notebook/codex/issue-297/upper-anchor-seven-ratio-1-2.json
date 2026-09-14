@@ -1,0 +1,467 @@
+{
+  "status": "numerical/exact exploratory search",
+  "number_rows": 7,
+  "ratio_bound_strict": "1/2",
+  "complete": true,
+  "cover_found": null,
+  "nodes": 1541,
+  "maximum_residual_period": 1020,
+  "reports": [
+    {
+      "minimum_period": 2,
+      "roots": 0,
+      "states": 0
+    },
+    {
+      "minimum_period": 3,
+      "roots": 1,
+      "states": 118
+    },
+    {
+      "minimum_period": 4,
+      "roots": 1,
+      "states": 24
+    },
+    {
+      "minimum_period": 5,
+      "roots": 1,
+      "states": 7
+    },
+    {
+      "minimum_period": 6,
+      "roots": 1,
+      "states": 3
+    },
+    {
+      "minimum_period": 7,
+      "roots": 1,
+      "states": 6
+    },
+    {
+      "minimum_period": 8,
+      "roots": 1,
+      "states": 4
+    },
+    {
+      "minimum_period": 9,
+      "roots": 1,
+      "states": 4
+    },
+    {
+      "minimum_period": 10,
+      "roots": 1,
+      "states": 6
+    },
+    {
+      "minimum_period": 11,
+      "roots": 2,
+      "states": 10
+    },
+    {
+      "minimum_period": 12,
+      "roots": 2,
+      "states": 4
+    },
+    {
+      "minimum_period": 13,
+      "roots": 5,
+      "states": 20
+    },
+    {
+      "minimum_period": 14,
+      "roots": 3,
+      "states": 12
+    },
+    {
+      "minimum_period": 15,
+      "roots": 4,
+      "states": 19
+    },
+    {
+      "minimum_period": 16,
+      "roots": 4,
+      "states": 14
+    },
+    {
+      "minimum_period": 17,
+      "roots": 8,
+      "states": 24
+    },
+    {
+      "minimum_period": 18,
+      "roots": 3,
+      "states": 3
+    },
+    {
+      "minimum_period": 19,
+      "roots": 9,
+      "states": 18
+    },
+    {
+      "minimum_period": 20,
+      "roots": 4,
+      "states": 10
+    },
+    {
+      "minimum_period": 21,
+      "roots": 6,
+      "states": 11
+    },
+    {
+      "minimum_period": 22,
+      "roots": 5,
+      "states": 10
+    },
+    {
+      "minimum_period": 23,
+      "roots": 11,
+      "states": 22
+    },
+    {
+      "minimum_period": 24,
+      "roots": 4,
+      "states": 5
+    },
+    {
+      "minimum_period": 25,
+      "roots": 10,
+      "states": 10
+    },
+    {
+      "minimum_period": 26,
+      "roots": 6,
+      "states": 7
+    },
+    {
+      "minimum_period": 27,
+      "roots": 9,
+      "states": 9
+    },
+    {
+      "minimum_period": 28,
+      "roots": 6,
+      "states": 6
+    },
+    {
+      "minimum_period": 29,
+      "roots": 14,
+      "states": 14
+    },
+    {
+      "minimum_period": 30,
+      "roots": 4,
+      "states": 4
+    },
+    {
+      "minimum_period": 31,
+      "roots": 15,
+      "states": 15
+    },
+    {
+      "minimum_period": 32,
+      "roots": 8,
+      "states": 8
+    },
+    {
+      "minimum_period": 33,
+      "roots": 10,
+      "states": 10
+    },
+    {
+      "minimum_period": 34,
+      "roots": 8,
+      "states": 8
+    },
+    {
+      "minimum_period": 35,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 36,
+      "roots": 6,
+      "states": 6
+    },
+    {
+      "minimum_period": 37,
+      "roots": 18,
+      "states": 18
+    },
+    {
+      "minimum_period": 38,
+      "roots": 9,
+      "states": 9
+    },
+    {
+      "minimum_period": 39,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 40,
+      "roots": 8,
+      "states": 8
+    },
+    {
+      "minimum_period": 41,
+      "roots": 20,
+      "states": 20
+    },
+    {
+      "minimum_period": 42,
+      "roots": 6,
+      "states": 6
+    },
+    {
+      "minimum_period": 43,
+      "roots": 21,
+      "states": 21
+    },
+    {
+      "minimum_period": 44,
+      "roots": 10,
+      "states": 10
+    },
+    {
+      "minimum_period": 45,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 46,
+      "roots": 11,
+      "states": 11
+    },
+    {
+      "minimum_period": 47,
+      "roots": 23,
+      "states": 23
+    },
+    {
+      "minimum_period": 48,
+      "roots": 8,
+      "states": 8
+    },
+    {
+      "minimum_period": 49,
+      "roots": 21,
+      "states": 21
+    },
+    {
+      "minimum_period": 50,
+      "roots": 10,
+      "states": 10
+    },
+    {
+      "minimum_period": 51,
+      "roots": 16,
+      "states": 16
+    },
+    {
+      "minimum_period": 52,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 53,
+      "roots": 26,
+      "states": 26
+    },
+    {
+      "minimum_period": 54,
+      "roots": 9,
+      "states": 9
+    },
+    {
+      "minimum_period": 55,
+      "roots": 20,
+      "states": 20
+    },
+    {
+      "minimum_period": 56,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 57,
+      "roots": 18,
+      "states": 18
+    },
+    {
+      "minimum_period": 58,
+      "roots": 14,
+      "states": 14
+    },
+    {
+      "minimum_period": 59,
+      "roots": 29,
+      "states": 29
+    },
+    {
+      "minimum_period": 60,
+      "roots": 8,
+      "states": 8
+    },
+    {
+      "minimum_period": 61,
+      "roots": 30,
+      "states": 30
+    },
+    {
+      "minimum_period": 62,
+      "roots": 15,
+      "states": 15
+    },
+    {
+      "minimum_period": 63,
+      "roots": 18,
+      "states": 18
+    },
+    {
+      "minimum_period": 64,
+      "roots": 16,
+      "states": 16
+    },
+    {
+      "minimum_period": 65,
+      "roots": 24,
+      "states": 24
+    },
+    {
+      "minimum_period": 66,
+      "roots": 10,
+      "states": 10
+    },
+    {
+      "minimum_period": 67,
+      "roots": 33,
+      "states": 33
+    },
+    {
+      "minimum_period": 68,
+      "roots": 16,
+      "states": 16
+    },
+    {
+      "minimum_period": 69,
+      "roots": 22,
+      "states": 22
+    },
+    {
+      "minimum_period": 70,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 71,
+      "roots": 35,
+      "states": 35
+    },
+    {
+      "minimum_period": 72,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 73,
+      "roots": 36,
+      "states": 36
+    },
+    {
+      "minimum_period": 74,
+      "roots": 18,
+      "states": 18
+    },
+    {
+      "minimum_period": 75,
+      "roots": 20,
+      "states": 20
+    },
+    {
+      "minimum_period": 76,
+      "roots": 18,
+      "states": 18
+    },
+    {
+      "minimum_period": 77,
+      "roots": 30,
+      "states": 30
+    },
+    {
+      "minimum_period": 78,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 79,
+      "roots": 39,
+      "states": 39
+    },
+    {
+      "minimum_period": 80,
+      "roots": 16,
+      "states": 16
+    },
+    {
+      "minimum_period": 81,
+      "roots": 27,
+      "states": 27
+    },
+    {
+      "minimum_period": 82,
+      "roots": 20,
+      "states": 20
+    },
+    {
+      "minimum_period": 83,
+      "roots": 41,
+      "states": 41
+    },
+    {
+      "minimum_period": 84,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 85,
+      "roots": 32,
+      "states": 32
+    },
+    {
+      "minimum_period": 86,
+      "roots": 21,
+      "states": 21
+    },
+    {
+      "minimum_period": 87,
+      "roots": 28,
+      "states": 28
+    },
+    {
+      "minimum_period": 88,
+      "roots": 20,
+      "states": 20
+    },
+    {
+      "minimum_period": 89,
+      "roots": 44,
+      "states": 44
+    },
+    {
+      "minimum_period": 90,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 91,
+      "roots": 36,
+      "states": 36
+    }
+  ],
+  "elapsed_seconds": 8.10890889700022,
+  "graph_file": "upper-anchor-seven-ratio-1-2.graph.json",
+  "graph_sha256": "f5d83cf11e0fa49f5d5c8e78f8a9c90e42c3f4aab2ff4fe38399c23efc8fd260",
+  "code_sha256": "54a7dbf1441f46d8a1757ad72636f0dd3d9cd15bf909ed74c97e345bac96d3f4",
+  "edges": 330,
+  "roots": 1264
+}

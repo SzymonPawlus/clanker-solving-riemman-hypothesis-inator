@@ -1,0 +1,132 @@
+{
+  "status": "sketch; sharp examples directly verified and exact exclusion DAGs require review",
+  "examples": [
+    {
+      "rows": 1,
+      "anchor": 1,
+      "killers": [
+        15
+      ],
+      "largest_ratio": "15",
+      "private_indices": {
+        "15": 0
+      }
+    },
+    {
+      "rows": 2,
+      "anchor": 2,
+      "killers": [
+        1,
+        15
+      ],
+      "largest_ratio": "15/2",
+      "private_indices": {
+        "1": 0,
+        "15": 1
+      }
+    },
+    {
+      "rows": 3,
+      "anchor": 4,
+      "killers": [
+        2,
+        13,
+        15
+      ],
+      "largest_ratio": "15/4",
+      "private_indices": {
+        "2": 0,
+        "13": 3,
+        "15": 1
+      }
+    },
+    {
+      "rows": 4,
+      "anchor": 6,
+      "killers": [
+        2,
+        3,
+        11,
+        13
+      ],
+      "largest_ratio": "13/6",
+      "private_indices": {
+        "2": 3,
+        "3": 2,
+        "11": 1,
+        "13": 5
+      }
+    },
+    {
+      "rows": 5,
+      "anchor": 12,
+      "killers": [
+        4,
+        6,
+        7,
+        13,
+        22
+      ],
+      "largest_ratio": "11/6",
+      "private_indices": {
+        "4": 3,
+        "6": 2,
+        "7": 5,
+        "13": 11,
+        "22": 1
+      }
+    },
+    {
+      "rows": 6,
+      "anchor": 12,
+      "killers": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        13
+      ],
+      "largest_ratio": "13/12",
+      "private_indices": {
+        "4": 3,
+        "5": 7,
+        "6": 2,
+        "7": 5,
+        "11": 1,
+        "13": 11
+      }
+    },
+    {
+      "rows": 7,
+      "anchor": 30,
+      "killers": [
+        1,
+        6,
+        7,
+        10,
+        11,
+        13,
+        15
+      ],
+      "largest_ratio": "1/2",
+      "private_indices": {
+        "1": 1,
+        "6": 5,
+        "7": 13,
+        "10": 3,
+        "11": 11,
+        "13": 7,
+        "15": 2
+      }
+    }
+  ],
+  "graph_sha256": {
+    "upper-anchor-two-ratio-15-2.graph.json": "3249b5716af5e8df0b8fc7c2c4e151f904aeab0628b20974d9a2b3669f261cef",
+    "upper-anchor-three-ratio-15-4.graph.json": "17440ed103410044ffe27dfbd27ba20e633b44531d2a2fc54564764984b0d9bc",
+    "upper-anchor-four-ratio-13-6.graph.json": "27aae1008434fae346cc4e09c7b1629696148ce0591e5bdbc1b5395c2d43da42",
+    "upper-anchor-five-ratio-11-6.graph.json": "7776a98c6cc08418d286890e6754c62d1042e9e80d1f8c6abc907e675ba0ead2",
+    "upper-anchor-six-ratio-13-12.graph.json": "17d8cb6916e455d94723dad2ed8d466d81df52e4743bcde2fdbeeb488128d4a3",
+    "upper-anchor-seven-ratio-1-2.graph.json": "f5d83cf11e0fa49f5d5c8e78f8a9c90e42c3f4aab2ff4fe38399c23efc8fd260"
+  }
+}

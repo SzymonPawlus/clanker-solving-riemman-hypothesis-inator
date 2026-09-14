@@ -1,0 +1,22 @@
+{
+  "status": "numerical/exact exploratory search",
+  "number_rows": 2,
+  "ratio_bound_strict": "15/2",
+  "complete": true,
+  "cover_found": null,
+  "nodes": 1,
+  "maximum_residual_period": 2,
+  "reports": [
+    {
+      "minimum_period": 2,
+      "roots": 1,
+      "states": 1
+    }
+  ],
+  "elapsed_seconds": 6.940999992366415e-05,
+  "graph_file": "upper-anchor-two-ratio-15-2.graph.json",
+  "graph_sha256": "3249b5716af5e8df0b8fc7c2c4e151f904aeab0628b20974d9a2b3669f261cef",
+  "code_sha256": "54a7dbf1441f46d8a1757ad72636f0dd3d9cd15bf909ed74c97e345bac96d3f4",
+  "edges": 0,
+  "roots": 1
+}

@@ -1,0 +1,32 @@
+{
+  "status": "numerical/exact exploratory search",
+  "number_rows": 3,
+  "ratio_bound_strict": "15/4",
+  "complete": true,
+  "cover_found": null,
+  "nodes": 5,
+  "maximum_residual_period": 4,
+  "reports": [
+    {
+      "minimum_period": 2,
+      "roots": 1,
+      "states": 2
+    },
+    {
+      "minimum_period": 3,
+      "roots": 1,
+      "states": 1
+    },
+    {
+      "minimum_period": 4,
+      "roots": 2,
+      "states": 2
+    }
+  ],
+  "elapsed_seconds": 0.00012960000003658934,
+  "graph_file": "upper-anchor-three-ratio-15-4.graph.json",
+  "graph_sha256": "17440ed103410044ffe27dfbd27ba20e633b44531d2a2fc54564764984b0d9bc",
+  "code_sha256": "54a7dbf1441f46d8a1757ad72636f0dd3d9cd15bf909ed74c97e345bac96d3f4",
+  "edges": 1,
+  "roots": 4
+}

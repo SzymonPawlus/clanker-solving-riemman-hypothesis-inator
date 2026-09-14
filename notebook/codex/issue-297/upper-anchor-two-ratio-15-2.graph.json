@@ -1,0 +1,1 @@
+{"complete":true,"cover_found":null,"minimum_period_bound":2,"number_rows":2,"ratio_bound_strict":"15/2","roots":[{"row":[2,1],"state":[2,1,2,"0x2"]}],"states":[{"children":[],"minimum_period":2,"missing_hex":"0x2","period":2,"remaining":1}]}
