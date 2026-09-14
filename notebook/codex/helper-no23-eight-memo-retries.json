@@ -1,0 +1,98 @@
+{
+  "status": "numerical; exact bounded retries",
+  "seconds_cap_per_anchor": 45,
+  "source_sha256": "0c8c4fb923cb2486a09b7dbad46ee49e2e9b2973880f2d67b58b71780b5a2609",
+  "kernel_sha256": "abecf2d9f9f422c3a6a2b5787b5d10ed379a79080c028c3425d670216e41f52b",
+  "anchors": [
+    {
+      "M": 288,
+      "complete": true,
+      "nodes": 457004,
+      "cache_hits": 21970,
+      "gain_prunes": 418582,
+      "cached_failures": 435034,
+      "elapsed_seconds": 4.52452,
+      "cover": null
+    },
+    {
+      "M": 320,
+      "complete": true,
+      "nodes": 396585,
+      "cache_hits": 21087,
+      "gain_prunes": 362657,
+      "cached_failures": 375498,
+      "elapsed_seconds": 4.44689,
+      "cover": null
+    },
+    {
+      "M": 324,
+      "complete": true,
+      "nodes": 702345,
+      "cache_hits": 32072,
+      "gain_prunes": 648603,
+      "cached_failures": 670273,
+      "elapsed_seconds": 7.96523,
+      "cover": null
+    },
+    {
+      "M": 340,
+      "complete": true,
+      "nodes": 516104,
+      "cache_hits": 22719,
+      "gain_prunes": 477220,
+      "cached_failures": 493385,
+      "elapsed_seconds": 6.14899,
+      "cover": null
+    },
+    {
+      "M": 352,
+      "complete": true,
+      "nodes": 363615,
+      "cache_hits": 18157,
+      "gain_prunes": 334343,
+      "cached_failures": 345458,
+      "elapsed_seconds": 4.36948,
+      "cover": null
+    },
+    {
+      "M": 360,
+      "complete": true,
+      "nodes": 1579107,
+      "cache_hits": 68794,
+      "gain_prunes": 1467384,
+      "cached_failures": 1510313,
+      "elapsed_seconds": 22.1198,
+      "cover": null
+    },
+    {
+      "M": 380,
+      "complete": true,
+      "nodes": 825220,
+      "cache_hits": 45396,
+      "gain_prunes": 757266,
+      "cached_failures": 779824,
+      "elapsed_seconds": 12.7188,
+      "cover": null
+    },
+    {
+      "M": 396,
+      "complete": true,
+      "nodes": 1981216,
+      "cache_hits": 103071,
+      "gain_prunes": 1828896,
+      "cached_failures": 1878145,
+      "elapsed_seconds": 31.3856,
+      "cover": null
+    },
+    {
+      "M": 400,
+      "complete": true,
+      "nodes": 1020892,
+      "cache_hits": 50841,
+      "gain_prunes": 943432,
+      "cached_failures": 970051,
+      "elapsed_seconds": 16.2397,
+      "cover": null
+    }
+  ]
+}

@@ -1,0 +1,1768 @@
+{
+  "status": "numerical; exact bounded decision only",
+  "range": [
+    241,
+    400
+  ],
+  "max_rows": 8,
+  "forbidden_periods": [
+    2,
+    3
+  ],
+  "seconds_cap_per_anchor": 5,
+  "source_sha256": "0c8c4fb923cb2486a09b7dbad46ee49e2e9b2973880f2d67b58b71780b5a2609",
+  "kernel_sha256": "abecf2d9f9f422c3a6a2b5787b5d10ed379a79080c028c3425d670216e41f52b",
+  "fixtures": [
+    {
+      "M": 18,
+      "complete": true,
+      "nodes": 7,
+      "cache_hits": 0,
+      "gain_prunes": 0,
+      "cached_failures": 0,
+      "elapsed_seconds": 1.5256e-05,
+      "cover": {
+        "primitive_speeds": [
+          1,
+          5,
+          6,
+          7,
+          9,
+          11,
+          13,
+          18
+        ],
+        "private_residues": {
+          "1": [
+            1,
+            17
+          ],
+          "5": [
+            7
+          ],
+          "6": [
+            3,
+            9,
+            15
+          ],
+          "7": [
+            5
+          ],
+          "9": [
+            2,
+            8,
+            10,
+            14,
+            16
+          ],
+          "11": [
+            13
+          ],
+          "13": [
+            11
+          ]
+        },
+        "reduced_periods": [
+          18,
+          18,
+          3,
+          18,
+          2,
+          18,
+          18
+        ]
+      }
+    },
+    {
+      "M": 20,
+      "complete": true,
+      "nodes": 8,
+      "cache_hits": 0,
+      "gain_prunes": 0,
+      "cached_failures": 0,
+      "elapsed_seconds": 2.907e-05,
+      "cover": {
+        "primitive_speeds": [
+          1,
+          3,
+          4,
+          7,
+          9,
+          10,
+          11,
+          13,
+          20
+        ],
+        "private_residues": {
+          "1": [
+            1,
+            19
+          ],
+          "3": [
+            7,
+            13
+          ],
+          "4": [
+            5,
+            15
+          ],
+          "7": [
+            17
+          ],
+          "9": [
+            11
+          ],
+          "10": [
+            2,
+            4,
+            8,
+            12,
+            14,
+            16
+          ],
+          "11": [
+            9
+          ],
+          "13": [
+            3
+          ]
+        },
+        "reduced_periods": [
+          20,
+          20,
+          5,
+          20,
+          20,
+          2,
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "M": 30,
+      "complete": true,
+      "nodes": 2,
+      "cache_hits": 0,
+      "gain_prunes": 1,
+      "cached_failures": 2,
+      "elapsed_seconds": 2.8873e-05,
+      "cover": null
+    }
+  ],
+  "anchors": [
+    {
+      "M": 241,
+      "complete": true,
+      "nodes": 119,
+      "cache_hits": 1,
+      "gain_prunes": 111,
+      "cached_failures": 118,
+      "elapsed_seconds": 0.00170752,
+      "cover": null
+    },
+    {
+      "M": 242,
+      "complete": true,
+      "nodes": 25330,
+      "cache_hits": 823,
+      "gain_prunes": 23345,
+      "cached_failures": 24507,
+      "elapsed_seconds": 0.213686,
+      "cover": null
+    },
+    {
+      "M": 243,
+      "complete": true,
+      "nodes": 17053,
+      "cache_hits": 310,
+      "gain_prunes": 15891,
+      "cached_failures": 16743,
+      "elapsed_seconds": 0.141228,
+      "cover": null
+    },
+    {
+      "M": 244,
+      "complete": true,
+      "nodes": 5134,
+      "cache_hits": 119,
+      "gain_prunes": 4737,
+      "cached_failures": 5015,
+      "elapsed_seconds": 0.0418277,
+      "cover": null
+    },
+    {
+      "M": 245,
+      "complete": true,
+      "nodes": 842,
+      "cache_hits": 9,
+      "gain_prunes": 788,
+      "cached_failures": 833,
+      "elapsed_seconds": 0.00848809,
+      "cover": null
+    },
+    {
+      "M": 246,
+      "complete": true,
+      "nodes": 746,
+      "cache_hits": 1,
+      "gain_prunes": 708,
+      "cached_failures": 745,
+      "elapsed_seconds": 0.00885027,
+      "cover": null
+    },
+    {
+      "M": 247,
+      "complete": true,
+      "nodes": 1572,
+      "cache_hits": 23,
+      "gain_prunes": 1459,
+      "cached_failures": 1549,
+      "elapsed_seconds": 0.0146816,
+      "cover": null
+    },
+    {
+      "M": 248,
+      "complete": true,
+      "nodes": 6022,
+      "cache_hits": 125,
+      "gain_prunes": 5587,
+      "cached_failures": 5897,
+      "elapsed_seconds": 0.0517362,
+      "cover": null
+    },
+    {
+      "M": 249,
+      "complete": true,
+      "nodes": 156,
+      "cache_hits": 1,
+      "gain_prunes": 146,
+      "cached_failures": 155,
+      "elapsed_seconds": 0.00158007,
+      "cover": null
+    },
+    {
+      "M": 250,
+      "complete": true,
+      "nodes": 41780,
+      "cache_hits": 836,
+      "gain_prunes": 39097,
+      "cached_failures": 40944,
+      "elapsed_seconds": 0.367434,
+      "cover": null
+    },
+    {
+      "M": 251,
+      "complete": true,
+      "nodes": 68,
+      "cache_hits": 0,
+      "gain_prunes": 64,
+      "cached_failures": 68,
+      "elapsed_seconds": 0.00129261,
+      "cover": null
+    },
+    {
+      "M": 252,
+      "complete": true,
+      "nodes": 276338,
+      "cache_hits": 8123,
+      "gain_prunes": 257146,
+      "cached_failures": 268215,
+      "elapsed_seconds": 2.41549,
+      "cover": null
+    },
+    {
+      "M": 253,
+      "complete": true,
+      "nodes": 9512,
+      "cache_hits": 98,
+      "gain_prunes": 8906,
+      "cached_failures": 9414,
+      "elapsed_seconds": 0.0829389,
+      "cover": null
+    },
+    {
+      "M": 254,
+      "complete": true,
+      "nodes": 143,
+      "cache_hits": 0,
+      "gain_prunes": 135,
+      "cached_failures": 143,
+      "elapsed_seconds": 0.00228471,
+      "cover": null
+    },
+    {
+      "M": 255,
+      "complete": true,
+      "nodes": 7291,
+      "cache_hits": 174,
+      "gain_prunes": 6749,
+      "cached_failures": 7117,
+      "elapsed_seconds": 0.0758948,
+      "cover": null
+    },
+    {
+      "M": 256,
+      "complete": true,
+      "nodes": 8722,
+      "cache_hits": 140,
+      "gain_prunes": 8153,
+      "cached_failures": 8582,
+      "elapsed_seconds": 0.0760513,
+      "cover": null
+    },
+    {
+      "M": 257,
+      "complete": true,
+      "nodes": 180,
+      "cache_hits": 1,
+      "gain_prunes": 169,
+      "cached_failures": 179,
+      "elapsed_seconds": 0.00188464,
+      "cover": null
+    },
+    {
+      "M": 258,
+      "complete": true,
+      "nodes": 434,
+      "cache_hits": 1,
+      "gain_prunes": 411,
+      "cached_failures": 433,
+      "elapsed_seconds": 0.00566932,
+      "cover": null
+    },
+    {
+      "M": 259,
+      "complete": true,
+      "nodes": 253,
+      "cache_hits": 1,
+      "gain_prunes": 238,
+      "cached_failures": 252,
+      "elapsed_seconds": 0.00247223,
+      "cover": null
+    },
+    {
+      "M": 260,
+      "complete": true,
+      "nodes": 281839,
+      "cache_hits": 17427,
+      "gain_prunes": 253523,
+      "cached_failures": 264412,
+      "elapsed_seconds": 2.48363,
+      "cover": null
+    },
+    {
+      "M": 261,
+      "complete": true,
+      "nodes": 9198,
+      "cache_hits": 225,
+      "gain_prunes": 8525,
+      "cached_failures": 8973,
+      "elapsed_seconds": 0.0804949,
+      "cover": null
+    },
+    {
+      "M": 262,
+      "complete": true,
+      "nodes": 162,
+      "cache_hits": 0,
+      "gain_prunes": 153,
+      "cached_failures": 162,
+      "elapsed_seconds": 0.00269027,
+      "cover": null
+    },
+    {
+      "M": 263,
+      "complete": true,
+      "nodes": 54,
+      "cache_hits": 0,
+      "gain_prunes": 51,
+      "cached_failures": 54,
+      "elapsed_seconds": 0.00120286,
+      "cover": null
+    },
+    {
+      "M": 264,
+      "complete": true,
+      "nodes": 190212,
+      "cache_hits": 8438,
+      "gain_prunes": 174386,
+      "cached_failures": 181774,
+      "elapsed_seconds": 1.69483,
+      "cover": null
+    },
+    {
+      "M": 265,
+      "complete": true,
+      "nodes": 365,
+      "cache_hits": 1,
+      "gain_prunes": 344,
+      "cached_failures": 364,
+      "elapsed_seconds": 0.00484805,
+      "cover": null
+    },
+    {
+      "M": 266,
+      "complete": true,
+      "nodes": 2999,
+      "cache_hits": 55,
+      "gain_prunes": 2797,
+      "cached_failures": 2944,
+      "elapsed_seconds": 0.0285509,
+      "cover": null
+    },
+    {
+      "M": 267,
+      "complete": true,
+      "nodes": 325,
+      "cache_hits": 1,
+      "gain_prunes": 307,
+      "cached_failures": 324,
+      "elapsed_seconds": 0.00326648,
+      "cover": null
+    },
+    {
+      "M": 268,
+      "complete": true,
+      "nodes": 6335,
+      "cache_hits": 97,
+      "gain_prunes": 5927,
+      "cached_failures": 6238,
+      "elapsed_seconds": 0.0597622,
+      "cover": null
+    },
+    {
+      "M": 269,
+      "complete": true,
+      "nodes": 75,
+      "cache_hits": 0,
+      "gain_prunes": 71,
+      "cached_failures": 75,
+      "elapsed_seconds": 0.00101637,
+      "cover": null
+    },
+    {
+      "M": 270,
+      "complete": true,
+      "nodes": 283998,
+      "cache_hits": 16019,
+      "gain_prunes": 257180,
+      "cached_failures": 267979,
+      "elapsed_seconds": 2.5803,
+      "cover": null
+    },
+    {
+      "M": 271,
+      "complete": true,
+      "nodes": 190,
+      "cache_hits": 1,
+      "gain_prunes": 179,
+      "cached_failures": 189,
+      "elapsed_seconds": 0.00206431,
+      "cover": null
+    },
+    {
+      "M": 272,
+      "complete": true,
+      "nodes": 46389,
+      "cache_hits": 1067,
+      "gain_prunes": 43315,
+      "cached_failures": 45322,
+      "elapsed_seconds": 0.440036,
+      "cover": null
+    },
+    {
+      "M": 273,
+      "complete": true,
+      "nodes": 1321,
+      "cache_hits": 10,
+      "gain_prunes": 1255,
+      "cached_failures": 1311,
+      "elapsed_seconds": 0.0134981,
+      "cover": null
+    },
+    {
+      "M": 274,
+      "complete": true,
+      "nodes": 325,
+      "cache_hits": 1,
+      "gain_prunes": 307,
+      "cached_failures": 324,
+      "elapsed_seconds": 0.00332909,
+      "cover": null
+    },
+    {
+      "M": 275,
+      "complete": true,
+      "nodes": 40456,
+      "cache_hits": 1048,
+      "gain_prunes": 37578,
+      "cached_failures": 39408,
+      "elapsed_seconds": 0.384638,
+      "cover": null
+    },
+    {
+      "M": 276,
+      "complete": true,
+      "nodes": 22548,
+      "cache_hits": 152,
+      "gain_prunes": 21534,
+      "cached_failures": 22396,
+      "elapsed_seconds": 0.21852,
+      "cover": null
+    },
+    {
+      "M": 277,
+      "complete": true,
+      "nodes": 95,
+      "cache_hits": 0,
+      "gain_prunes": 90,
+      "cached_failures": 95,
+      "elapsed_seconds": 0.00185676,
+      "cover": null
+    },
+    {
+      "M": 278,
+      "complete": true,
+      "nodes": 211,
+      "cache_hits": 1,
+      "gain_prunes": 199,
+      "cached_failures": 210,
+      "elapsed_seconds": 0.00278223,
+      "cover": null
+    },
+    {
+      "M": 279,
+      "complete": true,
+      "nodes": 12979,
+      "cache_hits": 237,
+      "gain_prunes": 12155,
+      "cached_failures": 12742,
+      "elapsed_seconds": 0.124639,
+      "cover": null
+    },
+    {
+      "M": 280,
+      "complete": true,
+      "nodes": 301903,
+      "cache_hits": 11986,
+      "gain_prunes": 278583,
+      "cached_failures": 289917,
+      "elapsed_seconds": 3.06613,
+      "cover": null
+    },
+    {
+      "M": 281,
+      "complete": true,
+      "nodes": 99,
+      "cache_hits": 0,
+      "gain_prunes": 94,
+      "cached_failures": 99,
+      "elapsed_seconds": 0.0021631,
+      "cover": null
+    },
+    {
+      "M": 282,
+      "complete": true,
+      "nodes": 720,
+      "cache_hits": 1,
+      "gain_prunes": 687,
+      "cached_failures": 719,
+      "elapsed_seconds": 0.0107638,
+      "cover": null
+    },
+    {
+      "M": 283,
+      "complete": true,
+      "nodes": 119,
+      "cache_hits": 0,
+      "gain_prunes": 113,
+      "cached_failures": 119,
+      "elapsed_seconds": 0.00239181,
+      "cover": null
+    },
+    {
+      "M": 284,
+      "complete": true,
+      "nodes": 8013,
+      "cache_hits": 157,
+      "gain_prunes": 7482,
+      "cached_failures": 7856,
+      "elapsed_seconds": 0.0913281,
+      "cover": null
+    },
+    {
+      "M": 285,
+      "complete": true,
+      "nodes": 7033,
+      "cache_hits": 189,
+      "gain_prunes": 6516,
+      "cached_failures": 6844,
+      "elapsed_seconds": 0.0810603,
+      "cover": null
+    },
+    {
+      "M": 286,
+      "complete": true,
+      "nodes": 64718,
+      "cache_hits": 2001,
+      "gain_prunes": 60336,
+      "cached_failures": 62717,
+      "elapsed_seconds": 0.763813,
+      "cover": null
+    },
+    {
+      "M": 287,
+      "complete": true,
+      "nodes": 362,
+      "cache_hits": 1,
+      "gain_prunes": 343,
+      "cached_failures": 361,
+      "elapsed_seconds": 0.00495826,
+      "cover": null
+    },
+    {
+      "M": 288,
+      "complete": false,
+      "nodes": 434176,
+      "cache_hits": 21290,
+      "gain_prunes": 397271,
+      "cached_failures": 412881,
+      "elapsed_seconds": 5.01078,
+      "cover": null
+    },
+    {
+      "M": 289,
+      "complete": true,
+      "nodes": 6230,
+      "cache_hits": 48,
+      "gain_prunes": 5874,
+      "cached_failures": 6182,
+      "elapsed_seconds": 0.0798136,
+      "cover": null
+    },
+    {
+      "M": 290,
+      "complete": true,
+      "nodes": 22253,
+      "cache_hits": 337,
+      "gain_prunes": 21062,
+      "cached_failures": 21916,
+      "elapsed_seconds": 0.260526,
+      "cover": null
+    },
+    {
+      "M": 291,
+      "complete": true,
+      "nodes": 303,
+      "cache_hits": 1,
+      "gain_prunes": 287,
+      "cached_failures": 302,
+      "elapsed_seconds": 0.00391929,
+      "cover": null
+    },
+    {
+      "M": 292,
+      "complete": true,
+      "nodes": 8568,
+      "cache_hits": 156,
+      "gain_prunes": 8029,
+      "cached_failures": 8412,
+      "elapsed_seconds": 0.101179,
+      "cover": null
+    },
+    {
+      "M": 293,
+      "complete": true,
+      "nodes": 100,
+      "cache_hits": 0,
+      "gain_prunes": 95,
+      "cached_failures": 100,
+      "elapsed_seconds": 0.00158908,
+      "cover": null
+    },
+    {
+      "M": 294,
+      "complete": true,
+      "nodes": 569,
+      "cache_hits": 1,
+      "gain_prunes": 543,
+      "cached_failures": 568,
+      "elapsed_seconds": 0.00935077,
+      "cover": null
+    },
+    {
+      "M": 295,
+      "complete": true,
+      "nodes": 508,
+      "cache_hits": 1,
+      "gain_prunes": 483,
+      "cached_failures": 507,
+      "elapsed_seconds": 0.00642438,
+      "cover": null
+    },
+    {
+      "M": 296,
+      "complete": true,
+      "nodes": 8172,
+      "cache_hits": 122,
+      "gain_prunes": 7684,
+      "cached_failures": 8050,
+      "elapsed_seconds": 0.0964614,
+      "cover": null
+    },
+    {
+      "M": 297,
+      "complete": true,
+      "nodes": 231902,
+      "cache_hits": 8286,
+      "gain_prunes": 214768,
+      "cached_failures": 223616,
+      "elapsed_seconds": 2.76113,
+      "cover": null
+    },
+    {
+      "M": 298,
+      "complete": true,
+      "nodes": 146,
+      "cache_hits": 0,
+      "gain_prunes": 139,
+      "cached_failures": 146,
+      "elapsed_seconds": 0.00303226,
+      "cover": null
+    },
+    {
+      "M": 299,
+      "complete": true,
+      "nodes": 419,
+      "cache_hits": 1,
+      "gain_prunes": 398,
+      "cached_failures": 418,
+      "elapsed_seconds": 0.00710772,
+      "cover": null
+    },
+    {
+      "M": 300,
+      "complete": true,
+      "nodes": 376419,
+      "cache_hits": 18459,
+      "gain_prunes": 345540,
+      "cached_failures": 357960,
+      "elapsed_seconds": 4.43078,
+      "cover": null
+    },
+    {
+      "M": 301,
+      "complete": true,
+      "nodes": 317,
+      "cache_hits": 1,
+      "gain_prunes": 301,
+      "cached_failures": 316,
+      "elapsed_seconds": 0.0055838,
+      "cover": null
+    },
+    {
+      "M": 302,
+      "complete": true,
+      "nodes": 296,
+      "cache_hits": 1,
+      "gain_prunes": 281,
+      "cached_failures": 295,
+      "elapsed_seconds": 0.00399782,
+      "cover": null
+    },
+    {
+      "M": 303,
+      "complete": true,
+      "nodes": 423,
+      "cache_hits": 1,
+      "gain_prunes": 402,
+      "cached_failures": 422,
+      "elapsed_seconds": 0.00801495,
+      "cover": null
+    },
+    {
+      "M": 304,
+      "complete": true,
+      "nodes": 20319,
+      "cache_hits": 272,
+      "gain_prunes": 19225,
+      "cached_failures": 20047,
+      "elapsed_seconds": 0.255187,
+      "cover": null
+    },
+    {
+      "M": 305,
+      "complete": true,
+      "nodes": 653,
+      "cache_hits": 1,
+      "gain_prunes": 622,
+      "cached_failures": 652,
+      "elapsed_seconds": 0.00904116,
+      "cover": null
+    },
+    {
+      "M": 306,
+      "complete": true,
+      "nodes": 196109,
+      "cache_hits": 7213,
+      "gain_prunes": 182327,
+      "cached_failures": 188896,
+      "elapsed_seconds": 2.40441,
+      "cover": null
+    },
+    {
+      "M": 307,
+      "complete": true,
+      "nodes": 63,
+      "cache_hits": 0,
+      "gain_prunes": 60,
+      "cached_failures": 63,
+      "elapsed_seconds": 0.00170644,
+      "cover": null
+    },
+    {
+      "M": 308,
+      "complete": true,
+      "nodes": 199172,
+      "cache_hits": 14452,
+      "gain_prunes": 177590,
+      "cached_failures": 184720,
+      "elapsed_seconds": 2.32045,
+      "cover": null
+    },
+    {
+      "M": 309,
+      "complete": true,
+      "nodes": 377,
+      "cache_hits": 0,
+      "gain_prunes": 360,
+      "cached_failures": 377,
+      "elapsed_seconds": 0.00588126,
+      "cover": null
+    },
+    {
+      "M": 310,
+      "complete": true,
+      "nodes": 29767,
+      "cache_hits": 540,
+      "gain_prunes": 28162,
+      "cached_failures": 29227,
+      "elapsed_seconds": 0.37297,
+      "cover": null
+    },
+    {
+      "M": 311,
+      "complete": true,
+      "nodes": 87,
+      "cache_hits": 0,
+      "gain_prunes": 83,
+      "cached_failures": 87,
+      "elapsed_seconds": 0.00159063,
+      "cover": null
+    },
+    {
+      "M": 312,
+      "complete": true,
+      "nodes": 170416,
+      "cache_hits": 7916,
+      "gain_prunes": 157043,
+      "cached_failures": 162500,
+      "elapsed_seconds": 2.10149,
+      "cover": null
+    },
+    {
+      "M": 313,
+      "complete": true,
+      "nodes": 65,
+      "cache_hits": 0,
+      "gain_prunes": 62,
+      "cached_failures": 65,
+      "elapsed_seconds": 0.00143186,
+      "cover": null
+    },
+    {
+      "M": 314,
+      "complete": true,
+      "nodes": 131,
+      "cache_hits": 0,
+      "gain_prunes": 125,
+      "cached_failures": 131,
+      "elapsed_seconds": 0.00209091,
+      "cover": null
+    },
+    {
+      "M": 315,
+      "complete": true,
+      "nodes": 138166,
+      "cache_hits": 3828,
+      "gain_prunes": 129599,
+      "cached_failures": 134338,
+      "elapsed_seconds": 1.6721,
+      "cover": null
+    },
+    {
+      "M": 316,
+      "complete": true,
+      "nodes": 11302,
+      "cache_hits": 213,
+      "gain_prunes": 10625,
+      "cached_failures": 11089,
+      "elapsed_seconds": 0.142348,
+      "cover": null
+    },
+    {
+      "M": 317,
+      "complete": true,
+      "nodes": 242,
+      "cache_hits": 1,
+      "gain_prunes": 230,
+      "cached_failures": 241,
+      "elapsed_seconds": 0.00477833,
+      "cover": null
+    },
+    {
+      "M": 318,
+      "complete": true,
+      "nodes": 555,
+      "cache_hits": 2,
+      "gain_prunes": 530,
+      "cached_failures": 553,
+      "elapsed_seconds": 0.00898185,
+      "cover": null
+    },
+    {
+      "M": 319,
+      "complete": true,
+      "nodes": 16083,
+      "cache_hits": 103,
+      "gain_prunes": 15278,
+      "cached_failures": 15980,
+      "elapsed_seconds": 0.207954,
+      "cover": null
+    },
+    {
+      "M": 320,
+      "complete": false,
+      "nodes": 387072,
+      "cache_hits": 20903,
+      "gain_prunes": 353648,
+      "cached_failures": 366164,
+      "elapsed_seconds": 5.00772,
+      "cover": null
+    },
+    {
+      "M": 321,
+      "complete": true,
+      "nodes": 421,
+      "cache_hits": 1,
+      "gain_prunes": 401,
+      "cached_failures": 420,
+      "elapsed_seconds": 0.0078984,
+      "cover": null
+    },
+    {
+      "M": 322,
+      "complete": true,
+      "nodes": 486,
+      "cache_hits": 1,
+      "gain_prunes": 463,
+      "cached_failures": 485,
+      "elapsed_seconds": 0.00743128,
+      "cover": null
+    },
+    {
+      "M": 323,
+      "complete": true,
+      "nodes": 10524,
+      "cache_hits": 76,
+      "gain_prunes": 9993,
+      "cached_failures": 10448,
+      "elapsed_seconds": 0.138065,
+      "cover": null
+    },
+    {
+      "M": 324,
+      "complete": false,
+      "nodes": 385024,
+      "cache_hits": 9852,
+      "gain_prunes": 363305,
+      "cached_failures": 375168,
+      "elapsed_seconds": 5.00893,
+      "cover": null
+    },
+    {
+      "M": 325,
+      "complete": true,
+      "nodes": 14459,
+      "cache_hits": 301,
+      "gain_prunes": 13600,
+      "cached_failures": 14158,
+      "elapsed_seconds": 0.188634,
+      "cover": null
+    },
+    {
+      "M": 326,
+      "complete": true,
+      "nodes": 183,
+      "cache_hits": 0,
+      "gain_prunes": 175,
+      "cached_failures": 183,
+      "elapsed_seconds": 0.00287348,
+      "cover": null
+    },
+    {
+      "M": 327,
+      "complete": true,
+      "nodes": 486,
+      "cache_hits": 0,
+      "gain_prunes": 465,
+      "cached_failures": 486,
+      "elapsed_seconds": 0.00716556,
+      "cover": null
+    },
+    {
+      "M": 328,
+      "complete": true,
+      "nodes": 13285,
+      "cache_hits": 223,
+      "gain_prunes": 12542,
+      "cached_failures": 13062,
+      "elapsed_seconds": 0.17369,
+      "cover": null
+    },
+    {
+      "M": 329,
+      "complete": true,
+      "nodes": 507,
+      "cache_hits": 1,
+      "gain_prunes": 484,
+      "cached_failures": 506,
+      "elapsed_seconds": 0.00696914,
+      "cover": null
+    },
+    {
+      "M": 330,
+      "complete": true,
+      "nodes": 318424,
+      "cache_hits": 12046,
+      "gain_prunes": 296779,
+      "cached_failures": 306378,
+      "elapsed_seconds": 4.14017,
+      "cover": null
+    },
+    {
+      "M": 331,
+      "complete": true,
+      "nodes": 92,
+      "cache_hits": 0,
+      "gain_prunes": 88,
+      "cached_failures": 92,
+      "elapsed_seconds": 0.0017166,
+      "cover": null
+    },
+    {
+      "M": 332,
+      "complete": true,
+      "nodes": 11251,
+      "cache_hits": 208,
+      "gain_prunes": 10600,
+      "cached_failures": 11043,
+      "elapsed_seconds": 0.147662,
+      "cover": null
+    },
+    {
+      "M": 333,
+      "complete": true,
+      "nodes": 14794,
+      "cache_hits": 384,
+      "gain_prunes": 13829,
+      "cached_failures": 14410,
+      "elapsed_seconds": 0.192724,
+      "cover": null
+    },
+    {
+      "M": 334,
+      "complete": true,
+      "nodes": 393,
+      "cache_hits": 1,
+      "gain_prunes": 375,
+      "cached_failures": 392,
+      "elapsed_seconds": 0.00560559,
+      "cover": null
+    },
+    {
+      "M": 335,
+      "complete": true,
+      "nodes": 984,
+      "cache_hits": 1,
+      "gain_prunes": 942,
+      "cached_failures": 983,
+      "elapsed_seconds": 0.0134802,
+      "cover": null
+    },
+    {
+      "M": 336,
+      "complete": true,
+      "nodes": 196554,
+      "cache_hits": 5521,
+      "gain_prunes": 185045,
+      "cached_failures": 191033,
+      "elapsed_seconds": 2.619,
+      "cover": null
+    },
+    {
+      "M": 337,
+      "complete": true,
+      "nodes": 119,
+      "cache_hits": 0,
+      "gain_prunes": 114,
+      "cached_failures": 119,
+      "elapsed_seconds": 0.00203802,
+      "cover": null
+    },
+    {
+      "M": 338,
+      "complete": true,
+      "nodes": 3392,
+      "cache_hits": 25,
+      "gain_prunes": 3248,
+      "cached_failures": 3367,
+      "elapsed_seconds": 0.0478915,
+      "cover": null
+    },
+    {
+      "M": 339,
+      "complete": true,
+      "nodes": 435,
+      "cache_hits": 1,
+      "gain_prunes": 416,
+      "cached_failures": 434,
+      "elapsed_seconds": 0.00704539,
+      "cover": null
+    },
+    {
+      "M": 340,
+      "complete": false,
+      "nodes": 365568,
+      "cache_hits": 10785,
+      "gain_prunes": 343411,
+      "cached_failures": 354778,
+      "elapsed_seconds": 5.01052,
+      "cover": null
+    },
+    {
+      "M": 341,
+      "complete": true,
+      "nodes": 19254,
+      "cache_hits": 109,
+      "gain_prunes": 18373,
+      "cached_failures": 19145,
+      "elapsed_seconds": 0.276293,
+      "cover": null
+    },
+    {
+      "M": 342,
+      "complete": true,
+      "nodes": 156579,
+      "cache_hits": 3478,
+      "gain_prunes": 148366,
+      "cached_failures": 153101,
+      "elapsed_seconds": 2.16671,
+      "cover": null
+    },
+    {
+      "M": 343,
+      "complete": true,
+      "nodes": 529,
+      "cache_hits": 1,
+      "gain_prunes": 506,
+      "cached_failures": 528,
+      "elapsed_seconds": 0.0101,
+      "cover": null
+    },
+    {
+      "M": 344,
+      "complete": true,
+      "nodes": 13934,
+      "cache_hits": 274,
+      "gain_prunes": 13133,
+      "cached_failures": 13660,
+      "elapsed_seconds": 0.187599,
+      "cover": null
+    },
+    {
+      "M": 345,
+      "complete": true,
+      "nodes": 1726,
+      "cache_hits": 2,
+      "gain_prunes": 1656,
+      "cached_failures": 1724,
+      "elapsed_seconds": 0.0284427,
+      "cover": null
+    },
+    {
+      "M": 346,
+      "complete": true,
+      "nodes": 218,
+      "cache_hits": 0,
+      "gain_prunes": 209,
+      "cached_failures": 218,
+      "elapsed_seconds": 0.00511843,
+      "cover": null
+    },
+    {
+      "M": 347,
+      "complete": true,
+      "nodes": 192,
+      "cache_hits": 1,
+      "gain_prunes": 183,
+      "cached_failures": 191,
+      "elapsed_seconds": 0.00531605,
+      "cover": null
+    },
+    {
+      "M": 348,
+      "complete": true,
+      "nodes": 36547,
+      "cache_hits": 822,
+      "gain_prunes": 34605,
+      "cached_failures": 35725,
+      "elapsed_seconds": 0.502309,
+      "cover": null
+    },
+    {
+      "M": 349,
+      "complete": true,
+      "nodes": 144,
+      "cache_hits": 1,
+      "gain_prunes": 137,
+      "cached_failures": 143,
+      "elapsed_seconds": 0.00245125,
+      "cover": null
+    },
+    {
+      "M": 350,
+      "complete": true,
+      "nodes": 91132,
+      "cache_hits": 1629,
+      "gain_prunes": 86735,
+      "cached_failures": 89503,
+      "elapsed_seconds": 1.26743,
+      "cover": null
+    },
+    {
+      "M": 351,
+      "complete": true,
+      "nodes": 101832,
+      "cache_hits": 2291,
+      "gain_prunes": 96351,
+      "cached_failures": 99541,
+      "elapsed_seconds": 1.47202,
+      "cover": null
+    },
+    {
+      "M": 352,
+      "complete": false,
+      "nodes": 363520,
+      "cache_hits": 18150,
+      "gain_prunes": 334256,
+      "cached_failures": 345365,
+      "elapsed_seconds": 5.0051,
+      "cover": null
+    },
+    {
+      "M": 353,
+      "complete": true,
+      "nodes": 149,
+      "cache_hits": 0,
+      "gain_prunes": 143,
+      "cached_failures": 149,
+      "elapsed_seconds": 0.00359038,
+      "cover": null
+    },
+    {
+      "M": 354,
+      "complete": true,
+      "nodes": 706,
+      "cache_hits": 2,
+      "gain_prunes": 678,
+      "cached_failures": 704,
+      "elapsed_seconds": 0.0108234,
+      "cover": null
+    },
+    {
+      "M": 355,
+      "complete": true,
+      "nodes": 1031,
+      "cache_hits": 1,
+      "gain_prunes": 990,
+      "cached_failures": 1030,
+      "elapsed_seconds": 0.0171134,
+      "cover": null
+    },
+    {
+      "M": 356,
+      "complete": true,
+      "nodes": 13584,
+      "cache_hits": 160,
+      "gain_prunes": 12926,
+      "cached_failures": 13424,
+      "elapsed_seconds": 0.197884,
+      "cover": null
+    },
+    {
+      "M": 357,
+      "complete": true,
+      "nodes": 17670,
+      "cache_hits": 479,
+      "gain_prunes": 16604,
+      "cached_failures": 17191,
+      "elapsed_seconds": 0.248744,
+      "cover": null
+    },
+    {
+      "M": 358,
+      "complete": true,
+      "nodes": 174,
+      "cache_hits": 0,
+      "gain_prunes": 167,
+      "cached_failures": 174,
+      "elapsed_seconds": 0.00388248,
+      "cover": null
+    },
+    {
+      "M": 359,
+      "complete": true,
+      "nodes": 149,
+      "cache_hits": 0,
+      "gain_prunes": 143,
+      "cached_failures": 149,
+      "elapsed_seconds": 0.00369953,
+      "cover": null
+    },
+    {
+      "M": 360,
+      "complete": false,
+      "nodes": 336896,
+      "cache_hits": 5883,
+      "gain_prunes": 321821,
+      "cached_failures": 331008,
+      "elapsed_seconds": 5.01055,
+      "cover": null
+    },
+    {
+      "M": 361,
+      "complete": true,
+      "nodes": 1902,
+      "cache_hits": 1,
+      "gain_prunes": 1825,
+      "cached_failures": 1901,
+      "elapsed_seconds": 0.0290273,
+      "cover": null
+    },
+    {
+      "M": 362,
+      "complete": true,
+      "nodes": 302,
+      "cache_hits": 1,
+      "gain_prunes": 289,
+      "cached_failures": 301,
+      "elapsed_seconds": 0.00604257,
+      "cover": null
+    },
+    {
+      "M": 363,
+      "complete": true,
+      "nodes": 71526,
+      "cache_hits": 1579,
+      "gain_prunes": 67561,
+      "cached_failures": 69947,
+      "elapsed_seconds": 1.04802,
+      "cover": null
+    },
+    {
+      "M": 364,
+      "complete": true,
+      "nodes": 30642,
+      "cache_hits": 745,
+      "gain_prunes": 28957,
+      "cached_failures": 29897,
+      "elapsed_seconds": 0.440518,
+      "cover": null
+    },
+    {
+      "M": 365,
+      "complete": true,
+      "nodes": 1239,
+      "cache_hits": 2,
+      "gain_prunes": 1191,
+      "cached_failures": 1237,
+      "elapsed_seconds": 0.0184746,
+      "cover": null
+    },
+    {
+      "M": 366,
+      "complete": true,
+      "nodes": 864,
+      "cache_hits": 4,
+      "gain_prunes": 830,
+      "cached_failures": 860,
+      "elapsed_seconds": 0.0155929,
+      "cover": null
+    },
+    {
+      "M": 367,
+      "complete": true,
+      "nodes": 77,
+      "cache_hits": 0,
+      "gain_prunes": 74,
+      "cached_failures": 77,
+      "elapsed_seconds": 0.00257975,
+      "cover": null
+    },
+    {
+      "M": 368,
+      "complete": true,
+      "nodes": 18993,
+      "cache_hits": 485,
+      "gain_prunes": 17848,
+      "cached_failures": 18508,
+      "elapsed_seconds": 0.281682,
+      "cover": null
+    },
+    {
+      "M": 369,
+      "complete": true,
+      "nodes": 25133,
+      "cache_hits": 546,
+      "gain_prunes": 23722,
+      "cached_failures": 24587,
+      "elapsed_seconds": 0.397077,
+      "cover": null
+    },
+    {
+      "M": 370,
+      "complete": true,
+      "nodes": 30228,
+      "cache_hits": 648,
+      "gain_prunes": 28639,
+      "cached_failures": 29580,
+      "elapsed_seconds": 0.453885,
+      "cover": null
+    },
+    {
+      "M": 371,
+      "complete": true,
+      "nodes": 155,
+      "cache_hits": 0,
+      "gain_prunes": 149,
+      "cached_failures": 155,
+      "elapsed_seconds": 0.00286265,
+      "cover": null
+    },
+    {
+      "M": 372,
+      "complete": true,
+      "nodes": 40745,
+      "cache_hits": 505,
+      "gain_prunes": 39072,
+      "cached_failures": 40240,
+      "elapsed_seconds": 0.615391,
+      "cover": null
+    },
+    {
+      "M": 373,
+      "complete": true,
+      "nodes": 103,
+      "cache_hits": 0,
+      "gain_prunes": 99,
+      "cached_failures": 103,
+      "elapsed_seconds": 0.00296425,
+      "cover": null
+    },
+    {
+      "M": 374,
+      "complete": true,
+      "nodes": 40050,
+      "cache_hits": 1109,
+      "gain_prunes": 37687,
+      "cached_failures": 38941,
+      "elapsed_seconds": 0.596128,
+      "cover": null
+    },
+    {
+      "M": 375,
+      "complete": true,
+      "nodes": 17585,
+      "cache_hits": 479,
+      "gain_prunes": 16495,
+      "cached_failures": 17106,
+      "elapsed_seconds": 0.263394,
+      "cover": null
+    },
+    {
+      "M": 376,
+      "complete": true,
+      "nodes": 19608,
+      "cache_hits": 502,
+      "gain_prunes": 18423,
+      "cached_failures": 19106,
+      "elapsed_seconds": 0.29595,
+      "cover": null
+    },
+    {
+      "M": 377,
+      "complete": true,
+      "nodes": 676,
+      "cache_hits": 1,
+      "gain_prunes": 649,
+      "cached_failures": 675,
+      "elapsed_seconds": 0.0107059,
+      "cover": null
+    },
+    {
+      "M": 378,
+      "complete": true,
+      "nodes": 231998,
+      "cache_hits": 6871,
+      "gain_prunes": 218915,
+      "cached_failures": 225127,
+      "elapsed_seconds": 3.52084,
+      "cover": null
+    },
+    {
+      "M": 379,
+      "complete": true,
+      "nodes": 215,
+      "cache_hits": 1,
+      "gain_prunes": 206,
+      "cached_failures": 214,
+      "elapsed_seconds": 0.00420406,
+      "cover": null
+    },
+    {
+      "M": 380,
+      "complete": false,
+      "nodes": 326656,
+      "cache_hits": 12670,
+      "gain_prunes": 304988,
+      "cached_failures": 313981,
+      "elapsed_seconds": 5.00192,
+      "cover": null
+    },
+    {
+      "M": 381,
+      "complete": true,
+      "nodes": 516,
+      "cache_hits": 2,
+      "gain_prunes": 495,
+      "cached_failures": 514,
+      "elapsed_seconds": 0.0101842,
+      "cover": null
+    },
+    {
+      "M": 382,
+      "complete": true,
+      "nodes": 296,
+      "cache_hits": 0,
+      "gain_prunes": 285,
+      "cached_failures": 296,
+      "elapsed_seconds": 0.00534797,
+      "cover": null
+    },
+    {
+      "M": 383,
+      "complete": true,
+      "nodes": 161,
+      "cache_hits": 0,
+      "gain_prunes": 155,
+      "cached_failures": 161,
+      "elapsed_seconds": 0.00467257,
+      "cover": null
+    },
+    {
+      "M": 384,
+      "complete": true,
+      "nodes": 151993,
+      "cache_hits": 2839,
+      "gain_prunes": 145094,
+      "cached_failures": 149154,
+      "elapsed_seconds": 2.36902,
+      "cover": null
+    },
+    {
+      "M": 385,
+      "complete": true,
+      "nodes": 92032,
+      "cache_hits": 1926,
+      "gain_prunes": 87381,
+      "cached_failures": 90106,
+      "elapsed_seconds": 1.45267,
+      "cover": null
+    },
+    {
+      "M": 386,
+      "complete": true,
+      "nodes": 377,
+      "cache_hits": 0,
+      "gain_prunes": 363,
+      "cached_failures": 377,
+      "elapsed_seconds": 0.00885912,
+      "cover": null
+    },
+    {
+      "M": 387,
+      "complete": true,
+      "nodes": 23053,
+      "cache_hits": 564,
+      "gain_prunes": 21712,
+      "cached_failures": 22489,
+      "elapsed_seconds": 0.357532,
+      "cover": null
+    },
+    {
+      "M": 388,
+      "complete": true,
+      "nodes": 15362,
+      "cache_hits": 289,
+      "gain_prunes": 14551,
+      "cached_failures": 15073,
+      "elapsed_seconds": 0.236941,
+      "cover": null
+    },
+    {
+      "M": 389,
+      "complete": true,
+      "nodes": 134,
+      "cache_hits": 0,
+      "gain_prunes": 129,
+      "cached_failures": 134,
+      "elapsed_seconds": 0.00339565,
+      "cover": null
+    },
+    {
+      "M": 390,
+      "complete": true,
+      "nodes": 258667,
+      "cache_hits": 8989,
+      "gain_prunes": 243082,
+      "cached_failures": 249678,
+      "elapsed_seconds": 4.12917,
+      "cover": null
+    },
+    {
+      "M": 391,
+      "complete": true,
+      "nodes": 17070,
+      "cache_hits": 171,
+      "gain_prunes": 16275,
+      "cached_failures": 16899,
+      "elapsed_seconds": 0.276995,
+      "cover": null
+    },
+    {
+      "M": 392,
+      "complete": true,
+      "nodes": 21113,
+      "cache_hits": 612,
+      "gain_prunes": 19810,
+      "cached_failures": 20501,
+      "elapsed_seconds": 0.334887,
+      "cover": null
+    },
+    {
+      "M": 393,
+      "complete": true,
+      "nodes": 481,
+      "cache_hits": 4,
+      "gain_prunes": 460,
+      "cached_failures": 477,
+      "elapsed_seconds": 0.0100731,
+      "cover": null
+    },
+    {
+      "M": 394,
+      "complete": true,
+      "nodes": 421,
+      "cache_hits": 1,
+      "gain_prunes": 405,
+      "cached_failures": 420,
+      "elapsed_seconds": 0.00903195,
+      "cover": null
+    },
+    {
+      "M": 395,
+      "complete": true,
+      "nodes": 1209,
+      "cache_hits": 4,
+      "gain_prunes": 1163,
+      "cached_failures": 1205,
+      "elapsed_seconds": 0.0232427,
+      "cover": null
+    },
+    {
+      "M": 396,
+      "complete": false,
+      "nodes": 292864,
+      "cache_hits": 5000,
+      "gain_prunes": 280603,
+      "cached_failures": 287858,
+      "elapsed_seconds": 5.00613,
+      "cover": null
+    },
+    {
+      "M": 397,
+      "complete": true,
+      "nodes": 111,
+      "cache_hits": 0,
+      "gain_prunes": 107,
+      "cached_failures": 111,
+      "elapsed_seconds": 0.00292993,
+      "cover": null
+    },
+    {
+      "M": 398,
+      "complete": true,
+      "nodes": 337,
+      "cache_hits": 1,
+      "gain_prunes": 324,
+      "cached_failures": 336,
+      "elapsed_seconds": 0.00762154,
+      "cover": null
+    },
+    {
+      "M": 399,
+      "complete": true,
+      "nodes": 3439,
+      "cache_hits": 20,
+      "gain_prunes": 3313,
+      "cached_failures": 3419,
+      "elapsed_seconds": 0.0682324,
+      "cover": null
+    },
+    {
+      "M": 400,
+      "complete": false,
+      "nodes": 294912,
+      "cache_hits": 6908,
+      "gain_prunes": 280248,
+      "cached_failures": 287999,
+      "elapsed_seconds": 5.00533,
+      "cover": null
+    }
+  ],
+  "incomplete_anchors": [
+    288,
+    320,
+    324,
+    340,
+    352,
+    360,
+    380,
+    396,
+    400
+  ],
+  "completed_anchors": 151,
+  "covers_found": 0
+}

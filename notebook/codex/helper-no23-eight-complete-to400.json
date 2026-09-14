@@ -1,0 +1,34 @@
+{
+  "status": "numerical; exact bounded exclusion only",
+  "moving_velocities": 14,
+  "total_runners": 15,
+  "threshold": "1/15",
+  "range": [
+    9,
+    400
+  ],
+  "anchors_complete": 392,
+  "max_rows": 8,
+  "excluded_periods": [
+    2,
+    3
+  ],
+  "covers_found": 0,
+  "incomplete_anchors": [],
+  "completed_search_nodes": 14065130,
+  "separate_implementation_overlap": [
+    31,
+    120
+  ],
+  "sources": {
+    "helper-no23-eight-9-30.json": "623af5f817fd37fdfa08ba7a0cd6ad1494b72fee046342c69c77ac947944c799",
+    "helper-no23-eight-31-120.json": "1cd8adcc3b99a3491fcf35eeae0be7417098a667d5c01944008edeef42455b95",
+    "helper-no23-eight-121-240.json": "2d5dd7e64454e50751d3438faf83d917560779d77d58185dd74aa5d3cff8b35e",
+    "helper-no23-eight-retries.json": "ea61d8e12cb2e820f0074f1ad1900336d9e3dc1b4e852bf0ed8e8c949183c047",
+    "helper-no23-eight-241-400.json": "b33d0fab4b2c9a2250fcbba5240f370ec6caf3332eadabf0168e5be7d4caab7f",
+    "helper-no23-eight-memo-retries.json": "4179443aac259990f465fcf09e6330879fd972bd3e43a795a38b8aac04f036a0"
+  },
+  "python_checker_sha256": "37dea784292f1a2000968dcd315cc511b6185917e5f45458307d3c3f9c487288",
+  "cpp_driver_sha256": "0c8c4fb923cb2486a09b7dbad46ee49e2e9b2973880f2d67b58b71780b5a2609",
+  "cpp_checker_sha256": "abecf2d9f9f422c3a6a2b5787b5d10ed379a79080c028c3425d670216e41f52b"
+}
