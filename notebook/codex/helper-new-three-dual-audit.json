@@ -1,0 +1,334 @@
+{
+  "audits": [
+    {
+      "source_file": "new-core-1-interior-certificate.json",
+      "pattern": [
+        2,
+        12,
+        15,
+        18,
+        26,
+        28,
+        33,
+        36
+      ],
+      "positive_atoms": 48,
+      "total": "3037/500",
+      "finite_max_n": 30,
+      "finite_columns": 10000,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          19
+        ]
+      ],
+      "analytic_tail_start": 25,
+      "tail_residue_classes": [
+        {
+          "residue": 0,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 1,
+          "first_safe_m": 2,
+          "largest_failing_n": 16
+        },
+        {
+          "residue": 2,
+          "first_safe_m": 2,
+          "largest_failing_n": 17
+        },
+        {
+          "residue": 3,
+          "first_safe_m": 2,
+          "largest_failing_n": 18
+        },
+        {
+          "residue": 4,
+          "first_safe_m": 1,
+          "largest_failing_n": 4
+        },
+        {
+          "residue": 5,
+          "first_safe_m": 1,
+          "largest_failing_n": 5
+        },
+        {
+          "residue": 6,
+          "first_safe_m": 1,
+          "largest_failing_n": 6
+        },
+        {
+          "residue": 7,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 8,
+          "first_safe_m": 2,
+          "largest_failing_n": 23
+        },
+        {
+          "residue": 9,
+          "first_safe_m": 2,
+          "largest_failing_n": 24
+        },
+        {
+          "residue": 10,
+          "first_safe_m": 1,
+          "largest_failing_n": 10
+        },
+        {
+          "residue": 11,
+          "first_safe_m": 1,
+          "largest_failing_n": 11
+        },
+        {
+          "residue": 12,
+          "first_safe_m": 1,
+          "largest_failing_n": 12
+        },
+        {
+          "residue": 13,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 14,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        }
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900,
+      "certificate_sha256": "8bd258391ca7b71f95c61cc0d25052022b9d61f4c88b97dbbc04ed1770ca9a0b"
+    },
+    {
+      "source_file": "new-core-2-interior-certificate.json",
+      "pattern": [
+        2,
+        11,
+        13,
+        16,
+        20,
+        24,
+        28,
+        48
+      ],
+      "positive_atoms": 53,
+      "total": "759/125",
+      "finite_max_n": 30,
+      "finite_columns": 13336,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          51
+        ]
+      ],
+      "analytic_tail_start": 25,
+      "tail_residue_classes": [
+        {
+          "residue": 0,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 1,
+          "first_safe_m": 2,
+          "largest_failing_n": 16
+        },
+        {
+          "residue": 2,
+          "first_safe_m": 2,
+          "largest_failing_n": 17
+        },
+        {
+          "residue": 3,
+          "first_safe_m": 2,
+          "largest_failing_n": 18
+        },
+        {
+          "residue": 4,
+          "first_safe_m": 1,
+          "largest_failing_n": 4
+        },
+        {
+          "residue": 5,
+          "first_safe_m": 1,
+          "largest_failing_n": 5
+        },
+        {
+          "residue": 6,
+          "first_safe_m": 1,
+          "largest_failing_n": 6
+        },
+        {
+          "residue": 7,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 8,
+          "first_safe_m": 2,
+          "largest_failing_n": 23
+        },
+        {
+          "residue": 9,
+          "first_safe_m": 2,
+          "largest_failing_n": 24
+        },
+        {
+          "residue": 10,
+          "first_safe_m": 1,
+          "largest_failing_n": 10
+        },
+        {
+          "residue": 11,
+          "first_safe_m": 1,
+          "largest_failing_n": 11
+        },
+        {
+          "residue": 12,
+          "first_safe_m": 1,
+          "largest_failing_n": 12
+        },
+        {
+          "residue": 13,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 14,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        }
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 2560,
+      "certificate_sha256": "172d2fff18c4264824e39a25ad649e7e281586a70774f3295b99e42982617974"
+    },
+    {
+      "source_file": "new-core-3-interior-certificate.json",
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        12,
+        18,
+        26,
+        36
+      ],
+      "positive_atoms": 44,
+      "total": "152/25",
+      "finite_max_n": 30,
+      "finite_columns": 10000,
+      "finite_maximum": "1997/2000",
+      "maximizers": [
+        [
+          2,
+          45
+        ]
+      ],
+      "analytic_tail_start": 25,
+      "tail_residue_classes": [
+        {
+          "residue": 0,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 1,
+          "first_safe_m": 2,
+          "largest_failing_n": 16
+        },
+        {
+          "residue": 2,
+          "first_safe_m": 2,
+          "largest_failing_n": 17
+        },
+        {
+          "residue": 3,
+          "first_safe_m": 2,
+          "largest_failing_n": 18
+        },
+        {
+          "residue": 4,
+          "first_safe_m": 1,
+          "largest_failing_n": 4
+        },
+        {
+          "residue": 5,
+          "first_safe_m": 1,
+          "largest_failing_n": 5
+        },
+        {
+          "residue": 6,
+          "first_safe_m": 1,
+          "largest_failing_n": 6
+        },
+        {
+          "residue": 7,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 8,
+          "first_safe_m": 2,
+          "largest_failing_n": 23
+        },
+        {
+          "residue": 9,
+          "first_safe_m": 2,
+          "largest_failing_n": 24
+        },
+        {
+          "residue": 10,
+          "first_safe_m": 1,
+          "largest_failing_n": 10
+        },
+        {
+          "residue": 11,
+          "first_safe_m": 1,
+          "largest_failing_n": 11
+        },
+        {
+          "residue": 12,
+          "first_safe_m": 1,
+          "largest_failing_n": 12
+        },
+        {
+          "residue": 13,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        },
+        {
+          "residue": 14,
+          "first_safe_m": 0,
+          "largest_failing_n": null
+        }
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900,
+      "certificate_sha256": "ddf7303f93775f4d04c0eaa9300b1c2961ec34153279ac5a656be229a686fbef"
+    }
+  ],
+  "checker_sha256": "3812d4ef47d2074bb74d47ae82def83a3387ab7da1bf18f62f5f8046a9eb2418",
+  "tail_module_sha256": "a1b2d9e4f21bfe317eef9db5681fbdf72e12f445f740c08baefd54c0b2998691"
+}
