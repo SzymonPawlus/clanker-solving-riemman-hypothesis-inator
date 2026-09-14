@@ -1,0 +1,349 @@
+{
+  "status": "sketch; exact algebra and bounded regression of self-contained proof; cross-family review required",
+  "proof_sha256": "956273f2530e02a7bc1557d763dc0c50c171d1c9394b96f401dd4e67e67c34f9",
+  "checker_sha256": "074f9e6ea3b84c0055e823b200447bcedac9655af9462a1b88f066ae97b5ba5a",
+  "N": 32768,
+  "D": 65534,
+  "rho": "131083/983025",
+  "beta": "449199/40960000",
+  "union_upper_bound": "1594490420447/1610588160000",
+  "gap": "16097739553/1610588160000",
+  "kernel_constant_coefficient_checks": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    32768
+  ],
+  "sparse_pair_m_range": [
+    1,
+    500
+  ],
+  "sparse_pair_cases_checked": 500,
+  "boundary_fixtures": [
+    {
+      "m": 1,
+      "M": 8,
+      "intersection": [
+        0
+      ],
+      "count": 1,
+      "periods": [
+        8,
+        8
+      ]
+    },
+    {
+      "m": 74,
+      "M": 227,
+      "intersection": [
+        0
+      ],
+      "count": 1,
+      "periods": [
+        227,
+        227
+      ]
+    },
+    {
+      "m": 75,
+      "M": 230,
+      "intersection": [
+        0
+      ],
+      "count": 1,
+      "periods": [
+        46,
+        230
+      ]
+    },
+    {
+      "m": 76,
+      "M": 233,
+      "intersection": [
+        0,
+        3
+      ],
+      "count": 2,
+      "periods": [
+        233,
+        233
+      ]
+    },
+    {
+      "m": 149,
+      "M": 452,
+      "intersection": [
+        0,
+        3
+      ],
+      "count": 2,
+      "periods": [
+        452,
+        452
+      ]
+    },
+    {
+      "m": 150,
+      "M": 455,
+      "intersection": [
+        0,
+        3
+      ],
+      "count": 2,
+      "periods": [
+        91,
+        455
+      ]
+    },
+    {
+      "m": 151,
+      "M": 458,
+      "intersection": [
+        0,
+        3,
+        6
+      ],
+      "count": 3,
+      "periods": [
+        458,
+        458
+      ]
+    },
+    {
+      "m": 224,
+      "M": 677,
+      "intersection": [
+        0,
+        3,
+        6
+      ],
+      "count": 3,
+      "periods": [
+        677,
+        677
+      ]
+    },
+    {
+      "m": 225,
+      "M": 680,
+      "intersection": [
+        0,
+        3,
+        6
+      ],
+      "count": 3,
+      "periods": [
+        136,
+        680
+      ]
+    },
+    {
+      "m": 226,
+      "M": 683,
+      "intersection": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "count": 4,
+      "periods": [
+        683,
+        683
+      ]
+    },
+    {
+      "m": 299,
+      "M": 902,
+      "intersection": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "count": 4,
+      "periods": [
+        902,
+        902
+      ]
+    },
+    {
+      "m": 300,
+      "M": 905,
+      "intersection": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "count": 4,
+      "periods": [
+        181,
+        905
+      ]
+    },
+    {
+      "m": 301,
+      "M": 908,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "count": 5,
+      "periods": [
+        908,
+        908
+      ]
+    },
+    {
+      "m": 374,
+      "M": 1127,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "count": 5,
+      "periods": [
+        1127,
+        1127
+      ]
+    },
+    {
+      "m": 375,
+      "M": 1130,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12
+      ],
+      "count": 5,
+      "periods": [
+        226,
+        1130
+      ]
+    },
+    {
+      "m": 376,
+      "M": 1133,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15
+      ],
+      "count": 6,
+      "periods": [
+        1133,
+        1133
+      ]
+    },
+    {
+      "m": 449,
+      "M": 1352,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15
+      ],
+      "count": 6,
+      "periods": [
+        1352,
+        1352
+      ]
+    },
+    {
+      "m": 450,
+      "M": 1355,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15
+      ],
+      "count": 6,
+      "periods": [
+        271,
+        1355
+      ]
+    },
+    {
+      "m": 451,
+      "M": 1358,
+      "intersection": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18
+      ],
+      "count": 7,
+      "periods": [
+        1358,
+        1358
+      ]
+    }
+  ]
+}
