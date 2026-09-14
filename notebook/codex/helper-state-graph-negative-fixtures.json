@@ -1,0 +1,26 @@
+[
+  {
+    "fixture": "omitted-qualifying-child",
+    "rejected": true
+  },
+  {
+    "fixture": "invalid-representative",
+    "rejected": true
+  },
+  {
+    "fixture": "missing-root",
+    "rejected": true
+  },
+  {
+    "fixture": "incomplete-campaign",
+    "rejected": true
+  },
+  {
+    "fixture": "unexpected-dual-leaf",
+    "rejected": true
+  },
+  {
+    "fixture": "duplicate-residue",
+    "rejected": true
+  }
+]

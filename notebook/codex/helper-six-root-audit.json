@@ -1,0 +1,12 @@
+{
+  "file": ".worktrees/codex-297-sept14-manager/notebook/codex/issue-297/six-with-two-three-excluded.json",
+  "sha256": "a0ca6e78d93b638c52caf68db9aba30ce884636f006ab87b673b8632325452c6",
+  "mode": "six",
+  "minimum_period": 2,
+  "nodes": 25,
+  "edges": 43,
+  "all_qualifying_physical_rows": 43,
+  "maximum_period": 72,
+  "roots": 1,
+  "complete": true
+}
