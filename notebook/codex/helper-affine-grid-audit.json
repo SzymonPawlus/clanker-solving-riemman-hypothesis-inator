@@ -1,0 +1,730 @@
+{
+  "status": "sketch; exact orbit/boundary regressions support separate algebraic audit",
+  "proof_sha256": "52399ec891f83d0e034acc44055706c6b0e92504699d09660465063c9d18cfe1",
+  "checker_sha256": "2cd0fd65781a00f25bef67211326a4c806554218bd6df98803dafb02572ae041",
+  "fixtures": [
+    {
+      "M": 17,
+      "speeds": [
+        13,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          26,
+          0
+        ],
+        [
+          6,
+          39,
+          0
+        ],
+        [
+          12,
+          52,
+          0
+        ],
+        [
+          20,
+          65,
+          0
+        ],
+        [
+          30,
+          78,
+          0
+        ],
+        [
+          42,
+          91,
+          0
+        ],
+        [
+          56,
+          104,
+          0
+        ]
+      ],
+      "L": 10920,
+      "B": 840,
+      "P": 840,
+      "H": 163800,
+      "g": 1,
+      "d": 1,
+      "q": 17,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        10919
+      ],
+      "direct_orbit_coordinate_checks": 408,
+      "boundary_checks": 132,
+      "old_maximum_bound": 1502504640000,
+      "stronger_maximum_bound": 1788696000
+    },
+    {
+      "M": 30,
+      "speeds": [
+        6,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        11
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          6,
+          0
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          3,
+          6,
+          0
+        ],
+        [
+          4,
+          6,
+          0
+        ],
+        [
+          5,
+          6,
+          0
+        ],
+        [
+          7,
+          6,
+          0
+        ],
+        [
+          11,
+          6,
+          0
+        ]
+      ],
+      "L": 6,
+      "B": 1,
+      "P": 4620,
+      "H": 415800,
+      "g": 6,
+      "d": 6,
+      "q": 5,
+      "d0": 6,
+      "sampled_residues": [
+        0,
+        1,
+        5
+      ],
+      "direct_orbit_coordinate_checks": 120,
+      "boundary_checks": 132,
+      "old_maximum_bound": 2494800,
+      "stronger_maximum_bound": 2494800
+    },
+    {
+      "M": 17,
+      "speeds": [
+        11,
+        7,
+        10,
+        5,
+        3,
+        12,
+        6,
+        8
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -8,
+          2,
+          6
+        ],
+        [
+          -1,
+          4,
+          3
+        ],
+        [
+          -7,
+          5,
+          6
+        ],
+        [
+          -1,
+          2,
+          1
+        ],
+        [
+          -8,
+          4,
+          8
+        ],
+        [
+          -4,
+          4,
+          4
+        ],
+        [
+          6,
+          4,
+          -2
+        ]
+      ],
+      "L": 20,
+      "B": 1,
+      "P": 168,
+      "H": 50400,
+      "g": 1,
+      "d": 1,
+      "q": 17,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        19
+      ],
+      "direct_orbit_coordinate_checks": 408,
+      "boundary_checks": 144,
+      "old_maximum_bound": 1008000,
+      "stronger_maximum_bound": 1008000
+    },
+    {
+      "M": 23,
+      "speeds": [
+        3,
+        16,
+        13,
+        11,
+        8,
+        5,
+        15,
+        20
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          9,
+          6,
+          3
+        ],
+        [
+          -9,
+          5,
+          4
+        ],
+        [
+          7,
+          4,
+          1
+        ],
+        [
+          -7,
+          6,
+          3
+        ],
+        [
+          -6,
+          1,
+          1
+        ],
+        [
+          -3,
+          4,
+          3
+        ],
+        [
+          -2,
+          2,
+          2
+        ]
+      ],
+      "L": 60,
+      "B": 1,
+      "P": 126,
+      "H": 113400,
+      "g": 1,
+      "d": 1,
+      "q": 23,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        59
+      ],
+      "direct_orbit_coordinate_checks": 552,
+      "boundary_checks": 144,
+      "old_maximum_bound": 6804000,
+      "stronger_maximum_bound": 6804000
+    },
+    {
+      "M": 31,
+      "speeds": [
+        13,
+        4,
+        8,
+        30,
+        23,
+        15,
+        14,
+        26
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          6,
+          4,
+          -2
+        ],
+        [
+          -13,
+          6,
+          7
+        ],
+        [
+          14,
+          4,
+          -2
+        ],
+        [
+          13,
+          6,
+          -1
+        ],
+        [
+          13,
+          3,
+          -4
+        ],
+        [
+          8,
+          3,
+          -2
+        ],
+        [
+          8,
+          4,
+          0
+        ]
+      ],
+      "L": 12,
+      "B": 2,
+      "P": 2184,
+      "H": 196560,
+      "g": 1,
+      "d": 1,
+      "q": 31,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        11
+      ],
+      "direct_orbit_coordinate_checks": 744,
+      "boundary_checks": 144,
+      "old_maximum_bound": 4717440,
+      "stronger_maximum_bound": 2358720
+    },
+    {
+      "M": 43,
+      "speeds": [
+        4,
+        24,
+        42,
+        11,
+        25,
+        6,
+        8,
+        18
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -19,
+          4,
+          4
+        ],
+        [
+          -12,
+          5,
+          6
+        ],
+        [
+          -5,
+          6,
+          2
+        ],
+        [
+          -9,
+          2,
+          2
+        ],
+        [
+          3,
+          2,
+          0
+        ],
+        [
+          6,
+          3,
+          0
+        ],
+        [
+          -8,
+          3,
+          2
+        ]
+      ],
+      "L": 60,
+      "B": 1,
+      "P": 6840,
+      "H": 6156000,
+      "g": 1,
+      "d": 1,
+      "q": 43,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        59
+      ],
+      "direct_orbit_coordinate_checks": 1032,
+      "boundary_checks": 144,
+      "old_maximum_bound": 369360000,
+      "stronger_maximum_bound": 369360000
+    },
+    {
+      "M": 61,
+      "speeds": [
+        16,
+        17,
+        27,
+        34,
+        26,
+        48,
+        5,
+        42
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -18,
+          1,
+          5
+        ],
+        [
+          22,
+          4,
+          -4
+        ],
+        [
+          3,
+          5,
+          2
+        ],
+        [
+          -12,
+          2,
+          4
+        ],
+        [
+          15,
+          5,
+          0
+        ],
+        [
+          20,
+          3,
+          -5
+        ],
+        [
+          -15,
+          3,
+          6
+        ]
+      ],
+      "L": 60,
+      "B": 2,
+      "P": 1980,
+      "H": 891000,
+      "g": 1,
+      "d": 1,
+      "q": 61,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        59
+      ],
+      "direct_orbit_coordinate_checks": 1464,
+      "boundary_checks": 144,
+      "old_maximum_bound": 106920000,
+      "stronger_maximum_bound": 53460000
+    },
+    {
+      "M": 79,
+      "speeds": [
+        41,
+        67,
+        24,
+        45,
+        39,
+        62,
+        6,
+        47
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          39,
+          5,
+          -16
+        ],
+        [
+          1,
+          5,
+          1
+        ],
+        [
+          -19,
+          2,
+          11
+        ],
+        [
+          -28,
+          5,
+          17
+        ],
+        [
+          11,
+          6,
+          -1
+        ],
+        [
+          8,
+          2,
+          -4
+        ],
+        [
+          5,
+          1,
+          -2
+        ]
+      ],
+      "L": 30,
+      "B": 1,
+      "P": 2282280,
+      "H": 1027026000,
+      "g": 1,
+      "d": 1,
+      "q": 79,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        29
+      ],
+      "direct_orbit_coordinate_checks": 1896,
+      "boundary_checks": 144,
+      "old_maximum_bound": 30810780000,
+      "stronger_maximum_bound": 30810780000
+    },
+    {
+      "M": 101,
+      "speeds": [
+        84,
+        52,
+        50,
+        54,
+        93,
+        48,
+        13,
+        90
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -9,
+          1,
+          8
+        ],
+        [
+          9,
+          3,
+          -6
+        ],
+        [
+          -42,
+          2,
+          36
+        ],
+        [
+          48,
+          1,
+          -39
+        ],
+        [
+          -26,
+          5,
+          24
+        ],
+        [
+          -32,
+          3,
+          27
+        ],
+        [
+          -4,
+          3,
+          6
+        ]
+      ],
+      "L": 30,
+      "B": 2,
+      "P": 26208,
+      "H": 5896800,
+      "g": 1,
+      "d": 1,
+      "q": 101,
+      "d0": 1,
+      "sampled_residues": [
+        0,
+        1,
+        29
+      ],
+      "direct_orbit_coordinate_checks": 2424,
+      "boundary_checks": 144,
+      "old_maximum_bound": 353808000,
+      "stronger_maximum_bound": 176904000
+    },
+    {
+      "M": 15013,
+      "speeds": [
+        1700,
+        3400,
+        5100,
+        6800,
+        8500,
+        10200,
+        11900,
+        13600
+      ],
+      "triples": [
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          3,
+          1,
+          0
+        ],
+        [
+          4,
+          1,
+          0
+        ],
+        [
+          5,
+          1,
+          0
+        ],
+        [
+          6,
+          1,
+          0
+        ],
+        [
+          7,
+          1,
+          0
+        ],
+        [
+          8,
+          1,
+          0
+        ]
+      ],
+      "L": 1,
+      "B": 1,
+      "P": 840,
+      "H": 12600,
+      "g": 1,
+      "d": 1,
+      "q": 15013,
+      "d0": 1,
+      "sampled_residues": [
+        0
+      ],
+      "direct_orbit_coordinate_checks": 120104,
+      "boundary_checks": 44,
+      "old_maximum_bound": 12600,
+      "stronger_maximum_bound": 12600,
+      "direct_safe_anchor_index": 4
+    }
+  ],
+  "fixture_count": 10,
+  "orbit_coordinate_checks": 129152,
+  "boundary_checks": 1316,
+  "all_primitive_orbits_unrepeated": true
+}
