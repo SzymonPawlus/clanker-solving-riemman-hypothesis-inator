@@ -1,0 +1,6314 @@
+{
+  "status": "sketch; independent Claude or human review required",
+  "manifest_sha256": "5598c63635bf372fbac906943da45ede93c7e5a9b827d49787132a8b9cf676ec",
+  "inventory_sha256": "3615f7a5d74835b93f4d7ec0ff1af3de38c3299eaf73abc2c978327c7d0ebdf8",
+  "checker_sha256": "7b916d178590c3a0fe3926d48fbc7220f3feda70bb94a3121d1024fd5258ef3c",
+  "kernel_sha256": "afca1c205ac03bfbe0a00f71ce6797273769241cba594fee5d1f612ea246e2d0",
+  "scope": "160 specified nine-speed cores, every positive integer scale, five additional positive speeds below scaled maximum",
+  "moving_velocities": 14,
+  "total_runners": 15,
+  "threshold": "1/15",
+  "tail": {
+    "first_n": 15,
+    "slack_150n_minus_51times_2nplus14": 6,
+    "slack_step": 48
+  },
+  "audits": [
+    {
+      "index": 1,
+      "pattern": [
+        1,
+        3,
+        4,
+        7,
+        9,
+        10,
+        11,
+        13,
+        20
+      ],
+      "total": "3187/625",
+      "positive_atoms": 15,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          25
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          4,
+          75
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 2,
+      "pattern": [
+        1,
+        3,
+        4,
+        7,
+        10,
+        11,
+        13,
+        18,
+        20
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          15
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 3,
+      "pattern": [
+        1,
+        3,
+        4,
+        9,
+        10,
+        11,
+        13,
+        14,
+        20
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 14,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          16
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 4,
+      "pattern": [
+        1,
+        3,
+        4,
+        10,
+        11,
+        13,
+        14,
+        18,
+        20
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 14,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          2,
+          15
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          38
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 5,
+      "pattern": [
+        1,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        20
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          15
+        ],
+        [
+          2,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 6,
+      "pattern": [
+        1,
+        3,
+        7,
+        8,
+        10,
+        11,
+        13,
+        18,
+        20
+      ],
+      "total": "3187/625",
+      "positive_atoms": 16,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          2,
+          15
+        ],
+        [
+          2,
+          27
+        ],
+        [
+          3,
+          53
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 7,
+      "pattern": [
+        1,
+        3,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        20
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 16,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 8,
+      "pattern": [
+        1,
+        3,
+        7,
+        9,
+        10,
+        11,
+        13,
+        16,
+        20
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          1
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 9,
+      "pattern": [
+        1,
+        3,
+        7,
+        10,
+        11,
+        12,
+        13,
+        18,
+        20
+      ],
+      "total": "3187/625",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          23
+        ],
+        [
+          3,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 10,
+      "pattern": [
+        1,
+        3,
+        7,
+        10,
+        11,
+        13,
+        16,
+        18,
+        20
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 17,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          2,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 11,
+      "pattern": [
+        1,
+        3,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        20
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 16,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          23
+        ],
+        [
+          2,
+          37
+        ],
+        [
+          3,
+          58
+        ],
+        [
+          3,
+          59
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 12,
+      "pattern": [
+        1,
+        3,
+        8,
+        10,
+        11,
+        13,
+        14,
+        18,
+        20
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 17,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 13,
+      "pattern": [
+        1,
+        3,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        20
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 15,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "14999/15000",
+      "maximizers": [
+        [
+          3,
+          32
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 14,
+      "pattern": [
+        1,
+        3,
+        9,
+        10,
+        11,
+        13,
+        14,
+        16,
+        20
+      ],
+      "total": "3187/625",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          23
+        ],
+        [
+          3,
+          26
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 15,
+      "pattern": [
+        1,
+        3,
+        10,
+        11,
+        12,
+        13,
+        14,
+        18,
+        20
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 16,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          34
+        ],
+        [
+          3,
+          41
+        ],
+        [
+          3,
+          50
+        ],
+        [
+          3,
+          52
+        ],
+        [
+          4,
+          45
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 16,
+      "pattern": [
+        1,
+        3,
+        10,
+        11,
+        13,
+        14,
+        16,
+        18,
+        20
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 17,
+      "required_columns_n_to14": 1271,
+      "checked_columns_n_to30": 5551,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          2,
+          19
+        ],
+        [
+          2,
+          21
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1010
+    },
+    {
+      "index": 17,
+      "pattern": [
+        1,
+        3,
+        5,
+        7,
+        11,
+        13,
+        15,
+        18,
+        22
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1399,
+      "checked_columns_n_to30": 6107,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1120
+    },
+    {
+      "index": 18,
+      "pattern": [
+        1,
+        3,
+        5,
+        9,
+        11,
+        13,
+        14,
+        15,
+        22
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1399,
+      "checked_columns_n_to30": 6107,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          12
+        ],
+        [
+          2,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1120
+    },
+    {
+      "index": 19,
+      "pattern": [
+        1,
+        3,
+        5,
+        11,
+        13,
+        14,
+        15,
+        18,
+        22
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1399,
+      "checked_columns_n_to30": 6107,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          16
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1120
+    },
+    {
+      "index": 20,
+      "pattern": [
+        1,
+        5,
+        6,
+        7,
+        8,
+        11,
+        13,
+        17,
+        24
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "14999/15000",
+      "maximizers": [
+        [
+          3,
+          71
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 21,
+      "pattern": [
+        1,
+        5,
+        6,
+        7,
+        11,
+        13,
+        16,
+        17,
+        24
+      ],
+      "total": "3187/625",
+      "positive_atoms": 17,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          3,
+          47
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 22,
+      "pattern": [
+        1,
+        5,
+        7,
+        8,
+        11,
+        13,
+        17,
+        18,
+        24
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          41
+        ],
+        [
+          2,
+          47
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 23,
+      "pattern": [
+        1,
+        5,
+        7,
+        11,
+        13,
+        16,
+        17,
+        18,
+        24
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 17,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          50
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 24,
+      "pattern": [
+        1,
+        5,
+        8,
+        11,
+        12,
+        13,
+        14,
+        17,
+        24
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          1,
+          21
+        ],
+        [
+          2,
+          47
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 25,
+      "pattern": [
+        1,
+        5,
+        8,
+        12,
+        13,
+        14,
+        17,
+        22,
+        24
+      ],
+      "total": "3187/625",
+      "positive_atoms": 16,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          20
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 26,
+      "pattern": [
+        1,
+        5,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        24
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          19
+        ],
+        [
+          2,
+          19
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 27,
+      "pattern": [
+        1,
+        5,
+        12,
+        13,
+        14,
+        16,
+        17,
+        22,
+        24
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "19997/20000",
+      "maximizers": [
+        [
+          2,
+          33
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 28,
+      "pattern": [
+        1,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        19,
+        24
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          18
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 29,
+      "pattern": [
+        1,
+        7,
+        8,
+        10,
+        12,
+        13,
+        19,
+        22,
+        24
+      ],
+      "total": "25491/5000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          14
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 30,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        12,
+        13,
+        16,
+        19,
+        24
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 16,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          33
+        ],
+        [
+          2,
+          37
+        ],
+        [
+          2,
+          47
+        ],
+        [
+          3,
+          38
+        ],
+        [
+          3,
+          49
+        ],
+        [
+          3,
+          56
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 31,
+      "pattern": [
+        1,
+        7,
+        10,
+        12,
+        13,
+        16,
+        19,
+        22,
+        24
+      ],
+      "total": "3187/625",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1527,
+      "checked_columns_n_to30": 6663,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          45
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1230
+    },
+    {
+      "index": 32,
+      "pattern": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        13,
+        15,
+        22,
+        26
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1655,
+      "checked_columns_n_to30": 7219,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1340
+    },
+    {
+      "index": 33,
+      "pattern": [
+        1,
+        4,
+        6,
+        7,
+        10,
+        11,
+        15,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 34,
+      "pattern": [
+        1,
+        4,
+        6,
+        7,
+        11,
+        15,
+        20,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 26,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          13
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 35,
+      "pattern": [
+        1,
+        4,
+        7,
+        10,
+        11,
+        12,
+        15,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 36,
+      "pattern": [
+        1,
+        4,
+        7,
+        10,
+        11,
+        15,
+        18,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 37,
+      "pattern": [
+        1,
+        4,
+        7,
+        10,
+        11,
+        15,
+        24,
+        26,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          2,
+          53
+        ],
+        [
+          3,
+          40
+        ],
+        [
+          3,
+          82
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 38,
+      "pattern": [
+        1,
+        4,
+        7,
+        11,
+        12,
+        15,
+        20,
+        26,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "19997/20000",
+      "maximizers": [
+        [
+          2,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 39,
+      "pattern": [
+        1,
+        4,
+        7,
+        11,
+        15,
+        18,
+        20,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 40,
+      "pattern": [
+        1,
+        4,
+        7,
+        11,
+        15,
+        20,
+        24,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          21
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          2,
+          37
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 41,
+      "pattern": [
+        1,
+        6,
+        7,
+        8,
+        10,
+        13,
+        15,
+        22,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 25,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 42,
+      "pattern": [
+        1,
+        6,
+        7,
+        8,
+        13,
+        15,
+        20,
+        22,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          21
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          2,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 43,
+      "pattern": [
+        1,
+        6,
+        7,
+        10,
+        11,
+        15,
+        17,
+        26,
+        30
+      ],
+      "total": "25493/5000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          1,
+          24
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          3,
+          38
+        ],
+        [
+          3,
+          86
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 44,
+      "pattern": [
+        1,
+        6,
+        7,
+        10,
+        11,
+        15,
+        21,
+        26,
+        30
+      ],
+      "total": "3187/625",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          24
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          49
+        ],
+        [
+          3,
+          61
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 45,
+      "pattern": [
+        1,
+        6,
+        7,
+        10,
+        13,
+        15,
+        19,
+        22,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          24
+        ],
+        [
+          2,
+          47
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 46,
+      "pattern": [
+        1,
+        6,
+        7,
+        10,
+        13,
+        15,
+        22,
+        27,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          9
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 47,
+      "pattern": [
+        1,
+        6,
+        7,
+        11,
+        15,
+        17,
+        20,
+        26,
+        30
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          29
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          2,
+          45
+        ],
+        [
+          3,
+          79
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 48,
+      "pattern": [
+        1,
+        6,
+        7,
+        11,
+        15,
+        20,
+        21,
+        26,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          12
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 49,
+      "pattern": [
+        1,
+        6,
+        7,
+        13,
+        15,
+        19,
+        20,
+        22,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          2,
+          35
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 50,
+      "pattern": [
+        1,
+        6,
+        7,
+        13,
+        15,
+        20,
+        22,
+        27,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          2,
+          23
+        ],
+        [
+          2,
+          27
+        ],
+        [
+          2,
+          37
+        ],
+        [
+          2,
+          41
+        ],
+        [
+          2,
+          59
+        ],
+        [
+          3,
+          22
+        ],
+        [
+          3,
+          32
+        ],
+        [
+          3,
+          44
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 51,
+      "pattern": [
+        1,
+        6,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          41
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 52,
+      "pattern": [
+        1,
+        6,
+        10,
+        11,
+        13,
+        14,
+        15,
+        23,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 53,
+      "pattern": [
+        1,
+        6,
+        10,
+        11,
+        13,
+        15,
+        16,
+        21,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          19
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 54,
+      "pattern": [
+        1,
+        6,
+        10,
+        11,
+        13,
+        15,
+        21,
+        23,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 55,
+      "pattern": [
+        1,
+        6,
+        10,
+        11,
+        15,
+        16,
+        21,
+        26,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 56,
+      "pattern": [
+        1,
+        6,
+        10,
+        11,
+        15,
+        21,
+        23,
+        26,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 25,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          13
+        ],
+        [
+          3,
+          59
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 57,
+      "pattern": [
+        1,
+        6,
+        11,
+        13,
+        14,
+        15,
+        16,
+        20,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          47
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 58,
+      "pattern": [
+        1,
+        6,
+        11,
+        13,
+        14,
+        15,
+        20,
+        23,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 59,
+      "pattern": [
+        1,
+        6,
+        11,
+        13,
+        15,
+        16,
+        20,
+        21,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          2,
+          35
+        ],
+        [
+          2,
+          49
+        ],
+        [
+          2,
+          53
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 60,
+      "pattern": [
+        1,
+        6,
+        11,
+        13,
+        15,
+        20,
+        21,
+        23,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          59
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 61,
+      "pattern": [
+        1,
+        6,
+        11,
+        15,
+        16,
+        20,
+        21,
+        26,
+        30
+      ],
+      "total": "3187/625",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          43
+        ],
+        [
+          2,
+          47
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 62,
+      "pattern": [
+        1,
+        6,
+        11,
+        15,
+        20,
+        21,
+        23,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          24
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 63,
+      "pattern": [
+        1,
+        7,
+        8,
+        10,
+        12,
+        13,
+        15,
+        22,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          21
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 64,
+      "pattern": [
+        1,
+        7,
+        8,
+        10,
+        13,
+        15,
+        18,
+        22,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 25,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "19997/20000",
+      "maximizers": [
+        [
+          2,
+          35
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 65,
+      "pattern": [
+        1,
+        7,
+        8,
+        10,
+        13,
+        15,
+        22,
+        24,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 66,
+      "pattern": [
+        1,
+        7,
+        8,
+        12,
+        13,
+        15,
+        20,
+        22,
+        30
+      ],
+      "total": "25493/5000",
+      "positive_atoms": 27,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          19
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 67,
+      "pattern": [
+        1,
+        7,
+        8,
+        13,
+        15,
+        18,
+        20,
+        22,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          23
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 68,
+      "pattern": [
+        1,
+        7,
+        8,
+        13,
+        15,
+        20,
+        22,
+        24,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 69,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        12,
+        15,
+        17,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 70,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        12,
+        15,
+        21,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 71,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        15,
+        17,
+        18,
+        26,
+        30
+      ],
+      "total": "3187/625",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          17
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 72,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        15,
+        17,
+        24,
+        26,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          14
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 73,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        15,
+        18,
+        21,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          23
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 74,
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        15,
+        21,
+        24,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          49
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 75,
+      "pattern": [
+        1,
+        7,
+        10,
+        12,
+        13,
+        15,
+        19,
+        22,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 76,
+      "pattern": [
+        1,
+        7,
+        10,
+        12,
+        13,
+        15,
+        22,
+        27,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 77,
+      "pattern": [
+        1,
+        7,
+        10,
+        13,
+        15,
+        18,
+        19,
+        22,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          21
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 78,
+      "pattern": [
+        1,
+        7,
+        10,
+        13,
+        15,
+        18,
+        22,
+        27,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 79,
+      "pattern": [
+        1,
+        7,
+        10,
+        13,
+        15,
+        19,
+        22,
+        24,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          21
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 80,
+      "pattern": [
+        1,
+        7,
+        10,
+        13,
+        15,
+        22,
+        24,
+        27,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          8
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 81,
+      "pattern": [
+        1,
+        7,
+        11,
+        12,
+        15,
+        17,
+        20,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 82,
+      "pattern": [
+        1,
+        7,
+        11,
+        12,
+        15,
+        20,
+        21,
+        26,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 83,
+      "pattern": [
+        1,
+        7,
+        11,
+        15,
+        17,
+        18,
+        20,
+        26,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          1,
+          24
+        ],
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          37
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 84,
+      "pattern": [
+        1,
+        7,
+        11,
+        15,
+        17,
+        20,
+        24,
+        26,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          21
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 85,
+      "pattern": [
+        1,
+        7,
+        11,
+        15,
+        18,
+        20,
+        21,
+        26,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 86,
+      "pattern": [
+        1,
+        7,
+        11,
+        15,
+        20,
+        21,
+        24,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 87,
+      "pattern": [
+        1,
+        7,
+        12,
+        13,
+        15,
+        19,
+        20,
+        22,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          33
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 88,
+      "pattern": [
+        1,
+        7,
+        12,
+        13,
+        15,
+        20,
+        22,
+        27,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "19999/20000",
+      "maximizers": [
+        [
+          2,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 89,
+      "pattern": [
+        1,
+        7,
+        13,
+        15,
+        18,
+        19,
+        20,
+        22,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 90,
+      "pattern": [
+        1,
+        7,
+        13,
+        15,
+        18,
+        20,
+        22,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          41
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 91,
+      "pattern": [
+        1,
+        7,
+        13,
+        15,
+        19,
+        20,
+        22,
+        24,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          2,
+          27
+        ],
+        [
+          2,
+          59
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 92,
+      "pattern": [
+        1,
+        7,
+        13,
+        15,
+        20,
+        22,
+        24,
+        27,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 93,
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        30
+      ],
+      "total": "25493/5000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          2,
+          47
+        ],
+        [
+          2,
+          51
+        ],
+        [
+          2,
+          55
+        ],
+        [
+          3,
+          20
+        ],
+        [
+          3,
+          38
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 94,
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        23,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          21
+        ],
+        [
+          2,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 95,
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        21,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 96,
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        13,
+        15,
+        21,
+        23,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 97,
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        15,
+        16,
+        21,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          19
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 98,
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        15,
+        21,
+        23,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 99,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        18,
+        30
+      ],
+      "total": "25493/5000",
+      "positive_atoms": 14,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 100,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        24,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          1,
+          21
+        ],
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          21
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 101,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        14,
+        15,
+        18,
+        23,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 25,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          24
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 102,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        14,
+        15,
+        23,
+        24,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 103,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        15,
+        16,
+        18,
+        21,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          24
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 104,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        15,
+        16,
+        21,
+        24,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "5999/6000",
+      "maximizers": [
+        [
+          3,
+          61
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 105,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        15,
+        18,
+        21,
+        23,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          24
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 106,
+      "pattern": [
+        1,
+        10,
+        11,
+        13,
+        15,
+        21,
+        23,
+        24,
+        30
+      ],
+      "total": "3187/625",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          2,
+          25
+        ],
+        [
+          2,
+          27
+        ],
+        [
+          2,
+          43
+        ],
+        [
+          3,
+          43
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 107,
+      "pattern": [
+        1,
+        10,
+        11,
+        15,
+        16,
+        18,
+        21,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 108,
+      "pattern": [
+        1,
+        10,
+        11,
+        15,
+        16,
+        21,
+        24,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 109,
+      "pattern": [
+        1,
+        10,
+        11,
+        15,
+        18,
+        21,
+        23,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          20
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 110,
+      "pattern": [
+        1,
+        10,
+        11,
+        15,
+        21,
+        23,
+        24,
+        26,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          12
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 111,
+      "pattern": [
+        1,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        20,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          37
+        ],
+        [
+          2,
+          45
+        ],
+        [
+          3,
+          37
+        ],
+        [
+          3,
+          59
+        ],
+        [
+          3,
+          76
+        ],
+        [
+          3,
+          82
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 112,
+      "pattern": [
+        1,
+        11,
+        12,
+        13,
+        14,
+        15,
+        20,
+        23,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 113,
+      "pattern": [
+        1,
+        11,
+        12,
+        13,
+        15,
+        16,
+        20,
+        21,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "19997/20000",
+      "maximizers": [
+        [
+          2,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 114,
+      "pattern": [
+        1,
+        11,
+        12,
+        13,
+        15,
+        20,
+        21,
+        23,
+        30
+      ],
+      "total": "3187/625",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          21
+        ],
+        [
+          2,
+          55
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 115,
+      "pattern": [
+        1,
+        11,
+        12,
+        15,
+        16,
+        20,
+        21,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          17
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 116,
+      "pattern": [
+        1,
+        11,
+        12,
+        15,
+        20,
+        21,
+        23,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          51
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 117,
+      "pattern": [
+        1,
+        11,
+        13,
+        14,
+        15,
+        16,
+        18,
+        20,
+        30
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          23
+        ],
+        [
+          2,
+          29
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          2,
+          35
+        ],
+        [
+          3,
+          61
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 118,
+      "pattern": [
+        1,
+        11,
+        13,
+        14,
+        15,
+        16,
+        20,
+        24,
+        30
+      ],
+      "total": "50993/10000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          47
+        ],
+        [
+          2,
+          59
+        ],
+        [
+          3,
+          59
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 119,
+      "pattern": [
+        1,
+        11,
+        13,
+        14,
+        15,
+        18,
+        20,
+        23,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          23
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 120,
+      "pattern": [
+        1,
+        11,
+        13,
+        14,
+        15,
+        20,
+        23,
+        24,
+        30
+      ],
+      "total": "3187/625",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          45
+        ],
+        [
+          2,
+          53
+        ],
+        [
+          2,
+          59
+        ],
+        [
+          3,
+          71
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 121,
+      "pattern": [
+        1,
+        11,
+        13,
+        15,
+        16,
+        18,
+        20,
+        21,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 122,
+      "pattern": [
+        1,
+        11,
+        13,
+        15,
+        16,
+        20,
+        21,
+        24,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          43
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 123,
+      "pattern": [
+        1,
+        11,
+        13,
+        15,
+        18,
+        20,
+        21,
+        23,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          2,
+          31
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 124,
+      "pattern": [
+        1,
+        11,
+        13,
+        15,
+        20,
+        21,
+        23,
+        24,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          41
+        ],
+        [
+          3,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 125,
+      "pattern": [
+        1,
+        11,
+        15,
+        16,
+        18,
+        20,
+        21,
+        26,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          51
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 126,
+      "pattern": [
+        1,
+        11,
+        15,
+        16,
+        20,
+        21,
+        24,
+        26,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 26,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 127,
+      "pattern": [
+        1,
+        11,
+        15,
+        18,
+        20,
+        21,
+        23,
+        26,
+        30
+      ],
+      "total": "25493/5000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          24
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          25
+        ],
+        [
+          2,
+          31
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 128,
+      "pattern": [
+        1,
+        11,
+        15,
+        20,
+        21,
+        23,
+        24,
+        26,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 129,
+      "pattern": [
+        2,
+        6,
+        7,
+        10,
+        11,
+        13,
+        15,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          28
+        ],
+        [
+          2,
+          55
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 130,
+      "pattern": [
+        2,
+        6,
+        7,
+        10,
+        11,
+        13,
+        15,
+        28,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 131,
+      "pattern": [
+        2,
+        6,
+        7,
+        10,
+        11,
+        13,
+        15,
+        29,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          16
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 132,
+      "pattern": [
+        2,
+        6,
+        7,
+        10,
+        13,
+        15,
+        22,
+        27,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          2,
+          11
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 133,
+      "pattern": [
+        2,
+        6,
+        7,
+        11,
+        13,
+        15,
+        20,
+        27,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          18
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          37
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 134,
+      "pattern": [
+        2,
+        6,
+        7,
+        11,
+        13,
+        15,
+        20,
+        28,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 135,
+      "pattern": [
+        2,
+        6,
+        7,
+        11,
+        13,
+        15,
+        20,
+        29,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          19
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 136,
+      "pattern": [
+        2,
+        6,
+        7,
+        13,
+        15,
+        20,
+        22,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          2,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 137,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        12,
+        13,
+        15,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 138,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        12,
+        13,
+        15,
+        28,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          9
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 139,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        12,
+        13,
+        15,
+        29,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          23
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 140,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        13,
+        15,
+        18,
+        27,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 141,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        13,
+        15,
+        18,
+        28,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          2,
+          15
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 142,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        13,
+        15,
+        18,
+        29,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 143,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        13,
+        15,
+        24,
+        27,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 26,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          22
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 144,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        13,
+        15,
+        24,
+        28,
+        30
+      ],
+      "total": "50981/10000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 145,
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        13,
+        15,
+        24,
+        29,
+        30
+      ],
+      "total": "50987/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          18
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 146,
+      "pattern": [
+        2,
+        7,
+        10,
+        12,
+        13,
+        15,
+        22,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          23
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 147,
+      "pattern": [
+        2,
+        7,
+        10,
+        13,
+        15,
+        18,
+        22,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          24
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 148,
+      "pattern": [
+        2,
+        7,
+        10,
+        13,
+        15,
+        22,
+        24,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          18
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 149,
+      "pattern": [
+        2,
+        7,
+        11,
+        12,
+        13,
+        15,
+        20,
+        27,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 23,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          14
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 150,
+      "pattern": [
+        2,
+        7,
+        11,
+        12,
+        13,
+        15,
+        20,
+        28,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          10
+        ],
+        [
+          3,
+          71
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 151,
+      "pattern": [
+        2,
+        7,
+        11,
+        12,
+        13,
+        15,
+        20,
+        29,
+        30
+      ],
+      "total": "6373/1250",
+      "positive_atoms": 26,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          27
+        ],
+        [
+          3,
+          86
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 152,
+      "pattern": [
+        2,
+        7,
+        11,
+        13,
+        15,
+        18,
+        20,
+        27,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 21,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 153,
+      "pattern": [
+        2,
+        7,
+        11,
+        13,
+        15,
+        18,
+        20,
+        28,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 154,
+      "pattern": [
+        2,
+        7,
+        11,
+        13,
+        15,
+        18,
+        20,
+        29,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          17
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 155,
+      "pattern": [
+        2,
+        7,
+        11,
+        13,
+        15,
+        20,
+        24,
+        27,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 20,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          40
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 156,
+      "pattern": [
+        2,
+        7,
+        11,
+        13,
+        15,
+        20,
+        24,
+        28,
+        30
+      ],
+      "total": "50989/10000",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 157,
+      "pattern": [
+        2,
+        7,
+        11,
+        13,
+        15,
+        20,
+        24,
+        29,
+        30
+      ],
+      "total": "12747/2500",
+      "positive_atoms": 22,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "4999/5000",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          18
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          3,
+          25
+        ],
+        [
+          4,
+          25
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 158,
+      "pattern": [
+        2,
+        7,
+        12,
+        13,
+        15,
+        20,
+        22,
+        27,
+        30
+      ],
+      "total": "50991/10000",
+      "positive_atoms": 18,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          27
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 159,
+      "pattern": [
+        2,
+        7,
+        13,
+        15,
+        18,
+        20,
+        22,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 24,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          17
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    },
+    {
+      "index": 160,
+      "pattern": [
+        2,
+        7,
+        13,
+        15,
+        20,
+        22,
+        24,
+        27,
+        30
+      ],
+      "total": "5099/1000",
+      "positive_atoms": 19,
+      "required_columns_n_to14": 1911,
+      "checked_columns_n_to30": 8331,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          43
+        ]
+      ],
+      "literal_lift_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1560
+    }
+  ],
+  "complete": true,
+  "core_count": 160,
+  "positive_atoms": 3344,
+  "required_columns_n_to14": 289120,
+  "checked_columns_n_to30": 1260680,
+  "literal_lift_columns": 235300,
+  "least_mass": "50981/10000",
+  "maximum_bad_mass": "19999/20000"
+}
