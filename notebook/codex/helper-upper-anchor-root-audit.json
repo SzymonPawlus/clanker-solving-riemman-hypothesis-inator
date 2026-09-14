@@ -1,0 +1,46 @@
+{
+  "status": "PASS; same-family audit, sketch pending Claude/human review",
+  "graph_sha256": "17d8cb6916e455d94723dad2ed8d466d81df52e4743bcde2fdbeeb488128d4a3",
+  "roots": 169,
+  "states": 279,
+  "edges": 151,
+  "qualifying_physical_rows": 210,
+  "maximum_residual_period": 180,
+  "sharp_example": {
+    "anchor": 12,
+    "killers": [
+      4,
+      5,
+      6,
+      7,
+      11,
+      13
+    ],
+    "private_indices": {
+      "4": [
+        3,
+        9
+      ],
+      "5": [
+        7
+      ],
+      "6": [
+        2,
+        4,
+        8,
+        10
+      ],
+      "7": [
+        5
+      ],
+      "11": [
+        1
+      ],
+      "13": [
+        11
+      ]
+    }
+  },
+  "checker_sha256": "e619e71afb83b15e21df2b39a0c47e05c6181c8cf2c380e9b6e688d1e5a958e7",
+  "common_checker_sha256": "29a7c18ec19dd87b457ccb1fb409ae96d90ba81b6613ac29c59be93eee4967eb"
+}
