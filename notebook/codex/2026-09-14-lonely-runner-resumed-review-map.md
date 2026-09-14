@@ -7,8 +7,10 @@ fourteen moving velocities, fifteen total runners, threshold 1/15. It is not sol
 
 The original cycle was interrupted by a usage limit and lost temporary files.
 The manager resumed productively at 2026-09-14 21:19:50 UTC in its persistent
-worktree. This checkpoint was assembled at 22:15--22:18 UTC; work continues
-through at least 22:21 UTC. The interruption and waiting are not counted.
+worktree. This checkpoint was assembled at 22:15--22:18 UTC. The manager remained
+productive through 22:21:32 UTC (61 minutes 42 seconds), then finalized
+publication and the last arriving audit hashes. The interruption and waiting
+are not counted.
 
 ## Frozen mathematical results and independent checks
 
@@ -96,3 +98,23 @@ after 300 seconds, with a 240-second continuation running. Period 7:
 1,047 states, 248 open, 796 closed subgraphs, zero closed roots. Period 8:
 2,503 states, 408 open after 300 seconds. Period 9's capped pass was still
 running. These figures are progress, not exclusion certificates.
+
+## Final affine sieve and publication
+
+Helper 02c57bc proves a further candidate reduction: every common-strip affine
+open-cell cover with fewer than ten rows has a slope divisible by 15. At
+z_j=(x+j)/15, a row is bad exactly when a_i*j is 0 or 14 modulo 15. Without
+a slope divisible by 15, the eight unit indices require eight unit slopes;
+index 3 requires another slope divisible by 5, and index 5 another divisible
+by 3. Those two rows are distinct. An exact audit of all 16,384 nonzero-residue
+subsets confirms minimum ten and eight minimizers; 2,400 literal phase checks
+agree. The manager independently checked both the eight-row argument and
+this strengthening. It excludes the earlier no-15 composite subfamily as a
+source of affine eight-row covers; the general power-of-three lift survives.
+
+The public central checkpoint is
+[issue 297, resumed review map](https://github.com/SzymonPawlus/clanker-solving-riemman-hypothesis-inator/issues/297#issuecomment-5671610589).
+Manager f3287e4 contains the review map and the opposite/doubled-slope proof;
+this final journal-only addition records the last helper result and actual
+time. All substantive manager work is frozen and pushed, with no essential
+untracked files.
