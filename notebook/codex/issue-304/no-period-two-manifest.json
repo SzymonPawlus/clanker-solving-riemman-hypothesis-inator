@@ -1,0 +1,188 @@
+{
+  "status": "sketch; author exact generation completed; independent replay pending",
+  "total_states": 1462,
+  "cases": [
+    {
+      "p": 3,
+      "roots": 1,
+      "states": 364,
+      "edges": 475,
+      "dead_ends": 168,
+      "max_period": 1020,
+      "complete": true,
+      "kinds": {
+        "branch": 364
+      },
+      "sha256": "4d3f2a34ea1a31e94514387b83a2a497b4b8027fdf4a708a33a536cd76c88560"
+    },
+    {
+      "p": 4,
+      "roots": 1,
+      "states": 134,
+      "edges": 148,
+      "dead_ends": 103,
+      "max_period": 612,
+      "complete": true,
+      "kinds": {
+        "branch": 134
+      },
+      "sha256": "3f2f199dd78e0967e251db37d34ea8e8d65b2b874a56a6162b78a58c6cad6757"
+    },
+    {
+      "p": 5,
+      "roots": 1,
+      "states": 62,
+      "edges": 61,
+      "dead_ends": 41,
+      "max_period": 765,
+      "complete": true,
+      "kinds": {
+        "branch": 62
+      },
+      "sha256": "b1741d30cbacfe0c6be06f6a9b84cfcf7305bd8c9cd6231bf3d6e31a60f8300d"
+    },
+    {
+      "p": 6,
+      "roots": 1,
+      "states": 64,
+      "edges": 67,
+      "dead_ends": 48,
+      "max_period": 510,
+      "complete": true,
+      "kinds": {
+        "branch": 64
+      },
+      "sha256": "cf6e9f46d8ad6c8b28b6e812e5c12ebc21b01c5db685f08061b1a3942a4a7f44"
+    },
+    {
+      "p": 7,
+      "roots": 1,
+      "states": 103,
+      "edges": 106,
+      "dead_ends": 79,
+      "max_period": 1190,
+      "complete": true,
+      "kinds": {
+        "branch": 103
+      },
+      "sha256": "ca9fa80719a471a9d844a7cbbea128d6055dc2aa922c647ff6ed86ada7c07e32"
+    },
+    {
+      "p": 8,
+      "roots": 1,
+      "states": 63,
+      "edges": 66,
+      "dead_ends": 47,
+      "max_period": 1224,
+      "complete": true,
+      "kinds": {
+        "branch": 63
+      },
+      "sha256": "581e6fa8b996b8dbc9602a1edb05e7d33e2b35d167bd52afc5c562469dd4f378"
+    },
+    {
+      "p": 9,
+      "roots": 3,
+      "states": 124,
+      "edges": 121,
+      "dead_ends": 83,
+      "max_period": 1530,
+      "complete": true,
+      "kinds": {
+        "branch": 124
+      },
+      "sha256": "b8b29ed2daf0864f87eeb3b2dda549a61b0b296814900f3071e95221572357b0"
+    },
+    {
+      "p": 10,
+      "roots": 3,
+      "states": 64,
+      "edges": 61,
+      "dead_ends": 59,
+      "max_period": 240,
+      "complete": true,
+      "kinds": {
+        "branch": 64
+      },
+      "sha256": "db188b2bbe2d9beada4d49e7b859be2d3d051238f4b0c4028bfe32a373194b38"
+    },
+    {
+      "p": 11,
+      "roots": 7,
+      "states": 105,
+      "edges": 98,
+      "dead_ends": 91,
+      "max_period": 528,
+      "complete": true,
+      "kinds": {
+        "branch": 105
+      },
+      "sha256": "f92c8de9a4edda7ccadbfada7ad9ed59c7c1f21840636dddf14aded9c6bccd37"
+    },
+    {
+      "p": 12,
+      "roots": 4,
+      "states": 32,
+      "edges": 28,
+      "dead_ends": 23,
+      "max_period": 816,
+      "complete": true,
+      "kinds": {
+        "branch": 32
+      },
+      "sha256": "52a53007693fd5c7c51b2c1695d7667551c5d51af936da7046ef42b84045d264"
+    },
+    {
+      "p": 13,
+      "roots": 11,
+      "states": 121,
+      "edges": 110,
+      "dead_ends": 110,
+      "max_period": 312,
+      "complete": true,
+      "kinds": {
+        "branch": 121
+      },
+      "sha256": "49418253212ee36395c2bec8e2ef77f2386650a73f7d94db1839701a58743a1e"
+    },
+    {
+      "p": 14,
+      "roots": 6,
+      "states": 64,
+      "edges": 58,
+      "dead_ends": 58,
+      "max_period": 238,
+      "complete": true,
+      "kinds": {
+        "branch": 64
+      },
+      "sha256": "895d7dcb30fb9235e6ea69bec53cf9bcdad310314070a30da4a5dee578176268"
+    },
+    {
+      "p": 15,
+      "roots": 8,
+      "states": 92,
+      "edges": 84,
+      "dead_ends": 84,
+      "max_period": 255,
+      "complete": true,
+      "kinds": {
+        "branch": 92
+      },
+      "sha256": "acf46a9e4a708621703952c0face4387295ab6f1d7b4efd0484b157c4a094efa"
+    },
+    {
+      "p": 16,
+      "roots": 8,
+      "states": 70,
+      "edges": 62,
+      "dead_ends": 62,
+      "max_period": 272,
+      "complete": true,
+      "kinds": {
+        "branch": 70
+      },
+      "sha256": "d4a9fef0a08793d4bc5fedd1e447c3251bb5f2e10ee9885b23240a7ea2e2916f"
+    }
+  ]
+}
