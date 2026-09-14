@@ -1,0 +1,22 @@
+[
+  {
+    "fixture": "omitted-root",
+    "rejected": true
+  },
+  {
+    "fixture": "omitted-child",
+    "rejected": true
+  },
+  {
+    "fixture": "incomplete-certificate",
+    "rejected": true
+  },
+  {
+    "fixture": "lost-physical-period",
+    "rejected": true
+  },
+  {
+    "fixture": "forbidden-ratio-equality",
+    "rejected": true
+  }
+]

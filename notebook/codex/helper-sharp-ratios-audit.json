@@ -1,0 +1,75 @@
+{
+  "status": "PASS; same-family audit, sketch pending Claude/human review",
+  "elapsed_seconds": 4.144075428000178,
+  "graphs": [
+    {
+      "rows": 2,
+      "strict_ratio": "15/2",
+      "roots": 1,
+      "states": 1,
+      "edges": 0,
+      "qualifying_physical_rows": 0,
+      "density_pruned_periods": 0,
+      "maximum_period": 2,
+      "graph_sha256": "3249b5716af5e8df0b8fc7c2c4e151f904aeab0628b20974d9a2b3669f261cef"
+    },
+    {
+      "rows": 3,
+      "strict_ratio": "15/4",
+      "roots": 4,
+      "states": 5,
+      "edges": 1,
+      "qualifying_physical_rows": 1,
+      "density_pruned_periods": 5,
+      "maximum_period": 4,
+      "graph_sha256": "17440ed103410044ffe27dfbd27ba20e633b44531d2a2fc54564764984b0d9bc"
+    },
+    {
+      "rows": 4,
+      "strict_ratio": "13/6",
+      "roots": 13,
+      "states": 16,
+      "edges": 4,
+      "qualifying_physical_rows": 6,
+      "density_pruned_periods": 36,
+      "maximum_period": 7,
+      "graph_sha256": "27aae1008434fae346cc4e09c7b1629696148ce0591e5bdbc1b5395c2d43da42"
+    },
+    {
+      "rows": 5,
+      "strict_ratio": "11/6",
+      "roots": 72,
+      "states": 96,
+      "edges": 30,
+      "qualifying_physical_rows": 36,
+      "density_pruned_periods": 422,
+      "maximum_period": 24,
+      "graph_sha256": "7776a98c6cc08418d286890e6754c62d1042e9e80d1f8c6abc907e675ba0ead2"
+    },
+    {
+      "rows": 6,
+      "strict_ratio": "13/12",
+      "roots": 169,
+      "states": 279,
+      "edges": 151,
+      "qualifying_physical_rows": 210,
+      "density_pruned_periods": 2202,
+      "maximum_period": 180,
+      "graph_sha256": "17d8cb6916e455d94723dad2ed8d466d81df52e4743bcde2fdbeeb488128d4a3"
+    },
+    {
+      "rows": 7,
+      "strict_ratio": "1/2",
+      "roots": 1264,
+      "states": 1541,
+      "edges": 330,
+      "qualifying_physical_rows": 358,
+      "density_pruned_periods": 36354,
+      "maximum_period": 1020,
+      "graph_sha256": "f5d83cf11e0fa49f5d5c8e78f8a9c90e42c3f4aab2ff4fe38399c23efc8fd260"
+    }
+  ],
+  "sharp_examples": 7,
+  "checker_sha256": "3fe4986a66053818b0fa24bbfd26d75e9733dcc026ef86bfa5e7c03e3cb84b6d",
+  "common_checker_sha256": "29a7c18ec19dd87b457ccb1fb409ae96d90ba81b6613ac29c59be93eee4967eb"
+}
