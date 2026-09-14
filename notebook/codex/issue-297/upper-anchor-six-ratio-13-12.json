@@ -1,0 +1,131 @@
+{
+  "status": "numerical/exact exploratory search",
+  "ratio_bound_strict": "13/12",
+  "complete": true,
+  "cover_found": null,
+  "nodes": 279,
+  "maximum_residual_period": 180,
+  "reports": [
+    {
+      "minimum_period": 2,
+      "roots": 1,
+      "states": 68
+    },
+    {
+      "minimum_period": 3,
+      "roots": 1,
+      "states": 14
+    },
+    {
+      "minimum_period": 4,
+      "roots": 1,
+      "states": 6
+    },
+    {
+      "minimum_period": 5,
+      "roots": 1,
+      "states": 3
+    },
+    {
+      "minimum_period": 6,
+      "roots": 1,
+      "states": 5
+    },
+    {
+      "minimum_period": 7,
+      "roots": 1,
+      "states": 5
+    },
+    {
+      "minimum_period": 8,
+      "roots": 1,
+      "states": 5
+    },
+    {
+      "minimum_period": 9,
+      "roots": 3,
+      "states": 9
+    },
+    {
+      "minimum_period": 10,
+      "roots": 3,
+      "states": 3
+    },
+    {
+      "minimum_period": 11,
+      "roots": 7,
+      "states": 7
+    },
+    {
+      "minimum_period": 12,
+      "roots": 4,
+      "states": 5
+    },
+    {
+      "minimum_period": 13,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 14,
+      "roots": 7,
+      "states": 7
+    },
+    {
+      "minimum_period": 15,
+      "roots": 9,
+      "states": 9
+    },
+    {
+      "minimum_period": 16,
+      "roots": 9,
+      "states": 10
+    },
+    {
+      "minimum_period": 17,
+      "roots": 17,
+      "states": 20
+    },
+    {
+      "minimum_period": 18,
+      "roots": 7,
+      "states": 7
+    },
+    {
+      "minimum_period": 19,
+      "roots": 19,
+      "states": 19
+    },
+    {
+      "minimum_period": 20,
+      "roots": 9,
+      "states": 9
+    },
+    {
+      "minimum_period": 21,
+      "roots": 13,
+      "states": 13
+    },
+    {
+      "minimum_period": 22,
+      "roots": 11,
+      "states": 11
+    },
+    {
+      "minimum_period": 23,
+      "roots": 23,
+      "states": 23
+    },
+    {
+      "minimum_period": 24,
+      "roots": 9,
+      "states": 9
+    }
+  ],
+  "elapsed_seconds": 0.046691957999883016,
+  "graph_file": "upper-anchor-six-ratio-13-12.graph.json",
+  "graph_sha256": "17d8cb6916e455d94723dad2ed8d466d81df52e4743bcde2fdbeeb488128d4a3",
+  "code_sha256": "fd1c2a514b32f709ca7ee2466dd8d065ac2fa3f986a41b439452e42a37eabbee",
+  "edges": 151,
+  "roots": 169
+}

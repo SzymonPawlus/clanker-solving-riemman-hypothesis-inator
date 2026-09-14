@@ -1,0 +1,654 @@
+{
+  "status": "sketch; exact complete DAG",
+  "scope": "at most six maximal-anchor killers with reduced periods two and three",
+  "root": [
+    4,
+    6,
+    "0x22"
+  ],
+  "states": [
+    {
+      "remaining": 4,
+      "period": 6,
+      "missing_hex": "0x22",
+      "children": [
+        {
+          "row": [
+            12,
+            5
+          ],
+          "state": [
+            3,
+            12,
+            "0x822"
+          ]
+        },
+        {
+          "row": [
+            12,
+            7
+          ],
+          "state": [
+            3,
+            12,
+            "0x882"
+          ]
+        },
+        {
+          "row": [
+            12,
+            11
+          ],
+          "state": [
+            3,
+            12,
+            "0x8a0"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            3,
+            18,
+            "0x28a0"
+          ]
+        },
+        {
+          "row": [
+            24,
+            5
+          ],
+          "state": [
+            3,
+            24,
+            "0x822882"
+          ]
+        },
+        {
+          "row": [
+            24,
+            7
+          ],
+          "state": [
+            3,
+            24,
+            "0x882822"
+          ]
+        },
+        {
+          "row": [
+            24,
+            1
+          ],
+          "state": [
+            3,
+            24,
+            "0xa28a0"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 3,
+      "period": 12,
+      "missing_hex": "0x822",
+      "children": [
+        {
+          "row": [
+            12,
+            11
+          ],
+          "state": [
+            2,
+            6,
+            "0x20"
+          ]
+        },
+        {
+          "row": [
+            12,
+            7
+          ],
+          "state": [
+            2,
+            12,
+            "0x802"
+          ]
+        },
+        {
+          "row": [
+            24,
+            1
+          ],
+          "state": [
+            2,
+            24,
+            "0x22820"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            2,
+            36,
+            "0x22802820"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 6,
+      "missing_hex": "0x20",
+      "children": [
+        {
+          "row": [
+            12,
+            7
+          ],
+          "state": [
+            1,
+            12,
+            "0x800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 1,
+      "period": 12,
+      "missing_hex": "0x800",
+      "children": []
+    },
+    {
+      "remaining": 2,
+      "period": 12,
+      "missing_hex": "0x802",
+      "children": [
+        {
+          "row": [
+            12,
+            11
+          ],
+          "state": [
+            1,
+            12,
+            "0x800"
+          ]
+        },
+        {
+          "row": [
+            24,
+            1
+          ],
+          "state": [
+            1,
+            24,
+            "0x2800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 1,
+      "period": 24,
+      "missing_hex": "0x2800",
+      "children": []
+    },
+    {
+      "remaining": 2,
+      "period": 24,
+      "missing_hex": "0x22820",
+      "children": [
+        {
+          "row": [
+            12,
+            7
+          ],
+          "state": [
+            1,
+            24,
+            "0x2800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 36,
+      "missing_hex": "0x22802820",
+      "children": []
+    },
+    {
+      "remaining": 3,
+      "period": 12,
+      "missing_hex": "0x882",
+      "children": [
+        {
+          "row": [
+            12,
+            5
+          ],
+          "state": [
+            2,
+            12,
+            "0x802"
+          ]
+        },
+        {
+          "row": [
+            12,
+            11
+          ],
+          "state": [
+            2,
+            12,
+            "0x880"
+          ]
+        },
+        {
+          "row": [
+            24,
+            1
+          ],
+          "state": [
+            2,
+            24,
+            "0x82880"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            2,
+            36,
+            "0x82802880"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 12,
+      "missing_hex": "0x880",
+      "children": [
+        {
+          "row": [
+            12,
+            5
+          ],
+          "state": [
+            1,
+            12,
+            "0x800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 24,
+      "missing_hex": "0x82880",
+      "children": [
+        {
+          "row": [
+            12,
+            5
+          ],
+          "state": [
+            1,
+            24,
+            "0x2800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 36,
+      "missing_hex": "0x82802880",
+      "children": []
+    },
+    {
+      "remaining": 3,
+      "period": 12,
+      "missing_hex": "0x8a0",
+      "children": [
+        {
+          "row": [
+            12,
+            5
+          ],
+          "state": [
+            2,
+            6,
+            "0x20"
+          ]
+        },
+        {
+          "row": [
+            12,
+            7
+          ],
+          "state": [
+            2,
+            12,
+            "0x880"
+          ]
+        },
+        {
+          "row": [
+            24,
+            5
+          ],
+          "state": [
+            2,
+            24,
+            "0x820880"
+          ]
+        },
+        {
+          "row": [
+            24,
+            7
+          ],
+          "state": [
+            2,
+            24,
+            "0x880820"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            2,
+            36,
+            "0xa08008a0"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 24,
+      "missing_hex": "0x820880",
+      "children": [
+        {
+          "row": [
+            24,
+            7
+          ],
+          "state": [
+            1,
+            12,
+            "0x800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 24,
+      "missing_hex": "0x880820",
+      "children": [
+        {
+          "row": [
+            24,
+            5
+          ],
+          "state": [
+            1,
+            12,
+            "0x800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 36,
+      "missing_hex": "0xa08008a0",
+      "children": []
+    },
+    {
+      "remaining": 3,
+      "period": 18,
+      "missing_hex": "0x28a0",
+      "children": []
+    },
+    {
+      "remaining": 3,
+      "period": 24,
+      "missing_hex": "0x822882",
+      "children": [
+        {
+          "row": [
+            24,
+            7
+          ],
+          "state": [
+            2,
+            12,
+            "0x802"
+          ]
+        },
+        {
+          "row": [
+            24,
+            1
+          ],
+          "state": [
+            2,
+            24,
+            "0x22880"
+          ]
+        },
+        {
+          "row": [
+            12,
+            11
+          ],
+          "state": [
+            2,
+            24,
+            "0x820880"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            2,
+            72,
+            "0x22802820082802880"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 24,
+      "missing_hex": "0x22880",
+      "children": [
+        {
+          "row": [
+            24,
+            7
+          ],
+          "state": [
+            1,
+            24,
+            "0x2800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 72,
+      "missing_hex": "0x22802820082802880",
+      "children": []
+    },
+    {
+      "remaining": 3,
+      "period": 24,
+      "missing_hex": "0x882822",
+      "children": [
+        {
+          "row": [
+            24,
+            5
+          ],
+          "state": [
+            2,
+            12,
+            "0x802"
+          ]
+        },
+        {
+          "row": [
+            24,
+            1
+          ],
+          "state": [
+            2,
+            24,
+            "0x82820"
+          ]
+        },
+        {
+          "row": [
+            12,
+            11
+          ],
+          "state": [
+            2,
+            24,
+            "0x880820"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            2,
+            72,
+            "0x82802880022802820"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 24,
+      "missing_hex": "0x82820",
+      "children": [
+        {
+          "row": [
+            24,
+            5
+          ],
+          "state": [
+            1,
+            24,
+            "0x2800"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 72,
+      "missing_hex": "0x82802880022802820",
+      "children": []
+    },
+    {
+      "remaining": 3,
+      "period": 24,
+      "missing_hex": "0xa28a0",
+      "children": [
+        {
+          "row": [
+            12,
+            5
+          ],
+          "state": [
+            2,
+            24,
+            "0x22820"
+          ]
+        },
+        {
+          "row": [
+            24,
+            5
+          ],
+          "state": [
+            2,
+            24,
+            "0x22880"
+          ]
+        },
+        {
+          "row": [
+            24,
+            7
+          ],
+          "state": [
+            2,
+            24,
+            "0x82820"
+          ]
+        },
+        {
+          "row": [
+            12,
+            7
+          ],
+          "state": [
+            2,
+            24,
+            "0x82880"
+          ]
+        },
+        {
+          "row": [
+            18,
+            1
+          ],
+          "state": [
+            2,
+            72,
+            "0xa28000a00a00028a0"
+          ]
+        }
+      ]
+    },
+    {
+      "remaining": 2,
+      "period": 72,
+      "missing_hex": "0xa28000a00a00028a0",
+      "children": []
+    }
+  ],
+  "count": 25,
+  "edges": 43,
+  "largest_period": 72,
+  "code_sha256": "5211f2447e5035033233a5a4e3c4958586a12a071883f7324f7e68d566509a3a"
+}

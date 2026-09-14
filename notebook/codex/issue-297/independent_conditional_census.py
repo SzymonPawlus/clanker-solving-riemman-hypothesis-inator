@@ -7,6 +7,7 @@ from math import gcd, lcm
 from itertools import product
 from pathlib import Path
 import json
+import argparse
 
 E={r:tuple(n for n in range(1,29) if r*((2*n+14)//15)>=n) for r in range(1,7)}
 REACH={0:{1}}
@@ -78,6 +79,9 @@ def enumerate_maximum(M):
 
 
 if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,default=Path(__file__).with_name('independent-conditional-census-replay.json'))
+    args=parser.parse_args()
     assert len(MAXIMA)==37
     reports=[]
     for M in MAXIMA:
@@ -90,5 +94,5 @@ if __name__=='__main__':
             'maximum_candidates':MAXIMA,'reports':reports,
             'total_primitive_cores':sum(len(r['primitive_cores']) for r in reports),
             'total_nodes':sum(r['nodes'] for r in reports)}
-    Path('/tmp/codex-297-independent-conditional-census.json').write_text(json.dumps(result,indent=2)+'\n')
+    args.output.write_text(json.dumps(result,indent=2)+'\n')
     print('COMPLETE',result['total_primitive_cores'],result['total_nodes'])
