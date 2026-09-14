@@ -1,0 +1,18 @@
+{
+  "scope": "seven-row covers with physical reduced period 2 present and period 3 absent",
+  "complete": true,
+  "cover_found": false,
+  "witness": null,
+  "nodes": 1093,
+  "largest_period": 340,
+  "width": {
+    "6": 1,
+    "5": 38,
+    "4": 341,
+    "3": 490,
+    "2": 213,
+    "1": 10
+  },
+  "seconds": 1.6418700439999725,
+  "memoized": 1093
+}

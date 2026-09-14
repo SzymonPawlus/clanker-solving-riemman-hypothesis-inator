@@ -1,0 +1,49 @@
+{
+  "status": "numerical/exact exploratory search",
+  "number_rows": 4,
+  "ratio_bound_strict": "3",
+  "complete": true,
+  "cover_found": {
+    "anchor": 6,
+    "killers": [
+      2,
+      3,
+      11,
+      13
+    ],
+    "largest_ratio": "13/6",
+    "reduced_rows": [
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        6,
+        11
+      ],
+      [
+        6,
+        13
+      ]
+    ]
+  },
+  "nodes": 3,
+  "maximum_residual_period": 6,
+  "reports": [
+    {
+      "minimum_period": 2,
+      "roots": 1,
+      "states": 3
+    }
+  ],
+  "elapsed_seconds": 0.00015956500010361196,
+  "graph_file": "upper-anchor-four-ratio-3.graph.json",
+  "graph_sha256": "4b3417530a7b52da270681b35f0e5a361d4c1c8540cdac1311de3d2e3a6dd7cf",
+  "code_sha256": "7878bf9be62d3d6a490c42b1ae7fc750b8cd840076c6b85bd9de851ed86577be",
+  "edges": 3,
+  "roots": 1
+}

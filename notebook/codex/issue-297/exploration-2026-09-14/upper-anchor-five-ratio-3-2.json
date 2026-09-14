@@ -1,0 +1,77 @@
+{
+  "status": "numerical/exact exploratory search",
+  "number_rows": 5,
+  "ratio_bound_strict": "3/2",
+  "complete": true,
+  "cover_found": null,
+  "nodes": 71,
+  "maximum_residual_period": 24,
+  "reports": [
+    {
+      "minimum_period": 2,
+      "roots": 1,
+      "states": 8
+    },
+    {
+      "minimum_period": 3,
+      "roots": 1,
+      "states": 2
+    },
+    {
+      "minimum_period": 4,
+      "roots": 1,
+      "states": 1
+    },
+    {
+      "minimum_period": 5,
+      "roots": 1,
+      "states": 1
+    },
+    {
+      "minimum_period": 6,
+      "roots": 1,
+      "states": 1
+    },
+    {
+      "minimum_period": 7,
+      "roots": 3,
+      "states": 3
+    },
+    {
+      "minimum_period": 8,
+      "roots": 3,
+      "states": 3
+    },
+    {
+      "minimum_period": 9,
+      "roots": 6,
+      "states": 12
+    },
+    {
+      "minimum_period": 10,
+      "roots": 5,
+      "states": 5
+    },
+    {
+      "minimum_period": 11,
+      "roots": 12,
+      "states": 12
+    },
+    {
+      "minimum_period": 12,
+      "roots": 6,
+      "states": 6
+    },
+    {
+      "minimum_period": 13,
+      "roots": 17,
+      "states": 17
+    }
+  ],
+  "elapsed_seconds": 0.0031261320000339765,
+  "graph_file": "upper-anchor-five-ratio-3-2.graph.json",
+  "graph_sha256": "1ac7c9e93d50138884c600954b288d30d52f78f70c7b54373c4ed5373d65e843",
+  "code_sha256": "7878bf9be62d3d6a490c42b1ae7fc750b8cd840076c6b85bd9de851ed86577be",
+  "edges": 15,
+  "roots": 57
+}

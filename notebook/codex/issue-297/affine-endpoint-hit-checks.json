@@ -1,0 +1,11 @@
+{
+  "status": "passed exact arithmetic fixtures; theorem remains sketch",
+  "general_grids": 774,
+  "literal_membership_comparisons": 1343664,
+  "composite_grids": 496,
+  "composite_endpoint_comparisons": 1128480,
+  "power_of_three_grids": 132,
+  "power_of_three_endpoint_comparisons": 1131120,
+  "code_sha256": "d3e2b750fb6554132377ccc5d403cf35e92b04b3ec7276b68fb9b12dc56e6210",
+  "seconds": 0.5981326420001096
+}
