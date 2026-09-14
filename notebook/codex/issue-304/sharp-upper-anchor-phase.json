@@ -1,0 +1,18 @@
+{
+  "pattern": [
+    4,
+    5,
+    6,
+    7,
+    11,
+    12,
+    13
+  ],
+  "extra": 7,
+  "candidate_atoms": 46,
+  "columns": 61041,
+  "finite_max_n": 124,
+  "mass_cap": "71/10",
+  "discovery_optimum": 6.5616197029556185,
+  "status": "failed on this finite atom grid; no nonexistence conclusion"
+}

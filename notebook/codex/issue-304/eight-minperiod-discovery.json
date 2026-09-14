@@ -1,0 +1,2925 @@
+{
+  "status": "bounded exploratory search; no unbounded exclusion",
+  "reports": [
+    {
+      "M": 31,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 32,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.005,
+      "solver_objective": 9.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 33,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.004,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 12.0
+    },
+    {
+      "M": 34,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.004,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 12.0
+    },
+    {
+      "M": 35,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.005,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 36,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.006,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 37,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 38,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.012,
+      "solver_objective": 11.0,
+      "solver_lower_bound": 11.0
+    },
+    {
+      "M": 39,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.004,
+      "solver_objective": 13.0,
+      "solver_lower_bound": 13.0
+    },
+    {
+      "M": 40,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.01,
+      "solver_objective": 10.000000000000002,
+      "solver_lower_bound": 10.000000000000002
+    },
+    {
+      "M": 41,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.024,
+      "solver_objective": 11.0,
+      "solver_lower_bound": 11.0
+    },
+    {
+      "M": 42,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.007,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 43,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 44,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.032,
+      "solver_objective": 10.000000000000016,
+      "solver_lower_bound": 10.000000000000016
+    },
+    {
+      "M": 45,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.011,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 46,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 47,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.114,
+      "solver_objective": 10.999999999999996,
+      "solver_lower_bound": 10.999999999999996
+    },
+    {
+      "M": 48,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.015,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 49,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.059,
+      "solver_objective": 10.999999999999998,
+      "solver_lower_bound": 10.999999999999998
+    },
+    {
+      "M": 50,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.065,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 51,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.049,
+      "solver_objective": 11.000000000000014,
+      "solver_lower_bound": 11.000000000000014
+    },
+    {
+      "M": 52,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.045,
+      "solver_objective": 10.000000000000107,
+      "solver_lower_bound": 10.000000000000107
+    },
+    {
+      "M": 53,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 54,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.046,
+      "solver_objective": 9.999999999999998,
+      "solver_lower_bound": 9.999999999999998
+    },
+    {
+      "M": 55,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.07,
+      "solver_objective": 9.999999999999995,
+      "solver_lower_bound": 9.999999999999995
+    },
+    {
+      "M": 56,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.004,
+      "solver_objective": 9.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 57,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.065,
+      "solver_objective": 11.000000000000004,
+      "solver_lower_bound": 11.000000000000004
+    },
+    {
+      "M": 58,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 59,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 60,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.102,
+      "solver_objective": 9.999999999999932,
+      "solver_lower_bound": 9.999999999999932
+    },
+    {
+      "M": 61,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.12,
+      "solver_objective": 10.999999999952465,
+      "solver_lower_bound": 10.999999999952465
+    },
+    {
+      "M": 62,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.238,
+      "solver_objective": 11.00000000000001,
+      "solver_lower_bound": 11.00000000000001
+    },
+    {
+      "M": 63,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.066,
+      "solver_objective": 10.000000000000016,
+      "solver_lower_bound": 10.000000000000016
+    },
+    {
+      "M": 64,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.018,
+      "solver_objective": 9.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 65,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.077,
+      "solver_objective": 9.999999999999996,
+      "solver_lower_bound": 9.999999999999996
+    },
+    {
+      "M": 66,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.074,
+      "solver_objective": 9.999999999999998,
+      "solver_lower_bound": 9.999999999999998
+    },
+    {
+      "M": 67,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 68,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.097,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 69,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.087,
+      "solver_objective": 10.999999999999975,
+      "solver_lower_bound": 10.999999999999975
+    },
+    {
+      "M": 70,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.079,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 71,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.17,
+      "solver_objective": 11.0,
+      "solver_lower_bound": 11.0
+    },
+    {
+      "M": 72,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.161,
+      "solver_objective": 10.00000000000001,
+      "solver_lower_bound": 10.00000000000001
+    },
+    {
+      "M": 73,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.462,
+      "solver_objective": 10.999999999999975,
+      "solver_lower_bound": 10.999999999999975
+    },
+    {
+      "M": 74,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 75,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.257,
+      "solver_objective": 10.999999999999952,
+      "solver_lower_bound": 10.999999999999952
+    },
+    {
+      "M": 76,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.256,
+      "solver_objective": 10.000000000002863,
+      "solver_lower_bound": 10.000000000002863
+    },
+    {
+      "M": 77,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.201,
+      "solver_objective": 10.000000000001124,
+      "solver_lower_bound": 10.000000000001124
+    },
+    {
+      "M": 78,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.229,
+      "solver_objective": 11.000000000000002,
+      "solver_lower_bound": 11.000000000000002
+    },
+    {
+      "M": 79,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.489,
+      "solver_objective": 11.000000000000004,
+      "solver_lower_bound": 11.000000000000004
+    },
+    {
+      "M": 80,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.156,
+      "solver_objective": 10.0,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 81,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.153,
+      "solver_objective": 10.000000000000002,
+      "solver_lower_bound": 10.000000000000002
+    },
+    {
+      "M": 82,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 10.000000000000009
+    },
+    {
+      "M": 83,
+      "status": "excluded by exact shared-zero cardinality bound"
+    },
+    {
+      "M": 84,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.104,
+      "solver_objective": 8.999999999999993,
+      "solver_lower_bound": 8.999999999999993
+    },
+    {
+      "M": 85,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000016,
+      "solver_lower_bound": 9.000000000000023
+    },
+    {
+      "M": 86,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 10.000000000001698
+    },
+    {
+      "M": 87,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.000000000000004,
+      "solver_lower_bound": 10.000000000000187
+    },
+    {
+      "M": 88,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.315,
+      "solver_objective": 10.000000000000048,
+      "solver_lower_bound": 10.000000000000048
+    },
+    {
+      "M": 89,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.000000000000032,
+      "solver_lower_bound": 9.000000000000016
+    },
+    {
+      "M": 90,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.167,
+      "solver_objective": 10.000000000000052,
+      "solver_lower_bound": 10.000000000000052
+    },
+    {
+      "M": 91,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000004,
+      "solver_lower_bound": 9.000000000000005
+    },
+    {
+      "M": 92,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.00000000000361,
+      "solver_lower_bound": 10.0
+    },
+    {
+      "M": 93,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.999999999999998,
+      "solver_lower_bound": 10.000000000000064
+    },
+    {
+      "M": 94,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.999999999999991,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 95,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000025,
+      "solver_lower_bound": 9.000000000000057
+    },
+    {
+      "M": 96,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.299,
+      "solver_objective": 8.99999999999998,
+      "solver_lower_bound": 8.99999999999998
+    },
+    {
+      "M": 97,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.00000000000002,
+      "solver_lower_bound": 9.000000000000453
+    },
+    {
+      "M": 98,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000004,
+      "solver_lower_bound": 9.000000000000753
+    },
+    {
+      "M": 99,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000004,
+      "solver_lower_bound": 9.000000000000167
+    },
+    {
+      "M": 100,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000007,
+      "solver_lower_bound": 9.000000000000083
+    },
+    {
+      "M": 101,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.000000000000009,
+      "solver_lower_bound": 9.000000000005757
+    },
+    {
+      "M": 102,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.999999999999998,
+      "solver_lower_bound": 9.000000000000256
+    },
+    {
+      "M": 103,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.999999999999995,
+      "solver_lower_bound": 9.000000000000464
+    },
+    {
+      "M": 104,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.333,
+      "solver_objective": 10.00000000000001,
+      "solver_lower_bound": 10.00000000000001
+    },
+    {
+      "M": 105,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.0,
+      "solver_lower_bound": 9.000000000000062
+    },
+    {
+      "M": 106,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.0,
+      "solver_lower_bound": 9.000000000000002
+    },
+    {
+      "M": 107,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000001101
+    },
+    {
+      "M": 108,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 10.999999999999904,
+      "solver_lower_bound": 9.000000000000014
+    },
+    {
+      "M": 109,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000000307
+    },
+    {
+      "M": 110,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 10.000000000000293,
+      "solver_lower_bound": 9.000000000001119
+    },
+    {
+      "M": 111,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.999999999999996,
+      "solver_lower_bound": 9.00000000000038
+    },
+    {
+      "M": 112,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 0,
+      "elapsed": 0.088,
+      "solver_objective": 9.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 113,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.999999999999984,
+      "solver_lower_bound": 9.000000000000256
+    },
+    {
+      "M": 114,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.000000000000005,
+      "solver_lower_bound": 9.000000000003334
+    },
+    {
+      "M": 115,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 11.999999999999762,
+      "solver_lower_bound": 9.00000000000007
+    },
+    {
+      "M": 116,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000002323
+    },
+    {
+      "M": 117,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.00000000000005
+    },
+    {
+      "M": 118,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 12.000000000000004,
+      "solver_lower_bound": 9.000000000001755
+    },
+    {
+      "M": 119,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.00000000000397
+    },
+    {
+      "M": 120,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 12.000000000000004,
+      "solver_lower_bound": 9.000000000000572
+    },
+    {
+      "M": 121,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.00000000000024
+    },
+    {
+      "M": 122,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 11.00000000000038,
+      "solver_lower_bound": 9.000000000000473
+    },
+    {
+      "M": 123,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000003125
+    },
+    {
+      "M": 124,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 11.999999999999988,
+      "solver_lower_bound": 9.000000000000547
+    },
+    {
+      "M": 125,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000004034
+    },
+    {
+      "M": 126,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000000714
+    },
+    {
+      "M": 127,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.0,
+      "solver_lower_bound": 9.000000000000293
+    },
+    {
+      "M": 128,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 12.999999999999995,
+      "solver_lower_bound": 9.000000000000044
+    },
+    {
+      "M": 129,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.00000000000107
+    },
+    {
+      "M": 130,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 11.000000000000613,
+      "solver_lower_bound": 9.000000000000037
+    },
+    {
+      "M": 131,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 11.99999999999999,
+      "solver_lower_bound": 9.000000000000776
+    },
+    {
+      "M": 132,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 11.999999999999993,
+      "solver_lower_bound": 9.000000000000524
+    },
+    {
+      "M": 133,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.999999999999996,
+      "solver_lower_bound": 9.000000000000691
+    },
+    {
+      "M": 134,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.00000000000782
+    },
+    {
+      "M": 135,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.000000000000043,
+      "solver_lower_bound": 9.000000000002867
+    },
+    {
+      "M": 136,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.0,
+      "solver_lower_bound": 9.000000000000135
+    },
+    {
+      "M": 137,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.999999999999936,
+      "solver_lower_bound": 9.000000000002942
+    },
+    {
+      "M": 138,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.000000000000005,
+      "solver_lower_bound": 9.000000000006512
+    },
+    {
+      "M": 139,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.0,
+      "solver_lower_bound": 9.000000000000227
+    },
+    {
+      "M": 140,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.506,
+      "solver_objective": 12.000000000000005,
+      "solver_lower_bound": 9.000000000000565
+    },
+    {
+      "M": 141,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.00000000098964
+    },
+    {
+      "M": 142,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.00000000000001,
+      "solver_lower_bound": 9.000000000000533
+    },
+    {
+      "M": 143,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.00000000000003,
+      "solver_lower_bound": 9.000000000044334
+    },
+    {
+      "M": 144,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 11.999999999999808,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 145,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.000000000000004,
+      "solver_lower_bound": 9.000000000003043
+    },
+    {
+      "M": 146,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 12.999999999999998,
+      "solver_lower_bound": 9.000000000001158
+    },
+    {
+      "M": 147,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 11.999999999999993,
+      "solver_lower_bound": 9.000000000002046
+    },
+    {
+      "M": 148,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 12.999999999999979,
+      "solver_lower_bound": 9.000000000000579
+    },
+    {
+      "M": 149,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 14.000000000000004,
+      "solver_lower_bound": 9.00000000001904
+    },
+    {
+      "M": 150,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 10.99999999999999,
+      "solver_lower_bound": 9.000000000007745
+    },
+    {
+      "M": 151,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 13.999999999999998,
+      "solver_lower_bound": 9.000000000004208
+    },
+    {
+      "M": 152,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 12.999999999999991,
+      "solver_lower_bound": 9.000000000000874
+    },
+    {
+      "M": 153,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.000000000000002,
+      "solver_lower_bound": 9.000000000000192
+    },
+    {
+      "M": 154,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.506,
+      "solver_objective": 11.0,
+      "solver_lower_bound": 9.000000000000979
+    },
+    {
+      "M": 155,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.999999999999998,
+      "solver_lower_bound": 9.00000000002825
+    },
+    {
+      "M": 156,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.518,
+      "solver_objective": 100.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 157,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 14.000000000000005,
+      "solver_lower_bound": 9.00000000000114
+    },
+    {
+      "M": 158,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.000000000000007,
+      "solver_lower_bound": 9.000000000000215
+    },
+    {
+      "M": 159,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 14.000000000000002,
+      "solver_lower_bound": 9.000000000019783
+    },
+    {
+      "M": 160,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 9.99999999999986,
+      "solver_lower_bound": 8.000000000001187
+    },
+    {
+      "M": 161,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.000000000000007,
+      "solver_lower_bound": 9.000000000001204
+    },
+    {
+      "M": 162,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.506,
+      "solver_objective": 100.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 163,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.502,
+      "solver_objective": 13.999999999999906,
+      "solver_lower_bound": 9.000000000000895
+    },
+    {
+      "M": 164,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 72.0,
+      "solver_lower_bound": 9.000000000004858
+    },
+    {
+      "M": 165,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.512,
+      "solver_objective": 101.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 166,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 12.0,
+      "solver_lower_bound": 9.000000000000725
+    },
+    {
+      "M": 167,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 14.0,
+      "solver_lower_bound": 9.00000000000586
+    },
+    {
+      "M": 168,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 11.00000000000001,
+      "solver_lower_bound": 9.000000000000949
+    },
+    {
+      "M": 169,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.999999999999991,
+      "solver_lower_bound": 9.000000000052133
+    },
+    {
+      "M": 170,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.517,
+      "solver_objective": 108.0,
+      "solver_lower_bound": 8.000000000011937
+    },
+    {
+      "M": 171,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.52,
+      "solver_objective": 103.0,
+      "solver_lower_bound": 8.000000000027033
+    },
+    {
+      "M": 172,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 60.0,
+      "solver_lower_bound": 9.000000000028049
+    },
+    {
+      "M": 173,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 14.99999999999996,
+      "solver_lower_bound": 9.000000000014166
+    },
+    {
+      "M": 174,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.507,
+      "solver_objective": 14.000000000000007,
+      "solver_lower_bound": 9.000000000000725
+    },
+    {
+      "M": 175,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.509,
+      "solver_objective": 112.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 176,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 113.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 177,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 14.000000000000007,
+      "solver_lower_bound": 9.000000000001108
+    },
+    {
+      "M": 178,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.522,
+      "solver_objective": 86.0,
+      "solver_lower_bound": 9.000000000001547
+    },
+    {
+      "M": 179,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 15.0,
+      "solver_lower_bound": 9.000000000000982
+    },
+    {
+      "M": 180,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 10.999999999999991,
+      "solver_lower_bound": 8.000000000000071
+    },
+    {
+      "M": 181,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 98.0,
+      "solver_lower_bound": 9.000000000128232
+    },
+    {
+      "M": 182,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 53.0,
+      "solver_lower_bound": 9.000000000011275
+    },
+    {
+      "M": 183,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.509,
+      "solver_objective": 58.0,
+      "solver_lower_bound": 9.000000000006812
+    },
+    {
+      "M": 184,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 14.00000000000004,
+      "solver_lower_bound": 9.000000000000266
+    },
+    {
+      "M": 185,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.508,
+      "solver_objective": 84.0,
+      "solver_lower_bound": 9.000000000000217
+    },
+    {
+      "M": 186,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.53,
+      "solver_objective": 91.0,
+      "solver_lower_bound": 9.000000000033618
+    },
+    {
+      "M": 187,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.518,
+      "solver_objective": 132.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 188,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.524,
+      "solver_objective": 86.0,
+      "solver_lower_bound": 9.000000000000426
+    },
+    {
+      "M": 189,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.527,
+      "solver_objective": 121.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 190,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.516,
+      "solver_objective": 124.0,
+      "solver_lower_bound": 8.000000000006684
+    },
+    {
+      "M": 191,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 14.999999999999998,
+      "solver_lower_bound": 9.000000000009633
+    },
+    {
+      "M": 192,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.521,
+      "solver_objective": 85.0,
+      "solver_lower_bound": 9.000000000017389
+    },
+    {
+      "M": 193,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.507,
+      "solver_objective": 92.0,
+      "solver_lower_bound": 9.000000000072967
+    },
+    {
+      "M": 194,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 94.0,
+      "solver_lower_bound": 9.00000000005893
+    },
+    {
+      "M": 195,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.529,
+      "solver_objective": 132.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 196,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.517,
+      "solver_objective": 94.0,
+      "solver_lower_bound": 9.000000000000314
+    },
+    {
+      "M": 197,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.512,
+      "solver_objective": 101.0,
+      "solver_lower_bound": 9.000000000019496
+    },
+    {
+      "M": 198,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 121.0,
+      "solver_lower_bound": 8.000000000046976
+    },
+    {
+      "M": 199,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.519,
+      "solver_objective": 139.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 200,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 13.0,
+      "solver_lower_bound": 8.00000000001482
+    },
+    {
+      "M": 201,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 15.0,
+      "solver_lower_bound": 9.000000000002899
+    },
+    {
+      "M": 202,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 103.0,
+      "solver_lower_bound": 9.000000000002759
+    },
+    {
+      "M": 203,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.528,
+      "solver_objective": 99.0,
+      "solver_lower_bound": 9.000000000001224
+    },
+    {
+      "M": 204,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.512,
+      "solver_objective": 128.0,
+      "solver_lower_bound": 8.000000000001537
+    },
+    {
+      "M": 205,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.526,
+      "solver_objective": 137.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 206,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.517,
+      "solver_objective": 98.0,
+      "solver_lower_bound": 9.000000000046013
+    },
+    {
+      "M": 207,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 131.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 208,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.548,
+      "solver_objective": 128.0,
+      "solver_lower_bound": 8.000000000686926
+    },
+    {
+      "M": 209,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.551,
+      "solver_objective": 134.0,
+      "solver_lower_bound": 8.000000000001405
+    },
+    {
+      "M": 210,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.541,
+      "solver_objective": 136.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 211,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.535,
+      "solver_objective": 154.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 212,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.517,
+      "solver_objective": 147.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 213,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.53,
+      "solver_objective": 104.0,
+      "solver_lower_bound": 9.000000000007502
+    },
+    {
+      "M": 214,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.53,
+      "solver_objective": 98.0,
+      "solver_lower_bound": 9.000000000015275
+    },
+    {
+      "M": 215,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.543,
+      "solver_objective": 147.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 216,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.528,
+      "solver_objective": 119.0,
+      "solver_lower_bound": 8.000000000006725
+    },
+    {
+      "M": 217,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.531,
+      "solver_objective": 92.0,
+      "solver_lower_bound": 9.000000000008216
+    },
+    {
+      "M": 218,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 94.0,
+      "solver_lower_bound": 9.00000000000535
+    },
+    {
+      "M": 219,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.506,
+      "solver_objective": 104.0,
+      "solver_lower_bound": 9.000000000059389
+    },
+    {
+      "M": 220,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.513,
+      "solver_objective": 123.0,
+      "solver_lower_bound": 8.00000000000067
+    },
+    {
+      "M": 221,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.521,
+      "solver_objective": 164.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 222,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.526,
+      "solver_objective": 110.0,
+      "solver_lower_bound": 9.000000000009068
+    },
+    {
+      "M": 223,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.525,
+      "solver_objective": 166.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 224,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 142.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 225,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.523,
+      "solver_objective": 132.0,
+      "solver_lower_bound": 8.000000000008987
+    },
+    {
+      "M": 226,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.536,
+      "solver_objective": 102.0,
+      "solver_lower_bound": 9.000000000003336
+    },
+    {
+      "M": 227,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.557,
+      "solver_objective": 171.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 228,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 14.999999999999996,
+      "solver_lower_bound": 8.000000000004977
+    },
+    {
+      "M": 229,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.508,
+      "solver_objective": 162.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 230,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.539,
+      "solver_objective": 150.0,
+      "solver_lower_bound": 8.000000000044142
+    },
+    {
+      "M": 231,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.529,
+      "solver_objective": 147.0,
+      "solver_lower_bound": 8.00000000007726
+    },
+    {
+      "M": 232,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.509,
+      "solver_objective": 94.0,
+      "solver_lower_bound": 9.000000000000638
+    },
+    {
+      "M": 233,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.536,
+      "solver_objective": 165.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 234,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.558,
+      "solver_objective": 148.0,
+      "solver_lower_bound": 8.000000000015056
+    },
+    {
+      "M": 235,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 152.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 236,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.507,
+      "solver_objective": 155.0,
+      "solver_lower_bound": 8.000000000000009
+    },
+    {
+      "M": 237,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.53,
+      "solver_objective": 106.0,
+      "solver_lower_bound": 9.000000000004123
+    },
+    {
+      "M": 238,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.525,
+      "solver_objective": 166.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 239,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.557,
+      "solver_objective": 180.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 240,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.517,
+      "solver_objective": 140.0,
+      "solver_lower_bound": 8.000000000031692
+    },
+    {
+      "M": 241,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.519,
+      "solver_objective": 175.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 242,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.51,
+      "solver_objective": 158.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 243,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.545,
+      "solver_objective": 147.0,
+      "solver_lower_bound": 8.000000000019961
+    },
+    {
+      "M": 244,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.515,
+      "solver_objective": 160.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 245,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.533,
+      "solver_objective": 165.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 246,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 157.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 247,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.523,
+      "solver_objective": 162.0,
+      "solver_lower_bound": 8.000000000006635
+    },
+    {
+      "M": 248,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.539,
+      "solver_objective": 167.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 249,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.531,
+      "solver_objective": 119.0,
+      "solver_lower_bound": 9.000000000018845
+    },
+    {
+      "M": 250,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.536,
+      "solver_objective": 157.0,
+      "solver_lower_bound": 8.000000000009209
+    },
+    {
+      "M": 251,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.586,
+      "solver_objective": 185.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 252,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.524,
+      "solver_objective": 141.0,
+      "solver_lower_bound": 8.00000000000117
+    },
+    {
+      "M": 253,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.563,
+      "solver_objective": 179.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 254,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 189.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 255,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 160.0,
+      "solver_lower_bound": 8.000000000002263
+    },
+    {
+      "M": 256,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.587,
+      "solver_objective": 170.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 257,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.52,
+      "solver_objective": 197.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 258,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.528,
+      "solver_objective": 164.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 259,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 193.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 260,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.549,
+      "solver_objective": 150.0,
+      "solver_lower_bound": 8.000000000002814
+    },
+    {
+      "M": 261,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.503,
+      "solver_objective": 156.0,
+      "solver_lower_bound": 8.000000000001016
+    },
+    {
+      "M": 262,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.533,
+      "solver_objective": 193.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 263,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.53,
+      "solver_objective": 194.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 264,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.569,
+      "solver_objective": 158.0,
+      "solver_lower_bound": 8.000000000000075
+    },
+    {
+      "M": 265,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.537,
+      "solver_objective": 176.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 266,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.581,
+      "solver_objective": 179.0,
+      "solver_lower_bound": 8.000000000001268
+    },
+    {
+      "M": 267,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.523,
+      "solver_objective": 126.0,
+      "solver_lower_bound": 9.00000000000332
+    },
+    {
+      "M": 268,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.541,
+      "solver_objective": 169.0,
+      "solver_lower_bound": 8.000000000029004
+    },
+    {
+      "M": 269,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.584,
+      "solver_objective": 201.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 270,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.527,
+      "solver_objective": 146.0,
+      "solver_lower_bound": 8.000000000001615
+    },
+    {
+      "M": 271,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.546,
+      "solver_objective": 189.0,
+      "solver_lower_bound": 8.000000000108109
+    },
+    {
+      "M": 272,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.572,
+      "solver_objective": 168.0,
+      "solver_lower_bound": 8.000000001670237
+    },
+    {
+      "M": 273,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.523,
+      "solver_objective": 189.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 274,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.521,
+      "solver_objective": 193.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 275,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.555,
+      "solver_objective": 163.0,
+      "solver_lower_bound": 8.000000000106132
+    },
+    {
+      "M": 276,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.551,
+      "solver_objective": 169.0,
+      "solver_lower_bound": 8.000000000000025
+    },
+    {
+      "M": 277,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.59,
+      "solver_objective": 187.0,
+      "solver_lower_bound": 8.000000000000012
+    },
+    {
+      "M": 278,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.54,
+      "solver_objective": 190.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 279,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.594,
+      "solver_objective": 177.0,
+      "solver_lower_bound": 8.000000000463114
+    },
+    {
+      "M": 280,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.539,
+      "solver_objective": 152.0,
+      "solver_lower_bound": 8.000000000028912
+    },
+    {
+      "M": 281,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.619,
+      "solver_objective": 210.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 282,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.519,
+      "solver_objective": 189.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 283,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.656,
+      "solver_objective": 211.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 284,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 188.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 285,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.599,
+      "solver_objective": 172.0,
+      "solver_lower_bound": 8.000000001149681
+    },
+    {
+      "M": 286,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.596,
+      "solver_objective": 184.0,
+      "solver_lower_bound": 8.000000000015445
+    },
+    {
+      "M": 287,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.637,
+      "solver_objective": 208.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 288,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.52,
+      "solver_objective": 165.0,
+      "solver_lower_bound": 8.000000000328354
+    },
+    {
+      "M": 289,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.518,
+      "solver_objective": 218.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 290,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.511,
+      "solver_objective": 222.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 291,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.523,
+      "solver_objective": 194.0,
+      "solver_lower_bound": 9.0
+    },
+    {
+      "M": 292,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.558,
+      "solver_objective": 195.0,
+      "solver_lower_bound": 8.000000000046942
+    },
+    {
+      "M": 293,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.548,
+      "solver_objective": 221.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 294,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.535,
+      "solver_objective": 188.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 295,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.576,
+      "solver_objective": 182.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 296,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.591,
+      "solver_objective": 203.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 297,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 174.0,
+      "solver_lower_bound": 8.000000000023451
+    },
+    {
+      "M": 298,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.528,
+      "solver_objective": 221.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 299,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.508,
+      "solver_objective": 216.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 300,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.58,
+      "solver_objective": 166.0,
+      "solver_lower_bound": 8.000000000012452
+    },
+    {
+      "M": 301,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.586,
+      "solver_objective": 230.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 302,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.583,
+      "solver_objective": 232.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 303,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.665,
+      "solver_objective": 208.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 304,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.565,
+      "solver_objective": 183.0,
+      "solver_lower_bound": 8.000000000601611
+    },
+    {
+      "M": 305,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.56,
+      "solver_objective": 227.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 306,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.543,
+      "solver_objective": 187.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 307,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.558,
+      "solver_objective": 215.0,
+      "solver_lower_bound": 8.000000001200227
+    },
+    {
+      "M": 308,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 219.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 309,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.59,
+      "solver_objective": 207.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 310,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.562,
+      "solver_objective": 186.0,
+      "solver_lower_bound": 8.000000000000046
+    },
+    {
+      "M": 311,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.611,
+      "solver_objective": 212.0,
+      "solver_lower_bound": 8.000000000011537
+    },
+    {
+      "M": 312,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.574,
+      "solver_objective": 188.0,
+      "solver_lower_bound": 8.00000000002799
+    },
+    {
+      "M": 313,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.623,
+      "solver_objective": 212.0,
+      "solver_lower_bound": 8.000000000000107
+    },
+    {
+      "M": 314,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.639,
+      "solver_objective": 237.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 315,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.506,
+      "solver_objective": 173.0,
+      "solver_lower_bound": 8.000000000171902
+    },
+    {
+      "M": 316,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 218.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 317,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.595,
+      "solver_objective": 199.0,
+      "solver_lower_bound": 8.000000000000071
+    },
+    {
+      "M": 318,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.551,
+      "solver_objective": 215.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 319,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.611,
+      "solver_objective": 228.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 320,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 220.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 321,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.599,
+      "solver_objective": 228.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 322,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.586,
+      "solver_objective": 224.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 323,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.668,
+      "solver_objective": 212.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 324,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.58,
+      "solver_objective": 176.0,
+      "solver_lower_bound": 8.00000000000092
+    },
+    {
+      "M": 325,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.709,
+      "solver_objective": 243.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 326,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.644,
+      "solver_objective": 240.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 327,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.571,
+      "solver_objective": 226.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 328,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.577,
+      "solver_objective": 226.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 329,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.512,
+      "solver_objective": 221.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 330,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 173.0,
+      "solver_lower_bound": 8.000000000004967
+    },
+    {
+      "M": 331,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 255.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 332,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.605,
+      "solver_objective": 207.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 333,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.582,
+      "solver_objective": 206.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 334,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.51,
+      "solver_objective": 258.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 335,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.508,
+      "solver_objective": 38.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 336,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.539,
+      "solver_objective": 192.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 337,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.537,
+      "solver_objective": 264.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 338,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.58,
+      "solver_objective": 264.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 339,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.511,
+      "solver_objective": 241.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 340,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.637,
+      "solver_objective": 200.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 341,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.532,
+      "solver_objective": 263.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 342,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.594,
+      "solver_objective": 194.0,
+      "solver_lower_bound": 8.000000000000005
+    },
+    {
+      "M": 343,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 260.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 344,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.675,
+      "solver_objective": 217.0,
+      "solver_lower_bound": 8.000000000000032
+    },
+    {
+      "M": 345,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 253.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 346,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.516,
+      "solver_objective": 267.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 347,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 262.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 348,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.521,
+      "solver_objective": 256.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 349,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.532,
+      "solver_objective": 269.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 350,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.509,
+      "solver_objective": 38.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 351,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.504,
+      "solver_objective": 253.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 352,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 249.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 353,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.516,
+      "solver_objective": 262.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 354,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 256.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 355,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.591,
+      "solver_objective": 267.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 356,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.531,
+      "solver_objective": 264.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 357,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.505,
+      "solver_objective": 257.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 358,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.603,
+      "solver_objective": 280.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 359,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.561,
+      "solver_objective": 269.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 360,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.51,
+      "solver_objective": 94.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 361,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.628,
+      "solver_objective": 278.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 362,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.729,
+      "solver_objective": 295.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 363,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.587,
+      "solver_objective": 272.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 364,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.544,
+      "solver_objective": 264.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 365,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.624,
+      "solver_objective": 276.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 366,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.597,
+      "solver_objective": 271.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 367,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.649,
+      "solver_objective": 281.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 368,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.566,
+      "solver_objective": 273.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 369,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.586,
+      "solver_objective": 257.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 370,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.63,
+      "solver_objective": 281.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 371,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.661,
+      "solver_objective": 290.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 372,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.63,
+      "solver_objective": 282.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 373,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.705,
+      "solver_objective": 291.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 374,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.673,
+      "solver_objective": 290.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 375,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.586,
+      "solver_objective": 268.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 376,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.603,
+      "solver_objective": 271.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 377,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.72,
+      "solver_objective": 287.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 378,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.68,
+      "solver_objective": 280.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 379,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.831,
+      "solver_objective": 295.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 380,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.595,
+      "solver_objective": 271.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 381,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.616,
+      "solver_objective": 265.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 382,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.735,
+      "solver_objective": 297.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 383,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.742,
+      "solver_objective": 298.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 384,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.627,
+      "solver_objective": 271.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 385,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.71,
+      "solver_objective": 292.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 386,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.78,
+      "solver_objective": 296.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 387,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.735,
+      "solver_objective": 271.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 388,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.843,
+      "solver_objective": 287.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 389,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.959,
+      "solver_objective": 296.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 390,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.739,
+      "solver_objective": 282.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 391,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.911,
+      "solver_objective": 311.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 392,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.699,
+      "solver_objective": 284.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 393,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.66,
+      "solver_objective": 277.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 394,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.919,
+      "solver_objective": 313.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 395,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.745,
+      "solver_objective": 291.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 396,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.585,
+      "solver_objective": 275.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 397,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.846,
+      "solver_objective": 300.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 398,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.825,
+      "solver_objective": 303.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 399,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.802,
+      "solver_objective": 297.0,
+      "solver_lower_bound": 8.0
+    },
+    {
+      "M": 400,
+      "status": "no candidate; solver output not an exact exclusion",
+      "solver_status": 1,
+      "elapsed": 0.598,
+      "solver_objective": 273.0,
+      "solver_lower_bound": 8.0
+    }
+  ]
+}
