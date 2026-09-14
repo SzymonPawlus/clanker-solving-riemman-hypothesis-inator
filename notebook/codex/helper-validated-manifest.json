@@ -1,6 +1,6 @@
 {
   "status": "sketch/numerical; independent Claude or human review required",
-  "checkpoint": "validated outputs before state-graph repairs",
+  "checkpoint": "normalized all44 data, period16 and conditional classification; no state graphs",
   "files": {
     "notebook/codex/2026-09-14-conditional-fortyfour-classification.md": "77e3da305921136815fc90a0c8d4a0dc4193cfb2e2238be5d0eacd5dca3aa8b6",
     "notebook/codex/2026-09-14-greedy-lcm-independent-audit.md": "cdac480031fb7813c22a1eb4d329b6ad4ecfbfb22a5de1299c9fa410f691027d",
@@ -36,8 +36,17 @@
     "notebook/codex/helper_p18_dual_check.py": "a1b2d9e4f21bfe317eef9db5681fbdf72e12f445f740c08baefd54c0b2998691",
     "notebook/codex/helper_period16_audit.cpp": "61b5cd38c44df795dcb94d278755e3748839fb50b173f8039a05c9465ec93d3a",
     "notebook/codex/helper_period16_summary.py": "aa35ca02bf3cee27f17758cbc36031668f8e92aea79e9d3bacb431efb65270f7",
-    "notebook/codex/helper_replay_validated.py": "9bc9dd0f1fe6d6b1179525e2366d7c3ca481267554ba5cb518c2cb8a59325d0c",
+    "notebook/codex/helper_replay_validated.py": "778b36823022b22079d7a9be91b71ff51f5dc0c311c28a29e94041951abf8afc",
     "notebook/codex/helper_smallest_period.py": "516a35ff322ffd277e5eacf1cc198a9b11b35009101a3c68068fe79cd2e47e2f",
-    "notebook/codex/helper_witness_extract.py": "e0058ae8cc255339463d1a586f69972be054b5a8db46fe771fb3b678ae991ef6"
+    "notebook/codex/helper_witness_extract.py": "e0058ae8cc255339463d1a586f69972be054b5a8db46fe771fb3b678ae991ef6",
+    "notebook/codex/helper_all44_audit.py": "bed3b14ed0a3919ede0bc92b3e8ed14d3c1eb062a582d466b538a52ce188b20a",
+    "notebook/codex/helper_all44_grid.cpp": "afca1c205ac03bfbe0a00f71ce6797273769241cba594fee5d1f612ea246e2d0",
+    "notebook/codex/helper-all44-independent-audit.json": "ac12f1ee0aa77a394d118712fbaeaf336f29d93ec7c52c6908ad82fbf9fe8817",
+    "notebook/codex/2026-09-14-all44-independent-audit.md": "80af239cd8c3830850c61f45d383500b5ea28637c34a059670b517505c2df6f3",
+    "notebook/codex/helper_all44_negative_fixtures.py": "d39439df60783e701c5d65c8d5231f454b0c6da75f454a4922b2042aaf1490c1",
+    "notebook/codex/helper-all44-negative-fixtures.json": "6b159c11a081cbbcd7ea73af488f492e6c2cea1e1b956a3c517f00dad4c65193"
+  },
+  "external_inputs": {
+    "all-forty-four-cores.json": "e8c26ff9ca2b405666ec33a4872f94a8b2897c8164dfa4d462ad3a51a56d23e6"
   }
 }

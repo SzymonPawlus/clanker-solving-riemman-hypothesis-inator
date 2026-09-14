@@ -1,0 +1,1681 @@
+{
+  "status": "sketch; independent Claude or human review required",
+  "scope": "44 specified primitive cores, every common positive integer scale, six additional positive speeds below scaled maximum",
+  "dimension": {
+    "moving_velocities": 14,
+    "total_runners": 15,
+    "threshold": "1/15"
+  },
+  "manifest_sha256": "e8c26ff9ca2b405666ec33a4872f94a8b2897c8164dfa4d462ad3a51a56d23e6",
+  "inventory_sha256": "f1009a4a4cece9d33636aeb47e6d82e0408d4ec76746cf3d8ef4f04bfedc01d1",
+  "checker_sha256": "bed3b14ed0a3919ede0bc92b3e8ed14d3c1eb062a582d466b538a52ce188b20a",
+  "kernel_sha256": "afca1c205ac03bfbe0a00f71ce6797273769241cba594fee5d1f612ea246e2d0",
+  "core_inventory_matches": true,
+  "tail_first_n": 31,
+  "tail_residue_classes": [
+    {
+      "residue": 0,
+      "first_n": 45,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 84,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 1,
+      "first_n": 31,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 5,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 2,
+      "first_n": 32,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 15,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 3,
+      "first_n": 33,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 25,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 4,
+      "first_n": 34,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 35,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 5,
+      "first_n": 35,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 45,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 6,
+      "first_n": 36,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 55,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 7,
+      "first_n": 37,
+      "ceil_2n_over_15": 5,
+      "slack_10n_minus_61ceil": 65,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 8,
+      "first_n": 38,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 14,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 9,
+      "first_n": 39,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 24,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 10,
+      "first_n": 40,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 34,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 11,
+      "first_n": 41,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 44,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 12,
+      "first_n": 42,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 54,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 13,
+      "first_n": 43,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 64,
+      "slack_step_per_15": 28
+    },
+    {
+      "residue": 14,
+      "first_n": 44,
+      "ceil_2n_over_15": 6,
+      "slack_10n_minus_61ceil": 74,
+      "slack_step_per_15": 28
+    }
+  ],
+  "audits": [
+    {
+      "tag": "p18",
+      "pattern": [
+        1,
+        5,
+        6,
+        7,
+        9,
+        11,
+        13,
+        18
+      ],
+      "atoms": 24,
+      "positive_atoms": 24,
+      "total": "6011/1000",
+      "finite_columns": 4996,
+      "finite_max_n": 30,
+      "finite_maximum": "749/750",
+      "maximizers": [
+        [
+          3,
+          49
+        ],
+        [
+          3,
+          53
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 910
+    },
+    {
+      "tag": "p18-6-14",
+      "pattern": [
+        1,
+        5,
+        6,
+        9,
+        11,
+        13,
+        14,
+        18
+      ],
+      "atoms": 23,
+      "positive_atoms": 23,
+      "total": "6019/1000",
+      "finite_columns": 4996,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          15
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 910
+    },
+    {
+      "tag": "p18-12-7",
+      "pattern": [
+        1,
+        5,
+        7,
+        9,
+        11,
+        12,
+        13,
+        18
+      ],
+      "atoms": 23,
+      "positive_atoms": 23,
+      "total": "1507/250",
+      "finite_columns": 4996,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          4
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 910
+    },
+    {
+      "tag": "p18-12-14",
+      "pattern": [
+        1,
+        5,
+        9,
+        11,
+        12,
+        13,
+        14,
+        18
+      ],
+      "atoms": 24,
+      "positive_atoms": 24,
+      "total": "759/125",
+      "finite_columns": 4996,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          15
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 910
+    },
+    {
+      "tag": "p24-1",
+      "pattern": [
+        1,
+        5,
+        7,
+        8,
+        11,
+        12,
+        13,
+        24
+      ],
+      "atoms": 31,
+      "positive_atoms": 31,
+      "total": "1521/250",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          15
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-2",
+      "pattern": [
+        1,
+        5,
+        7,
+        8,
+        12,
+        13,
+        22,
+        24
+      ],
+      "atoms": 35,
+      "positive_atoms": 35,
+      "total": "3041/500",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "1997/2000",
+      "maximizers": [
+        [
+          2,
+          31
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-3",
+      "pattern": [
+        1,
+        5,
+        7,
+        11,
+        12,
+        13,
+        16,
+        24
+      ],
+      "atoms": 29,
+      "positive_atoms": 29,
+      "total": "6053/1000",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "599/600",
+      "maximizers": [
+        [
+          3,
+          53
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-4",
+      "pattern": [
+        1,
+        5,
+        7,
+        12,
+        13,
+        16,
+        22,
+        24
+      ],
+      "atoms": 37,
+      "positive_atoms": 37,
+      "total": "3041/500",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          2,
+          27
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          67
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-5",
+      "pattern": [
+        1,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        24
+      ],
+      "atoms": 32,
+      "positive_atoms": 32,
+      "total": "6083/1000",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          17
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-6",
+      "pattern": [
+        1,
+        8,
+        10,
+        12,
+        13,
+        14,
+        22,
+        24
+      ],
+      "atoms": 30,
+      "positive_atoms": 30,
+      "total": "1213/200",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          23
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          3,
+          38
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-7",
+      "pattern": [
+        1,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        24
+      ],
+      "atoms": 33,
+      "positive_atoms": 33,
+      "total": "6083/1000",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          17
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p24-8",
+      "pattern": [
+        1,
+        10,
+        12,
+        13,
+        14,
+        16,
+        22,
+        24
+      ],
+      "atoms": 33,
+      "positive_atoms": 33,
+      "total": "761/125",
+      "finite_columns": 6664,
+      "finite_max_n": 30,
+      "finite_maximum": "749/750",
+      "maximizers": [
+        [
+          3,
+          67
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1240
+    },
+    {
+      "tag": "p30-1",
+      "pattern": [
+        1,
+        6,
+        7,
+        10,
+        11,
+        13,
+        15,
+        30
+      ],
+      "atoms": 41,
+      "positive_atoms": 41,
+      "total": "152/25",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          14
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-2",
+      "pattern": [
+        1,
+        6,
+        7,
+        11,
+        13,
+        15,
+        20,
+        30
+      ],
+      "atoms": 41,
+      "positive_atoms": 41,
+      "total": "6077/1000",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          4
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-3",
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        12,
+        13,
+        15,
+        30
+      ],
+      "atoms": 44,
+      "positive_atoms": 44,
+      "total": "243/40",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          2,
+          17
+        ],
+        [
+          2,
+          31
+        ],
+        [
+          2,
+          43
+        ],
+        [
+          3,
+          70
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-4",
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        13,
+        15,
+        18,
+        30
+      ],
+      "atoms": 43,
+      "positive_atoms": 43,
+      "total": "243/40",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-5",
+      "pattern": [
+        1,
+        7,
+        10,
+        11,
+        13,
+        15,
+        24,
+        30
+      ],
+      "atoms": 44,
+      "positive_atoms": 44,
+      "total": "6077/1000",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          21
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-6",
+      "pattern": [
+        1,
+        7,
+        11,
+        12,
+        13,
+        15,
+        20,
+        30
+      ],
+      "atoms": 43,
+      "positive_atoms": 43,
+      "total": "6077/1000",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "399/400",
+      "maximizers": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          47
+        ],
+        [
+          2,
+          55
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-7",
+      "pattern": [
+        1,
+        7,
+        11,
+        13,
+        15,
+        18,
+        20,
+        30
+      ],
+      "atoms": 48,
+      "positive_atoms": 48,
+      "total": "3039/500",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          24
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p30-8",
+      "pattern": [
+        1,
+        7,
+        11,
+        13,
+        15,
+        20,
+        24,
+        30
+      ],
+      "atoms": 37,
+      "positive_atoms": 37,
+      "total": "60067/10000",
+      "finite_columns": 8332,
+      "finite_max_n": 30,
+      "finite_maximum": "9999/10000",
+      "maximizers": [
+        [
+          1,
+          3
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1570
+    },
+    {
+      "tag": "p36-new44-1",
+      "pattern": [
+        1,
+        11,
+        12,
+        13,
+        15,
+        18,
+        21,
+        36
+      ],
+      "atoms": 48,
+      "positive_atoms": 48,
+      "total": "6073/1000",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          30
+        ],
+        [
+          2,
+          61
+        ],
+        [
+          3,
+          71
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-2",
+      "pattern": [
+        1,
+        11,
+        13,
+        15,
+        18,
+        21,
+        24,
+        36
+      ],
+      "atoms": 48,
+      "positive_atoms": 48,
+      "total": "243/40",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          28
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-3",
+      "pattern": [
+        2,
+        5,
+        7,
+        11,
+        12,
+        13,
+        18,
+        36
+      ],
+      "atoms": 44,
+      "positive_atoms": 44,
+      "total": "6077/1000",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          25
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-4",
+      "pattern": [
+        2,
+        5,
+        7,
+        11,
+        13,
+        18,
+        24,
+        36
+      ],
+      "atoms": 45,
+      "positive_atoms": 45,
+      "total": "243/40",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          1,
+          30
+        ],
+        [
+          2,
+          25
+        ],
+        [
+          2,
+          41
+        ],
+        [
+          3,
+          64
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-5",
+      "pattern": [
+        2,
+        5,
+        12,
+        13,
+        14,
+        18,
+        22,
+        36
+      ],
+      "atoms": 50,
+      "positive_atoms": 50,
+      "total": "6073/1000",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          32
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-6",
+      "pattern": [
+        2,
+        5,
+        12,
+        13,
+        18,
+        22,
+        28,
+        36
+      ],
+      "atoms": 44,
+      "positive_atoms": 44,
+      "total": "152/25",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          61
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-7",
+      "pattern": [
+        2,
+        5,
+        13,
+        14,
+        18,
+        22,
+        24,
+        36
+      ],
+      "atoms": 41,
+      "positive_atoms": 41,
+      "total": "6077/1000",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          1
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-8",
+      "pattern": [
+        2,
+        5,
+        13,
+        18,
+        22,
+        24,
+        28,
+        36
+      ],
+      "atoms": 49,
+      "positive_atoms": 49,
+      "total": "3039/500",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          30
+        ],
+        [
+          2,
+          27
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-9",
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        12,
+        18,
+        26,
+        36
+      ],
+      "atoms": 44,
+      "positive_atoms": 44,
+      "total": "152/25",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "1997/2000",
+      "maximizers": [
+        [
+          2,
+          45
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-10",
+      "pattern": [
+        2,
+        7,
+        10,
+        11,
+        18,
+        24,
+        26,
+        36
+      ],
+      "atoms": 47,
+      "positive_atoms": 47,
+      "total": "6077/1000",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "399/400",
+      "maximizers": [
+        [
+          2,
+          41
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-11",
+      "pattern": [
+        2,
+        11,
+        12,
+        13,
+        15,
+        18,
+        21,
+        36
+      ],
+      "atoms": 47,
+      "positive_atoms": 47,
+      "total": "1519/250",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          30
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-12",
+      "pattern": [
+        2,
+        11,
+        13,
+        15,
+        18,
+        21,
+        24,
+        36
+      ],
+      "atoms": 49,
+      "positive_atoms": 49,
+      "total": "3037/500",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "999/1000",
+      "maximizers": [
+        [
+          1,
+          16
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-13",
+      "pattern": [
+        2,
+        12,
+        14,
+        15,
+        18,
+        26,
+        33,
+        36
+      ],
+      "atoms": 44,
+      "positive_atoms": 44,
+      "total": "1519/250",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "374/375",
+      "maximizers": [
+        [
+          3,
+          26
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-14",
+      "pattern": [
+        2,
+        12,
+        15,
+        18,
+        26,
+        28,
+        33,
+        36
+      ],
+      "atoms": 48,
+      "positive_atoms": 48,
+      "total": "3037/500",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          19
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-15",
+      "pattern": [
+        2,
+        14,
+        15,
+        18,
+        24,
+        26,
+        33,
+        36
+      ],
+      "atoms": 49,
+      "positive_atoms": 49,
+      "total": "1519/250",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          1,
+          25
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p36-new44-16",
+      "pattern": [
+        2,
+        15,
+        18,
+        24,
+        26,
+        28,
+        33,
+        36
+      ],
+      "atoms": 49,
+      "positive_atoms": 49,
+      "total": "3039/500",
+      "finite_columns": 10000,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          59
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 1900
+    },
+    {
+      "tag": "p48-new44-17",
+      "pattern": [
+        2,
+        10,
+        11,
+        13,
+        14,
+        16,
+        24,
+        48
+      ],
+      "atoms": 53,
+      "positive_atoms": 53,
+      "total": "243/40",
+      "finite_columns": 13336,
+      "finite_max_n": 30,
+      "finite_maximum": "499/500",
+      "maximizers": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          30
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 2560
+    },
+    {
+      "tag": "p48-new44-18",
+      "pattern": [
+        2,
+        10,
+        11,
+        13,
+        14,
+        24,
+        32,
+        48
+      ],
+      "atoms": 53,
+      "positive_atoms": 53,
+      "total": "6073/1000",
+      "finite_columns": 13336,
+      "finite_max_n": 30,
+      "finite_maximum": "399/400",
+      "maximizers": [
+        [
+          2,
+          89
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 2560
+    },
+    {
+      "tag": "p48-new44-19",
+      "pattern": [
+        2,
+        11,
+        13,
+        16,
+        20,
+        24,
+        28,
+        48
+      ],
+      "atoms": 53,
+      "positive_atoms": 53,
+      "total": "759/125",
+      "finite_columns": 13336,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          51
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 2560
+    },
+    {
+      "tag": "p48-new44-20",
+      "pattern": [
+        2,
+        11,
+        13,
+        20,
+        24,
+        28,
+        32,
+        48
+      ],
+      "atoms": 55,
+      "positive_atoms": 55,
+      "total": "6073/1000",
+      "finite_columns": 13336,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          29
+        ],
+        [
+          1,
+          30
+        ],
+        [
+          1,
+          31
+        ],
+        [
+          1,
+          46
+        ],
+        [
+          3,
+          26
+        ],
+        [
+          3,
+          28
+        ],
+        [
+          3,
+          74
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 2560
+    },
+    {
+      "tag": "p72-new44-21",
+      "pattern": [
+        2,
+        15,
+        21,
+        22,
+        24,
+        26,
+        36,
+        72
+      ],
+      "atoms": 64,
+      "positive_atoms": 64,
+      "total": "6071/1000",
+      "finite_columns": 20008,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          18
+        ],
+        [
+          1,
+          39
+        ],
+        [
+          1,
+          43
+        ],
+        [
+          1,
+          61
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 3880
+    },
+    {
+      "tag": "p72-new44-22",
+      "pattern": [
+        2,
+        15,
+        21,
+        22,
+        26,
+        36,
+        48,
+        72
+      ],
+      "atoms": 80,
+      "positive_atoms": 80,
+      "total": "758/125",
+      "finite_columns": 20008,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          2,
+          1
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 3880
+    },
+    {
+      "tag": "p72-new44-23",
+      "pattern": [
+        4,
+        15,
+        21,
+        22,
+        24,
+        26,
+        36,
+        72
+      ],
+      "atoms": 66,
+      "positive_atoms": 66,
+      "total": "1517/250",
+      "finite_columns": 20008,
+      "finite_max_n": 30,
+      "finite_maximum": "997/1000",
+      "maximizers": [
+        [
+          1,
+          57
+        ],
+        [
+          1,
+          58
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 3880
+    },
+    {
+      "tag": "p72-new44-24",
+      "pattern": [
+        4,
+        15,
+        21,
+        22,
+        26,
+        36,
+        48,
+        72
+      ],
+      "atoms": 70,
+      "positive_atoms": 70,
+      "total": "3031/500",
+      "finite_columns": 20008,
+      "finite_max_n": 30,
+      "finite_maximum": "249/250",
+      "maximizers": [
+        [
+          1,
+          27
+        ],
+        [
+          1,
+          29
+        ]
+      ],
+      "literal_scale_range": [
+        1,
+        10
+      ],
+      "literal_lift_columns": 3880
+    }
+  ],
+  "complete": true,
+  "case_count": 44,
+  "finite_columns": 433328,
+  "literal_lift_columns": 82280,
+  "maximum_bad_mass": "9999/10000",
+  "maxima_histogram": {
+    "18": 4,
+    "24": 8,
+    "30": 8,
+    "36": 16,
+    "48": 4,
+    "72": 4
+  }
+}

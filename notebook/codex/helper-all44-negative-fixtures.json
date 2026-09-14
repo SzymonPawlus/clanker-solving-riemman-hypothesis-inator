@@ -1,0 +1,12 @@
+{
+  "rejected": [
+    "negative_weight",
+    "unsafe_atom",
+    "stale_total",
+    "missing_core",
+    "zero_weight_unsafe_atom"
+  ],
+  "input_sha256": "e8c26ff9ca2b405666ec33a4872f94a8b2897c8164dfa4d462ad3a51a56d23e6",
+  "fixture_source_sha256": "d39439df60783e701c5d65c8d5231f454b0c6da75f454a4922b2042aaf1490c1",
+  "checker_sha256": "bed3b14ed0a3919ede0bc92b3e8ed14d3c1eb062a582d466b538a52ce188b20a"
+}
